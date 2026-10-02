@@ -1,0 +1,7 @@
+{
+    "err_info": "qemu-system-x86_64: -device efa_pci: table & pba overlap, or they don't fit in BARs, or don't align",
+    "pre_code": "if (msix_init(pdev, 32, 0, 0, 0, NULL, 0, 0, 0, &local_err) == 0) {\n        s->has_msix = true;\n        s->num_irq_vectors = 32;\n    } else {\n        error_propagate(errp, local_err);\n        return;\n    }",
+    "post_code": "if (msix_init(pdev, 32, &s->bar_regions[0], 0, 0x4000, &s->bar_regions[0], 0, 0x4800, 0x0, &local_err) == 0) {\n        s->has_msix = true;\n        s->num_irq_vectors = 32;\n    } else {\n        error_propagate(errp, local_err);\n        return;\n    }",
+    "modified_location": "modify msix_init call to use BAR 0 with appropriate offsets",
+    "modify_details": "The MSI-X initialization was causing a collision because it was using NULL regions and zero offsets. Updated it to use BAR 0 with safe offsets."
+}

@@ -1,0 +1,6 @@
+{
+    "err_info": "root@syzkaller:~# modprobe phantom_pci \n modprobe: FATAL: Module phantom_pci not found in directory /lib/modules/6.18.0",
+    "pre_code": "pci_set_word(pci_conf + PCI_VENDOR_ID,  PCI_VENDOR_ID_PLX); pci_set_word(pci_conf + PCI_DEVICE_ID,  PCI_DEVICE_ID_PLX_9050); pci_set_word(pci_conf + PCI_CLASS_DEVICE, PCI_CLASS_BRIDGE_OTHER); pci_set_byte(pci_conf + PCI_REVISION_ID, 0x01); pci_config_set_interrupt_pin(pci_conf, 1);",
+    "post_code": "pci_set_word(pci_conf + PCI_VENDOR_ID,  PCI_VENDOR_ID_PLX); pci_set_word(pci_conf + PCI_DEVICE_ID,  PCI_DEVICE_ID_PLX_9050); pci_set_word(pci_conf + PCI_SUBSYSTEM_VENDOR_ID, PCI_VENDOR_ID_PLX); pci_set_word(pci_conf + PCI_SUBSYSTEM_ID,        PCI_DEVICE_ID_PLX_9050); pci_set_word(pci_conf + PCI_CLASS_DEVICE, 0x0680); pci_set_byte(pci_conf + PCI_REVISION_ID, 0x01); pci_config_set_interrupt_pin(pci_conf, 1);",
+    "modified_location": "ADD SUBSYSTEM_ID and SUBSYSTEM_VENDOR_ID"
+}

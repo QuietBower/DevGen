@@ -1,0 +1,6 @@
+{
+    "err_info": "qemu-system-x86_64: ../hw/pci/pci.c:1310: pci_register_bar: Assertion `is_power_of_2(size)' failed.",
+    "pre_code": "s->bar_info[2].size  = (MAX_CCB * ONE_DB_SIZE);",
+    "post_code": "size_t db_size = MAX_CCB * ONE_DB_SIZE; s->bar_info[2].size = pow2ceil(db_size);",
+    "modified_location": "Change the size BAR2 to the next power of 2 using pow2ceil function."
+}

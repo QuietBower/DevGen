@@ -1,0 +1,6 @@
+{
+    "err_info": "qemu-system-x86_64: -device intel_lpss_pci: intel_lpss_pci device type already registered",
+    "pre_code": "    /* Ensure we don't register the same PCI ID/type twice. */ if (object_class_by_name(TYPE_PCIBASE_DEVICE)) { Error *local_err = NULL;  error_setg(&local_err, \"intel_lpss_pci device type already registered\"); error_propagate(errp, local_err); return; }",
+    "post_code": "",
+    "modified_location": "Remove the duplicate registration check for the intel_lpss_pci device type."
+}

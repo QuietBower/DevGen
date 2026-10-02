@@ -1,0 +1,6 @@
+{
+    "err_info": "qemu-system-x86_64: ../hw/pci/pci.c:1310: pci_register_bar: Assertion `is_power_of_2(size)' failed.",
+    "pre_code": "#define CARMINE_DISPLAY_MEM\t(800 * 600 * 4) \\n #define CARMINE_USE_DISPLAY0\t(1 << 0) \\n #define MAX_DISPLAY\t2 \\n #define CARMINE_TOTAL_DISPLAY_MEM\t(CARMINE_DISPLAY_MEM * MAX_DISPLAY)",
+    "post_code": "#define CARMINE_DISPLAY_MEM\t(800 * 600 * 4)   // 1,920,000 per display\\n#define MAX_DISPLAY                2\\n#define CARMINE_TOTAL_DISPLAY_MEM_RAW (CARMINE_DISPLAY_MEM * MAX_DISPLAY)  // 3,840,000\\n\\n// Round up to next power of two\\n#define ROUND_UP_TO_POWER_OF_2(x) \\\\\\n    (1ULL << (64 - clz64((x) - 1)))\\n\\n#define CARMINE_TOTAL_DISPLAY_MEM \\\\\\n    ROUND_UP_TO_POWER_OF_2(CARMINE_TOTAL_DISPLAY_MEM_RAW)",
+    "modified_location": "Ensure CARMINE_TOTAL_DISPLAY_MEM is a power of 2 by rounding up to the next power of 2."
+}
