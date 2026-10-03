@@ -1,0 +1,11 @@
+include <uapi/linux/vhost.h>
+include <uapi/linux/fcntl.h>
+include <uapi/asm-generic/fcntl.h>
+
+resource fd_vhost_net[fd]
+
+openat$DEVGEN_net(fd const[AT_FDCWD], file ptr[in, string["/dev/vhost-net"]], flags const[O_RDWR], mode const[0]) fd_vhost_net
+
+ioctl$DEVGEN_VHOST_GET_BACKEND_FEATURES(fd fd_vhost_net, cmd const[VHOST_GET_BACKEND_FEATURES], arg ptr[out, int64])
+ioctl$DEVGEN_VHOST_SET_BACKEND_FEATURES(fd fd_vhost_net, cmd const[VHOST_SET_BACKEND_FEATURES], arg ptr[in, int64])
+ioctl$DEVGEN_VHOST_GET_VRING_BUSYLOOP_TIMEOUT(fd fd_vhost_net, cmd const[VHOST_GET_VRING_BUSYLOOP_TIMEOUT], arg ptr[out, vhost_vring_state])

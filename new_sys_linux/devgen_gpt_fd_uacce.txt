@@ -1,0 +1,24 @@
+meta arches["amd64"]
+
+include <uapi/linux/types.h>
+include <uapi/linux/ioctl.h>
+include <uapi/misc/uacce/hisi_qm.h>
+
+resource fd_uacce_qm[fd]
+
+syz_open_dev$DEVGEN_uacce_qm(dev ptr[in, string["/dev/uacce#"]], id proc[0, 1], flags flags[open_flags]) fd_uacce_qm
+
+ioctl$DEVGEN_UACCE_CMD_QM_SET_QP_CTX(fd fd_uacce_qm, cmd const[UACCE_CMD_QM_SET_QP_CTX], arg ptr[inout, hisi_qp_ctx])
+ioctl$DEVGEN_UACCE_CMD_QM_SET_QP_INFO(fd fd_uacce_qm, cmd const[UACCE_CMD_QM_SET_QP_INFO], arg ptr[inout, hisi_qp_info])
+
+hisi_qp_ctx {
+	id	int16
+	qc_type	int16
+}
+
+hisi_qp_info {
+	sqe_size	int32
+	sq_depth	int16
+	cq_depth	int16
+	reserved	int64
+}

@@ -1,0 +1,15 @@
+include <uapi/linux/fcntl.h>
+include <uapi/sound/asequencer.h>
+
+resource fd_snd_seq[fd]
+
+openat$DEVGEN_seq(fd const[AT_FDCWD], file ptr[in, string["/dev/snd/seq"]], flags flags[open_flags], mode const[0]) fd_snd_seq
+
+ioctl$DEVGEN_SNDRV_SEQ_IOCTL_GET_CLIENT_UMP_INFO(fd fd_snd_seq, cmd const[SNDRV_SEQ_IOCTL_GET_CLIENT_UMP_INFO], arg ptr[inout, snd_seq_client_ump_info])
+ioctl$DEVGEN_SNDRV_SEQ_IOCTL_SET_CLIENT_UMP_INFO(fd fd_snd_seq, cmd const[SNDRV_SEQ_IOCTL_SET_CLIENT_UMP_INFO], arg ptr[in, snd_seq_client_ump_info])
+
+snd_seq_client_ump_info {
+	client	int32
+	type	int32
+	info	array[int8, 512]
+}

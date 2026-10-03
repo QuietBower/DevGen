@@ -1,0 +1,106 @@
+Received: from sea.source.kernel.org (unknown [172.234.252.31])
+	by hzbj-edu-front-3.icoremail.net (Coremail) with SMTP id BbQMCkB2lzFdohhqZ8pfAg--.34824S2;
+	Fri, 29 May 2026 04:15:25 +0800 (CST)
+Received: from sea.source.kernel.org (unknown [172.234.252.31])
+	by oracle-mxproxy-4 (Coremail) with SMTP id AQAAfwAnLfFXohhqN54JAA--.3079S3;
+	Fri, 29 May 2026 04:15:20 +0800 (CST)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 4743840AC2;
+	Thu, 28 May 2026 20:15:19 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A15931F000E9;
+	Thu, 28 May 2026 20:15:18 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
+	s=korg; t=1779999319;
+	bh=L260MgSoE5/qqJ42/caDlKmfNy17EtqFBvvRwSmPsnM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=BvFIwnaPCaPUJkdF4bwcY2kwGqg+fin9NSCQ/YVxUNAR1SXk9Mc/RSap5l68x6tn8
+	 EjNZorR2rh0aP/TzvUpytW5fl1fmJU+gOD93tDJ9bGMp1om9uzb7QDDFU0B5vRD0QK
+	 ytv/etZfndCRenWpAmjuaNa9le4FLaVcsXUlAzww=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	patches@lists.linux.dev,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	syzbot+fcede535e7eb57cf5b43@syzkaller.appspotmail.com,
+	=?UTF-8?q?Ville=20Syrj=C3=A4l=C3=A4?= <ville.syrjala@linux.intel.com>,
+	Mingyu Wang <25181214217@stu.xidian.edu.cn>,
+	Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 6.18 024/377] drm/atomic: Increase timeout in drm_atomic_helper_wait_for_vblanks()
+Date: Thu, 28 May 2026 21:44:22 +0200
+Message-ID: <20260528194639.086627873@linuxfoundation.org>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260528194638.371537336@linuxfoundation.org>
+References: <20260528194638.371537336@linuxfoundation.org>
+User-Agent: quilt/0.69
+X-stable: review
+X-Patchwork-Hint: ignore
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAfwAnLfFXohhqN54JAA--.3079S3
+Authentication-Results: hzbj-edu-front-3.icoremail.net; spf=none smtp.
+	mail=gregkh@linuxfoundation.org; dkim=pass header.i=@linuxfoundation.o
+	rg
+X-Coremail-Antispam: 1UD129KBjvJXoW7AF48WryfJF1fKw4rZryDGFg_yoW8Zw4xpF
+	sxKFW7Krs5XF1qk34DAa10v3WY93yxXFyIg3srtw1ruwsFyF90yF1SqrWfGFy8ZrZrurWa
+	qas7tr13Cr15CFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvKb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r1j6r4UM7CIcVAF
+	z4kK6r1j6r18M28lY4IE4IxF12IF4wA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI
+	8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1l84ACjcxK6I8E
+	87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Jr0_Gr1le2I262IYc4CY6c
+	8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_JrI_
+	JrylYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwI
+	xGrwACjcxG0xvY0x0EwIxGrVCF72vEw4AK0wCjxxvEa2IrMxkIecxEwVCI4VW7MxkI7II2
+	jI8vz4vEwIxGrwCYIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCYIxAIcVC0I7IYx2IY6xkF7I
+	0E14v26r1j6r4UMxvI42IY6I8E87Iv67AKxVWUJVW8JwCYIxAIcVC2z280aVCY1x0267AK
+	xVWUJVW8JwCF04k20xvY0x0EwIxGrwCF72vEw4AK0wCFx2IqxVCFs4IE7xkEbVWUJVW8Jw
+	C20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAF
+	wI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xYxBIdaVFxh
+	VjvjDU0xZFpf9x07bPUDAUUUUU=
+
+6.18-stable review patch.  If anyone has any objections, please let me know.
+
+------------------
+
+From: Thomas Zimmermann <tzimmermann@suse.de>
+
+[ Upstream commit 79ae8510b5b81b9500370f89c619b50ca9c0990f ]
+
+Increase the timeout for vblank events from 100 ms to 1000 ms. This
+is the same fix as in commit f050da08a4ed ("drm/vblank: Increase
+timeout in drm_wait_one_vblank()") for another vblank timeout.
+
+After merging generic DRM vblank timers [1] and converting several
+DRM drivers for virtual hardware, these drivers synchronize their
+vblank events to the display refresh rate. This can trigger timeouts
+within the DRM framework.
+
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Link: https://lore.kernel.org/dri-devel/20250904145806.430568-1-tzimmermann@suse.de/ # [1]
+Reported-by: syzbot+fcede535e7eb57cf5b43@syzkaller.appspotmail.com
+Closes: https://lore.kernel.org/dri-devel/69381d6c.050a0220.4004e.0017.GAE@google.com/
+Reviewed-by: Ville Syrjälä <ville.syrjala@linux.intel.com>
+Fixes: 74afeb812850 ("drm/vblank: Add vblank timer")
+Link: https://patch.msgid.link/20251209143325.102056-1-tzimmermann@suse.de
+Signed-off-by: Mingyu Wang <25181214217@stu.xidian.edu.cn>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/drm_atomic_helper.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/drm_atomic_helper.c b/drivers/gpu/drm/drm_atomic_helper.c
+index bbec1c184f652..b06a5cba52958 100644
+--- a/drivers/gpu/drm/drm_atomic_helper.c
++++ b/drivers/gpu/drm/drm_atomic_helper.c
+@@ -1913,7 +1913,7 @@ drm_atomic_helper_wait_for_vblanks(struct drm_device *dev,
+ 		ret = wait_event_timeout(dev->vblank[i].queue,
+ 					 state->crtcs[i].last_vblank_count !=
+ 						drm_crtc_vblank_count(crtc),
+-					 msecs_to_jiffies(100));
++					 msecs_to_jiffies(1000));
+ 
+ 		WARN(!ret, "[CRTC:%d:%s] vblank wait timed out\n",
+ 		     crtc->base.id, crtc->name);
+-- 
+2.53.0
+

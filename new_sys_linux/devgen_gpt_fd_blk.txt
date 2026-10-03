@@ -1,0 +1,16 @@
+include <uapi/linux/blkzoned.h>
+include <uapi/linux/fs.h>
+
+resource fd_blk[fd]
+
+syz_open_dev$DEVGEN_blk(dev ptr[in, string["/dev/#"]], id proc[0, 1], flags flags[open_flags]) fd_blk
+
+ioctl$DEVGEN_BLKDISCARDZEROES(fd fd_blk, cmd const[BLKDISCARDZEROES], arg ptr[in, array[int8]])
+ioctl$DEVGEN_BLKFRAGET(fd fd_blk, cmd const[BLKFRAGET], arg ptr[out, int64])
+ioctl$DEVGEN_BLKGETDISKSEQ(fd fd_blk, cmd const[BLKGETDISKSEQ], arg ptr[out, int64])
+ioctl$DEVGEN_BLKOPENZONE(fd fd_blk, cmd const[BLKOPENZONE], arg ptr[in, blk_zone_range])
+ioctl$DEVGEN_BLKCLOSEZONE(fd fd_blk, cmd const[BLKCLOSEZONE], arg ptr[in, blk_zone_range])
+ioctl$DEVGEN_BLKFINISHZONE(fd fd_blk, cmd const[BLKFINISHZONE], arg ptr[in, blk_zone_range])
+ioctl$DEVGEN_BLKGETZONESZ(fd fd_blk, cmd const[BLKGETZONESZ], arg ptr[out, int32])
+ioctl$DEVGEN_BLKGETNRZONES(fd fd_blk, cmd const[BLKGETNRZONES], arg ptr[out, int32])
+ioctl$DEVGEN_BLKSSZGET(fd fd_blk, cmd const[BLKSSZGET], arg ptr[out, int32])

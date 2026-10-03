@@ -1,0 +1,11 @@
+include <uapi/linux/vhost.h>
+include <uapi/linux/fcntl.h>
+include <uapi/asm-generic/fcntl.h>
+
+resource fd_vhost_vsock[fd]
+
+openat$DEVGEN_vhost_vsock(fd const[AT_FDCWD], file ptr[in, string["/dev/vhost-vsock"]], flags const[O_RDWR], mode const[0]) fd_vhost_vsock
+
+ioctl$DEVGEN_VHOST_GET_BACKEND_FEATURESV(fd fd_vhost_vsock, cmd const[VHOST_GET_BACKEND_FEATURES], arg ptr[in, array[int8]])
+ioctl$DEVGEN_VHOST_SET_BACKEND_FEATURESV(fd fd_vhost_vsock, cmd const[VHOST_SET_BACKEND_FEATURES], arg intptr)
+ioctl$DEVGEN_VHOST_GET_VRING_BUSYLOOP_TIMEOUTV(fd fd_vhost_vsock, cmd const[VHOST_GET_VRING_BUSYLOOP_TIMEOUT], arg ptr[out, vhost_vring_state])

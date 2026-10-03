@@ -1,0 +1,16 @@
+﻿resource devgen_drivers_tty_nozomi[fd]
+syz_open_dev$devgen_drivers_tty_nozomi(dev ptr[in, string["/dev/noz#"]], id intptr, flags flags[open_flags]) devgen_drivers_tty_nozomi
+write$devgen_drivers_tty_nozomi(fd devgen_drivers_tty_nozomi, buf buffer[in], const len[buf])
+read$devgen_drivers_tty_nozomi(fd devgen_drivers_tty_nozomi, buf buffer[out], const len[buf])
+poll$devgen_drivers_tty_nozomi(fds ptr[in, array[polldevgen_drivers_tty_nozomi]], nfds len[fds], timeout int32)
+close$devgen_drivers_tty_nozomi(fd devgen_drivers_tty_nozomi)
+ioctl$devgen_drivers_tty_nozomi_1(fd devgen_drivers_tty_nozomi, cmd const[0x545c], arg intptr)
+ioctl$devgen_drivers_tty_nozomi_2(fd devgen_drivers_tty_nozomi, cmd const[0x545c], arg ptr64[in, int64])
+
+polldevgen_drivers_tty_nozomi {
+	fd	devgen_drivers_tty_nozomi
+	events	flags[pollfd_events, int16]
+	revents	const[0, int16]
+}
+
+

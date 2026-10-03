@@ -1,0 +1,16 @@
+include <sound/pcm.h>
+
+resource fd_hdspm_pcm[fd]
+
+syz_open_dev$DEVGEN_sndpcm(dev ptr[in, string["/dev/snd/pcmC#D0#"]], id proc[0, 1], flags flags[open_flags]) fd_hdspm_pcm
+
+ioctl$DEVGEN_SNDRV_PCM_IOCTL1_RESET(fd fd_hdspm_pcm, cmd const[SNDRV_PCM_IOCTL1_RESET], arg ptr[in, array[int8]])
+ioctl$DEVGEN_SNDRV_PCM_IOCTL1_CHANNEL_INFO(fd fd_hdspm_pcm, cmd const[SNDRV_PCM_IOCTL1_CHANNEL_INFO], arg ptr[inout, snd_pcm_channel_info])
+ioctl$DEVGEN_SNDRV_PCM_IOCTL1_FIFO_SIZE(fd fd_hdspm_pcm, cmd const[SNDRV_PCM_IOCTL1_FIFO_SIZE], arg ptr[inout, snd_pcm_hw_params])
+
+snd_pcm_channel_info {
+	channel	int32
+	offset	int64
+	first	int32
+	step	int32
+}

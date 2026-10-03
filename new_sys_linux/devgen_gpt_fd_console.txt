@@ -1,0 +1,8 @@
+include <uapi/linux/fcntl.h>
+include <uapi/asm-generic/ioctls.h>
+
+resource fd_console[fd]
+
+openat$DEVGEN_console(fd const[AT_FDCWD], file ptr[in, string["/dev/console"]], flags flags[open_flags], mode const[0]) fd_console
+
+ioctl$DEVGEN_TIOCGEXCL(fd fd_console, cmd const[TIOCGEXCL], arg ptr[out, int32])

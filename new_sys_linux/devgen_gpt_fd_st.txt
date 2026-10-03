@@ -1,0 +1,29 @@
+include <drivers/scsi/st_options.h>
+include <uapi/linux/mtio.h>
+
+resource fd_st[fd]
+
+syz_open_dev$DEVGEN_st(dev ptr[in, string["/dev/st#"]], id proc[0, 1], flags flags[open_flags]) fd_st
+
+ioctl$DEVGEN_MTIOCTOP(fd fd_st, cmd const[MTIOCTOP], arg ptr[in, mtop])
+ioctl$DEVGEN_MTIOCGET(fd fd_st, cmd const[MTIOCGET], arg ptr[out, mtget])
+ioctl$DEVGEN_MTIOCPOS(fd fd_st, cmd const[MTIOCPOS], arg ptr[out, mtpos])
+
+mtop {
+	mt_op	int16
+	mt_count	int32
+}
+
+mtget {
+	mt_type	int64
+	mt_resid	int64
+	mt_dsreg	int64
+	mt_gstat	int64
+	mt_erreg	int64
+	mt_fileno	int64
+	mt_blkno	int64
+}
+
+mtpos {
+	mt_blkno	int64
+}

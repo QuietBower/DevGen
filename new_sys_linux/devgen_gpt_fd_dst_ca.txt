@@ -1,0 +1,37 @@
+include <uapi/linux/dvb/ca.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+
+resource fd_dst_ca[fd]
+
+syz_open_dev$DEVGEN_dvb_ca(dev ptr[in, string["/dev/dvb/adapter#/ca#"]], id proc[0, 1], flags flags[open_flags]) fd_dst_ca
+
+ioctl$DEVGEN_CA_RESET(fd fd_dst_ca, cmd const[CA_RESET], arg ptr[in, array[int8]])
+ioctl$DEVGEN_CA_SEND_MSG(fd fd_dst_ca, cmd const[CA_SEND_MSG], arg ptr[in, ca_msg])
+ioctl$DEVGEN_CA_GET_MSG(fd fd_dst_ca, cmd const[CA_GET_MSG], arg ptr[inout, ca_msg])
+ioctl$DEVGEN_CA_GET_SLOT_INFO(fd fd_dst_ca, cmd const[CA_GET_SLOT_INFO], arg ptr[out, ca_slot_info])
+ioctl$DEVGEN_CA_GET_CAP(fd fd_dst_ca, cmd const[CA_GET_CAP], arg ptr[out, ca_caps])
+ioctl$DEVGEN_CA_GET_DESCR_INFO(fd fd_dst_ca, cmd const[CA_GET_DESCR_INFO], arg ptr[in, ca_msg])
+
+ca_msg {
+	index	int32
+	type	int32
+	length	int32
+	msg	array[int8, 256]
+}
+
+ca_caps {
+	slot_num	int32
+	slot_type	int32
+	descr_num	int32
+	descr_type	int32
+}
+
+ca_slot_info {
+	num	int32
+	type	flags[ca_slot_info_type, int32]
+	flags	flags[ca_slot_info_flags, int32]
+}
+
+ca_slot_info_type = CA_CI, CA_CI_LINK, CA_CI_PHYS, CA_DESCR, CA_SC
+ca_slot_info_flags = CA_CI_MODULE_PRESENT, CA_CI_MODULE_READY

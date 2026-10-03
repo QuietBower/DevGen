@@ -1,0 +1,34 @@
+include <linux/types.h>
+include <linux/time_types.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+include <uapi/sound/asound.h>
+
+resource fd_snd_timer[fd]
+
+openat$DEVGEN_snd_timer(fd const[AT_FDCWD], file ptr[in, string["/dev/snd/timer"]], flags flags[open_flags], mode const[0]) fd_snd_timer
+
+ioctl$DEVGEN_SNDRV_TIMER_IOCTL_TREAD_OLD(fd fd_snd_timer, cmd const[SNDRV_TIMER_IOCTL_TREAD_OLD], arg intptr)
+ioctl$DEVGEN_SNDRV_TIMER_IOCTL_TREAD64(fd fd_snd_timer, cmd const[SNDRV_TIMER_IOCTL_TREAD64], arg ptr[in, snd_timer_tread64])
+
+snd_timer_tread64 {
+	resolution	int32
+	ticks		int64
+	ccallback	int32
+	ccount		int32
+	ccount_frac	int32
+	last_tstamp	kgpt_timespec64
+	events		array[snd_timer_event, 32] 
+}
+
+snd_timer_event {
+	tstamp	kgpt_timespec64
+	val	int32
+}
+
+kgpt_timespec64 {
+	tv_sec	int64
+	tv_nsec	int64
+}
+
+define SND_TIMER_MAX_EVENTS 32

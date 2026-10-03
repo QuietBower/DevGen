@@ -1,0 +1,8 @@
+include <uapi/linux/rfkill.h>
+include <uapi/linux/fcntl.h>
+
+resource kpgt_fd_rfkill[fd]
+
+openat$DEVGEN_rfkill(fd const[AT_FDCWD], file ptr[in, string["/dev/rfkill"]], flags flags[open_flags], mode const[0]) kpgt_fd_rfkill
+
+ioctl$DEVGEN_RFKILL_IOC_NOINPUT(fd kpgt_fd_rfkill, cmd const[RFKILL_IOC_NOINPUT], arg ptr[in, array[int8]])

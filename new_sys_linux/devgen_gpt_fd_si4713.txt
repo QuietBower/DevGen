@@ -1,0 +1,19 @@
+include <linux/types.h>
+include <linux/time_types.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+include <linux/platform_data/media/si4713.h>
+
+resource fd_si4713[fd]
+
+syz_open_dev$DEVGEN_si4713(dev ptr[in, string["/dev/radio#"]], id proc[0, 1], flags flags[open_flags]) fd_si4713
+
+ioctl$DEVGEN_SI4713_IOC_MEASURE_RNL(fd fd_si4713, cmd const[SI4713_IOC_MEASURE_RNL], arg ptr[inout, si4713_rnl])
+
+si4713_rnl {
+	index		int32
+	frequency	int32
+	rnl		int32
+	reserved	array[int32, 4]
+}

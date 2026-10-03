@@ -1,0 +1,81 @@
+include <linux/types.h>
+include <uapi/linux/chio.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+
+resource fd_ch[fd]
+
+syz_open_dev$DEVGEN_ch(dev ptr[in, string["/dev/ch#"]], id proc[0, 1], flags flags[open_flags]) fd_ch
+
+ioctl$DEVGEN_CHIOINITELEM(fd fd_ch, cmd const[CHIOINITELEM], arg ptr[in, array[int8]])
+ioctl$DEVGEN_CHIOGPARAMS(fd fd_ch, cmd const[CHIOGPARAMS], arg ptr[out, changer_params])
+ioctl$DEVGEN_CHIOGVPARAMS(fd fd_ch, cmd const[CHIOGVPARAMS], arg ptr[out, changer_vendor_params])
+ioctl$DEVGEN_CHIOPOSITION(fd fd_ch, cmd const[CHIOPOSITION], arg ptr[in, changer_position])
+ioctl$DEVGEN_CHIOMOVE(fd fd_ch, cmd const[CHIOMOVE], arg ptr[in, changer_move])
+ioctl$DEVGEN_CHIOEXCHANGE(fd fd_ch, cmd const[CHIOEXCHANGE], arg ptr[in, changer_exchange])
+ioctl$DEVGEN_CHIOGSTATUS(fd fd_ch, cmd const[CHIOGSTATUS], arg ptr[in, changer_element_status])
+ioctl$DEVGEN_CHIOGELEM(fd fd_ch, cmd const[CHIOGELEM], arg ptr[in, changer_get_element])
+ioctl$DEVGEN_CHIOSVOLTAG(fd fd_ch, cmd const[CHIOSVOLTAG], arg ptr[in, changer_set_voltag])
+
+changer_params {
+	cp_curpicker	int32
+	cp_npickers	int32
+	cp_nslots	int32
+	cp_nportals	int32
+	cp_ndrives	int32
+}
+changer_vendor_params {
+	cvp_n1	int32
+	cvp_label1	array[int8, 16]
+	cvp_n2	int32
+	cvp_label2	array[int8, 16]
+	cvp_n3	int32
+	cvp_label3	array[int8, 16]
+	cvp_n4	int32
+	cvp_label4	array[int8, 16]
+	reserved	array[int32, 8]
+}
+changer_position {
+	cp_type	int32
+	cp_unit	int32
+	cp_flags	int32
+}
+changer_move {
+	cm_fromtype	int32
+	cm_fromunit	int32
+	cm_totype	int32
+	cm_tounit	int32
+	cm_flags	int32
+}
+changer_exchange {
+	ce_srctype	int32
+	ce_srcunit	int32
+	ce_fdsttype	int32
+	ce_fdstunit	int32
+	ce_sdsttype	int32
+	ce_sdstunit	int32
+	ce_flags	int32
+}
+changer_element_status {
+	ces_type	int32
+	ces_data	ptr[in, array[int8]]
+}
+changer_get_element {
+	cge_type	int32
+	cge_unit	int32
+	cge_status	int32
+	cge_errno	int32
+	cge_srctype	int32
+	cge_srcunit	int32
+	cge_id	int32
+	cge_lun	int32
+	cge_pvoltag	array[int8, 36]
+	cge_avoltag	array[int8, 36]
+	cge_flags	int32
+}
+changer_set_voltag {
+	csv_type	int32
+	csv_unit	int32
+	csv_voltag	array[int8, 36]
+	csv_flags	int32
+}

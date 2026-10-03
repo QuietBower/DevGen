@@ -1,0 +1,18 @@
+﻿include <uapi/linux/rtc.h>
+
+resource kdevgen_gpt_fd_rtc[fd]
+
+syz_open_dev$DEVGEN_rtc(dev ptr[in, string["/dev/rtc#"]], id proc[0, 1], flags flags[open_flags]) kdevgen_gpt_fd_rtc
+
+ioctl$DEVGEN_RTC_PARAM_GET(fd kdevgen_gpt_fd_rtc, cmd const[RTC_PARAM_GET], arg ptr[inout, rtc_param])
+ioctl$DEVGEN_RTC_PARAM_SET(fd kdevgen_gpt_fd_rtc, cmd const[RTC_PARAM_SET], arg ptr[in, rtc_param])
+
+rtc_param {
+	param	int64
+	uvalue	int64
+	svalue	int64
+	ptr	int64
+	index	int32
+	__pad	int32
+}
+

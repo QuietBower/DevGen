@@ -1,0 +1,37 @@
+include <linux/types.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+include <uapi/mtd/ubi-user.h>
+
+resource fd_ubi_vol[fd]
+
+syz_open_dev$DEVGEN_ubi(dev ptr[in, string["/dev/ubi#"]], id proc[0, 1], flags flags[open_flags]) fd_ubi_vol
+
+ioctl$DEVGEN_UBI_IOCVOLCRBLK(fd fd_ubi_vol, cmd const[UBI_IOCVOLCRBLK], arg ptr[in, array[int8]])
+ioctl$DEVGEN_UBI_IOCVOLRMBLK(fd fd_ubi_vol, cmd const[UBI_IOCVOLRMBLK], arg ptr[in, array[int8]])
+ioctl$DEVGEN_UBI_IOCVOLUP(fd fd_ubi_vol, cmd const[UBI_IOCVOLUP], arg ptr[in, int64])
+ioctl$DEVGEN_UBI_IOCEBCH(fd fd_ubi_vol, cmd const[UBI_IOCEBCH], arg ptr[in, ubi_leb_change_req])
+ioctl$DEVGEN_UBI_IOCEBER(fd fd_ubi_vol, cmd const[UBI_IOCEBER], arg intptr)
+ioctl$DEVGEN_UBI_IOCEBMAP(fd fd_ubi_vol, cmd const[UBI_IOCEBMAP], arg ptr[in, ubi_map_req])
+ioctl$DEVGEN_UBI_IOCEBUNMAP(fd fd_ubi_vol, cmd const[UBI_IOCEBUNMAP], arg ptr[in, int32])
+ioctl$DEVGEN_UBI_IOCEBISMAP(fd fd_ubi_vol, cmd const[UBI_IOCEBISMAP], arg ptr[in, int32])
+ioctl$DEVGEN_UBI_IOCSETVOLPROP(fd fd_ubi_vol, cmd const[UBI_IOCSETVOLPROP], arg ptr[in, ubi_set_vol_prop_req])
+
+ubi_leb_change_req {
+	lnum	int32
+	bytes	int32
+	dtype	int8
+	padding	array[int8, 7]
+}
+
+ubi_map_req {
+	lnum	int32
+	dtype	int8
+	padding	array[int8, 3]
+}
+
+ubi_set_vol_prop_req {
+	property	int8
+	padding		array[int8, 7]
+	value		int64
+}

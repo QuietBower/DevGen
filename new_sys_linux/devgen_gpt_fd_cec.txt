@@ -1,0 +1,89 @@
+include <uapi/linux/cec.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+define CEC_MAX_NUM_DEVICES 8
+
+resource fd_kgpt_cec[fd]
+
+syz_open_dev$DEVGEN_cec(dev ptr[in, string["/dev/cec#"]], id proc[0, CEC_MAX_NUM_DEVICES], flags flags[open_flags]) fd_kgpt_cec
+
+ioctl$DEVGEN_CEC_ADAP_G_CAPS(fd fd_kgpt_cec, cmd const[CEC_ADAP_G_CAPS], arg ptr[out, kgpt_cec_caps])
+ioctl$DEVGEN_CEC_ADAP_G_PHYS_ADDR(fd fd_kgpt_cec, cmd const[CEC_ADAP_G_PHYS_ADDR], arg ptr[out, int16])
+ioctl$DEVGEN_CEC_ADAP_S_PHYS_ADDR(fd fd_kgpt_cec, cmd const[CEC_ADAP_S_PHYS_ADDR], arg ptr[in, int16])
+ioctl$DEVGEN_CEC_ADAP_G_LOG_ADDRS(fd fd_kgpt_cec, cmd const[CEC_ADAP_G_LOG_ADDRS], arg ptr[out, kgpt_cec_log_addrs])
+ioctl$DEVGEN_CEC_ADAP_S_LOG_ADDRS(fd fd_kgpt_cec, cmd const[CEC_ADAP_S_LOG_ADDRS], arg ptr[inout, kgpt_cec_log_addrs])
+ioctl$DEVGEN_CEC_ADAP_G_CONNECTOR_INFO(fd fd_kgpt_cec, cmd const[CEC_ADAP_G_CONNECTOR_INFO], arg ptr[out, kgpt_cec_connector_info])
+ioctl$DEVGEN_CEC_TRANSMIT(fd fd_kgpt_cec, cmd const[CEC_TRANSMIT], arg ptr[inout, kgpt_cec_msg])
+ioctl$DEVGEN_CEC_RECEIVE(fd fd_kgpt_cec, cmd const[CEC_RECEIVE], arg ptr[inout, kgpt_cec_msg])
+ioctl$DEVGEN_CEC_DQEVENT(fd fd_kgpt_cec, cmd const[CEC_DQEVENT], arg ptr[out, kgpt_cec_event])
+ioctl$DEVGEN_CEC_G_MODE(fd fd_kgpt_cec, cmd const[CEC_G_MODE], arg ptr[out, int32])
+ioctl$DEVGEN_CEC_S_MODE(fd fd_kgpt_cec, cmd const[CEC_S_MODE], arg ptr[in, int32])
+
+kgpt_cec_caps {
+	driver	array[int8, 32]
+	name	array[int8, 32]
+	available_log_addrs	int32
+	capabilities	int32
+	version	int32
+}
+kgpt_cec_log_addrs {
+	log_addr	array[int8, 15]
+	log_addr_mask	int16
+	cec_version	int8
+	num_log_addrs	int8
+	vendor_id	int32
+	flags	int32
+	osd_name	array[int8, 15]
+	primary_device_type	array[int8, 15]
+	log_addr_type	array[int8, 15]
+	all_device_types	array[int8, 15]
+	features	array[array[int8, 12], 15]
+}
+kgpt_cec_connector_info {
+	type	int32
+	u	kgpt_cec_connector_info_union
+}
+kgpt_cec_msg {
+	tx_ts	int64
+	rx_ts	int64
+	len	int32
+	timeout	int32
+	sequence	int32
+	flags	int32
+	msg	array[int8, 16]
+	reply	int8
+	rx_status	int8
+	tx_status	int8
+	tx_arb_lost_cnt	int8
+	tx_nack_cnt	int8
+	tx_low_drive_cnt	int8
+	tx_error_cnt	int8
+}
+kgpt_cec_event {
+	ts	int64
+	event	int32
+	flags	int32
+	union	kgpt_cec_event_union
+}
+
+kgpt_cec_connector_info_union [
+	drm	kgpt_cec_drm_connector_info
+	raw	array[int32, 16]
+]
+kgpt_cec_event_union [
+	state_change	kgpt_cec_event_state_change
+	lost_msgs	kgpt_cec_event_lost_msgs
+	raw	array[int32, 16]
+]
+kgpt_cec_drm_connector_info {
+	card_no	int32
+	connector_id	int32
+}
+kgpt_cec_event_state_change {
+	phys_addr	int16
+	log_addr_mask	int16
+	have_conn_info	int16
+}
+kgpt_cec_event_lost_msgs {
+	lost_msgs	int32
+}

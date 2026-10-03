@@ -1,0 +1,11 @@
+include <linux/types.h>
+include <linux/time_types.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+include <uapi/sound/asound.h>
+
+resource fd_snd_ctl[fd]
+
+syz_open_dev$DEVGEN_snd_control(dev ptr[in, string["/dev/snd/controlC#"]], id proc[0, 31], flags flags[open_flags]) fd_snd_ctl
+
+ioctl$DEVGEN_SNDRV_CTL_IOCTL_POWER(fd fd_snd_ctl, cmd const[SNDRV_CTL_IOCTL_POWER], arg ptr[in, array[int8]])

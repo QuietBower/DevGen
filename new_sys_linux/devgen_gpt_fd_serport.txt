@@ -1,0 +1,7 @@
+include <uapi/linux/serio.h>
+
+resource fd_serport[fd]
+
+syz_open_dev$DEVGEN_serport(dev ptr[in, string["/dev/ttyS#"]], id proc[0, 1], flags flags[open_flags]) fd_serport
+
+ioctl$DEVGEN_SPIOCSTYPE(fd fd_serport, cmd const[SPIOCSTYPE], arg intptr)

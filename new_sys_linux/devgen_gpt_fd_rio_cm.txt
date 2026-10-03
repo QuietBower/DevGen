@@ -1,0 +1,41 @@
+include <uapi/linux/rio_cm_cdev.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+
+resource fd_rio_cm[fd]
+
+openat$DEVGEN_rio_cm(fd const[AT_FDCWD], file ptr[in, string["/dev/rio_cm"]], flags flags[open_flags], mode const[0]) fd_rio_cm
+
+ioctl$DEVGEN_RIO_CM_EP_GET_LIST_SIZE(fd fd_rio_cm, cmd const[RIO_CM_EP_GET_LIST_SIZE], arg ptr[out, int32])
+ioctl$DEVGEN_RIO_CM_EP_GET_LIST(fd fd_rio_cm, cmd const[RIO_CM_EP_GET_LIST], arg ptr[inout, rio_cm_ep_list])
+ioctl$DEVGEN_RIO_CM_CHAN_CREATE(fd fd_rio_cm, cmd const[RIO_CM_CHAN_CREATE], arg ptr[inout, rio_cm_channel])
+ioctl$DEVGEN_RIO_CM_CHAN_CLOSE(fd fd_rio_cm, cmd const[RIO_CM_CHAN_CLOSE], arg ptr[in, int16])
+ioctl$DEVGEN_RIO_CM_CHAN_BIND(fd fd_rio_cm, cmd const[RIO_CM_CHAN_BIND], arg ptr[in, rio_cm_channel])
+ioctl$DEVGEN_RIO_CM_CHAN_LISTEN(fd fd_rio_cm, cmd const[RIO_CM_CHAN_LISTEN], arg ptr[in, int16])
+ioctl$DEVGEN_RIO_CM_CHAN_ACCEPT(fd fd_rio_cm, cmd const[RIO_CM_CHAN_ACCEPT], arg ptr[inout, rio_cm_accept])
+ioctl$DEVGEN_RIO_CM_CHAN_CONNECT(fd fd_rio_cm, cmd const[RIO_CM_CHAN_CONNECT], arg ptr[in, rio_cm_channel])
+ioctl$DEVGEN_RIO_CM_CHAN_SEND(fd fd_rio_cm, cmd const[RIO_CM_CHAN_SEND], arg ptr[in, rio_cm_msg])
+ioctl$DEVGEN_RIO_CM_CHAN_RECEIVE(fd fd_rio_cm, cmd const[RIO_CM_CHAN_RECEIVE], arg ptr[inout, rio_cm_msg])
+ioctl$DEVGEN_RIO_CM_MPORT_GET_LIST(fd fd_rio_cm, cmd const[RIO_CM_MPORT_GET_LIST], arg ptr[inout, rio_cm_mport_get_list])
+
+type rio_cm_ep_list ptr[in, array[int8]]
+
+rio_cm_channel {
+	id	int16
+	remote_channel	int16
+	remote_destid	int16
+	mport_id	int8
+}
+rio_cm_accept {
+	ch_num	int16
+	pad0	const[0, int16]
+	wait_to	int32
+}
+rio_cm_msg {
+	ch_num	int16
+	size	int16
+	rxto	int32
+	msg	int64
+}
+
+type rio_cm_mport_get_list ptr[in, array[int8]]

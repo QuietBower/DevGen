@@ -1,0 +1,15 @@
+include <uapi/linux/fcntl.h>
+include <uapi/linux/capi.h>
+
+resource fd_capi[fd]
+
+openat$DEVGEN_capi(fd const[AT_FDCWD], file ptr[in, string["/dev/capi20"]], flags flags[open_flags], mode const[0]) fd_capi
+
+ioctl$DEVGEN_CAPI_GET_VERSION(fd fd_capi, cmd const[CAPI_GET_VERSION], arg ptr[inout, capi_version])
+
+capi_version {
+	majorversion	int32
+	minorversion	int32
+	majormanuversion	int32
+	minormanuversion	int32
+}

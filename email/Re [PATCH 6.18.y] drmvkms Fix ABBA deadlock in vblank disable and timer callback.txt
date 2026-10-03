@@ -1,0 +1,87 @@
+Received: from proxy2120.mail.163.com (unknown [1.95.21.20])
+	by hzbj-edu-front-2.icoremail.net (Coremail) with SMTP id BLQMCkBWMrIGeApqz9gjAg--.2454S2;
+	Mon, 18 May 2026 10:23:02 +0800 (CST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=I1Op4CwLvDbWIxcfGkebHPCoScSMbOGQXbJlutSUWLw=; b=G
+	ZchvjGjEUjNMgjm0EKvFdbKrojaawiOgvfPLt20HWnQRV4yBEg7UirjEu1YIcc31
+	rixtwA00BILuL0yCHiB+qRHja3+aX8hRPmtcQEm/LOsncrs7kDyUVJ/xZZPgyPam
+	U1rA5+D+q6yDRGYHSZAQFa7uItNR3A1YkHbxsaf5xQ=
+Received: from w15303746062$163.com ( [113.200.174.80] ) by
+ ajax-webmail-wmsvr-40-124 (Coremail) ; Mon, 18 May 2026 10:22:15 +0800
+ (CST)
+X-Originating-IP: [113.200.174.80]
+Date: Mon, 18 May 2026 10:22:15 +0800 (CST)
+From: w15303746062  <w15303746062@163.com>
+To: "Greg KH" <gregkh@linuxfoundation.org>
+Cc: louis.chauvet@bootlin.com, hamohammed.sa@gmail.com, simona@ffwll.ch,
+	melissa.srw@gmail.com, maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org,
+	"Mingyu Wang" <25181214217@stu.xidian.edu.cn>
+Subject: Re:Re: Re: [PATCH 6.18.y] drm/vkms: Fix ABBA deadlock in vblank
+ disable and timer callback
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
+ 20260403(27802f6d) Copyright (c) 2002-2026 www.mailtech.cn 163com
+In-Reply-To: <2026051633-skyward-parrot-cdd3@gregkh>
+References: <20260515131826.388154-1-w15303746062@163.com>
+ <2026051557-thermal-petite-7da0@gregkh>
+ <581657f0.ba8.19e2eaaf003.Coremail.w15303746062@163.com>
+ <2026051633-skyward-parrot-cdd3@gregkh>
+X-NTES-SC: AL_Qu2cC/ycv0Eo4yCbZukfmU0Qguw9Xcq5uPkj34FWN5t8jAvp5C0KcnBkF0HIze+BMCOAuyS4cSFE6/lLUql7RY0zMjg6SCYDH/nzU6ccMpk01w==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=GBK
+MIME-Version: 1.0
+Message-ID: <397754a7.224c.19e38e42006.Coremail.w15303746062@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:fCgvCgDXlyfXdwpqSjKhAA--.648W
+X-CM-SenderInfo: jzrvjiatxuliiws6il2tof0z/xtbC4xcwFGoKd9eYxgAA3O
+Authentication-Results: hzbj-edu-front-2.icoremail.net; spf=pass smtp.
+	mail=w15303746062@163.com; dkim=pass header.i=@163.com
+X-Coremail-Antispam: 1UD129KBjvJXoWrKrW7tF4rAr4xGw43KFy8Xwb_yoW8Jr1DpF
+	4rK3ZxAr4DJw4fX3ZrCF48Za48Z395K3s8ArW8K34UA345JF1xJryIga9avFyUurs5ur17
+	tr1Yq34rKFs8A3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU8nxnvy2
+	9KBjDU0xBIdaVrnRJUUUQSb7Iv0xC_Cr1lb4IE77IF4wAFF20E14v26r1j6r4UM7CIcVAF
+	z4kK6r1j6r18M28lY4IE4IxF12IF4wA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI
+	8IcVAFwI0_Gr0_Xr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Gr0_Cr1l84ACjcxK6I8E
+	87Iv67AKxVW8Jr0_Cr1UM28EF7xvwVC2z280aVCY1x0267AKxVW8Jr0_Cr1UM2vYz4IE04
+	k24VAvwVAKI4IrM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40E
+	x7xfMcIj6xIIjxv20xvE14v26r1q6rW5McIj6I8E87Iv67AKxVW8Jr0_Cr1UMcvjeVCFs4
+	IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFcxC
+	0VAYjxAxZF0Ew4CEw7xC0wACY4xI67k04243AVC20s07Mx02cVAKzwCY02Avz4vE14v_Gr
+	1lc2IjII80xcxEwVAKI48JMxvI42IY6xIIjxv20xvE14v26r1j6r1xMxvI42IY6xIIjxv2
+	0xvEc7CjxVAFwI0_Jr0_Gr1lcIIF0xvEx4A2jsIE14v26r1j6r4UMxvI42IY6I8E87Iv6x
+	kF7I0E14v26r1j6r4UMxAIw28IcxkI7VAKI48JMxCjnVCjjxCrMxC20s026xCaFVCjc4AY
+	6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17
+	CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF4l
+	6VACY4xI67k04243AbIYCTnIWIevJa73UjIFyTuYvjTifQRUUUUUU
+
+
+At 2026-05-16 17:51:59, "Greg KH" <gregkh@linuxfoundation.org> wrote:
+>There is no "minimal-risk policy for stable trees".  And if there was,
+>the least ammount of risk would be to take the reviewed and tested
+>patches that are already in Linus's tree, and NOT take anything that is
+>not already there, as 90% of the time that we do that, it comes back to
+>bite us hard.
+>
+>So please, just backport all the needed changes here.  Otherwise how are
+>we going to deal with the merge conflicts for the next 4 years in this
+>file?
+>
+>Or, get the maintainers of this file to agree and review this one-off
+>change that it is acceptable.  As they are going to be the ones getting
+>the bug reports and not having their patches applied over the years, not
+>anyone else :)
+
+Hi Greg,
+
+Got it. After looking deeper into the dependency chain, backporting the mainline commit (02e2681ffe1a) would indeed require pulling in the entire new DRM generic vblank timer infrastructure to 6.18.y. 
+
+That scope is just too large and complex for this specific issue. Since a one-off patch is not the right approach either, I will just drop this patch and abandon the backport effort for 6.18.y.
+
+Thanks for your time and the quick review.
+
+Thanks,
+Mingyu

@@ -1,0 +1,17 @@
+include <uapi/linux/soundcard.h>
+
+resource fd_snd_pcm_oss[fd]
+
+syz_open_dev$DEVGEN_snd_pcm_oss(dev ptr[in, string["/dev/dsp#"]], id proc[0, 1], flags flags[open_flags]) fd_snd_pcm_oss
+
+ioctl$DEVGEN_SOUND_PCM_WRITE_FILTER(fd fd_snd_pcm_oss, cmd const[SOUND_PCM_WRITE_FILTER], arg ptr[in, array[int8]])
+ioctl$DEVGEN_SOUND_PCM_READ_FILTER(fd fd_snd_pcm_oss, cmd const[SOUND_PCM_READ_FILTER], arg ptr[in, array[int8]])
+ioctl$DEVGEN_SNDCTL_DSP_SETSYNCRO(fd fd_snd_pcm_oss, cmd const[SNDCTL_DSP_SETSYNCRO], arg ptr[in, array[int8]])
+ioctl$DEVGEN_SNDCTL_DSP_PROFILE(fd fd_snd_pcm_oss, cmd const[SNDCTL_DSP_PROFILE], arg ptr[in, array[int8]])
+ioctl$DEVGEN_SNDCTL_DSP_MAPINBUF(fd fd_snd_pcm_oss, cmd const[SNDCTL_DSP_MAPINBUF], arg ptr[in, buffmem_desc])
+ioctl$DEVGEN_SNDCTL_DSP_MAPOUTBUF(fd fd_snd_pcm_oss, cmd const[SNDCTL_DSP_MAPOUTBUF], arg ptr[in, buffmem_desc])
+
+buffmem_desc {
+	buffer	 ptr[in, array[int32]]
+	size	int32
+}

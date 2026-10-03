@@ -1,0 +1,27 @@
+meta arches["amd64"]
+
+include <uapi/linux/types.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+
+
+include <uapi/linux/psp-sfs.h>
+
+resource fd_sfs[fd]
+
+openat$DEVGEN_sfs(fd const[AT_FDCWD], file ptr[in, string["/dev/sfs"]], flags const[O_RDWR], mode const[0]) fd_sfs
+
+ioctl$DEVGEN_SFSIOCFWVERS(fd fd_sfs, cmd const[SFSIOCFWVERS], arg ptr[out, sfs_user_get_fw_versions])
+ioctl$DEVGEN_SFSIOCUPDATEPKG(fd fd_sfs, cmd const[SFSIOCUPDATEPKG], arg ptr[inout, sfs_user_update_package])
+
+sfs_user_get_fw_versions {
+	blob	array[int8, TEE_EXT_CMD_BUFFER_SIZE]
+	sfs_status	int32
+	sfs_extended_status	int32
+}
+
+sfs_user_update_package {
+	payload_name	array[int8, PAYLOAD_NAME_SIZE]
+	sfs_status	int32
+	sfs_extended_status	int32
+}

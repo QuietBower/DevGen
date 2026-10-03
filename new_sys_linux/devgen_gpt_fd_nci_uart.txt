@@ -1,0 +1,8 @@
+include <net/nfc/nci_core.h>
+include <arch/powerpc/include/uapi/asm/ioctls.h>
+
+resource fd_nci_uart[fd]
+
+syz_open_dev$DEVGEN_nci_uart(dev ptr[in, string["/dev/tty#"]], id proc[0, 1], flags flags[open_flags]) fd_nci_uart
+
+ioctl$DEVGEN_NCIUARTSETDRIVER(fd fd_nci_uart, cmd const[NCIUARTSETDRIVER], arg intptr)

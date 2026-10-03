@@ -1,0 +1,123 @@
+Received: from mgamail.intel.com (unknown [198.175.65.13])
+	by hzbj-edu-front-3.icoremail.net (Coremail) with SMTP id BbQMCkAGLDagDhRq+oBNAg--.23643S2;
+	Mon, 25 May 2026 16:56:02 +0800 (CST)
+Received: from mgamail.intel.com (unknown [198.175.65.13])
+	by ucloud-mxproxy-9 (Coremail) with SMTP id AQAAfwAHDiKaDhRqPfnkAA--.113S3;
+	Mon, 25 May 2026 16:55:58 +0800 (CST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1779699359; x=1811235359;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=QDVlHkaJzd1yhCNccg0oJiSTSQUYqwHGcctnwRzp9hY=;
+  b=KOMOEt3ot+cpC8aQZmguwrT/vbbq2byRiftLLCHurxCgNgCp3H+2wjzm
+   DnEbADYRRKskGGwToIlBx8/Mo/XFbCOp8OH4aUkPhtp/wub6q7dAVqvkS
+   N70P3DAVJvqWu9Jx6EkMxh2GlRObg5+YLeacIO1Xy294u81VXBccipiQc
+   Z9fu35vo/hmuMRRrrMWn07097xqhXOcrLE/D90ww/aQ2T/rrL9FH5rH+J
+   BSW6j1/G8WtnSAsLY5shuxb2Zf0p5Em9GeyWt7bR4lFmm1PGJJP0JgF2p
+   m6AOr6B1W8h1xCucdRQdJc4jtf4yUY3pbGwkpsy3pRmeIcTHDfld+Eo0n
+   A==;
+X-CSE-ConnectionGUID: Z8/ZzdlcSWySgF5XhNU0sg==
+X-CSE-MsgGUID: vrgq2RkyQNm+KtymP8F3MA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11796"; a="91627073"
+X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; 
+   d="scan'208";a="91627073"
+Received: from fmviesa006.fm.intel.com ([10.60.135.146])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 May 2026 01:55:51 -0700
+X-CSE-ConnectionGUID: Bknsz68oR+KLd8gP4UuJog==
+X-CSE-MsgGUID: ZUe6382PRmebDTDU7tSw+w==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,167,1774335600"; 
+   d="scan'208";a="237129261"
+Received: from pgcooper-mobl3.ger.corp.intel.com (HELO [10.245.245.200]) ([10.245.245.200])
+  by fmviesa006-auth.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 25 May 2026 01:55:47 -0700
+Message-ID: <9c4a68c4-43a3-4a9b-a131-9570174c8df3@linux.intel.com>
+Date: Mon, 25 May 2026 10:55:43 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6.18.y] drm/vkms: Fix ABBA deadlock in vblank disable and
+ timer callback
+To: w15303746062 <w15303746062@163.com>, Greg KH <gregkh@linuxfoundation.org>
+Cc: louis.chauvet@bootlin.com, hamohammed.sa@gmail.com, simona@ffwll.ch,
+ melissa.srw@gmail.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ Mingyu Wang <25181214217@stu.xidian.edu.cn>
+References: <20260515131826.388154-1-w15303746062@163.com>
+ <2026051557-thermal-petite-7da0@gregkh>
+ <581657f0.ba8.19e2eaaf003.Coremail.w15303746062@163.com>
+ <2026051633-skyward-parrot-cdd3@gregkh>
+ <397754a7.224c.19e38e42006.Coremail.w15303746062@163.com>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <397754a7.224c.19e38e42006.Coremail.w15303746062@163.com>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 7bit
+X-CM-TRANSID:AQAAfwAHDiKaDhRqPfnkAA--.113S3
+Authentication-Results: hzbj-edu-front-3.icoremail.net; spf=pass smtp.
+	mail=maarten.lankhorst@linux.intel.com; dkim=pass header.i=@intel.com
+X-Coremail-Antispam: 1UD129KBjvJXoW7WFWfJw47Kw4fWry3uF1xZrb_yoW8ZF48pF
+	4Fgw4avr4DJ3ykGwn7Aw4xXayFv3yxK34YkrW8K34jv345AF1xtF1Iqa9I9FyUurs5Gw42
+	qw4rArn5CFs8A3DanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUyab7Iv0xC_KF4lb4IE77IF4wAFF20E14v26r1j6r4UM7CIcVAF
+	z4kK6r1j6r18M28lY4IE4IxF12IF4wA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI
+	8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1l84ACjcxK6I8E
+	87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Jr0_Gr1le2I262IYc4CY6c
+	8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_
+	Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrw
+	CjxxvEw4Wlc2IjII80xcxEwVAKI48JMxvI42IY6xIIjxv20xvE14v26r1j6r1xMxvI42IY
+	6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lcIIF0xvEx4A2jsIE14v26r1j6r4UMxvI42IY6I
+	8E87Iv6xkF7I0E14v26r1j6r4UMxAIw28IcxkI7VAKI48JMxCjnVCjjxCrMxC20s026xCa
+	FVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_Jr
+	Wlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xAIw20EY4v20xvaj40_
+	Jr0_JF7vcSsGvfC2KfnxnUUI43ZEXa7IUnRVbDUUUUU==
+
+Hello Mingyu
+
+Den 2026-05-18 kl. 04:22, skrev w15303746062:
+> 
+> 
+> At 2026-05-16 17:51:59, "Greg KH" <gregkh@linuxfoundation.org> wrote:
+>> There is no "minimal-risk policy for stable trees".  And if there was,
+>> the least ammount of risk would be to take the reviewed and tested
+>> patches that are already in Linus's tree, and NOT take anything that is
+>> not already there, as 90% of the time that we do that, it comes back to
+>> bite us hard.
+>>
+>> So please, just backport all the needed changes here.  Otherwise how are
+>> we going to deal with the merge conflicts for the next 4 years in this
+>> file?
+>>
+>> Or, get the maintainers of this file to agree and review this one-off
+>> change that it is acceptable.  As they are going to be the ones getting
+>> the bug reports and not having their patches applied over the years, not
+>> anyone else :)
+> 
+> Hi Greg,
+> 
+> Got it. After looking deeper into the dependency chain, backporting the mainline commit (02e2681ffe1a) would indeed require pulling in the entire new DRM generic vblank timer infrastructure to 6.18.y. 
+> 
+> That scope is just too large and complex for this specific issue. Since a one-off patch is not the right approach either, I will just drop this patch and abandon the backport effort for 6.18.y.
+> 
+> Thanks for your time and the quick review.
+> 
+> Thanks,
+> Mingyu
+> 
+
+As far as I can tell, if it's just a bug affecting vkms, all you need to do
+is only a few commits:
+
+74afeb812850 ("drm/vblank: Add vblank timer")
+d54dbb5963bd ("drm/vblank: Add CRTC helpers for simple use cases")
+02e2681ffe1a ("drm/vkms: Convert to DRM's vblank timer")
+79ae8510b5b8 ("drm/atomic: Increase timeout in drm_atomic_helper_wait_for_vblanks()")
+3946d3ba9934 ("drm/vblank: Fix kernel docs for vblank timer")
+
+There's no need to convert all other drivers if it's only vkms that you're fixing.
+
+But since you found this bug in one driver, it might be wise to check if others
+have the same bug and ask for backports for those too.
+
+Kind regards,
+~Maarten Lankhorst

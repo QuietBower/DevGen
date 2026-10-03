@@ -1,0 +1,31 @@
+include <linux/types.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+include <mm/gup_test.h>
+
+resource fd_gup_test[fd]
+
+openat$DEVGEN_gup_test(fd const[AT_FDCWD], file ptr[in, string["/sys/kernel/debug/gup_test"]], flags const[O_RDWR], mode const[0]) fd_gup_test
+
+ioctl$DEVGEN_GUP_FAST_BENCHMARK(fd fd_gup_test, cmd const[GUP_FAST_BENCHMARK], arg ptr[inout, gup_test])
+ioctl$DEVGEN_PIN_FAST_BENCHMARK(fd fd_gup_test, cmd const[PIN_FAST_BENCHMARK], arg ptr[inout, gup_test])
+ioctl$DEVGEN_PIN_LONGTERM_BENCHMARK(fd fd_gup_test, cmd const[PIN_LONGTERM_BENCHMARK], arg ptr[inout, gup_test])
+ioctl$DEVGEN_GUP_BASIC_TEST(fd fd_gup_test, cmd const[GUP_BASIC_TEST], arg ptr[inout, gup_test])
+ioctl$DEVGEN_PIN_BASIC_TEST(fd fd_gup_test, cmd const[PIN_BASIC_TEST], arg ptr[inout, gup_test])
+ioctl$DEVGEN_DUMP_USER_PAGES_TEST(fd fd_gup_test, cmd const[DUMP_USER_PAGES_TEST], arg ptr[inout, gup_test])
+ioctl$DEVGEN_PIN_LONGTERM_TEST_START(fd fd_gup_test, cmd const[PIN_LONGTERM_TEST_START], arg intptr)
+ioctl$DEVGEN_PIN_LONGTERM_TEST_STOP(fd fd_gup_test, cmd const[PIN_LONGTERM_TEST_STOP], arg ptr[in, array[int8]])
+ioctl$DEVGEN_PIN_LONGTERM_TEST_READ(fd fd_gup_test, cmd const[PIN_LONGTERM_TEST_READ], arg ptr[in, pin_longterm_test_args])
+
+gup_test {
+	get_delta_usec	int64
+	put_delta_usec	int64
+	addr	int64
+	size	int64
+	nr_pages_per_call	int32
+	gup_flags	int32
+	test_flags	int32
+	which_pages	array[int32, 1024]
+}
+
+type pin_longterm_test_args ptr[in, array[int8]]

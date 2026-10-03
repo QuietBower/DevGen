@@ -1,0 +1,16 @@
+include <arch/powerpc/include/uapi/asm/nvram.h>
+include <uapi/linux/fcntl.h>
+include <uapi/linux/nvram.h>
+
+resource fd_nvram[fd]
+
+openat$DEVGEN_nvram(fd const[AT_FDCWD], file ptr[in, string["/dev/nvram"]], flags flags[open_flags], mode const[0]) fd_nvram
+
+ioctl$DEVGEN_IOC_NVRAM_SYNC(fd fd_nvram, cmd const[IOC_NVRAM_SYNC], arg ptr[in, array[int8]])
+ioctl$DEVGEN_NVRAM_INIT(fd fd_nvram, cmd const[NVRAM_INIT], arg ptr[in, array[int8]])
+ioctl$DEVGEN_NVRAM_SETCKS(fd fd_nvram, cmd const[NVRAM_SETCKS], arg ptr[in, array[int8]])
+ioctl$DEVGEN_OBSOLETE_PMAC_NVRAM_GET_OFFSET(fd fd_nvram, cmd const[OBSOLETE_PMAC_NVRAM_GET_OFFSET], arg ptr[inout, pmac_nvram_partition])
+ioctl$DEVGEN_IOC_NVRAM_GET_OFFSET(fd fd_nvram, cmd const[IOC_NVRAM_GET_OFFSET], arg ptr[inout, nvram_partition])
+
+type pmac_nvram_partition ptr[in, array[int8]]
+type nvram_partition ptr[in, array[int8]]

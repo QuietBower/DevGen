@@ -1,0 +1,89 @@
+Received: from mgamail.intel.com (unknown [192.198.163.14])
+	by gzga-mx-mtada-g6-3 (Coremail) with SMTP id _____wD3t6uVqv1pCUYsAA--.31981S3;
+	Fri, 08 May 2026 17:19:22 +0800 (CST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1778231963; x=1809767963;
+  h=from:to:cc:subject:date:message-id:mime-version:
+   content-transfer-encoding;
+  bh=VY+hF2GB4PYTwHtJtktYHKfdj/kbNHWf9kBvXuFRvi4=;
+  b=aGvy3RAU/0oE2+PMkhP58OaBJFe5oJu3G27ILlt8g8PP5o7r5k1QxUv2
+   /z3lXkWSGDBYWTmAYLoZczLkfqSG73+ikPqlMKYax8f73ZDxi2AX2cmNM
+   7m1dzjKorHYB/IFH3g0t40VEtgEscqCpn2ve7RCnM2MNvGZv9/vyvDUcJ
+   VYYd45B84RIdVUA44Xhp/q0Xc0QJDskOA3IkPvWSnZXI/GwIxAB7+C+bY
+   RoMBBd+OQbJE9dDw054NQOx6MVvvf8wfxDN8WtXJ/kPDGZdQKITiKDIDt
+   jLjgfMGgi8RM2GuC7g6Z9S3VCCAEnbMfKfl1eRIA4DjzpjGtSVDY4ikGo
+   g==;
+X-CSE-ConnectionGUID: +kYeiSh5QfGTmwMp+//gUA==
+X-CSE-MsgGUID: s5CPVzEiReiotOb1BC2FbA==
+X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="79238663"
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; 
+   d="scan'208";a="79238663"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2026 02:19:16 -0700
+X-CSE-ConnectionGUID: 9JS9xCcPQhCjlMFWsbT9sA==
+X-CSE-MsgGUID: EwOBn+m0SkOrnD+IbalweQ==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; 
+   d="scan'208";a="240712885"
+Received: from silpixa00401971.ir.intel.com ([10.20.226.106])
+  by orviesa003.jf.intel.com with ESMTP; 08 May 2026 02:19:15 -0700
+From: Giovanni Cabiddu <giovanni.cabiddu@intel.com>
+To: herbert@gondor.apana.org.au
+Cc: linux-crypto@vger.kernel.org,
+	qat-linux@intel.com,
+	wangzhi@stu.xidian.edu.cn,
+	byu@xidian.edu.cn,
+	w15303746062@163.com,
+	vdronov@redhat.com,
+	Giovanni Cabiddu <giovanni.cabiddu@intel.com>
+Subject: [PATCH 0/2] crypto: qat - remove unused ioctl interface
+Date: Fri,  8 May 2026 10:18:22 +0100
+Message-ID: <20260508091912.206913-1-giovanni.cabiddu@intel.com>
+X-Mailer: git-send-email 2.54.0
+MIME-Version: 1.0
+Organization: Intel Research and Development Ireland Ltd - Co. Reg. #308263 - Collinstown Industrial Park, Leixlip, County Kildare - Ireland
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wD3t6uVqv1pCUYsAA--.31981S3
+Authentication-Results: gzga-mx-mtada-g6-3; spf=pass smtp.mail=giovann
+	i.cabiddu@intel.com; dkim=pass header.i=@intel.com
+X-Coremail-Antispam: 1Uf129KBjvJXoW7ury3tFy3WrW8WF4UtrWfuFg_yoW8WryUpF
+	WSqF9Ivr4DJrZruryxtrWrXa4ru390ga15KF15XryfKa4ayr18A3ySk3W8AFZrua4rXFyq
+	vF4rt3WUt3WkJ37anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UTCJQUUUUU=
+
+The QAT driver exposes a character device (qat_adf_ctl) with IOCTLs for
+device configuration, start, stop, status query and enumeration. These
+IOCTLs are not part of any public uAPI header and have no known in-tree
+or out-of-tree users.
+
+This ioctl interface increases the attack surface and is the subject of a
+number of bug reports. Remove it entirely.
+
+Patch 1 removes the character device, the IOCTL definitions, the related
+data structures and headers. It strips adf_ctl_drv.c down to the
+minimal module_init/module_exit hooks. This is marked for stable.
+
+Patch 2 renames the now-minimal adf_ctl_drv.c to adf_module.c and
+adjusts function names to match the new file name. This is not marked
+for stable as it is a pure rename.
+
+Giovanni Cabiddu (2):
+  crypto: qat - remove unused character device and IOCTLs
+  crypto: qat - rename adf_ctl_drv.c to adf_module.c
+
+ .../userspace-api/ioctl/ioctl-number.rst      |   1 -
+ drivers/crypto/intel/qat/qat_common/Makefile  |   2 +-
+ .../intel/qat/qat_common/adf_cfg_common.h     |  27 -
+ .../intel/qat/qat_common/adf_cfg_user.h       |  38 --
+ .../crypto/intel/qat/qat_common/adf_ctl_drv.c | 466 ------------------
+ .../crypto/intel/qat/qat_common/adf_module.c  |  64 +++
+ 6 files changed, 65 insertions(+), 533 deletions(-)
+ delete mode 100644 drivers/crypto/intel/qat/qat_common/adf_cfg_user.h
+ delete mode 100644 drivers/crypto/intel/qat/qat_common/adf_ctl_drv.c
+ create mode 100644 drivers/crypto/intel/qat/qat_common/adf_module.c
+
+
+base-commit: c9e14a7f54e4552968e3103fa871b1380ca23208
+-- 
+2.54.0

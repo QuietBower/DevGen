@@ -1,0 +1,8 @@
+include <uapi/linux/fcntl.h>
+include <uapi/linux/bt-bmc.h>
+
+resource fd_bt_bmc[fd]
+
+openat$DEVGEN_bt_bmc(fd const[AT_FDCWD], file ptr[in, string["/dev/bt-bmc"]], flags flags[open_flags], mode const[0]) fd_bt_bmc
+
+ioctl$DEVGEN_BT_BMC_IOCTL_SMS_ATN(fd fd_bt_bmc, cmd const[BT_BMC_IOCTL_SMS_ATN], arg ptr[in, array[int8]])

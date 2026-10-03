@@ -1,0 +1,86 @@
+﻿include <uapi/linux/dvb/dmx.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+
+resource kdevgen_gpt_fd_dvb_dvr[fd]
+resource fd_kgpt_dvb_demux[fd]
+
+syz_open_dev$DEVGEN_dvb_dvr(dev ptr[in, string["/dev/dvb/adapter#/dvr#"]], id proc[0, 1], flags flags[open_flags]) kdevgen_gpt_fd_dvb_dvr
+syz_open_dev$DEVGEN_dvb_demux(dev ptr[in, string["/dev/dvb/adapter#/demux#"]], id proc[0, 1], flags flags[open_flags]) fd_kgpt_dvb_demux
+
+ioctl$DEVGEN_DMX_DVR_SET_BUFFER_SIZE(fd kdevgen_gpt_fd_dvb_dvr, cmd const[DMX_SET_BUFFER_SIZE], arg intptr)
+ioctl$DEVGEN_DMX_DVR_REQBUFS(fd kdevgen_gpt_fd_dvb_dvr, cmd const[DMX_REQBUFS], arg ptr[in, dmx_requestbuffers])
+ioctl$DEVGEN_DMX_DVR_QUERYBUF(fd kdevgen_gpt_fd_dvb_dvr, cmd const[DMX_QUERYBUF], arg ptr[inout, dmx_buffer])
+ioctl$DEVGEN_DMX_DVR_EXPBUF(fd kdevgen_gpt_fd_dvb_dvr, cmd const[DMX_EXPBUF], arg ptr[in, dmx_exportbuffer])
+ioctl$DEVGEN_DMX_DVR_QBUF(fd kdevgen_gpt_fd_dvb_dvr, cmd const[DMX_QBUF], arg ptr[in, dmx_buffer])
+ioctl$DEVGEN_DMX_DVR_DQBUF(fd kdevgen_gpt_fd_dvb_dvr, cmd const[DMX_DQBUF], arg ptr[inout, dmx_buffer])
+
+ioctl$DEVGEN_DMX_START(fd fd_kgpt_dvb_demux, cmd const[DMX_START], arg ptr[in, array[int8]])
+ioctl$DEVGEN_DMX_STOP(fd fd_kgpt_dvb_demux, cmd const[DMX_STOP], arg ptr[in, array[int8]])
+ioctl$DEVGEN_DMX_SET_FILTER(fd fd_kgpt_dvb_demux, cmd const[DMX_SET_FILTER], arg ptr[in, dmx_sct_filter_params])
+ioctl$DEVGEN_DMX_SET_PES_FILTER(fd fd_kgpt_dvb_demux, cmd const[DMX_SET_PES_FILTER], arg ptr[in, dmx_pes_filter_params])
+ioctl$DEVGEN_DMX_DEMUX_SET_BUFFER_SIZE(fd fd_kgpt_dvb_demux, cmd const[DMX_SET_BUFFER_SIZE], arg intptr)
+ioctl$DEVGEN_DMX_GET_PES_PIDS(fd fd_kgpt_dvb_demux, cmd const[DMX_GET_PES_PIDS], arg ptr[out, dmx_pes_pid])
+ioctl$DEVGEN_DMX_GET_STC(fd fd_kgpt_dvb_demux, cmd const[DMX_GET_STC], arg ptr[inout, dmx_stc])
+ioctl$DEVGEN_DMX_ADD_PID(fd fd_kgpt_dvb_demux, cmd const[DMX_ADD_PID], arg intptr)
+ioctl$DEVGEN_DMX_REMOVE_PID(fd fd_kgpt_dvb_demux, cmd const[DMX_REMOVE_PID], arg ptr[in, int16])
+ioctl$DEVGEN_DMX_DEMUX_REQBUFS(fd fd_kgpt_dvb_demux, cmd const[DMX_REQBUFS], arg ptr[in, dmx_requestbuffers])
+ioctl$DEVGEN_DMX_DEMUX_QUERYBUF(fd fd_kgpt_dvb_demux, cmd const[DMX_QUERYBUF], arg ptr[inout, dmx_buffer])
+ioctl$DEVGEN_DMX_DEMUX_EXPBUF(fd fd_kgpt_dvb_demux, cmd const[DMX_EXPBUF], arg ptr[in, dmx_exportbuffer])
+ioctl$DEVGEN_DMX_DEMUX_QBUF(fd fd_kgpt_dvb_demux, cmd const[DMX_QBUF], arg ptr[in, dmx_buffer])
+ioctl$DEVGEN_DMX_DEMUX_DQBUF(fd fd_kgpt_dvb_demux, cmd const[DMX_DQBUF], arg ptr[inout, dmx_buffer])
+
+dmx_sct_filter_params {
+	pid	int16
+	filter	dmx_filter
+	timeout	int32
+	flags	flags[dmx_sct_filter_params_flags, int32]
+}
+
+type dmx_pes_pid ptr[in, array[int8]]
+
+dmx_stc {
+	num	int32
+	base	int32
+	stc	int64
+}
+
+dmx_requestbuffers {
+	count	int32
+	size	int32
+}
+
+dmx_buffer {
+	index	int32
+	bytesused	int32
+	offset	int32
+	length	int32
+	flags	int32
+	count	int32
+}
+
+dmx_exportbuffer {
+	index	int32
+	flags	int32
+	fd	int32
+}
+
+dmx_pes_filter_params {
+	pid	int16
+	input	flags[dmx_input, int32]
+	output	flags[dmx_output, int32]
+	pes_type	flags[dmx_ts_pes, int32]
+	flags	int32
+}
+
+dmx_filter {
+	filter	array[int8, 16]
+	mask	array[int8, 16]
+	mode	array[int8, 16]
+}
+
+dmx_sct_filter_params_flags = DMX_CHECK_CRC, DMX_ONESHOT, DMX_IMMEDIATE_START
+dmx_input = DMX_IN_FRONTEND, DMX_IN_DVR
+dmx_output = DMX_OUT_DECODER, DMX_OUT_TAP, DMX_OUT_TS_TAP, DMX_OUT_TSDEMUX_TAP
+dmx_ts_pes = DMX_PES_AUDIO0, DMX_PES_VIDEO0, DMX_PES_TELETEXT0, DMX_PES_SUBTITLE0, DMX_PES_PCR0, DMX_PES_AUDIO1, DMX_PES_VIDEO1, DMX_PES_TELETEXT1, DMX_PES_SUBTITLE1, DMX_PES_PCR1, DMX_PES_AUDIO2, DMX_PES_VIDEO2, DMX_PES_TELETEXT2, DMX_PES_SUBTITLE2, DMX_PES_PCR2, DMX_PES_AUDIO3, DMX_PES_VIDEO3, DMX_PES_TELETEXT3, DMX_PES_SUBTITLE3, DMX_PES_PCR3, DMX_PES_OTHER
+

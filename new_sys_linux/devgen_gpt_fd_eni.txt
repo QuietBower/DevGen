@@ -1,0 +1,20 @@
+include <uapi/linux/atmdev.h>
+include <uapi/linux/atm_eni.h>
+
+resource fd_eni[fd]
+
+syz_open_dev$DEVGEN_eni(dev ptr[in, string["/dev/atm/eni#"]], id proc[0, 1], flags flags[open_flags]) fd_eni
+
+ioctl$DEVGEN_ENI_MEMDUMP(fd fd_eni, cmd const[ENI_MEMDUMP], arg ptr[in, array[int8]])
+ioctl$DEVGEN_ENI_SETMULT(fd fd_eni, cmd const[ENI_SETMULT], arg ptr[in, eni_multipliers])
+ioctl$DEVGEN_ATM_SETCIRANGE(fd fd_eni, cmd const[ATM_SETCIRANGE], arg ptr[in, atm_cirange])
+
+eni_multipliers {
+	tx	int32
+	rx	int32
+}
+
+atm_cirange {
+	vpi_bits	int8
+	vci_bits	int8
+}

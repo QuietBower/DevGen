@@ -1,0 +1,63 @@
+include <uapi/linux/fcntl.h>
+include <uapi/linux/usb/raw_gadget.h>
+include <uapi/asm-generic/fcntl.h>
+
+resource fd_raw_gadget[fd]
+
+openat$DEVGEN_raw_gadget(fd const[AT_FDCWD], file ptr[in, string["/dev/raw-gadget"]], flags const[O_RDWR], mode const[0]) fd_raw_gadget
+
+ioctl$DEVGEN_USB_RAW_IOCTL_INIT(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_INIT], arg ptr[in, usb_raw_init])
+ioctl$DEVGEN_USB_RAW_IOCTL_RUN(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_RUN], arg ptr[in, array[int8]])
+ioctl$DEVGEN_USB_RAW_IOCTL_EVENT_FETCH(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EVENT_FETCH], arg ptr[inout, usb_raw_event])
+ioctl$DEVGEN_USB_RAW_IOCTL_EP0_WRITE(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP0_WRITE], arg ptr[in, usb_raw_ep_io])
+ioctl$DEVGEN_USB_RAW_IOCTL_EP0_READ(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP0_READ], arg ptr[inout, usb_raw_ep_io])
+ioctl$DEVGEN_USB_RAW_IOCTL_EP_ENABLE(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP_ENABLE], arg ptr[in, usb_endpoint_descriptor])
+ioctl$DEVGEN_USB_RAW_IOCTL_EP_DISABLE(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP_DISABLE], arg intptr)
+ioctl$DEVGEN_USB_RAW_IOCTL_EP_WRITE(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP_WRITE], arg ptr[in, usb_raw_ep_io])
+ioctl$DEVGEN_USB_RAW_IOCTL_EP_READ(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP_READ], arg ptr[inout, usb_raw_ep_io])
+ioctl$DEVGEN_USB_RAW_IOCTL_CONFIGURE(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_CONFIGURE], arg intptr)
+ioctl$DEVGEN_USB_RAW_IOCTL_VBUS_DRAW(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_VBUS_DRAW], arg intptr)
+ioctl$DEVGEN_USB_RAW_IOCTL_EPS_INFO(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EPS_INFO], arg ptr[out, usb_raw_eps_info])
+ioctl$DEVGEN_USB_RAW_IOCTL_EP0_STALL(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP0_STALL], arg ptr[in, array[int8]])
+ioctl$DEVGEN_USB_RAW_IOCTL_EP_SET_HALT(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP_SET_HALT], arg intptr)
+ioctl$DEVGEN_USB_RAW_IOCTL_EP_CLEAR_HALT(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP_CLEAR_HALT], arg intptr)
+ioctl$DEVGEN_USB_RAW_IOCTL_EP_SET_WEDGE(fd fd_raw_gadget, cmd const[USB_RAW_IOCTL_EP_SET_WEDGE], arg intptr)
+
+usb_raw_init {
+	driver_name	array[int8, UDC_NAME_LENGTH_MAX]
+	device_name	array[int8, UDC_NAME_LENGTH_MAX]
+	speed	int8
+}
+usb_raw_event {
+	type	int32
+	length	int32
+	data	array[int8]
+}
+usb_raw_ep_io {
+	ep	int16
+	flags	int16
+	length	int32
+	data	array[int8]
+}
+usb_raw_eps_info {
+	eps	array[usb_raw_ep_info, USB_RAW_EPS_NUM_MAX]
+}
+usb_raw_ep_info {
+	name	array[int8, USB_RAW_EP_NAME_MAX]
+	addr	int32
+	caps	usb_raw_ep_caps
+	limits	usb_raw_ep_limits
+}
+usb_raw_ep_caps {
+	type_control	int32:1
+	type_iso	int32:1
+	type_bulk	int32:1
+	type_int	int32:1
+	dir_in	int32:1
+	dir_out	int32:1
+}
+usb_raw_ep_limits {
+	maxpacket_limit	int16
+	max_streams	int16
+	reserved	int32
+}

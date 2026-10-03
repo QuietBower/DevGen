@@ -1,0 +1,8 @@
+include <scsi/sg.h>
+
+resource kpgt_fd_sg[fd]
+
+syz_open_dev$DEVGEN_sg(dev ptr[in, string["/dev/sg#"]], id proc[0, 1], flags flags[open_flags]) kpgt_fd_sg
+
+ioctl$DEVGEN_SG_SET_FORCE_LOW_DMA(fd kpgt_fd_sg, cmd const[SG_SET_FORCE_LOW_DMA], arg ptr[in, array[int8]])
+ioctl$DEVGEN_SG_GET_TRANSFORM(fd kpgt_fd_sg, cmd const[SG_GET_TRANSFORM], arg ptr[in, array[int8]])

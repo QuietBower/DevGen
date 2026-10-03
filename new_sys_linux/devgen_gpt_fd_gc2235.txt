@@ -1,0 +1,21 @@
+﻿include <linux/types.h>
+include <linux/time_types.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/v4l2-mediabus.h>
+include <uapi/linux/fcntl.h>
+include <drivers/staging/media/atomisp/include/linux/atomisp.h>
+
+resource kdevgen_gpt_fd_gc2235[fd]
+
+syz_open_dev$Kdevgen_gpt_fd_gc2235(dev ptr[in, string["/dev/v4l-subdev#"]], id proc[0, 1], flags flags[open_flags]) kdevgen_gpt_fd_gc2235
+
+ioctl$DEVGEN_ATOMISP_IOC_S_EXPOSURE(fd kdevgen_gpt_fd_gc2235, cmd const[ATOMISP_IOC_S_EXPOSURE], arg ptr[in, atomisp_exposure])
+
+atomisp_exposure {
+	integration_time	array[int32, 8]
+	shutter_speed	array[int32, 8]
+	gain	array[int32, 4]
+	aperture	int32
+}
+

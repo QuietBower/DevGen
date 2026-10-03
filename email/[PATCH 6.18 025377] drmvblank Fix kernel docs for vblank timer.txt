@@ -1,0 +1,112 @@
+Received: from sea.source.kernel.org (unknown [172.234.252.31])
+	by hzbj-edu-front-2.icoremail.net (Coremail) with SMTP id BLQMCkDGprZfohhqBbNfAg--.3134S2;
+	Fri, 29 May 2026 04:15:27 +0800 (CST)
+Received: from sea.source.kernel.org (unknown [172.234.252.31])
+	by oracle-mxproxy-4 (Coremail) with SMTP id AQAAfwBnb+taohhqRJ4JAA--.239S3;
+	Fri, 29 May 2026 04:15:23 +0800 (CST)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id D6F0B40E46;
+	Thu, 28 May 2026 20:15:21 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 443431F000E9;
+	Thu, 28 May 2026 20:15:21 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
+	s=korg; t=1779999321;
+	bh=wngop8rY/CemTIB4JW0B/JXyJl0KO6CCakAUSNB/adM=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=VGnTJWYtlyzszgLldQUVQGeSu27iEVwTyiygVETRa1qZ9/YGIMFQ3ex73HEOb/CtN
+	 V7bO81ZzwaCq/O5fbdDEpMqdvQA0cn3ZisASKqCt7mStH2LdbCLRX/bEY7+qKaiQu3
+	 cfAxMfT1y1xnJi7hlJP/FsbbaKzsqHPdm/YYm2yo=
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+	patches@lists.linux.dev,
+	Thomas Zimmermann <tzimmermann@suse.de>,
+	Stephen Rothwell <sfr@canb.auug.org.au>,
+	Louis Chauvet <louis.chauvet@bootlin.com>,
+	Javier Martinez Canillas <javierm@redhat.com>,
+	David Airlie <airlied@gmail.com>,
+	Simona Vetter <simona@ffwll.ch>,
+	Maarten Lankhorst <maarten.lankhorst@linux.intel.com>,
+	Maxime Ripard <mripard@kernel.org>,
+	dri-devel@lists.freedesktop.org,
+	Mingyu Wang <25181214217@stu.xidian.edu.cn>,
+	Sasha Levin <sashal@kernel.org>
+Subject: [PATCH 6.18 025/377] drm/vblank: Fix kernel docs for vblank timer
+Date: Thu, 28 May 2026 21:44:23 +0200
+Message-ID: <20260528194639.114698063@linuxfoundation.org>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260528194638.371537336@linuxfoundation.org>
+References: <20260528194638.371537336@linuxfoundation.org>
+User-Agent: quilt/0.69
+X-stable: review
+X-Patchwork-Hint: ignore
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAfwBnb+taohhqRJ4JAA--.239S3
+Authentication-Results: hzbj-edu-front-2.icoremail.net; spf=none smtp.
+	mail=gregkh@linuxfoundation.org; dkim=pass header.i=@linuxfoundation.o
+	rg
+X-Coremail-Antispam: 1UD129KBjvJXoW7AF48Wr4Dtr45uw4DGr1DGFg_yoW8Zr4Upr
+	sxGryftr4rtF90g3WDCF18uFyF93yrJFyxuFZrt3y5Zwnayr1ayF1Fyr43uFyUXr9xCF4a
+	qr9xXr13AF1rCFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUvKb7Iv0xC_tr1lb4IE77IF4wAFF20E14v26r1j6r4UM7CIcVAF
+	z4kK6r1j6r18M28lY4IE4IxF12IF4wA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI
+	8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1l84ACjcxK6I8E
+	87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Jr0_Gr1le2I262IYc4CY6c
+	8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jrv_
+	JF1lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwI
+	xGrwACjcxG0xvY0x0EwIxGrVCF72vEw4AK0wCjxxvEa2IrMxkIecxEwVCI4VW7MxkI7II2
+	jI8vz4vEwIxGrwCYIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCYIxAIcVC0I7IYx2IY6xkF7I
+	0E14v26r1j6r4UMxvI42IY6I8E87Iv67AKxVWUJVW8JwCYIxAIcVC2z280aVCY1x0267AK
+	xVWUJVW8JwCF04k20xvY0x0EwIxGrwCF72vEw4AK0wCFx2IqxVCFs4IE7xkEbVWUJVW8Jw
+	C20s026c02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAF
+	wI0_Jw0_GFylIxkGc2Ij64vIr41lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xYxBIdaVFxh
+	VjvjDU0xZFpf9x07b8c_-UUUUU=
+
+6.18-stable review patch.  If anyone has any objections, please let me know.
+
+------------------
+
+From: Thomas Zimmermann <tzimmermann@suse.de>
+
+[ Upstream commit 3946d3ba99342f3b9996e621f05e7003d4308171 ]
+
+Fix documentation for drm_crtc_vblank_start_timer(), which referred
+to drm_crtc_vblank_cancel_timer().
+
+Signed-off-by: Thomas Zimmermann <tzimmermann@suse.de>
+Reported-by: Stephen Rothwell <sfr@canb.auug.org.au>
+Closes: https://lore.kernel.org/dri-devel/20251106152201.6f248c09@canb.auug.org.au/
+Fixes: 74afeb812850 ("drm/vblank: Add vblank timer")
+Cc: Thomas Zimmermann <tzimmermann@suse.de>
+Cc: Louis Chauvet <louis.chauvet@bootlin.com>
+Cc: Javier Martinez Canillas <javierm@redhat.com>
+Cc: David Airlie <airlied@gmail.com>
+Cc: Simona Vetter <simona@ffwll.ch>
+Cc: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Maxime Ripard <mripard@kernel.org>
+Cc: dri-devel@lists.freedesktop.org
+Reviewed-by: Louis Chauvet <louis.chauvet@bootlin.com>
+Link: https://patch.msgid.link/20251106073207.11192-1-tzimmermann@suse.de
+Signed-off-by: Mingyu Wang <25181214217@stu.xidian.edu.cn>
+Signed-off-by: Sasha Levin <sashal@kernel.org>
+---
+ drivers/gpu/drm/drm_vblank.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/gpu/drm/drm_vblank.c b/drivers/gpu/drm/drm_vblank.c
+index 61e211fd3c9c8..451ec96202266 100644
+--- a/drivers/gpu/drm/drm_vblank.c
++++ b/drivers/gpu/drm/drm_vblank.c
+@@ -2258,7 +2258,7 @@ int drm_crtc_vblank_start_timer(struct drm_crtc *crtc)
+ EXPORT_SYMBOL(drm_crtc_vblank_start_timer);
+ 
+ /**
+- * drm_crtc_vblank_start_timer - Cancels the given CRTC's vblank timer
++ * drm_crtc_vblank_cancel_timer - Cancels the given CRTC's vblank timer
+  * @crtc: the CRTC
+  *
+  * Drivers should call this function from their CRTC's disable_vblank
+-- 
+2.53.0
+

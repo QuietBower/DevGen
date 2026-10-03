@@ -1,0 +1,14 @@
+include <linux/types.h>
+include <uapi/linux/sockios.h>
+include <uapi/linux/if.h>
+include <uapi/asm-generic/ioctls.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+
+resource fd_kgpt_slcan[fd]
+
+syz_open_dev$DEVGEN_slcan(dev ptr[in, string["/dev/ttyS#"]], id proc[0, 1], flags flags[open_flags]) fd_kgpt_slcan
+
+ioctl$DEVGEN_SIOCGIFNAMES(fd fd_kgpt_slcan, cmd const[SIOCGIFNAME], arg ptr[out, ifreq])
+ioctl$DEVGEN_TIOCSERCONFIG(fd fd_kgpt_slcan, cmd const[TIOCSERCONFIG])
+

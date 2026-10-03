@@ -1,0 +1,63 @@
+﻿meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/psp-sev.h>
+include <uapi/asm-generic/fcntl.h>
+include <uapi/linux/fcntl.h>
+
+resource devgen_gpt_fd_sev[fd]
+
+openat$DEVGEN_sev(fd const[AT_FDCWD], file ptr[in, string["/dev/sev"]], flags const[O_RDWR], mode const[0]) devgen_gpt_fd_sev
+
+ioctl$DEVGEN_SEV_ISSUE_CMD(fd devgen_gpt_fd_sev, cmd const[SEV_ISSUE_CMD], arg ptr[inout, sev_issue_cmd])
+ioctl$DEVGEN_SEV_FACTORY_RESET(fd devgen_gpt_fd_sev, cmd const[SEV_FACTORY_RESET], arg ptr[inout, sev_issue_cmd])
+ioctl$DEVGEN_SEV_PLATFORM_STATUS(fd devgen_gpt_fd_sev, cmd const[SEV_PLATFORM_STATUS], arg ptr[in, sev_issue_cmd])
+ioctl$DEVGEN_SEV_PEK_GEN(fd devgen_gpt_fd_sev, cmd const[SEV_PEK_GEN], arg ptr[inout, sev_issue_cmd])
+ioctl$DEVGEN_SEV_PDH_GEN(fd devgen_gpt_fd_sev, cmd const[SEV_PDH_GEN], arg ptr[inout, sev_issue_cmd])
+ioctl$DEVGEN_SEV_PEK_CSR(fd devgen_gpt_fd_sev, cmd const[SEV_PEK_CSR], arg ptr[in, sev_issue_cmd])
+ioctl$DEVGEN_SEV_PEK_CERT_IMPORT(fd devgen_gpt_fd_sev, cmd const[SEV_PEK_CERT_IMPORT], arg ptr[in, sev_issue_cmd])
+ioctl$DEVGEN_SEV_PDH_CERT_EXPORT(fd devgen_gpt_fd_sev, cmd const[SEV_PDH_CERT_EXPORT], arg ptr[in, sev_issue_cmd])
+ioctl$DEVGEN_SEV_GET_ID(fd devgen_gpt_fd_sev, cmd const[SEV_GET_ID], arg ptr[in, sev_issue_cmd])
+ioctl$DEVGEN_SEV_GET_ID2(fd devgen_gpt_fd_sev, cmd const[SEV_GET_ID2], arg ptr[in, sev_issue_cmd])
+ioctl$DEVGEN_SNP_PLATFORM_STATUS(fd devgen_gpt_fd_sev, cmd const[SNP_PLATFORM_STATUS], arg ptr[in, sev_issue_cmd])
+ioctl$DEVGEN_SNP_COMMIT(fd devgen_gpt_fd_sev, cmd const[SNP_COMMIT], arg ptr[in, sev_issue_cmd])
+ioctl$DEVGEN_SNP_SET_CONFIG(fd devgen_gpt_fd_sev, cmd const[SNP_SET_CONFIG], arg ptr[in, sev_issue_cmd])
+ioctl$DEVGEN_SNP_VLEK_LOAD(fd devgen_gpt_fd_sev, cmd const[SNP_VLEK_LOAD], arg ptr[in, sev_issue_cmd])
+
+sev_issue_cmd {
+	cmd	int32
+	data	int64
+	error	int32
+}
+
+

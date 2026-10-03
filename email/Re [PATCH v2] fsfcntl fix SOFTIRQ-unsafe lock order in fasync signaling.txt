@@ -1,0 +1,91 @@
+Received: from tor.source.kernel.org (unknown [172.105.4.254])
+	by hzbj-edu-front-4.icoremail.net (Coremail) with SMTP id BrQMCkBmBLDZNxhqfpZeAg--.33452S2;
+	Thu, 28 May 2026 20:40:58 +0800 (CST)
+Received: from tor.source.kernel.org (unknown [172.105.4.254])
+	by ucloud-mxproxy-9 (Coremail) with SMTP id AQAAfwB3jjXSNxhq09IGAA--.231S3;
+	Thu, 28 May 2026 20:40:54 +0800 (CST)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 77EF860123;
+	Thu, 28 May 2026 12:40:49 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id A95C11F000E9;
+	Thu, 28 May 2026 12:40:46 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779972049;
+	bh=Z7ovfoGOo2NP1JqGdgc2hdZRyMJVSFcMNZOtQKDLX7c=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=cr50e5ZkujvdMb5St7wbJuMNt9/yC88PVimA7Zp7Il236BzdlM6gEb9M3/Wn7n+QP
+	 FD/JU0ya/i4upVP12uMNXU+CLCoHIywiKle/A1xRGYf4tp2nufulkzHVccC1vjp/T4
+	 vhhD6zrDqa/J6mXqzNc6buI/LB9n1nbMxzf1of88QsE5l47gaygaiL7lJW0i/SPRgP
+	 6xohO/CXxclyf/cAPcN3NTWpbFvAcKDcow15nTrTumxKegsQNJmoKsd7A/mMDUYbq5
+	 Y1096j3aqSeEmtr0Hjnj1RwsumOgPKC8z0EKeWU7vFzrOSq3bF7leYLfhvXHDOy49F
+	 hmswlUBaZMQiQ==
+From: Christian Brauner <brauner@kernel.org>
+To: w15303746062@163.com
+Cc: Christian Brauner <brauner@kernel.org>,
+	jlayton@kernel.org,
+	chuck.lever@oracle.com,
+	viro@zeniv.linux.org.uk,
+	alex.aring@gmail.com,
+	jack@suse.cz,
+	linux-fsdevel@vger.kernel.org,
+	linux-kernel@vger.kernel.org,
+	Mingyu Wang <25181214217@stu.xidian.edu.cn>
+Subject: Re: [PATCH v2] fs/fcntl: fix SOFTIRQ-unsafe lock order in fasync signaling
+Date: Thu, 28 May 2026 14:40:36 +0200
+Message-ID: <20260528-sonst-relief-grabbeigaben-3e20f9a3f8bb@brauner>
+X-Mailer: git-send-email 2.47.3
+In-Reply-To: <20260523135210.590928-1-w15303746062@163.com>
+References: <20260523135210.590928-1-w15303746062@163.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset="utf-8"
+X-Developer-Signature: v=1; a=openpgp-sha256; l=1337; i=brauner@kernel.org; h=from:subject:message-id; bh=Oa1HoFEw64BsPeT7yDtHgnF7tTwHRMvv0oc7mgif2rc=; b=owGbwMvMwCU28Zj0gdSKO4sYT6slMWRJmJ9Wf903VXkxG9t8SbboF4Z/nfrbrnsZHrokdMth+ cS/MTlXOkpZGMS4GGTFFFkc2k3C5ZbzVGw2ytSAmcPKBDKEgYtTACbS7MnIcOGy9r01b1z2/2L6 zD37vnXh0mc/YkM2nVO+HNGYo/Y4fwIjwzrhX+Y8HPZpU/fH/l7mfyxwyq11u24lzvWQ0++6qMQ pzAkA
+X-Developer-Key: i=brauner@kernel.org; a=openpgp; fpr=4880B8C9BD0E5106FC070F4F7B3C391EFEA93624
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAfwB3jjXSNxhq09IGAA--.231S3
+Authentication-Results: hzbj-edu-front-4.icoremail.net; spf=pass smtp.
+	mail=brauner@kernel.org; dkim=pass header.i=@kernel.org
+X-Coremail-Antispam: 1UD129KBjvJXoW7WF4UAw4kKrWfAF1kGry8Xwb_yoW8Gr1kpa
+	yag3yfGrykJF109ws7KanruFWrGws7C3y3KFy5J3y8ur1YqrnIkr1I9r4av3yqyr9akr47
+	Xa13Z3ykK3Z3CFJanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUkSb7Iv0xC_Cr1lb4IE77IF4wAFF20E14v26r1j6r4UM7CIcVAF
+	z4kK6r1j6r18M28lY4IE4IxF12IF4wA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI
+	8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1l84ACjcxK6I8E
+	87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Jr0_Gr1le2I262IYc4CY6c
+	8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_
+	Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwI
+	xGrwCjxxvEa2IrMxkIecxEwVCI4VW5JwCY0x0Ix7I2Y4AK64vIr41lcIIF0xvE2Ix0cI8I
+	cVAFwI0_Jr0_JF4lcIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCYIxAIcVC2z280aV
+	AFwI0_Jr0_Gr1lcIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_Gr1l42xK82IYc2Ij64vIr41l
+	4x8a6x804xWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s
+	026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF
+	0xvE42xK8VAvwI8IcIk0rVWUJVWUCbIYCTnIWIevJa73UjIFyTuYvjxU-SdyUUUUU
+
+On Sat, 23 May 2026 21:52:10 +0800, w15303746062@163.com wrote:
+> A SOFTIRQ-safe to SOFTIRQ-unsafe lock order deadlock can occur in
+> send_sigio() and send_sigurg() when a process group receives a signal.
+> 
+> When FASYNC is configured for a process group (PIDTYPE_PGID), both
+> functions use read_lock(&tasklist_lock) to traverse the task list.
+> However, they are frequently called from softirq context:
+> - send_sigio() via input_inject_event -> kill_fasync
+> - send_sigurg() via tcp_check_urg -> sk_send_sigurg (NET_RX_SOFTIRQ)
+> 
+> [...]
+
+Applied to the vfs-7.2.misc branch of the vfs/vfs.git tree.
+Patches in the vfs-7.2.misc branch should appear in linux-next soon.
+
+Please report any outstanding bugs that were missed during review in a
+new review to the original patch series allowing us to drop it.
+
+It's encouraged to provide Acked-bys and Reviewed-bys even though the
+patch has now been applied. If possible patch trailers will be updated.
+
+Note that commit hashes shown below are subject to change due to rebase,
+trailer updates or similar. If in doubt, please check the listed branch.
+
+tree:   https://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs.git
+branch: vfs-7.2.misc
+
+[1/1] fs/fcntl: fix SOFTIRQ-unsafe lock order in fasync signaling
+      https://git.kernel.org/vfs/vfs/c/00633c468382

@@ -1,0 +1,9 @@
+include <uapi/drm/i915_drm.h>
+
+resource fd_i915_perf[fd]
+
+syz_open_dev$DEVGEN_i915_perf(dev ptr[in, string["/dev/dri/card#"]], id proc[0, 1], flags flags[open_flags]) fd_i915_perf
+
+ioctl$DEVGEN_I915_PERF_IOCTL_ENABLE(fd fd_i915_perf, cmd const[I915_PERF_IOCTL_ENABLE], arg ptr[in, array[int8]])
+ioctl$DEVGEN_I915_PERF_IOCTL_DISABLE(fd fd_i915_perf, cmd const[I915_PERF_IOCTL_DISABLE], arg ptr[in, array[int8]])
+ioctl$DEVGEN_I915_PERF_IOCTL_CONFIG(fd fd_i915_perf, cmd const[I915_PERF_IOCTL_CONFIG], arg intptr)

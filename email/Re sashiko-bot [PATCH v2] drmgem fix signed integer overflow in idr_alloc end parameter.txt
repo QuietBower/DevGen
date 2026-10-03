@@ -1,0 +1,138 @@
+Received: from tor.source.kernel.org (unknown [172.105.4.254])
+	by gzmx33 (Coremail) with SMTP id 2CgvCgDHX+OJ3yJqTjyXAA--.22957S2;
+	Fri, 05 Jun 2026 22:39:06 +0800 (CST)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id B6418600AF;
+	Fri,  5 Jun 2026 14:39:00 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 57CE51F00893;
+	Fri,  5 Jun 2026 14:39:00 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1780670340;
+	bh=LNrCtLxbrsYYm8L4TG6n+3MmQ/E3miCy79zQk1trAj4=;
+	h=From:Subject:Reply-To:To:Cc:In-Reply-To:References:Date;
+	b=C8MUMCu6G01bf8qB/QMEbV+R7PMDdpS7o9OPmf2RoXO9xvcRYXE6cCe/aFNv+r1wg
+	 eAp4QamR1g+c+BSYrxjA5yd9A4PSjkE05aZdxNjmNzHP8cNSTCTIIu0T+JQeprAieE
+	 AvrczfDCf9DXph8AUD6KIws1qlV3crnp9F/peDaHNFWAXp5lPjKsKXSnQjv3Xx07cR
+	 i3j/Rw2FWago18q2wO6+daHtnXiyC1t5uDOL+fVM7M6SzhRE0bJ7hNsL0hVov/7DmS
+	 3pJdSCg9z7mY8Jwy9ewW2KSwLKl4gDnI2+nO9DjWL4WpVhcarvRC2TU0+PWVBxyQXD
+	 bIUgfy7CO1hHg==
+From: sashiko-bot@kernel.org
+Subject: Re: [PATCH v2] drm/gem: fix signed integer overflow in idr_alloc
+ end parameter
+Reply-To: sashiko-reviews@lists.linux.dev
+To: w15303746062@163.com
+Cc: dri-devel@lists.freedesktop.org
+In-Reply-To: <20260605142644.1205922-1-w15303746062@163.com>
+References: <20260605142644.1205922-1-w15303746062@163.com>
+Content-Type: text/plain; charset=utf-8
+Content-Transfer-Encoding: quoted-printable
+Date: Fri, 05 Jun 2026 14:38:59 +0000
+Message-Id: <20260605143900.57CE51F00893@smtp.kernel.org>
+X-CM-TRANSID:2CgvCgDHX+OJ3yJqTjyXAA--.22957S2
+Authentication-Results: gzmx33; spf=pass smtp.mail=sashiko-bot@kernel.
+	org; dkim=pass header.i=@kernel.org
+X-Coremail-Antispam: 1Uf129KBjvJXoWxZr1fXw18AryfWw1fKryfJFb_yoWrJw1kpa
+	98try5Ar15KFZ0vFn2y3Z2ka4xC3WxGF4rGF45u3yY93WDX3s3Cr1Yka1Yvw48Cr4xZa15
+	twn0qr9Yk3WUAaUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UPl19UUUUU=
+
+Thank you for your contribution! Sashiko AI review found 2 potential issue(=
+s) to consider:
+
+Pre-existing issues:
+- [Critical] A race condition exists between `drm_gem_change_handle_ioctl` =
+and `DRM_IOCTL_GEM_CLOSE` due to a lockless window, allowing a Use-After-Fr=
+ee, unbalanced handle counts, and IDR corruption.
+- [Medium] Calling `idr_alloc` with `GFP_NOWAIT` inside a spinlock without =
+a preceding `idr_preload` can cause spurious memory allocation failures.
+--
+
+commit b765b42ca862b5e1577465e07a11a3f29e24c848
+Author: Mingyu Wang <25181214217@stu.xidian.edu.cn>
+
+drm/gem: fix signed integer overflow in idr_alloc end parameter
+
+This commit fixes a signed integer overflow vulnerability in
+drm_gem_change_handle_ioctl(). It tightens the limit check to >=3D INT_MAX =
+to
+prevent overflow and explicitly rejects 0 as a handle, as 0 is universally
+treated as an invalid handle in the DRM subsystem.
+
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index ac751a42db281..b42241d6802f9 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -1025,8 +1025,12 @@ int drm_gem_change_handle_ioctl(struct drm_device =
+*dev, void *data,
+>  	if (!drm_core_check_feature(dev, DRIVER_GEM))
+>  		return -EOPNOTSUPP;
+> =20
+> -	/* idr_alloc() limitation. */
+> -	if (args->new_handle > INT_MAX)
+> +	/*
+> +	 * idr_alloc() limitation.
+> +	 * Reject handle 0 (invalid in DRM) and strictly bound
+> +	 * to < INT_MAX to avoid signed integer overflow in handle + 1.
+> +	 */
+> +	if (args->new_handle =3D=3D 0 || args->new_handle >=3D INT_MAX)
+>  		return -EINVAL;
+>  	handle =3D args->new_handle;
+> =20
+
+[Severity: Medium]
+This is a pre-existing issue, but can calling idr_alloc() with GFP_NOWAIT
+inside a spinlock without a preceding idr_preload() cause spurious memory
+allocation failures?
+
+drivers/gpu/drm/drm_gem.c:drm_gem_change_handle_ioctl() {
+	...
+	spin_lock(&file_priv->table_lock);
+	...
+	ret =3D idr_alloc(&file_priv->object_idr, obj, handle, handle + 1,
+			GFP_NOWAIT);
+	...
+}
+
+Because handle is user-controlled and can be up to INT_MAX - 1, the IDR rad=
+ix
+tree may need to allocate multiple deep tree nodes. Without preloading, is =
+it
+possible for this GFP_NOWAIT allocation to fail under memory pressure, caus=
+ing
+the ioctl to spuriously return -ENOMEM?
+
+[Severity: Critical]
+This is a pre-existing issue, but does a race condition exist between
+drm_gem_change_handle_ioctl() and DRM_IOCTL_GEM_CLOSE due to a lockless
+window?
+
+drivers/gpu/drm/drm_gem.c:drm_gem_change_handle_ioctl() {
+	...
+	idr_replace(&file_priv->object_idr, NULL, args->handle);
+	spin_unlock(&file_priv->table_lock);
+	...
+}
+
+drm_gem_change_handle_ioctl() looks up args->handle locklessly, gaining a
+temporary kref. Between this lookup and acquiring table_lock, could another
+thread call DRM_IOCTL_GEM_CLOSE on args->handle, removing it from the IDR a=
+nd
+releasing its handle reference?
+
+When drm_gem_change_handle_ioctl() resumes, it ignores the return value of
+idr_replace(..., NULL, args->handle) and unconditionally associates
+args->new_handle with obj.
+
+Since the handle reference was dropped by the concurrent close, and this
+function doesn't acquire a new one for the new handle, could obj be left in
+the IDR without a corresponding handle reference?
+
+When the temporary lookup kref is dropped via drm_gem_object_put(obj) at the
+end of the function, the object is freed, but args->new_handle still points=
+ to
+it in the IDR. Could subsequent access to this handle trigger an exploitable
+use-after-free?
+
+--=20
+Sashiko AI review =C2=B7 https://sashiko.dev/#/patchset/20260605142644.1205=
+922-1-w15303746062@163.com?part=3D1

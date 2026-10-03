@@ -1,0 +1,10 @@
+include <uapi/linux/fcntl.h>
+include <uapi/linux/loadpin.h>
+include <uapi/linux/ioctl.h>
+include <uapi/asm-generic/fcntl.h>
+
+resource fd_loadpin_dm_verity[fd]
+
+openat$DEVGEN_loadpin_dm_verity(fd const[AT_FDCWD], file ptr[in, string["/sys/kernel/security/loadpin/dm-verity"]], flags const[O_RDWR], mode const[0600]) fd_loadpin_dm_verity
+
+ioctl$DEVGEN_LOADPIN_IOC_SET_TRUSTED_VERITY_DIGESTS(fd fd_loadpin_dm_verity, cmd const[LOADPIN_IOC_SET_TRUSTED_VERITY_DIGESTS], arg intptr)

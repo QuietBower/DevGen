@@ -1,0 +1,68 @@
+Received: from tor.source.kernel.org (unknown [172.105.4.254])
+	by hzbj-edu-front-4.icoremail.net (Coremail) with SMTP id BrQMCkCGLbnVShdqphBaAg--.44767S2;
+	Thu, 28 May 2026 03:49:41 +0800 (CST)
+Received: from tor.source.kernel.org (unknown [172.105.4.254])
+	by oracle-mxproxy-4 (Coremail) with SMTP id AQAAfwB3fjLQShdqrIoDAA--.451S3;
+	Thu, 28 May 2026 03:49:38 +0800 (CST)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 3AC1C605A5;
+	Wed, 27 May 2026 19:49:35 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id CB2811F00A3F;
+	Wed, 27 May 2026 19:49:33 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1779911374;
+	bh=uPdnk+9Xag3ocKyOILnUoy4oYUYH63qCVU1qhqO2mXw=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=LxNi8mWKaZIOw4w4TOuFUyC9k3m503pW2G5k1ViImeJ45N5fs55frZpRcWxPAdrI/
+	 U+HaYVL3dUHRvj1uHDu0DQdOVudyjWfzN6n/0EOflcWucvH1LVxK7mlaLC2sDX0S2n
+	 SUK7gzrBErlwzPwZYaipPmWmTB5XYtkhl7RQ/P2oJsyu//v7r2PkKjETZKSLqMwxYj
+	 MJ3eo5gIlPAxMtdkzWpOJmXR+oX/2H1a0n8wQhlhyq/oUvsd5ubIQdVw0j5BX3bpKH
+	 qOriPubDI9odZXYZU4WxVKLRCJ3rAiWd6fsCe2GzIGxnFnm+gWSPPBx2erMKRR3BGF
+	 mLnBY33gmyB2A==
+From: Sasha Levin <sashal@kernel.org>
+To: stable@vger.kernel.org,
+	gregkh@linuxfoundation.org,
+	w15303746062@163.com
+Cc: Sasha Levin <sashal@kernel.org>,
+	tzimmermann@suse.de,
+	maarten.lankhorst@linux.intel.com,
+	mripard@kernel.org,
+	louis.chauvet@bootlin.com,
+	dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org,
+	Mingyu Wang <25181214217@stu.xidian.edu.cn>
+Subject: Re: [PATCH v2 6.18.y 0/5] drm/vkms: Backport generic vblank timer to fix ABBA deadlock
+Date: Wed, 27 May 2026 15:49:08 -0400
+Message-ID: <20260527-agent5-item016-vkms@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260526133123.691465-1-w15303746062@163.com>
+References: <20260526133123.691465-1-w15303746062@163.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAfwB3fjLQShdqrIoDAA--.451S3
+Authentication-Results: hzbj-edu-front-4.icoremail.net; spf=pass smtp.
+	mail=sashal@kernel.org; dkim=pass header.i=@kernel.org
+X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UjIYCTnIWjp_UUUYn7k0a2IF6F4UM7kC6x804xWl14x267AK
+	xVWUJVW8JwAFIxvE14AKwVWUJVWUGwA2ocxC6xCI17AI4xWl84x0c7CEw4AK67xGY2AK02
+	1l84ACjcxK6xIIjxv20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r1j
+	6r4UM28EF7xvwVC2z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r1j6r
+	4UM2AIxVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xII
+	jxv20xvE14v26r1j6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr
+	1lF7xvr2IYc2Ij64vIr41l7I0Y6sxI4wCY02Avz4vEIxC_WwCY0x0Ix7I2Y4AK64vIr41l
+	cIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lcIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8Jw
+	CYIxAIcVC2z280aVAFwI0_Jr0_Gr1lcIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_Gr1l42xK
+	82IYc2Ij64vIr41l4x8a6x804xWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67
+	AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIY
+	rxkI7VAKI48JMIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCbIYCTnIWIevJa73UjIFyTuYvj
+	xU6OJ5UUUUU
+
+> This series backports the generic vblank timer infrastructure and
+> converts the vkms driver to use it, fixing an ABBA deadlock.
+
+All five patches queued for 6.18.y per Maarten's ack. Thanks for the
+v2 with the proper Signed-off-by chain.
+
+--
+Thanks,
+Sasha

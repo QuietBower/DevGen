@@ -1,0 +1,14 @@
+include <uapi/linux/ppp-ioctl.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+
+resource fd_ppp_async[fd]
+
+syz_open_dev$DEVGEN_ppp_async(dev ptr[in, string["/dev/pts/#"]], id proc[0, 1], flags flags[open_flags]) fd_ppp_async
+
+ioctl$DEVGEN_PPPIOCGASYNCMAP(fd fd_ppp_async, cmd const[PPPIOCGASYNCMAP], arg ptr[out, int32])
+ioctl$DEVGEN_PPPIOCSASYNCMAP(fd fd_ppp_async, cmd const[PPPIOCSASYNCMAP], arg ptr[in, int32])
+ioctl$DEVGEN_PPPIOCGRASYNCMAP(fd fd_ppp_async, cmd const[PPPIOCGRASYNCMAP], arg ptr[out, int32])
+ioctl$DEVGEN_PPPIOCSRASYNCMAP(fd fd_ppp_async, cmd const[PPPIOCSRASYNCMAP], arg ptr[in, int32])
+ioctl$DEVGEN_PPPIOCGXASYNCMAP(fd fd_ppp_async, cmd const[PPPIOCGXASYNCMAP], arg ptr[out, array[int32, 8]])
+ioctl$DEVGEN_PPPIOCSXASYNCMAP(fd fd_ppp_async, cmd const[PPPIOCSXASYNCMAP], arg ptr[in, array[int32, 8]])

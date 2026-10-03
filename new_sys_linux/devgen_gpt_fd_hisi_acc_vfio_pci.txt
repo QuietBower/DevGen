@@ -1,0 +1,136 @@
+include <linux/types.h>
+include <uapi/linux/vfio.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+
+resource fd_vfio_pci[fd]
+
+syz_open_dev$vfio_pci(dev ptr[in, string["/dev/vfio/#"]], id proc[0, 1], flags flags[open_flags]) fd_vfio_pci
+
+ioctl$VFIO_MBOCHS_SET_IRQS(fd fd_vfio_pci, cmd const[VFIO_DEVICE_SET_IRQS], arg ptr[in, array[int8]])
+ioctl$VFIO_MBOCHS_RESET(fd fd_vfio_pci, cmd const[VFIO_DEVICE_RESET], arg ptr[in, array[int8]])
+ioctl$VFIO_MBOCHS_GET_INFO(fd fd_vfio_pci, cmd const[VFIO_DEVICE_GET_INFO], arg ptr[inout, vfio_device_info])
+ioctl$VFIO_MBOCHS_GET_REGION_INFO(fd fd_vfio_pci, cmd const[VFIO_DEVICE_GET_REGION_INFO], arg ptr[inout, vfio_region_info_ext])
+ioctl$VFIO_MBOCHS_GET_IRQ_INFO(fd fd_vfio_pci, cmd const[VFIO_DEVICE_GET_IRQ_INFO], arg ptr[inout, vfio_irq_info])
+ioctl$VFIO_MBOCHS_QUERY_GFX_PLANE(fd fd_vfio_pci, cmd const[VFIO_DEVICE_QUERY_GFX_PLANE], arg ptr[inout, vfio_device_gfx_plane_info])
+ioctl$VFIO_MBOCHS_GET_GFX_DMABUF(fd fd_vfio_pci, cmd const[VFIO_DEVICE_GET_GFX_DMABUF], arg ptr[in, int32])
+
+ioctl$VFIO_PCI_GET_INFO(fd fd_vfio_pci, cmd const[VFIO_DEVICE_GET_INFO], arg ptr[out, vfio_device_info])
+ioctl$VFIO_PCI_GET_IRQ_INFO(fd fd_vfio_pci, cmd const[VFIO_DEVICE_GET_IRQ_INFO], arg ptr[inout, vfio_irq_info])
+ioctl$VFIO_PCI_GET_PCI_HOT_RESET_INFO(fd fd_vfio_pci, cmd const[VFIO_DEVICE_GET_PCI_HOT_RESET_INFO], arg ptr[inout, vfio_pci_hot_reset_info])
+ioctl$VFIO_PCI_GET_REGION_INFO(fd fd_vfio_pci, cmd const[VFIO_DEVICE_GET_REGION_INFO], arg ptr[inout, vfio_region_info])
+ioctl$VFIO_PCI_IOEVENTFD(fd fd_vfio_pci, cmd const[VFIO_DEVICE_IOEVENTFD], arg ptr[in, vfio_device_ioeventfd])
+ioctl$VFIO_PCI_HOT_RESET(fd fd_vfio_pci, cmd const[VFIO_DEVICE_PCI_HOT_RESET], arg ptr[in, vfio_pci_hot_reset])
+ioctl$VFIO_PCI_RESET(fd fd_vfio_pci, cmd const[VFIO_DEVICE_RESET], arg ptr[in, array[int8]])
+ioctl$VFIO_PCI_SET_IRQS(fd fd_vfio_pci, cmd const[VFIO_DEVICE_SET_IRQS], arg ptr[in, vfio_irq_set])
+
+vfio_device_info {
+	argsz	int32
+	flags	flags[vfio_device_flags, int32]
+	num_regions	int32
+	num_irqs	int32
+	cap_offset	int32
+	pad	int32
+}
+
+vfio_region_info {
+	argsz	int32
+	flags	flags[vfio_region_info_flags, int32]
+	index	int32
+	cap_offset	int32
+	size	int64
+	offset	int64
+}
+
+vfio_irq_info {
+	argsz	int32
+	flags	flags[vfio_irq_info_flags, int32]
+	index	int32
+	count	int32
+}
+
+vfio_region_info_ext {
+	base	vfio_region_info
+	type	vfio_region_info_cap_type
+}
+
+vfio_region_info_cap_type {
+	header	vfio_info_cap_header
+	type	int32
+	subtype	int32
+}
+
+vfio_device_gfx_plane_info {
+	argsz	int32
+	flags	flags[vfio_device_gfx_plane_info_flags, int32]
+	drm_plane_type	int32
+	drm_format	int32
+	drm_format_mod	int64
+	width	int32
+	height	int32
+	stride	int32
+	size	int32
+	x_pos	int32
+	y_pos	int32
+	x_hot	int32
+	y_hot	int32
+	union	vfio_device_gfx_plane_info_union
+	reserved	int32
+}
+
+vfio_device_ioeventfd {
+	argsz	int32
+	flags	flags[vfio_device_ioeventfd_flags, int32]
+	offset	int64
+	data	int64
+	fd	int32
+	reserved	int32
+}
+
+vfio_pci_hot_reset_info {
+	argsz	int32
+	flags	flags[vfio_pci_hot_reset_flags, int32]
+	count	len[devices, int32]
+	devices	ptr[inout, array[vfio_pci_dependent_device]]
+}
+
+vfio_pci_dependent_device {
+	group_id	int32
+	segment	int16
+	bus	int8
+	devfn	int8
+}
+
+vfio_pci_hot_reset {
+	argsz	int32
+	flags	int32
+	count	len[group_fds, int32]
+	group_fds	ptr[in, array[int32]]
+}
+
+vfio_irq_set {
+	argsz	int32
+	flags	flags[vfio_irq_set_flags, int32]
+	index	int32
+	start	int32
+	count	len[data, int32]
+	data	ptr[in, array[int8]]
+}
+
+vfio_device_gfx_plane_info_union [
+	region_index	int32
+	dmabuf_id	int32
+]
+
+vfio_device_flags = VFIO_DEVICE_FLAGS_RESET, VFIO_DEVICE_FLAGS_PCI, VFIO_DEVICE_FLAGS_PLATFORM, VFIO_DEVICE_FLAGS_AMBA, VFIO_DEVICE_FLAGS_CCW, VFIO_DEVICE_FLAGS_AP, VFIO_DEVICE_FLAGS_FSL_MC, VFIO_DEVICE_FLAGS_CAPS, VFIO_DEVICE_FLAGS_CDX
+vfio_irq_info_flags = VFIO_IRQ_INFO_EVENTFD, VFIO_IRQ_INFO_MASKABLE, VFIO_IRQ_INFO_AUTOMASKED, VFIO_IRQ_INFO_NORESIZE
+vfio_region_info_flags = VFIO_REGION_INFO_FLAG_READ, VFIO_REGION_INFO_FLAG_WRITE, VFIO_REGION_INFO_FLAG_MMAP, VFIO_REGION_INFO_FLAG_CAPS
+vfio_device_gfx_plane_info_flags = VFIO_GFX_PLANE_TYPE_PROBE, VFIO_GFX_PLANE_TYPE_DMABUF, VFIO_GFX_PLANE_TYPE_REGION
+vfio_pci_hot_reset_flags = VFIO_PCI_HOT_RESET_FLAG_DEV_ID, VFIO_PCI_HOT_RESET_FLAG_DEV_ID_OWNED
+vfio_device_ioeventfd_flags = VFIO_DEVICE_IOEVENTFD_8, VFIO_DEVICE_IOEVENTFD_16, VFIO_DEVICE_IOEVENTFD_32, VFIO_DEVICE_IOEVENTFD_64
+vfio_irq_set_flags = VFIO_IRQ_SET_DATA_NONE, VFIO_IRQ_SET_DATA_BOOL, VFIO_IRQ_SET_DATA_EVENTFD, VFIO_IRQ_SET_ACTION_MASK, VFIO_IRQ_SET_ACTION_UNMASK, VFIO_IRQ_SET_ACTION_TRIGGER
+
+define VFIO_IRQ_INFO_EVENTFD 1
+define VFIO_IRQ_INFO_MASKABLE 2
+define VFIO_IRQ_INFO_AUTOMASKED 4
+define VFIO_IRQ_INFO_NORESIZE 8

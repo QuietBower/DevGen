@@ -1,0 +1,72 @@
+Received: from proxy2120.mail.163.com (unknown [1.95.21.20])
+	by hzbj-edu-front-2.icoremail.net (Coremail) with SMTP id BLQMCkBmT78vOBhqpP1dAg--.20136S2;
+	Thu, 28 May 2026 20:42:23 +0800 (CST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=eqfs4KK63S0TOSE6+RLu6s71mPduUVA0LxwjeQ2pykI=; b=G
+	HsVZzXZP50EnuqFQuNvCHI6wfii4vWJ4d7KHSxs48eUIZPyebzqW4Lgq4v9Bch5P
+	2UZk9RAZiY1NA8/ZEsZVYV32CsHmjMDBgVLJbwf76fSQRk8Z6wAASFLbJmovgZIM
+	9/VXNvA0/xCFgxRDEQwxvOMbAnKCNojagTnpAXz+WM=
+Received: from w15303746062$163.com ( [113.200.174.80] ) by
+ ajax-webmail-wmsvr-40-149 (Coremail) ; Thu, 28 May 2026 20:40:44 +0800
+ (CST)
+X-Originating-IP: [113.200.174.80]
+Date: Thu, 28 May 2026 20:40:44 +0800 (CST)
+From: w15303746062  <w15303746062@163.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+	sumit.semwal@linaro.org, jeffy.chen@rock-chips.com,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+	"Mingyu Wang" <25181214217@stu.xidian.edu.cn>,
+	stable@vger.kernel.org
+Subject: Re:Re: [PATCH] drm/prime: Fix unsupervised rb_tree corruption in
+ drm_prime_remove_buf_handle
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
+ 20260403(27802f6d) Copyright (c) 2002-2026 www.mailtech.cn 163com
+In-Reply-To: <0e12ce28-f5b7-4ffa-849c-df9ad1796e22@amd.com>
+References: <20260528082912.1051262-1-w15303746062@163.com>
+ <0e12ce28-f5b7-4ffa-849c-df9ad1796e22@amd.com>
+X-NTES-SC: AL_Qu2cC/WcvUgv4iabZukfmU0Qguw9Xcq5uPkj34FWN5t8jCLr2iAKW0JFIHb04eyMFRyerjiMcBZ1+ONjdJh8W6EFDzOAp66oJV0VScdoN1osUg==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
+MIME-Version: 1.0
+Message-ID: <6d351ca7.9904.19e6e99f765.Coremail.w15303746062@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:lSgvCgDX3qLNNxhqaMytAA--.11951W
+X-CM-SenderInfo: jzrvjiatxuliiws6il2tof0z/xtbDAA2hhWoYN80SlAAA3n
+Authentication-Results: hzbj-edu-front-2.icoremail.net; spf=pass smtp.
+	mail=w15303746062@163.com; dkim=pass header.i=@163.com
+X-Coremail-Antispam: 1UD129KBjvdXoW7Xr43JF1fKFyrWFWfKFy3Jwb_yoWDGwcEga
+	97t3s7Jw1rJF4Fy3W7GFsrArZFgw48uFyUJrWrtF1a9r97ZFZ3CF9xC3s3X3y5Kan5J3s3
+	Jrs7Kw429r17ujkaLaAFLSUrUUUUjb8apTn2vfkv8UJUUUU8Yxn0WfASr-VFAU7a7-sFnT
+	9fnUUIcSsGvfJTRUUUbJkFF20E14v26r1j6r4UM7CIcVAFz4kK6r1j6r18M28lY4IE4IxF
+	12IF4wA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI8IcVAFwI0_JFI_Gr1l84ACjc
+	xK6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv67AKxVWxJr0_GcWl84AC
+	jcxK6I8E87Iv6xkF7I0E14v26F4UJVW0owAa7VCE64xvF2IEb7IF0Fy264xvF2IEb7IF0F
+	y264kE64k0F2IE7I0Y6sxI4wAac4AC62xK8xCEY4vEwIxC4wAS0I0E0xvYzxvE52x082IY
+	62kv0487Mc02F40EFcxC0VAKzVAqx4xG6I80ewAv7VC0I7IYx2IY67AKxVWUXVWUAwAv7V
+	C2z280aVAFwI0_Gr1j6F4UJwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IYc2Ij64vIr41l
+	F7I21c0EjII2zVCS5cI20VAGYxC7M4xvF2IEb7IF0Fy264kE64k0F24lFcxC0VAYjxAxZF
+	0Ex2IqxwCjxxvEa2IrMxkIecxEwVAFwVW5JwCY0x0Ix7I2Y4AK64vIr41lcIIF0xvE2Ix0
+	cI8IcVAFwI0_Jr0_JF4lcIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCYIxAIcVC2z2
+	80aVAFwI0_Jr0_Gr1lcIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_Gr1l42xK82IYc2Ij64vI
+	r41l4x8a6x804xWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGw
+	C20s026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48J
+	MIIF0xvE42xK8VAvwI8IcIk0rVWUJVWUCwCE64xvF2IEb7IF0Fy7YxBIdaVFxhVjvjDU0x
+	ZFpf9x0JUgNVhUUUUU=
+
+Hi Christian,
+
+Thank you for the review and for catching this. You are absolutely right, and my analysis was flawed. Adding the lock inside `drm_prime_remove_buf_handle` would indeed cause a recursive deadlock.
+
+The syzkaller crash was originally triggered on the v6.18 kernel. When investigating, I checked the latest mainline source for `drm_prime_remove_buf_handle` itself. Since I didn't see any synchronization changes within that specific function, I incorrectly assumed the concurrency issue was still completely unhandled, failing to notice that the upstream tree properly holds the lock in the caller (`drm_gem_object_release_handle`).
+
+I will dive deeper into the code to see if there is still any hidden race condition under the current locking scheme, or if this is strictly a legacy issue that might only require a stable-tree backport. If a fix is still warranted, I will send a v2 patch.
+
+Thanks again for your time and guidance!
+
+Best regards,
+Mingyu Wang

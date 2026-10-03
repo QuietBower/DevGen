@@ -1,0 +1,76 @@
+Received: from mailout1.hostsharing.net (unknown [83.223.95.204])
+	by hzbj-edu-front-4.icoremail.net (Coremail) with SMTP id BrQMCkA237oXmSFqAGODAg--.64888S2;
+	Thu, 04 Jun 2026 23:26:18 +0800 (CST)
+Received: from mailout1.hostsharing.net (unknown [83.223.95.204])
+	by oracle-mxproxy-4 (Coremail) with SMTP id AQAAfwBXXfESmSFqx5ssAA--.223S3;
+	Thu, 04 Jun 2026 23:26:12 +0800 (CST)
+Received: from h08.hostsharing.net (h08.hostsharing.net [IPv6:2a01:37:1000::53df:5f1c:0])
+	(using TLSv1.3 with cipher TLS_AES_256_GCM_SHA384 (256/256 bits)
+	 key-exchange x25519 server-signature ECDSA (secp384r1) server-digest SHA384
+	 client-signature ECDSA (secp384r1) client-digest SHA384)
+	(Client CN "*.hostsharing.net", Issuer "GlobalSign GCC R6 AlphaSSL CA 2025" (verified OK))
+	by mailout1.hostsharing.net (Postfix) with ESMTPS id 6D3EF38B;
+	Thu, 04 Jun 2026 17:26:07 +0200 (CEST)
+Received: by h08.hostsharing.net (Postfix, from userid 100393)
+	id 519AE600C2BD; Thu,  4 Jun 2026 17:26:07 +0200 (CEST)
+Date: Thu, 4 Jun 2026 17:26:07 +0200
+From: Lukas Wunner <lukas@wunner.de>
+To: w15303746062@163.com
+Cc: airlied@redhat.com, dri-devel@lists.freedesktop.org,
+	linux-kernel@vger.kernel.org, x86@kernel.org,
+	linux-pci@vger.kernel.org,
+	Mingyu Wang <25181214217@stu.xidian.edu.cn>
+Subject: Re: [PATCH v2] char: agp: amd64 - fix broken error propagation in
+ agp_amd64_probe()
+Message-ID: <aiGZD7c3bYb47viQ@wunner.de>
+References: <20260504074823.99377-1-w15303746062@163.com>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=us-ascii
+Content-Disposition: inline
+In-Reply-To: <20260504074823.99377-1-w15303746062@163.com>
+X-CM-TRANSID:AQAAfwBXXfESmSFqx5ssAA--.223S3
+Authentication-Results: hzbj-edu-front-4.icoremail.net; spf=neutral sm
+	tp.mail=lukas@wunner.de;
+X-Coremail-Antispam: 1UD129KBjvJXoW7Cr1ktryxZr13Cw4Utry5Arb_yoW8XFyxpF
+	WS9w4qyFWkW3y8K3s8tw4xAF1rZrn7GFWrAr1kGw48Zwn5AF95Jr13tFyq9F1DC3ZYyr42
+	vFWagF48CFyqyaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUgCb7Iv0xC_Cr1lb4IE77IF4wAFF20E14v26r1j6r4UM7CIcVAF
+	z4kK6r1j6r18M28lY4IEw2IIxxk0rwA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI
+	8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1l84ACjcxK6I8E
+	87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Jr0_Gr1le2I262IYc4CY6c
+	8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_
+	Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwCjxxvEw4Wlc2IjII
+	80xcxEwVAKI48JMxvI42IY6xIIjxv20xvE14v26r1j6r1xMxvI42IY6xIIjxv20xvEc7Cj
+	xVAFwI0_Jr0_Gr1lcIIF0xvEx4A2jsIE14v26r1j6r4UMxvI42IY6I8E87Iv6xkF7I0E14
+	v26r1j6r4UMxAIw28IcxkI7VAKI48JMxCjnVAK0II2c7xJMxC20s026xCaFVCjc4AY6r1j
+	6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7
+	AF67AKxVWUAVWUtwCIc40Y0x0EwIxGrwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF7vcSsG
+	vfC2KfnxnUUI43ZEXa7IUekwIPUUUUU==
+
+On Mon, May 04, 2026 at 03:48:23PM +0800, w15303746062@163.com wrote:
+> A NULL pointer dereference was observed in the AMD64 AGP driver when
+> running in a virtualized environment (e.g., QEMU/KVM) without a physical
+> AMD Northbridge. The crash occurs in amd64_fetch_size() when attempting
+> to dereference the pointer returned by node_to_amd_nb(0).
+> 
+> The root cause of this crash is broken error propagation in
+> agp_amd64_probe(). When no AMD Northbridges are found, cache_nbs()
+> correctly returns -ENODEV. However, the probe function erroneously
+> checked the return value against exactly -1, rather than < 0.
+> 
+> As a result, the hardware absence error was masked, allowing the driver
+> to improperly proceed with initialization. It eventually called
+> agp_add_bridge(), which invokes amd64_fetch_size(). Since the hardware
+> does not exist, node_to_amd_nb(0) returns NULL, leading to a General
+> Protection Fault (GPF) when accessing its ->misc member.
+> 
+> Fix the issue by correcting the error check in agp_amd64_probe() to
+> abort properly when cache_nbs() returns any negative error code. This
+> prevents the driver from erroneously proceeding without hardware, thereby
+> resolving the subsequent NULL pointer dereference at its source.
+> 
+> Signed-off-by: Mingyu Wang <25181214217@stu.xidian.edu.cn>
+
+Fixes: a32073bffc65 ("[PATCH] x86_64: Clean and enhance up K8 northbridge access code")
+Reviewed-by: Lukas Wunner <lukas@wunner.de>
+Cc: stable@vger.kernel.org # v2.6.18+

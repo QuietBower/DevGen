@@ -1,0 +1,7 @@
+include <linux/threads.h>
+
+resource kpgt_fd_msr[fd]
+
+syz_open_dev$DEVGEN_msr(dev ptr[in, string["/dev/cpu/#/msr"]], id proc[0, NR_CPUS], flags flags[open_flags]) kpgt_fd_msr
+
+ioctl$DEVGEN_X86_IOC_WRMSR_REGS(fd kpgt_fd_msr, cmd const[X86_IOC_WRMSR_REGS], arg ptr[inout, array[int32, 8]])

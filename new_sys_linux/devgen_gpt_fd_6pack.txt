@@ -1,0 +1,11 @@
+include <uapi/linux/sockios.h>
+include <uapi/linux/fcntl.h>
+include <arch/powerpc/include/uapi/asm/ioctls.h>
+
+resource fd_6pack[fd]
+
+openat$DEVGEN_6pack(fd const[AT_FDCWD], file ptr[in, string["/dev/ptmx"]], flags flags[open_flags], mode const[0]) fd_6pack
+
+ioctl$DEVGEN_SIOCGIFNAME(fd fd_6pack, cmd const[SIOCGIFNAME], arg ptr[out, string])
+ioctl$DEVGEN_SIOCGIFENCAP(fd fd_6pack, cmd const[SIOCGIFENCAP], arg ptr[out, int32])
+ioctl$DEVGEN_SIOCSIFENCAP(fd fd_6pack, cmd const[SIOCSIFENCAP], arg intptr)

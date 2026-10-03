@@ -1,0 +1,11 @@
+include <linux/types.h>
+include <uapi/linux/v4l2-subdev.h>
+include <media/i2c/adv7842.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+
+resource fd_adv7842[fd]
+
+syz_open_dev$DEVGEN_adv7842(dev ptr[in, string["/dev/v4l-subdev#"]], id proc[0, 1], flags flags[open_flags]) fd_adv7842
+
+ioctl$DEVGEN_ADV7842_CMD_RAM_TEST(fd fd_adv7842, cmd const[ADV7842_CMD_RAM_TEST], arg ptr[in, array[int8]])

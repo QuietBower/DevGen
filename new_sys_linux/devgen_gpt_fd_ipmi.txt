@@ -1,0 +1,9 @@
+include <uapi/linux/ipmi_bmc.h>
+
+resource fd_ipmi[fd]
+
+syz_open_dev$DEVGEN_ipmi(dev ptr[in, string["/dev/ipmi#"]], id proc[0, 1], flags flags[open_flags]) fd_ipmi
+
+ioctl$DEVGEN_IPMI_BMC_IOCTL_SET_SMS_ATN(fd fd_ipmi, cmd const[IPMI_BMC_IOCTL_SET_SMS_ATN], arg ptr[in, array[int8]])
+ioctl$DEVGEN_IPMI_BMC_IOCTL_CLEAR_SMS_ATN(fd fd_ipmi, cmd const[IPMI_BMC_IOCTL_CLEAR_SMS_ATN], arg ptr[in, array[int8]])
+ioctl$DEVGEN_IPMI_BMC_IOCTL_FORCE_ABORT(fd fd_ipmi, cmd const[IPMI_BMC_IOCTL_FORCE_ABORT], arg ptr[in, array[int8]])

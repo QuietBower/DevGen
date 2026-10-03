@@ -1,0 +1,120 @@
+include <linux/types.h>
+include <uapi/linux/omap3isp.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+include <uapi/linux/videodev2.h>
+
+resource fd_h3a_aewb[fd]
+
+syz_open_dev$h3a(dev ptr[in, string["/dev/v4l-subdev#"]], id proc[0, 1], flags flags[open_flags]) fd_h3a_aewb
+
+ioctl$DEVGEN_VIDIOC_OMAP3ISP_HIST_CFG(fd fd_h3a_aewb, cmd const[VIDIOC_OMAP3ISP_HIST_CFG], arg ptr[in, ispstat_generic_config])
+ioctl$DEVGEN_VIDIOC_OMAP3ISP_HIST_STAT_REQ(fd fd_h3a_aewb, cmd const[VIDIOC_OMAP3ISP_STAT_REQ], arg ptr[inout, omap3isp_stat_data])
+ioctl$DEVGEN_VIDIOC_OMAP3ISP_HIST_STAT_REQ_T32(fd fd_h3a_aewb, cmd const[VIDIOC_OMAP3ISP_STAT_REQ_TIME32], arg ptr[inout, omap3isp_stat_data_time32])
+ioctl$DEVGEN_VIDIOC_OMAP3ISP_HIST_STAT_EN(fd fd_h3a_aewb, cmd const[VIDIOC_OMAP3ISP_STAT_EN], arg ptr[in, int32])
+
+ioctl$DEVGEN_VIDIOC_OMAP3ISP_AF_CFG(fd fd_h3a_aewb, cmd const[VIDIOC_OMAP3ISP_AF_CFG], arg ptr[in, ispstat_generic_config])
+ioctl$DEVGEN_VIDIOC_OMAP3ISP_AEWB_CFG(fd fd_h3a_aewb, cmd const[VIDIOC_OMAP3ISP_AEWB_CFG], arg ptr[in, ispstat_generic_config])
+ioctl$DEVGEN_VIDIOC_OMAP3ISP_H3A_STAT_REQ(fd fd_h3a_aewb, cmd const[VIDIOC_OMAP3ISP_STAT_REQ], arg ptr[inout, omap3isp_stat_data])
+ioctl$DEVGEN_VIDIOC_OMAP3ISP_H3A_STAT_REQ_T32(fd fd_h3a_aewb, cmd const[VIDIOC_OMAP3ISP_STAT_REQ_TIME32], arg ptr[in, omap3isp_stat_data_time32])
+ioctl$DEVGEN_VIDIOC_OMAP3ISP_H3A_STAT_EN(fd fd_h3a_aewb, cmd const[VIDIOC_OMAP3ISP_STAT_EN], arg ptr[in, int32])
+
+ioctl$DEVGEN_VIDIOC_OMAP3ISP_CCDC_CFG(fd fd_h3a_aewb, cmd const[VIDIOC_OMAP3ISP_CCDC_CFG], arg ptr[in, omap3isp_ccdc_update_config])
+
+omap3isp_stat_data {
+	ts	kgpt_timespec
+	buf	ptr[out, array[int8]]
+	frame	omap3isp_stat_data_frame
+}
+
+ispstat_generic_config {
+	buf_size	int32
+	config_counter	int16
+}
+
+omap3isp_stat_data_time32 {
+	ts	kgpt_timespec32
+	buf	int32
+	buf_size	int32
+	frame_number	int16
+	cur_frame	int16
+	config_counter	int16
+}
+
+omap3isp_stat_data_frame {
+	buf_size	int32
+	frame_number	int16
+	cur_frame	int16
+	config_counter	int16
+}
+
+omap3isp_ccdc_update_config {
+	update	int16
+	flag	int16
+	alawip	flags[omap3isp_alaw_ipwidth, int32]
+	bclamp	ptr[in, omap3isp_ccdc_bclamp]
+	blcomp	ptr[in, omap3isp_ccdc_blcomp]
+	fpc	ptr[in, omap3isp_ccdc_fpc]
+	lsc_cfg	ptr[in, omap3isp_ccdc_lsc_config]
+	cull	ptr[in, omap3isp_ccdc_culling]
+	lsc	ptr[in, array[int8]]
+}
+
+omap3isp_ccdc_bclamp {
+	obgain	int8
+	obstpixel	int8
+	oblines	int8
+	oblen	int8
+	dcsubval	int16
+}
+
+omap3isp_ccdc_blcomp {
+	b_mg	int8
+	gb_g	int8
+	gr_cy	int8
+	r_ye	int8
+}
+
+omap3isp_ccdc_fpc {
+	fpnum	int16
+	fpcaddr	int32
+}
+
+omap3isp_ccdc_lsc_config {
+	offset	int16
+	gain_mode_n	int8
+	gain_mode_m	int8
+	gain_format	int8
+	fmtsph	int16
+	fmtlnh	int16
+	fmtslv	int16
+	fmtlnv	int16
+	initial_x	int8
+	initial_y	int8
+	size	int32
+}
+
+omap3isp_ccdc_culling {
+	v_pattern	int8
+	h_odd	int16
+	h_even	int16
+}
+
+kgpt_timespec {
+	tv_sec	int64
+	tv_nsec	int64
+}
+
+kgpt_timespec32 {
+	tv_sec	int32
+	tv_usec	int32
+}
+
+omap3isp_alaw_ipwidth = ISPCCDC_ALAW_IP_WIDTH_10BIT, ISPCCDC_ALAW_IP_WIDTH_11BIT, ISPCCDC_ALAW_IP_WIDTH_12BIT, ISPCCDC_ALAW_IP_WIDTH_13BIT, ISPCCDC_ALAW_IP_WIDTH_14BIT, ISPCCDC_ALAW_IP_WIDTH_15BIT
+
+define ISPCCDC_ALAW_IP_WIDTH_10BIT 0
+define ISPCCDC_ALAW_IP_WIDTH_11BIT 1
+define ISPCCDC_ALAW_IP_WIDTH_12BIT 2
+define ISPCCDC_ALAW_IP_WIDTH_13BIT 3
+define ISPCCDC_ALAW_IP_WIDTH_14BIT 4
+define ISPCCDC_ALAW_IP_WIDTH_15BIT 5

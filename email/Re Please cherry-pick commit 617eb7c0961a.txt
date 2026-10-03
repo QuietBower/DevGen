@@ -1,0 +1,52 @@
+Received: from sea.source.kernel.org (unknown [172.234.252.31])
+	by gzga-mx-mtada-g5-9 (Coremail) with SMTP id _____wDnj6BlUilqba5uAQ--.27356S3;
+	Wed, 10 Jun 2026 20:02:48 +0800 (CST)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 846CE429E2;
+	Wed, 10 Jun 2026 12:02:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id B59541F00893;
+	Wed, 10 Jun 2026 12:02:44 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781092965;
+	bh=qHJf5SMQVpkibVV6P71M2cXOaVWl+86IzuhFCb4ubUs=;
+	h=From:To:Cc:Subject:Date:In-Reply-To:References;
+	b=Dk3BKe0AgK5MPXN4cXrsPuSc6gmYaFHsaauZQmj2gcbedhiMqgnrBcYTQxt5sIu3O
+	 zXA5qihqi+JJZ4vB7//PA8NsNiSmuY4+qVwbINY7MQmk0MqEO61QNV5I7n5k7yTdGj
+	 KJRIcVmPyi965wZmBGDrfeaoG+xwJVcqlrjdoon0CTos6miAZtgCaLtSAvKP/xOxbC
+	 Z/hdW6n5jYmCa+VvkyheriU2HZOXrROG78t3Ia7ITN1ZVJrjBEagxlS5HydyM6gTcw
+	 w6+iKw4/ZEikJYPhBUzcRwd4MpBtEYxwr7U4QuE7EQN5vi+LIYJMsEEJlV6BJFzqMS
+	 Ydh+dUt1VCOOA==
+From: Sasha Levin <sashal@kernel.org>
+To: stable@vger.kernel.org
+Cc: Sasha Levin <sashal@kernel.org>,
+	gregkh@linuxfoundation.org,
+	linux-i2c@vger.kernel.org,
+	wsa+renesas@sang-engineering.com,
+	w15303746062@163.com
+Subject: Re: Please cherry-pick commit 617eb7c0961a
+Date: Wed, 10 Jun 2026 08:02:40 -0400
+Message-ID: <20260610.stable-out-0001.0a78b438@kernel.org>
+X-Mailer: git-send-email 2.53.0
+In-Reply-To: <20260609031227.21001-1-w15303746062@163.com>
+References: <20260609031227.21001-1-w15303746062@163.com>
+MIME-Version: 1.0
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDnj6BlUilqba5uAQ--.27356S3
+Authentication-Results: gzga-mx-mtada-g5-9; spf=pass smtp.mail=sashal@
+	kernel.org; dkim=pass header.i=@kernel.org
+X-Coremail-Antispam: 1Uf129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7bjvjm3AaLaJ3UbIYCTnIWIevJa73UjIFyTuYvjxUw8nOUUUUU
+
+On Tue, Jun 09, 2026 at 11:12:27AM +0800, Mingyu Wang wrote:
+> Please cherry-pick the following upstream commit into stable trees
+> from 5.10 up to 7.0:
+>
+> 617eb7c0961a8dfcfc811844a6396e406b2923ea
+>
+> It fixes a local DoS via userspace-controlled integer overflow
+> in the I2C_TIMEOUT ioctl.
+
+Now queued for 7.0, 6.18, 6.12, 6.6, 6.1, 5.15 and 5.10.
+
+Thanks,
+Sasha

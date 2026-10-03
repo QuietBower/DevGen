@@ -1,0 +1,103 @@
+include <uapi/linux/gpio.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+
+resource fd_gpiochip[fd]
+
+syz_open_dev$DEVGEN_gpiochip(dev ptr[in, string["/dev/gpiochip#"]], id proc[0, 1], flags flags[open_flags]) fd_gpiochip
+
+ioctl$DEVGEN_GPIO_GET_CHIPINFO(fd fd_gpiochip, cmd const[GPIO_GET_CHIPINFO_IOCTL], arg ptr[out, gpiochip_info])
+ioctl$DEVGEN_GPIO_GET_LINEINFO(fd fd_gpiochip, cmd const[GPIO_GET_LINEINFO_IOCTL], arg ptr[inout, gpioline_info])
+ioctl$DEVGEN_GPIO_GET_LINEINFO_WATCH(fd fd_gpiochip, cmd const[GPIO_GET_LINEINFO_WATCH_IOCTL], arg ptr[inout, gpioline_info])
+ioctl$DEVGEN_GPIO_GET_LINEINFO_UNWATCH(fd fd_gpiochip, cmd const[GPIO_GET_LINEINFO_UNWATCH_IOCTL], arg ptr[in, int32])
+
+ioctl$DEVGEN_GPIO_GET_LINEHANDLE(fd fd_gpiochip, cmd const[GPIO_GET_LINEHANDLE_IOCTL], arg ptr[in, gpiohandle_request])
+ioctl$DEVGEN_GPIO_GET_LINEEVENT(fd fd_gpiochip, cmd const[GPIO_GET_LINEEVENT_IOCTL], arg ptr[in, gpioevent_request])
+
+ioctl$DEVGEN_GPIOHANDLE_GET_LINE_VALUES(fd fd_gpiochip, cmd const[GPIOHANDLE_GET_LINE_VALUES_IOCTL], arg ptr[inout, gpiohandle_data])
+ioctl$DEVGEN_GPIOHANDLE_SET_LINE_VALUES(fd fd_gpiochip, cmd const[GPIOHANDLE_SET_LINE_VALUES_IOCTL], arg ptr[in, gpiohandle_data])
+ioctl$DEVGEN_GPIOHANDLE_SET_CONFIG(fd fd_gpiochip, cmd const[GPIOHANDLE_SET_CONFIG_IOCTL], arg ptr[in, gpiohandle_config])
+
+ioctl$DEVGEN_GPIO_V2_GET_LINEINFO(fd fd_gpiochip, cmd const[GPIO_V2_GET_LINEINFO_IOCTL], arg ptr[inout, gpio_v2_line_info])
+ioctl$DEVGEN_GPIO_V2_GET_LINEINFO_WATCH(fd fd_gpiochip, cmd const[GPIO_V2_GET_LINEINFO_WATCH_IOCTL], arg ptr[inout, gpio_v2_line_info])
+ioctl$DEVGEN_GPIO_V2_GET_LINE(fd fd_gpiochip, cmd const[GPIO_V2_GET_LINE_IOCTL], arg ptr[in, gpio_v2_line_request])
+
+gpiochip_info {
+	name	array[int8, 32] 
+	label	array[int8, 32]
+	lines	int32
+}
+
+gpioline_info {
+	line_offset	int32
+	flags	int32
+	name	array[int8, 32]
+	consumer	array[int8, 32]
+}
+
+gpiohandle_request {
+	lineoffsets	array[int32, 64]
+	flags	int32
+	default_values	array[int8, 64]
+	consumer_label	array[int8, 32]
+	lines	int32
+	fd	int32
+}
+
+gpioevent_request {
+	lineoffset	int32
+	handleflags	int32
+	eventflags	int32
+	consumer_label	array[int8, 32]
+	fd	int32
+}
+
+gpiohandle_data {
+	values	array[int8, 64]
+}
+
+gpiohandle_config {
+	flags	int32
+	default_values	array[int8, 64]
+	padding	array[int32, 4]
+}
+
+gpio_v2_line_info {
+	name	array[int8, 32]
+	consumer	array[int8, 32]
+	offset	int32
+	num_attrs	int32
+	flags	int64
+	attrs	array[gpio_v2_line_attribute, 10]
+	padding	array[int32, 4]
+}
+
+gpio_v2_line_request {
+	offsets	array[int32, 64] 
+	consumer	array[int8, 32]
+	config	gpio_v2_line_config
+	num_lines	int32
+	event_buffer_size	int32
+	padding	array[int32, 5]
+	fd	int32
+}
+
+gpio_v2_line_attribute {
+	id	int32
+	padding	int32
+	flags	int64
+	values	int64
+	debounce_period_us	int32
+}
+
+gpio_v2_line_config {
+	flags	int64
+	num_attrs	int32
+	padding	array[int32, 5]
+	attrs	array[gpio_v2_line_config_attribute, 10]
+}
+
+gpio_v2_line_config_attribute {
+	attr	gpio_v2_line_attribute
+	mask	int64
+}

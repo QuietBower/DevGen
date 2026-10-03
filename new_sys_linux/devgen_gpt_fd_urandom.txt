@@ -1,0 +1,13 @@
+include <linux/types.h>
+include <uapi/linux/random.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+
+resource fd_kgpt_rng[fd]
+
+openat$DEVGEN_random(fd const[AT_FDCWD], file ptr[in, string["/dev/random"]], flags flags[open_flags], mode const[0]) fd_kgpt_rng
+
+openat$DEVGEN_urandom(fd const[AT_FDCWD], file ptr[in, string["/dev/urandom"]], flags flags[open_flags], mode const[0]) fd_kgpt_rng
+
+ioctl$DEVGEN_RNDRESEEDCRNG(fd fd_kgpt_rng, cmd const[RNDRESEEDCRNG], arg ptr[in, array[int8]])
+ioctl$DEVGEN_RNDGETENTCNT(fd fd_kgpt_rng, cmd const[RNDGETENTCNT], arg ptr[out, int32])

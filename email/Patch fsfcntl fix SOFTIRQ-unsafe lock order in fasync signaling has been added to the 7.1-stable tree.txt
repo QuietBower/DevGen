@@ -1,0 +1,162 @@
+Received: from sea.source.kernel.org (unknown [172.234.252.31])
+	by hzbj-edu-front-3.icoremail.net (Coremail) with SMTP id BbQMCkBmgy3nLDBq29e1Ag--.51118S2;
+	Tue, 16 Jun 2026 00:48:39 +0800 (CST)
+Received: from sea.source.kernel.org (unknown [172.234.252.31])
+	by ucloud-mxproxy-9 (Coremail) with SMTP id AQAAfwDX3ubWLDBqcGIlAA--.2S3;
+	Tue, 16 Jun 2026 00:48:23 +0800 (CST)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 4EBB8436D7
+	for <25181214217@stu.xidian.edu.cn>; Mon, 15 Jun 2026 16:48:22 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id AB2E31F000E9;
+	Mon, 15 Jun 2026 16:48:20 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
+	s=korg; t=1781542102;
+	bh=mhV/6qYfm9+oMo0gV167UIvHeOoy0EJ97G329B1HJEE=;
+	h=Subject:To:Cc:From:Date;
+	b=DVUid7eF2PPlQN9oOV1QKSVaqb3+HQ9ppqhYn3o3RG+o7niZJ4eRwxtGQvUMAKZwL
+	 kmroF5fcZQ04ih/EInaoWM9c9prXWPJ5E4v9LiV/M0YbPbpjDli/dfHiU7aBX2ITpM
+	 VCUgfXxJJb9u6k6rXZUrDVNdT4D+bjGwst3xbEr8=
+Subject: Patch "fs/fcntl: fix SOFTIRQ-unsafe lock order in fasync signaling" has been added to the 7.1-stable tree
+To: 25181214217@stu.xidian.edu.cn
+Cc: <stable-commits@vger.kernel.org>
+From: <gregkh@linuxfoundation.org>
+Date: Mon, 15 Jun 2026 18:45:28 +0200
+Message-ID: <2026061527-courier-excusable-645e@gregkh>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=ANSI_X3.4-1968
+Content-Transfer-Encoding: 8bit
+X-stable: commit
+X-Patchwork-Hint: ignore
+X-CM-TRANSID:AQAAfwDX3ubWLDBqcGIlAA--.2S3
+Authentication-Results: hzbj-edu-front-3.icoremail.net; spf=none smtp.
+	mail=gregkh@linuxfoundation.org; dkim=pass header.i=@linuxfoundation.o
+	rg
+X-Coremail-Antispam: 1UD129KBjvJXoWxXr1kJF4fWFyrKF18WF15urg_yoWrAw4rpF
+	9FgrySyrWkXry09r1UJay09ryrWw1xWrW2gry8Jw4fCryDXrnxXryIgryfXFy5K3sxCF4U
+	Xa1UXrWvkw4kZF7anT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUBmb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r1j6r4UM7CIcVAF
+	z4kK6r1j6r18M28lY4IE4IxF12IF4wA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI
+	8IcVAFwI0_JFI_Gr1l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1l84ACjcxK6I8E
+	87Iv67AKxVW8JVWxJwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Gr0_Gr1UM2AIxVAIcxkEcV
+	Aq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r12
+	6r1DMcIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr4
+	1lF7I21c0EjII2zVCS5cI20VAGYxC7M4kE6xkIj40Ew7xC0wCjxxvEa2IrMxkIecxEwVCI
+	4VWUMxkI7II2jI8vz4vEwIxGrwCYIxAIcVC0I7IYx2IY67AKxVWUCVW8JwCYIxAIcVC0I7
+	IYx2IY6xkF7I0E14v26r1j6r4UMxvI42IY6I8E87Iv67AKxVW8JVWxJwCYIxAIcVC2z280
+	aVCY1x0267AKxVW8JVW8Jr1l42xK82IYc2Ij64vIr41l4x8a64kEw24l4I8I3I0E4IkC6x
+	0Yz7v_Jr0_Gr1l4IxYO2xFxVAFwI0_JF0_Jw1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s02
+	6x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1Y6r17MIIYrxkI7VAKI48JMIIF0x
+	vE42xK8VAvwI8IcIk0rVWUJVWUCbIYCTnIWIevJa73UjIFyTuYvjxUVZXrUUUUU
+
+
+This is a note to let you know that I've just added the patch titled
+
+    fs/fcntl: fix SOFTIRQ-unsafe lock order in fasync signaling
+
+to the 7.1-stable tree which can be found at:
+    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
+
+The filename of the patch is:
+     fs-fcntl-fix-softirq-unsafe-lock-order-in-fasync-signaling.patch
+and it can be found in the queue-7.1 subdirectory.
+
+If you, or anyone else, feels it should not be added to the stable tree,
+please let <stable@vger.kernel.org> know about it.
+
+
+From 00633c4683828acd5256fa8d5163f440d74bbe71 Mon Sep 17 00:00:00 2001
+From: Mingyu Wang <25181214217@stu.xidian.edu.cn>
+Date: Sat, 23 May 2026 21:52:10 +0800
+Subject: fs/fcntl: fix SOFTIRQ-unsafe lock order in fasync signaling
+
+From: Mingyu Wang <25181214217@stu.xidian.edu.cn>
+
+commit 00633c4683828acd5256fa8d5163f440d74bbe71 upstream.
+
+A SOFTIRQ-safe to SOFTIRQ-unsafe lock order deadlock can occur in
+send_sigio() and send_sigurg() when a process group receives a signal.
+
+When FASYNC is configured for a process group (PIDTYPE_PGID), both
+functions use read_lock(&tasklist_lock) to traverse the task list.
+However, they are frequently called from softirq context:
+- send_sigio() via input_inject_event -> kill_fasync
+- send_sigurg() via tcp_check_urg -> sk_send_sigurg (NET_RX_SOFTIRQ)
+
+The deadlock is caused by the rwlock writer fairness mechanism:
+1. CPU 0 (process context) holds read_lock(&tasklist_lock) in do_wait().
+2. CPU 1 (process context) attempts write_lock(&tasklist_lock) in
+   fork() or exit() and spins, which blocks all new readers.
+3. CPU 0 is interrupted by a softirq (e.g., TCP URG packet reception).
+4. The softirq calls send_sigurg() and attempts to acquire
+   read_lock(&tasklist_lock), deadlocking because CPU 1 is waiting.
+
+Since PID hashing and do_each_pid_task() traversals are already
+RCU-protected, the read_lock on tasklist_lock is no longer strictly
+required for safe traversal. Fix this by replacing tasklist_lock with
+rcu_read_lock(), aligning the process group signaling path with the
+single-PID path. This also mitigates a potential remote denial of
+service vector via TCP URG packets.
+
+Lockdep splat:
+=====================================================
+WARNING: SOFTIRQ-safe -> SOFTIRQ-unsafe lock order detected
+[...]
+Chain exists of:
+  &dev->event_lock --> &f_owner->lock --> tasklist_lock
+
+Possible interrupt unsafe locking scenario:
+       CPU0                    CPU1
+       ----                    ----
+  lock(tasklist_lock);
+                           local_irq_disable();
+                           lock(&dev->event_lock);
+                           lock(&f_owner->lock);
+  <Interrupt>
+    lock(&dev->event_lock);
+
+*** DEADLOCK ***
+
+Reviewed-by: Jeff Layton <jlayton@kernel.org>
+Signed-off-by: Mingyu Wang <25181214217@stu.xidian.edu.cn>
+Link: https://patch.msgid.link/20260523135210.590928-1-w15303746062@163.com
+Signed-off-by: Christian Brauner (Amutable) <brauner@kernel.org>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ fs/fcntl.c |    8 ++++----
+ 1 file changed, 4 insertions(+), 4 deletions(-)
+
+--- a/fs/fcntl.c
++++ b/fs/fcntl.c
+@@ -929,11 +929,11 @@ void send_sigio(struct fown_struct *fown
+ 			send_sigio_to_task(p, fown, fd, band, type);
+ 		rcu_read_unlock();
+ 	} else {
+-		read_lock(&tasklist_lock);
++		rcu_read_lock();
+ 		do_each_pid_task(pid, type, p) {
+ 			send_sigio_to_task(p, fown, fd, band, type);
+ 		} while_each_pid_task(pid, type, p);
+-		read_unlock(&tasklist_lock);
++		rcu_read_unlock();
+ 	}
+  out_unlock_fown:
+ 	read_unlock_irqrestore(&fown->lock, flags);
+@@ -975,11 +975,11 @@ int send_sigurg(struct file *file)
+ 			send_sigurg_to_task(p, fown, type);
+ 		rcu_read_unlock();
+ 	} else {
+-		read_lock(&tasklist_lock);
++		rcu_read_lock();
+ 		do_each_pid_task(pid, type, p) {
+ 			send_sigurg_to_task(p, fown, type);
+ 		} while_each_pid_task(pid, type, p);
+-		read_unlock(&tasklist_lock);
++		rcu_read_unlock();
+ 	}
+  out_unlock_fown:
+ 	read_unlock_irqrestore(&fown->lock, flags);
+
+
+Patches currently in stable-queue which might be from 25181214217@stu.xidian.edu.cn are
+
+queue-7.1/fs-fcntl-fix-softirq-unsafe-lock-order-in-fasync-signaling.patch

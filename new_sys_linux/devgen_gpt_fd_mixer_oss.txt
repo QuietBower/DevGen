@@ -1,0 +1,8 @@
+include <uapi/linux/soundcard.h>
+
+resource fd_mixer_oss[fd]
+
+syz_open_dev$DEVGEN_mixer_oss(dev ptr[in, string["/dev/mixer#"]], id proc[0, 1], flags flags[open_flags]) fd_mixer_oss
+
+ioctl$DEVGEN_SIOC_IN(fd fd_mixer_oss, cmd const[SIOC_IN], arg ptr[inout, int32])
+ioctl$DEVGEN_SIOC_OUT(fd fd_mixer_oss, cmd const[SIOC_OUT], arg ptr[out, int32])

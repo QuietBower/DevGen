@@ -1,0 +1,50 @@
+include <linux/types.h>
+include <linux/mutex.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+include <drivers/gpu/drm/amd/amdgpu/amdgpu_umr.h>
+
+resource fd_amdgpu_regs2[fd]
+
+syz_open_dev$DEVGEN_amdgpu_regs2(dev ptr[in, string["/sys/kernel/debug/dri/#/amdgpu_regs2"]], id proc[0, 1], flags flags[open_flags]) fd_amdgpu_regs2
+
+ioctl$DEVGEN_AMDGPU_DEBUGFS_REGS2_IOC_SET_STATE_V2(fd fd_amdgpu_regs2, cmd const[AMDGPU_DEBUGFS_REGS2_IOC_SET_STATE_V2], arg ptr[in, amdgpu_debugfs_regs2_iocdata_v2])
+ioctl$DEVGEN_AMDGPU_DEBUGFS_REGS2_IOC_SET_STATE(fd fd_amdgpu_regs2, cmd const[AMDGPU_DEBUGFS_REGS2_IOC_SET_STATE], arg ptr[in, amdgpu_debugfs_regs2_iocdata])
+
+amdgpu_debugfs_regs2_iocdata_v2 {
+	use_srbm	int32
+	use_grbm	int32
+	pg_lock	int32
+	grbm	amdgpu_debugfs_regs2_iocdata_v2_grbm
+	srbm	amdgpu_debugfs_regs2_iocdata_v2_srbm
+	xcc_id	int32
+}
+amdgpu_debugfs_regs2_iocdata {
+	use_srbm	int32
+	use_grbm	int32
+	pg_lock	int32
+	grbm	amdgpu_debugfs_regs2_iocdata_grbm
+	srbm	amdgpu_debugfs_regs2_iocdata_srbm
+}
+amdgpu_debugfs_regs2_iocdata_v2_grbm {
+	se	int32
+	sh	int32
+	instance	int32
+}
+amdgpu_debugfs_regs2_iocdata_v2_srbm {
+	me	int32
+	pipe	int32
+	queue	int32
+	vmid	int32
+}
+amdgpu_debugfs_regs2_iocdata_grbm {
+	se	int32
+	sh	int32
+	instance	int32
+}
+amdgpu_debugfs_regs2_iocdata_srbm {
+	me	int32
+	pipe	int32
+	queue	int32
+	vmid	int32
+}

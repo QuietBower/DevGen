@@ -1,0 +1,61 @@
+meta arches["amd64"]
+
+include <asm/fcntl.h>
+include <asm/ioctl.h>
+include <asm/ioctls.h>
+include <linux/elf.h>
+include <linux/errno.h>
+include <linux/eventfd.h>
+include <linux/eventpoll.h>
+include <linux/fcntl.h>
+include <linux/filelock.h>
+include <linux/fs.h>
+include <linux/futex.h>
+include <linux/ioctl.h>
+include <linux/loop.h>
+include <linux/mount.h>
+include <linux/mutex.h>
+include <linux/net.h>
+include <linux/socket.h>
+include <linux/stat.h>
+include <linux/time.h>
+include <linux/types.h>
+include <linux/user.h>
+include <linux/uuid.h>
+include <uapi/asm/ioctl.h>
+include <uapi/asm/ioctls.h>
+include <uapi/linux/elf.h>
+include <uapi/linux/fs.h>
+include <uapi/linux/if_ether.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/module.h>
+include <uapi/linux/mount.h>
+include <uapi/linux/videodev2.h>
+include <uapi/linux/psp-dbc.h>
+include <uapi/asm-generic/fcntl.h>
+include <uapi/linux/fcntl.h>
+
+resource fd_dbc[fd]
+
+openat$DEVGEN_dbc(fd const[AT_FDCWD], file ptr[in, string["/dev/dbc"]], flags const[O_RDWR], mode const[0]) fd_dbc
+
+
+ioctl$DEVGEN_DBCIOCNONCE(fd fd_dbc, cmd const[DBCIOCNONCE], arg ptr[inout, dbc_user_nonce])
+ioctl$DEVGEN_DBCIOCUID(fd fd_dbc, cmd const[DBCIOCUID], arg ptr[inout, dbc_user_setuid])
+ioctl$DEVGEN_DBCIOCPARAM(fd fd_dbc, cmd const[DBCIOCPARAM], arg ptr[inout, dbc_user_param])
+
+
+dbc_user_nonce {
+	auth_needed	int32
+	nonce	array[int8, DBC_NONCE_SIZE]
+	signature	array[int8, DBC_SIG_SIZE]
+}
+dbc_user_setuid {
+	uid	array[int8, DBC_UID_SIZE]
+	signature	array[int8, DBC_SIG_SIZE]
+}
+dbc_user_param {
+	msg_index	int32
+	param	int32
+	signature	array[int8, DBC_SIG_SIZE]
+}

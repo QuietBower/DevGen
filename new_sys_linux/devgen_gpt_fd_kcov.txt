@@ -1,0 +1,26 @@
+include <linux/kcov.h>
+include <uapi/linux/fcntl.h>
+include <uapi/linux/kcov.h>
+
+resource fd_kcov[fd]
+
+openat$DEVGEN_kcov(fd const[AT_FDCWD], file ptr[in, string["/sys/kernel/debug/kcov"]], flags flags[open_flags], mode const[0]) fd_kcov
+
+ioctl$DEVGEN_KCOV_DISABLE(fd fd_kcov, cmd const[KCOV_DISABLE], arg ptr[in, array[int8]])
+ioctl$DEVGEN_KCOV_INIT_TRACE(fd fd_kcov, cmd const[KCOV_INIT_TRACE], arg intptr)
+ioctl$DEVGEN_KCOV_REMOTE_ENABLE(fd fd_kcov, cmd const[KCOV_REMOTE_ENABLE], arg ptr[in, kcov_remote_arg])
+ioctl$DEVGEN_KCOV_ENABLE(fd fd_kcov, cmd const[KCOV_ENABLE], arg flags[kcov_mode])
+
+kcov_remote_arg {
+	trace_mode	int32
+	area_size	int32
+	num_handles	int32
+	common_handle	int64
+	handles	array[int64]
+}
+kcov_mode = KCOV_MODE_DISABLED, KCOV_MODE_INIT, KCOV_MODE_TRACE_PC, KCOV_MODE_TRACE_CMP
+
+define KCOV_MODE_DISABLED 0
+define KCOV_MODE_INIT 1
+define KCOV_MODE_TRACE_PC 2
+define KCOV_MODE_TRACE_CMP 3

@@ -1,0 +1,10 @@
+﻿include <uapi/drm/nouveau_drm.h>
+
+resource kdevgen_gpt_fd_dri[fd]
+
+syz_open_dev$DEVGEN_dri(dev ptr[in, string["/dev/dri/card#"]], id proc[0, 1], flags flags[open_flags]) kdevgen_gpt_fd_dri
+
+ioctl$DEVGEN_DRM_NOUVEAU_NVIF(fd kdevgen_gpt_fd_dri, cmd const[DRM_NOUVEAU_NVIF], arg ptr[in, nvif_ioctl])
+
+type nvif_ioctl ptr[in, array[int8]]
+

@@ -1,0 +1,27 @@
+include <linux/types.h>
+include <uapi/linux/dvb/net.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+
+resource fd_dvb_net[fd]
+
+syz_open_dev$DEVGEN_dvb_net(dev ptr[in, string["/dev/dvb/adapter#/net#"]], id proc[0, 1], flags flags[open_flags]) fd_dvb_net
+
+ioctl$DEVGEN_NET_ADD_IF(fd fd_dvb_net, cmd const[NET_ADD_IF], arg ptr[in, dvb_net_if])
+ioctl$DEVGEN_NET_GET_IF(fd fd_dvb_net, cmd const[NET_GET_IF], arg ptr[inout, dvb_net_if])
+ioctl$DEVGEN_NET_REMOVE_IF(fd fd_dvb_net, cmd const[NET_REMOVE_IF], arg intptr)
+ioctl$DEVGEN___NET_ADD_IF_OLD(fd fd_dvb_net, cmd const[__NET_ADD_IF_OLD], arg ptr[in, __dvb_net_if_old])
+ioctl$DEVGEN___NET_GET_IF_OLD(fd fd_dvb_net, cmd const[__NET_GET_IF_OLD], arg ptr[inout, __dvb_net_if_old])
+
+dvb_net_if {
+	pid	int16
+	if_num	int16
+	feedtype	flags[dvb_net_feedtype, int8]
+}
+
+__dvb_net_if_old {
+	pid	int16
+	if_num	int16
+}
+
+dvb_net_feedtype = DVB_NET_FEEDTYPE_MPE, DVB_NET_FEEDTYPE_ULE

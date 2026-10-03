@@ -1,0 +1,26 @@
+include <linux/types.h>
+include <linux/mutex.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+include <drivers/gpu/drm/amd/amdgpu/amdgpu_umr.h>
+
+resource fd_amdgpu_gprwave[fd]
+
+openat$DEVGEN_amdgpu_gprwave(fd const[AT_FDCWD], file ptr[in, string["/sys/kernel/debug/dri/#/amdgpu_gprwave"]], flags flags[open_flags], mode const[0]) fd_amdgpu_gprwave
+
+ioctl$DEVGEN_AMDGPU_DEBUGFS_GPRWAVE_IOC_SET_STATE(fd fd_amdgpu_gprwave, cmd const[AMDGPU_DEBUGFS_GPRWAVE_IOC_SET_STATE], arg ptr[in, amdgpu_debugfs_gprwave_iocdata])
+
+amdgpu_debugfs_gprwave_iocdata {
+	gpr_or_wave	int32
+	se	int32
+	sh	int32
+	cu	int32
+	wave	int32
+	simd	int32
+	xcc_id	int32
+	gpr	amdgpu_debugfs_gprwave_iocdata_gpr
+}
+amdgpu_debugfs_gprwave_iocdata_gpr {
+	thread	int32
+	vpgr_or_sgpr	int32
+}

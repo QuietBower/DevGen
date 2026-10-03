@@ -1,0 +1,9 @@
+include <uapi/linux/cdrom.h>
+
+resource fd_sr[fd]
+
+syz_open_dev$DEVGEN_sr(dev ptr[in, string["/dev/sr#"]], id proc[0, 1], flags flags[open_flags]) fd_sr
+
+ioctl$DEVGEN_CDROM_SELECT_DISC(fd fd_sr, cmd const[CDROM_SELECT_DISC], arg intptr)
+ioctl$DEVGEN_CDROM_DRIVE_STATUS(fd fd_sr, cmd const[CDROM_DRIVE_STATUS], arg intptr)
+ioctl$DEVGEN_DVD_AUTH(fd fd_sr, cmd const[DVD_AUTH], arg ptr[inout, dvd_authinfo])

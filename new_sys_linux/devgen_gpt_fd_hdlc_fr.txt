@@ -1,0 +1,26 @@
+include <uapi/linux/fcntl.h>
+include <uapi/linux/if.h>
+
+resource fd_hdlc_fr[fd]
+
+openat$DEVGEN_net_tun(fd const[AT_FDCWD], file ptr[in, string["/dev/net/tun"]], flags flags[open_flags], mode const[0]) fd_hdlc_fr
+
+ioctl$DEVGEN_IF_PROTO_CISCO(fd fd_hdlc_fr, cmd const[IF_PROTO_CISCO], arg ptr[in, cisco_proto])
+ioctl$DEVGEN_IF_GET_PROTO(fd fd_hdlc_fr, cmd const[IF_GET_PROTO], arg ptr[out, fr_proto])
+ioctl$DEVGEN_IF_PROTO_FR(fd fd_hdlc_fr, cmd const[IF_PROTO_FR], arg ptr[in, fr_proto])
+ioctl$DEVGEN_IF_PROTO_FR_ADD_PVC(fd fd_hdlc_fr, cmd const[IF_PROTO_FR_ADD_PVC], arg ptr[in, fr_proto_pvc])
+ioctl$DEVGEN_IF_PROTO_FR_DEL_PVC(fd fd_hdlc_fr, cmd const[IF_PROTO_FR_DEL_PVC], arg ptr[in, fr_proto_pvc])
+ioctl$DEVGEN_IF_PROTO_FR_ADD_ETH_PVC(fd fd_hdlc_fr, cmd const[IF_PROTO_FR_ADD_ETH_PVC], arg ptr[in, fr_proto_pvc])
+ioctl$DEVGEN_IF_PROTO_FR_DEL_ETH_PVC(fd fd_hdlc_fr, cmd const[IF_PROTO_FR_DEL_ETH_PVC], arg ptr[in, fr_proto_pvc])
+ioctl$DEVGEN_IF_PROTO_HDLC(fd fd_hdlc_fr, cmd const[IF_PROTO_HDLC], arg ptr[in, raw_hdlc_proto])
+ioctl$DEVGEN_IF_PROTO_HDLC_ETH(fd fd_hdlc_fr, cmd const[IF_PROTO_HDLC_ETH], arg ptr[in, raw_hdlc_proto])
+ioctl$DEVGEN_IF_PROTO_X25(fd fd_hdlc_fr, cmd const[IF_PROTO_X25], arg ptr[in, x25_hdlc_proto])
+
+x25_hdlc_proto {
+	dce	int16
+	modulo	int32
+	window	int32
+	t1	int32
+	t2	int32
+	n2	int32
+}

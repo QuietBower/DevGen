@@ -1,0 +1,23 @@
+include <linux/types.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/hpet.h>
+include <uapi/linux/fcntl.h>
+
+resource fd_hpet[fd]
+
+openat$DEVGEN_hpets(fd const[AT_FDCWD], file ptr[in, string["/dev/hpet"]], flags const[O_RDWR], mode const[0]) fd_hpet
+
+ioctl$DEVGEN_HPET_IE_OFF(fd fd_hpet, cmd const[HPET_IE_OFF])
+ioctl$DEVGEN_HPET_IE_ON(fd fd_hpet, cmd const[HPET_IE_ON])
+ioctl$DEVGEN_HPET_EPI(fd fd_hpet, cmd const[HPET_EPI])
+ioctl$DEVGEN_HPET_DPI(fd fd_hpet, cmd const[HPET_DPI])
+
+ioctl$DEVGEN_HPET_INFO(fd fd_hpet, cmd const[HPET_INFO], arg ptr[out, hpet_info])
+ioctl$DEVGEN_HPET_IRQFREQ(fd fd_hpet, cmd const[HPET_IRQFREQ], arg intptr)
+
+hpet_info {
+	hi_ireqfreq	intptr
+	hi_flags	intptr
+	hi_hpet	int16
+	hi_timer	int16
+}

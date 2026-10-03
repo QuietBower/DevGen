@@ -1,0 +1,52 @@
+Message-ID: <88f9ac58-8079-415d-902c-3b9455a9d17c@stu.xidian.edu.cn>
+Date: Thu, 23 Jul 2026 18:45:23 +0800
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH] tty: vt: fix memory leak in vc_allocate()
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: jirislaby@kernel.org, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org, stable@vger.kernel.org
+References: <20260723070530.117552-1-25181214217@stu.xidian.edu.cn>
+ <2026072345-copartner-shrink-9596@gregkh>
+From: Mingyu Wang <25181214217@stu.xidian.edu.cn>
+In-Reply-To: <2026072345-copartner-shrink-9596@gregkh>
+Content-Type: text/plain; charset=UTF-8; format=flowed
+Content-Transfer-Encoding: 7bit
+
+
+> How was this tested?  And how can this ever fail given this happens at
+> early boot time, right?
+>
+
+Hi Greg,
+
+Thank you for the review.
+
+Regarding how it can fail:
+While vc_allocate() is indeed heavily used during early boot, it is also 
+reachable at runtime when dynamically allocating new virtual consoles 
+(e.g., via the VT_ACTIVATE ioctl). The failure we observed happened at 
+runtime because our fuzzing environment enables kernel fault injection 
+(failslab). The fuzzer intentionally forced the kzalloc() for the screen 
+buffer to fail, which exposed this specific error-handling path.
+
+Regarding testing:
+This issue was discovered using DevGen (our automated virtual device 
+modeling fuzzer on QEMU). While we do not have a standalone C reproducer 
+to run a dynamic runtime test, the fix was derived directly from dynamic 
+execution evidence: we cross-analyzed the precise kmemleak backtraces 
+and the fuzzer's execution logs.
+
+The kmemleak traces clearly showed that when fault injection intercepted 
+the screen buffer allocation, the execution jumped to `err_free`, 
+permanently bypassing the cleanup of the unicode screen map (which had 
+its refcount incremented earlier).
+
+The patch has been compile-tested. Since con_free_unimap() safely checks 
+for a NULL pointer internally, adding it to the err_free path ensures 
+the elevated refcount is safely dropped without introducing regressions.
+
+I hope this clarifies the context of the bug and the fix.
+
+Best regards,
+Mingyu Wang

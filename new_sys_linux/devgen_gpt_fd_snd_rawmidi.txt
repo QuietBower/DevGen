@@ -1,0 +1,11 @@
+include <linux/types.h>
+include <linux/time_types.h>
+include <uapi/linux/ioctl.h>
+include <uapi/linux/fcntl.h>
+include <uapi/sound/asound.h>
+
+resource fd_snd_rawmidi[fd]
+
+syz_open_dev$DEVGEN_snd_rawmidi(dev ptr[in, string["/dev/snd/midiC#D#"]], id proc[0, 1], flags flags[open_flags]) fd_snd_rawmidi
+
+ioctl$DEVGEN_SNDRV_RAWMIDI_IOCTL_USER_PVERSION(fd fd_snd_rawmidi, cmd const[SNDRV_RAWMIDI_IOCTL_USER_PVERSION], arg ptr[out, int32])

@@ -1,0 +1,27 @@
+﻿resource devgen_watchdog[fd]
+openat$dev_watchdog(fd const[AT_FDCWD], file ptr[in, string["/dev/watchdog"]], flags flags[open_flags], mode const[0]) devgen_watchdog
+write$dev_watchdog(fd devgen_watchdog, buf buffer[in], const len[buf])
+read$dev_watchdog(fd devgen_watchdog, buf buffer[out], const len[buf])
+poll$dev_watchdog(fds ptr[in, array[polldevgen_watchdog]], nfds len[fds], timeout int32)
+close$dev_watchdog(fd devgen_watchdog)
+ioctl$dev_watchdog_1(fd devgen_watchdog, cmd const[0x80285700], arg intptr)
+ioctl$dev_watchdog_2(fd devgen_watchdog, cmd const[0x80285700], arg ptr64[in, int64])
+ioctl$dev_watchdog_3(fd devgen_watchdog, cmd const[0x80045701], arg intptr)
+ioctl$dev_watchdog_4(fd devgen_watchdog, cmd const[0x80045701], arg ptr64[in, int64])
+ioctl$dev_watchdog_5(fd devgen_watchdog, cmd const[0x80045702], arg intptr)
+ioctl$dev_watchdog_6(fd devgen_watchdog, cmd const[0x80045702], arg ptr64[in, int64])
+ioctl$dev_watchdog_7(fd devgen_watchdog, cmd const[0x80045704], arg intptr)
+ioctl$dev_watchdog_8(fd devgen_watchdog, cmd const[0x80045704], arg ptr64[in, int64])
+ioctl$dev_watchdog_9(fd devgen_watchdog, cmd const[0x80045705], arg intptr)
+ioctl$dev_watchdog_10(fd devgen_watchdog, cmd const[0x80045705], arg ptr64[in, int64])
+ioctl$dev_watchdog_11(fd devgen_watchdog, cmd const[0xc0045706], arg intptr)
+ioctl$dev_watchdog_12(fd devgen_watchdog, cmd const[0xc0045706], arg ptr64[in, int64])
+ioctl$dev_watchdog_13(fd devgen_watchdog, cmd const[0x80045707], arg intptr)
+ioctl$dev_watchdog_14(fd devgen_watchdog, cmd const[0x80045707], arg ptr64[in, int64])
+
+polldevgen_watchdog {
+	fd	devgen_watchdog
+	events	flags[pollfd_events, int16]
+	revents	const[0, int16]
+}
+

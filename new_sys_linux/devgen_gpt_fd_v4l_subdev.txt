@@ -1,0 +1,31 @@
+﻿include <uapi/linux/v4l2-subdev.h>
+
+resource fd_v4l_subdev[fd]
+
+syz_open_dev$Kdevgen_gpt_fd_v4l_subdev(dev ptr[in, string["/dev/v4l-subdev#"]], id proc[0, 1], flags flags[open_flags]) fd_v4l_subdev
+
+ioctl$DEVGEN_VIDIOC_SUBDEV_QUERYCAP(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_QUERYCAP], arg ptr[in, v4l2_subdev_capability])
+ioctl$DEVGEN_VIDIOC_SUBDEV_G_STD(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_G_STD], arg ptr[out, v4l2_std_id])
+ioctl$DEVGEN_VIDIOC_SUBDEV_S_STD(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_S_STD], arg ptr[in, v4l2_std_id])
+ioctl$DEVGEN_VIDIOC_SUBDEV_ENUMSTD(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_ENUMSTD], arg ptr[inout, v4l2_standard])
+ioctl$DEVGEN_VIDIOC_SUBDEV_QUERYSTD(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_QUERYSTD], arg ptr[out, v4l2_std_id])
+ioctl$DEVGEN_VIDIOC_SUBDEV_G_ROUTING(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_G_ROUTING], arg ptr[in, v4l2_subdev_routing])
+ioctl$DEVGEN_VIDIOC_SUBDEV_S_ROUTING(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_S_ROUTING], arg ptr[in, v4l2_subdev_routing])
+ioctl$DEVGEN_VIDIOC_SUBDEV_G_CLIENT_CAP(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_G_CLIENT_CAP], arg ptr[in, v4l2_subdev_client_capability])
+ioctl$DEVGEN_VIDIOC_SUBDEV_S_CLIENT_CAP(fd fd_v4l_subdev, cmd const[VIDIOC_SUBDEV_S_CLIENT_CAP], arg ptr[in, v4l2_subdev_client_capability])
+
+v4l2_subdev_capability {
+	version	int32
+	capabilities	int32
+	reserved	array[int32, 14]
+}
+v4l2_subdev_routing {
+	which	int32
+	num_routes	int32
+	routes	intptr
+	reserved	array[int32, 6]
+}
+v4l2_subdev_client_capability {
+	capabilities	int64
+}
+

@@ -1,0 +1,8 @@
+include <uapi/linux/usbdevice_fs.h>
+
+resource fd_usbdev[fd]
+
+syz_open_dev$DEVGEN_usbdev(dev ptr[in, string["/dev/bus/usb/#"]], id proc[0, 1], flags flags[open_flags]) fd_usbdev
+
+ioctl$DEVGEN_USBDEVFS_REAPURB32(fd fd_usbdev, cmd const[USBDEVFS_REAPURB32], arg ptr[out, intptr])
+ioctl$DEVGEN_USBDEVFS_REAPURBNDELAY32(fd fd_usbdev, cmd const[USBDEVFS_REAPURBNDELAY32], arg ptr[out, intptr])

@@ -1,0 +1,47 @@
+﻿include <uapi/linux/gsmmux.h>
+include <uapi/linux/fcntl.h>
+include <arch/powerpc/include/uapi/asm/ioctls.h>
+
+resource kdevgen_gpt_fd_tty[fd]
+
+openat$Kdevgen_gpt_fd_tty(fd const[AT_FDCWD], file ptr[in, string["/dev/ptmx"]], flags flags[open_flags], mode const[0]) kdevgen_gpt_fd_tty
+
+ioctl$DEVGEN_GSMIOC_GETCONF(fd kdevgen_gpt_fd_tty, cmd const[GSMIOC_GETCONF], arg ptr[out, gsm_config])
+ioctl$DEVGEN_GSMIOC_SETCONF(fd kdevgen_gpt_fd_tty, cmd const[GSMIOC_SETCONF], arg ptr[in, gsm_config])
+ioctl$DEVGEN_GSMIOC_GETFIRST(fd kdevgen_gpt_fd_tty, cmd const[GSMIOC_GETFIRST], arg ptr[out, int32])
+ioctl$DEVGEN_GSMIOC_GETCONF_EXT(fd kdevgen_gpt_fd_tty, cmd const[GSMIOC_GETCONF_EXT], arg ptr[out, gsm_config_ext])
+ioctl$DEVGEN_GSMIOC_SETCONF_EXT(fd kdevgen_gpt_fd_tty, cmd const[GSMIOC_SETCONF_EXT], arg ptr[in, gsm_config_ext])
+ioctl$DEVGEN_GSMIOC_GETCONF_DLCI(fd kdevgen_gpt_fd_tty, cmd const[GSMIOC_GETCONF_DLCI], arg ptr[inout, gsm_dlci_config])
+ioctl$DEVGEN_GSMIOC_SETCONF_DLCI(fd kdevgen_gpt_fd_tty, cmd const[GSMIOC_SETCONF_DLCI], arg ptr[in, gsm_dlci_config])
+
+gsm_config {
+	adaption	int32
+	encapsulation	int32
+	initiator	int32
+	t1	int32
+	t2	int32
+	t3	int32
+	n2	int32
+	mru	int32
+	mtu	int32
+	k	int32
+	i	int32
+	unused	array[int32, 8]
+}
+gsm_config_ext {
+	keep_alive	int32
+	wait_config	int32
+	flags	int32
+	reserved	array[int32, 5]
+}
+gsm_dlci_config {
+	channel	int32
+	adaption	int32
+	mtu	int32
+	priority	int32
+	i	int32
+	k	int32
+	flags	int32
+	reserved	array[int32, 7]
+}
+

@@ -1,0 +1,10 @@
+﻿include <uapi/linux/hdreg.h>
+
+resource devgen_gpt_fd_aoe[fd]
+
+syz_open_dev$DEVGEN_aoe(dev ptr[in, string["/dev/etherd/e#.#"]], id proc[0, 1], flags flags[open_flags]) devgen_gpt_fd_aoe
+
+ioctl$DEVGEN_HDIO_GET_IDENTITY(fd devgen_gpt_fd_aoe, cmd const[HDIO_GET_IDENTITY], arg ptr[out, hd_driveid])
+
+type hd_driveid ptr[in, array[int8]]
+

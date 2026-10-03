@@ -1,0 +1,21 @@
+include <uapi/drm/vmwgfx_drm.h>
+
+resource fd_vmwgfx[fd]
+
+syz_open_dev$DEVGEN_vmwgfx(dev ptr[in, string["/dev/dri/card#"]], id proc[0, 1], flags flags[open_flags]) fd_vmwgfx
+
+ioctl$DEVGEN_DRM_VMW_EXECBUF(fd fd_vmwgfx, cmd const[DRM_VMW_EXECBUF], arg ptr[in, drm_vmw_execbuf_arg])
+ioctl$DEVGEN_DRM_VMW_UPDATE_LAYOUT(fd fd_vmwgfx, cmd const[DRM_VMW_UPDATE_LAYOUT], arg ptr[in, drm_vmw_update_layout])
+
+drm_vmw_execbuf_arg {
+	commands	intptr
+	command_size	int32
+	throttle_us	int32
+	fence_rep	intptr
+	version	int32
+	flags	int32
+	context_handle	int32
+	imported_fence_fd	int32
+}
+
+type drm_vmw_update_layout ptr[in, array[int8]]

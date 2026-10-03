@@ -1,0 +1,12 @@
+include <linux/types.h>
+include <uapi/linux/fcntl.h>
+include <uapi/asm-generic/ioctls.h>
+include <uapi/linux/ioctl.h>
+
+resource fd_kgpt_pty[fd]
+
+syz_open_dev$DEVGEN_pty_master(dev ptr[in, string["/dev/pty#"]], id proc[0, 1], flags flags[open_flags]) fd_kgpt_pty
+openat$DEVGEN_ptmx(fd const[AT_FDCWD], file ptr[in, string["/dev/ptmx"]], flags flags[open_flags], mode const[0]) fd_kgpt_pty
+
+ioctl$DEVGEN_TIOCGPTN(fd fd_kgpt_pty, cmd const[TIOCGPTN], arg ptr[out, int32])
+ioctl$DEVGEN_TIOCSPTLCK(fd fd_kgpt_pty, cmd const[TIOCSPTLCK], arg ptr[in, int32])
