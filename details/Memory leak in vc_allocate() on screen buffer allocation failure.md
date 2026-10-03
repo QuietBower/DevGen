@@ -19,5 +19,5 @@ This section tracks the complete email correspondence and patch history for this
 | Greg KH:[PATCH v2] tty: vt: fix memory leak in vc_allocate() | <u>[lore.kernel.org](https://lore.kernel.org/stable/2026080339-proofing-catsup-bee9@gregkh/)</u> |
 | Re: [PATCH v2] tty: vt: fix memory leak in vc_allocate()     | <u>[lore.kernel.org](https://lore.kernel.org/stable/514ebe5c-4867-47e8-9500-0b0cab9eb243@stu.xidian.edu.cn/)</u> |
 | PATCH v3] tty: vt: fix memory leak in vc_allocate()          | <u>[lore.kernel.org](https://lore.kernel.org/stable/20260803144556.163856-1-25181214217@stu.xidian.edu.cn/)</u> |
-| patch "tty: vt: fix memory leak in vc_allocate()" added to tty-linus | <u>[lore.kernel.org](https://github.com/Wmingyu/DevGen-results/blob/main/email-list/patch%20tty%20vt%20fix%20memory%20leak%20in%20vc_allocate()%20added%20to%20tty-linus.txt)</u> |
+| patch "tty: vt: fix memory leak in vc_allocate()" added to tty-linus | <u>[lore.kernel.org](../email/patch%20tty%20vt%20fix%20memory%20leak%20in%20vc_allocate%28%29%20added%20to%20tty-linus.txt)</u> |
 

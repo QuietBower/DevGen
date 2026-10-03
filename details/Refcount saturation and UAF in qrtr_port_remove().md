@@ -12,7 +12,7 @@ This section tracks the complete email correspondence and patch history for this
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | [PATCH] net: qrtr: fix refcount saturation and potential UAF in qrtr_port_remove | <u>[lore.kernel.org](https://lore.kernel.org/all/20260530082243.1123402-1-w15303746062@163.com/)</u> |
-| Re: [PATCH] net: qrtr: fix refcount saturation and potential UAF in qrtr_port_remove | <u>[lore.kernel.org](https://github.com/Wmingyu/DevGen-results/blob/main/email-list/Re%20%5BPATCH%5D%20net%20qrtr%20fix%20refcount%20saturation%20and%20potential%20UAF%20in%20qrtr_port_remove.txt)</u> |
+| Re: [PATCH] net: qrtr: fix refcount saturation and potential UAF in qrtr_port_remove | <u>[lore.kernel.org](../email/Re%20%5BPATCH%5D%20net%20qrtr%20fix%20refcount%20saturation%20and%20potential%20UAF%20in%20qrtr_port_remove.txt)</u> |
 | [PATCH] net: qrtr: fix refcount saturation and potential UAF in qrtr_port_remove | <u>[lore.kernel.org](https://sashiko.dev/#/patchset/20260530082243.1123402-1-w15303746062%40163.com)</u> |
 | [PATCH v2] net: qrtr: fix refcount saturation and potential UAF in qrtr_port_remove | <u>[lore.kernel.org](https://lore.kernel.org/all/20260604064801.1180388-1-w15303746062@163.com/)</u> |
 | AI Reviews:sashiko                                           | <u>[lore.kernel.org](https://sashiko.dev/#/patchset/20260604064801.1180388-1-w15303746062%40163.com)</u> |

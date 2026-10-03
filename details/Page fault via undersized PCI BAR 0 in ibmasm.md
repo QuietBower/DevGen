@@ -47,6 +47,6 @@ This section tracks the complete email correspondence and patch history for this
 | Greg KH:Re: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe | <u>[lore.kernel.org](https://lore.kernel.org/stable/2026080153-unthread-quake-ce1f@gregkh/)</u> |
 | [PATCH] misc: ibmasm: Remove obsolete IBM Remote Supervisor Adapter driver | <u>[lore.kernel.org](https://lore.kernel.org/stable/20260801070756.161698-1-25181214217@stu.xidian.edu.cn/)</u> |
 | Arnd:Re: [PATCH] misc: ibmasm: Remove obsolete IBM Remote Supervisor Adapter driver | <u>[lore.kernel.org](https://lore.kernel.org/stable/f22ccf39-7d07-4b96-be44-89d86153402c@app.fastmail.com/)</u> |
-| patch "misc: ibmasm: Remove obsolete IBM Remote Supervisor Adapter driver" added to char-misc-next | <u>[lore.kernel.org](https://github.com/Wmingyu/DevGen-results/blob/main/email-list/patch%20misc%20ibmasm%20Remove%20obsolete%20IBM%20Remote%20Supervisor%20Adapter%20driver%20added%20to%20char-misc-next.txt)</u> |
+| patch "misc: ibmasm: Remove obsolete IBM Remote Supervisor Adapter driver" added to char-misc-next | <u>[lore.kernel.org](../email/patch%20misc%20ibmasm%20Remove%20obsolete%20IBM%20Remote%20Supervisor%20Adapter%20driver%20added%20to%20char-misc-next.txt)</u> |
 | misc: ibmasm: Remove obsolete IBM Remote Supervisor Adapter driver | <u>[lore.kernel.org](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=c20800490fd7de317aad2773040961202f5555d2)</u> |
 

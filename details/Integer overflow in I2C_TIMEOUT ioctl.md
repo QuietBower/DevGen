@@ -15,5 +15,5 @@ This section tracks the complete email correspondence and patch history for this
 | [PATCH AUTOSEL 7.0-5.10] i2c: dev: prevent integer overflow in I2C_TIMEOUT ioctl | <u>[lore.kernel.org](https://lore.kernel.org/stable/20260520111944.3424570-21-sashal@kernel.org/)</u> |
 | [PATCH AUTOSEL 7.0-5.10] i2c: dev: prevent integer overflow in I2C_TIMEOUT ioctl | <u>[lore.kernel.org](https://lore.kernel.org/stable/20260511221931.2370053-9-sashal@kernel.org/)</u> |
 | i2c: dev: prevent integer overflow in I2C_TIMEOUT ioctl      | <u>[lore.kernel.org](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=617eb7c0961a8dfcfc811844a6396e406b2923ea)</u> |
-| Re: Please cherry-pick commit 617eb7c0961a                   | <u>[lore.kernel.org](https://github.com/Wmingyu/DevGen-results/blob/main/email-list/Re%20Please%20cherry-pick%20commit%20617eb7c0961a.txt)</u> |
+| Re: Please cherry-pick commit 617eb7c0961a                   | <u>[lore.kernel.org](../email/Re%20Please%20cherry-pick%20commit%20617eb7c0961a.txt)</u> |
 
