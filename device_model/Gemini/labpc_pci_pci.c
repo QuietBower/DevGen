@@ -1,0 +1,383 @@
+/*
+ * This template provides a robust skeleton for hardware emulation.
+ * Integrated QEMU PCI device template (QEMU 8.2.10).
+ * Replace #PLACEHOLDER# blocks with driver-specific definitions.
+ * Designed for register-level modeling and PCIe driver probing.
+ * NOTE: Do not directly fill this file with the Linux kernel source code.
+ */
+
+#include "qemu/osdep.h"
+#include "qemu/units.h"
+#include "qemu/module.h"
+#include "qemu/timer.h"
+#include "qemu/log.h"
+#include "qemu/host-utils.h"
+#include "qemu/bitops.h"
+#include "qapi/error.h"
+#include "exec/memory.h"
+#include "sysemu/dma.h"
+#include "hw/pci/pci.h"
+#include "hw/pci/msi.h"
+#include "hw/pci/msix.h"
+#include "hw/pci/pcie.h"
+#include "hw/qdev-properties.h"
+#include "hw/qdev-core.h"
+#include "migration/vmstate.h"
+
+/* Additional include files retrieved from driver context */
+struct labpc_boardinfo {
+	const char *name;
+	int ai_speed;			/* maximum input speed in ns */
+	unsigned ai_scan_up:1;		/* can auto scan up in ai channels */
+	unsigned has_ao:1;		/* has analog outputs */
+	unsigned is_labpc1200:1;	/* has extra regs compared to pc+ */
+};
+
+#define TYPE_PCIBASE_DEVICE "labpc_pci_pci"
+typedef struct PCIBaseState PCIBaseState;
+OBJECT_DECLARE_SIMPLE_TYPE(PCIBaseState, PCIBASE_DEVICE)
+
+/* Register Layout and Hardware Identifiers extracted from driver source */
+#ifndef PCI_VENDOR_ID_NI
+#define PCI_VENDOR_ID_NI 0x1093
+#endif
+
+#define MITE_IODWBSR 0xc0
+#define WENAB (1 << 7)
+
+#define CMD1_REG		0x00
+#define CMD2_REG		0x01
+#define CMD3_REG		0x02
+#define CMD4_REG		0x0f
+#define CMD5_REG		0x1c
+#define CMD6_REG		0x0e
+#define COUNTER_A_BASE_REG	0x14
+#define COUNTER_B_BASE_REG	0x18
+#define DIO_BASE_REG		0x10
+
+#define STAT1_REG		0x00
+#define STAT2_REG		0x1d
+
+#define ADC_FIFO_CLEAR_REG	0x08
+
+#define TIMER_CLEAR_REG		0x0c
+#define DAC_LSB_REG(x)		(0x04 + 2 * (x))
+
+#define DAC_MSB_REG(x)		(0x05 + 2 * (x))
+
+#define ADC_START_CONVERT_REG	0x03
+
+#define INTERVAL_COUNT_REG	0x1e
+
+#define INTERVAL_STROBE_REG	0x1f
+
+#define STAT1_GATA0		BIT(5)
+#define STAT1_CNTINT		BIT(3)
+#define STAT1_OVERFLOW		BIT(2)
+#define STAT1_OVERRUN		BIT(1)
+#define STAT1_DAVAIL		BIT(0)
+#define STAT2_OUTA1		BIT(1)
+#define STAT2_FIFONHF		BIT(2)
+#define CMD5_CALDACLD		BIT(4)
+
+#define CMD5_EEPROMCS		BIT(7)
+
+#define CMD5_WRTPRT		BIT(2)
+
+#define CMD4_ECLKRCV		BIT(4)
+
+#define CMD4_SEDIFF		BIT(3)
+
+#define CMD4_INTSCAN		BIT(0)
+
+#define CMD4_EOIRCV		BIT(1)
+
+#define CMD1_SCANEN		BIT(7)
+
+#define CMD3_ERRINTEN		BIT(4)
+
+#define CMD3_FIFOINTEN		BIT(5)
+
+#define CMD2_TBSEL		BIT(3)
+
+#define CMD2_SWTRIG		BIT(2)
+
+#define CMD2_HWTRIG		BIT(1)
+
+#define CMD2_PRETRIG		BIT(0)
+
+#define CMD2_LDAC(x)		BIT(6 + ((x) & 0x1))
+
+#define CMD6_DACUNI(x)		BIT(2 + ((x) & 0x1))
+
+typedef enum {
+    BAR_TYPE_NONE = 0,
+    BAR_TYPE_MMIO,
+    BAR_TYPE_PIO,
+    BAR_TYPE_RAM 
+} BARType;
+
+typedef struct {
+    int     index;    /* BAR index 0-5 */
+    BARType type;
+    hwaddr  size;
+    const char *name;
+} BARInfo;
+
+struct PCIBaseState {
+    PCIDevice parent_obj;
+
+    /* Resource Management */
+    MemoryRegion bar_regions[6];
+    BARInfo bar_info[6];
+    int num_bars;
+
+    /* Capability and Interrupt State */
+    bool has_msi;
+    bool has_msix;
+    
+    /* Hardware Register Shadows (The 'Identity' of the device) */
+    uint32_t cmd1;
+    uint32_t cmd2;
+    uint32_t cmd3;
+    uint32_t cmd4;
+    uint32_t cmd5;
+    uint32_t cmd6;
+    uint32_t stat1;
+    uint32_t stat2;
+    uint32_t mite_iodwbsr;
+};
+
+/* MMIO/PIO Handlers generated during Behavioral Modeling */
+static uint64_t pcibase_mmio_read(void *opaque, hwaddr addr, unsigned size)
+{
+    PCIBaseState *s = opaque;
+    uint64_t val = 0;
+
+    switch (addr) {
+    case MITE_IODWBSR:
+        val = s->mite_iodwbsr;
+        break;
+    case STAT1_REG: /* 0x00, shared with CMD1_REG */
+        val = s->stat1;
+        break;
+    case CMD2_REG:
+        val = s->cmd2;
+        break;
+    case CMD3_REG:
+        val = s->cmd3;
+        break;
+    case CMD4_REG:
+        val = s->cmd4;
+        break;
+    case CMD5_REG:
+        val = s->cmd5;
+        break;
+    case CMD6_REG:
+        val = s->cmd6;
+        break;
+    case STAT2_REG:
+        val = s->stat2;
+        break;
+    default:
+        break;
+    }
+    
+    return val;
+}
+
+static void pcibase_mmio_write(void *opaque, hwaddr addr, uint64_t val, unsigned size)
+{
+    PCIBaseState *s = opaque;
+
+    switch (addr) {
+    case MITE_IODWBSR:
+        s->mite_iodwbsr = val;
+        break;
+    case CMD1_REG: /* 0x00 */
+        s->cmd1 = val;
+        break;
+    case CMD2_REG:
+        s->cmd2 = val;
+        break;
+    case CMD3_REG:
+        s->cmd3 = val;
+        break;
+    case CMD4_REG:
+        s->cmd4 = val;
+        break;
+    case CMD5_REG:
+        s->cmd5 = val;
+        break;
+    case CMD6_REG:
+        s->cmd6 = val;
+        break;
+    case ADC_FIFO_CLEAR_REG:
+        s->stat1 &= ~STAT1_DAVAIL;
+        break;
+    case TIMER_CLEAR_REG:
+        break;
+    case ADC_START_CONVERT_REG:
+        s->stat1 |= STAT1_DAVAIL;
+        break;
+    case INTERVAL_COUNT_REG:
+        break;
+    case INTERVAL_STROBE_REG:
+        break;
+    case 0x04: /* DAC_LSB_REG(0) */
+    case 0x06: /* DAC_LSB_REG(1) */
+        break;
+    case 0x05: /* DAC_MSB_REG(0) */
+    case 0x07: /* DAC_MSB_REG(1) */
+        break;
+    default:
+        break;
+    }
+}
+
+static uint64_t pcibase_pio_read(void *opaque, hwaddr addr, unsigned size)
+{
+    uint64_t val = 0;
+    return val;
+}
+
+static void pcibase_pio_write(void *opaque, hwaddr addr, uint64_t val, unsigned size)
+{
+}
+
+static const MemoryRegionOps pcibase_mmio_ops = {
+    .read = pcibase_mmio_read,
+    .write = pcibase_mmio_write,
+    .endianness = DEVICE_LITTLE_ENDIAN,
+    .valid = { .min_access_size = 1, .max_access_size = 8 },
+    .impl  = { .min_access_size = 1, .max_access_size = 8 },
+};
+
+static const MemoryRegionOps pcibase_pio_ops = {
+    .read = pcibase_pio_read,
+    .write = pcibase_pio_write,
+    .endianness = DEVICE_LITTLE_ENDIAN,
+    .valid = { .min_access_size = 1, .max_access_size = 4 },
+    .impl  = { .min_access_size = 1, .max_access_size = 4 },
+};
+
+static void pcibase_reset(DeviceState *dev)
+{
+    PCIBaseState *s = PCIBASE_DEVICE(dev);
+    pci_device_reset(PCI_DEVICE(dev));
+
+    s->mite_iodwbsr = 0;
+    s->cmd1 = 0;
+    s->cmd2 = 0;
+    s->cmd3 = 0;
+    s->cmd4 = 0;
+    s->cmd5 = 0;
+    s->cmd6 = 0;
+    s->stat1 = 0;
+    s->stat2 = 0;
+}
+
+static void pcibase_register_bar(PCIDevice *pdev, PCIBaseState *s, BARInfo *bi, Error **errp)
+{
+    if (!bi || bi->type == BAR_TYPE_NONE) {
+        return;
+    }
+    
+    /* CRITICAL: PCI requires BAR sizes to be a power of 2. Prevent QEMU assert crash. */
+    hwaddr aligned_size = pow2ceil(bi->size);
+    MemoryRegion *mr = &s->bar_regions[bi->index];
+
+    if (bi->type == BAR_TYPE_MMIO) {
+        memory_region_init_io(mr, OBJECT(s), &pcibase_mmio_ops, s, bi->name, aligned_size);
+        pci_register_bar(pdev, bi->index, PCI_BASE_ADDRESS_SPACE_MEMORY, mr);
+    } else if (bi->type == BAR_TYPE_PIO) {
+        memory_region_init_io(mr, OBJECT(s), &pcibase_pio_ops, s, bi->name, aligned_size);
+        pci_register_bar(pdev, bi->index, PCI_BASE_ADDRESS_SPACE_IO, mr);
+    } else if (bi->type == BAR_TYPE_RAM) {
+        memory_region_init_ram(mr, OBJECT(s), bi->name, aligned_size, errp);
+        pci_register_bar(pdev, bi->index, PCI_BASE_ADDRESS_SPACE_MEMORY, mr);
+    }
+}
+
+static void pcibase_realize(PCIDevice *pdev, Error **errp)
+{
+    PCIBaseState *s = PCIBASE_DEVICE(pdev);
+    uint8_t *pci_conf = pdev->config;
+
+    /* Static PCI configuration */
+    pci_set_word(pci_conf + PCI_VENDOR_ID,  PCI_VENDOR_ID_NI );
+    pci_set_word(pci_conf + PCI_DEVICE_ID,  0x0161 );
+    pci_set_word(pci_conf + PCI_CLASS_DEVICE, PCI_CLASS_OTHERS );
+    pci_set_byte(pci_conf + PCI_REVISION_ID, 0x01);
+    pci_config_set_interrupt_pin(pci_conf, 1);
+
+    pdev->cap_present |= QEMU_PCI_CAP_EXPRESS;
+    pcie_endpoint_cap_init(pdev, 0x80);
+    int pm_pos = pci_add_capability(pdev, PCI_CAP_ID_PM, 0, PCI_PM_SIZEOF, errp);
+    if (pm_pos > 0) {
+        pci_set_word(pci_conf + pm_pos + PCI_PM_PMC, 0x0003); 
+    }
+
+    /* BAR Initialization */
+    s->num_bars = 2;
+    s->bar_info[0] = (BARInfo){ .index = 0, .type = BAR_TYPE_MMIO, .size = 4096, .name = "mite" };
+    s->bar_info[1] = (BARInfo){ .index = 1, .type = BAR_TYPE_MMIO, .size = 4096, .name = "main" };
+      
+    for (int i = 0; i < s->num_bars; i++) {
+        pcibase_register_bar(pdev, s, &s->bar_info[i], errp);
+    }
+}
+
+static void pcibase_uninit(PCIDevice *pdev)
+{
+    if (msix_enabled(pdev)) {
+        msix_uninit(pdev, NULL, NULL);
+    }
+    if (msi_enabled(pdev)) {
+        msi_uninit(pdev);
+    }
+}
+
+/* Minimal VMState to satisfy QEMU migration subsystems */
+static const VMStateDescription vmstate_pcibase = {
+    .name = "labpc_pci_pci",
+    .version_id = 1,
+    .minimum_version_id = 1,
+    .fields = (VMStateField[]) {
+        VMSTATE_PCI_DEVICE(parent_obj, PCIBaseState),
+        VMSTATE_END_OF_LIST()
+    }
+};
+
+static void pcibase_class_init(ObjectClass *klass, void *data)
+{
+    DeviceClass *dc = DEVICE_CLASS(klass);
+    PCIDeviceClass *k = PCI_DEVICE_CLASS(klass);
+
+    k->realize = pcibase_realize;
+    k->exit    = pcibase_uninit;
+    dc->reset  = pcibase_reset;
+    dc->vmsd   = &vmstate_pcibase;
+    set_bit(DEVICE_CATEGORY_MISC, dc->categories);
+}
+
+static void pcibase_register_types(void)
+{
+    static InterfaceInfo interfaces[] = {
+        { INTERFACE_PCIE_DEVICE },
+        { INTERFACE_CONVENTIONAL_PCI_DEVICE },
+        { },
+    };
+
+    static const TypeInfo pcibase_info = {
+        .name = TYPE_PCIBASE_DEVICE,
+        .parent = TYPE_PCI_DEVICE,
+        .instance_size = sizeof(PCIBaseState),
+        .class_init = pcibase_class_init,
+        .interfaces = interfaces,
+    };
+
+    type_register_static(&pcibase_info);
+}
+
+type_init(pcibase_register_types);
