@@ -84,17 +84,7 @@ Welcome to my Kernel Bug Tracker repository! This repository serves as an open r
 | #036 | `drivers/gpu/drm/gma500/intel_gmbus.c`           | [OOB access and integer underflow in gmbus_xfer()](./details/OOB%20access%20and%20integer%20underflow%20in%20gmbus_xfer%28%29.md) | 🆕 **Bug Reported** <br/>🛠️ **Patch Sent**                     |
 | #037 | `drivers/tty/tty_io.c`                           | [RCU stall via excessively long TCSBRKP duration](./details/RCU%20stall%20via%20excessively%20long%20TCSBRKP%20duration.md) | 👀 **Bug Confirmed**<br/>❌ **WontFix**                        |
 
----
 
-## 🔗 Upstream Public Records
-
-For transparency and independent verification of our upstream engagements, you can track the complete public mailing list activity of our research team members directly on the Linux Kernel archive (`lore.kernel.org`):
-
-* 📧 [Mingyu Wang (25181214217@stu.xidian.edu.cn) - Search Results](https://lore.kernel.org/all/?q=25181214217%40stu.xidian.edu.cn)
-* 📧 [Mingyu Wang (Alternative) - Search Results](https://lore.kernel.org/all/?q=w15303746062%40163.com)
-* 📧 [Zhi Wang - Search Results](https://lore.kernel.org/all/?q=%E7%8E%8B%E5%BF%97)
-
-> **Note:** These searches aggregate our patch submissions, bug reports, and technical discussions with kernel maintainers across various subsystem mailing lists.
 
 ## Experimental Results
 
