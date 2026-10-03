@@ -11,8 +11,8 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [BUG] i2c: i801: interrupt storm and hung task with invalid block read size | <u>[lore.kernel.org](https://lore.kernel.org/all/20260617031646.13295-1-w15303746062@163.com/)</u> |
-|                                                              | <u>[lore.kernel.org](#)</u>                                  |
-|                                                              | <u>[lore.kernel.org](#)</u>                                  |
-|                                                              | <u>[lore.kernel.org](#)</u>                                  |
+| [BUG] i2c: i801: interrupt storm and hung task with invalid block read size | <u>lore.kernel.org</u> |
+|                                                              | <u>lore.kernel.org</u>                                  |
+|                                                              | <u>lore.kernel.org</u>                                  |
+|                                                              | <u>lore.kernel.org</u>                                  |
 

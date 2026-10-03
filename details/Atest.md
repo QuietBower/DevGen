@@ -11,8 +11,8 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description | Link                        |
 | :---------- | :-------------------------- |
-|             | <u>[lore.kernel.org](#)</u> |
-|             | <u>[lore.kernel.org](#)</u> |
-|             | <u>[lore.kernel.org](#)</u> |
-|             | <u>[lore.kernel.org](#)</u> |
+|             | <u>lore.kernel.org</u> |
+|             | <u>lore.kernel.org</u> |
+|             | <u>lore.kernel.org</u> |
+|             | <u>lore.kernel.org</u> |
 

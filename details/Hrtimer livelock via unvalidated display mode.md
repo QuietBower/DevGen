@@ -11,5 +11,5 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [PATCH] drm/vkms: sanitize display mode to prevent hrtimer livelock | <u>[lore.kernel.org](https://lore.kernel.org/all/20260527034733.701705-1-w15303746062@163.com/)</u> |
+| [PATCH] drm/vkms: sanitize display mode to prevent hrtimer livelock | <u>lore.kernel.org</u> |
 

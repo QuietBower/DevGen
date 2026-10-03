@@ -11,10 +11,10 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| BUG: drm/ast: soft lockup due to missing timeout in hardware polling (ast_2500_patch_ahb) | <u>[lore.kernel.org](https://lore.kernel.org/all/20260513073649.352831-1-w15303746062@163.com/)</u> |
-| Re: BUG: drm/ast: soft lockup due to missing timeout in hardware polling (ast_2500_patch_ahb) | <u>[lore.kernel.org](https://lore.kernel.org/all/b98e1013-25ae-44e1-8905-88f104cc0608@suse.de/)</u> |
-| [PATCH] drm/ast: Add timeouts to AHB/SCU polling loops to prevent soft lockups | <u>[lore.kernel.org](https://lore.kernel.org/all/20260513113949.356537-1-w15303746062@163.com/)</u> |
-| Ping:[PATCH] drm/ast: Add timeouts to AHB/SCU polling loops to prevent soft lockups | <u>[lore.kernel.org](https://lore.kernel.org/all/796812da.3444.19e95cdf066.Coremail.w15303746062@163.com/)</u> |
-| Re:Re:[PATCH] drm/ast: Add timeouts to AHB/SCU polling loops to prevent soft lockups | <u>[lore.kernel.org](https://lore.kernel.org/all/3b2dd257.4efa.19fa24f8626.Coremail.w15303746062@163.com/)</u> |
+| BUG: drm/ast: soft lockup due to missing timeout in hardware polling (ast_2500_patch_ahb) | <u>lore.kernel.org</u> |
+| Re: BUG: drm/ast: soft lockup due to missing timeout in hardware polling (ast_2500_patch_ahb) | <u>lore.kernel.org</u> |
+| [PATCH] drm/ast: Add timeouts to AHB/SCU polling loops to prevent soft lockups | <u>lore.kernel.org</u> |
+| Ping:[PATCH] drm/ast: Add timeouts to AHB/SCU polling loops to prevent soft lockups | <u>lore.kernel.org</u> |
+| Re:Re:[PATCH] drm/ast: Add timeouts to AHB/SCU polling loops to prevent soft lockups | <u>lore.kernel.org</u> |
 |                                                              |                                                              |
 
