@@ -1,6 +1,6 @@
 /*
  * QEMU M_CAN PCI device model for Linux driver m_can_pci
- * Based on driver at /home/eely/linux-7.1/drivers/net/can/m_can/m_can_pci.c
+ * Based on driver at /home/user/linux-7.1/drivers/net/can/m_can/m_can_pci.c
  */
 
 #include "qemu/osdep.h"

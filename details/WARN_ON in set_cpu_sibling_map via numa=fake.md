@@ -11,7 +11,7 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [BUG] x86/smpboot: WARN_ON in set_cpu_sibling_map triggered by numa=fake=2 | <u>lore.kernel.org</u> |
-| Re: [BUG] x86/smpboot: WARN_ON in set_cpu_sibling_map triggered by numa=fake=2 | <u>lore.kernel.org</u> |
-| Re:Re: [BUG] x86/smpboot: WARN_ON in set_cpu_sibling_map triggered by numa=fake=2 | <u>lore.kernel.org</u> |
+| [BUG] x86/smpboot: WARN_ON in set_cpu_sibling_map triggered by numa=fake=2 | <u>[mail](../email_lore/091_%5BBUG%5D%20x86_smpboot_%20WARN_ON%20in%20set_cpu_sibling_map%20triggered%20by%20numa%3Dfa.md)</u> |
+| Re: [BUG] x86/smpboot: WARN_ON in set_cpu_sibling_map triggered by numa=fake=2 | <u>[mail](../email_lore/093_Re_%20%5BBUG%5D%20x86_smpboot_%20WARN_ON%20in%20set_cpu_sibling_map%20triggered%20by%20num.md)</u> |
+| Re:Re: [BUG] x86/smpboot: WARN_ON in set_cpu_sibling_map triggered by numa=fake=2 | <u>[mail](../email_lore/091_%5BBUG%5D%20x86_smpboot_%20WARN_ON%20in%20set_cpu_sibling_map%20triggered%20by%20numa%3Dfa.md)</u> |
 

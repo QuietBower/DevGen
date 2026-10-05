@@ -40,7 +40,7 @@ def model_device(driver_name):
     
     device_code = step3_run(device_code)
     
-    # with open("/home/lwj/vdm/adm8211_pci.c", "r") as f:
+    # with open("/home/user/vdm/adm8211_pci.c", "r") as f:
     #     device_code = f.read()
 
     # 在hw/fake_pci目录下的meson.build中换行并追加内容
@@ -53,7 +53,7 @@ def model_device(driver_name):
     logger.info(f"成功生成run.sh文件")
 
     # 用于测试，获得某个驱动的代码，在不运行step1-3的情况下，测试step4的效果
-    # with open("/home/lwj/vdm/adm8211_pci.c", "r") as f:
+    # with open("/home/user/vdm/adm8211_pci.c", "r") as f:
     #     device_code = f.read()
 
     # 执行编译、错误修改、step4

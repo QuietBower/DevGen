@@ -102,7 +102,7 @@ default_logger = FileLogger()
 
 if __name__ == '__main__':
     # 测试save_messages方法
-    # file_path = "/home/lwj/Devmod/logs/2025-11-15-16-55-46_aectc/step1/messages.txt"
+    # file_path = "/home/user/Devmod/logs/2025-11-15-16-55-46_aectc/step1/messages.txt"
 
     # with open(file_path, 'r', encoding='utf-8') as f:
     #     content = f.read()
@@ -111,7 +111,7 @@ if __name__ == '__main__':
 
     # default_logger.save_messages(content, "test")
     # 测试save_response方法
-    file_path = "/home/lwj/Devmod/logs/2025-11-15-16-32-52_adm8211/step1/answer.txt"
+    file_path = "/home/user/Devmod/logs/2025-11-15-16-32-52_adm8211/step1/answer.txt"
 
     with open(file_path, 'r', encoding='utf-8') as f:
         content = f.read()

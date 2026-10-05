@@ -1,6 +1,6 @@
 /*
  * QEMU 8.2.10 PCI device model for Intel HDA controller (Phase 4 fix).
- * Generated from driver: /home/eely/linux-7.1/sound/hda/controllers/intel.c
+ * Generated from driver: /home/user/linux-7.1/sound/hda/controllers/intel.c
  * Fixed Device ID to ICH6 (0x2668) to avoid GPU binding requirement.
  */
 

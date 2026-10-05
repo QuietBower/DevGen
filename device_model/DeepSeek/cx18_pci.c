@@ -1,6 +1,6 @@
 /*
  * QEMU device model for Conexant CX23418 MPEG encoder
- * Generated from Linux driver /home/eely/linux-7.1/drivers/media/pci/cx18/cx18-driver.c
+ * Generated from Linux driver /home/user/linux-7.1/drivers/media/pci/cx18/cx18-driver.c
  */
 
 #include "qemu/osdep.h"

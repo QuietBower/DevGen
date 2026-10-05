@@ -1,0 +1,72 @@
+# [BUG] bluetooth: hci_h5: kernel panic in h5_recv (general protection fault / KASAN null-ptr-deref) via TTY ioctls (syzkaller)
+
+| Field | Value |
+| :--- | :--- |
+| From | Author A <author-a@example.com> |
+| To | marcel@holtmann.org, luiz.dentz@gmail.com |
+| Cc | linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org |
+| Date | Tue, 3 Feb 2026 17:45:58 +0800 (GMT+08:00) |
+| Message-ID | `1a0753ef.1084.19c22e4fde0.Coremail.author-a@example.com` |
+| List-ID | <linux-bluetooth.vger.kernel.org> |
+| Source | `[ANONYMIZED] https://lore.kernel.org/all/1a0753ef.1084.19c22e4fde0.Coremail.author-a@example.com/` |
+
+---
+
+Dear Bluetooth maintainers,
+
+When fuzzing/testing the upstream kernel with a syzkaller reproducer, we triggered a kernel panic in the Bluetooth HCI UART H5 receive path.
+
+HEAD commit:7d0a66e4bb9081d75c82ec4957c50034cb0ea449
+Kernel: 6.18.0 (KASAN enabled)
+git tree: upstream
+dmesg: https://github.com/anonymous-artifact/Crashes/blob/main/0bd589916acfd257a3cf2c25cd1c26ee7afa5d58/dmesg.txt 
+Kernel config: https://github.com/anonymous-artifact/Crashes/blob/main/6.18_syzbot.config 
+C reproducer:https://github.com/anonymous-artifact/Crashes/blob/main/0bd589916acfd257a3cf2c25cd1c26ee7afa5d58/repro.c 
+Syz reproducer:https://github.com/anonymous-artifact/Crashes/blob/main/0bd589916acfd257a3cf2c25cd1c26ee7afa5d58/repro.syz
+Hardware: QEMU Standard PC (i440FX + PIIX, 1996)
+
+== Summary ==
+The kernel crashes in:
+h5_recv+0xfc/0x8f0 (drivers/bluetooth/hci_h5.c)
+
+The crash is reported as:
+Oops: general protection fault, probably for non-canonical address
+KASAN: null-ptr-deref in range [0x00000000000002f8-0x...]
+
+The call trace indicates the fault happens when the TTY layer feeds received data into the HCI UART line discipline:
+h5_recv -> hci_uart_tty_receive -> tty_ioctl -> __x64_sys_ioctl
+
+This issue is triggerable from an unprivileged reproducer using TTY ioctls (TIOCSETD / TIOCSIG / TIOCSTI) as shown below.
+== Crash log (excerpt) ==
+[ 91.902103][ T9836] Oops: general protection fault, probably for non-canonical
+[ 91.906607][ T9836] KASAN: null-ptr-deref in range [0x00000000000002f8-0x000]
+[ 91.909425][ T9836] CPU: 1 UID: 0 PID: 9836 Comm: repro Not tainted 6.18.0
+[ 91.916914][ T9836] RIP: 0010+0xfc/0x8f0
+[ 91.950586][ T9836] Call Trace:
+[ 91.952853][ T9836]
+[ 91.956076][ T9836] hci_uart_tty_receive+0x25b/0x800
+[ 91.959794][ T9836] tty_ioctl+0x502/0x1690
+[ 91.973432][ T9836] __x64_sys_ioctl+0x18f/0x210
+[ 91.975021][ T9836] do_syscall_64+0xcb/0xfa0
+[ 91.977490][ T9836] entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[ 92.036445][ T9836] Kernel panic - not syncing: Fatal exception
+
+== Reproducer (syz program) ==
+r0 = openat$ttynull(0xffffffffffffff9c, &(0x7f0000000780), 0x2000, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f00000001c0)=0xf)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_ACTIVATE(r1, 0x5606, 0x2)
+ioctl$TIOCSIG(r0, 0x400455c8, 0x2)
+r2 = openat$ttynull(0xffffffffffffff9c, &(0x7f0000000000), 0x80000, 0x0)
+ioctl$TIOCSTI(r2, 0x5412, &(0x7f0000000080)=0x12)
+
+== Notes ==
+
+The crash happens in h5_recv() very early in the receive path, suggesting a missing state check or an unexpected NULL/invalid pointer dereference related to the H:5 receive context.
+The fault type includes "non-canonical address" along with a KASAN null deref range, which may indicate an invalid pointer derived from uninitialized or corrupted state.
+
+If you need the full dmesg output, .config, or a standalone reproducer link, please let me know and I will provide them.
+
+Thank you!
+
+Author A

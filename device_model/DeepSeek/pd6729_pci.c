@@ -1,6 +1,6 @@
 /*
  * QEMU 8.2.10 PCI device model for Cirrus PD6729 PCMCIA bridge
- * Derived from Linux driver /home/eely/linux-7.1/drivers/pcmcia/pd6729.c
+ * Derived from Linux driver /home/user/linux-7.1/drivers/pcmcia/pd6729.c
  * Phase 2: Full functional implementation
  */
 

@@ -1,6 +1,6 @@
 /*
  * QEMU 8.2.10 virtual PCI device model for Switchtec DMA
- * Derived from Linux driver: /home/eely/linux-7.1/drivers/dma/switchtec_dma.c
+ * Derived from Linux driver: /home/user/linux-7.1/drivers/dma/switchtec_dma.c
  * Phase 2: Full functional implementation for driver probe success.
  */
 

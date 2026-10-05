@@ -11,10 +11,10 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [PATCH] fbdev: fbcon: fix out-of-bounds read in err_out of fbcon_do_set_font() | <u>lore.kernel.org</u> |
-| sashiko-result:[PATCH] fbdev: fbcon: fix out-of-bounds read in err_out of fbcon_do_set_font() | <u>lore.kernel.org</u> |
-| Re: [PATCH] fbdev: fbcon: fix out-of-bounds read in err_out of fbcon_do_set_font() | <u>lore.kernel.org</u> |
-| [PATCH v2] fbdev: fbcon: fix out-of-bounds read in err_out of fbcon_do_set_font() | <u>lore.kernel.org</u> |
-| Re: [PATCH v2] fbdev: fbcon: fix out-of-bounds read in err_out of fbcon_do_set_font() | <u>lore.kernel.org</u> |
-| fbdev: fbcon: fix out-of-bounds read in err_out of fbcon_do_set_font() | <u>lore.kernel.org</u> |
+| [PATCH] fbdev: fbcon: fix out-of-bounds read in err_out of fbcon_do_set_font() | <u>[mail](../email_lore/280_%5BPATCH%5D%20fbdev_%20fbcon_%20fix%20out-of-bounds%20read%20in%20err_out%20of%20fbcon_do_se.md)</u> |
+| sashiko-result:[PATCH] fbdev: fbcon: fix out-of-bounds read in err_out of fbcon_do_set_font() | <u>[mail](../email_lore/299_Re_%20%5BPATCH%5D%20fbdev_%20fbcon_%20fix%20out-of-bounds%20read%20in%20err_out%20of%20fbcon_d.md)</u> |
+| Re: [PATCH] fbdev: fbcon: fix out-of-bounds read in err_out of fbcon_do_set_font() | <u>[mail](../email_lore/299_Re_%20%5BPATCH%5D%20fbdev_%20fbcon_%20fix%20out-of-bounds%20read%20in%20err_out%20of%20fbcon_d.md)</u> |
+| [PATCH v2] fbdev: fbcon: fix out-of-bounds read in err_out of fbcon_do_set_font() | <u>[mail](../email_lore/280_%5BPATCH%5D%20fbdev_%20fbcon_%20fix%20out-of-bounds%20read%20in%20err_out%20of%20fbcon_do_se.md)</u> |
+| Re: [PATCH v2] fbdev: fbcon: fix out-of-bounds read in err_out of fbcon_do_set_font() | <u>[mail](../email_lore/300_Re_%20%5BPATCH%20v2%5D%20fbdev_%20fbcon_%20fix%20out-of-bounds%20read%20in%20err_out%20of%20fbco.md)</u> |
+| fbdev: fbcon: fix out-of-bounds read in err_out of fbcon_do_set_font() | <u>[mail](../email_lore/280_%5BPATCH%5D%20fbdev_%20fbcon_%20fix%20out-of-bounds%20read%20in%20err_out%20of%20fbcon_do_se.md)</u> |
 

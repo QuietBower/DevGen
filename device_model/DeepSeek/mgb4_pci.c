@@ -1,6 +1,6 @@
 /*
  * QEMU PCI device model for mgb4 (Magenta Video Grabber 4)
- * Based on driver at /home/eely/linux-7.1/drivers/media/pci/mgb4/mgb4_core.c
+ * Based on driver at /home/user/linux-7.1/drivers/media/pci/mgb4/mgb4_core.c
  * Phase 4 runtime fix: separate XDMA BAR1 emulation and MSI-X PBA size correction
  */
 

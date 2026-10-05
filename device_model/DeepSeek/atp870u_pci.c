@@ -1,5 +1,5 @@
 /* ATP870U SCSI Controller Emulation (QEMU 8.2.10 PCI device model).
- * Based on driver analysis: /home/eely/linux-7.1/drivers/scsi/atp870u.c
+ * Based on driver analysis: /home/user/linux-7.1/drivers/scsi/atp870u.c
  */
 
 #include "qemu/osdep.h"

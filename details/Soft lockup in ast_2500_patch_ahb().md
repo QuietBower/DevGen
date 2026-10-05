@@ -11,10 +11,10 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| BUG: drm/ast: soft lockup due to missing timeout in hardware polling (ast_2500_patch_ahb) | <u>lore.kernel.org</u> |
-| Re: BUG: drm/ast: soft lockup due to missing timeout in hardware polling (ast_2500_patch_ahb) | <u>lore.kernel.org</u> |
-| [PATCH] drm/ast: Add timeouts to AHB/SCU polling loops to prevent soft lockups | <u>lore.kernel.org</u> |
-| Ping:[PATCH] drm/ast: Add timeouts to AHB/SCU polling loops to prevent soft lockups | <u>lore.kernel.org</u> |
-| Re:Re:[PATCH] drm/ast: Add timeouts to AHB/SCU polling loops to prevent soft lockups | <u>lore.kernel.org</u> |
+| BUG: drm/ast: soft lockup due to missing timeout in hardware polling (ast_2500_patch_ahb) | <u>[mail](../email_lore/130_BUG_%20drm_ast_%20soft%20lockup%20due%20to%20missing%20timeout%20in%20hardware%20polling%20%28.md)</u> |
+| Re: BUG: drm/ast: soft lockup due to missing timeout in hardware polling (ast_2500_patch_ahb) | <u>[mail](../email_lore/126_Re_%20BUG_%20drm_ast_%20soft%20lockup%20due%20to%20missing%20timeout%20in%20hardware%20polli.md)</u> |
+| [PATCH] drm/ast: Add timeouts to AHB/SCU polling loops to prevent soft lockups | <u>[mail](../email_lore/131_%5BPATCH%5D%20drm_ast_%20Add%20timeouts%20to%20AHB_SCU%20polling%20loops%20to%20prevent%20soft.md)</u> |
+| Ping:[PATCH] drm/ast: Add timeouts to AHB/SCU polling loops to prevent soft lockups | <u>[mail](../email_lore/131_%5BPATCH%5D%20drm_ast_%20Add%20timeouts%20to%20AHB_SCU%20polling%20loops%20to%20prevent%20soft.md)</u> |
+| Re:Re:[PATCH] drm/ast: Add timeouts to AHB/SCU polling loops to prevent soft lockups | <u>[mail](../email_lore/131_%5BPATCH%5D%20drm_ast_%20Add%20timeouts%20to%20AHB_SCU%20polling%20loops%20to%20prevent%20soft.md)</u> |
 |                                                              |                                                              |
 

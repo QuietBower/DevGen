@@ -1,0 +1,45 @@
+# Re:Re: [PATCH v2] drm/prime: fix dangling dmabuf entries after handle release 20260403(27802f6d) Copyright (c) 2002-2026 www.mailtech.cn 163com
+
+| Field | Value |
+| :--- | :--- |
+| From | author-a-alt <author-a-alt@example.com> |
+| To | =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com> |
+| Cc | maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch, sumit.semwal@linaro.org, jeffy.chen@rock-chips.com, dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org, "Author A" <author-a@example.com> |
+| Date | Thu, 28 May 2026 21:49:58 +0800 (CST) |
+| Message-ID | `7bbb8946.9d19.19e6ed958df.Coremail.author-a-alt@example.com` |
+| In-Reply-To | `62c256eb-1df4-4633-8040-222895b54f97@amd.com` |
+| Source | `[ANONYMIZED] local copy (original archive link removed)` |
+
+---
+
+Hi Christian,
+
+Thank you for insisting on this. I've now gone through all callers
+of drm_prime_add_buf_handle() in drm_prime.c.
+
+You are absolutely right: both drm_gem_prime_fd_to_handle() and
+drm_gem_prime_handle_to_dmabuf() perform the lookup under
+prime_fpriv->lock before adding, so a duplicate handle should indeed
+never be inserted through those paths.
+
+That said, the syzkaller report clearly shows that the dmabufs tree
+is not empty when drm_prime_destroy_file_private() runs, which means
+some entry wasn't removed. Given that the normal add/remove paths
+appear correct, the trigger might be something more subtle — perhaps
+a driver-specific callback that bypasses the generic helpers, or an
+error path that leaves an orphan in the dmabufs tree. I haven't been
+able to identify the exact trigger yet.
+
+The proposed change to drm_prime_remove_buf_handle() (restart search
+instead of break) is intended as a small robustness improvement, not
+a fix for a confirmed race. In the normal case it will still execute
+only once, but if the trees ever become inconsistent for any reason,
+it will clean up all entries for the given handle and prevent the
+WARNING.
+
+Would you be okay with such a defensive approach, or would you prefer
+that we first track down the precise trigger (e.g. with additional
+WARNs or tracing)?
+
+Thanks,
+Author A

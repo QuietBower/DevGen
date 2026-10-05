@@ -1,0 +1,135 @@
+# Re: [PATCH v2] Bluetooth: hci_uart: fix UAF in hci_uart_tty_close()
+
+| Field | Value |
+| :--- | :--- |
+| From | Greg KH <greg@kroah.com> |
+| To | author-a-alt@example.com |
+| Cc | pmenzel@molgen.mpg.de, marcel@holtmann.org, luiz.dentz@gmail.com, linux-bluetooth@vger.kernel.org, linux-serial@vger.kernel.org, linux-kernel@vger.kernel.org, Author A <author-a@example.com> |
+| Date | Fri, 15 May 2026 08:10:17 +0200 |
+| Message-ID | `2026051510-elliptic-avatar-d819@gregkh` |
+| In-Reply-To | `20260514151722.382161-1-author-a-alt@example.com` |
+| List-ID | <linux-serial.vger.kernel.org> |
+| Source | `[ARCHIVE] https://lore.kernel.org/all/2026051510-elliptic-avatar-d819@gregkh/` |
+
+---
+
+On Thu, May 14, 2026 at 11:17:22PM +0800, author-a-alt@example.com wrote:
+> From: Author A <author-a@example.com>
+> 
+> A Use-After-Free (UAF) vulnerability and a subsequent kernel panic were
+> observed in hci_uart_write_work() due to a race condition between the
+> initialization of the HCI UART line discipline and concurrent TTY hangup.
+> 
+> This issue was triggered by our custom device emulation and fuzzing
+> framework (DevGen) on the v6.18 kernel. Due to the highly timing-dependent
+> nature of this race condition (requiring a precise interleaving of
+> TIOCVHANGUP and protocol setup), Syzkaller failed to extract a reliable
+> standalone C reproducer (reproducer is too unreliable: 0.00).
+> 
+> The crash trace is as follows:
+>   ODEBUG: free active (active state 0) object: ffff88804024e870 object type: work_struct hint: hci_uart_write_work+0x0/0x940
+>   WARNING: CPU: 0 PID: 338273 at lib/debugobjects.c:612 debug_print_object+0x1a2/0x2b0
+>   ...
+>   Call Trace:
+>    <TASK>
+>    debug_check_no_obj_freed+0x3ec/0x520
+>    kfree+0x3f0/0x6c0
+>    hci_uart_tty_close+0x127/0x2a0
+>    tty_ldisc_close+0x113/0x1a0
+>    tty_ldisc_kill+0x8e/0x150
+>    tty_ldisc_hangup+0x3c1/0x730
+>    __tty_hangup.part.0+0x3fd/0x8a0
+>    tty_ioctl+0x120f/0x1690
+>    __x64_sys_ioctl+0x18f/0x210
+>    do_syscall_64+0xcb/0xfa0
+>    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+>    </TASK>
+> 
+> The issue arises because the workqueues (init_ready and write_work) are
+> only cancelled if the HCI_UART_PROTO_READY flag is set. However, during
+> the protocol initialization phase (HCI_UART_PROTO_INIT), the underlying
+> protocol may schedule work. If a hangup occurs before the setup completes
+> and the READY flag is set, hci_uart_tty_close() skips the cancel_work_sync()
+> calls and proceeds to free the `hu` struct. When the delayed workqueue
+> executes, it blindly dereferences the freed `hu` struct.
+> 
+> Fix this by moving the cancel_work_sync() calls outside the
+> HCI_UART_PROTO_READY check, ensuring that any pending works are
+> unconditionally cancelled before the hci_uart structure is freed.
+> Note that hu->init_ready and hu->write_work are initialized in
+> hci_uart_tty_open(), so it is always safe to call cancel_work_sync()
+> on them in hci_uart_tty_close(), even if the protocol was never
+> fully attached.
+> 
+> Fixes: 3b799254cf6f ("Bluetooth: hci_uart: Cancel init work before unregistering")
+> 
+> Signed-off-by: Author A <author-a@example.com>
+> ---
+> Changes in v2:
+> - Added KASAN/ODEBUG crash trace.
+> - Added explanation for the absence of a standalone reproducer (highly timing-dependent race condition).
+> - Added Fixes tag pointing to commit 3b799254cf6f.
+> 
+>  drivers/bluetooth/hci_ldisc.c | 10 +++++++---
+>  1 file changed, 7 insertions(+), 3 deletions(-)
+> 
+> diff --git a/drivers/bluetooth/hci_ldisc.c b/drivers/bluetooth/hci_ldisc.c
+> index 275ea865bc29..566e1c525ee2 100644
+> --- a/drivers/bluetooth/hci_ldisc.c
+> +++ b/drivers/bluetooth/hci_ldisc.c
+> @@ -544,14 +544,18 @@ static void hci_uart_tty_close(struct tty_struct *tty)
+>  	if (hdev)
+>  		hci_uart_close(hdev);
+>  
+> +	/*
+> +	 * Always cancel workqueues unconditionally before freeing the hu
+> +	 * struct, as they might be active during the PROTO_INIT phase.
+> +	 */
+> +	cancel_work_sync(&hu->init_ready);
+> +	cancel_work_sync(&hu->write_work);
+> +
+>  	if (test_bit(HCI_UART_PROTO_READY, &hu->flags)) {
+>  		percpu_down_write(&hu->proto_lock);
+>  		clear_bit(HCI_UART_PROTO_READY, &hu->flags);
+>  		percpu_up_write(&hu->proto_lock);
+>  
+> -		cancel_work_sync(&hu->init_ready);
+> -		cancel_work_sync(&hu->write_work);
+> -
+>  		if (hdev) {
+>  			if (test_bit(HCI_UART_REGISTERED, &hu->flags))
+>  				hci_unregister_dev(hdev);
+> -- 
+> 2.34.1
+> 
+> 
+
+Hi,
+
+This is the friendly patch-bot of Greg Kroah-Hartman.  You have sent him
+a patch that has triggered this response.  He used to manually respond
+to these common problems, but in order to save his sanity (he kept
+writing the same thing over and over, yet to different people), I was
+created.  Hopefully you will not take offence and will fix the problem
+in your patch and resubmit it so that it can be accepted into the Linux
+kernel tree.
+
+You are receiving this message because of the following common error(s)
+as indicated below:
+
+- You have marked a patch with a "Fixes:" tag for a commit that is in an
+  older released kernel, yet you do not have a cc: stable line in the
+  signed-off-by area at all, which means that the patch will not be
+  applied to any older kernel releases.  To properly fix this, please
+  follow the documented rules in the
+  Documentation/process/stable-kernel-rules.rst file for how to resolve
+  this.
+
+If you wish to discuss this problem further, or you have questions about
+how to resolve this issue, please feel free to respond to this email and
+Greg will reply once he has dug out from the pending patches received
+from other developers.
+
+thanks,
+
+greg k-h's patch email bot

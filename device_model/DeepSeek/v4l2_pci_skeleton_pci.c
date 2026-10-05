@@ -1,6 +1,6 @@
 /*
  * QEMU device model for V4L2 PCI Skeleton
- * Based on driver source /home/eely/linux-7.1/samples/v4l/v4l2-pci-skeleton.c
+ * Based on driver source /home/user/linux-7.1/samples/v4l/v4l2-pci-skeleton.c
  */
 
 #include "qemu/osdep.h"

@@ -18,7 +18,7 @@
 /*
  * QEMU PCI device model for Marvell Yukon 2 (sky2 driver)
  * Phase 4: Runtime refinement to fix probe failure.
- * Based on linux driver /home/eely/linux-7.1/drivers/net/ethernet/marvell/sky2.c
+ * Based on linux driver /home/user/linux-7.1/drivers/net/ethernet/marvell/sky2.c
  */
 
 #define TYPE_PCIBASE_DEVICE "sky2_pci"

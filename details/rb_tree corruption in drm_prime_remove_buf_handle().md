@@ -11,14 +11,14 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [PATCH] drm/prime: Fix unsupervised rb_tree corruption in drm_prime_remove_buf_handle | <u>lore.kernel.org</u> |
-| Re: [PATCH] drm/prime: Fix unsupervised rb_tree corruption in drm_prime_remove_buf_handle | <u>lore.kernel.org</u> |
-| Re:Re: [PATCH] drm/prime: Fix unsupervised rb_tree corruption in drm_prime_remove_buf_handle | <u>lore.kernel.org</u> |
-| [PATCH v2] drm/prime: fix dangling dmabuf entries after handle release | <u>lore.kernel.org</u> |
-| Re: [PATCH v2] drm/prime: fix dangling dmabuf entries after handle release | <u>lore.kernel.org</u> |
-| Re:Re: [PATCH v2] drm/prime: fix dangling dmabuf entries after | <u>lore.kernel.org</u> |
-| Re: [PATCH v2] drm/prime: fix dangling dmabuf entries after handle | <u>lore.kernel.org</u> |
-| Re:Re: [PATCH v2] drm/prime: fix dangling dmabuf entries after | <u>lore.kernel.org</u> |
+| [PATCH] drm/prime: Fix unsupervised rb_tree corruption in drm_prime_remove_buf_handle | <u>[mail](../email_lore/178_Re_%20%5BPATCH%5D%20drm_prime_%20Fix%20unsupervised%20rb_tree%20corruption%20in%20drm_prim.md)</u> |
+| Re: [PATCH] drm/prime: Fix unsupervised rb_tree corruption in drm_prime_remove_buf_handle | <u>[mail](../email_lore/178_Re_%20%5BPATCH%5D%20drm_prime_%20Fix%20unsupervised%20rb_tree%20corruption%20in%20drm_prim.md)</u> |
+| Re:Re: [PATCH] drm/prime: Fix unsupervised rb_tree corruption in drm_prime_remove_buf_handle | <u>[mail](../email_lore/536_Re_Re_%20%5BPATCH%5D%20drm_prime_%20Fix%20unsupervised%20rb_tree%20corruption%20in%20drm_p.md)</u> |
+| [PATCH v2] drm/prime: fix dangling dmabuf entries after handle release | <u>[mail](../email_lore/180_Re_%20%5BPATCH%20v2%5D%20drm_prime_%20fix%20dangling%20dmabuf%20entries%20after%20handle%20rel.md)</u> |
+| Re: [PATCH v2] drm/prime: fix dangling dmabuf entries after handle release | <u>[mail](../email_lore/180_Re_%20%5BPATCH%20v2%5D%20drm_prime_%20fix%20dangling%20dmabuf%20entries%20after%20handle%20rel.md)</u> |
+| Re:Re: [PATCH v2] drm/prime: fix dangling dmabuf entries after | <u>[mail](../email_lore/502_Re_Re_%20%5BPATCH%20v2%5D%20drm_prime_%20fix%20dangling%20dmabuf%20entries%20after%20handle.md)</u> |
+| Re: [PATCH v2] drm/prime: fix dangling dmabuf entries after handle | <u>[mail](../email_lore/528_Re_%20%5BPATCH%20v2%5D%20drm_prime_%20fix%20dangling%20dmabuf%20entries%20after%20handle%20rel.md)</u> |
+| Re:Re: [PATCH v2] drm/prime: fix dangling dmabuf entries after | <u>[mail](../email_lore/504_Re_Re_%20%5BPATCH%20v2%5D%20drm_prime_%20fix%20dangling%20dmabuf%20entries%20after%20handle.md)</u> |
 
 
 

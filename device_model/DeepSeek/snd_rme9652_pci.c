@@ -1,6 +1,6 @@
 /*
  * QEMU RME9652 PCI audio device model
- * Based on driver snd-rme9652 (/home/eely/linux-7.1/sound/pci/rme9652/rme9652.c)
+ * Based on driver snd-rme9652 (/home/user/linux-7.1/sound/pci/rme9652/rme9652.c)
  * Emulates PIO register interface, legacy IRQ, and DMA pointer updates.
  */
 

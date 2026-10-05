@@ -83,4 +83,4 @@ def main(data_dir, db_path):
     print(f"\n🎉 所有文件已导入到 {db_path}")
 
 if __name__ == "__main__":
-    main("/home/lwj/data/driver_info/jsonl", "driver_info.db")
+    main("/home/user/data/driver_info/jsonl", "driver_info.db")

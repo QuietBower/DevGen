@@ -11,6 +11,6 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                             | Link                                                         |
 | :------------------------------------------------------ | :----------------------------------------------------------- |
-| [BUG] KASAN: slab-use-after-free Read in adf_dev_up     | <u>lore.kernel.org</u> |
-| RE: [BUG] KASAN: slab-use-after-free Read in adf_dev_up | <u>lore.kernel.org</u> |
+| [BUG] KASAN: slab-use-after-free Read in adf_dev_up | <u>[mail](../email_lore/034_%5BBUG%5D%20KASAN_%20slab-use-after-free%20Read%20in%20adf_dev_up.md)</u> |
+| RE: [BUG] KASAN: slab-use-after-free Read in adf_dev_up | <u>[mail](../email_lore/032_RE_%20%5BBUG%5D%20KASAN_%20slab-use-after-free%20Read%20in%20adf_dev_up.md)</u> |
 

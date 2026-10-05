@@ -1,6 +1,6 @@
 /*
  * QEMU device model for Solarflare EF100 PCI NIC
- * Based on Linux driver: /home/eely/linux-7.1/drivers/net/ethernet/sfc/ef100.c
+ * Based on Linux driver: /home/user/linux-7.1/drivers/net/ethernet/sfc/ef100.c
  * Phase 4: Debug Update - Added basic MMIO stubs for known registers; 
  *            probe still fails due to missing probe function details and register bit definitions.
  */

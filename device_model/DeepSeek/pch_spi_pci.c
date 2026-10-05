@@ -1,6 +1,6 @@
 /*
  * QEMU model for Intel PCH SPI controller (spi-topcliff-pch)
- * Based on Linux driver /home/eely/linux-7.1/drivers/spi/spi-topcliff-pch.c
+ * Based on Linux driver /home/user/linux-7.1/drivers/spi/spi-topcliff-pch.c
  */
 
 #include "qemu/osdep.h"

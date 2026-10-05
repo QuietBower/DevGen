@@ -1,6 +1,6 @@
 /*
  * QEMU device model for IDT 89HPES24NT6AG2 NTB (Non-Transparent Bridge)
- * Based on Linux driver /home/eely/linux-7.1/drivers/ntb/hw/idt/ntb_hw_idt.c
+ * Based on Linux driver /home/user/linux-7.1/drivers/ntb/hw/idt/ntb_hw_idt.c
  */
 
 #include "qemu/osdep.h"

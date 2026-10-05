@@ -1,6 +1,6 @@
 /*
  * Stage 2 Functional Implementation for QAT C3xxx virtual device.
- * Based on driver source at /home/eely/linux-7.1/drivers/crypto/intel/qat/qat_c3xxx/adf_drv.c.
+ * Based on driver source at /home/user/linux-7.1/drivers/crypto/intel/qat/qat_c3xxx/adf_drv.c.
  * Updated with MSI-X support, LEGFUSE register, using driver-confirmed BAR ids.
  */
 

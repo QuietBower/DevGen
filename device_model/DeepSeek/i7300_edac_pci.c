@@ -1,6 +1,6 @@
 /*
  * QEMU model for Intel 7300 Memory Controller (EDAC) - Function 0, 1, and 2
- * Based on driver: /home/eely/linux-7.1/drivers/edac/i7300_edac.c
+ * Based on driver: /home/user/linux-7.1/drivers/edac/i7300_edac.c
  */
 
 #include "qemu/osdep.h"

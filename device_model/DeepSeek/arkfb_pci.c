@@ -1,6 +1,6 @@
 /*
  * QEMU ARKfb PCI device model
- * Based on Linux arkfb driver from /home/eely/linux-7.1/drivers/video/fbdev/arkfb.c
+ * Based on Linux arkfb driver from /home/user/linux-7.1/drivers/video/fbdev/arkfb.c
  */
 
 #include "qemu/osdep.h"

@@ -1,0 +1,93 @@
+# [PATCH] module: fix UAF and GPF in idempotent_init_module via heap allocation
+
+| Field | Value |
+| :--- | :--- |
+| From | Author A <author-a@example.com> |
+| To | Luis Chamberlain <mcgrof@kernel.org>, Petr Pavlu <petr.pavlu@suse.com>, Daniel Gomez <da.gomez@kernel.org>, Sami Tolvanen <samitolvanen@google.com> |
+| Cc | Aaron Tomlin <atomlin@atomlin.com>, Johan Hovold <johan@kernel.org>, linux-modules@vger.kernel.org, linux-kernel@vger.kernel.org, Author A <author-a@example.com>, stable@vger.kernel.org |
+| Date | Fri, 17 Jul 2026 16:26:01 +0800 |
+| Message-ID | `20260717082601.81704-1-author-a@example.com` |
+| List-ID | <linux-modules.vger.kernel.org> |
+| Source | `[ANONYMIZED] https://lore.kernel.org/all/20260717082601.81704-1-author-a@example.com/` |
+
+---
+
+During concurrent module loading (e.g., triggered by syzkaller), the
+idempotent module loading mechanism uses a local stack variable
+(`struct idempotent idem`) to track the state of waiters.
+
+If a task executing idempotent_init_module() is abruptly terminated
+(e.g., killed by a fatal signal or otherwise completely exits before
+reaching the list cleanup paths) after adding its node to the global
+`idem_hash` list, its kernel stack is prematurely freed and reclaimed.
+
+However, the stack-allocated node remains linked in the list. Subsequent
+module loading attempts that traverse the list will dereference this
+stale stack pointer, leading to KASAN slab-out-of-bounds reads and
+General Protection Faults (GPF):
+
+  BUG: KASAN: slab-out-of-bounds in idempotent_init_module+0x54a/0x620
+  Read of size 8 at addr ffff888106367df8 by task modprobe/433
+  ...
+  The buggy address belongs to the object at ffff8881063676c0
+   which belongs to the cache shmem_inode_cache of size 1392
+  ...
+  Oops: general protection fault, probably for non-canonical address
+
+Fix this by dynamically allocating `struct idempotent` on the heap
+via `kmalloc_obj()`. This decouples the list node's lifespan from the
+process stack, ensuring that even if the task is abruptly terminated,
+the global list safely points to valid heap memory until properly
+unlinked, preventing memory corruption.
+
+Fixes: 9b9879fc0327 ("modules: catch concurrent module loads, treat them as idempotent")
+Cc: stable@vger.kernel.org
+Signed-off-by: Author A <author-a@example.com>
+---
+ kernel/module/main.c | 24 ++++++++++++++++--------
+ 1 file changed, 16 insertions(+), 8 deletions(-)
+
+diff --git a/kernel/module/main.c b/kernel/module/main.c
+index 46dd8d25a605..39f05ac4b1a1 100644
+--- a/kernel/module/main.c
++++ b/kernel/module/main.c
+@@ -3779,21 +3779,29 @@ static int init_module_from_file(struct file *f, const char __user * uargs, int
+ 
+ static int idempotent_init_module(struct file *f, const char __user * uargs, int flags)
+ {
+-	struct idempotent idem;
++	struct idempotent *idem;
++	int ret;
+ 
+ 	if (!(f->f_mode & FMODE_READ))
+ 		return -EBADF;
+ 
++	idem = kmalloc_obj(*idem, GFP_KERNEL);
++	if (!idem)
++		return -ENOMEM;
++
+ 	/* Are we the winners of the race and get to do this? */
+-	if (!idempotent(&idem, file_inode(f))) {
+-		int ret = init_module_from_file(f, uargs, flags);
+-		return idempotent_complete(&idem, ret);
++	if (!idempotent(idem, file_inode(f))) {
++		ret = init_module_from_file(f, uargs, flags);
++		ret = idempotent_complete(idem, ret);
++	} else {
++		/*
++		 * Somebody else won the race and is loading the module.
++		 */
++		ret = idempotent_wait_for_completion(idem);
+ 	}
+ 
+-	/*
+-	 * Somebody else won the race and is loading the module.
+-	 */
+-	return idempotent_wait_for_completion(&idem);
++	kfree(idem);
++	return ret;
+ }
+ 
+ SYSCALL_DEFINE3(finit_module, int, fd, const char __user *, uargs, int, flags)
+-- 
+2.34.1

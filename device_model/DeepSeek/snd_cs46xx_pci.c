@@ -1,6 +1,6 @@
 /*
  * QEMU device model for Cirrus Logic CS46xx (CS4280) audio controller
- * Based on Linux driver /home/eely/linux-7.1/sound/pci/cs46xx/cs46xx.c
+ * Based on Linux driver /home/user/linux-7.1/sound/pci/cs46xx/cs46xx.c
  *
  * Phase 2: Incremental behavior implementation based on driver source.
  */

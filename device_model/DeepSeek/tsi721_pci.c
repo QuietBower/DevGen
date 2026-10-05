@@ -1,6 +1,6 @@
 /*
  * QEMU Tsi721 PCIe RapidIO Controller Emulation
- * Based on driver: /home/eely/linux-7.1/drivers/rapidio/devices/tsi721.c
+ * Based on driver: /home/user/linux-7.1/drivers/rapidio/devices/tsi721.c
  */
 
 #include "qemu/osdep.h"

@@ -1,6 +1,6 @@
 /*
  * QEMU PCI device model for EHCI PCI host controller.
- * Based on Linux driver: /home/eely/linux-7.1/drivers/usb/host/ehci-pci.c
+ * Based on Linux driver: /home/user/linux-7.1/drivers/usb/host/ehci-pci.c
  * Generated functional implementation.
  */
 

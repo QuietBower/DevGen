@@ -1,0 +1,37 @@
+# Re: [PATCH] tty: limit TCSBRKP break duration
+
+| Field | Value |
+| :--- | :--- |
+| From | Greg Kroah-Hartman <gregkh@linuxfoundation.org> |
+| To | Author F <author-f@example.com> |
+| Cc | Jiri Slaby <jirislaby@kernel.org>, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org |
+| Date | Mon, 27 Jul 2026 08:25:02 +0200 |
+| Message-ID | `2026072700-causal-remarry-6edf@gregkh` |
+| List-ID | <linux-serial.vger.kernel.org> |
+| Source | `[ARCHIVE] https://lore.kernel.org/all/2026072700-causal-remarry-6edf@gregkh/` |
+
+---
+
+On Mon, Jul 27, 2026 at 01:55:25PM +0800, Author F wrote:
+> An RCU stall was observed while exercising tty ioctls on an
+> 8250 Pericom PCI serial port.
+> 
+> The reproducer passed a very large argument to TCSBRKP. tty_ioctl()
+> multiplies the argument by 100 and forwards it to send_break(), whose
+> duration is an unsigned int. That can leave the serial break condition
+> asserted for an extremely long time and keep the IRQ line active on the
+> affected setup.
+> 
+> Clamp the duration before calling send_break() so normal values keep
+> their current behavior, while preventing excessively long break
+> intervals.
+
+How do we know that systems don't want those long break intervals set?
+You are changing something that might break people's working systems.
+
+What specific error are you getting when you send a long break time and
+why can't your hardware handle that?
+
+thanks,
+
+greg k-h

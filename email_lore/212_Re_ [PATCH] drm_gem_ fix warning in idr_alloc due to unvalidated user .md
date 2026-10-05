@@ -1,0 +1,96 @@
+# Re: [PATCH] drm/gem: fix warning in idr_alloc due to unvalidated user handle
+
+| Field | Value |
+| :--- | :--- |
+| From | Thomas Zimmermann <tzimmermann@suse.de> |
+| To | Author A <author-a@example.com>, maarten.lankhorst@linux.intel.com, mripard@kernel.org, airlied@gmail.com, simona@ffwll.ch |
+| Cc | dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org |
+| Date | Fri, 5 Jun 2026 10:02:33 +0200 |
+| Message-ID | `bfdf1fbe-d61c-4bf7-b6f0-d5c676224af4@suse.de` |
+| In-Reply-To | `388db131.142.19e95bef999.Coremail.author-a@example.com` |
+| List-ID | <linux-kernel.vger.kernel.org> |
+| Source | `[ARCHIVE] https://lore.kernel.org/all/bfdf1fbe-d61c-4bf7-b6f0-d5c676224af4@suse.de/` |
+
+---
+
+Hi
+
+Am 05.06.26 um 05:06 schrieb Author A:
+> Hi maintainers,
+>
+> Just a gentle ping on this patch. It fixes a WARN triggered during fuzzing when negative user handles are passed.
+>
+> Please let me know if it needs any revisions or if there is anything else I can do to help move it forward.
+>
+> Thanks,
+> Author A
+>
+>
+>> -----原始邮件-----
+>> 发件人: "Author A" <author-a@example.com>
+>> 发送时间:2026-04-22 19:42:47 (星期三)
+>> 收件人: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
+>> 抄送: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, "Author A" <author-a@example.com>
+>> 主题: [PATCH] drm/gem: fix warning in idr_alloc due to unvalidated user handle
+>>
+>> During fuzzing, a warning was triggered in idr_alloc() when handling
+>> the DRM_IOCTL_GEM_CHANGE_HANDLE (or similar) ioctl.
+>>
+>> The function drm_gem_change_handle_ioctl() currently only checks if
+>> args->new_handle is strictly greater than INT_MAX. However, it fails
+>> to check for negative values. If a userpace application passes a
+>> negative handle, it bypasses the upper-bound check and is passed
+>> directly to idr_alloc() as the 'start' parameter, triggering the
+>> WARN_ON_ONCE(start < 0) inside idr_alloc().
+
+args->new_handle is unsigned.� IIRC, for the test, INT_MAX should be 
+interpreted as unsigned as well. So how can it get across the INT_MAX 
+test? There's an explicit cast to int at [1], which might have an effect 
+here.
+
+Does it work of you explicitly cast INT_MAX to u32 in that test?
+
+I'm also worried about interpreting the handle as signed and then adding 
++1 to it. [2]� idr_alloc() appears to handle it gracefully, [3] but it 
+still looks fishy.
+
+[1] https://elixir.bootlin.com/linux/v7.0.11/source/include/vdso/limits.h#L8
+[2] 
+https://elixir.bootlin.com/linux/v7.0.11/source/drivers/gpu/drm/drm_gem.c#L1033
+[3] https://elixir.bootlin.com/linux/v7.0.11/source/lib/idr.c#L89
+
+Best regards
+Thomas
+
+>>
+>> Fix this by explicitly validating that the user-provided handle is
+>> strictly positive and within the valid IDR range.
+>>
+>> Signed-off-by: Author A <author-a@example.com>
+>> ---
+>>   drivers/gpu/drm/drm_gem.c | 2 +-
+>>   1 file changed, 1 insertion(+), 1 deletion(-)
+>>
+>> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+>> index d6424267260b..3d84d4f1c3e0 100644
+>> --- a/drivers/gpu/drm/drm_gem.c
+>> +++ b/drivers/gpu/drm/drm_gem.c
+>> @@ -1026,7 +1026,7 @@ int drm_gem_change_handle_ioctl(struct drm_device *dev, void *data,
+>>   		return -EOPNOTSUPP;
+>>   
+>>   	/* idr_alloc() limitation. */
+>> -	if (args->new_handle > INT_MAX)
+>> +	if (args->new_handle <= 0 || args->new_handle > INT_MAX)
+>>   		return -EINVAL;
+>>   	handle = args->new_handle;
+>>   
+>> -- 
+>> 2.34.1
+
+-- 
+--
+Thomas Zimmermann
+Graphics Driver Developer
+SUSE Software Solutions Germany GmbH
+Frankenstr. 146, 90461 N�rnberg, Germany, www.suse.com
+GF: Jochen Jaser, Andrew McDonald, Werner Knoblich, (HRB 36809, AG N�rnberg)

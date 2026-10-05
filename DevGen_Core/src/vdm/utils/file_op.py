@@ -39,5 +39,5 @@ def move_all_files(src_dir: str, dst_dir: str):
 
 if __name__ == '__main__':
     meson_contentd = "system_ss.add(when: 'CONFIG_ADM8211', if_true: files('adm8211_pci.c'))\n"
-    remove_content_from_file("/home/lwj/qemu_8.2_linux_6.7/src/qemu-stable-8.2/hw/fake_pci/meson.build", meson_contentd)
+    remove_content_from_file("/home/user/qemu_8.2_linux_6.7/src/qemu-stable-8.2/hw/fake_pci/meson.build", meson_contentd)
     

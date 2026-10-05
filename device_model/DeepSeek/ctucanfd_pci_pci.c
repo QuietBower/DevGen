@@ -1,6 +1,6 @@
 /*
  * QEMU PCI device model for CTU CAN FD (ctucanfd_pci)
- * Based on driver: /home/eely/linux-7.1/drivers/net/can/ctucanfd/ctucanfd_pci.c
+ * Based on driver: /home/user/linux-7.1/drivers/net/can/ctucanfd/ctucanfd_pci.c
  * Phase 2: Incremental update with core register handling.
  */
 

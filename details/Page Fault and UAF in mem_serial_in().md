@@ -14,9 +14,9 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>lore.kernel.org</u> |
+| [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>[mail](../email_lore/370_%5BPATCH%5D%20serial_%208250_%20validate%20iomem_base%20in%20serial8250_verify_port%28%29.md)</u> |
 | AI-Result                                                    | <u>lore.kernel.org</u> |
-| Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>lore.kernel.org</u> |
-| Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>lore.kernel.org</u> |
-| Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>lore.kernel.org</u> |
+| Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>[mail](../email_lore/437_Re_%20%5BPATCH%5D%20serial_%208250_%20validate%20iomem_base%20in%20serial8250_verify_por.md)</u> |
+| Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>[mail](../email_lore/372_Re_%20%5BPATCH%5D%20serial_%208250_%20validate%20iomem_base%20in%20serial8250_verify_por.md)</u> |
+| Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>[mail](../email_lore/441_Re_%20%5BPATCH%5D%20serial_%208250_%20validate%20iomem_base%20in%20serial8250_verify_por.md)</u> |
 

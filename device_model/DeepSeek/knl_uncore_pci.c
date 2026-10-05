@@ -1,6 +1,6 @@
 /*
  * QEMU PCI device model for Intel uncore Home Agent (HA) performance monitoring unit.
- * Based on driver source: /home/eely/linux-7.1/arch/x86/events/intel/uncore_snbep.c
+ * Based on driver source: /home/user/linux-7.1/arch/x86/events/intel/uncore_snbep.c
  */
 
 #include "qemu/osdep.h"

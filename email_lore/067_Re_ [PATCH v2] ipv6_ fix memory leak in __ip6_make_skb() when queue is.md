@@ -1,0 +1,73 @@
+# Re: [PATCH v2] ipv6: fix memory leak in __ip6_make_skb() when queue is empty
+
+| Field | Value |
+| :--- | :--- |
+| From | syzbot <syzbot@syzkaller.appspotmail.com> |
+| To | author-a@example.com |
+| Cc | author-a@example.com, davem@davemloft.net, dsahern@kernel.org, edumazet@google.com, horms@kernel.org, kuba@kernel.org, linux-kernel@vger.kernel.org, netdev@vger.kernel.org, pabeni@redhat.com, sd@queasysnail.net, willemdebruijn.kernel@gmail.com |
+| Date | Thu, 23 Apr 2026 01:23:08 -0700 |
+| Message-ID | `69e9d6ec.a00a0220.9259.0025.GAE@google.com` |
+| In-Reply-To | `20260423082233.514056-1-author-a@example.com` |
+| List-ID | <netdev.vger.kernel.org> |
+| Source | `[ARCHIVE] https://lore.kernel.org/all/69e9d6ec.a00a0220.9259.0025.GAE@google.com/` |
+
+---
+
+> During fuzzing with failslab enabled, a memory leak was observed in the
+> IPv6 UDP send path.
+>
+> The root cause resides in __ip6_make_skb(). In extremely rare cases
+> (such as fault injection or specific empty payload conditions),
+> __ip6_append_data() may succeed but leave the socket's write queue
+> empty.
+>
+> When __ip6_make_skb() is subsequently called, __skb_dequeue(queue)
+> returns NULL. The previous logic handled this by executing a 'goto out;',
+> which completely bypassed the call to ip6_cork_release(cork).
+>
+> Since the 'cork' structure actively holds a reference to the routing
+> entry (dst_entry) and potentially other allocated options, skipping
+> the release cleanly leaks these resources.
+>
+> Fix this by introducing an 'out_cork_release' label and jumping to it
+> when skb is NULL, ensuring the cork state is always properly cleaned up.
+> The now-unused 'out' label is also removed to prevent compiler warnings.
+>
+> Fixes: 1da177e4c3f4 ("Linux-2.6.12-rc2")
+> Reported-by: syzbot+e5d6936b9f4545fd88ab@syzkaller.appspotmail.com
+> Signed-off-by: Author A <author-a@example.com>
+> ---
+>  net/ipv6/ip6_output.c | 4 ++--
+>  1 file changed, 2 insertions(+), 2 deletions(-)
+>
+> diff --git a/net/ipv6/ip6_output.c b/net/ipv6/ip6_output.c
+> index 7e92909ab5be..82210dd5eb96 100644
+> --- a/net/ipv6/ip6_output.c
+> +++ b/net/ipv6/ip6_output.c
+> @@ -1934,7 +1934,7 @@ struct sk_buff *__ip6_make_skb(struct sock *sk,
+>  
+>  	skb = __skb_dequeue(queue);
+>  	if (!skb)
+> -		goto out;
+> +		goto out_cork_release;
+>  	tail_skb = &(skb_shinfo(skb)->frag_list);
+>  
+>  	/* move skb->data to ip header from ext header */
+> @@ -1998,8 +1998,8 @@ struct sk_buff *__ip6_make_skb(struct sock *sk,
+>  		ICMP6_INC_STATS(net, idev, ICMP6_MIB_OUTMSGS);
+>  	}
+>  
+> +out_cork_release:
+>  	ip6_cork_release(cork);
+> -out:
+>  	return skb;
+>  }
+>  
+> -- 
+> 2.34.1
+>
+
+I see the command but can't find the corresponding bug.
+The email is sent to  syzbot+HASH@syzkaller.appspotmail.com address
+but the HASH does not correspond to any known bug.
+Please double check the address.

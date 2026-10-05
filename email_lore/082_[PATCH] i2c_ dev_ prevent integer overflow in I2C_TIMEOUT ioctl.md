@@ -1,0 +1,57 @@
+# [PATCH] i2c: dev: prevent integer overflow in I2C_TIMEOUT ioctl
+
+| Field | Value |
+| :--- | :--- |
+| From | Author A <author-a@example.com> |
+| To | wsa+renesas@sang-engineering.com |
+| Cc | linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org, Author A <author-a@example.com> |
+| Date | Mon, 27 Apr 2026 10:57:45 +0800 |
+| Message-ID | `20260427025745.1100768-1-author-a@example.com` |
+| List-ID | <linux-i2c.vger.kernel.org> |
+| Source | `[ANONYMIZED] https://lore.kernel.org/all/20260427025745.1100768-1-author-a@example.com/` |
+
+---
+
+While fuzzing with Syzkaller, a persistent `schedule_timeout: wrong
+timeout value` warning was observed, accompanied by SMBus controller
+state machine corruption.
+
+The I2C_TIMEOUT ioctl accepts a user-provided timeout in multiples of
+10 ms. The user argument is checked against INT_MAX, but it is
+subsequently multiplied by 10 before being passed to msecs_to_jiffies().
+
+A malicious user can pass a large value (e.g., 429496729) that passes
+the `arg > INT_MAX` check but overflows when multiplied by 10. This
+results in a truncated 32-bit unsigned value that bypasses the
+internal `(int)m < 0` check in `msecs_to_jiffies()`.
+
+The truncated value is then assigned to `client->adapter->timeout`
+(a signed 32-bit int), which is reinterpreted as a negative number.
+When passed to wait_for_completion_timeout(), this negative value
+undergoes sign extension to a 64-bit unsigned long, triggering the
+`schedule_timeout` warning and causing premature returns. This leaves
+the SMBus state machine in an unrecoverable state, constituting a
+local Denial of Service (DoS).
+
+Fix this by bounding the user argument to `INT_MAX / 10`.
+
+Signed-off-by: Author A <author-a@example.com>
+---
+ drivers/i2c/i2c-dev.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/drivers/i2c/i2c-dev.c b/drivers/i2c/i2c-dev.c
+index 7bbe0263411e..fb9d53ff1144 100644
+--- a/drivers/i2c/i2c-dev.c
++++ b/drivers/i2c/i2c-dev.c
+@@ -487,7 +487,7 @@ static long i2cdev_ioctl(struct file *file, unsigned int cmd, unsigned long arg)
+ 		client->adapter->retries = arg;
+ 		break;
+ 	case I2C_TIMEOUT:
+-		if (arg > INT_MAX)
++		if (arg > INT_MAX / 10)
+ 			return -EINVAL;
+ 
+ 		/* For historical reasons, user-space sets the timeout
+-- 
+2.34.1

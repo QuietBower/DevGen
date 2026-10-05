@@ -1,7 +1,7 @@
 
 /*
  * QEMU device model for snd_korg1212 PCI audio card.
- * Based on driver at /home/eely/linux-7.1/sound/pci/korg1212/korg1212.c
+ * Based on driver at /home/user/linux-7.1/sound/pci/korg1212/korg1212.c
  */
 
 #include "qemu/osdep.h"

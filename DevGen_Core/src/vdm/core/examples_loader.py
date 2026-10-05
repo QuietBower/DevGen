@@ -66,7 +66,7 @@ class ExampleLoader:
 exampleloader = ExampleLoader()
 
 if __name__ == "__main__":
-    with open("/home/lwj/qemu_8.2_linux_6.7/src/out/shares/err_msg.txt", "r") as f:
+    with open("/home/user/qemu_8.2_linux_6.7/src/out/shares/err_msg.txt", "r") as f:
         err_msg = f.read()
 
     examples = exampleloader.get_examples_by_err_msg(err_msg)

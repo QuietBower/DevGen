@@ -1,0 +1,73 @@
+# [PATCH] fbdev: fbcon: fix out-of-bounds read in err_out of fbcon_do_set_font()
+
+| Field | Value |
+| :--- | :--- |
+| From | author-a-alt@example.com |
+| To | deller@gmx.de, tzimmermann@suse.de, simona@ffwll.ch |
+| Cc | syoshida@redhat.com, dri-devel@lists.freedesktop.org, linux-fbdev@vger.kernel.org, linux-kernel@vger.kernel.org, Author A <author-a@example.com>, stable@vger.kernel.org |
+| Date | Wed, 24 Jun 2026 16:33:16 +0800 |
+| Message-ID | `20260624083316.389677-1-author-a-alt@example.com` |
+| List-ID | <stable.vger.kernel.org> |
+| Source | `[ANONYMIZED] https://lore.kernel.org/all/20260624083316.389677-1-author-a-alt@example.com/` |
+
+---
+
+From: Author A <author-a@example.com>
+
+When fbcon_do_set_font() fails (e.g., due to a memory allocation failure 
+inside vc_resize() under heavy memory pressure), it jumps to the `err_out` 
+label to roll back the console state. However, the current rollback logic 
+forgets to restore the `hi_font` state, leading to a severe state machine 
+corruption.
+
+Earlier in the function, `set_vc_hi_font()` might be called to change
+`vc->vc_hi_font_mask` and mutate the screen buffer. If `vc_resize()`
+subsequently fails, the `err_out` path restores `vc_font.charcount`
+but entirely skips rolling back the `vc_hi_font_mask` and the screen
+buffer.
+
+This mismatch leaves the terminal in a desynchronized state. Because
+`vc_hi_font_mask` remains set, the VT subsystem will still accept
+character indices greater than 255 from userspace and write them to the
+screen buffer. Subsequent rendering calls (e.g., `fbcon_putcs()`) will
+then use these inflated indices to access the reverted, 256-character
+font array, leading to a deterministic out-of-bounds read and potential
+kernel memory disclosure.
+
+Fix this by adding the missing rollback logic for the `hi_font` mask
+and screen buffer in the error path.
+
+Fixes: a5a923038d70 ("fbdev: fbcon: Properly revert changes when vc_resize() failed")
+Cc: stable@vger.kernel.org
+Signed-off-by: Author A <author-a@example.com>
+---
+ drivers/video/fbdev/core/fbcon.c | 7 +++++++
+ 1 file changed, 7 insertions(+)
+
+diff --git a/drivers/video/fbdev/core/fbcon.c b/drivers/video/fbdev/core/fbcon.c
+index 9077d3b99357..5880ab9f3cde 100644
+--- a/drivers/video/fbdev/core/fbcon.c
++++ b/drivers/video/fbdev/core/fbcon.c
+@@ -2405,6 +2405,7 @@ static int fbcon_do_set_font(struct vc_data *vc, int w, int h, int charcount,
+ 	int resize, ret, old_width, old_height, old_charcount;
+ 	font_data_t *old_fontdata = p->fontdata;
+ 	const u8 *old_data = vc->vc_font.data;
++	int old_hi_font_mask = vc->vc_hi_font_mask;
+ 
+ 	font_data_get(data);
+ 
+@@ -2451,6 +2452,12 @@ static int fbcon_do_set_font(struct vc_data *vc, int w, int h, int charcount,
+ 	vc->vc_font.height = old_height;
+ 	vc->vc_font.charcount = old_charcount;
+ 
++	/* Restore the hi_font state and screen buffer */
++	if (old_hi_font_mask && !vc->vc_hi_font_mask)
++		set_vc_hi_font(vc, true);
++	else if (!old_hi_font_mask && vc->vc_hi_font_mask)
++		set_vc_hi_font(vc, false);
++
+ 	font_data_put(data);
+ 
+ 	return ret;
+-- 
+2.34.1

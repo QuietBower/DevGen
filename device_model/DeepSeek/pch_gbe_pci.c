@@ -1,6 +1,6 @@
 /*
  * QEMU model for PCI-based OKI Semi PCH GbE (Ethernet controller) for QEMU 8.2.10.
- * Derived from Linux driver: pch_gbe_main.c at /home/eely/linux-7.1/drivers/net/ethernet/oki-semi/pch_gbe/
+ * Derived from Linux driver: pch_gbe_main.c at /home/user/linux-7.1/drivers/net/ethernet/oki-semi/pch_gbe/
  */
 
 #include "qemu/osdep.h"

@@ -1,6 +1,6 @@
 /*
  * QEMU PCI device model for Conexant CX25821
- * Derived from Linux driver: /home/eely/linux-7.1/drivers/media/pci/cx25821/cx25821-core.c
+ * Derived from Linux driver: /home/user/linux-7.1/drivers/media/pci/cx25821/cx25821-core.c
  * This device emulates the MMIO register interface for probing and initialization.
  */
 

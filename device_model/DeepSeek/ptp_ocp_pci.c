@@ -1,6 +1,6 @@
 /*
  * QEMU PCI device model for PTP OCP Timecard
- * Based on driver: /home/eely/linux-7.1/drivers/ptp/ptp_ocp.c
+ * Based on driver: /home/user/linux-7.1/drivers/ptp/ptp_ocp.c
  * Phase 2: Full functional implementation.
  */
 

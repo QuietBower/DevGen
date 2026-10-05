@@ -1,6 +1,6 @@
 /*
  * QEMU ICX Uncore PCI Device Model (Minimal for Driver Probe)
- * Based on Linux driver: /home/eely/linux-7.1/arch/x86/events/intel/uncore_snbep.c
+ * Based on Linux driver: /home/user/linux-7.1/arch/x86/events/intel/uncore_snbep.c
  * Implements only the PCI configuration space required for driver binding.
  * No functional MMIO, DMA, or IRQ emulation; driver uses extended config space accesses.
  */

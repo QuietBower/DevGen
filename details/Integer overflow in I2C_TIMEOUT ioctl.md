@@ -11,9 +11,9 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [PATCH] i2c: dev: prevent integer overflow in I2C_TIMEOUT ioctl | <u>lore.kernel.org</u> |
-| [PATCH AUTOSEL 7.0-5.10] i2c: dev: prevent integer overflow in I2C_TIMEOUT ioctl | <u>lore.kernel.org</u> |
-| [PATCH AUTOSEL 7.0-5.10] i2c: dev: prevent integer overflow in I2C_TIMEOUT ioctl | <u>lore.kernel.org</u> |
-| i2c: dev: prevent integer overflow in I2C_TIMEOUT ioctl      | <u>lore.kernel.org</u> |
-| Re: Please cherry-pick commit 617eb7c0961a                   | <u>lore.kernel.org</u> |
+| [PATCH] i2c: dev: prevent integer overflow in I2C_TIMEOUT ioctl | <u>[mail](../email_lore/082_%5BPATCH%5D%20i2c_%20dev_%20prevent%20integer%20overflow%20in%20I2C_TIMEOUT%20ioctl.md)</u> |
+| [PATCH AUTOSEL 7.0-5.10] i2c: dev: prevent integer overflow in I2C_TIMEOUT ioctl | <u>[mail](../email_lore/154_%5BPATCH%20AUTOSEL%207.0-5.10%5D%20i2c_%20dev_%20prevent%20integer%20overflow%20in%20I2C_TIM.md)</u> |
+| [PATCH AUTOSEL 7.0-5.10] i2c: dev: prevent integer overflow in I2C_TIMEOUT ioctl | <u>[mail](../email_lore/114_%5BPATCH%20AUTOSEL%207.0-5.10%5D%20i2c_%20dev_%20prevent%20integer%20overflow%20in%20I2C_TIM.md)</u> |
+| i2c: dev: prevent integer overflow in I2C_TIMEOUT ioctl | <u>[mail](../email_lore/082_%5BPATCH%5D%20i2c_%20dev_%20prevent%20integer%20overflow%20in%20I2C_TIMEOUT%20ioctl.md)</u> |
+| Re: Please cherry-pick commit 617eb7c0961a | <u>[mail](../email_lore/532_Re_%20Please%20cherry-pick%20commit%20617eb7c0961a.md)</u> |
 

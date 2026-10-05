@@ -1,6 +1,6 @@
 /*
  * QEMU PCI device model for HPE iLO2+ HW Watchdog Timer (hpwdt)
- * Generated based on Linux driver /home/eely/linux-7.1/drivers/watchdog/hpwdt.c
+ * Generated based on Linux driver /home/user/linux-7.1/drivers/watchdog/hpwdt.c
  */
 
 #include "qemu/osdep.h"

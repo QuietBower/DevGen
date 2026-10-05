@@ -11,14 +11,14 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [PATCH] i2c: i801: fix hardware state machine corruption in error path | <u>lore.kernel.org</u> |
-| Re: [PATCH] i2c: i801: fix hardware state machine corruption in error path | <u>lore.kernel.org</u> |
-| [PATCH v2] i2c: i801: fix hardware state machine corruption in error path | <u>lore.kernel.org</u> |
-| Ping:Re:[PATCH v2] i2c: i801: fix hardware state machine corruption in error path | <u>lore.kernel.org</u> |
-| Re: [PATCH v2] i2c: i801: fix hardware state machine corruption in error path | <u>lore.kernel.org</u> |
-| Re: [PATCH v2] i2c: i801: fix hardware state machine corruption in error path | <u>lore.kernel.org</u> |
-| **i2c: i801: fix hardware state machine corruption in error path** | <u>lore.kernel.org</u> |
+| [PATCH] i2c: i801: fix hardware state machine corruption in error path | <u>[mail](../email_lore/098_%5BPATCH%5D%20i2c_%20i801_%20fix%20hardware%20state%20machine%20corruption%20in%20error%20path.md)</u> |
+| Re: [PATCH] i2c: i801: fix hardware state machine corruption in error path | <u>[mail](../email_lore/118_Re_%20%5BPATCH%5D%20i2c_%20i801_%20fix%20hardware%20state%20machine%20corruption%20in%20error%20.md)</u> |
+| [PATCH v2] i2c: i801: fix hardware state machine corruption in error path | <u>[mail](../email_lore/098_%5BPATCH%5D%20i2c_%20i801_%20fix%20hardware%20state%20machine%20corruption%20in%20error%20path.md)</u> |
+| Ping:Re:[PATCH v2] i2c: i801: fix hardware state machine corruption in error path | <u>[mail](../email_lore/098_%5BPATCH%5D%20i2c_%20i801_%20fix%20hardware%20state%20machine%20corruption%20in%20error%20path.md)</u> |
+| Re: [PATCH v2] i2c: i801: fix hardware state machine corruption in error path | <u>[mail](../email_lore/226_Re_%20%5BPATCH%20v2%5D%20i2c_%20i801_%20fix%20hardware%20state%20machine%20corruption%20in%20err.md)</u> |
+| Re: [PATCH v2] i2c: i801: fix hardware state machine corruption in error path | <u>[mail](../email_lore/269_Re_%20%5BPATCH%20v2%5D%20i2c_%20i801_%20fix%20hardware%20state%20machine%20corruption%20in%20err.md)</u> |
+| **i2c: i801: fix hardware state machine corruption in error path** | <u>[mail](../email_lore/098_%5BPATCH%5D%20i2c_%20i801_%20fix%20hardware%20state%20machine%20corruption%20in%20error%20path.md)</u> |
 
 https://github.com/intel-lab-lkp/linux/commit/e67d702846114f60080991d51966d486b1615b49 
 
-https://patchwork.ozlabs.org/project/linux-i2c/patch/20260512093534.348655-1-w15303746062@163.com/ 
+https://patchwork.ozlabs.org/project/linux-i2c/patch/20260512093534.348655-1-author-a-alt@example.com/ 

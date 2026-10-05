@@ -1,6 +1,6 @@
 /*
  * QEMU PCI device model for xen-platform-pci driver
- * Based on driver at /home/eely/linux-7.1/drivers/xen/platform-pci.c
+ * Based on driver at /home/user/linux-7.1/drivers/xen/platform-pci.c
  * Phase 2: Functional implementation.
  */
 

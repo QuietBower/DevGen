@@ -12,7 +12,7 @@ logger = setup_logger('STEP 4')
 
 def step4_run(device_code: str, err_msg: str, cnt: int) -> str:
     """
-    执行第四步处理流程，返回修复完成后的设备代码。step3的QEMU代码、err_msg.txt的内容、probe和pci_id结构体作为第一步的相关信息，遍历王志统计的所有修复结果信息，找两个例子传入分析。
+    执行第四步处理流程，返回修复完成后的设备代码。step3的QEMU代码、err_msg.txt的内容、probe和pci_id结构体作为第一步的相关信息，遍历Author B统计的所有修复结果信息，找两个例子传入分析。
     """
     logger.info('============================= STEP 4 RUN =============================')
     device_code, needed_sources = step4(device_code, err_msg, cnt)   

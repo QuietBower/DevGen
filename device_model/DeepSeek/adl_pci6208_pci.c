@@ -1,6 +1,6 @@
 /*
  * QEMU virtual PCI device model for ADLINK PCI-6208
- * Based on driver: /home/eely/linux-7.1/drivers/comedi/drivers/adl_pci6208.c
+ * Based on driver: /home/user/linux-7.1/drivers/comedi/drivers/adl_pci6208.c
  * Phase 2: Functional behavior (PIO handlers)
  */
 

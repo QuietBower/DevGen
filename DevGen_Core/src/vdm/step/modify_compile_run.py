@@ -70,7 +70,7 @@ def modify_compile_run(driver_name, device_code) -> tuple[int, bool]:
 
 
 if __name__ == "__main__":
-    with open("/home/lwj/qemu_8.2_linux_6.7/src/qemu-stable-8.2/hw/fake_pci/aectc_pci.c", "r", encoding="utf-8") as f:
+    with open("/home/user/qemu_8.2_linux_6.7/src/qemu-stable-8.2/hw/fake_pci/aectc_pci.c", "r", encoding="utf-8") as f:
         device_code = f.read()
     modify_compile_run("aectc", device_code)
     

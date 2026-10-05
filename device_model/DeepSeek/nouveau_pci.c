@@ -1,6 +1,6 @@
 /*
  * QEMU PCI device model for NVIDIA NV04 (nouveau) device (0x10DE:0x0020).
- * Generated from Linux driver /home/eely/linux-7.1/drivers/gpu/drm/nouveau/nouveau_drm.c
+ * Generated from Linux driver /home/user/linux-7.1/drivers/gpu/drm/nouveau/nouveau_drm.c
  * and supplementary context.
  */
 

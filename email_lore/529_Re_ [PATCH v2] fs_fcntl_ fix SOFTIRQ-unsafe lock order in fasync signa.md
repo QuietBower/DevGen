@@ -1,0 +1,43 @@
+# Re: [PATCH v2] fs/fcntl: fix SOFTIRQ-unsafe lock order in fasync signaling
+
+| Field | Value |
+| :--- | :--- |
+| From | Christian Brauner <brauner@kernel.org> |
+| To | author-a-alt@example.com |
+| Cc | Christian Brauner <brauner@kernel.org>, jlayton@kernel.org, chuck.lever@oracle.com, viro@zeniv.linux.org.uk, alex.aring@gmail.com, jack@suse.cz, linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org, Author A <author-a@example.com> |
+| Date | Thu, 28 May 2026 14:40:36 +0200 |
+| Message-ID | `20260528-sonst-relief-grabbeigaben-3e20f9a3f8bb@brauner` |
+| In-Reply-To | `20260523135210.590928-1-author-a-alt@example.com` |
+| Source | `[ANONYMIZED] local copy (original archive link removed)` |
+
+---
+
+On Sat, 23 May 2026 21:52:10 +0800, author-a-alt@example.com wrote:
+> A SOFTIRQ-safe to SOFTIRQ-unsafe lock order deadlock can occur in
+> send_sigio() and send_sigurg() when a process group receives a signal.
+> 
+> When FASYNC is configured for a process group (PIDTYPE_PGID), both
+> functions use read_lock(&tasklist_lock) to traverse the task list.
+> However, they are frequently called from softirq context:
+> - send_sigio() via input_inject_event -> kill_fasync
+> - send_sigurg() via tcp_check_urg -> sk_send_sigurg (NET_RX_SOFTIRQ)
+> 
+> [...]
+
+Applied to the vfs-7.2.misc branch of the vfs/vfs.git tree.
+Patches in the vfs-7.2.misc branch should appear in linux-next soon.
+
+Please report any outstanding bugs that were missed during review in a
+new review to the original patch series allowing us to drop it.
+
+It's encouraged to provide Acked-bys and Reviewed-bys even though the
+patch has now been applied. If possible patch trailers will be updated.
+
+Note that commit hashes shown below are subject to change due to rebase,
+trailer updates or similar. If in doubt, please check the listed branch.
+
+tree:   https://git.kernel.org/pub/scm/linux/kernel/git/vfs/vfs.git
+branch: vfs-7.2.misc
+
+[1/1] fs/fcntl: fix SOFTIRQ-unsafe lock order in fasync signaling
+      https://git.kernel.org/vfs/vfs/c/00633c468382

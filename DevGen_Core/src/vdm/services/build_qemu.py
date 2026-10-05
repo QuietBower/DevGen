@@ -27,7 +27,7 @@ def recreate_directory(dir_path):
     logger.info(f"已重建目录：{dir_path}")
 
 def build_qemu() -> bool:
-    # build_path = "/home/lwj/qemu_8.2_linux_6.7/src/qemu-stable-8.2/build"
+    # build_path = "/home/user/qemu_8.2_linux_6.7/src/qemu-stable-8.2/build"
     build_path = config["paths"]["qemu_build_path"]
     # 重建build_path
     recreate_directory(build_path)

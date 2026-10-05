@@ -1,6 +1,6 @@
 /*
  * QEMU model for uio_pci_generic binding
- * Generated from Linux driver /home/eely/linux-7.1/drivers/uio/uio_pci_generic.c
+ * Generated from Linux driver /home/user/linux-7.1/drivers/uio/uio_pci_generic.c
  */
 
 #include "qemu/osdep.h"

@@ -11,10 +11,10 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [PATCH 7.0] fbdev: fbcon: fix memory leak in error path of fbcon_do_set_font() | <u>lore.kernel.org</u> |
-| Ping:[PATCH 7.0] fbdev: fbcon: fix memory leak in error path of fbcon_do_set_font() | <u>lore.kernel.org</u> |
-| sashiko-result:[PATCH 7.0] fbdev: fbcon: fix memory leak in error path of fbcon_do_set_font() | <u>lore.kernel.org</u> |
-| Re:Re:[PATCH 7.0] fbdev: fbcon: fix memory leak in error path of fbcon_do_set_font() | <u>lore.kernel.org</u> |
-| Greg KH: Re: Re:[PATCH 7.0] fbdev: fbcon: fix memory leak in error path of fbcon_do_set_font() | <u>lore.kernel.org</u> |
-| Re:Re: Re:[PATCH 7.0] fbdev: fbcon: fix memory leak in error path of fbcon_do_set_font() | <u>lore.kernel.org</u> |
+| [PATCH 7.0] fbdev: fbcon: fix memory leak in error path of fbcon_do_set_font() | <u>[mail](../email_lore/162_%5BPATCH%207.0%5D%20fbdev_%20fbcon_%20fix%20memory%20leak%20in%20error%20path%20of%20fbcon_do_se.md)</u> |
+| Ping:[PATCH 7.0] fbdev: fbcon: fix memory leak in error path of fbcon_do_set_font() | <u>[mail](../email_lore/216_Re_%5BPATCH%207.0%5D%20fbdev_%20fbcon_%20fix%20memory%20leak%20in%20error%20path%20of%20fbcon_do.md)</u> |
+| sashiko-result:[PATCH 7.0] fbdev: fbcon: fix memory leak in error path of fbcon_do_set_font() | <u>[mail](../email_lore/216_Re_%5BPATCH%207.0%5D%20fbdev_%20fbcon_%20fix%20memory%20leak%20in%20error%20path%20of%20fbcon_do.md)</u> |
+| Re:Re:[PATCH 7.0] fbdev: fbcon: fix memory leak in error path of fbcon_do_set_font() | <u>[mail](../email_lore/216_Re_%5BPATCH%207.0%5D%20fbdev_%20fbcon_%20fix%20memory%20leak%20in%20error%20path%20of%20fbcon_do.md)</u> |
+| Greg KH: Re: Re:[PATCH 7.0] fbdev: fbcon: fix memory leak in error path of fbcon_do_set_font() | <u>[mail](../email_lore/403_Re_%20Re_%5BPATCH%207.0%5D%20fbdev_%20fbcon_%20fix%20memory%20leak%20in%20error%20path%20of%20fbco.md)</u> |
+| Re:Re: Re:[PATCH 7.0] fbdev: fbcon: fix memory leak in error path of fbcon_do_set_font() | <u>[mail](../email_lore/216_Re_%5BPATCH%207.0%5D%20fbdev_%20fbcon_%20fix%20memory%20leak%20in%20error%20path%20of%20fbcon_do.md)</u> |
 

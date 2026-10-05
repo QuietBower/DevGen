@@ -1,0 +1,63 @@
+# Re: [PATCH v2] i2c: i801: fix hardware state machine corruption in error path
+
+| Field | Value |
+| :--- | :--- |
+| From | Andi Shyti <andi.shyti@kernel.org> |
+| To | author-a-alt@example.com |
+| Cc | jdelvare@suse.com, linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org, Author A <author-a@example.com>, stable@vger.kernel.org |
+| Date | Tue, 23 Jun 2026 17:59:31 +0200 |
+| Message-ID | `ajqtEIAX_D5z_UW5@zenone.zhora.eu` |
+| In-Reply-To | `20260512093534.348655-1-author-a-alt@example.com` |
+| List-ID | <linux-i2c.vger.kernel.org> |
+| Source | `[ARCHIVE] https://lore.kernel.org/all/ajqtEIAX_D5z_UW5@zenone.zhora.eu/` |
+
+---
+
+Hi Minguy,
+
+On Tue, May 12, 2026 at 05:35:34PM +0800, author-a-alt@example.com wrote:
+> From: Author A <author-a@example.com>
+> 
+> A severe livelock and subsequent Hung Task panic were observed in the
+> i2c-i801 driver during concurrent Fuzzing. The crash is caused by an
+> unconditional hardware register cleanup in the error handling path of
+> i801_access().
+> 
+> When i801_check_pre() fails (e.g., returning -EBUSY because the SMBus
+> controller is actively used by BIOS/ACPI), the kernel does not actually
+> acquire the hardware ownership. However, the code jumps to the 'out'
+> label and executes:
+> 
+>     iowrite8(SMBHSTSTS_INUSE_STS | STATUS_FLAGS, SMBHSTSTS(priv));
+> 
+> This forcefully clears the INUSE_STS lock and resets the hardware status
+> flags without owning the controller. Doing so interrupts ongoing BIOS/ACPI
+> transactions and totally corrupts the SMBus hardware state machine.
+> 
+> Consequently, all subsequent i801_access() calls fail at the pre-check
+> stage, triggering an endless stream of "SMBus is busy, can't use it!"
+> error logs. Over a slow serial console, this printk flood monopolizes
+> the CPU (Console Livelock), starving other processes trying to acquire
+> the mmap_lock down_read semaphore, ultimately triggering the hung task
+> watchdog.
+> 
+> Fix this by moving the 'out' label below the hardware register cleanup.
+> If i801_check_pre() fails, we safely bypass the iowrite8() and only
+> release the software locks (pm_runtime and mutex), strictly adhering to
+> the rule of not releasing resources that were never acquired.
+> 
+> Fixes: 1f760b87e54c ("i2c: i801: Call i801_check_pre() from i801_access()")
+> Cc: stable@vger.kernel.org # v6.3+
+> 
+
+Please, next time don't leave a blank space in the tag section.
+
+> Signed-off-by: Author A <author-a@example.com>
+
+The patch looks correct to me, although I'd have liked an ack
+from Jean.
+
+I merged it to i2c/i2c-fixes.
+
+Thanks,
+Andi

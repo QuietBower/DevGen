@@ -1,6 +1,6 @@
 /*
  * Integrated QEMU PCI device template for Solarflare Siena NIC.
- * Derived from driver at /home/eely/linux-7.1/drivers/net/ethernet/sfc/siena/efx.c
+ * Derived from driver at /home/user/linux-7.1/drivers/net/ethernet/sfc/siena/efx.c
  * Emulates a minimal hardware interface to allow driver probe and binding.
  */
 

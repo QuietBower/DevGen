@@ -11,9 +11,9 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [PATCH] fbdev: core: Fix pointer desynchronization in fb_io_read() | <u>lore.kernel.org</u> |
+| [PATCH] fbdev: core: Fix pointer desynchronization in fb_io_read() | <u>[mail](../email_lore/378_%5BPATCH%5D%20fbdev_%20core_%20Fix%20pointer%20desynchronization%20in%20fb_io_read%28%29.md)</u> |
 | AI-Result                                                    | <u>lore.kernel.org</u> |
-| Helge Deller:Re: [PATCH] fbdev: core: Fix pointer desynchronization in fb_io_read() | <u>lore.kernel.org</u> |
-| Mingyu Wang: Re: [PATCH] fbdev: core: Fix pointer desynchronization in fb_io_read() | <u>lore.kernel.org</u> |
-| fbdev: core: Fix pointer desynchronization in fb_io_read()   | <u>lore.kernel.org</u> |
+| Helge Deller:Re: [PATCH] fbdev: core: Fix pointer desynchronization in fb_io_read() | <u>[mail](../email_lore/400_Re_%20%5BPATCH%5D%20fbdev_%20core_%20Fix%20pointer%20desynchronization%20in%20fb_io_read%28%29.md)</u> |
+| Author A: Re: [PATCH] fbdev: core: Fix pointer desynchronization in fb_io_read() | <u>[mail](../email_lore/400_Re_%20%5BPATCH%5D%20fbdev_%20core_%20Fix%20pointer%20desynchronization%20in%20fb_io_read%28%29.md)</u> |
+| fbdev: core: Fix pointer desynchronization in fb_io_read() | <u>[mail](../email_lore/378_%5BPATCH%5D%20fbdev_%20core_%20Fix%20pointer%20desynchronization%20in%20fb_io_read%28%29.md)</u> |
 

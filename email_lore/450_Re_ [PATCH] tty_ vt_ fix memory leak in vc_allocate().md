@@ -1,0 +1,45 @@
+# Re: [PATCH] tty: vt: fix memory leak in vc_allocate()
+
+| Field | Value |
+| :--- | :--- |
+| From | Greg KH <gregkh@linuxfoundation.org> |
+| To | Author A <author-a@example.com> |
+| Cc | jirislaby@kernel.org, linux-kernel@vger.kernel.org, linux-serial@vger.kernel.org, stable@vger.kernel.org |
+| Date | Thu, 30 Jul 2026 16:25:51 +0200 |
+| Message-ID | `2026073028-icing-dallying-9229@gregkh` |
+| List-ID | <stable.vger.kernel.org> |
+| Source | `[ARCHIVE] https://lore.kernel.org/all/2026073028-icing-dallying-9229@gregkh/` |
+
+---
+
+On Thu, Jul 23, 2026 at 06:45:23PM +0800, Author A wrote:
+> 
+> > How was this tested?  And how can this ever fail given this happens at
+> > early boot time, right?
+> > 
+> 
+> Hi Greg,
+> 
+> Thank you for the review.
+> 
+> Regarding how it can fail:
+> While vc_allocate() is indeed heavily used during early boot, it is also
+> reachable at runtime when dynamically allocating new virtual consoles (e.g.,
+> via the VT_ACTIVATE ioctl). The failure we observed happened at runtime
+> because our fuzzing environment enables kernel fault injection (failslab).
+> The fuzzer intentionally forced the kzalloc() for the screen buffer to fail,
+> which exposed this specific error-handling path.
+> 
+> Regarding testing:
+> This issue was discovered using DevGen (our automated virtual device
+> modeling fuzzer on QEMU). While we do not have a standalone C reproducer to
+> run a dynamic runtime test, the fix was derived directly from dynamic
+> execution evidence: we cross-analyzed the precise kmemleak backtraces and
+> the fuzzer's execution logs.
+
+You need to document the tools you use as per our documentation.  Please
+do so when you resend this.
+
+thanks,
+
+gre gk-h

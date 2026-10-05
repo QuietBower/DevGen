@@ -1,6 +1,6 @@
 /*
  * QEMU PCI device model for VIA 82xx Modem (snd-via82xx-modem)
- * Auto-generated from driver: /home/eely/linux-7.1/sound/pci/via82xx_modem.c
+ * Auto-generated from driver: /home/user/linux-7.1/sound/pci/via82xx_modem.c
  * Phase 2: Functional behavior implementation.
  */
 

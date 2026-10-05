@@ -11,11 +11,11 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [PATCH] fs/fcntl: fix SOFTIRQ-unsafe lock order in send_sigio() | <u>lore.kernel.org</u> |
-| Re: [PATCH] fs/fcntl: fix SOFTIRQ-unsafe lock order in send_sigio() | <u>lore.kernel.org</u> |
-| [PATCH v2] fs/fcntl: fix SOFTIRQ-unsafe lock order in fasync signaling | <u>lore.kernel.org</u> |
-| Applied to the vfs-7.2.misc branch of the vfs/vfs.git tree   | <u>lore.kernel.org</u> |
-| Please cherry-pick commit 00633c468382 to stable             | <u>lore.kernel.org</u> |
-| Patch "fs/fcntl: fix SOFTIRQ-unsafe lock order in fasync signaling" has been added to the 5.10-stable tree | <u>lore.kernel.org</u> |
-| Patch "fs/fcntl: fix SOFTIRQ-unsafe lock order in fasync signaling" has been added to the 7.1-stable tree | <u>lore.kernel.org</u> |
+| [PATCH] fs/fcntl: fix SOFTIRQ-unsafe lock order in send_sigio() | <u>[mail](../email_lore/158_Re_%20%5BPATCH%5D%20fs_fcntl_%20fix%20SOFTIRQ-unsafe%20lock%20order%20in%20send_sigio%28%29.md)</u> |
+| Re: [PATCH] fs/fcntl: fix SOFTIRQ-unsafe lock order in send_sigio() | <u>[mail](../email_lore/158_Re_%20%5BPATCH%5D%20fs_fcntl_%20fix%20SOFTIRQ-unsafe%20lock%20order%20in%20send_sigio%28%29.md)</u> |
+| [PATCH v2] fs/fcntl: fix SOFTIRQ-unsafe lock order in fasync signaling | <u>[mail](../email_lore/161_%5BPATCH%20v2%5D%20fs_fcntl_%20fix%20SOFTIRQ-unsafe%20lock%20order%20in%20fasync%20signaling.md)</u> |
+| Applied to the vfs-7.2.misc branch of the vfs/vfs.git tree | <u>[mail](../email_lore/529_Re_%20%5BPATCH%20v2%5D%20fs_fcntl_%20fix%20SOFTIRQ-unsafe%20lock%20order%20in%20fasync%20signa.md)</u> |
+| Please cherry-pick commit 00633c468382 to stable | <u>[mail](../email_lore/230_Please%20cherry-pick%20commit%2000633c468382%20to%20stable.md)</u> |
+| Patch "fs/fcntl: fix SOFTIRQ-unsafe lock order in fasync signaling" has been added to the 5.10-stable tree | <u>[mail](../email_lore/521_Patch%20_fs_fcntl_%20fix%20SOFTIRQ-unsafe%20lock%20order%20in%20fasync%20signaling_%20ha.md)</u> |
+| Patch "fs/fcntl: fix SOFTIRQ-unsafe lock order in fasync signaling" has been added to the 7.1-stable tree | <u>[mail](../email_lore/522_Patch%20_fs_fcntl_%20fix%20SOFTIRQ-unsafe%20lock%20order%20in%20fasync%20signaling_%20ha.md)</u> |
 

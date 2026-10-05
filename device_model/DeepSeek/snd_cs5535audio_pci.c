@@ -1,6 +1,6 @@
 /*
  * QEMU CS5535 Audio device model (Phase 2: Implementation)
- * Based on Linux driver /home/eely/linux-7.1/sound/pci/cs5535audio/cs5535audio.c
+ * Based on Linux driver /home/user/linux-7.1/sound/pci/cs5535audio/cs5535audio.c
  */
 
 #include "qemu/osdep.h"
