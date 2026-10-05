@@ -1,0 +1,422 @@
+BUG: memory leak
+unreferenced object 0xffff88810503f680 (size 32):
+  comm "systemd-journal", pid 18251, jiffies 4295011613
+  hex dump (first 32 bytes):
+    10 0c 61 12 81 88 ff ff a0 a6 ae 81 ff ff ff ff  ..a.............
+    00 e0 e3 04 81 88 ff ff 38 00 00 00 00 00 00 00  ........8.......
+  backtrace (crc 57fe8c):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    __kmalloc_cache_noprof+0x421/0x6f0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5766
+    kmalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:957 [inline]
+    slab_free_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:2495 [inline]
+    slab_free home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6642 [inline]
+    kmem_cache_free+0x13c/0x620 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6752
+    file_free home/wmy/Fuzzer/third_tool/linux-6.18/fs/file_table.c:79 [inline]
+    __fput_deferred+0x3d7/0x480 home/wmy/Fuzzer/third_tool/linux-6.18/fs/file_table.c:523
+    fput_close+0x114/0x240 home/wmy/Fuzzer/third_tool/linux-6.18/fs/file_table.c:585
+    path_openat+0x15c9/0x2880 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4143
+    do_filp_open+0x1fc/0x460 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4161
+    do_sys_openat2+0x109/0x1c0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1437
+    do_sys_open home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1452 [inline]
+    __do_sys_openat home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1468 [inline]
+    __se_sys_openat home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1463 [inline]
+    __x64_sys_openat+0x144/0x200 home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1463
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff8881186dcdc0 (size 32):
+  comm "softirq", pid 0, jiffies 4295011616
+  hex dump (first 32 bytes):
+    c8 d8 73 01 81 88 ff ff a0 a6 ae 81 ff ff ff ff  ..s.............
+    00 15 3f 05 81 88 ff ff 5f 74 00 73 30 00 00 00  ..?....._t.s0...
+  backtrace (crc 2a87d4db):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    __kmalloc_cache_noprof+0x421/0x6f0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5766
+    kmalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:957 [inline]
+    slab_free_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:2495 [inline]
+    slab_free home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6642 [inline]
+    kmem_cache_free+0x13c/0x620 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6752
+    mempool_free+0x107/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mempool.c:596
+    bio_put_percpu_cache home/wmy/Fuzzer/third_tool/linux-6.18/block/bio.c:805 [inline]
+    bio_put+0x385/0x650 home/wmy/Fuzzer/third_tool/linux-6.18/block/bio.c:824
+    bio_endio+0x5b3/0x6c0 home/wmy/Fuzzer/third_tool/linux-6.18/block/bio.c:1672
+    blk_update_request+0x2cd/0x1050 home/wmy/Fuzzer/third_tool/linux-6.18/block/blk-mq.c:998
+    scsi_end_request+0x7f/0xa00 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/scsi/scsi_lib.c:637
+    scsi_io_completion+0xbe/0x1650 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/scsi/scsi_lib.c:1078
+    scsi_complete+0x119/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/scsi/scsi_lib.c:1547
+    blk_complete_reqs+0xb7/0xf0 home/wmy/Fuzzer/third_tool/linux-6.18/block/blk-mq.c:1235
+    handle_softirqs+0x1bb/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:622
+    __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+    invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+    __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+    irq_exit_rcu+0xe/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:739
+    common_interrupt+0xbd/0xd0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/irq.c:318
+    asm_common_interrupt+0x26/0x40 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:688
+
+BUG: memory leak
+unreferenced object 0xffff8881186dc300 (size 32):
+  comm "softirq", pid 0, jiffies 4295011616
+  hex dump (first 32 bytes):
+    40 1c 87 0c 80 88 ff ff a0 a6 ae 81 ff ff ff ff  @...............
+    00 14 3f 05 81 88 ff ff 10 00 00 00 00 00 00 00  ..?.............
+  backtrace (crc c422b15d):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    __kmalloc_cache_noprof+0x421/0x6f0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5766
+    kmalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:957 [inline]
+    slab_free_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:2495 [inline]
+    slab_free home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6642 [inline]
+    kmem_cache_free+0x13c/0x620 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6752
+    mempool_free+0x107/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mempool.c:596
+    bio_put_percpu_cache home/wmy/Fuzzer/third_tool/linux-6.18/block/bio.c:805 [inline]
+    bio_put+0x385/0x650 home/wmy/Fuzzer/third_tool/linux-6.18/block/bio.c:824
+    bio_endio+0x5b3/0x6c0 home/wmy/Fuzzer/third_tool/linux-6.18/block/bio.c:1672
+    blk_update_request+0x2cd/0x1050 home/wmy/Fuzzer/third_tool/linux-6.18/block/blk-mq.c:998
+    scsi_end_request+0x7f/0xa00 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/scsi/scsi_lib.c:637
+    scsi_io_completion+0xbe/0x1650 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/scsi/scsi_lib.c:1078
+    scsi_complete+0x119/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/scsi/scsi_lib.c:1547
+    blk_complete_reqs+0xb7/0xf0 home/wmy/Fuzzer/third_tool/linux-6.18/block/blk-mq.c:1235
+    handle_softirqs+0x1bb/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:622
+    __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+    invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+    __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+    irq_exit_rcu+0xe/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:739
+    common_interrupt+0xbd/0xd0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/irq.c:318
+    asm_common_interrupt+0x26/0x40 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:688
+
+BUG: memory leak
+unreferenced object 0xffff8881186dc680 (size 32):
+  comm "softirq", pid 0, jiffies 4295011616
+  hex dump (first 32 bytes):
+    68 dd 50 01 81 88 ff ff a0 a6 ae 81 ff ff ff ff  h.P.............
+    00 13 3f 05 81 88 ff ff 10 00 00 00 00 00 00 00  ..?.............
+  backtrace (crc eec6fafd):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    __kmalloc_cache_noprof+0x421/0x6f0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5766
+    kmalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:957 [inline]
+    slab_free_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:2495 [inline]
+    slab_free home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6642 [inline]
+    kmem_cache_free+0x13c/0x620 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6752
+    mempool_free+0x107/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mempool.c:596
+    bio_put_percpu_cache home/wmy/Fuzzer/third_tool/linux-6.18/block/bio.c:805 [inline]
+    bio_put+0x385/0x650 home/wmy/Fuzzer/third_tool/linux-6.18/block/bio.c:824
+    bio_endio+0x5b3/0x6c0 home/wmy/Fuzzer/third_tool/linux-6.18/block/bio.c:1672
+    blk_update_request+0x2cd/0x1050 home/wmy/Fuzzer/third_tool/linux-6.18/block/blk-mq.c:998
+    scsi_end_request+0x7f/0xa00 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/scsi/scsi_lib.c:637
+    scsi_io_completion+0xbe/0x1650 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/scsi/scsi_lib.c:1078
+    scsi_complete+0x119/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/scsi/scsi_lib.c:1547
+    blk_complete_reqs+0xb7/0xf0 home/wmy/Fuzzer/third_tool/linux-6.18/block/blk-mq.c:1235
+    handle_softirqs+0x1bb/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:622
+    __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+    invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+    __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+    irq_exit_rcu+0xe/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:739
+    common_interrupt+0xbd/0xd0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/irq.c:318
+    asm_common_interrupt+0x26/0x40 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:688
+
+BUG: memory leak
+unreferenced object 0xffff8881186dcd40 (size 32):
+  comm "softirq", pid 0, jiffies 4295011617
+  hex dump (first 32 bytes):
+    88 cf 50 01 81 88 ff ff a0 a6 ae 81 ff ff ff ff  ..P.............
+    00 12 3f 05 81 88 ff ff 10 00 00 00 00 00 00 00  ..?.............
+  backtrace (crc 1906c99):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    __kmalloc_cache_noprof+0x421/0x6f0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5766
+    kmalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:957 [inline]
+    slab_free_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:2495 [inline]
+    slab_free home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6642 [inline]
+    kmem_cache_free+0x13c/0x620 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6752
+    mempool_free+0x107/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mempool.c:596
+    bio_put_percpu_cache home/wmy/Fuzzer/third_tool/linux-6.18/block/bio.c:805 [inline]
+    bio_put+0x385/0x650 home/wmy/Fuzzer/third_tool/linux-6.18/block/bio.c:824
+    bio_endio+0x5b3/0x6c0 home/wmy/Fuzzer/third_tool/linux-6.18/block/bio.c:1672
+    blk_update_request+0x2cd/0x1050 home/wmy/Fuzzer/third_tool/linux-6.18/block/blk-mq.c:998
+    scsi_end_request+0x7f/0xa00 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/scsi/scsi_lib.c:637
+    scsi_io_completion+0xbe/0x1650 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/scsi/scsi_lib.c:1078
+    scsi_complete+0x119/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/scsi/scsi_lib.c:1547
+    blk_complete_reqs+0xb7/0xf0 home/wmy/Fuzzer/third_tool/linux-6.18/block/blk-mq.c:1235
+    handle_softirqs+0x1bb/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:622
+    __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+    invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+    __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+    irq_exit_rcu+0xe/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:739
+    common_interrupt+0xbd/0xd0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/irq.c:318
+    asm_common_interrupt+0x26/0x40 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:688
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    do_filp_open+0x1fc/0x460
+    do_sys_openat2+0x109/0x1c0
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff8881186dcdc0 (size 32):
+  comm "softirq", pid 0, jiffies 4295011616
+  hex dump (first 32 bytes):
+    c8 d8 73 01 81 88 ff ff a0 a6 ae 81 ff ff ff ff  ..s.............
+    00 15 3f 05 81 88 ff ff 5f 74 00 73 30 00 00 00  ..?....._t.s0...
+  backtrace (crc 2a87d4db):
+    __kmalloc_cache_noprof+0x421/0x6f0
+    kmem_cache_free+0x13c/0x620
+    mempool_free+0x107/0x760
+    bio_put+0x385/0x650
+    bio_endio+0x5b3/0x6c0
+    blk_update_request+0x2cd/0x1050
+    scsi_end_request+0x7f/0xa00
+    scsi_io_completion+0xbe/0x1650
+    scsi_complete+0x119/0x390
+    blk_complete_reqs+0xb7/0xf0
+    handle_softirqs+0x1bb/0x760
+    __irq_exit_rcu+0xd0/0x100
+    irq_exit_rcu+0xe/0x20
+    common_interrupt+0xbd/0xd0
+    asm_common_interrupt+0x26/0x40
+
+BUG: memory leak
+unreferenced object 0xffff8881186dc300 (size 32):
+  comm "softirq", pid 0, jiffies 4295011616
+  hex dump (first 32 bytes):
+    40 1c 87 0c 80 88 ff ff a0 a6 ae 81 ff ff ff ff  @...............
+    00 14 3f 05 81 88 ff ff 10 00 00 00 00 00 00 00  ..?.............
+  backtrace (crc c422b15d):
+    __kmalloc_cache_noprof+0x421/0x6f0
+    kmem_cache_free+0x13c/0x620
+    mempool_free+0x107/0x760
+    bio_put+0x385/0x650
+    bio_endio+0x5b3/0x6c0
+    blk_update_request+0x2cd/0x1050
+    scsi_end_request+0x7f/0xa00
+    scsi_io_completion+0xbe/0x1650
+    scsi_complete+0x119/0x390
+    blk_complete_reqs+0xb7/0xf0
+    handle_softirqs+0x1bb/0x760
+    __irq_exit_rcu+0xd0/0x100
+    irq_exit_rcu+0xe/0x20
+    common_interrupt+0xbd/0xd0
+    asm_common_interrupt+0x26/0x40
+
+BUG: memory leak
+unreferenced object 0xffff8881186dc680 (size 32):
+  comm "softirq", pid 0, jiffies 4295011616
+  hex dump (first 32 bytes):
+    68 dd 50 01 81 88 ff ff a0 a6 ae 81 ff ff ff ff  h.P.............
+    00 13 3f 05 81 88 ff ff 10 00 00 00 00 00 00 00  ..?.............
+  backtrace (crc eec6fafd):
+    __kmalloc_cache_noprof+0x421/0x6f0
+    kmem_cache_free+0x13c/0x620
+    mempool_free+0x107/0x760
+    bio_put+0x385/0x650
+    bio_endio+0x5b3/0x6c0
+    blk_update_request+0x2cd/0x1050
+    scsi_end_request+0x7f/0xa00
+    scsi_io_completion+0xbe/0x1650
+    scsi_complete+0x119/0x390
+    blk_complete_reqs+0xb7/0xf0
+    handle_softirqs+0x1bb/0x760
+    __irq_exit_rcu+0xd0/0x100
+    irq_exit_rcu+0xe/0x20
+    common_interrupt+0xbd/0xd0
+    asm_common_interrupt+0x26/0x40
+
+BUG: memory leak
+unreferenced object 0xffff8881186dcd40 (size 32):
+  comm "softirq", pid 0, jiffies 4295011617
+  hex dump (first 32 bytes):
+    88 cf 50 01 81 88 ff ff a0 a6 ae 81 ff ff ff ff  ..P.............
+    00 12 3f 05 81 88 ff ff 10 00 00 00 00 00 00 00  ..?.............
+  backtrace (crc 1906c99):
+    __kmalloc_cache_noprof+0x421/0x6f0
+    kmem_cache_free+0x13c/0x620
+    mempool_free+0x107/0x760
+    bio_put+0x385/0x650
+    bio_endio+0x5b3/0x6c0
+    blk_update_request+0x2cd/0x1050
+    scsi_end_request+0x7f/0xa00
+    scsi_io_completion+0xbe/0x1650
+    scsi_complete+0x119/0x390
+    blk_complete_reqs+0xb7/0xf0
+    handle_softirqs+0x1bb/0x760
+    __irq_exit_rcu+0xd0/0x100
+    irq_exit_rcu+0xe/0x20
+    common_interrupt+0xbd/0xd0
+    asm_common_interrupt+0x26/0x40
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    handle_softirqs+0x1bb/0x760
+    __irq_exit_rcu+0xd0/0x100
+    irq_exit_rcu+0xe/0x20
+    common_interrupt+0xbd/0xd0
+    asm_common_interrupt+0x26/0x40
+BUG: memory leak
+unreferenced object 0xffff8881186dc300 (size 32):
+  comm "softirq", pid 0, jiffies 4295011616
+  hex dump (first 32 bytes):
+    40 1c 87 0c 80 88 ff ff a0 a6 ae 81 ff ff ff ff  @...............
+    00 14 3f 05 81 88 ff ff 10 00 00 00 00 00 00 00  ..?.............
+  backtrace (crc c422b15d):
+    __kmalloc_cache_noprof+0x421/0x6f0
+    kmem_cache_free+0x13c/0x620
+    mempool_free+0x107/0x760
+    bio_put+0x385/0x650
+    bio_endio+0x5b3/0x6c0
+    blk_update_request+0x2cd/0x1050
+    scsi_end_request+0x7f/0xa00
+    scsi_io_completion+0xbe/0x1650
+    scsi_complete+0x119/0x390
+    blk_complete_reqs+0xb7/0xf0
+    handle_softirqs+0x1bb/0x760
+    __irq_exit_rcu+0xd0/0x100
+    irq_exit_rcu+0xe/0x20
+    common_interrupt+0xbd/0xd0
+    asm_common_interrupt+0x26/0x40
+
+BUG: memory leak
+unreferenced object 0xffff8881186dc680 (size 32):
+  comm "softirq", pid 0, jiffies 4295011616
+  hex dump (first 32 bytes):
+    68 dd 50 01 81 88 ff ff a0 a6 ae 81 ff ff ff ff  h.P.............
+    00 13 3f 05 81 88 ff ff 10 00 00 00 00 00 00 00  ..?.............
+  backtrace (crc eec6fafd):
+    __kmalloc_cache_noprof+0x421/0x6f0
+    kmem_cache_free+0x13c/0x620
+    mempool_free+0x107/0x760
+    bio_put+0x385/0x650
+    bio_endio+0x5b3/0x6c0
+    blk_update_request+0x2cd/0x1050
+    scsi_end_request+0x7f/0xa00
+    scsi_io_completion+0xbe/0x1650
+    scsi_complete+0x119/0x390
+    blk_complete_reqs+0xb7/0xf0
+    handle_softirqs+0x1bb/0x760
+    __irq_exit_rcu+0xd0/0x100
+    irq_exit_rcu+0xe/0x20
+    common_interrupt+0xbd/0xd0
+    asm_common_interrupt+0x26/0x40
+
+BUG: memory leak
+unreferenced object 0xffff8881186dcd40 (size 32):
+  comm "softirq", pid 0, jiffies 4295011617
+  hex dump (first 32 bytes):
+    88 cf 50 01 81 88 ff ff a0 a6 ae 81 ff ff ff ff  ..P.............
+    00 12 3f 05 81 88 ff ff 10 00 00 00 00 00 00 00  ..?.............
+  backtrace (crc 1906c99):
+    __kmalloc_cache_noprof+0x421/0x6f0
+    kmem_cache_free+0x13c/0x620
+    mempool_free+0x107/0x760
+    bio_put+0x385/0x650
+    bio_endio+0x5b3/0x6c0
+    blk_update_request+0x2cd/0x1050
+    scsi_end_request+0x7f/0xa00
+    scsi_io_completion+0xbe/0x1650
+    scsi_complete+0x119/0x390
+    blk_complete_reqs+0xb7/0xf0
+    handle_softirqs+0x1bb/0x760
+    __irq_exit_rcu+0xd0/0x100
+    irq_exit_rcu+0xe/0x20
+    common_interrupt+0xbd/0xd0
+    asm_common_interrupt+0x26/0x40
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    handle_softirqs+0x1bb/0x760
+    __irq_exit_rcu+0xd0/0x100
+    irq_exit_rcu+0xe/0x20
+    common_interrupt+0xbd/0xd0
+    asm_common_interrupt+0x26/0x40
+BUG: memory leak
+unreferenced object 0xffff8881186dc680 (size 32):
+  comm "softirq", pid 0, jiffies 4295011616
+  hex dump (first 32 bytes):
+    68 dd 50 01 81 88 ff ff a0 a6 ae 81 ff ff ff ff  h.P.............
+    00 13 3f 05 81 88 ff ff 10 00 00 00 00 00 00 00  ..?.............
+  backtrace (crc eec6fafd):
+    __kmalloc_cache_noprof+0x421/0x6f0
+    kmem_cache_free+0x13c/0x620
+    mempool_free+0x107/0x760
+    bio_put+0x385/0x650
+    bio_endio+0x5b3/0x6c0
+    blk_update_request+0x2cd/0x1050
+    scsi_end_request+0x7f/0xa00
+    scsi_io_completion+0xbe/0x1650
+    scsi_complete+0x119/0x390
+    blk_complete_reqs+0xb7/0xf0
+    handle_softirqs+0x1bb/0x760
+    __irq_exit_rcu+0xd0/0x100
+    irq_exit_rcu+0xe/0x20
+    common_interrupt+0xbd/0xd0
+    asm_common_interrupt+0x26/0x40
+
+BUG: memory leak
+unreferenced object 0xffff8881186dcd40 (size 32):
+  comm "softirq", pid 0, jiffies 4295011617
+  hex dump (first 32 bytes):
+    88 cf 50 01 81 88 ff ff a0 a6 ae 81 ff ff ff ff  ..P.............
+    00 12 3f 05 81 88 ff ff 10 00 00 00 00 00 00 00  ..?.............
+  backtrace (crc 1906c99):
+    __kmalloc_cache_noprof+0x421/0x6f0
+    kmem_cache_free+0x13c/0x620
+    mempool_free+0x107/0x760
+    bio_put+0x385/0x650
+    bio_endio+0x5b3/0x6c0
+    blk_update_request+0x2cd/0x1050
+    scsi_end_request+0x7f/0xa00
+    scsi_io_completion+0xbe/0x1650
+    scsi_complete+0x119/0x390
+    blk_complete_reqs+0xb7/0xf0
+    handle_softirqs+0x1bb/0x760
+    __irq_exit_rcu+0xd0/0x100
+    irq_exit_rcu+0xe/0x20
+    common_interrupt+0xbd/0xd0
+    asm_common_interrupt+0x26/0x40
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    handle_softirqs+0x1bb/0x760
+    __irq_exit_rcu+0xd0/0x100
+    irq_exit_rcu+0xe/0x20
+    common_interrupt+0xbd/0xd0
+    asm_common_interrupt+0x26/0x40
+BUG: memory leak
+unreferenced object 0xffff8881186dcd40 (size 32):
+  comm "softirq", pid 0, jiffies 4295011617
+  hex dump (first 32 bytes):
+    88 cf 50 01 81 88 ff ff a0 a6 ae 81 ff ff ff ff  ..P.............
+    00 12 3f 05 81 88 ff ff 10 00 00 00 00 00 00 00  ..?.............
+  backtrace (crc 1906c99):
+    __kmalloc_cache_noprof+0x421/0x6f0
+    kmem_cache_free+0x13c/0x620
+    mempool_free+0x107/0x760
+    bio_put+0x385/0x650
+    bio_endio+0x5b3/0x6c0
+    blk_update_request+0x2cd/0x1050
+    scsi_end_request+0x7f/0xa00
+    scsi_io_completion+0xbe/0x1650
+    scsi_complete+0x119/0x390
+    blk_complete_reqs+0xb7/0xf0
+    handle_softirqs+0x1bb/0x760
+    __irq_exit_rcu+0xd0/0x100
+    irq_exit_rcu+0xe/0x20
+    common_interrupt+0xbd/0xd0
+    asm_common_interrupt+0x26/0x40
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

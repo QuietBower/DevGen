@@ -1,0 +1,5260 @@
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+wdt_pci: status 114
+rcu: 	1-...!: (1 GPs behind) idle=f6dc/0/0x3 softirq=69182/69183 fqs=1539
+wdt_pci: Reset in 5ms
+rcu: 	(detected by 3, t=110958 jiffies, g=58509, q=13768 ncpus=4)
+wdt_pci: status 114
+Sending NMI from CPU 3 to CPUs 1:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 0 Comm: swapper/1 Not tainted 6.18.0 #9 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:io_serial_out+0x72/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:407
+Code: 0f b6 8d f9 00 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 d3 e3 80 3c 02 00 75 1a 66 03 5d 40 44 89 e0 89 da ee <5b> 5d 41 5c e9 c5 86 11 03 e8 80 5a 00 ff eb c2 e8 09 5b 00 ff eb
+RSP: 0018:ffff88811aa888f8 EFLAGS: 00000002
+RAX: 0000000000000032 RBX: 00000000000003f8 RCX: 0000000000000000
+RDX: 00000000000003f8 RSI: ffffffff82b5e23a RDI: ffffffff8a6d4580
+RBP: ffffffff8a6d4540 R08: 0000000000000000 R09: ffffed10207d6046
+R10: 0000000000000032 R11: 0000000000000001 R12: 0000000000000032
+R13: 0000000000000010 R14: ffffffff8a6d4540 R15: ffffffff82b5e220
+FS:  0000000000000000(0000) GS:ffff8881912bf000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007efd329dd430 CR3: 0000000106066000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ serial_port_out home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/serial_core.h:811 [inline]
+ serial8250_console_putchar home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:3192 [inline]
+ serial8250_console_fifo_write home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:3264 [inline]
+ serial8250_console_write+0xfe2/0x1850 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:3342
+ console_emit_next_record home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3111 [inline]
+ console_flush_all+0x73a/0xb60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3199
+ __console_flush_and_unlock home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3258 [inline]
+ console_unlock+0xc7/0x200 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3298
+ vprintk_emit+0x401/0x630 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2423
+ _printk+0xc3/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2448
+ wdtpci_interrupt+0x42/0x1a0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/watchdog/wdt_pci.c:309 [wdt_pci]
+ __handle_irq_event_percpu+0x222/0x870 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/irq/handle.c:203
+ handle_irq_event_percpu home/wmy/Fuzzer/third_tool/linux-6.18/kernel/irq/handle.c:240 [inline]
+ handle_irq_event+0xb0/0x1f0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/irq/handle.c:257
+ handle_fasteoi_irq+0x32a/0xb70 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/irq/chip.c:764
+ generic_handle_irq_desc home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/irqdesc.h:173 [inline]
+ handle_irq home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/irq.c:254 [inline]
+ call_irq_handler home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/irq.c:278 [inline]
+ __common_interrupt+0xa1/0x240 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/irq.c:325
+ common_interrupt+0x6e/0xd0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/irq.c:318
+ asm_common_interrupt+0x26/0x40 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:688
+RIP: 0010:variable_ffs home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/bitops.h:312 [inline]
+RIP: 0010:handle_softirqs+0x179/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:610
+Code: c8 83 83 3c 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 ca e5 40 08 00 00 e8 5d d3 43 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 c0 00 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88811aa88f70 EFLAGS: 00000202
+RAX: 00000000000a564c RBX: ffff888100c13500 RCX: ffffffff8180fce6
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff813d2a73
+RBP: ffff888100c9fdb8 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff87dbea57 R11: 0000000000000001 R12: 0000000000000001
+R13: 0000000000000000 R14: 0000000000000002 R15: 0000000000000000
+ __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+ invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+ irq_exit_rcu+0xe/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:739
+ instr_sysvec_apic_timer_interrupt home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052 [inline]
+ sysvec_apic_timer_interrupt+0x70/0x80 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:697
+RIP: 0010:pv_native_safe_halt+0x1e/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/paravirt.c:82
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 89 68 20 00 0f 1f 44 00 00 fb f4 <e9> fd 9f 02 00 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100c9fe60 EFLAGS: 00000206
+RAX: 00000000000a5647 RBX: 0000000000000001 RCX: ffffffff85c4de44
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814e1933
+RBP: dffffc0000000000 R08: 0000000000000001 R09: ffffed102355651a
+R10: ffff88811aab28d3 R11: 0000000000000001 R12: ffffffff87dbea50
+R13: 1ffff11020193fd2 R14: 0000000000000000 R15: 0000000000000000
+ arch_safe_halt home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/paravirt.h:107 [inline]
+ default_idle+0xe/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:767
+ default_idle_call+0x6c/0xb0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/idle.c:122
+ cpuidle_idle_call home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/idle.c:190 [inline]
+ do_idle+0x313/0x3c0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/idle.c:330
+ cpu_startup_entry+0x54/0x60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/idle.c:428
+ start_secondary+0x1c2/0x220 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/smpboot.c:315
+ common_startup_64+0x12c/0x138
+ </TASK>
+rcu: rcu_preempt kthread timer wakeup didn't happen for 103798 jiffies! g58509 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+rcu: 	Possible timer handling issue on cpu=3 timer-softirq=9849
+rcu: rcu_preempt kthread starved for 103801 jiffies! g58509 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402 ->cpu=3
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+wdt_pci: Reset in 5ms
+task:rcu_preempt     state:I
+wdt_pci: status 114
+ stack:29480 pid:15    tgid:15    ppid:2      task_flags:0x208040 flags:0x00080000
+wdt_pci: Reset in 5ms
+Call Trace:
+wdt_pci: status 114
+ <TASK>
+ context_switch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:5325 [inline]
+ __schedule+0xebb/0x3550 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:6929
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+ __schedule_loop home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7011 [inline]
+ schedule+0xe9/0x3a0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7026
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+ schedule_timeout+0x118/0x280 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/sleep_timeout.c:99
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+ rcu_gp_fqs_loop+0x1ab/0xa90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2083
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+ rcu_gp_kthread+0x2a4/0x3b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2285
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+ kthread+0x3cd/0x740 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+ ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+wdt_pci: Reset in 5ms
+ </TASK>
+wdt_pci: status 114
+rcu: Stack dump where RCU GP kthread last ran:
+wdt_pci: Reset in 5ms
+CPU: 3 UID: 0 PID: 0 Comm: swapper/3 Not tainted 6.18.0 #9 PREEMPT(voluntary) 
+wdt_pci: status 114
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+wdt_pci: Reset in 5ms
+RIP: 0010:variable_ffs home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/bitops.h:312 [inline]
+RIP: 0010:handle_softirqs+0x179/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:610
+wdt_pci: status 114
+Code: c8 83 83 3c 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 ca e5 40 08 00 00 e8 5d d3 43 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 c0 00 87 41 0f bc de 83 c3 01 0f 85 94
+wdt_pci: Reset in 5ms
+RSP: 0018:ffff88811ab88f70 EFLAGS: 00000206
+wdt_pci: status 114
+
+RAX: 000000000017df44 RBX: ffff888100ca8000 RCX: ffffffff8180fce6
+wdt_pci: Reset in 5ms
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff813d2a73
+wdt_pci: status 114
+RBP: ffff888100cb7db8 R08: 0000000000000001 R09: 0000000000000001
+wdt_pci: Reset in 5ms
+R10: ffffffff87dbea57 R11: 0000000000000000 R12: 0000000000000000
+wdt_pci: status 114
+R13: 0000000000000001 R14: 0000000000000010 R15: 0000000000000000
+wdt_pci: Reset in 5ms
+FS:  0000000000000000(0000) GS:ffff8881913bf000(0000) knlGS:0000000000000000
+wdt_pci: status 114
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+wdt_pci: Reset in 5ms
+CR2: 00007efd31b9bf80 CR3: 0000000106066000 CR4: 00000000000006f0
+wdt_pci: status 114
+Call Trace:
+wdt_pci: Reset in 5ms
+ <IRQ>
+wdt_pci: status 114
+ __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+ invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+ irq_exit_rcu+0xe/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:739
+wdt_pci: Reset in 5ms
+ common_interrupt+0xbd/0xd0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/irq.c:318
+wdt_pci: status 114
+ </IRQ>
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+ <TASK>
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+ asm_common_interrupt+0x26/0x40 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:688
+wdt_pci: Reset in 5ms
+RIP: 0010:pv_native_safe_halt+0x1e/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/paravirt.c:82
+wdt_pci: status 114
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 89 68 20 00 0f 1f 44 00 00 fb f4 <e9> fd 9f 02 00 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+wdt_pci: Reset in 5ms
+RSP: 0018:ffff888100cb7e60 EFLAGS: 00000206
+wdt_pci: status 114
+
+wdt_pci: Reset in 5ms
+RAX: 000000000017df41 RBX: 0000000000000003 RCX: ffffffff85c4de44
+wdt_pci: status 114
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814e1933
+wdt_pci: Reset in 5ms
+RBP: dffffc0000000000 R08: 0000000000000001 R09: ffffed102357651a
+wdt_pci: status 114
+R10: ffff88811abb28d3 R11: 0000000000000001 R12: ffffffff87dbea50
+wdt_pci: Reset in 5ms
+R13: 1ffff11020196fd2 R14: 0000000000000000 R15: 0000000000000000
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+ arch_safe_halt home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/paravirt.h:107 [inline]
+ default_idle+0xe/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:767
+wdt_pci: status 114
+ default_idle_call+0x6c/0xb0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/idle.c:122
+wdt_pci: Reset in 5ms
+ cpuidle_idle_call home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/idle.c:190 [inline]
+ do_idle+0x313/0x3c0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/idle.c:330
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+ cpu_startup_entry+0x54/0x60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/idle.c:428
+wdt_pci: Reset in 5ms
+ start_secondary+0x1c2/0x220 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/smpboot.c:315
+wdt_pci: status 114
+ common_startup_64+0x12c/0x138
+wdt_pci: Reset in 5ms
+ </TASK>
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+systemd[1]: systemd-journald.service: Main process exited, code=killed, status=6/ABRT
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+systemd[1]: systemd-journald.service: Failed with result 'watchdog'.
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+systemd[1]: systemd-journald.service: Consumed 16.485s CPU time.
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+systemd[1]: systemd-journald.service: Scheduled restart job, restart counter is at 1.
+wdt_pci: status 114
+kmemleak: 8 new suspected memory leaks (see /sys/kernel/debug/kmemleak)
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+kmemleak: 4697 new suspected memory leaks (see /sys/kernel/debug/kmemleak)
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+wdt_pci: Reset in 5ms
+wdt_pci: status 114
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+BUG: memory leak
+unreferenced object 0xffff888112b3ec00 (size 512):
+  comm "modprobe", pid 560, jiffies 4294739792
+  hex dump (first 32 bytes):
+    d8 31 c3 04 81 88 ff ff 40 af ae 81 ff ff ff ff  .1......@.......
+    40 cb 04 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc 72a8097c):
+    __kmalloc_noprof+0x49c/0x7b0
+    alloc_empty_sheaf+0x1f/0x30
+    __pcs_replace_empty_main+0x2f9/0x490
+    kmem_cache_alloc_noprof+0x5a9/0x6d0
+    mas_preallocate+0x86a/0xa90
+    __mmap_region+0xe00/0x2670
+    mmap_region+0x1be/0x3e0
+    do_mmap+0xa36/0x11d0
+    vm_mmap_pgoff+0x201/0x390
+    vm_mmap+0x9e/0xd0
+    elf_load+0x199/0x740
+    load_elf_binary+0x3396/0x4e90
+    bprm_execve+0x8d1/0x15a0
+    kernel_execve+0x304/0x3d0
+    call_usermodehelper_exec_async+0x264/0x4e0
+    ret_from_fork+0x3a1/0x490
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

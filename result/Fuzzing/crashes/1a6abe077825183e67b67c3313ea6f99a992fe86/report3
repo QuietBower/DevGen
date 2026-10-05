@@ -1,0 +1,31 @@
+RBP: 00007f853cddeb60 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000293 R12: 0000000000004c00
+R13: 00007f853e616038 R14: 00007f853e615fa0 R15: 00007f853cdbf000
+ </TASK>
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	(detected by 2, t=105006 jiffies, g=62725, q=316 ncpus=4)
+rcu: All QSes seen, last rcu_preempt kthread activity 104994 (4294945688-4294840694), jiffies_till_next_fqs=3, root ->qsmask 0x0
+rcu: rcu_preempt kthread timer wakeup didn't happen for 104991 jiffies! g62725 f0x2 RCU_GP_WAIT_FQS(5) ->state=0x200
+rcu: 	Possible timer handling issue on cpu=3 timer-softirq=7299
+rcu: rcu_preempt kthread starved for 104994 jiffies! g62725 f0x2 RCU_GP_WAIT_FQS(5) ->state=0x200 ->cpu=3
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:R stack:29480 pid:15    tgid:15    ppid:2      task_flags:0x208040 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:5325 [inline]
+ __schedule+0xebb/0x3550 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:6929
+ __schedule_loop home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7011 [inline]
+ schedule+0xe9/0x3a0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7026
+ schedule_timeout+0x118/0x280 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/sleep_timeout.c:99
+ rcu_gp_fqs_loop+0x1ab/0xa90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2083
+ rcu_gp_kthread+0x2a4/0x3b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2285
+ kthread+0x3cd/0x740 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+Sending NMI from CPU 2 to CPUs 3:
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

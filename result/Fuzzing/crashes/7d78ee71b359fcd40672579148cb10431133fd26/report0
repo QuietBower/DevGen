@@ -1,0 +1,172 @@
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	0-...!: (1 GPs behind) idle=6564/1/0x4000000000000000 softirq=285877/285878 fqs=10
+rcu: 	(detected by 2, t=10505 jiffies, g=358333, q=1919 ncpus=4)
+Sending NMI from CPU 2 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 89793 Comm: kworker/u17:4 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: events_unbound toggle_allocation_gate
+RIP: 0010:native_queued_spin_lock_slowpath+0x23e/0x9c0
+Code: 02 48 89 e8 83 e0 07 83 c0 01 38 d0 7c 08 84 d2 0f 85 1c 07 00 00 b8 01 00 00 00 66 89 45 00 e9 c2 fe ff ff 89 44 24 40 f3 90 <e9> 5e fe ff ff 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03
+RSP: 0000:ffffc900000074e0 EFLAGS: 00000002
+RAX: 0000000000000001 RBX: 0000000000000001 RCX: ffffffff8b43f32e
+RDX: ffffed1020d2c06b RSI: 0000000000000004 RDI: ffff888106960350
+RBP: ffff888106960350 R08: 0000000000000000 R09: ffffed1020d2c06a
+R10: ffff888106960353 R11: 0000000000000001 R12: 1ffff92000000e9e
+R13: 0000000000000003 R14: ffffed1020d2c06a R15: ffffc90000007520
+FS:  0000000000000000(0000) GS:ffff8880cf001000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe958a5cac0 CR3: 000000000df84000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ debug_spin_lock_before home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/spinlock_debug.c:87 [inline]
+ do_raw_spin_lock+0x20d/0x2b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/spinlock_debug.c:115
+ __raw_spin_lock_irqsave home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/spinlock_api_smp.h:110 [inline]
+ _raw_spin_lock_irqsave+0x45/0x60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/spinlock.c:162
+ drm_handle_vblank+0x125/0xc70
+ vkms_vblank_simulate+0xa8/0x390
+ __run_hrtimer home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/hrtimer.c:1779 [inline]
+ __hrtimer_run_queues+0x1f5/0xb30 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/hrtimer.c:1841
+ hrtimer_interrupt+0x39a/0x880 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/hrtimer.c:1912
+ instrument_atomic_read home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/instrumented.h:68 [inline]
+ _test_bit home/wmy/Fuzzer/third_tool/linux-6.18/include/asm-generic/bitops/instrumented-non-atomic.h:141 [inline]
+ cpumask_test_cpu home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/cpumask.h:646 [inline]
+ cpu_online home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/cpumask.h:1205 [inline]
+ __do_trace_local_timer_exit home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/trace/irq_vectors.h:40 [inline]
+ trace_local_timer_exit home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/trace/irq_vectors.h:40 [inline]
+ __sysvec_apic_timer_interrupt+0x10d/0x400 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1059
+ instr_sysvec_apic_timer_interrupt home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052 [inline]
+ sysvec_apic_timer_interrupt+0x54/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:697
+RIP: 0010:__preempt_count_dec_and_test home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/preempt.h:95 [inline]
+RIP: 0010:__raw_spin_unlock_irqrestore home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/spinlock_api_smp.h:152 [inline]
+RIP: 0010:_raw_spin_unlock_irqrestore+0x3c/0x70 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/spinlock.c:194
+Code: 74 24 10 e8 e6 e1 52 f6 48 89 ef e8 ee 32 53 f6 81 e3 00 02 00 00 75 29 9c 58 f6 c4 02 75 35 48 85 db 74 01 fb bf 01 00 00 00 <e8> ff 94 43 f6 65 8b 05 a8 06 3e 08 85 c0 74 0e 5b 5d e9 0d 4b 00
+RSP: 0000:ffffc90000007a28 EFLAGS: 00000206
+RAX: 0000000000000006 RBX: 0000000000000200 RCX: 0000000000000004
+RDX: 0000000000000000 RSI: 0000000000000102 RDI: 0000000000000001
+RBP: ffffffff9ab2a178 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff90650fd7 R11: 0000000000000001 R12: dffffc0000000000
+R13: ffff8880231b2d80 R14: 0000000000000000 R15: ffff8880231b3040
+ debug_check_no_obj_freed+0x2a6/0x520
+ free_to_pcs home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6163 [inline]
+ slab_free home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6647 [inline]
+ kmem_cache_free+0x40c/0x6b0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6752
+ skb_free_head+0x1b7/0x210 home/wmy/Fuzzer/third_tool/linux-6.18/net/core/skbuff.c:1062
+ skb_release_data+0x79d/0x9e0 home/wmy/Fuzzer/third_tool/linux-6.18/net/core/skbuff.c:1098
+ skb_release_all home/wmy/Fuzzer/third_tool/linux-6.18/net/core/skbuff.c:1151 [inline]
+ __kfree_skb home/wmy/Fuzzer/third_tool/linux-6.18/net/core/skbuff.c:1166 [inline]
+ consume_skb home/wmy/Fuzzer/third_tool/linux-6.18/net/core/skbuff.c:1398 [inline]
+ consume_skb+0xbf/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/net/core/skbuff.c:1392
+ mac80211_hwsim_tx_frame+0x1f5/0x2a0
+ mac80211_hwsim_beacon_tx+0x56d/0x9e0
+ __iterate_interfaces+0x2e0/0x650 home/wmy/Fuzzer/third_tool/linux-6.18/net/mac80211/util.c:761
+ ieee80211_iterate_active_interfaces_atomic+0x71/0x1b0 home/wmy/Fuzzer/third_tool/linux-6.18/net/mac80211/util.c:797
+ mac80211_hwsim_beacon+0x105/0x1b0
+ __run_hrtimer home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/hrtimer.c:1779 [inline]
+ __hrtimer_run_queues+0x1f5/0xb30 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/hrtimer.c:1841
+ __hrtimer_get_next_event home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/hrtimer.c:578 [inline]
+ hrtimer_update_softirq_timer home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/hrtimer.c:1193 [inline]
+ hrtimer_run_softirq+0x17f/0x350 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/hrtimer.c:1861
+ _test_bit home/wmy/Fuzzer/third_tool/linux-6.18/include/asm-generic/bitops/instrumented-non-atomic.h:141 [inline]
+ cpumask_test_cpu home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/cpumask.h:646 [inline]
+ cpu_online home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/cpumask.h:1205 [inline]
+ trace_softirq_exit home/wmy/Fuzzer/third_tool/linux-6.18/include/trace/events/irq.h:142 [inline]
+ handle_softirqs+0x1d4/0x870 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:623
+ __irq_exit_rcu+0x109/0x170 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/bitops.h:202
+ irq_exit_rcu+0x9/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:738
+ sysvec_apic_timer_interrupt+0xa8/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:2145
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:697
+RIP: 0010:smp_call_function_many_cond+0x811/0x15e0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:858
+Code: 48 b9 00 00 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 21 07 0c 00 f3 90 <41> 0f b6 06 41 38 c4 7c 08 84 c0 0f 85 6d 0b 00 00 44 8b 7b 08 31
+RSP: 0000:ffffc9000316f880 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: ffff888135f40460 RCX: ffffffff81ae5104
+RDX: ffff88801d288000 RSI: ffffffff81ae50df RDI: 0000000000000005
+RBP: 0000000000000003 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000003
+R13: ffff88806283b740 R14: ffffed1026be808d R15: 0000000000000001
+ on_each_cpu_cond_mask+0x40/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:1043
+ text_poke_addr home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/alternative.c:2766 [inline]
+ smp_text_poke_batch_finish+0x27b/0xd50 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/alternative.c:2919
+ arch_jump_label_transform_apply+0x1c/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/jump_label.c:145
+ jump_label_update+0x369/0x540 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/jump_label.c:919
+ static_key_enable_cpuslocked+0x1b7/0x270 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/jump_label.c:210
+ static_key_enable+0x1a/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/jump_label.c:223
+ toggle_allocation_gate+0xfa/0x250
+ process_one_work+0x992/0x1b60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3274
+ process_scheduled_works home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3346 [inline]
+ worker_thread+0x67e/0xe90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3427
+ kthread+0x3d0/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x676/0x7d0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:195
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+rcu: rcu_preempt kthread timer wakeup didn't happen for 10475 jiffies! g358333 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402
+rcu: 	Possible timer handling issue on cpu=1 timer-softirq=111250
+rcu: rcu_preempt kthread starved for 10476 jiffies! g358333 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402 ->cpu=1
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:I stack:28120 pid:16    tgid:16    ppid:2      task_flags:0x208040 flags:0x00080000
+Call Trace:
+ <TASK>
+ sched_info_arrive home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/stats.h:267 [inline]
+ sched_info_switch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/stats.h:330 [inline]
+ prepare_task_switch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:5122 [inline]
+ context_switch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:5272 [inline]
+ __schedule+0x1044/0x5bb0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:6929
+ __schedule_loop home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7011 [inline]
+ schedule+0xe7/0x3a0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7026
+ schedule_timeout+0x113/0x280 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/sleep_timeout.c:98
+ rcu_gp_fqs_check_wake home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2007 [inline]
+ rcu_gp_fqs_loop+0x18c/0xa00 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2083
+ rcu_gp_kthread+0x26f/0x370 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2280
+ kthread+0x3d0/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x676/0x7d0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:195
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+Sending NMI from CPU 2 to CPUs 1:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 137994 Comm: syz.1.40621 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:__kasan_check_read+0x0/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/shadow.c:30
+Code: 9a 8d 5b 5d 41 5c e9 ef 76 78 ff 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 <f3> 0f 1e fa 48 8b 0c 24 89 f6 31 d2 e9 7f f0 ff ff 66 66 2e 0f 1f
+RSP: 0018:ffffc90002bcf988 EFLAGS: 00000002
+RAX: 0000000000000001 RBX: 0000000000000001 RCX: ffffffff8b43f32e
+RDX: ffffed1020d2c060 RSI: 0000000000000004 RDI: ffff8881069602f8
+RBP: ffff8881069602f8 R08: 0000000000000000 R09: ffffed1020d2c05f
+R10: ffff8881069602fb R11: 0000000000000000 R12: 1ffff92000579f34
+R13: 0000000000000003 R14: ffffed1020d2c05f R15: ffffc90002bcf9d0
+FS:  00007f423be84640(0000) GS:ffff8881a2601000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b2e205ff8 CR3: 000000011e500000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ native_queued_spin_lock_slowpath+0xae/0x9c0
+ debug_spin_lock_before home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/spinlock_debug.c:87 [inline]
+ do_raw_spin_lock+0x20d/0x2b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/spinlock_debug.c:115
+ __raw_spin_lock_irqsave home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/spinlock_api_smp.h:110 [inline]
+ _raw_spin_lock_irqsave+0x45/0x60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/spinlock.c:162
+ drm_vblank_get+0xc7/0x2a0
+ drm_wait_vblank_ioctl+0x3de/0x19a0
+ drm_ioctl_kernel+0x1ed/0x3e0
+ drm_ioctl+0x574/0xb90
+ vfs_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:51 [inline]
+ __do_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:597 [inline]
+ __se_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x18f/0x210 home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583
+ do_syscall_64+0xcb/0xfa0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:99
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f423afb059d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f423be83f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f423b225fa0 RCX: 00007f423afb059d
+RDX: 0000200000000040 RSI: 00000000c018643a RDI: 0000000000000004
+RBP: 00007f423b04e078 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f423b226038 R14: 00007f423b225fa0 R15: 00007f423be64000
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

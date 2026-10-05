@@ -1,0 +1,66 @@
+RBP: 00007fa3861af010 R08: 0000000000000108 R09: 0000000000000000
+R10: 0000200000000080 R11: 0000000000000246 R12: 0000000000000001
+R13: 00007fa3879e6038 R14: 00007fa3879e5fa0 R15: 00007fa38618f000
+ </TASK>
+rcu: INFO: rcu_preempt self-detected stall on CPU
+clocksource: Long readout interval, skipping watchdog check: cs_nsec: 262716406568 wd_nsec: 262716341671
+rcu: 	2-...!: (63 ticks this GP) idle=f9a4/1/0x4000000000000000 softirq=225137/225137 fqs=17
+rcu: 	(t=263136 jiffies g=235149 q=10 ncpus=4)
+CPU: 2 UID: 0 PID: 281 Comm: syz-executor Not tainted 6.18.0 #3 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:__preempt_count_dec_and_test home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/preempt.h:95 [inline]
+RIP: 0010:__raw_spin_unlock_irqrestore home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/spinlock_api_smp.h:152 [inline]
+RIP: 0010:_raw_spin_unlock_irqrestore+0x37/0x60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/spinlock.c:194
+Code: 48 83 c7 18 53 48 89 f3 48 8b 74 24 10 e8 d1 2d 8c fb 48 89 ef e8 69 77 8c fb 80 e7 02 74 0b e8 df b9 b9 fb fb 0f 1f 44 00 00 <65> ff 0d 32 cc b6 03 74 07 5b 5d e9 59 25 00 00 0f 1f 44 00 00 5b
+RSP: 0018:ffff8881077ffc00 EFLAGS: 00000206
+RAX: 000000006a606a93 RBX: 0000000000000246 RCX: 0000000000000040
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff85c743f1
+RBP: ffffffff8a66e770 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff87dbea57 R11: 0000000000000000 R12: ffff888111b5cf80
+R13: ffff888121a5a000 R14: 0000000000000246 R15: ffff888121c00000
+FS:  000055557f859500(0000) GS:ffff88819133f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000055557f2d9518 CR3: 0000000112f90000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ scan_object home/wmy/Fuzzer/third_tool/linux-6.18/mm/kmemleak.c:1615 [inline]
+ scan_gray_list+0x218/0x290 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kmemleak.c:1648
+ kmemleak_scan+0x54f/0xd90 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kmemleak.c:1800
+ kmemleak_write+0x417/0x4f0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kmemleak.c:2172
+ full_proxy_write+0x138/0x1a0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/debugfs/file.c:388
+ vfs_write+0x2b6/0x1170 home/wmy/Fuzzer/third_tool/linux-6.18/fs/read_write.c:684
+ ksys_write+0x126/0x240 home/wmy/Fuzzer/third_tool/linux-6.18/fs/read_write.c:738
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fab9bfdefd7
+Code: ff ff f7 d8 64 89 02 48 c7 c0 ff ff ff ff eb b7 0f 1f 00 f3 0f 1e fa 64 8b 04 25 18 00 00 00 85 c0 75 10 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 51 c3 48 83 ec 28 48 89 54 24 18 48 89 74 24
+RSP: 002b:00007ffc5120e478 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 00000000002ddf70 RCX: 00007fab9bfdefd7
+RDX: 0000000000000004 RSI: 00007fab9c098441 RDI: 000000000000000b
+RBP: 0000000000000000 R08: 0000000000000018 R09: 000003d6833616e9
+R10: 00007fab9cd92000 R11: 0000000000000246 R12: 431bde82d7b634db
+R13: 00007ffc5120e9c0 R14: 000000000000000b R15: 00007ffc5120e590
+ </TASK>
+systemd[1]: systemd-journald.service: Main process exited, code=killed, status=6/ABRT
+systemd[1]: systemd-journald.service: Failed with result 'watchdog'.
+systemd[1]: systemd-journald.service: Consumed 7.146s CPU time.
+systemd[1]: systemd-journald.service: Scheduled restart job, restart counter is at 1.
+systemd[1]: Stopping Flush Journal to Persistent Storage...
+systemd[1]: systemd-journal-flush.service: Succeeded.
+systemd[1]: Stopped Flush Journal to Persistent Storage.
+systemd[1]: Stopped Journal Service.
+systemd[1]: systemd-journald.service: Consumed 7.146s CPU time.
+systemd[1]: Starting Journal Service...
+systemd-journald[18927]: File /var/log/journal/5e5ef17f21b54251ace18b1b4fc560bb/system.journal corrupted or uncleanly shut down, renaming and replacing.
+systemd[1]: Started Journal Service.
+systemd-journald[18927]: Received client request to flush runtime journal.
+audit: type=1400 audit(1766787199.216:30): avc:  denied  { getattr } for  pid=149 comm="systemd-udevd" path="/usr/lib/modules/6.18.0/modules.dep.bin" dev="sda" ino=9712369 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

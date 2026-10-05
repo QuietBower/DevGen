@@ -1,0 +1,199 @@
+audit: type=1400 audit(1767963996.770:48): avc:  denied  { execmem } for  pid=14682 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+clocksource: Long readout interval, skipping watchdog check: cs_nsec: 27788961720 wd_nsec: 27788953161
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	0-...0: (1 GPs behind) idle=4ddc/1/0x4000000000000000 softirq=178109/178114 fqs=412
+rcu: 	2-...0: (1 GPs behind) idle=ea14/1/0x4000000000000000 softirq=190355/190384 fqs=412
+rcu: 	(detected by 3, t=105004 jiffies, g=133825, q=9357 ncpus=4)
+Sending NMI from CPU 3 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 190 Comm: kworker/0:2H Not tainted 6.18.0 #9 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: kblockd blk_mq_run_work_fn
+RIP: 0010:console_trylock_spinning home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2023 [inline]
+RIP: 0010:vprintk_emit+0x4ea/0x630 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2422
+Code: f6 48 c7 c7 60 82 11 87 e8 83 13 fd ff 0f b6 2d 5c 42 d4 08 31 ff 89 ee e8 53 c3 1f 00 5a 40 84 ed 74 1c e8 a8 c8 1f 00 f3 90 <0f> b6 2d 3f 42 d4 08 31 ff 89 ee e8 36 c3 1f 00 40 84 ed 75 e4 e8
+RSP: 0018:ffff88811aa08b10 EFLAGS: 00000046
+RAX: 0000000000000000 RBX: 1ffff11023541163 RCX: ffffffff815661ca
+RDX: ffff88810616b500 RSI: ffffffff815661b8 RDI: 0000000000000001
+RBP: 0000000000000001 R08: ffff88811aa088f8 R09: 0000000000000020
+R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000066
+R13: 0000000000000200 R14: ffff888100f3b500 R15: ffff88811aa08bd0
+FS:  0000000000000000(0000) GS:ffff88819123f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ff324965ff0 CR3: 0000000115c28000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ _printk+0xc3/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2448
+ clocksource_watchdog+0xd9f/0xfd0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/clocksource.c:508
+ call_timer_fn+0x18e/0x590 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/timer.c:1748
+ expire_timers home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/timer.c:1799 [inline]
+ __run_timers+0x6b7/0xaa0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/timer.c:2373
+ __run_timer_base home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/timer.c:2385 [inline]
+ __run_timer_base home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/timer.c:2377 [inline]
+ run_timer_base home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/timer.c:2394 [inline]
+ run_timer_softirq+0x94/0x220 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/timer.c:2402
+ handle_softirqs+0x1bb/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:622
+ __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+ invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+ irq_exit_rcu+0xe/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:739
+ instr_sysvec_apic_timer_interrupt home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052 [inline]
+ sysvec_apic_timer_interrupt+0x70/0x80 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:697
+RIP: 0010:__preempt_count_dec_and_test home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/preempt.h:95 [inline]
+RIP: 0010:__raw_spin_unlock_irqrestore home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/spinlock_api_smp.h:152 [inline]
+RIP: 0010:_raw_spin_unlock_irqrestore+0x37/0x60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/spinlock.c:194
+Code: 48 83 c7 18 53 48 89 f3 48 8b 74 24 10 e8 d1 2d 8c fb 48 89 ef e8 69 77 8c fb 80 e7 02 74 0b e8 df b9 b9 fb fb 0f 1f 44 00 00 <65> ff 0d 32 cc b6 03 74 07 5b 5d e9 59 25 00 00 0f 1f 44 00 00 5b
+RSP: 0018:ffff88811484f8c8 EFLAGS: 00000202
+RAX: 0000000000003fc1 RBX: 0000000000000246 RCX: 0000000000000040
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff85c743f1
+RBP: ffff8881044d6000 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff87dbea57 R11: 0000000000000000 R12: 0000000000000000
+R13: ffff888104520000 R14: 0000000000000246 R15: ffff888104520010
+ spin_unlock_irqrestore home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/spinlock.h:406 [inline]
+ ata_scsi_queuecmd+0x1bc/0x220 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/ata/libata-scsi.c:4405
+ scsi_dispatch_cmd home/wmy/Fuzzer/third_tool/linux-6.18/drivers/scsi/scsi_lib.c:1626 [inline]
+ scsi_queue_rq+0xdaf/0x30a0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/scsi/scsi_lib.c:1868
+ blk_mq_dispatch_rq_list+0x3ae/0x1a90 home/wmy/Fuzzer/third_tool/linux-6.18/block/blk-mq.c:2129
+ __blk_mq_do_dispatch_sched home/wmy/Fuzzer/third_tool/linux-6.18/block/blk-mq-sched.c:168 [inline]
+ blk_mq_do_dispatch_sched home/wmy/Fuzzer/third_tool/linux-6.18/block/blk-mq-sched.c:182 [inline]
+ __blk_mq_sched_dispatch_requests+0xc36/0x13e0 home/wmy/Fuzzer/third_tool/linux-6.18/block/blk-mq-sched.c:307
+ blk_mq_sched_dispatch_requests+0xdc/0x1b0 home/wmy/Fuzzer/third_tool/linux-6.18/block/blk-mq-sched.c:329
+ blk_mq_run_work_fn+0x1fe/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/block/blk-mq.c:2543
+ process_one_work+0x8d1/0x19c0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3263
+ process_scheduled_works home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3346 [inline]
+ worker_thread+0x683/0xe90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3427
+ kthread+0x3cd/0x740 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+Sending NMI from CPU 3 to CPUs 2:
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 40 Comm: kauditd Not tainted 6.18.0 #9 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:io_serial_out+0x72/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:407
+Code: 0f b6 8d f9 00 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 d3 e3 80 3c 02 00 75 1a 66 03 5d 40 44 89 e0 89 da ee <5b> 5d 41 5c e9 c5 86 11 03 e8 80 5a 00 ff eb c2 e8 09 5b 00 ff eb
+RSP: 0018:ffff888100fbf8a0 EFLAGS: 00000002
+RAX: 0000000000000074 RBX: 00000000000003f8 RCX: 0000000000000000
+RDX: 00000000000003f8 RSI: ffffffff82b5e23a RDI: ffffffff8a6d4580
+RBP: ffffffff8a6d4540 R08: 0000000000000000 R09: ffffed1020822046
+R10: 0000000000000074 R11: 0000000000000000 R12: 0000000000000074
+R13: 0000000000000010 R14: ffffffff8a6d4540 R15: ffffffff82b5e220
+FS:  0000000000000000(0000) GS:ffff88819133f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f9bb38756e8 CR3: 0000000117026000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ serial_port_out home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/serial_core.h:811 [inline]
+ serial8250_console_putchar home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:3192 [inline]
+ serial8250_console_fifo_write home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:3264 [inline]
+ serial8250_console_write+0xfe2/0x1850 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:3342
+ console_emit_next_record home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3111 [inline]
+ console_flush_all+0x73a/0xb60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3199
+ __console_flush_and_unlock home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3258 [inline]
+ console_unlock+0xc7/0x200 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3298
+ vprintk_emit+0x401/0x630 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2423
+ _printk+0xc3/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2448
+ kauditd_printk_skb home/wmy/Fuzzer/third_tool/linux-6.18/kernel/audit.c:583 [inline]
+ kauditd_hold_skb+0x20a/0x250 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/audit.c:618
+ kauditd_send_queue+0x234/0x290 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/audit.c:803
+ kauditd_thread+0x60c/0xa80 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/audit.c:927
+ kthread+0x3cd/0x740 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+rcu: rcu_preempt kthread starved for 39447 jiffies! g133825 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=1
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:R  running task     stack:29480 pid:15    tgid:15    ppid:2      task_flags:0x208040 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:5325 [inline]
+ __schedule+0xebb/0x3550 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:6929
+ __schedule_loop home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7011 [inline]
+ schedule+0xe9/0x3a0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7026
+ schedule_timeout+0x118/0x280 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/sleep_timeout.c:99
+ rcu_gp_fqs_loop+0x1ab/0xa90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2083
+ rcu_gp_kthread+0x2a4/0x3b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2285
+ kthread+0x3cd/0x740 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+Sending NMI from CPU 3 to CPUs 1:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 14681 Comm: syz.2.6020 Not tainted 6.18.0 #9 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:csd_lock_wait home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:351 [inline]
+RIP: 0010:smp_call_function_many_cond+0xa48/0x1110 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:877
+Code: 0b 00 85 ed 74 4d 48 b8 00 00 00 00 00 fc ff df 4d 89 f4 4c 89 f5 49 c1 ec 03 83 e5 07 49 01 c4 83 c5 03 e8 6a 7a 0b 00 f3 90 <41> 0f b6 04 24 40 38 c5 7c 08 84 c0 0f 85 cb 04 00 00 8b 43 08 31
+RSP: 0018:ffff8880155076b0 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: ffff88811ab3fca0 RCX: ffffffff816ab01c
+RDX: ffff888107db0000 RSI: ffffffff816aaff6 RDI: 0000000000000005
+RBP: 0000000000000003 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 0000000000000001 R12: ffffed1023567f95
+R13: 0000000000000002 R14: ffff88811ab3fca8 R15: 0000000000000001
+FS:  0000000000000000(0000) GS:ffff8881912bf000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000055556e503518 CR3: 000000000706c000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ on_each_cpu_cond_mask+0x42/0x80 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:1043
+ __flush_tlb_multi home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/paravirt.h:91 [inline]
+ flush_tlb_multi home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/tlb.c:1381 [inline]
+ flush_tlb_mm_range+0x418/0x14d0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/tlb.c:1471
+ tlb_flush home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/tlb.h:23 [inline]
+ tlb_flush_mmu_tlbonly home/wmy/Fuzzer/third_tool/linux-6.18/include/asm-generic/tlb.h:490 [inline]
+ tlb_flush_mmu_tlbonly home/wmy/Fuzzer/third_tool/linux-6.18/include/asm-generic/tlb.h:480 [inline]
+ tlb_flush_mmu home/wmy/Fuzzer/third_tool/linux-6.18/mm/mmu_gather.c:403 [inline]
+ tlb_finish_mmu+0x3da/0x7e0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mmu_gather.c:497
+ free_ldt_pgtables+0x15e/0x190 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/ldt.c:411
+ arch_exit_mmap home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/mmu_context.h:234 [inline]
+ exit_mmap+0x115/0xaa0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mmap.c:1266
+ __mmput home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:1133 [inline]
+ mmput+0xda/0x3a0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:1156
+ exit_mm home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:582 [inline]
+ do_exit+0x7b2/0x2990 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:954
+ do_group_exit+0xd8/0x2b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1107
+ get_signal+0x2327/0x2350 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/signal.c:3034
+ arch_do_signal_or_restart+0x85/0x790 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/signal.c:337
+ exit_to_user_mode_loop+0x7f/0xf0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/entry/common.c:40
+ exit_to_user_mode_prepare home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/irq-entry-common.h:225 [inline]
+ syscall_exit_to_user_mode_work home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/entry-common.h:175 [inline]
+ syscall_exit_to_user_mode home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/entry-common.h:210 [inline]
+ do_syscall_64+0x327/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f8f8cdd059d
+Code: Unable to access opcode bytes at 0x7f8f8cdd0573.
+RSP: 002b:00007f8f8b80ef28 EFLAGS: 00000202 ORIG_RAX: 00000000000001a9
+RAX: 0000000000000003 RBX: 00007f8f8d045fa0 RCX: 00007f8f8cdd059d
+RDX: 00002000000000c0 RSI: 0000200000000000 RDI: 0000000000000d8b
+RBP: 0000200000000000 R08: 0000000000000000 R09: 00002000000000c0
+R10: 0000000000000000 R11: 0000000000000202 R12: 0000000000000000
+R13: 0000200000000100 R14: 0000000000000d8b R15: 00002000000000c0
+ </TASK>
+clocksource: Long readout interval, skipping watchdog check: cs_nsec: 179667370914 wd_nsec: 179667315379
+systemd[1]: systemd-journald.service: Main process exited, code=killed, status=6/ABRT
+systemd[1]: systemd-journald.service: Failed with result 'watchdog'.
+systemd[1]: systemd-journald.service: Consumed 6.801s CPU time.
+systemd[1]: systemd-journald.service: Scheduled restart job, restart counter is at 1.
+systemd[1]: Stopping Flush Journal to Persistent Storage...
+hrtimer: interrupt took 2487708 ns
+systemd[1]: systemd-journal-flush.service: Succeeded.
+systemd[1]: Stopped Flush Journal to Persistent Storage.
+systemd[1]: Stopped Journal Service.
+systemd[1]: systemd-journald.service: Consumed 6.801s CPU time.
+systemd[1]: Starting Journal Service...
+EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+systemd-journald[14930]: File /var/log/journal/5e5ef17f21b54251ace18b1b4fc560bb/system.journal corrupted or uncleanly shut down, renaming and replacing.
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

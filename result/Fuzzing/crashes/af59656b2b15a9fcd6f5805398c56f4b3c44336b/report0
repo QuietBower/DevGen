@@ -1,0 +1,214 @@
+Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+audit: type=1400 audit(1765249344.839:7): avc:  denied  { execmem } for  pid=288 comm="syz-executor" scontext=system_u:system_r:kernel_t:s0 tcontext=system_u:system_r:kernel_t:s0 tclass=process permissive=1
+general protection fault, probably for non-canonical address 0xdffffc0000000003: 0000 [#1] PREEMPT SMP KASAN PTI
+KASAN: null-ptr-deref in range [0x0000000000000018-0x000000000000001f]
+CPU: 1 PID: 308 Comm: syz-executor Not tainted 6.6.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:ipt_nat_register_lookups home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/netfilter/iptable_nat.c:75 [inline] [iptable_nat]
+RIP: 0010:iptable_nat_table_init+0xf6/0x1e0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/netfilter/iptable_nat.c:121 [iptable_nat]
+Code: ef e8 7e 75 02 e3 85 c0 75 57 41 83 c6 01 49 83 c5 28 41 83 fe 04 75 cc 48 ba 00 00 00 00 00 fc ff df 48 8b 0c 24 48 c1 e9 03 <80> 3c 11 00 0f 85 c5 00 00 00 48 8b 0c 24 48 8b 54 24 08 48 89 11
+RSP: 0018:ffff888123cef8c0 EFLAGS: 00010206
+RAX: 0000000000000000 RBX: ffff88810e3cad00 RCX: 0000000000000003
+RDX: dffffc0000000000 RSI: ffffffff8315f1ef RDI: ffff888123cef7a0
+RBP: ffff888125f50000 R08: 0000000000000001 R09: ffffed102479def4
+R10: ffff888123cef7a7 R11: 0000000000000000 R12: ffff888129478800
+R13: ffff88810780a6b0 R14: 0000000000000004 R15: dffffc0000000000
+FS:  00005555558c6500(0000) GS:ffff888188e80000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f00b106a388 CR3: 000000011ca76000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ xt_find_table_lock+0x20a/0x2f0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/netfilter/x_tables.c:1259
+ xt_request_find_table_lock+0x2b/0xc0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/netfilter/x_tables.c:1284
+ get_info+0xec/0x330 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/netfilter/ip_tables.c:963
+ do_ipt_get_ctl+0x134/0xa60 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/netfilter/ip_tables.c:1651
+ nf_getsockopt+0x6a/0xa0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/netfilter/nf_sockopt.c:116
+ ip_getsockopt+0x190/0x1f0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/ip_sockglue.c:1781
+ tcp_getsockopt+0x7f/0xd0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/tcp.c:4340
+ do_sock_getsockopt+0x20b/0x280 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/socket.c:2377
+ __sys_getsockopt+0x115/0x1b0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/socket.c:2406
+ __do_sys_getsockopt home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/socket.c:2416 [inline]
+ __se_sys_getsockopt home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/socket.c:2413 [inline]
+ __x64_sys_getsockopt+0x64/0x80 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/socket.c:2413
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/arch/x86/entry/common.c:51 [inline]
+ do_syscall_64+0x46/0xf0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/arch/x86/entry/common.c:82
+ entry_SYSCALL_64_after_hwframe+0x6f/0x77
+RIP: 0033:0x7f00b0e2d9be
+Code: 1f 44 00 00 48 c7 c2 a8 ff ff ff f7 d8 64 89 02 b8 ff ff ff ff eb b8 0f 1f 44 00 00 f3 0f 1e fa 49 89 ca b8 37 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 0a c3 66 0f 1f 84 00 00 00 00 00 48 c7 c2 a8
+RSP: 002b:00007fff148f15f8 EFLAGS: 00000246 ORIG_RAX: 0000000000000037
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f00b0e2d9be
+RDX: 0000000000000040 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 0000000000000003 R08: 00007fff148f161c R09: 00007fff148f16f0
+R10: 00007f00b106a388 R11: 0000000000000246 R12: 00007fff148f161c
+R13: 00007f00b0ed69bc R14: 00007f00b106a388 R15: 00007f00b106a380
+ </TASK>
+Modules linked in: iptable_nat(+) bochs drm_vram_helper drm_ttm_helper snd_hda_intel ttm drm_kms_helper snd_hda_codec drm virtio_pci ata_generic snd_hda_core pata_acpi snd_hwdep virtio_pci_legacy_dev virtio_pci_modern_dev drm_panel_orientation_quirks i2c_piix4
+general protection fault, probably for non-canonical address 0xdffffc0000000003: 0000 [#2] PREEMPT SMP KASAN PTI
+---[ end trace 0000000000000000 ]---
+KASAN: null-ptr-deref in range [0x0000000000000018-0x000000000000001f]
+CPU: 0 PID: 312 Comm: syz-executor Tainted: G      D            6.6.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:ipt_nat_register_lookups home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/netfilter/iptable_nat.c:75 [inline] [iptable_nat]
+RIP: 0010:iptable_nat_table_init+0xf6/0x1e0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/netfilter/iptable_nat.c:121 [iptable_nat]
+Code: ef e8 7e 75 02 e3 85 c0 75 57 41 83 c6 01 49 83 c5 28 41 83 fe 04 75 cc 48 ba 00 00 00 00 00 fc ff df 48 8b 0c 24 48 c1 e9 03 <80> 3c 11 00 0f 85 c5 00 00 00 48 8b 0c 24 48 8b 54 24 08 48 89 11
+RSP: 0018:ffff88810afff8c0 EFLAGS: 00010206
+RAX: 0000000000000000 RBX: ffff888100dd4580 RCX: 0000000000000003
+RDX: dffffc0000000000 RSI: ffffffff8315f1ef RDI: ffff88810afff7a0
+RBP: ffff88811d49b280 R08: 0000000000000001 R09: ffffed10215ffef4
+R10: ffff88810afff7a7 R11: 0000000000000001 R12: ffff888112458800
+R13: ffff888128a1e4b0 R14: 0000000000000004 R15: dffffc0000000000
+FS:  0000555555cbf500(0000) GS:ffff888188e00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fcfcde73388 CR3: 0000000123ef6000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+RIP: 0010:ipt_nat_register_lookups home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/netfilter/iptable_nat.c:75 [inline] [iptable_nat]
+RIP: 0010:iptable_nat_table_init+0xf6/0x1e0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/netfilter/iptable_nat.c:121 [iptable_nat]
+Code: ef e8 7e 75 02 e3 85 c0 75 57 41 83 c6 01 49 83 c5 28 41 83 fe 04 75 cc 48 ba 00 00 00 00 00 fc ff df 48 8b 0c 24 48 c1 e9 03 <80> 3c 11 00 0f 85 c5 00 00 00 48 8b 0c 24 48 8b 54 24 08 48 89 11
+ xt_find_table_lock+0x20a/0x2f0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/netfilter/x_tables.c:1259
+ xt_request_find_table_lock+0x2b/0xc0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/netfilter/x_tables.c:1284
+ get_info+0xec/0x330 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/netfilter/ip_tables.c:963
+RSP: 0018:ffff888123cef8c0 EFLAGS: 00010206
+ do_ipt_get_ctl+0x134/0xa60 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/netfilter/ip_tables.c:1651
+ nf_getsockopt+0x6a/0xa0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/netfilter/nf_sockopt.c:116
+ ip_getsockopt+0x190/0x1f0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/ip_sockglue.c:1781
+
+ tcp_getsockopt+0x7f/0xd0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/tcp.c:4340
+ do_sock_getsockopt+0x20b/0x280 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/socket.c:2377
+ __sys_getsockopt+0x115/0x1b0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/socket.c:2406
+ __do_sys_getsockopt home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/socket.c:2416 [inline]
+ __se_sys_getsockopt home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/socket.c:2413 [inline]
+ __x64_sys_getsockopt+0x64/0x80 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/socket.c:2413
+RAX: 0000000000000000 RBX: ffff88810e3cad00 RCX: 0000000000000003
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/arch/x86/entry/common.c:51 [inline]
+ do_syscall_64+0x46/0xf0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/arch/x86/entry/common.c:82
+ entry_SYSCALL_64_after_hwframe+0x6f/0x77
+RIP: 0033:0x7fcfcdc369be
+Code: 1f 44 00 00 48 c7 c2 a8 ff ff ff f7 d8 64 89 02 b8 ff ff ff ff eb b8 0f 1f 44 00 00 f3 0f 1e fa 49 89 ca b8 37 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 0a c3 66 0f 1f 84 00 00 00 00 00 48 c7 c2 a8
+RSP: 002b:00007ffeac9f6718 EFLAGS: 00000246 ORIG_RAX: 0000000000000037
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fcfcdc369be
+RDX: 0000000000000040 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 0000000000000003 R08: 00007ffeac9f673c R09: 00007ffeac9f6810
+R10: 00007fcfcde73388 R11: 0000000000000246 R12: 00007ffeac9f673c
+R13: 00007fcfcdcdf9bc R14: 00007fcfcde73388 R15: 00007fcfcde73380
+ </TASK>
+Modules linked in: iptable_nat(+) bochs drm_vram_helper drm_ttm_helper snd_hda_intel ttm drm_kms_helper snd_hda_codec drm virtio_pci ata_generic snd_hda_core pata_acpi snd_hwdep virtio_pci_legacy_dev virtio_pci_modern_dev drm_panel_orientation_quirks i2c_piix4
+---[ end trace 0000000000000000 ]---
+RDX: dffffc0000000000 RSI: ffffffff8315f1ef RDI: ffff888123cef7a0
+RIP: 0010:ipt_nat_register_lookups home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/netfilter/iptable_nat.c:75 [inline] [iptable_nat]
+RIP: 0010:iptable_nat_table_init+0xf6/0x1e0 home/wmy/Fuzzer/third_tool/linux-6.7-defconfig/net/ipv4/netfilter/iptable_nat.c:121 [iptable_nat]
+Code: ef e8 7e 75 02 e3 85 c0 75 57 41 83 c6 01 49 83 c5 28 41 83 fe 04 75 cc 48 ba 00 00 00 00 00 fc ff df 48 8b 0c 24 48 c1 e9 03 <80> 3c 11 00 0f 85 c5 00 00 00 48 8b 0c 24 48 8b 54 24 08 48 89 11
+RSP: 0018:ffff888123cef8c0 EFLAGS: 00010206
+RAX: 0000000000000000 RBX: ffff88810e3cad00 RCX: 0000000000000003
+RDX: dffffc0000000000 RSI: ffffffff8315f1ef RDI: ffff888123cef7a0
+RBP: ffff888125f50000 R08: 0000000000000001 R09: ffffed102479def4
+RBP: ffff888125f50000 R08: 0000000000000001 R09: ffffed102479def4
+R10: ffff888123cef7a7 R11: 0000000000000000 R12: ffff888129478800
+R13: ffff88810780a6b0 R14: 0000000000000004 R15: dffffc0000000000
+FS:  00005555558c6500(0000) GS:ffff888188e80000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f00b106a388 CR3: 000000011ca76000 CR4: 00000000000006f0
+R10: ffff888123cef7a7 R11: 0000000000000000 R12: ffff888129478800
+R13: ffff88810780a6b0 R14: 0000000000000004 R15: dffffc0000000000
+FS:  0000555555cbf500(0000) GS:ffff888188e00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fcfcde73388 CR3: 0000000123ef6000 CR4: 00000000000006f0
+----------------
+Code disassembly (best guess):
+   0:	ef                   	out    %eax,(%dx)
+   1:	e8 7e 75 02 e3       	call   0xe3027584
+   6:	85 c0                	test   %eax,%eax
+   8:	75 57                	jne    0x61
+   a:	41 83 c6 01          	add    $0x1,%r14d
+   e:	49 83 c5 28          	add    $0x28,%r13
+  12:	41 83 fe 04          	cmp    $0x4,%r14d
+  16:	75 cc                	jne    0xffffffe4
+  18:	48 ba 00 00 00 00 00 	movabs $0xdffffc0000000000,%rdx
+  1f:	fc ff df
+  22:	48 8b 0c 24          	mov    (%rsp),%rcx
+  26:	48 c1 e9 03          	shr    $0x3,%rcx
+* 2a:	80 3c 11 00          	cmpb   $0x0,(%rcx,%rdx,1) <-- trapping instruction
+  2e:	0f 85 c5 00 00 00    	jne    0xf9
+  34:	48 8b 0c 24          	mov    (%rsp),%rcx
+  38:	48 8b 54 24 08       	mov    0x8(%rsp),%rdx
+  3d:	48 89 11             	mov    %rdx,(%rcx)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+RBP: 0000000000000003 R08: 00007fff148f161c R09: 00007fff148f16f0
+R10: 00007f00b106a388 R11: 0000000000000246 R12: 00007fff148f161c
+R13: 00007f00b0ed69bc R14: 00007f00b106a388 R15: 00007f00b106a380
+ </TASK>
+Modules linked in: iptable_nat(+) bochs drm_vram_helper drm_ttm_helper snd_hda_intel ttm drm_kms_helper snd_hda_codec drm virtio_pci ata_generic snd_hda_core pata_acpi snd_hwdep virtio_pci_legacy_dev virtio_pci_modern_dev drm_panel_orientation_quirks i2c_piix4
+general protection fault, probably for non-canonical address 0xdffffc0000000003: 0000 [#2] PREEMPT SMP KASAN PTI
+---[ end trace 0000000000000000 ]---
+KASAN: null-ptr-deref in range [0x0000000000000018-0x000000000000001f]
+CPU: 0 PID: 312 Comm: syz-executor Tainted: G      D            6.6.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:iptable_nat_table_init+0xf6/0x1e0 [iptable_nat]
+Code: ef e8 7e 75 02 e3 85 c0 75 57 41 83 c6 01 49 83 c5 28 41 83 fe 04 75 cc 48 ba 00 00 00 00 00 fc ff df 48 8b 0c 24 48 c1 e9 03 <80> 3c 11 00 0f 85 c5 00 00 00 48 8b 0c 24 48 8b 54 24 08 48 89 11
+RSP: 0018:ffff88810afff8c0 EFLAGS: 00010206
+RAX: 0000000000000000 RBX: ffff888100dd4580 RCX: 0000000000000003
+RDX: dffffc0000000000 RSI: ffffffff8315f1ef RDI: ffff88810afff7a0
+RBP: ffff88811d49b280 R08: 0000000000000001 R09: ffffed10215ffef4
+R10: ffff88810afff7a7 R11: 0000000000000001 R12: ffff888112458800
+R13: ffff888128a1e4b0 R14: 0000000000000004 R15: dffffc0000000000
+FS:  0000555555cbf500(0000) GS:ffff888188e00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fcfcde73388 CR3: 0000000123ef6000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+RIP: 0010:iptable_nat_table_init+0xf6/0x1e0 [iptable_nat]
+Code: ef e8 7e 75 02 e3 85 c0 75 57 41 83 c6 01 49 83 c5 28 41 83 fe 04 75 cc 48 ba 00 00 00 00 00 fc ff df 48 8b 0c 24 48 c1 e9 03 <80> 3c 11 00 0f 85 c5 00 00 00 48 8b 0c 24 48 8b 54 24 08 48 89 11
+ xt_find_table_lock+0x20a/0x2f0
+ xt_request_find_table_lock+0x2b/0xc0
+ get_info+0xec/0x330
+RSP: 0018:ffff888123cef8c0 EFLAGS: 00010206
+ do_ipt_get_ctl+0x134/0xa60
+ nf_getsockopt+0x6a/0xa0
+ ip_getsockopt+0x190/0x1f0
+
+ tcp_getsockopt+0x7f/0xd0
+ do_sock_getsockopt+0x20b/0x280
+ __sys_getsockopt+0x115/0x1b0
+ __x64_sys_getsockopt+0x64/0x80
+RAX: 0000000000000000 RBX: ffff88810e3cad00 RCX: 0000000000000003
+ do_syscall_64+0x46/0xf0
+ entry_SYSCALL_64_after_hwframe+0x6f/0x77
+RIP: 0033:0x7fcfcdc369be
+Code: 1f 44 00 00 48 c7 c2 a8 ff ff ff f7 d8 64 89 02 b8 ff ff ff ff eb b8 0f 1f 44 00 00 f3 0f 1e fa 49 89 ca b8 37 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 0a c3 66 0f 1f 84 00 00 00 00 00 48 c7 c2 a8
+RSP: 002b:00007ffeac9f6718 EFLAGS: 00000246 ORIG_RAX: 0000000000000037
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fcfcdc369be
+RDX: 0000000000000040 RSI: 0000000000000000 RDI: 0000000000000003
+RBP: 0000000000000003 R08: 00007ffeac9f673c R09: 00007ffeac9f6810
+R10: 00007fcfcde73388 R11: 0000000000000246 R12: 00007ffeac9f673c
+R13: 00007fcfcdcdf9bc R14: 00007fcfcde73388 R15: 00007fcfcde73380
+ </TASK>
+Modules linked in: iptable_nat(+) bochs drm_vram_helper drm_ttm_helper snd_hda_intel ttm drm_kms_helper snd_hda_codec drm virtio_pci ata_generic snd_hda_core pata_acpi snd_hwdep virtio_pci_legacy_dev virtio_pci_modern_dev drm_panel_orientation_quirks i2c_piix4
+---[ end trace 0000000000000000 ]---
+RDX: dffffc0000000000 RSI: ffffffff8315f1ef RDI: ffff888123cef7a0
+RIP: 0010:iptable_nat_table_init+0xf6/0x1e0 [iptable_nat]
+Code: ef e8 7e 75 02 e3 85 c0 75 57 41 83 c6 01 49 83 c5 28 41 83 fe 04 75 cc 48 ba 00 00 00 00 00 fc ff df 48 8b 0c 24 48 c1 e9 03 <80> 3c 11 00 0f 85 c5 00 00 00 48 8b 0c 24 48 8b 54 24 08 48 89 11
+RSP: 0018:ffff888123cef8c0 EFLAGS: 00010206
+RAX: 0000000000000000 RBX: ffff88810e3cad00 RCX: 0000000000000003
+RDX: dffffc0000000000 RSI: ffffffff8315f1ef RDI: ffff888123cef7a0
+RBP: ffff888125f50000 R08: 0000000000000001 R09: ffffed102479def4
+RBP: ffff888125f50000 R08: 0000000000000001 R09: ffffed102479def4
+R10: ffff888123cef7a7 R11: 0000000000000000 R12: ffff888129478800
+R13: ffff88810780a6b0 R14: 0000000000000004 R15: dffffc0000000000
+FS:  00005555558c6500(0000) GS:ffff888188e80000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f00b106a388 CR3: 000000011ca76000 CR4: 00000000000006f0
+R10: ffff888123cef7a7 R11: 0000000000000000 R12: ffff888129478800
+R13: ffff88810780a6b0 R14: 0000000000000004 R15: dffffc0000000000
+FS:  0000555555cbf500(0000) GS:ffff888188e00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fcfcde73388 CR3: 0000000123ef6000 CR4: 00000000000006f0
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

@@ -1,0 +1,28 @@
+audit: type=1400 audit(1767873141.848:28): avc:  denied  { execmem } for  pid=293 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+mmap: syz.3.198 (524) uses deprecated remap_file_pages() syscall. See Documentation/mm/remap_file_pages.rst.
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+clocksource: Long readout interval, skipping watchdog check: cs_nsec: 207430320109 wd_nsec: 207430215188
+rcu: 	1-...!: (6 ticks this GP) idle=956c/1/0x4000000000000000 softirq=38697/38699 fqs=0
+rcu: 	3-...!: (9 ticks this GP) idle=c2a4/0/0x1 softirq=34191/34191 fqs=1
+rcu: 	(detected by 2, t=207003 jiffies, g=37521, q=553 ncpus=4)
+systemd[1]: systemd-journald.service: Main process exited, code=killed, status=6/ABRT
+systemd[1]: systemd-journald.service: Failed with result 'watchdog'.
+systemd[1]: systemd-journald.service: Consumed 3.844s CPU time.
+systemd[1]: systemd-journald.service: Scheduled restart job, restart counter is at 1.
+systemd[1]: Stopping Flush Journal to Persistent Storage...
+systemd[1]: systemd-journal-flush.service: Succeeded.
+systemd[1]: Stopped Flush Journal to Persistent Storage.
+systemd[1]: Stopped Journal Service.
+systemd[1]: systemd-journald.service: Consumed 3.844s CPU time.
+systemd[1]: Starting Journal Service...
+systemd-journald[892]: File /var/log/journal/5e5ef17f21b54251ace18b1b4fc560bb/system.journal corrupted or uncleanly shut down, renaming and replacing.
+systemd[1]: Started Journal Service.
+systemd-journald[892]: Received client request to flush runtime journal.
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

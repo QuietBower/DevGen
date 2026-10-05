@@ -1,0 +1,31 @@
+BUG: memory leak
+unreferenced object 0xffff8881095dd318 (size 312):
+  comm "systemd-udevd", pid 6854, jiffies 4295033159
+  hex dump (first 32 bytes):
+    0c 40 00 00 80 88 ff ff 06 00 00 00 11 00 34 00  .@............4.
+    40 a7 69 8a ff ff ff ff 00 00 00 00 00 00 00 00  @.i.............
+  backtrace (crc bb7f72c1):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_lru_noprof+0x40f/0x6e0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5307
+    __d_alloc+0x36/0xa10 home/wmy/Fuzzer/third_tool/linux-6.18/fs/dcache.c:1690
+    d_alloc_parallel+0x117/0x1330 home/wmy/Fuzzer/third_tool/linux-6.18/fs/dcache.c:2549
+    __lookup_slow+0x197/0x480 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:1801
+    lookup_slow home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:1833 [inline]
+    walk_component+0x34e/0x5b0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:2151
+    link_path_walk+0x522/0xe30 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:2516
+    path_openat+0x230/0x2880 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4130
+    do_filp_open+0x1fc/0x460 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4161
+    do_sys_openat2+0x109/0x1c0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1437
+    do_sys_open home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1452 [inline]
+    __do_sys_openat home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1468 [inline]
+    __se_sys_openat home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1463 [inline]
+    __x64_sys_openat+0x144/0x200 home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1463
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

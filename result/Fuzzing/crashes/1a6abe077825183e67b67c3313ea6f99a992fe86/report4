@@ -1,0 +1,63 @@
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	Tasks blocked on level-0 rcu_node (CPUs 0-3): P15291/1:b..l
+rcu: 	(detected by 0, t=13142 jiffies, g=19001, q=483 ncpus=4)
+task:syz.3.450       state:R  running task     stack:27656 pid:15291 tgid:15281 ppid:9896   task_flags:0x40054c flags:0x00080000
+Call Trace:
+ <TASK>
+ sched_info_arrive home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/stats.h:267 [inline]
+ sched_info_switch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/stats.h:330 [inline]
+ prepare_task_switch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:5122 [inline]
+ context_switch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:5272 [inline]
+ __schedule+0x1044/0x5bb0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:6929
+ preempt_schedule_common+0x44/0xb0
+ preempt_schedule_thunk+0x16/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/thunk.S:12
+ _raw_spin_unlock+0x3e/0x50
+ constant_test_bit home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/bitops.h:202 [inline]
+ arch_test_bit home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/bitops.h:232 [inline]
+ _test_bit home/wmy/Fuzzer/third_tool/linux-6.18/include/asm-generic/bitops/instrumented-non-atomic.h:142 [inline]
+ page_fixed_fake_head home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/page-flags.h:220 [inline]
+ _compound_head home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/page-flags.h:288 [inline]
+ zap_present_ptes home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:1693 [inline]
+ do_zap_pte_range home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:1811 [inline]
+ zap_pte_range home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:1855 [inline]
+ zap_pmd_range home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:1947 [inline]
+ zap_pud_range home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:1976 [inline]
+ zap_p4d_range home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:1997 [inline]
+ unmap_page_range+0x1363/0x4260 home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:2018
+ unmap_single_vma.constprop.0+0x153/0x230 home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:2061
+ unmap_vmas+0x1d6/0x430 home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:2105
+ arch_set_bit home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/bitops.h:55 [inline]
+ set_bit home/wmy/Fuzzer/third_tool/linux-6.18/include/asm-generic/bitops/instrumented-atomic.h:29 [inline]
+ mm_flags_set home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/mm.h:758 [inline]
+ exit_mmap+0x1ac/0xba0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mmap.c:1287
+ __mmput+0x131/0x400
+ mmput+0x60/0x70 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:1157
+ exit_mm home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:582 [inline]
+ do_exit+0x7b1/0x2b70 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:954
+ do_group_exit+0xd3/0x2a0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1107
+ sigismember home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/signal.h:87 [inline]
+ __fatal_signal_pending home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/sched/signal.h:400 [inline]
+ ptrace_stop home/wmy/Fuzzer/third_tool/linux-6.18/kernel/signal.c:2376 [inline]
+ ptrace_signal home/wmy/Fuzzer/third_tool/linux-6.18/kernel/signal.c:2743 [inline]
+ get_signal+0x2286/0x2560 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/signal.c:2921
+ arch_do_signal_or_restart+0x80/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/signal.c:337
+ resume_user_mode_work home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/resume_user_mode.h:49 [inline]
+ exit_to_user_mode_loop+0x92/0x130 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/entry/common.c:43
+ do_syscall_64+0x424/0xfa0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_32.c:308
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f12fedb059d
+RSP: 002b:00007f12ffb88068 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+RAX: fffffffffffffe00 RBX: 00007f12ff026188 RCX: 00007f12fedb059d
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f12ff026188
+RBP: 00007f12ff026180 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f12ff026218 R14: 00007f12fed4c5e0 R15: 00007f12ffb68000
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to send rpc
+fd=3 want=816 sent=0 n=-1 (errno 32: Broken pipe)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

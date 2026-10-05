@@ -1,0 +1,41 @@
+{
+    "target": "linux/amd64",
+    "http": "127.0.0.1:10004",
+    "workdir": "/home/wmy/Fuzzer/out/workdir_defconfig",
+    "kernel_obj": "/home/wmy/Fuzzer/build/linux/linux-6.18",
+    "image": "/home/wmy/Fuzzer/third_tool/Image-fuzz-6.18/bullseye.img",
+    "sshkey": "/home/wmy/Fuzzer/third_tool/Image-fuzz-6.18/bullseye.id_rsa",
+    "syzkaller": "/home/wmy/Fuzzer/third_tool/syzkaller_defconfig_dev",
+    "procs": 4,
+    "type": "qemu",
+    "sandbox": "none",
+    "reproduce": false,
+    "enable_syscalls": [
+        "openat$vmci",
+        "ioctl$IOCTL_VMCI_INIT_CONTEXT",
+        "ioctl$IOCTL_VMCI_DATAGRAM_SEND",
+        "ioctl$IOCTL_VMCI_DATAGRAM_RECEIVE",
+        "ioctl$IOCTL_VMCI_QUEUEPAIR_ALLOC",
+        "ioctl$IOCTL_VMCI_QUEUEPAIR_SETVA",
+        "ioctl$IOCTL_VMCI_QUEUEPAIR_SETPF",
+        "ioctl$IOCTL_VMCI_QUEUEPAIR_DETACH",
+        "ioctl$IOCTL_VMCI_CTX_ADD_NOTIFICATION",
+        "ioctl$IOCTL_VMCI_CTX_REMOVE_NOTIFICATION",
+        "ioctl$IOCTL_VMCI_CTX_GET_CPT_STATE",
+        "ioctl$IOCTL_VMCI_CTX_SET_CPT_STATE",
+        "ioctl$IOCTL_VMCI_GET_CONTEXT_ID",
+        "ioctl$IOCTL_VMCI_SET_NOTIFY",
+        "ioctl$IOCTL_VMCI_NOTIFY_RESOURCE",
+        "ioctl$IOCTL_VMCI_NOTIFICATIONS_RECEIVE",
+        "ioctl$IOCTL_VMCI_VERSION",
+        "ioctl$IOCTL_VMCI_VERSION2"
+    ],
+    "vm": {
+        "count": 2,
+        "kernel": "/home/wmy/Fuzzer/build/linux/linux-6.18/arch/x86/boot/bzImage",
+        "cpu": 4,
+        "mem": 4096,
+        "qemu_args": "--enable-kvm  -fsdev local,id=fsdev0,path=/home/wmy/Fuzzer/out/shares,security_model=none -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=hostshare  -device hpilo_pci",
+        "qemu": "/home/wmy/Fuzzer/bin/qemu/bin/qemu-system-x86_64"
+    }
+}

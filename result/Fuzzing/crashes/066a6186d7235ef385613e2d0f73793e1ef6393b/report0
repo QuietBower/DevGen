@@ -1,0 +1,79 @@
+BUG: memory leak
+unreferenced object 0xffff888112d38800 (size 256):
+  comm "systemd-udevd", pid 4496, jiffies 4294903502
+  hex dump (first 32 bytes):
+    00 88 d3 12 81 88 ff ff ff 8f 90 2f 69 7f 00 00  .........../i...
+    ff af 90 2f 69 7f 00 00 ff bf 90 2f 69 7f 00 00  .../i....../i...
+  backtrace (crc bf3329f9):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_noprof+0x40b/0x6d0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5295
+    mt_alloc_one home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:174 [inline]
+    mas_alloc_nodes home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:1110 [inline]
+    mas_wr_preallocate home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3952 [inline]
+    mas_store_gfp+0x745/0x950 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:5126
+    vma_iter_clear_gfp home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/mm.h:950 [inline]
+    do_vmi_align_munmap+0x39e/0x550 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:1531
+    do_vmi_munmap+0x1f5/0x3d0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:1584
+    __vm_munmap+0x195/0x370 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:3156
+    __do_sys_munmap home/wmy/Fuzzer/third_tool/linux-6.18/mm/mmap.c:1080 [inline]
+    __se_sys_munmap home/wmy/Fuzzer/third_tool/linux-6.18/mm/mmap.c:1077 [inline]
+    __x64_sys_munmap+0x5e/0x80 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mmap.c:1077
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888107ca3600 (size 256):
+  comm "systemd-udevd", pid 4496, jiffies 4294903502
+  hex dump (first 32 bytes):
+    00 36 ca 07 81 88 ff ff ff 8f 90 2f 69 7f 00 00  .6........./i...
+    ff af 90 2f 69 7f 00 00 ff bf 90 2f 69 7f 00 00  .../i....../i...
+  backtrace (crc 699c3280):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_noprof+0x40b/0x6d0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5295
+    mt_alloc_one home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:174 [inline]
+    mas_alloc_nodes home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:1110 [inline]
+    mas_wr_preallocate home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3952 [inline]
+    mas_store_gfp+0x745/0x950 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:5126
+    vma_iter_clear_gfp home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/mm.h:950 [inline]
+    do_vmi_align_munmap+0x39e/0x550 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:1531
+    do_vmi_munmap+0x1f5/0x3d0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:1584
+    __vm_munmap+0x195/0x370 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:3156
+    __do_sys_munmap home/wmy/Fuzzer/third_tool/linux-6.18/mm/mmap.c:1080 [inline]
+    __se_sys_munmap home/wmy/Fuzzer/third_tool/linux-6.18/mm/mmap.c:1077 [inline]
+    __x64_sys_munmap+0x5e/0x80 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mmap.c:1077
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    do_vmi_munmap+0x1f5/0x3d0
+    __vm_munmap+0x195/0x370
+    __x64_sys_munmap+0x5e/0x80
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff888107ca3600 (size 256):
+  comm "systemd-udevd", pid 4496, jiffies 4294903502
+  hex dump (first 32 bytes):
+    00 36 ca 07 81 88 ff ff ff 8f 90 2f 69 7f 00 00  .6........./i...
+    ff af 90 2f 69 7f 00 00 ff bf 90 2f 69 7f 00 00  .../i....../i...
+  backtrace (crc 699c3280):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    mas_store_gfp+0x745/0x950
+    do_vmi_align_munmap+0x39e/0x550
+    do_vmi_munmap+0x1f5/0x3d0
+    __vm_munmap+0x195/0x370
+    __x64_sys_munmap+0x5e/0x80
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

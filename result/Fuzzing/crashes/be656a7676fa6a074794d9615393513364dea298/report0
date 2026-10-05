@@ -1,0 +1,242 @@
+BUG: memory leak
+unreferenced object 0xffff8881005baa48 (size 312):
+  comm "systemd", pid 1, jiffies 4294688011
+  hex dump (first 32 bytes):
+    44 40 00 00 00 00 00 00 02 00 00 00 00 00 00 00  D@..............
+    40 a7 69 8a ff ff ff ff 00 00 00 00 00 00 00 00  @.i.............
+  backtrace (crc af58d898):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_lru_noprof+0x40f/0x6e0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5307
+    __d_alloc+0x36/0xa10 home/wmy/Fuzzer/third_tool/linux-6.18/fs/dcache.c:1690
+    d_alloc_parallel+0x117/0x1330 home/wmy/Fuzzer/third_tool/linux-6.18/fs/dcache.c:2549
+    lookup_open.isra.0+0x663/0x1530 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:3718
+    open_last_lookups home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:3895 [inline]
+    path_openat+0xc70/0x2880 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4131
+    do_filp_open+0x1fc/0x460 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4161
+    do_sys_openat2+0x109/0x1c0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1437
+    do_sys_open home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1452 [inline]
+    __do_sys_openat home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1468 [inline]
+    __se_sys_openat home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1463 [inline]
+    __x64_sys_openat+0x144/0x200 home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1463
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888111ba58d0 (size 1496):
+  comm "systemd", pid 1, jiffies 4294688126
+  hex dump (first 32 bytes):
+    00 00 00 00 ad 4e ad de ff ff ff ff 00 00 00 00  .....N..........
+    ff ff ff ff ff ff ff ff 40 bf 2f 8a ff ff ff ff  ........@./.....
+  backtrace (crc 77438f6d):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_lru_noprof+0x40f/0x6e0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5307
+    shmem_alloc_inode+0x2c/0x50 home/wmy/Fuzzer/third_tool/linux-6.18/mm/shmem.c:5149
+    alloc_inode+0x6d/0x250 home/wmy/Fuzzer/third_tool/linux-6.18/fs/inode.c:346
+    new_inode+0x23/0x160 home/wmy/Fuzzer/third_tool/linux-6.18/fs/inode.c:1145
+    __shmem_get_inode+0x181/0xe70 home/wmy/Fuzzer/third_tool/linux-6.18/mm/shmem.c:3048
+    shmem_get_inode home/wmy/Fuzzer/third_tool/linux-6.18/mm/shmem.c:3147 [inline]
+    shmem_symlink+0xf1/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/mm/shmem.c:4096
+    vfs_symlink home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4817 [inline]
+    vfs_symlink+0x3ff/0x680 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4801
+    do_symlinkat+0x149/0x300 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4843
+    __do_sys_symlink home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4864 [inline]
+    __se_sys_symlink home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4862 [inline]
+    __x64_sys_symlink+0x7a/0xa0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4862
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888105e102e0 (size 120):
+  comm "systemd", pid 1, jiffies 4294688126
+  hex dump (first 32 bytes):
+    18 5c ba 11 81 88 ff ff 60 43 2d 82 ff ff ff ff  .\......`C-.....
+    38 5a ba 11 81 88 ff ff f8 02 e1 05 81 88 ff ff  8Z..............
+  backtrace (crc d8b5daf5):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_noprof+0x40b/0x6d0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5295
+    lsm_inode_alloc home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:761 [inline]
+    security_inode_alloc+0x43/0x150 home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:1736
+    inode_init_always_gfp+0xca0/0xfe0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/inode.c:306
+    inode_init_always home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/fs.h:3314 [inline]
+    alloc_inode+0x93/0x250 home/wmy/Fuzzer/third_tool/linux-6.18/fs/inode.c:353
+    new_inode+0x23/0x160 home/wmy/Fuzzer/third_tool/linux-6.18/fs/inode.c:1145
+    __shmem_get_inode+0x181/0xe70 home/wmy/Fuzzer/third_tool/linux-6.18/mm/shmem.c:3048
+    shmem_get_inode home/wmy/Fuzzer/third_tool/linux-6.18/mm/shmem.c:3147 [inline]
+    shmem_symlink+0xf1/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/mm/shmem.c:4096
+    vfs_symlink home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4817 [inline]
+    vfs_symlink+0x3ff/0x680 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4801
+    do_symlinkat+0x149/0x300 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4843
+    __do_sys_symlink home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4864 [inline]
+    __se_sys_symlink home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4862 [inline]
+    __x64_sys_symlink+0x7a/0xa0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4862
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888105b5cf80 (size 64):
+  comm "systemd", pid 1, jiffies 4294688126
+  hex dump (first 32 bytes):
+    65 32 35 61 64 39 63 32 35 64 64 61 34 33 63 64  e25ad9c25dda43cd
+    62 30 65 35 64 36 32 61 33 30 63 37 35 66 33 31  b0e5d62a30c75f31
+  backtrace (crc 645a1c42):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    __do_kmalloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5649 [inline]
+    __kmalloc_node_track_caller_noprof+0x467/0x7c0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5759
+    kmemdup_noprof+0x2b/0x60 home/wmy/Fuzzer/third_tool/linux-6.18/mm/util.c:138
+    kmemdup_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/fortify-string.h:765 [inline]
+    shmem_symlink+0x241/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/mm/shmem.c:4112
+    vfs_symlink home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4817 [inline]
+    vfs_symlink+0x3ff/0x680 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4801
+    do_symlinkat+0x149/0x300 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4843
+    __do_sys_symlink home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4864 [inline]
+    __se_sys_symlink home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4862 [inline]
+    __x64_sys_symlink+0x7a/0xa0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4862
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    do_filp_open+0x1fc/0x460
+    do_sys_openat2+0x109/0x1c0
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff888111ba58d0 (size 1496):
+  comm "systemd", pid 1, jiffies 4294688126
+  hex dump (first 32 bytes):
+    00 00 00 00 ad 4e ad de ff ff ff ff 00 00 00 00  .....N..........
+    ff ff ff ff ff ff ff ff 40 bf 2f 8a ff ff ff ff  ........@./.....
+  backtrace (crc 77438f6d):
+    kmem_cache_alloc_lru_noprof+0x40f/0x6e0
+    shmem_alloc_inode+0x2c/0x50
+    alloc_inode+0x6d/0x250
+    new_inode+0x23/0x160
+    __shmem_get_inode+0x181/0xe70
+    shmem_symlink+0xf1/0x780
+    vfs_symlink+0x3ff/0x680
+    do_symlinkat+0x149/0x300
+    __x64_sys_symlink+0x7a/0xa0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888105e102e0 (size 120):
+  comm "systemd", pid 1, jiffies 4294688126
+  hex dump (first 32 bytes):
+    18 5c ba 11 81 88 ff ff 60 43 2d 82 ff ff ff ff  .\......`C-.....
+    38 5a ba 11 81 88 ff ff f8 02 e1 05 81 88 ff ff  8Z..............
+  backtrace (crc d8b5daf5):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    security_inode_alloc+0x43/0x150
+    inode_init_always_gfp+0xca0/0xfe0
+    alloc_inode+0x93/0x250
+    new_inode+0x23/0x160
+    __shmem_get_inode+0x181/0xe70
+    shmem_symlink+0xf1/0x780
+    vfs_symlink+0x3ff/0x680
+    do_symlinkat+0x149/0x300
+    __x64_sys_symlink+0x7a/0xa0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888105b5cf80 (size 64):
+  comm "systemd", pid 1, jiffies 4294688126
+  hex dump (first 32 bytes):
+    65 32 35 61 64 39 63 32 35 64 64 61 34 33 63 64  e25ad9c25dda43cd
+    62 30 65 35 64 36 32 61 33 30 63 37 35 66 33 31  b0e5d62a30c75f31
+  backtrace (crc 645a1c42):
+    __kmalloc_node_track_caller_noprof+0x467/0x7c0
+    kmemdup_noprof+0x2b/0x60
+    shmem_symlink+0x241/0x780
+    vfs_symlink+0x3ff/0x680
+    do_symlinkat+0x149/0x300
+    __x64_sys_symlink+0x7a/0xa0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    vfs_symlink+0x3ff/0x680
+    do_symlinkat+0x149/0x300
+    __x64_sys_symlink+0x7a/0xa0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff888105e102e0 (size 120):
+  comm "systemd", pid 1, jiffies 4294688126
+  hex dump (first 32 bytes):
+    18 5c ba 11 81 88 ff ff 60 43 2d 82 ff ff ff ff  .\......`C-.....
+    38 5a ba 11 81 88 ff ff f8 02 e1 05 81 88 ff ff  8Z..............
+  backtrace (crc d8b5daf5):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    security_inode_alloc+0x43/0x150
+    inode_init_always_gfp+0xca0/0xfe0
+    alloc_inode+0x93/0x250
+    new_inode+0x23/0x160
+    __shmem_get_inode+0x181/0xe70
+    shmem_symlink+0xf1/0x780
+    vfs_symlink+0x3ff/0x680
+    do_symlinkat+0x149/0x300
+    __x64_sys_symlink+0x7a/0xa0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888105b5cf80 (size 64):
+  comm "systemd", pid 1, jiffies 4294688126
+  hex dump (first 32 bytes):
+    65 32 35 61 64 39 63 32 35 64 64 61 34 33 63 64  e25ad9c25dda43cd
+    62 30 65 35 64 36 32 61 33 30 63 37 35 66 33 31  b0e5d62a30c75f31
+  backtrace (crc 645a1c42):
+    __kmalloc_node_track_caller_noprof+0x467/0x7c0
+    kmemdup_noprof+0x2b/0x60
+    shmem_symlink+0x241/0x780
+    vfs_symlink+0x3ff/0x680
+    do_symlinkat+0x149/0x300
+    __x64_sys_symlink+0x7a/0xa0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    vfs_symlink+0x3ff/0x680
+    do_symlinkat+0x149/0x300
+    __x64_sys_symlink+0x7a/0xa0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff888105b5cf80 (size 64):
+  comm "systemd", pid 1, jiffies 4294688126
+  hex dump (first 32 bytes):
+    65 32 35 61 64 39 63 32 35 64 64 61 34 33 63 64  e25ad9c25dda43cd
+    62 30 65 35 64 36 32 61 33 30 63 37 35 66 33 31  b0e5d62a30c75f31
+  backtrace (crc 645a1c42):
+    __kmalloc_node_track_caller_noprof+0x467/0x7c0
+    kmemdup_noprof+0x2b/0x60
+    shmem_symlink+0x241/0x780
+    vfs_symlink+0x3ff/0x680
+    do_symlinkat+0x149/0x300
+    __x64_sys_symlink+0x7a/0xa0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

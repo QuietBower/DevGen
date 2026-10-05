@@ -1,0 +1,113 @@
+QEMU emulator version 8.2.10 (v8.2.10-dirty)
+/home/wmy/Fuzzer/bin/qemu/bin/qemu-system-x86_64 ["-m" "4096" "-smp" "4" "-chardev" "socket,id=SOCKSYZ,server=on,wait=off,host=localhost,port=21182" "-mon" "chardev=SOCKSYZ,mode=control" "-display" "none" "-serial" "stdio" "-no-reboot" "-name" "VM-1" "-device" "virtio-rng-pci" "--enable-kvm" "-fsdev" "local,id=fsdev0,path=/home/wmy/Fuzzer/out/shares,security_model=none" "-device" "virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=hostshare" "-device" "sof_audio_pci_intel_skl_pci" "-device" "e1000,netdev=net0" "-netdev" "user,id=net0,restrict=on,hostfwd=tcp:127.0.0.1:44776-:22" "-hda" "/home/wmy/Fuzzer/third_tool/Image-fuzz-6.18-syzbot/bullseye.img" "-snapshot" "-kernel" "/home/wmy/Fuzzer/build/linux/linux-6.18-syzbot/arch/x86/boot/bzImage" "-append" "root=/dev/sda console=ttyS0 "]
+
+[CPU Info]
+processor           : 0, 1, 2, 3
+vendor_id           : GenuineIntel
+cpu family          : 15
+model               : 107
+model name          : QEMU Virtual CPU version 2.5+
+stepping            : 1
+microcode           : 0x1
+cpu MHz             : 2803.204
+cache size          : 16384 KB
+physical id         : 0
+siblings            : 4
+core id             : 0, 1, 2, 3
+cpu cores           : 4
+apicid              : 0, 1, 2, 3
+initial apicid      : 0, 1, 2, 3
+fpu                 : yes
+fpu_exception       : yes
+cpuid level         : 13
+wp                  : yes
+flags               : fpu de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx lm rep_good nopl xtopology cpuid tsc_known_freq pni cx16 x2apic hypervisor lahf_lm cpuid_fault pti
+bugs                : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit bhi spectre_v2_user its
+bogomips            : 5606.40
+clflush size        : 64
+cache_alignment     : 128
+address sizes       : 40 bits physical, 48 bits virtual
+power management    : 
+
+--------------------------------------------------------------------------------
+
+[KVM]
+/sys/module/kvm_intel:
+	ple_gap: 128
+	vpid: Y
+	dump_invalid_vmcs: N
+	pml: Y
+	fasteoi: Y
+	eptad: Y
+	sgx: Y
+	nested_early_check: N
+	ple_window_max: 4294967295
+	preemption_timer: Y
+	ept: Y
+	vnmi: Y
+	enable_device_posted_irqs: Y
+	ple_window: 4096
+	unrestricted_guest: Y
+	emulate_invalid_guest_state: Y
+	enable_shadow_vmcs: Y
+	nested: Y
+	flexpriority: Y
+	enable_ipiv: Y
+	allow_smaller_maxphyaddr: N
+	ple_window_grow: 2
+	enable_apicv: Y
+	ple_window_shrink: 0
+	error_on_inconsistent_vmcs_config: Y
+	vmentry_l1d_flush: auto
+
+/sys/module/kvm_amd:
+	enable_ipiv: Y
+	nrips: 1
+	force_avic: N
+	npt: Y
+	pause_filter_count_grow: 2
+	intercept_smi: Y
+	avic: Y
+	nested: 1
+	enable_device_posted_irqs: Y
+	pause_filter_count_max: 65535
+	pause_filter_count: 3000
+	tsc_scaling: 1
+	lbrv: 1
+	dump_invalid_vmcb: N
+	vls: 1
+	pause_filter_count_shrink: 0
+	vgif: 1
+	pause_filter_thresh: 128
+	vnmi: Y
+
+/sys/module/kvm:
+	mmio_caching: Y
+	flush_on_reuse: N
+	force_emulation_prefix: 0
+	halt_poll_ns_grow: 2
+	ignore_msrs: N
+	nx_huge_pages_recovery_ratio: 60
+	tdp_mmu: Y
+	nx_huge_pages_recovery_period_ms: 0
+	lapic_timer_advance: Y
+	halt_poll_ns_shrink: 2
+	eager_page_split: Y
+	min_timer_period_us: 200
+	enable_vmware_backdoor: N
+	vector_hashing: Y
+	allow_unsafe_mappings: N
+	halt_poll_ns_grow_start: 10000
+	mitigate_smt_rsb: N
+	halt_poll_ns: 200000
+	nx_huge_pages: Y
+	report_ignored_msrs: Y
+	enable_pmu: Y
+	kvmclock_periodic_sync: Y
+	enable_virt_at_load: Y
+	pi_inject_timer: -1
+	tsc_tolerance_ppm: 250
+
+
+--------------------------------------------------------------------------------
+

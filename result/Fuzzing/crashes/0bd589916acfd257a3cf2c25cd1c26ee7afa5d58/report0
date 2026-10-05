@@ -1,0 +1,68 @@
+Oops: general protection fault, probably for non-canonical address 0xdffffc000000005f: 0000 [#1] SMP KASAN PTI
+KASAN: null-ptr-deref in range [0x00000000000002f8-0x00000000000002ff]
+CPU: 0 UID: 0 PID: 108263 Comm: syz.1.9803 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:h5_recv+0xfc/0x8f0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/bluetooth/hci_h5.c:572
+Code: c1 e8 03 4c 01 f0 48 89 44 24 08 48 8d 83 08 03 00 00 48 89 44 24 30 48 c1 e8 03 48 89 44 24 10 e8 69 cc 8f f9 48 8b 44 24 08 <80> 38 00 0f 85 a7 01 00 00 48 89 ea 48 89 e9 48 8b 83 f8 02 00 00
+RSP: 0018:ffffc90007bafbe8 EFLAGS: 00010212
+RAX: dffffc000000005f RBX: 0000000000000000 RCX: ffffc900142e2000
+RDX: 0000000000080000 RSI: ffffffff882a8b97 RDI: 0000000000000005
+RBP: ffffc90007bafd78 R08: 0000000000000000 R09: ffffed10073de083
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000001
+R13: 0000000000000001 R14: dffffc0000000000 R15: ffff888039ef0400
+FS:  00007f69530e2640(0000) GS:ffff8880cf001000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 0000000036b60000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ hci_uart_tty_receive+0x25b/0x800 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/bluetooth/hci_ldisc.c:627
+ tiocsti home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/tty_io.c:2290 [inline]
+ tty_ioctl+0x502/0x1690 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/tty_io.c:2706
+ vfs_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:51 [inline]
+ __do_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:597 [inline]
+ __se_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x18f/0x210 home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xcb/0xfa0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f69521b059d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f69530e1f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f6952425fa0 RCX: 00007f69521b059d
+RDX: 0000200000000080 RSI: 0000000000005412 RDI: 000000000000000c
+RBP: 00007f695224e078 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f6952426038 R14: 00007f6952425fa0 R15: 00007f69530c2000
+ </TASK>
+Modules linked in:
+---[ end trace 0000000000000000 ]---
+RIP: 0010:h5_recv+0xfc/0x8f0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/bluetooth/hci_h5.c:572
+Code: c1 e8 03 4c 01 f0 48 89 44 24 08 48 8d 83 08 03 00 00 48 89 44 24 30 48 c1 e8 03 48 89 44 24 10 e8 69 cc 8f f9 48 8b 44 24 08 <80> 38 00 0f 85 a7 01 00 00 48 89 ea 48 89 e9 48 8b 83 f8 02 00 00
+RSP: 0018:ffffc90007bafbe8 EFLAGS: 00010212
+RAX: dffffc000000005f RBX: 0000000000000000 RCX: ffffc900142e2000
+RDX: 0000000000080000 RSI: ffffffff882a8b97 RDI: 0000000000000005
+RBP: ffffc90007bafd78 R08: 0000000000000000 R09: ffffed10073de083
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000001
+R13: 0000000000000001 R14: dffffc0000000000 R15: ffff888039ef0400
+FS:  00007f69530e2640(0000) GS:ffff8880cf001000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 0000000036b60000 CR4: 00000000000006f0
+----------------
+Code disassembly (best guess):
+   0:	c1 e8 03             	shr    $0x3,%eax
+   3:	4c 01 f0             	add    %r14,%rax
+   6:	48 89 44 24 08       	mov    %rax,0x8(%rsp)
+   b:	48 8d 83 08 03 00 00 	lea    0x308(%rbx),%rax
+  12:	48 89 44 24 30       	mov    %rax,0x30(%rsp)
+  17:	48 c1 e8 03          	shr    $0x3,%rax
+  1b:	48 89 44 24 10       	mov    %rax,0x10(%rsp)
+  20:	e8 69 cc 8f f9       	call   0xf98fcc8e
+  25:	48 8b 44 24 08       	mov    0x8(%rsp),%rax
+* 2a:	80 38 00             	cmpb   $0x0,(%rax) <-- trapping instruction
+  2d:	0f 85 a7 01 00 00    	jne    0x1da
+  33:	48 89 ea             	mov    %rbp,%rdx
+  36:	48 89 e9             	mov    %rbp,%rcx
+  39:	48 8b 83 f8 02 00 00 	mov    0x2f8(%rbx),%rax
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

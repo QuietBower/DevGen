@@ -1,0 +1,463 @@
+BUG: memory leak
+unreferenced object 0xffff88800d06f180 (size 576):
+  comm "systemd-journal", pid 7177, jiffies 4295467471
+  hex dump (first 32 bytes):
+    00 3d 00 00 00 00 00 00 c0 8d 08 09 80 88 ff ff  .=..............
+    a0 c0 0e 87 ff ff ff ff 70 14 f7 03 81 88 ff ff  ........p.......
+  backtrace (crc 580ed7be):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_noprof+0x40b/0x6d0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5295
+    radix_tree_node_alloc.constprop.0+0x1e3/0x310 home/wmy/Fuzzer/third_tool/linux-6.18/lib/radix-tree.c:253
+    idr_get_free+0x4b5/0x900 home/wmy/Fuzzer/third_tool/linux-6.18/lib/radix-tree.c:1506
+    idr_alloc_u32+0x173/0x2d0 home/wmy/Fuzzer/third_tool/linux-6.18/lib/idr.c:46
+    idr_alloc_cyclic+0x105/0x230 home/wmy/Fuzzer/third_tool/linux-6.18/lib/idr.c:125
+    alloc_pid+0x541/0x1100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/pid.c:238
+    copy_process+0x3489/0x72b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2197
+    kernel_clone+0xef/0x800 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2609
+    __do_sys_clone+0xce/0x120 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2750
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff8881188df800 (size 1344):
+  comm "systemd-udevd", pid 150, jiffies 4295467638
+  hex dump (first 32 bytes):
+    01 00 00 00 03 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 85ca9829):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_lru_noprof+0x40f/0x6e0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5307
+    sock_alloc_inode+0x2c/0x1e0 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:322
+    alloc_inode+0x6d/0x250 home/wmy/Fuzzer/third_tool/linux-6.18/fs/inode.c:346
+    new_inode_pseudo home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/fs.h:3397 [inline]
+    sock_alloc+0x45/0x280 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:637
+    __sock_create+0xc6/0x810 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1569
+    sock_create home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1663 [inline]
+    __sys_socket_create home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1700 [inline]
+    __sys_socket_create home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1685 [inline]
+    __sys_socket+0x14a/0x260 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1747
+    __do_sys_socket home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1761 [inline]
+    __se_sys_socket home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1759 [inline]
+    __x64_sys_socket+0x77/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1759
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888106ee8958 (size 120):
+  comm "systemd-udevd", pid 150, jiffies 4295467638
+  hex dump (first 32 bytes):
+    a0 fa 8d 18 81 88 ff ff 60 43 2d 82 ff ff ff ff  ........`C-.....
+    c0 f8 8d 18 81 88 ff ff 70 89 ee 06 81 88 ff ff  ........p.......
+  backtrace (crc a7ef5877):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_noprof+0x40b/0x6d0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5295
+    lsm_inode_alloc home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:761 [inline]
+    security_inode_alloc+0x43/0x150 home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:1736
+    inode_init_always_gfp+0xca0/0xfe0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/inode.c:306
+    inode_init_always home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/fs.h:3314 [inline]
+    alloc_inode+0x93/0x250 home/wmy/Fuzzer/third_tool/linux-6.18/fs/inode.c:353
+    new_inode_pseudo home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/fs.h:3397 [inline]
+    sock_alloc+0x45/0x280 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:637
+    __sock_create+0xc6/0x810 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1569
+    sock_create home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1663 [inline]
+    __sys_socket_create home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1700 [inline]
+    __sys_socket_create home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1685 [inline]
+    __sys_socket+0x14a/0x260 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1747
+    __do_sys_socket home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1761 [inline]
+    __se_sys_socket home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1759 [inline]
+    __x64_sys_socket+0x77/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1759
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88801b1a3000 (size 2048):
+  comm "systemd-udevd", pid 150, jiffies 4295467638
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    10 00 07 40 00 00 00 00 00 00 00 00 00 00 00 00  ...@............
+  backtrace (crc beaf6915):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    __do_kmalloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5649 [inline]
+    __kmalloc_noprof+0x49c/0x7b0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5662
+    kmalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:961 [inline]
+    sk_prot_alloc+0x15c/0x290 home/wmy/Fuzzer/third_tool/linux-6.18/net/core/sock.c:2239
+    sk_alloc+0x39/0xbd0 home/wmy/Fuzzer/third_tool/linux-6.18/net/core/sock.c:2295
+    __netlink_create+0x62/0x290 home/wmy/Fuzzer/third_tool/linux-6.18/net/netlink/af_netlink.c:628
+    netlink_create+0x3a8/0x610 home/wmy/Fuzzer/third_tool/linux-6.18/net/netlink/af_netlink.c:686
+    __sock_create+0x36e/0x810 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1605
+    sock_create home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1663 [inline]
+    __sys_socket_create home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1700 [inline]
+    __sys_socket_create home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1685 [inline]
+    __sys_socket+0x14a/0x260 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1747
+    __do_sys_socket home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1761 [inline]
+    __se_sys_socket home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1759 [inline]
+    __x64_sys_socket+0x77/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1759
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888104e284c0 (size 32):
+  comm "systemd-udevd", pid 150, jiffies 4295467638
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    7a 00 00 00 03 00 00 00 2b 00 00 00 00 00 00 00  z.......+.......
+  backtrace (crc f857a5c5):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    __do_kmalloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5649 [inline]
+    __kmalloc_noprof+0x49c/0x7b0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5662
+    kmalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:961 [inline]
+    kzalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:1094 [inline]
+    lsm_blob_alloc home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:690 [inline]
+    lsm_blob_alloc home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:683 [inline]
+    lsm_sock_alloc home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:4922 [inline]
+    security_sk_alloc+0x113/0x170 home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:4938
+    sk_prot_alloc+0x210/0x290 home/wmy/Fuzzer/third_tool/linux-6.18/net/core/sock.c:2242
+    sk_alloc+0x39/0xbd0 home/wmy/Fuzzer/third_tool/linux-6.18/net/core/sock.c:2295
+    __netlink_create+0x62/0x290 home/wmy/Fuzzer/third_tool/linux-6.18/net/netlink/af_netlink.c:628
+    netlink_create+0x3a8/0x610 home/wmy/Fuzzer/third_tool/linux-6.18/net/netlink/af_netlink.c:686
+    __sock_create+0x36e/0x810 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1605
+    sock_create home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1663 [inline]
+    __sys_socket_create home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1700 [inline]
+    __sys_socket_create home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1685 [inline]
+    __sys_socket+0x14a/0x260 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1747
+    __do_sys_socket home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1761 [inline]
+    __se_sys_socket home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1759 [inline]
+    __x64_sys_socket+0x77/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:1759
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888103f71380 (size 272):
+  comm "systemd-udevd", pid 150, jiffies 4295467645
+  hex dump (first 32 bytes):
+    05 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+    ff ff ff ff 00 00 00 00 ff ff ff ff ff ff ff ff  ................
+  backtrace (crc 7f525086):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_noprof+0x40b/0x6d0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5295
+    alloc_pid+0xda/0x1100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/pid.c:184
+    copy_process+0x3489/0x72b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2197
+    kernel_clone+0xef/0x800 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2609
+    __do_sys_clone+0xce/0x120 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2750
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    copy_process+0x3489/0x72b0
+    kernel_clone+0xef/0x800
+    __do_sys_clone+0xce/0x120
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff8881188df800 (size 1344):
+  comm "systemd-udevd", pid 150, jiffies 4295467638
+  hex dump (first 32 bytes):
+    01 00 00 00 03 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 85ca9829):
+    kmem_cache_alloc_lru_noprof+0x40f/0x6e0
+    sock_alloc_inode+0x2c/0x1e0
+    alloc_inode+0x6d/0x250
+    sock_alloc+0x45/0x280
+    __sock_create+0xc6/0x810
+    __sys_socket+0x14a/0x260
+    __x64_sys_socket+0x77/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888106ee8958 (size 120):
+  comm "systemd-udevd", pid 150, jiffies 4295467638
+  hex dump (first 32 bytes):
+    a0 fa 8d 18 81 88 ff ff 60 43 2d 82 ff ff ff ff  ........`C-.....
+    c0 f8 8d 18 81 88 ff ff 70 89 ee 06 81 88 ff ff  ........p.......
+  backtrace (crc a7ef5877):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    security_inode_alloc+0x43/0x150
+    inode_init_always_gfp+0xca0/0xfe0
+    alloc_inode+0x93/0x250
+    sock_alloc+0x45/0x280
+    __sock_create+0xc6/0x810
+    __sys_socket+0x14a/0x260
+    __x64_sys_socket+0x77/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88801b1a3000 (size 2048):
+  comm "systemd-udevd", pid 150, jiffies 4295467638
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    10 00 07 40 00 00 00 00 00 00 00 00 00 00 00 00  ...@............
+  backtrace (crc beaf6915):
+    __kmalloc_noprof+0x49c/0x7b0
+    sk_prot_alloc+0x15c/0x290
+    sk_alloc+0x39/0xbd0
+    __netlink_create+0x62/0x290
+    netlink_create+0x3a8/0x610
+    __sock_create+0x36e/0x810
+    __sys_socket+0x14a/0x260
+    __x64_sys_socket+0x77/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888104e284c0 (size 32):
+  comm "systemd-udevd", pid 150, jiffies 4295467638
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    7a 00 00 00 03 00 00 00 2b 00 00 00 00 00 00 00  z.......+.......
+  backtrace (crc f857a5c5):
+    __kmalloc_noprof+0x49c/0x7b0
+    security_sk_alloc+0x113/0x170
+    sk_prot_alloc+0x210/0x290
+    sk_alloc+0x39/0xbd0
+    __netlink_create+0x62/0x290
+    netlink_create+0x3a8/0x610
+    __sock_create+0x36e/0x810
+    __sys_socket+0x14a/0x260
+    __x64_sys_socket+0x77/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888103f71380 (size 272):
+  comm "systemd-udevd", pid 150, jiffies 4295467645
+  hex dump (first 32 bytes):
+    05 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+    ff ff ff ff 00 00 00 00 ff ff ff ff ff ff ff ff  ................
+  backtrace (crc 7f525086):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    alloc_pid+0xda/0x1100
+    copy_process+0x3489/0x72b0
+    kernel_clone+0xef/0x800
+    __do_sys_clone+0xce/0x120
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    __sock_create+0xc6/0x810
+    __sys_socket+0x14a/0x260
+    __x64_sys_socket+0x77/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff888106ee8958 (size 120):
+  comm "systemd-udevd", pid 150, jiffies 4295467638
+  hex dump (first 32 bytes):
+    a0 fa 8d 18 81 88 ff ff 60 43 2d 82 ff ff ff ff  ........`C-.....
+    c0 f8 8d 18 81 88 ff ff 70 89 ee 06 81 88 ff ff  ........p.......
+  backtrace (crc a7ef5877):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    security_inode_alloc+0x43/0x150
+    inode_init_always_gfp+0xca0/0xfe0
+    alloc_inode+0x93/0x250
+    sock_alloc+0x45/0x280
+    __sock_create+0xc6/0x810
+    __sys_socket+0x14a/0x260
+    __x64_sys_socket+0x77/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88801b1a3000 (size 2048):
+  comm "systemd-udevd", pid 150, jiffies 4295467638
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    10 00 07 40 00 00 00 00 00 00 00 00 00 00 00 00  ...@............
+  backtrace (crc beaf6915):
+    __kmalloc_noprof+0x49c/0x7b0
+    sk_prot_alloc+0x15c/0x290
+    sk_alloc+0x39/0xbd0
+    __netlink_create+0x62/0x290
+    netlink_create+0x3a8/0x610
+    __sock_create+0x36e/0x810
+    __sys_socket+0x14a/0x260
+    __x64_sys_socket+0x77/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888104e284c0 (size 32):
+  comm "systemd-udevd", pid 150, jiffies 4295467638
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    7a 00 00 00 03 00 00 00 2b 00 00 00 00 00 00 00  z.......+.......
+  backtrace (crc f857a5c5):
+    __kmalloc_noprof+0x49c/0x7b0
+    security_sk_alloc+0x113/0x170
+    sk_prot_alloc+0x210/0x290
+    sk_alloc+0x39/0xbd0
+    __netlink_create+0x62/0x290
+    netlink_create+0x3a8/0x610
+    __sock_create+0x36e/0x810
+    __sys_socket+0x14a/0x260
+    __x64_sys_socket+0x77/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888103f71380 (size 272):
+  comm "systemd-udevd", pid 150, jiffies 4295467645
+  hex dump (first 32 bytes):
+    05 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+    ff ff ff ff 00 00 00 00 ff ff ff ff ff ff ff ff  ................
+  backtrace (crc 7f525086):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    alloc_pid+0xda/0x1100
+    copy_process+0x3489/0x72b0
+    kernel_clone+0xef/0x800
+    __do_sys_clone+0xce/0x120
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    __sock_create+0xc6/0x810
+    __sys_socket+0x14a/0x260
+    __x64_sys_socket+0x77/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff88801b1a3000 (size 2048):
+  comm "systemd-udevd", pid 150, jiffies 4295467638
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    10 00 07 40 00 00 00 00 00 00 00 00 00 00 00 00  ...@............
+  backtrace (crc beaf6915):
+    __kmalloc_noprof+0x49c/0x7b0
+    sk_prot_alloc+0x15c/0x290
+    sk_alloc+0x39/0xbd0
+    __netlink_create+0x62/0x290
+    netlink_create+0x3a8/0x610
+    __sock_create+0x36e/0x810
+    __sys_socket+0x14a/0x260
+    __x64_sys_socket+0x77/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888104e284c0 (size 32):
+  comm "systemd-udevd", pid 150, jiffies 4295467638
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    7a 00 00 00 03 00 00 00 2b 00 00 00 00 00 00 00  z.......+.......
+  backtrace (crc f857a5c5):
+    __kmalloc_noprof+0x49c/0x7b0
+    security_sk_alloc+0x113/0x170
+    sk_prot_alloc+0x210/0x290
+    sk_alloc+0x39/0xbd0
+    __netlink_create+0x62/0x290
+    netlink_create+0x3a8/0x610
+    __sock_create+0x36e/0x810
+    __sys_socket+0x14a/0x260
+    __x64_sys_socket+0x77/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888103f71380 (size 272):
+  comm "systemd-udevd", pid 150, jiffies 4295467645
+  hex dump (first 32 bytes):
+    05 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+    ff ff ff ff 00 00 00 00 ff ff ff ff ff ff ff ff  ................
+  backtrace (crc 7f525086):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    alloc_pid+0xda/0x1100
+    copy_process+0x3489/0x72b0
+    kernel_clone+0xef/0x800
+    __do_sys_clone+0xce/0x120
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    __sock_create+0x36e/0x810
+    __sys_socket+0x14a/0x260
+    __x64_sys_socket+0x77/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff888104e284c0 (size 32):
+  comm "systemd-udevd", pid 150, jiffies 4295467638
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    7a 00 00 00 03 00 00 00 2b 00 00 00 00 00 00 00  z.......+.......
+  backtrace (crc f857a5c5):
+    __kmalloc_noprof+0x49c/0x7b0
+    security_sk_alloc+0x113/0x170
+    sk_prot_alloc+0x210/0x290
+    sk_alloc+0x39/0xbd0
+    __netlink_create+0x62/0x290
+    netlink_create+0x3a8/0x610
+    __sock_create+0x36e/0x810
+    __sys_socket+0x14a/0x260
+    __x64_sys_socket+0x77/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888103f71380 (size 272):
+  comm "systemd-udevd", pid 150, jiffies 4295467645
+  hex dump (first 32 bytes):
+    05 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+    ff ff ff ff 00 00 00 00 ff ff ff ff ff ff ff ff  ................
+  backtrace (crc 7f525086):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    alloc_pid+0xda/0x1100
+    copy_process+0x3489/0x72b0
+    kernel_clone+0xef/0x800
+    __do_sys_clone+0xce/0x120
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    __sock_create+0x36e/0x810
+    __sys_socket+0x14a/0x260
+    __x64_sys_socket+0x77/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff888103f71380 (size 272):
+  comm "systemd-udevd", pid 150, jiffies 4295467645
+  hex dump (first 32 bytes):
+    05 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+    ff ff ff ff 00 00 00 00 ff ff ff ff ff ff ff ff  ................
+  backtrace (crc 7f525086):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    alloc_pid+0xda/0x1100
+    copy_process+0x3489/0x72b0
+    kernel_clone+0xef/0x800
+    __do_sys_clone+0xce/0x120
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

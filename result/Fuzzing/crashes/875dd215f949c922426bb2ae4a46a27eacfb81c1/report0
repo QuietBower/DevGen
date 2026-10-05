@@ -1,0 +1,112 @@
+mmap: syz.2.251 (602) uses deprecated remap_file_pages() syscall. See Documentation/mm/remap_file_pages.rst.
+NET: Registered PF_QIPCRTR protocol family
+------------[ cut here ]------------
+refcount_t: saturated; leaking memory.
+WARNING: CPU: 0 PID: 556 at lib/refcount.c:22 refcount_warn_saturate+0x94/0x170 home/wmy/Fuzzer/third_tool/linux-6.18/lib/refcount.c:22
+Modules linked in: qrtr(+) bochs drm_shmem_helper drm_kms_helper drm virtio_pci ata_generic virtio_pci_legacy_dev i2c_piix4 drm_panel_orientation_quirks pata_acpi i2c_smbus virtio_pci_modern_dev
+CPU: 0 UID: 0 PID: 556 Comm: modprobe Not tainted 6.18.0 #5 PREEMPT(none) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:refcount_warn_saturate+0x94/0x170 home/wmy/Fuzzer/third_tool/linux-6.18/lib/refcount.c:22
+Code: cc cc cc cc 85 ed 0f 84 97 00 00 00 80 3d 14 61 1b 05 00 75 e8 c6 05 0b 61 1b 05 01 90 48 c7 c7 00 e9 80 85 e8 0d fd 03 ff 90 <0f> 0b 90 90 eb cd 80 3d ee 60 1b 05 00 75 c4 c6 05 e5 60 1b 05 01
+syz-executor (274) used greatest stack depth: 25144 bytes left
+RSP: 0018:ffff888116f4f550 EFLAGS: 00010286
+RAX: 0000000000000000 RBX: ffff8881018f8078 RCX: ffffffff8179ab05
+RDX: 1ffff1103118530c RSI: 0000000000000008 RDI: ffff888188c29860
+RBP: 0000000000000001 R08: 0000000000000001 R09: ffffed1022de9e68
+R10: ffff888116f4f347 R11: 0000000000000001 R12: 1ffff11022de9eae
+R13: 0000000000000001 R14: ffff8881018f8078 R15: ffffffffa03bafc0
+FS:  00007f7b71044540(0000) GS:ffff88820032c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b2e763fff CR3: 0000000115e0e000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ __refcount_add home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/refcount.h:291 [inline] [qrtr]
+ __refcount_inc home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/refcount.h:366 [inline] [qrtr]
+ refcount_inc home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/refcount.h:383 [inline] [qrtr]
+ sock_hold home/wmy/Fuzzer/third_tool/linux-6.18/include/net/sock.h:816 [inline] [qrtr]
+ qrtr_port_assign home/wmy/Fuzzer/third_tool/linux-6.18/net/qrtr/af_qrtr.c:754 [inline] [qrtr]
+ __qrtr_bind.isra.0+0x48b/0x570 home/wmy/Fuzzer/third_tool/linux-6.18/net/qrtr/af_qrtr.c:792 [qrtr]
+ qrtr_bind+0x17d/0x210 home/wmy/Fuzzer/third_tool/linux-6.18/net/qrtr/af_qrtr.c:841 [qrtr]
+ kernel_bind+0xdb/0x130 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:3592
+ qrtr_ns_init+0x1a6/0x380 home/wmy/Fuzzer/third_tool/linux-6.18/net/qrtr/ns.c:717 [qrtr]
+ qrtr_proto_init+0x3b/0xff0 home/wmy/Fuzzer/third_tool/linux-6.18/net/qrtr/af_qrtr.c:169 [qrtr]
+ do_one_initcall+0xbe/0x470 home/wmy/Fuzzer/third_tool/linux-6.18/init/main.c:1283
+ do_init_module+0x27b/0x7d0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3039
+ load_module+0x5d55/0x68d0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3509
+ init_module_from_file+0xe4/0x150 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3701
+ idempotent_init_module+0x330/0x610 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3713
+ __do_sys_finit_module home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3739 [inline]
+ __se_sys_finit_module home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3723 [inline]
+ __x64_sys_finit_module+0xbe/0x120 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3723
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f7b71161fc9
+Code: 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 97 8e 0d 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffc7cc6a6a8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+RAX: ffffffffffffffda RBX: 0000561ab1b9a2a0 RCX: 00007f7b71161fc9
+RDX: 0000000000000000 RSI: 0000561a887aa260 RDI: 0000000000000000
+RBP: 0000000000040000 R08: 0000000000000000 R09: 0000561ab1b9b450
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000561a887aa260
+R13: 0000000000000000 R14: 0000561ab1b9a330 R15: 0000561ab1b9a2a0
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+RDX: 0000000000000000 RSI: 0000561a887aa260 RDI: 0000000000000000
+RBP: 0000000000040000 R08: 0000000000000000 R09: 0000561ab1b9b450
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000561a887aa260
+R13: 0000000000000000 R14: 0000561ab1b9a330 R15: 0000561ab1b9a2a0
+ </TASK>
+Kernel panic - not syncing: kernel: panic_on_warn set ...
+CPU: 0 UID: 0 PID: 556 Comm: modprobe Not tainted 6.18.0 #5 PREEMPT(none) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ vpanic+0x46c/0x4d0
+ panic+0xbd/0xc0
+ check_panic_on_warn+0x61/0x80
+ __warn+0xd8/0x2d0
+ report_bug+0x28c/0x2d0
+ handle_bug+0x18c/0x220
+ exc_invalid_op+0x18/0x50
+ asm_exc_invalid_op+0x1a/0x20
+RIP: 0010:refcount_warn_saturate+0x94/0x170
+Code: cc cc cc cc 85 ed 0f 84 97 00 00 00 80 3d 14 61 1b 05 00 75 e8 c6 05 0b 61 1b 05 01 90 48 c7 c7 00 e9 80 85 e8 0d fd 03 ff 90 <0f> 0b 90 90 eb cd 80 3d ee 60 1b 05 00 75 c4 c6 05 e5 60 1b 05 01
+RSP: 0018:ffff888116f4f550 EFLAGS: 00010286
+RAX: 0000000000000000 RBX: ffff8881018f8078 RCX: ffffffff8179ab05
+RDX: 1ffff1103118530c RSI: 0000000000000008 RDI: ffff888188c29860
+RBP: 0000000000000001 R08: 0000000000000001 R09: ffffed1022de9e68
+R10: ffff888116f4f347 R11: 0000000000000001 R12: 1ffff11022de9eae
+R13: 0000000000000001 R14: ffff8881018f8078 R15: ffffffffa03bafc0
+ __qrtr_bind.isra.0+0x48b/0x570 [qrtr]
+ qrtr_bind+0x17d/0x210 [qrtr]
+ kernel_bind+0xdb/0x130
+ qrtr_ns_init+0x1a6/0x380 [qrtr]
+ qrtr_proto_init+0x3b/0xff0 [qrtr]
+ do_one_initcall+0xbe/0x470
+ do_init_module+0x27b/0x7d0
+ load_module+0x5d55/0x68d0
+ init_module_from_file+0xe4/0x150
+ idempotent_init_module+0x330/0x610
+ __x64_sys_finit_module+0xbe/0x120
+ do_syscall_64+0xc6/0x390
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f7b71161fc9
+Code: 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 97 8e 0d 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffc7cc6a6a8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+RAX: ffffffffffffffda RBX: 0000561ab1b9a2a0 RCX: 00007f7b71161fc9
+RDX: 0000000000000000 RSI: 0000561a887aa260 RDI: 0000000000000000
+RBP: 0000000000040000 R08: 0000000000000000 R09: 0000561ab1b9b450
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000561a887aa260
+R13: 0000000000000000 R14: 0000561ab1b9a330 R15: 0000561ab1b9a2a0
+ </TASK>
+Kernel Offset: disabled
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

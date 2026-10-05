@@ -1,0 +1,97 @@
+BUG: memory leak
+unreferenced object 0xffff88801e35c000 (size 312):
+  comm "systemd-udevd", pid 11889, jiffies 4295054520
+  hex dump (first 32 bytes):
+    4c 41 00 00 81 88 ff ff 06 00 00 00 11 00 14 00  LA..............
+    40 a7 69 8a ff ff ff ff 00 00 00 00 00 00 00 00  @.i.............
+  backtrace (crc bda6a003):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_lru_noprof+0x40f/0x6e0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5307
+    __d_alloc+0x36/0xa10 home/wmy/Fuzzer/third_tool/linux-6.18/fs/dcache.c:1690
+    d_alloc_parallel+0x117/0x1330 home/wmy/Fuzzer/third_tool/linux-6.18/fs/dcache.c:2549
+    __lookup_slow+0x197/0x480 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:1801
+    lookup_slow home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:1833 [inline]
+    walk_component+0x34e/0x5b0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:2151
+    lookup_last home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:2652 [inline]
+    path_lookupat+0x148/0x6c0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:2676
+    filename_lookup+0x218/0x5f0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:2705
+    user_path_at+0x43/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:3215
+    do_utimes_path+0xd9/0x1b0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/utimes.c:95
+    do_utimes+0x3a/0x110 home/wmy/Fuzzer/third_tool/linux-6.18/fs/utimes.c:140
+    __do_sys_utimensat home/wmy/Fuzzer/third_tool/linux-6.18/fs/utimes.c:159 [inline]
+    __se_sys_utimensat home/wmy/Fuzzer/third_tool/linux-6.18/fs/utimes.c:143 [inline]
+    __x64_sys_utimensat+0x1a5/0x270 home/wmy/Fuzzer/third_tool/linux-6.18/fs/utimes.c:143
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810424ed98 (size 1208):
+  comm "systemd-udevd", pid 11889, jiffies 4295054520
+  hex dump (first 32 bytes):
+    00 2c 03 16 81 88 ff ff 10 00 00 00 00 00 00 00  .,..............
+    70 0b e0 81 ff ff ff ff 00 00 00 00 00 00 00 00  p...............
+  backtrace (crc 9d05b597):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_lru_noprof+0x40f/0x6e0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5307
+    proc_alloc_inode+0x2c/0x210 home/wmy/Fuzzer/third_tool/linux-6.18/fs/proc/inode.c:57
+    alloc_inode+0x6d/0x250 home/wmy/Fuzzer/third_tool/linux-6.18/fs/inode.c:346
+    new_inode+0x23/0x160 home/wmy/Fuzzer/third_tool/linux-6.18/fs/inode.c:1145
+    proc_pid_make_inode+0x26/0x170 home/wmy/Fuzzer/third_tool/linux-6.18/fs/proc/base.c:1953
+    proc_fd_instantiate+0x5e/0x230 home/wmy/Fuzzer/third_tool/linux-6.18/fs/proc/fd.c:209
+    proc_lookupfd_common home/wmy/Fuzzer/third_tool/linux-6.18/fs/proc/fd.c:241 [inline]
+    proc_lookupfd+0x124/0x200 home/wmy/Fuzzer/third_tool/linux-6.18/fs/proc/fd.c:324
+    __lookup_slow+0x256/0x480 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:1816
+    lookup_slow home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:1833 [inline]
+    walk_component+0x34e/0x5b0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:2151
+    lookup_last home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:2652 [inline]
+    path_lookupat+0x148/0x6c0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:2676
+    filename_lookup+0x218/0x5f0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:2705
+    user_path_at+0x43/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:3215
+    do_utimes_path+0xd9/0x1b0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/utimes.c:95
+    do_utimes+0x3a/0x110 home/wmy/Fuzzer/third_tool/linux-6.18/fs/utimes.c:140
+    __do_sys_utimensat home/wmy/Fuzzer/third_tool/linux-6.18/fs/utimes.c:159 [inline]
+    __se_sys_utimensat home/wmy/Fuzzer/third_tool/linux-6.18/fs/utimes.c:143 [inline]
+    __x64_sys_utimensat+0x1a5/0x270 home/wmy/Fuzzer/third_tool/linux-6.18/fs/utimes.c:143
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    do_utimes_path+0xd9/0x1b0
+    do_utimes+0x3a/0x110
+    __x64_sys_utimensat+0x1a5/0x270
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff88810424ed98 (size 1208):
+  comm "systemd-udevd", pid 11889, jiffies 4295054520
+  hex dump (first 32 bytes):
+    00 2c 03 16 81 88 ff ff 10 00 00 00 00 00 00 00  .,..............
+    70 0b e0 81 ff ff ff ff 00 00 00 00 00 00 00 00  p...............
+  backtrace (crc 9d05b597):
+    kmem_cache_alloc_lru_noprof+0x40f/0x6e0
+    proc_alloc_inode+0x2c/0x210
+    alloc_inode+0x6d/0x250
+    new_inode+0x23/0x160
+    proc_pid_make_inode+0x26/0x170
+    proc_fd_instantiate+0x5e/0x230
+    proc_lookupfd+0x124/0x200
+    __lookup_slow+0x256/0x480
+    walk_component+0x34e/0x5b0
+    path_lookupat+0x148/0x6c0
+    filename_lookup+0x218/0x5f0
+    user_path_at+0x43/0x90
+    do_utimes_path+0xd9/0x1b0
+    do_utimes+0x3a/0x110
+    __x64_sys_utimensat+0x1a5/0x270
+    do_syscall_64+0xc6/0x390
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

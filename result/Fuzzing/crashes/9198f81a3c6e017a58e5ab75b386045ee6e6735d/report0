@@ -1,0 +1,418 @@
+BUG: memory leak
+unreferenced object 0xffff888106559000 (size 512):
+  comm "modprobe", pid 1841, jiffies 4294758636
+  hex dump (first 32 bytes):
+    d8 91 37 12 81 88 ff ff 40 af ae 81 ff ff ff ff  ..7.....@.......
+    40 cb 04 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc 4555b178):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    __do_kmalloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5649 [inline]
+    __kmalloc_noprof+0x49c/0x7b0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5662
+    kmalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:961 [inline]
+    kzalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:1094 [inline]
+    alloc_empty_sheaf+0x1f/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:2604
+    __kfree_rcu_sheaf+0x2cc/0x440 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6262
+    kfree_rcu_sheaf home/wmy/Fuzzer/third_tool/linux-6.18/mm/slab_common.c:1632 [inline]
+    kvfree_call_rcu+0x20f/0x3f0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slab_common.c:1982
+    ma_free_rcu+0x41/0x60 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:208
+    mas_free home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:1174 [inline]
+    mas_replace_node home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:1581 [inline]
+    mas_wr_node_store+0xe66/0x13a0 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3553
+    mas_wr_store_entry+0x10ae/0x2320 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3764
+    mas_store_prealloc+0x630/0xc70 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:5169
+    vma_iter_store_overwrite home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.h:481 [inline]
+    expand_downwards+0xb25/0xf40 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:3133
+    setup_arg_pages+0x741/0xb90 home/wmy/Fuzzer/third_tool/linux-6.18/fs/exec.c:714
+    load_elf_binary+0xad0/0x4e90 home/wmy/Fuzzer/third_tool/linux-6.18/fs/binfmt_elf.c:1028
+    search_binary_handler home/wmy/Fuzzer/third_tool/linux-6.18/fs/exec.c:1670 [inline]
+    exec_binprm home/wmy/Fuzzer/third_tool/linux-6.18/fs/exec.c:1702 [inline]
+    bprm_execve home/wmy/Fuzzer/third_tool/linux-6.18/fs/exec.c:1754 [inline]
+    bprm_execve+0x8d1/0x15a0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/exec.c:1730
+    kernel_execve+0x304/0x3d0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/exec.c:1920
+    call_usermodehelper_exec_async+0x264/0x4e0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/umh.c:109
+    ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+    ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+
+BUG: memory leak
+unreferenced object 0xffff88810f7d5e00 (size 256):
+  comm "syz.1.77", pid 4688, jiffies 4294838362
+  hex dump (first 32 bytes):
+    00 5e 7d 0f 81 88 ff ff ff 7f a0 77 2c 7f 00 00  .^}........w,...
+    ff 8f a0 77 2c 7f 00 00 ff 8f 20 78 2c 7f 00 00  ...w,..... x,...
+  backtrace (crc a4d7b536):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    kmem_cache_alloc_from_sheaf_noprof+0x18c/0x240 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5563
+    mas_pop_node home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:1086 [inline]
+    mas_new_ma_node home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:2140 [inline]
+    mas_split+0x975/0x16d0 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3018
+    mas_commit_b_node.isra.0+0x72/0xb0 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3072
+    mas_wr_bnode+0x12d/0x1b0 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3739
+    mas_wr_store_entry+0xb63/0x2320 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3771
+    mas_store_prealloc+0x630/0xc70 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:5169
+    vma_iter_store_overwrite home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.h:481 [inline]
+    vma_iter_store_new home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.h:488 [inline]
+    vma_complete+0xb61/0x12b0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:354
+    __split_vma+0x949/0xdd0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:568
+    split_vma home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:598 [inline]
+    vma_modify+0x1696/0x1f80 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:1623
+    vma_modify_flags+0x1b5/0x250 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:1649
+    mprotect_fixup+0x1f9/0xba0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:816
+    do_mprotect_pkey+0x88a/0xd30 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:990
+    __do_sys_mprotect home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:1011 [inline]
+    __se_sys_mprotect home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:1008 [inline]
+    __x64_sys_mprotect+0x7d/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:1008
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810f7d4200 (size 256):
+  comm "syz.1.77", pid 4688, jiffies 4294838362
+  hex dump (first 32 bytes):
+    00 42 7d 0f 81 88 ff ff ff 7f 9e 77 2c 7f 00 00  .B}........w,...
+    ff 9f e5 78 2c 7f 00 00 ff ff ff ff ff ff ff ff  ...x,...........
+  backtrace (crc 1f41280b):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    kmem_cache_alloc_from_sheaf_noprof+0x18c/0x240 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5563
+    mas_pop_node home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:1086 [inline]
+    mas_new_ma_node home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:2140 [inline]
+    mas_split_final_node home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:2816 [inline]
+    mas_push_data+0x12b1/0x18b0 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:2963
+    mas_split+0x3cd/0x16d0 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3027
+    mas_commit_b_node.isra.0+0x72/0xb0 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3072
+    mas_wr_bnode+0x12d/0x1b0 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3739
+    mas_wr_store_entry+0xb63/0x2320 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3771
+    mas_store_prealloc+0x630/0xc70 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:5169
+    vma_iter_store_overwrite home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.h:481 [inline]
+    vma_iter_store_new home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.h:488 [inline]
+    vma_complete+0xb61/0x12b0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:354
+    __split_vma+0x949/0xdd0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:568
+    split_vma home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:598 [inline]
+    vma_modify+0x1696/0x1f80 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:1623
+    vma_modify_flags+0x1b5/0x250 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:1649
+    mprotect_fixup+0x1f9/0xba0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:816
+    do_mprotect_pkey+0x88a/0xd30 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:990
+    __do_sys_mprotect home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:1011 [inline]
+    __se_sys_mprotect home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:1008 [inline]
+    __x64_sys_mprotect+0x7d/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:1008
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff8881068ff400 (size 256):
+  comm "syz.1.77", pid 4688, jiffies 4294838362
+  hex dump (first 32 bytes):
+    00 f4 8f 06 81 88 ff ff ff ff 22 0c 11 00 00 00  ..........".....
+    ff ff 22 0e 11 00 00 00 ff ff 11 33 1b 00 00 00  .."........3....
+  backtrace (crc 546f59dd):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_noprof+0x40b/0x6d0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5295
+    mt_alloc_one home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:174 [inline]
+    mas_alloc_nodes home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:1110 [inline]
+    mas_preallocate+0x86a/0xa90 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:5194
+    vma_iter_prealloc home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.h:442 [inline]
+    __split_vma+0x309/0xdd0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:528
+    split_vma home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:598 [inline]
+    vma_modify+0xa96/0x1f80 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:1631
+    vma_modify_flags+0x1b5/0x250 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:1649
+    mprotect_fixup+0x1f9/0xba0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:816
+    do_mprotect_pkey+0x88a/0xd30 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:990
+    __do_sys_mprotect home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:1011 [inline]
+    __se_sys_mprotect home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:1008 [inline]
+    __x64_sys_mprotect+0x7d/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:1008
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810f7d4400 (size 256):
+  comm "syz.1.77", pid 4688, jiffies 4294838365
+  hex dump (first 32 bytes):
+    00 44 7d 0f 81 88 ff ff ff ff 22 0c 11 00 00 00  .D}.......".....
+    ff ff 22 0e 11 00 00 00 ff ff 11 33 1b 00 00 00  .."........3....
+  backtrace (crc 5025bf28):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    kmem_cache_alloc_from_sheaf_noprof+0x18c/0x240 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5563
+    mas_pop_node home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:1086 [inline]
+    mas_new_ma_node home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:2140 [inline]
+    mas_split+0x90f/0x16d0 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3017
+    mas_commit_b_node.isra.0+0x72/0xb0 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3072
+    mas_wr_bnode+0x12d/0x1b0 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3739
+    mas_wr_store_entry+0xb63/0x2320 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:3771
+    mas_store_prealloc+0x630/0xc70 home/wmy/Fuzzer/third_tool/linux-6.18/lib/maple_tree.c:5169
+    vma_iter_store_overwrite home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.h:481 [inline]
+    vma_iter_store_new home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.h:488 [inline]
+    vma_complete+0xb61/0x12b0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:354
+    __split_vma+0x949/0xdd0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:568
+    split_vma home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:598 [inline]
+    vma_modify+0x1696/0x1f80 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:1623
+    vma_modify_flags+0x1b5/0x250 home/wmy/Fuzzer/third_tool/linux-6.18/mm/vma.c:1649
+    mprotect_fixup+0x1f9/0xba0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:816
+    do_mprotect_pkey+0x88a/0xd30 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:990
+    __do_sys_mprotect home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:1011 [inline]
+    __se_sys_mprotect home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:1008 [inline]
+    __x64_sys_mprotect+0x7d/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mprotect.c:1008
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    bprm_execve+0x8d1/0x15a0
+    kernel_execve+0x304/0x3d0
+    call_usermodehelper_exec_async+0x264/0x4e0
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+BUG: memory leak
+unreferenced object 0xffff88810f7d5e00 (size 256):
+  comm "syz.1.77", pid 4688, jiffies 4294838362
+  hex dump (first 32 bytes):
+    00 5e 7d 0f 81 88 ff ff ff 7f a0 77 2c 7f 00 00  .^}........w,...
+    ff 8f a0 77 2c 7f 00 00 ff 8f 20 78 2c 7f 00 00  ...w,..... x,...
+  backtrace (crc a4d7b536):
+    kmem_cache_alloc_from_sheaf_noprof+0x18c/0x240
+    mas_split+0x975/0x16d0
+    mas_commit_b_node.isra.0+0x72/0xb0
+    mas_wr_bnode+0x12d/0x1b0
+    mas_wr_store_entry+0xb63/0x2320
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xb61/0x12b0
+    __split_vma+0x949/0xdd0
+    vma_modify+0x1696/0x1f80
+    vma_modify_flags+0x1b5/0x250
+    mprotect_fixup+0x1f9/0xba0
+    do_mprotect_pkey+0x88a/0xd30
+    __x64_sys_mprotect+0x7d/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810f7d4200 (size 256):
+  comm "syz.1.77", pid 4688, jiffies 4294838362
+  hex dump (first 32 bytes):
+    00 42 7d 0f 81 88 ff ff ff 7f 9e 77 2c 7f 00 00  .B}........w,...
+    ff 9f e5 78 2c 7f 00 00 ff ff ff ff ff ff ff ff  ...x,...........
+  backtrace (crc 1f41280b):
+    kmem_cache_alloc_from_sheaf_noprof+0x18c/0x240
+    mas_push_data+0x12b1/0x18b0
+    mas_split+0x3cd/0x16d0
+    mas_commit_b_node.isra.0+0x72/0xb0
+    mas_wr_bnode+0x12d/0x1b0
+    mas_wr_store_entry+0xb63/0x2320
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xb61/0x12b0
+    __split_vma+0x949/0xdd0
+    vma_modify+0x1696/0x1f80
+    vma_modify_flags+0x1b5/0x250
+    mprotect_fixup+0x1f9/0xba0
+    do_mprotect_pkey+0x88a/0xd30
+    __x64_sys_mprotect+0x7d/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff8881068ff400 (size 256):
+  comm "syz.1.77", pid 4688, jiffies 4294838362
+  hex dump (first 32 bytes):
+    00 f4 8f 06 81 88 ff ff ff ff 22 0c 11 00 00 00  ..........".....
+    ff ff 22 0e 11 00 00 00 ff ff 11 33 1b 00 00 00  .."........3....
+  backtrace (crc 546f59dd):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    mas_preallocate+0x86a/0xa90
+    __split_vma+0x309/0xdd0
+    vma_modify+0xa96/0x1f80
+    vma_modify_flags+0x1b5/0x250
+    mprotect_fixup+0x1f9/0xba0
+    do_mprotect_pkey+0x88a/0xd30
+    __x64_sys_mprotect+0x7d/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810f7d4400 (size 256):
+  comm "syz.1.77", pid 4688, jiffies 4294838365
+  hex dump (first 32 bytes):
+    00 44 7d 0f 81 88 ff ff ff ff 22 0c 11 00 00 00  .D}.......".....
+    ff ff 22 0e 11 00 00 00 ff ff 11 33 1b 00 00 00  .."........3....
+  backtrace (crc 5025bf28):
+    kmem_cache_alloc_from_sheaf_noprof+0x18c/0x240
+    mas_split+0x90f/0x16d0
+    mas_commit_b_node.isra.0+0x72/0xb0
+    mas_wr_bnode+0x12d/0x1b0
+    mas_wr_store_entry+0xb63/0x2320
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xb61/0x12b0
+    __split_vma+0x949/0xdd0
+    vma_modify+0x1696/0x1f80
+    vma_modify_flags+0x1b5/0x250
+    mprotect_fixup+0x1f9/0xba0
+    do_mprotect_pkey+0x88a/0xd30
+    __x64_sys_mprotect+0x7d/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    mprotect_fixup+0x1f9/0xba0
+    do_mprotect_pkey+0x88a/0xd30
+    __x64_sys_mprotect+0x7d/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff88810f7d4200 (size 256):
+  comm "syz.1.77", pid 4688, jiffies 4294838362
+  hex dump (first 32 bytes):
+    00 42 7d 0f 81 88 ff ff ff 7f 9e 77 2c 7f 00 00  .B}........w,...
+    ff 9f e5 78 2c 7f 00 00 ff ff ff ff ff ff ff ff  ...x,...........
+  backtrace (crc 1f41280b):
+    kmem_cache_alloc_from_sheaf_noprof+0x18c/0x240
+    mas_push_data+0x12b1/0x18b0
+    mas_split+0x3cd/0x16d0
+    mas_commit_b_node.isra.0+0x72/0xb0
+    mas_wr_bnode+0x12d/0x1b0
+    mas_wr_store_entry+0xb63/0x2320
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xb61/0x12b0
+    __split_vma+0x949/0xdd0
+    vma_modify+0x1696/0x1f80
+    vma_modify_flags+0x1b5/0x250
+    mprotect_fixup+0x1f9/0xba0
+    do_mprotect_pkey+0x88a/0xd30
+    __x64_sys_mprotect+0x7d/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff8881068ff400 (size 256):
+  comm "syz.1.77", pid 4688, jiffies 4294838362
+  hex dump (first 32 bytes):
+    00 f4 8f 06 81 88 ff ff ff ff 22 0c 11 00 00 00  ..........".....
+    ff ff 22 0e 11 00 00 00 ff ff 11 33 1b 00 00 00  .."........3....
+  backtrace (crc 546f59dd):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    mas_preallocate+0x86a/0xa90
+    __split_vma+0x309/0xdd0
+    vma_modify+0xa96/0x1f80
+    vma_modify_flags+0x1b5/0x250
+    mprotect_fixup+0x1f9/0xba0
+    do_mprotect_pkey+0x88a/0xd30
+    __x64_sys_mprotect+0x7d/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810f7d4400 (size 256):
+  comm "syz.1.77", pid 4688, jiffies 4294838365
+  hex dump (first 32 bytes):
+    00 44 7d 0f 81 88 ff ff ff ff 22 0c 11 00 00 00  .D}.......".....
+    ff ff 22 0e 11 00 00 00 ff ff 11 33 1b 00 00 00  .."........3....
+  backtrace (crc 5025bf28):
+    kmem_cache_alloc_from_sheaf_noprof+0x18c/0x240
+    mas_split+0x90f/0x16d0
+    mas_commit_b_node.isra.0+0x72/0xb0
+    mas_wr_bnode+0x12d/0x1b0
+    mas_wr_store_entry+0xb63/0x2320
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xb61/0x12b0
+    __split_vma+0x949/0xdd0
+    vma_modify+0x1696/0x1f80
+    vma_modify_flags+0x1b5/0x250
+    mprotect_fixup+0x1f9/0xba0
+    do_mprotect_pkey+0x88a/0xd30
+    __x64_sys_mprotect+0x7d/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    mprotect_fixup+0x1f9/0xba0
+    do_mprotect_pkey+0x88a/0xd30
+    __x64_sys_mprotect+0x7d/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff8881068ff400 (size 256):
+  comm "syz.1.77", pid 4688, jiffies 4294838362
+  hex dump (first 32 bytes):
+    00 f4 8f 06 81 88 ff ff ff ff 22 0c 11 00 00 00  ..........".....
+    ff ff 22 0e 11 00 00 00 ff ff 11 33 1b 00 00 00  .."........3....
+  backtrace (crc 546f59dd):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    mas_preallocate+0x86a/0xa90
+    __split_vma+0x309/0xdd0
+    vma_modify+0xa96/0x1f80
+    vma_modify_flags+0x1b5/0x250
+    mprotect_fixup+0x1f9/0xba0
+    do_mprotect_pkey+0x88a/0xd30
+    __x64_sys_mprotect+0x7d/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810f7d4400 (size 256):
+  comm "syz.1.77", pid 4688, jiffies 4294838365
+  hex dump (first 32 bytes):
+    00 44 7d 0f 81 88 ff ff ff ff 22 0c 11 00 00 00  .D}.......".....
+    ff ff 22 0e 11 00 00 00 ff ff 11 33 1b 00 00 00  .."........3....
+  backtrace (crc 5025bf28):
+    kmem_cache_alloc_from_sheaf_noprof+0x18c/0x240
+    mas_split+0x90f/0x16d0
+    mas_commit_b_node.isra.0+0x72/0xb0
+    mas_wr_bnode+0x12d/0x1b0
+    mas_wr_store_entry+0xb63/0x2320
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xb61/0x12b0
+    __split_vma+0x949/0xdd0
+    vma_modify+0x1696/0x1f80
+    vma_modify_flags+0x1b5/0x250
+    mprotect_fixup+0x1f9/0xba0
+    do_mprotect_pkey+0x88a/0xd30
+    __x64_sys_mprotect+0x7d/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    mprotect_fixup+0x1f9/0xba0
+    do_mprotect_pkey+0x88a/0xd30
+    __x64_sys_mprotect+0x7d/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff88810f7d4400 (size 256):
+  comm "syz.1.77", pid 4688, jiffies 4294838365
+  hex dump (first 32 bytes):
+    00 44 7d 0f 81 88 ff ff ff ff 22 0c 11 00 00 00  .D}.......".....
+    ff ff 22 0e 11 00 00 00 ff ff 11 33 1b 00 00 00  .."........3....
+  backtrace (crc 5025bf28):
+    kmem_cache_alloc_from_sheaf_noprof+0x18c/0x240
+    mas_split+0x90f/0x16d0
+    mas_commit_b_node.isra.0+0x72/0xb0
+    mas_wr_bnode+0x12d/0x1b0
+    mas_wr_store_entry+0xb63/0x2320
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xb61/0x12b0
+    __split_vma+0x949/0xdd0
+    vma_modify+0x1696/0x1f80
+    vma_modify_flags+0x1b5/0x250
+    mprotect_fixup+0x1f9/0xba0
+    do_mprotect_pkey+0x88a/0xd30
+    __x64_sys_mprotect+0x7d/0xc0
+    do_syscall_64+0xc6/0x390
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

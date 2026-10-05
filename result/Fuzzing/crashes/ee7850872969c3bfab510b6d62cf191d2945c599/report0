@@ -1,0 +1,165 @@
+x86/mm: Checked W+X mappings: passed, no W+X pages found.
+x86/mm: Checking user space page tables
+x86/mm: Checked W+X mappings: passed, no W+X pages found.
+Run /sbin/init as init process
+hrtimer: interrupt took 18014680 ns
+watchdog: BUG: soft lockup - CPU#1 stuck for 267s! [init:1]
+Modules linked in:
+irq event stamp: 2968294
+hardirqs last  enabled at (2968293): [<ffffffff85c4da1b>] irqentry_exit+0x3b/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/entry/common.c:214
+hardirqs last disabled at (2968294): [<ffffffff85c4c33f>] sysvec_apic_timer_interrupt+0xf/0x80 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052
+softirqs last  enabled at (2967848): [<ffffffff813d2e09>] softirq_handle_end home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:468 [inline]
+softirqs last  enabled at (2967848): [<ffffffff813d2e09>] handle_softirqs+0x509/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:650
+softirqs last disabled at (2967843): [<ffffffff813d3140>] __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+softirqs last disabled at (2967843): [<ffffffff813d3140>] invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+softirqs last disabled at (2967843): [<ffffffff813d3140>] __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+CPU: 1 UID: 0 PID: 1 Comm: init Not tainted 6.18.0 #9 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:memcpy_orig+0x29/0x130 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/lib/memcpy_64.S:72
+Code: 90 48 89 f8 48 83 fa 20 72 7e 40 38 fe 7c 35 48 83 ea 20 48 83 ea 20 4c 8b 06 4c 8b 4e 08 4c 8b 56 10 4c 8b 5e 18 48 8d 76 20 <4c> 89 07 4c 89 4f 08 4c 89 57 10 4c 89 5f 18 48 8d 7f 20 73 d4 83
+RSP: 0000:ffff888100b2fce0 EFLAGS: 00010206
+RAX: ffff88810b25a000 RBX: 1ffff11020165fa7 RCX: ffffffff85c3985a
+RDX: 0000000000000fc0 RSI: ffff88810a34e020 RDI: ffff88810b25a000
+RBP: ffff88810b25a000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: ffff88810a34e000 R14: 000000010a34e000 R15: ffffea0000000000
+FS:  00007f80dc0c0900(0000) GS:ffff8881912bf000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f80dc78f130 CR3: 0000000109ab0000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ copy_mc_to_kernel+0xba/0xd0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/lib/copy_mc.c:79
+ copy_mc_user_highpage home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/highmem.h:345 [inline]
+ do_cow_fault home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:5752 [inline]
+ do_fault home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:5852 [inline]
+ do_pte_missing home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:4362 [inline]
+ handle_pte_fault home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:6195 [inline]
+ __handle_mm_fault+0x15c7/0x2490 home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:6336
+ handle_mm_fault+0x2cc/0x900 home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:6505
+ do_user_addr_fault+0x505/0xeb0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/fault.c:1336
+ handle_page_fault home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/fault.c:1476 [inline]
+ exc_page_fault+0xb5/0x190 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/fault.c:1532
+ asm_exc_page_fault+0x26/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:618
+RIP: 0033:0x7f80dcd4cc24
+Code: 8b 8d 70 ff ff ff 48 8b 30 8b 50 08 48 01 ce 48 83 fa 26 74 0a 48 83 fa 08 0f 85 62 10 00 00 48 8b 50 10 48 83 c0 18 48 01 ca <48> 89 16 48 39 c3 77 d4 4d 8b 93 d0 01 00 00 4d 85 d2 0f 85 a3 fa
+RSP: 002b:00007ffffe395540 EFLAGS: 00010206
+RAX: 00007f80dc746918 RBX: 00007f80dc74a560 RCX: 00007f80dc743000
+RDX: 00007f80dc74cf50 RSI: 00007f80dc78f130 RDI: 00007f80dc74bbb0
+RBP: 00007ffffe395640 R08: 00007f80dc74bbb0 R09: 0000000000000001
+R10: 00000000000052b0 R11: 00007f80dc9d5940 R12: 0000000000000000
+R13: 0000000000000000 R14: 00007f80dcd6c180 R15: 0000000000000058
+ </TASK>
+kworker/3:0 (33) used greatest stack depth: 28272 bytes left
+BUG: workqueue lockup - pool cpus=1 node=0 flags=0x0 nice=0 stuck for 407s!
+BUG: workqueue lockup - pool cpus=1 node=0 flags=0x0 nice=-20 stuck for 403s!
+Showing busy workqueues and worker pools:
+workqueue events: flags=0x100
+  pwq 6: cpus=1 node=0 flags=0x0 nice=0 active=2 refcnt=3
+    pending: deferred_probe_timeout_work_func, regulator_init_complete_work_function
+workqueue events_power_efficient: flags=0x180
+  pwq 6: cpus=1 node=0 flags=0x0 nice=0 active=4 refcnt=5
+    pending: crda_timeout_work, neigh_managed_work, neigh_periodic_work, gc_worker
+workqueue mm_percpu_wq: flags=0x8
+  pwq 6: cpus=1 node=0 flags=0x0 nice=0 active=1 refcnt=2
+    pending: vmstat_update
+workqueue kblockd: flags=0x18
+  pwq 7: cpus=1 node=0 flags=0x0 nice=-20 active=1 refcnt=2
+    pending: blk_mq_timeout_work
+Showing backtraces of running workers in stalled CPU-bound worker pools:
+watchdog: BUG: soft lockup - CPU#1 stuck for 410s! [init:1]
+Modules linked in:
+irq event stamp: 3290500
+hardirqs last  enabled at (3290499): [<ffffffff85c4da1b>] irqentry_exit+0x3b/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/entry/common.c:214
+hardirqs last disabled at (3290500): [<ffffffff85c4c33f>] sysvec_apic_timer_interrupt+0xf/0x80 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052
+softirqs last  enabled at (3290420): [<ffffffff813d2e09>] softirq_handle_end home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:468 [inline]
+softirqs last  enabled at (3290420): [<ffffffff813d2e09>] handle_softirqs+0x509/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:650
+softirqs last disabled at (3290399): [<ffffffff813d3140>] __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+softirqs last disabled at (3290399): [<ffffffff813d3140>] invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+softirqs last disabled at (3290399): [<ffffffff813d3140>] __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+CPU: 1 UID: 0 PID: 1 Comm: init Tainted: G             L      6.18.0 #9 PREEMPT(voluntary) 
+Tainted: [L]=SOFTLOCKUP
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:memcpy_orig+0x29/0x130 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/lib/memcpy_64.S:72
+Code: 90 48 89 f8 48 83 fa 20 72 7e 40 38 fe 7c 35 48 83 ea 20 48 83 ea 20 4c 8b 06 4c 8b 4e 08 4c 8b 56 10 4c 8b 5e 18 48 8d 76 20 <4c> 89 07 4c 89 4f 08 4c 89 57 10 4c 89 5f 18 48 8d 7f 20 73 d4 83
+RSP: 0000:ffff888100b2fce0 EFLAGS: 00010206
+RAX: ffff88810b25a000 RBX: 1ffff11020165fa7 RCX: ffffffff85c3985a
+RDX: 0000000000000fc0 RSI: ffff88810a34e020 RDI: ffff88810b25a000
+RBP: ffff88810b25a000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: ffff88810a34e000 R14: 000000010a34e000 R15: ffffea0000000000
+FS:  00007f80dc0c0900(0000) GS:ffff8881912bf000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f80dc78f130 CR3: 0000000109ab0000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ copy_mc_to_kernel+0xba/0xd0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/lib/copy_mc.c:79
+ copy_mc_user_highpage home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/highmem.h:345 [inline]
+ do_cow_fault home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:5752 [inline]
+ do_fault home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:5852 [inline]
+ do_pte_missing home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:4362 [inline]
+ handle_pte_fault home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:6195 [inline]
+ __handle_mm_fault+0x15c7/0x2490 home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:6336
+ handle_mm_fault+0x2cc/0x900 home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:6505
+ do_user_addr_fault+0x505/0xeb0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/fault.c:1336
+ handle_page_fault home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/fault.c:1476 [inline]
+ exc_page_fault+0xb5/0x190 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/fault.c:1532
+ asm_exc_page_fault+0x26/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:618
+RIP: 0033:0x7f80dcd4cc24
+Code: 8b 8d 70 ff ff ff 48 8b 30 8b 50 08 48 01 ce 48 83 fa 26 74 0a 48 83 fa 08 0f 85 62 10 00 00 48 8b 50 10 48 83 c0 18 48 01 ca <48> 89 16 48 39 c3 77 d4 4d 8b 93 d0 01 00 00 4d 85 d2 0f 85 a3 fa
+RSP: 002b:00007ffffe395540 EFLAGS: 00010206
+RAX: 00007f80dc746918 RBX: 00007f80dc74a560 RCX: 00007f80dc743000
+RDX: 00007f80dc74cf50 RSI: 00007f80dc78f130 RDI: 00007f80dc74bbb0
+RBP: 00007ffffe395640 R08: 00007f80dc74bbb0 R09: 0000000000000001
+R10: 00000000000052b0 R11: 00007f80dc9d5940 R12: 0000000000000000
+R13: 0000000000000000 R14: 00007f80dcd6c180 R15: 0000000000000058
+ </TASK>
+watchdog: BUG: soft lockup - CPU#1 stuck for 553s! [init:1]
+Modules linked in:
+irq event stamp: 3612376
+hardirqs last  enabled at (3612375): [<ffffffff85c4da1b>] irqentry_exit+0x3b/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/entry/common.c:214
+hardirqs last disabled at (3612376): [<ffffffff85c4c33f>] sysvec_apic_timer_interrupt+0xf/0x80 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052
+softirqs last  enabled at (3611852): [<ffffffff813d2e09>] softirq_handle_end home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:468 [inline]
+softirqs last  enabled at (3611852): [<ffffffff813d2e09>] handle_softirqs+0x509/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:650
+softirqs last disabled at (3611847): [<ffffffff813d3140>] __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+softirqs last disabled at (3611847): [<ffffffff813d3140>] invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+softirqs last disabled at (3611847): [<ffffffff813d3140>] __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+CPU: 1 UID: 0 PID: 1 Comm: init Tainted: G             L      6.18.0 #9 PREEMPT(voluntary) 
+Tainted: [L]=SOFTLOCKUP
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:memcpy_orig+0x29/0x130 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/lib/memcpy_64.S:72
+Code: 90 48 89 f8 48 83 fa 20 72 7e 40 38 fe 7c 35 48 83 ea 20 48 83 ea 20 4c 8b 06 4c 8b 4e 08 4c 8b 56 10 4c 8b 5e 18 48 8d 76 20 <4c> 89 07 4c 89 4f 08 4c 89 57 10 4c 89 5f 18 48 8d 7f 20 73 d4 83
+RSP: 0000:ffff888100b2fce0 EFLAGS: 00010206
+RAX: ffff88810b25a000 RBX: 1ffff11020165fa7 RCX: ffffffff85c3985a
+RDX: 0000000000000fc0 RSI: ffff88810a34e020 RDI: ffff88810b25a000
+RBP: ffff88810b25a000 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: ffff88810a34e000 R14: 000000010a34e000 R15: ffffea0000000000
+FS:  00007f80dc0c0900(0000) GS:ffff8881912bf000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f80dc78f130 CR3: 0000000109ab0000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ copy_mc_to_kernel+0xba/0xd0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/lib/copy_mc.c:79
+ copy_mc_user_highpage home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/highmem.h:345 [inline]
+ do_cow_fault home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:5752 [inline]
+ do_fault home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:5852 [inline]
+ do_pte_missing home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:4362 [inline]
+ handle_pte_fault home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:6195 [inline]
+ __handle_mm_fault+0x15c7/0x2490 home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:6336
+ handle_mm_fault+0x2cc/0x900 home/wmy/Fuzzer/third_tool/linux-6.18/mm/memory.c:6505
+ do_user_addr_fault+0x505/0xeb0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/fault.c:1336
+ handle_page_fault home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/fault.c:1476 [inline]
+ exc_page_fault+0xb5/0x190 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/fault.c:1532
+ asm_exc_page_fault+0x26/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:618
+RIP: 0033:0x7f80dcd4cc24
+Code: 8b 8d 70 ff ff ff 48 8b 30 8b 50 08 48 01 ce 48 83 fa 26 74 0a 48 83 fa 08 0f 85 62 10 00 00 48 8b 50 10 48 83 c0 18 48 01 ca <48> 89 16 48 39 c3 77 d4 4d 8b 93 d0 01 00 00 4d 85 d2 0f 85 a3 fa
+RSP: 002b:00007ffffe395540 EFLAGS: 00010206
+RAX: 00007f80dc746918 RBX: 00007f80dc74a560 RCX: 00007f80dc743000
+RDX: 00007f80dc74cf50 RSI: 00007f80dc78f130 RDI: 00007f80dc74bbb0
+RBP: 00007ffffe395640 R08: 00007f80dc74bbb0 R09: 0000000000000001
+R10: 00000000000052b0 R11: 00007f80dc9d5940 R12: 0000000000000000
+R13: 0000000000000000 R14: 00007f80dcd6c180 R15: 0000000000000058
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

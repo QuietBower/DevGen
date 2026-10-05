@@ -1,0 +1,183 @@
+EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+clocksource: Long readout interval, skipping watchdog check: cs_nsec: 15227680013 wd_nsec: 15227675243
+ext4 filesystem being mounted at /1029/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+sched: DL replenish lagged too much
+rcu: 	1-...!: (1 GPs behind) idle=324c/1/0x4000000000000000 softirq=162476/162483 fqs=2
+rcu: 	2-...!: (1 GPs behind) idle=3f7c/1/0x4000000000000000 softirq=166220/166281 fqs=3
+rcu: 	3-...!: (1 GPs behind) idle=4c84/1/0x4000000000000000 softirq=146118/146125 fqs=3
+rcu: 	(detected by 1, t=137793 jiffies, g=129577, q=119813 ncpus=4)
+rcu: INFO: Stall ended during stack backtracing.
+rcu: rcu_preempt kthread starved for 21400 jiffies! g129577 f0x0 RCU_GP_DOING_FQS(6) ->state=0x0 ->cpu=3
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:I stack:29456 pid:15    tgid:15    ppid:2      task_flags:0x208040 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:5325 [inline]
+ __schedule+0xebb/0x3550 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:6929
+ __schedule_loop home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7011 [inline]
+ schedule+0xe9/0x3a0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7026
+ schedule_timeout+0x118/0x280 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/sleep_timeout.c:99
+ rcu_gp_fqs_loop+0x1ab/0xa90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2083
+ rcu_gp_kthread+0x2a4/0x3b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2285
+ kthread+0x3cd/0x740 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+Sending NMI from CPU 1 to CPUs 3:
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 135 Comm: systemd-journal Not tainted 6.18.0 #9 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:csd_lock_wait home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:351 [inline]
+RIP: 0010:smp_call_function_many_cond+0xa48/0x1110 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:877
+Code: 0b 00 85 ed 74 4d 48 b8 00 00 00 00 00 fc ff df 4d 89 f4 4c 89 f5 49 c1 ec 03 83 e5 07 49 01 c4 83 c5 03 e8 6a 7a 0b 00 f3 90 <41> 0f b6 04 24 40 38 c5 7c 08 84 c0 0f 85 cb 04 00 00 8b 43 08 31
+RSP: 0018:ffff888105dcf6a8 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: ffff88811aabfce0 RCX: ffffffff816ab01c
+RDX: ffff88810571cf80 RSI: ffffffff816aaff6 RDI: 0000000000000005
+RBP: 0000000000000003 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 0000000000000001 R12: ffffed1023557f9d
+R13: 0000000000000001 R14: ffff88811aabfce8 R15: 0000000000000001
+FS:  0000000000000000(0000) GS:ffff8881913bf000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fa4aa9f8218 CR3: 000000000706c000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ on_each_cpu_cond_mask+0x42/0x80 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:1043
+ __flush_tlb_multi home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/paravirt.h:91 [inline]
+ flush_tlb_multi home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/tlb.c:1381 [inline]
+ flush_tlb_mm_range+0x418/0x14d0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/tlb.c:1471
+ tlb_flush home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/tlb.h:23 [inline]
+ tlb_flush_mmu_tlbonly home/wmy/Fuzzer/third_tool/linux-6.18/include/asm-generic/tlb.h:490 [inline]
+ tlb_flush_mmu_tlbonly home/wmy/Fuzzer/third_tool/linux-6.18/include/asm-generic/tlb.h:480 [inline]
+ tlb_flush_mmu home/wmy/Fuzzer/third_tool/linux-6.18/mm/mmu_gather.c:403 [inline]
+ tlb_finish_mmu+0x3da/0x7e0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mmu_gather.c:497
+ free_ldt_pgtables+0x15e/0x190 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/ldt.c:411
+ arch_exit_mmap home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/mmu_context.h:234 [inline]
+ exit_mmap+0x115/0xaa0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mmap.c:1266
+ __mmput home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:1133 [inline]
+ mmput+0xda/0x3a0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:1156
+ exit_mm home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:582 [inline]
+ do_exit+0x7b2/0x2990 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:954
+ do_group_exit+0xd8/0x2b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1107
+ get_signal+0x2327/0x2350 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/signal.c:3034
+ arch_do_signal_or_restart+0x85/0x790 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/signal.c:337
+ exit_to_user_mode_loop home/wmy/Fuzzer/third_tool/linux-6.18/kernel/entry/common.c:40 [inline]
+ exit_to_user_mode_prepare home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/irq-entry-common.h:225 [inline]
+ irqentry_exit_to_user_mode+0x112/0x1e0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/entry/common.c:73
+ exc_page_fault+0xe9/0x190 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/fault.c:1535
+ asm_exc_page_fault+0x26/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:618
+RIP: 0033:0x7fb22420b0be
+Code: Unable to access opcode bytes at 0x7fb22420b094.
+RSP: 002b:00007ffd045c9800 EFLAGS: 00010246
+RAX: 00007fb2227bab20 RBX: 0000558c22722f20 RCX: 0000000000038e38
+RDX: 0000000000000000 RSI: 0000558c22722f20 RDI: 00007fb221b0f770
+RBP: 0000558c227200a0 R08: 0000000000b3c730 R09: 0000000000b3c730
+R10: 0000000000000000 R11: 00007fb2242db010 R12: 0000000000000025
+R13: 0000000000142530 R14: 0000000000000000 R15: 00007ffd045c9820
+ </TASK>
+clocksource: Long readout interval, skipping watchdog check: cs_nsec: 189968628390 wd_nsec: 189968569895
+systemd[1]: systemd-journald.service: Main process exited, code=killed, status=6/ABRT
+systemd[1]: systemd-journald.service: Failed with result 'watchdog'.
+EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+systemd[1]: systemd-journald.service: Consumed 33.866s CPU time.
+systemd[1]: systemd-journald.service: Scheduled restart job, restart counter is at 1.
+systemd[1]: Stopping Flush Journal to Persistent Storage...
+systemd[1]: systemd-journal-flush.service: Succeeded.
+systemd[1]: Stopped Flush Journal to Persistent Storage.
+systemd[1]: Stopped Journal Service.
+systemd[1]: systemd-journald.service: Consumed 33.866s CPU time.
+systemd[1]: Starting Journal Service...
+systemd-journald[10613]: File /var/log/journal/5e5ef17f21b54251ace18b1b4fc560bb/system.journal corrupted or uncleanly shut down, renaming and replacing.
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+sched: DL replenish lagged too much
+rcu: 	1-...!: (1 GPs behind) idle=324c/1/0x4000000000000000 softirq=162476/162483 fqs=2
+rcu: 	2-...!: (1 GPs behind) idle=3f7c/1/0x4000000000000000 softirq=166220/166281 fqs=3
+rcu: 	3-...!: (1 GPs behind) idle=4c84/1/0x4000000000000000 softirq=146118/146125 fqs=3
+rcu: 	(detected by 1, t=137793 jiffies, g=129577, q=119813 ncpus=4)
+rcu: INFO: Stall ended during stack backtracing.
+rcu: rcu_preempt kthread starved for 21400 jiffies! g129577 f0x0 RCU_GP_DOING_FQS(6) ->state=0x0 ->cpu=3
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:I stack:29456 pid:15    tgid:15    ppid:2      task_flags:0x208040 flags:0x00080000
+Call Trace:
+ <TASK>
+ __schedule+0xebb/0x3550
+ schedule+0xe9/0x3a0
+ schedule_timeout+0x118/0x280
+ rcu_gp_fqs_loop+0x1ab/0xa90
+ rcu_gp_kthread+0x2a4/0x3b0
+ kthread+0x3cd/0x740
+ ret_from_fork+0x3a1/0x490
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+Sending NMI from CPU 1 to CPUs 3:
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 135 Comm: systemd-journal Not tainted 6.18.0 #9 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:smp_call_function_many_cond+0xa48/0x1110
+Code: 0b 00 85 ed 74 4d 48 b8 00 00 00 00 00 fc ff df 4d 89 f4 4c 89 f5 49 c1 ec 03 83 e5 07 49 01 c4 83 c5 03 e8 6a 7a 0b 00 f3 90 <41> 0f b6 04 24 40 38 c5 7c 08 84 c0 0f 85 cb 04 00 00 8b 43 08 31
+RSP: 0018:ffff888105dcf6a8 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: ffff88811aabfce0 RCX: ffffffff816ab01c
+RDX: ffff88810571cf80 RSI: ffffffff816aaff6 RDI: 0000000000000005
+RBP: 0000000000000003 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 0000000000000001 R12: ffffed1023557f9d
+R13: 0000000000000001 R14: ffff88811aabfce8 R15: 0000000000000001
+FS:  0000000000000000(0000) GS:ffff8881913bf000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fa4aa9f8218 CR3: 000000000706c000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ on_each_cpu_cond_mask+0x42/0x80
+ flush_tlb_mm_range+0x418/0x14d0
+ tlb_finish_mmu+0x3da/0x7e0
+ free_ldt_pgtables+0x15e/0x190
+ exit_mmap+0x115/0xaa0
+ mmput+0xda/0x3a0
+ do_exit+0x7b2/0x2990
+ do_group_exit+0xd8/0x2b0
+ get_signal+0x2327/0x2350
+ arch_do_signal_or_restart+0x85/0x790
+ irqentry_exit_to_user_mode+0x112/0x1e0
+ exc_page_fault+0xe9/0x190
+ asm_exc_page_fault+0x26/0x30
+RIP: 0033:0x7fb22420b0be
+Code: Unable to access opcode bytes at 0x7fb22420b094.
+RSP: 002b:00007ffd045c9800 EFLAGS: 00010246
+RAX: 00007fb2227bab20 RBX: 0000558c22722f20 RCX: 0000000000038e38
+RDX: 0000000000000000 RSI: 0000558c22722f20 RDI: 00007fb221b0f770
+RBP: 0000558c227200a0 R08: 0000000000b3c730 R09: 0000000000b3c730
+R10: 0000000000000000 R11: 00007fb2242db010 R12: 0000000000000025
+R13: 0000000000142530 R14: 0000000000000000 R15: 00007ffd045c9820
+ </TASK>
+clocksource: Long readout interval, skipping watchdog check: cs_nsec: 189968628390 wd_nsec: 189968569895
+systemd[1]: systemd-journald.service: Main process exited, code=killed, status=6/ABRT
+systemd[1]: systemd-journald.service: Failed with result 'watchdog'.
+EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+systemd[1]: systemd-journald.service: Consumed 33.866s CPU time.
+systemd[1]: systemd-journald.service: Scheduled restart job, restart counter is at 1.
+systemd[1]: Stopping Flush Journal to Persistent Storage...
+systemd[1]: systemd-journal-flush.service: Succeeded.
+systemd[1]: Stopped Flush Journal to Persistent Storage.
+systemd[1]: Stopped Journal Service.
+systemd[1]: systemd-journald.service: Consumed 33.866s CPU time.
+systemd[1]: Starting Journal Service...
+systemd-journald[10613]: File /var/log/journal/5e5ef17f21b54251ace18b1b4fc560bb/system.journal corrupted or uncleanly shut down, renaming and replacing.
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to send rpc
+fd=3 want=152 sent=0 n=-1 (errno 32: Broken pipe)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

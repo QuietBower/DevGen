@@ -1,0 +1,421 @@
+BUG: memory leak
+unreferenced object 0xffff888100bb9a80 (size 6528):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    04 00 08 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 02 00 00 00 80 00 00 00 00 00 00 00  ................
+  backtrace (crc ef916286):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_node_noprof+0x3e6/0x6f0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5340
+    alloc_task_struct_node home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:184 [inline]
+    dup_task_struct home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:873 [inline]
+    copy_process+0x49c/0x72b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2012
+    kernel_clone+0xef/0x800 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2609
+    kernel_thread+0xdc/0x120 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2670
+    create_kthread home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:486 [inline]
+    kthreadd+0x4c1/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:846
+    ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+    ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+
+BUG: memory leak
+unreferenced object 0xffff888100a28900 (size 184):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 79210dad):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_noprof+0x40b/0x6d0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5295
+    prepare_creds+0x31/0x7e0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/cred.c:212
+    copy_creds+0x7f/0xa20 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/cred.c:312
+    copy_process+0xf7d/0x72b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2046
+    kernel_clone+0xef/0x800 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2609
+    kernel_thread+0xdc/0x120 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2670
+    create_kthread home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:486 [inline]
+    kthreadd+0x4c1/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:846
+    ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+    ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+
+BUG: memory leak
+unreferenced object 0xffff888100a29240 (size 32):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc f06ff8b7):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    __do_kmalloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5649 [inline]
+    __kmalloc_noprof+0x49c/0x7b0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5662
+    kmalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:961 [inline]
+    kzalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:1094 [inline]
+    lsm_blob_alloc home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:690 [inline]
+    lsm_blob_alloc home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:683 [inline]
+    lsm_cred_alloc home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:707 [inline]
+    security_prepare_creds+0x113/0x170 home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:3310
+    prepare_creds+0x57e/0x7e0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/cred.c:242
+    copy_creds+0x7f/0xa20 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/cred.c:312
+    copy_process+0xf7d/0x72b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2046
+    kernel_clone+0xef/0x800 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2609
+    kernel_thread+0xdc/0x120 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2670
+    create_kthread home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:486 [inline]
+    kthreadd+0x4c1/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:846
+    ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+    ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+
+BUG: memory leak
+unreferenced object 0xffff888100b05800 (size 512):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 60 5e 43 81 ff ff ff ff  ........`^C.....
+  backtrace (crc e1ecaaa7):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    __kmalloc_cache_noprof+0x421/0x6f0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5766
+    kmalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:957 [inline]
+    kzalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:1094 [inline]
+    set_kthread_struct+0xd0/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:125
+    copy_process+0x2ee0/0x72b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2110
+    kernel_clone+0xef/0x800 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2609
+    kernel_thread+0xdc/0x120 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2670
+    create_kthread home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:486 [inline]
+    kthreadd+0x4c1/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:846
+    ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+    ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+
+BUG: memory leak
+unreferenced object 0xffff888100a1f680 (size 96):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    01 00 00 00 00 00 00 00 00 00 00 00 03 00 00 00  ................
+    ff ff ff ff 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 40de8b8a):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    __do_kmalloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5649 [inline]
+    __kmalloc_noprof+0x49c/0x7b0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5662
+    kmalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:961 [inline]
+    kzalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:1094 [inline]
+    lsm_blob_alloc home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:690 [inline]
+    lsm_blob_alloc home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:683 [inline]
+    lsm_task_alloc home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:777 [inline]
+    security_task_alloc+0x102/0x160 home/wmy/Fuzzer/third_tool/linux-6.18/security/security.c:3229
+    copy_process+0x207d/0x72b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2163
+    kernel_clone+0xef/0x800 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2609
+    kernel_thread+0xdc/0x120 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2670
+    create_kthread home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:486 [inline]
+    kthreadd+0x4c1/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:846
+    ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+    ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+
+BUG: memory leak
+unreferenced object 0xffff888100b3c380 (size 1696):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    90 c3 b3 00 81 88 ff ff 90 c3 b3 00 81 88 ff ff  ................
+  backtrace (crc fe0ea3dd):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_noprof+0x40b/0x6d0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5295
+    copy_signal home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:1659 [inline]
+    copy_process+0x66ca/0x72b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2178
+    kernel_clone+0xef/0x800 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2609
+    kernel_thread+0xdc/0x120 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2670
+    create_kthread home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:486 [inline]
+    kthreadd+0x4c1/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:846
+    ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+    ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+BUG: memory leak
+unreferenced object 0xffff888100a28900 (size 184):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 79210dad):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    prepare_creds+0x31/0x7e0
+    copy_creds+0x7f/0xa20
+    copy_process+0xf7d/0x72b0
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+
+BUG: memory leak
+unreferenced object 0xffff888100a29240 (size 32):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc f06ff8b7):
+    __kmalloc_noprof+0x49c/0x7b0
+    security_prepare_creds+0x113/0x170
+    prepare_creds+0x57e/0x7e0
+    copy_creds+0x7f/0xa20
+    copy_process+0xf7d/0x72b0
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+
+BUG: memory leak
+unreferenced object 0xffff888100b05800 (size 512):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 60 5e 43 81 ff ff ff ff  ........`^C.....
+  backtrace (crc e1ecaaa7):
+    __kmalloc_cache_noprof+0x421/0x6f0
+    set_kthread_struct+0xd0/0x390
+    copy_process+0x2ee0/0x72b0
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+
+BUG: memory leak
+unreferenced object 0xffff888100a1f680 (size 96):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    01 00 00 00 00 00 00 00 00 00 00 00 03 00 00 00  ................
+    ff ff ff ff 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 40de8b8a):
+    __kmalloc_noprof+0x49c/0x7b0
+    security_task_alloc+0x102/0x160
+    copy_process+0x207d/0x72b0
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+
+BUG: memory leak
+unreferenced object 0xffff888100b3c380 (size 1696):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    90 c3 b3 00 81 88 ff ff 90 c3 b3 00 81 88 ff ff  ................
+  backtrace (crc fe0ea3dd):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    copy_process+0x66ca/0x72b0
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+BUG: memory leak
+unreferenced object 0xffff888100a29240 (size 32):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    01 00 00 00 01 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc f06ff8b7):
+    __kmalloc_noprof+0x49c/0x7b0
+    security_prepare_creds+0x113/0x170
+    prepare_creds+0x57e/0x7e0
+    copy_creds+0x7f/0xa20
+    copy_process+0xf7d/0x72b0
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+
+BUG: memory leak
+unreferenced object 0xffff888100b05800 (size 512):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 60 5e 43 81 ff ff ff ff  ........`^C.....
+  backtrace (crc e1ecaaa7):
+    __kmalloc_cache_noprof+0x421/0x6f0
+    set_kthread_struct+0xd0/0x390
+    copy_process+0x2ee0/0x72b0
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+
+BUG: memory leak
+unreferenced object 0xffff888100a1f680 (size 96):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    01 00 00 00 00 00 00 00 00 00 00 00 03 00 00 00  ................
+    ff ff ff ff 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 40de8b8a):
+    __kmalloc_noprof+0x49c/0x7b0
+    security_task_alloc+0x102/0x160
+    copy_process+0x207d/0x72b0
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+
+BUG: memory leak
+unreferenced object 0xffff888100b3c380 (size 1696):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    90 c3 b3 00 81 88 ff ff 90 c3 b3 00 81 88 ff ff  ................
+  backtrace (crc fe0ea3dd):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    copy_process+0x66ca/0x72b0
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+BUG: memory leak
+unreferenced object 0xffff888100b05800 (size 512):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    02 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 60 5e 43 81 ff ff ff ff  ........`^C.....
+  backtrace (crc e1ecaaa7):
+    __kmalloc_cache_noprof+0x421/0x6f0
+    set_kthread_struct+0xd0/0x390
+    copy_process+0x2ee0/0x72b0
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+
+BUG: memory leak
+unreferenced object 0xffff888100a1f680 (size 96):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    01 00 00 00 00 00 00 00 00 00 00 00 03 00 00 00  ................
+    ff ff ff ff 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 40de8b8a):
+    __kmalloc_noprof+0x49c/0x7b0
+    security_task_alloc+0x102/0x160
+    copy_process+0x207d/0x72b0
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+
+BUG: memory leak
+unreferenced object 0xffff888100b3c380 (size 1696):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    90 c3 b3 00 81 88 ff ff 90 c3 b3 00 81 88 ff ff  ................
+  backtrace (crc fe0ea3dd):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    copy_process+0x66ca/0x72b0
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+BUG: memory leak
+unreferenced object 0xffff888100a1f680 (size 96):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    01 00 00 00 00 00 00 00 00 00 00 00 03 00 00 00  ................
+    ff ff ff ff 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 40de8b8a):
+    __kmalloc_noprof+0x49c/0x7b0
+    security_task_alloc+0x102/0x160
+    copy_process+0x207d/0x72b0
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+
+BUG: memory leak
+unreferenced object 0xffff888100b3c380 (size 1696):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    90 c3 b3 00 81 88 ff ff 90 c3 b3 00 81 88 ff ff  ................
+  backtrace (crc fe0ea3dd):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    copy_process+0x66ca/0x72b0
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+BUG: memory leak
+unreferenced object 0xffff888100b3c380 (size 1696):
+  comm "kthreadd", pid 2, jiffies 4294667534
+  hex dump (first 32 bytes):
+    01 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    90 c3 b3 00 81 88 ff ff 90 c3 b3 00 81 88 ff ff  ................
+  backtrace (crc fe0ea3dd):
+    kmem_cache_alloc_noprof+0x40b/0x6d0
+    copy_process+0x66ca/0x72b0
+    kernel_clone+0xef/0x800
+    kernel_thread+0xdc/0x120
+    kthreadd+0x4c1/0x780
+    ret_from_fork+0x3a1/0x490
+    ret_from_fork_asm+0x1a/0x30
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

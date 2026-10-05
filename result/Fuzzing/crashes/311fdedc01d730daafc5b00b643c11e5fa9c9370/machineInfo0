@@ -1,0 +1,33 @@
+QEMU emulator version 8.2.10 (v8.2.10-dirty)
+/home/wmy/Fuzzer/bin/qemu/bin/qemu-system-x86_64 ["-m" "4096" "-smp" "4" "-chardev" "socket,id=SOCKSYZ,server=on,wait=off,host=localhost,port=30518" "-mon" "chardev=SOCKSYZ,mode=control" "-display" "none" "-serial" "stdio" "-no-reboot" "-name" "VM-0" "-device" "virtio-rng-pci" "--enable-kvm" "-fsdev" "local,id=fsdev0,path=/home/wmy/Fuzzer/out/shares,security_model=none" "-device" "virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=hostshare" "-device" "wdt_pci_pci" "-device" "e1000,netdev=net0" "-netdev" "user,id=net0,restrict=on,hostfwd=tcp:127.0.0.1:64588-:22" "-hda" "/home/wmy/Fuzzer/third_tool/Image-fuzz-6.18/bullseye.img" "-snapshot" "-kernel" "/home/wmy/Fuzzer/build/linux/linux-6.18-defconfig/arch/x86/boot/bzImage" "-append" "root=/dev/sda console=ttyS0 "]
+
+[CPU Info]
+processor           : 0, 1, 2, 3
+vendor_id           : GenuineIntel
+cpu family          : 15
+model               : 107
+model name          : QEMU Virtual CPU version 2.5+
+stepping            : 1
+microcode           : 0x1
+cpu MHz             : 2803.204
+cache size          : 16384 KB
+physical id         : 0
+siblings            : 4
+core id             : 0, 1, 2, 3
+cpu cores           : 4
+apicid              : 0, 1, 2, 3
+initial apicid      : 0, 1, 2, 3
+fpu                 : yes
+fpu_exception       : yes
+cpuid level         : 13
+wp                  : yes
+flags               : fpu de pse tsc msr pae mce cx8 apic sep mtrr pge mca cmov pat pse36 clflush mmx fxsr sse sse2 ht syscall nx lm rep_good nopl xtopology cpuid tsc_known_freq pni cx16 x2apic hypervisor lahf_lm cpuid_fault pti
+bugs                : cpu_meltdown spectre_v1 spectre_v2 spec_store_bypass l1tf mds swapgs itlb_multihit bhi spectre_v2_user its
+bogomips            : 5606.40
+clflush size        : 64
+cache_alignment     : 128
+address sizes       : 40 bits physical, 48 bits virtual
+power management    : 
+
+--------------------------------------------------------------------------------
+

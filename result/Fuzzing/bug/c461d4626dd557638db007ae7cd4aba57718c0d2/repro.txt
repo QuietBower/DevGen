@@ -1,0 +1,329 @@
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(0xffffffffffffffff, 0xc04064a0, &(0x7f0000000340)={&(0x7f0000000240), 0x0, &(0x7f00000002c0), 0x0})
+ioctl$DRM_IOCTL_MODE_GETPLANE(0xffffffffffffffff, 0xc02064b6, 0x0)
+openat$qat_adf_ctl(0xffffffffffffff9c, 0x0, 0x2, 0x0)
+ioctl$DRM_IOCTL_MODE_GETCRTC(0xffffffffffffffff, 0xc06864a1, &(0x7f00000004c0)={&(0x7f0000000200)})
+r0 = openat$qat_adf_ctl(0xffffffffffffff9c, &(0x7f00000007c0), 0x40401, 0x0)
+ioctl$IOCTL_START_ACCEL_DEV(r0, 0x40096102, &(0x7f00000008c0))
+ioctl$DRM_IOCTL_ADD_CTX(0xffffffffffffffff, 0xc0086420, 0x0)
+
+BUG: KASAN: slab-use-after-free in owner_on_cpu home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/sched.h:2282 [inline]
+BUG: KASAN: slab-use-after-free in mutex_can_spin_on_owner home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:397 [inline]
+BUG: KASAN: slab-use-after-free in mutex_optimistic_spin home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:440 [inline]
+BUG: KASAN: slab-use-after-free in __mutex_lock_common home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:602 [inline]
+BUG: KASAN: slab-use-after-free in __mutex_lock+0xd0a/0x1160 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:760
+Read of size 4 at addr ffff888112349ab4 by task syz.2.17/1276
+
+CPU: 2 UID: 0 PID: 1276 Comm: syz.2.17 Tainted: G      D             6.18.0 #9 PREEMPT(voluntary) 
+Tainted: [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack home/wmy/Fuzzer/third_tool/linux-6.18/lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xdb/0x140 home/wmy/Fuzzer/third_tool/linux-6.18/lib/dump_stack.c:120
+ print_address_description home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/report.c:378 [inline]
+ print_report+0xcb/0x610 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/report.c:482
+ kasan_report+0xca/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/report.c:595
+ owner_on_cpu home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/sched.h:2282 [inline]
+ mutex_can_spin_on_owner home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:397 [inline]
+ mutex_optimistic_spin home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:440 [inline]
+ __mutex_lock_common home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:602 [inline]
+ __mutex_lock+0xd0a/0x1160 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:760
+ adf_dev_up+0x44/0x14c0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/crypto/intel/qat/qat_common/adf_init.c:473 [intel_qat]
+ adf_ctl_ioctl+0x1d6/0x1080 [intel_qat]
+ vfs_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:51 [inline]
+ __do_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:597 [inline]
+ __se_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f11deba059d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fffdc4c2b38 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f11dee15fa0 RCX: 00007f11deba059d
+RDX: 00002000000008c0 RSI: 0000000040096102 RDI: 0000000000000003
+RBP: 00007f11dec3e078 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f11dee15fac R14: 00007f11dee15fa0 R15: 0000000000000000
+ </TASK>
+
+Allocated by task 44:
+ kasan_save_stack+0x24/0x50 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:56
+ kasan_save_track+0x14/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:77
+ unpoison_slab_object home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:342 [inline]
+ __kasan_slab_alloc+0x59/0x70 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:368
+ kasan_slab_alloc home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kasan.h:252 [inline]
+ slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4978 [inline]
+ slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+ kmem_cache_alloc_node_noprof+0x21f/0x6f0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5340
+ alloc_task_struct_node home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:184 [inline]
+ dup_task_struct home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:873 [inline]
+ copy_process+0x49c/0x72b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2012
+ kernel_clone+0xef/0x800 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2609
+ user_mode_thread+0xcd/0x110 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2685
+ call_usermodehelper_exec_sync home/wmy/Fuzzer/third_tool/linux-6.18/kernel/umh.c:132 [inline]
+ call_usermodehelper_exec_work+0x72/0x190 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/umh.c:163
+ process_one_work+0x8d1/0x19c0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3263
+ process_scheduled_works home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3346 [inline]
+ worker_thread+0x683/0xe90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3427
+ kthread+0x3cd/0x740 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+
+Freed by task 0:
+ kasan_save_stack+0x24/0x50 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:56
+ kasan_save_track+0x14/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:77
+ __kasan_save_free_info+0x3b/0x60 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/generic.c:587
+ kasan_save_free_info home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/kasan.h:406 [inline]
+ poison_slab_object home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:252 [inline]
+ __kasan_slab_free+0x43/0x70 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:284
+ kasan_slab_free home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kasan.h:234 [inline]
+ slab_free_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:2543 [inline]
+ slab_free home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6642 [inline]
+ kmem_cache_free+0x2ad/0x620 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6752
+ rcu_do_batch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2605 [inline]
+ rcu_core+0x846/0x1940 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2861
+ handle_softirqs+0x1bb/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:622
+ __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+ invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+ irq_exit_rcu+0xe/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:739
+ instr_sysvec_apic_timer_interrupt home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052 [inline]
+ sysvec_apic_timer_interrupt+0x70/0x80 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:697
+
+Last potentially related work creation:
+ kasan_save_stack+0x24/0x50 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:56
+ kasan_record_aux_stack+0x8c/0xa0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/generic.c:559
+ __call_rcu_common.constprop.0+0x75/0x990 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:3123
+ put_task_struct home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/sched/task.h:159 [inline]
+ delayed_put_task_struct+0xe3/0x260 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:231
+ rcu_do_batch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2605 [inline]
+ rcu_core+0x846/0x1940 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2861
+ handle_softirqs+0x1bb/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:622
+ run_ksoftirqd home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:1063 [inline]
+ run_ksoftirqd+0x35/0x60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:1055
+ smpboot_thread_fn+0x424/0x9e0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smpboot.c:160
+ kthread+0x3cd/0x740 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+
+Second to last potentially related work creation:
+ kasan_save_stack+0x24/0x50 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:56
+ kasan_record_aux_stack+0x8c/0xa0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/generic.c:559
+ __call_rcu_common.constprop.0+0x75/0x990 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:3123
+ put_task_struct_rcu_user+0x7a/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:237
+ release_task+0xfbf/0x1840 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:308
+ wait_task_zombie home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1269 [inline]
+ wait_consider_task+0x18b9/0x3b50 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1496
+ do_wait_pid home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1635 [inline]
+ __do_wait+0x732/0x870 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1670
+ do_wait+0x1d0/0x560 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1711
+ kernel_wait+0xa4/0x160 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1887
+ call_usermodehelper_exec_sync home/wmy/Fuzzer/third_tool/linux-6.18/kernel/umh.c:136 [inline]
+ call_usermodehelper_exec_work+0xfe/0x190 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/umh.c:163
+ process_one_work+0x8d1/0x19c0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3263
+ process_scheduled_works home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3346 [inline]
+ worker_thread+0x683/0xe90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3427
+ kthread+0x3cd/0x740 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+
+The buggy address belongs to the object at ffff888112349a80
+ which belongs to the cache task_struct of size 6528
+The buggy address is located 52 bytes inside of
+ freed 6528-byte region [ffff888112349a80, ffff88811234b400)
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x112348
+head: order:3 mapcount:0 entire_mapcount:0 nr_pages_mapped:0 pincount:0
+memcg:ffff88810510f8c1
+flags: 0x200000000000040(head|node=0|zone=2)
+page_type: f5(slab)
+raw: 0200000000000040 ffff888100a3e280 dead000000000100 dead000000000122
+raw: 0000000000000000 0000000000040004 00000000f5000000 ffff88810510f8c1
+head: 0200000000000040 ffff888100a3e280 dead000000000100 dead000000000122
+head: 0000000000000000 0000000000040004 00000000f5000000 ffff88810510f8c1
+head: 0200000000000003 ffffea000448d201 00000000ffffffff 00000000ffffffff
+head: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000008
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888112349980: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+ ffff888112349a00: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+>ffff888112349a80: fa fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                                     ^
+ ffff888112349b00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff888112349b80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================
+2026/01/12 00:23:01 reproducing crash 'KASAN: slab-use-after-free Read in adf_dev_up': final repro crashed as (corrupted=false):
+audit: type=1401 audit(1768148558.254:33): op=setxattr invalid_context="u:object_r:app_data_file:s0:c512,c768"
+c6xxvf 0000:00:05.0: Starting acceleration device qat_dev0.
+==================================================================
+BUG: KASAN: slab-use-after-free in owner_on_cpu home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/sched.h:2282 [inline]
+BUG: KASAN: slab-use-after-free in mutex_can_spin_on_owner home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:397 [inline]
+BUG: KASAN: slab-use-after-free in mutex_optimistic_spin home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:440 [inline]
+BUG: KASAN: slab-use-after-free in __mutex_lock_common home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:602 [inline]
+BUG: KASAN: slab-use-after-free in __mutex_lock+0xd0a/0x1160 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:760
+Read of size 4 at addr ffff888112349ab4 by task syz.2.17/1276
+
+CPU: 2 UID: 0 PID: 1276 Comm: syz.2.17 Tainted: G      D             6.18.0 #9 PREEMPT(voluntary) 
+Tainted: [D]=DIE
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack home/wmy/Fuzzer/third_tool/linux-6.18/lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xdb/0x140 home/wmy/Fuzzer/third_tool/linux-6.18/lib/dump_stack.c:120
+ print_address_description home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/report.c:378 [inline]
+ print_report+0xcb/0x610 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/report.c:482
+ kasan_report+0xca/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/report.c:595
+ owner_on_cpu home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/sched.h:2282 [inline]
+ mutex_can_spin_on_owner home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:397 [inline]
+ mutex_optimistic_spin home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:440 [inline]
+ __mutex_lock_common home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:602 [inline]
+ __mutex_lock+0xd0a/0x1160 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:760
+ adf_dev_up+0x44/0x14c0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/crypto/intel/qat/qat_common/adf_init.c:473 [intel_qat]
+ adf_ctl_ioctl+0x1d6/0x1080 [intel_qat]
+ vfs_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:51 [inline]
+ __do_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:597 [inline]
+ __se_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f11deba059d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fffdc4c2b38 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f11dee15fa0 RCX: 00007f11deba059d
+RDX: 00002000000008c0 RSI: 0000000040096102 RDI: 0000000000000003
+RBP: 00007f11dec3e078 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f11dee15fac R14: 00007f11dee15fa0 R15: 0000000000000000
+ </TASK>
+
+Allocated by task 44:
+ kasan_save_stack+0x24/0x50 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:56
+ kasan_save_track+0x14/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:77
+ unpoison_slab_object home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:342 [inline]
+ __kasan_slab_alloc+0x59/0x70 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:368
+ kasan_slab_alloc home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kasan.h:252 [inline]
+ slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4978 [inline]
+ slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+ kmem_cache_alloc_node_noprof+0x21f/0x6f0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5340
+ alloc_task_struct_node home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:184 [inline]
+ dup_task_struct home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:873 [inline]
+ copy_process+0x49c/0x72b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2012
+ kernel_clone+0xef/0x800 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2609
+ user_mode_thread+0xcd/0x110 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2685
+ call_usermodehelper_exec_sync home/wmy/Fuzzer/third_tool/linux-6.18/kernel/umh.c:132 [inline]
+ call_usermodehelper_exec_work+0x72/0x190 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/umh.c:163
+ process_one_work+0x8d1/0x19c0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3263
+ process_scheduled_works home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3346 [inline]
+ worker_thread+0x683/0xe90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3427
+ kthread+0x3cd/0x740 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+
+Freed by task 0:
+ kasan_save_stack+0x24/0x50 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:56
+ kasan_save_track+0x14/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:77
+ __kasan_save_free_info+0x3b/0x60 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/generic.c:587
+ kasan_save_free_info home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/kasan.h:406 [inline]
+ poison_slab_object home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:252 [inline]
+ __kasan_slab_free+0x43/0x70 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:284
+ kasan_slab_free home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kasan.h:234 [inline]
+ slab_free_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:2543 [inline]
+ slab_free home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6642 [inline]
+ kmem_cache_free+0x2ad/0x620 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:6752
+ rcu_do_batch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2605 [inline]
+ rcu_core+0x846/0x1940 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2861
+ handle_softirqs+0x1bb/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:622
+ __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+ invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+ irq_exit_rcu+0xe/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:739
+ instr_sysvec_apic_timer_interrupt home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052 [inline]
+ sysvec_apic_timer_interrupt+0x70/0x80 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:697
+
+Last potentially related work creation:
+ kasan_save_stack+0x24/0x50 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:56
+ kasan_record_aux_stack+0x8c/0xa0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/generic.c:559
+ __call_rcu_common.constprop.0+0x75/0x990 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:3123
+ put_task_struct home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/sched/task.h:159 [inline]
+ delayed_put_task_struct+0xe3/0x260 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:231
+ rcu_do_batch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2605 [inline]
+ rcu_core+0x846/0x1940 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2861
+ handle_softirqs+0x1bb/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:622
+ run_ksoftirqd home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:1063 [inline]
+ run_ksoftirqd+0x35/0x60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:1055
+ smpboot_thread_fn+0x424/0x9e0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smpboot.c:160
+ kthread+0x3cd/0x740 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+
+Second to last potentially related work creation:
+ kasan_save_stack+0x24/0x50 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:56
+ kasan_record_aux_stack+0x8c/0xa0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/generic.c:559
+ __call_rcu_common.constprop.0+0x75/0x990 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:3123
+ put_task_struct_rcu_user+0x7a/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:237
+ release_task+0xfbf/0x1840 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:308
+ wait_task_zombie home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1269 [inline]
+ wait_consider_task+0x18b9/0x3b50 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1496
+ do_wait_pid home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1635 [inline]
+ __do_wait+0x732/0x870 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1670
+ do_wait+0x1d0/0x560 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1711
+ kernel_wait+0xa4/0x160 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1887
+ call_usermodehelper_exec_sync home/wmy/Fuzzer/third_tool/linux-6.18/kernel/umh.c:136 [inline]
+ call_usermodehelper_exec_work+0xfe/0x190 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/umh.c:163
+ process_one_work+0x8d1/0x19c0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3263
+ process_scheduled_works home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3346 [inline]
+ worker_thread+0x683/0xe90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3427
+ kthread+0x3cd/0x740 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+
+The buggy address belongs to the object at ffff888112349a80
+ which belongs to the cache task_struct of size 6528
+The buggy address is located 52 bytes inside of
+ freed 6528-byte region [ffff888112349a80, ffff88811234b400)
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x112348
+head: order:3 mapcount:0 entire_mapcount:0 nr_pages_mapped:0 pincount:0
+memcg:ffff88810510f8c1
+flags: 0x200000000000040(head|node=0|zone=2)
+page_type: f5(slab)
+raw: 0200000000000040 ffff888100a3e280 dead000000000100 dead000000000122
+raw: 0000000000000000 0000000000040004 00000000f5000000 ffff88810510f8c1
+head: 0200000000000040 ffff888100a3e280 dead000000000100 dead000000000122
+head: 0000000000000000 0000000000040004 00000000f5000000 ffff88810510f8c1
+head: 0200000000000003 ffffea000448d201 00000000ffffffff 00000000ffffffff
+head: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000008
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888112349980: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+ ffff888112349a00: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+>ffff888112349a80: fa fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                                     ^
+ ffff888112349b00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff888112349b80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================
+extracting prog: 1m44.57117928s
+minimizing prog: 45m47.843081181s
+simplifying prog options: 3m10.11087486s
+extracting C: 20.850299129s
+simplifying C: 0s
+opts: {Threaded:false Repeat:true RepeatTimes:0 Procs:1 Slowdown:1 Sandbox:none SandboxArg:0 Leak:false NetInjection:true NetDevices:true NetReset:true Cgroups:true BinfmtMisc:true CloseFDs:true KCSAN:false DevlinkPCI:true NicVF:true USB:true VhciInjection:true Wifi:true IEEE802154:true Sysctl:true Swap:true UseTmpDir:true HandleSegv:true Trace:false CallComments:true LegacyOptions:{Collide:false Fault:false FaultCall:0 FaultNth:0}} crepro: false
+
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(0xffffffffffffffff, 0xc04064a0, &(0x7f0000000340)={&(0x7f0000000240), 0x0, &(0x7f00000002c0), 0x0})
+ioctl$DRM_IOCTL_MODE_GETPLANE(0xffffffffffffffff, 0xc02064b6, 0x0)
+openat$qat_adf_ctl(0xffffffffffffff9c, 0x0, 0x2, 0x0)
+ioctl$DRM_IOCTL_MODE_GETCRTC(0xffffffffffffffff, 0xc06864a1, &(0x7f00000004c0)={&(0x7f0000000200)})
+r0 = openat$qat_adf_ctl(0xffffffffffffff9c, &(0x7f00000007c0), 0x40401, 0x0)
+ioctl$IOCTL_START_ACCEL_DEV(r0, 0x40096102, &(0x7f00000008c0))
+ioctl$DRM_IOCTL_ADD_CTX(0xffffffffffffffff, 0xc0086420, 0x0)
+
+program saved to repro.txt
+

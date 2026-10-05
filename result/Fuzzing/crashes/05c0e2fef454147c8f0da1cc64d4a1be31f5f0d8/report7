@@ -1,0 +1,107 @@
+printk: legacy console [ttyS0] enabled
+printk: legacy console [ttyS0] enabled
+printk: legacy bootconsole [earlyser0] disabled
+printk: legacy bootconsole [earlyser0] disabled
+Lock dependency validator: Copyright (c) 2006 Red Hat, Inc., Ingo Molnar
+... MAX_LOCKDEP_SUBCLASSES:  8
+... MAX_LOCK_DEPTH:          48
+... MAX_LOCKDEP_KEYS:        8192
+... CLASSHASH_SIZE:          4096
+... MAX_LOCKDEP_ENTRIES:     131072
+... MAX_LOCKDEP_CHAINS:      262144
+... CHAINHASH_SIZE:          131072
+ memory used by lock dependency info: 20785 kB
+ memory used for stack traces: 8320 kB
+ per task-struct memory footprint: 1920 bytes
+mempolicy: Enabling automatic NUMA balancing. Configure with numa_balancing= or the kernel.numa_balancing sysctl
+ACPI: Core revision 20230628
+clocksource: hpet: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604467 ns
+APIC: Switch to symmetric I/O mode setup
+x2apic enabled
+APIC: Switched APIC routing to: physical x2apic
+..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x2868139ef5d, max_idle_ns: 440795282642 ns
+Calibrating delay loop (skipped) preset value.. 5606.40 BogoMIPS (lpj=28032040)
+Last level iTLB entries: 4KB 0, 2MB 0, 4MB 0
+Last level dTLB entries: 4KB 0, 2MB 0, 4MB 0, 1GB 0
+Spectre V1 : Mitigation: usercopy/swapgs barriers and __user pointer sanitization
+Spectre V2 : Kernel not compiled with retpoline; no mitigation available!
+Spectre V2 : Vulnerable
+Spectre V2 : Spectre v2 / SpectreRSB mitigation: Filling RSB on context switch
+Speculative Store Bypass: Vulnerable
+MDS: Vulnerable: Clear CPU buffers attempted, no microcode
+MMIO Stale Data: Unknown: No mitigations
+x86/fpu: x87 FPU will use FXSAVE
+Freeing SMP alternatives memory: 128K
+pid_max: default: 32768 minimum: 301
+LSM: initializing lsm=lockdown,capability,landlock,yama,safesetid,tomoyo,apparmor,bpf,integrity
+landlock: Up and running.
+Yama: becoming mindful.
+TOMOYO Linux initialized
+AppArmor: AppArmor initialized
+LSM support for eBPF active
+Dentry cache hash table entries: 1048576 (order: 11, 8388608 bytes, vmalloc hugepage)
+Inode-cache hash table entries: 524288 (order: 10, 4194304 bytes, vmalloc hugepage)
+Mount-cache hash table entries: 16384 (order: 5, 131072 bytes, vmalloc)
+Mountpoint-cache hash table entries: 16384 (order: 5, 131072 bytes, vmalloc)
+Running RCU synchronous self tests
+Running RCU synchronous self tests
+------------[ cut here ]------------
+sched: CPU #1's llc-sibling CPU #0 is not on the same node! [node: 1 != 0]. Ignoring dependency.
+WARNING: CPU: 1 PID: 0 at arch/x86/kernel/smpboot.c:472 topology_sane.isra.0+0xb6/0xc0 home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/arch/x86/kernel/smpboot.c:472
+Modules linked in:
+CPU: 1 PID: 0 Comm: swapper/1 Not tainted 6.6.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:topology_sane.isra.0+0xb6/0xc0 home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/arch/x86/kernel/smpboot.c:472
+Code: b0 8b 06 00 44 89 e7 89 c3 e8 a6 8b 06 00 41 89 d9 44 89 f1 4c 89 ea 41 89 c0 44 89 e6 48 c7 c7 20 d2 c9 8b e8 0b cc 17 00 90 <0f> 0b 90 90 eb 93 0f 1f 40 00 0f 1f 44 00 00 41 57 41 56 41 55 41
+RSP: 0000:ffffc90000197dd0 EFLAGS: 00010082
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff8153a54f
+RDX: ffff888101e78000 RSI: ffffffff8153a55c RDI: 0000000000000001
+RBP: 0000000000000001 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000001
+R13: ffffffff8bc9da40 R14: 0000000000000000 R15: dffffc0000000000
+FS:  0000000000000000(0000) GS:ffff8881a4c00000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 000000000e58f000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ match_llc home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/arch/x86/kernel/smpboot.c:588 [inline]
+ set_cpu_sibling_map+0x7f7/0x1de0 home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/arch/x86/kernel/smpboot.c:700
+ ap_starting home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/arch/x86/kernel/smpboot.c:220 [inline]
+ start_secondary+0xd5/0x2f0 home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/arch/x86/kernel/smpboot.c:304
+ secondary_startup_64_no_verify+0x166/0x16b
+ </TASK>
+Kernel panic - not syncing: kernel: panic_on_warn set ...
+CPU: 1 PID: 0 Comm: swapper/1 Not tainted 6.6.0 #3
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/lib/dump_stack.c:88 [inline]
+ dump_stack_lvl+0x204/0x380 home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/lib/dump_stack.c:106
+ panic+0x5a3/0x860 home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/kernel/panic.c:344
+ check_panic_on_warn+0xb6/0xc0 home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/kernel/panic.c:237
+ __warn+0xf7/0x390 home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/kernel/panic.c:677
+ __report_bug home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/lib/bug.c:199 [inline]
+ report_bug+0x2dd/0x500 home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/lib/bug.c:219
+ handle_bug+0xac/0x170 home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/arch/x86/kernel/traps.c:237
+ exc_invalid_op+0x36/0x80 home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/arch/x86/kernel/traps.c:258
+ asm_exc_invalid_op+0x1a/0x20 home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/arch/x86/include/asm/idtentry.h:568
+RIP: 0010:topology_sane.isra.0+0xb6/0xc0 home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/arch/x86/kernel/smpboot.c:472
+Code: b0 8b 06 00 44 89 e7 89 c3 e8 a6 8b 06 00 41 89 d9 44 89 f1 4c 89 ea 41 89 c0 44 89 e6 48 c7 c7 20 d2 c9 8b e8 0b cc 17 00 90 <0f> 0b 90 90 eb 93 0f 1f 40 00 0f 1f 44 00 00 41 57 41 56 41 55 41
+RSP: 0000:ffffc90000197dd0 EFLAGS: 00010082
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff8153a54f
+RDX: ffff888101e78000 RSI: ffffffff8153a55c RDI: 0000000000000001
+RBP: 0000000000000001 R08: 0000000000000001 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000001
+R13: ffffffff8bc9da40 R14: 0000000000000000 R15: dffffc0000000000
+ match_llc home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/arch/x86/kernel/smpboot.c:588 [inline]
+ set_cpu_sibling_map+0x7f7/0x1de0 home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/arch/x86/kernel/smpboot.c:700
+ ap_starting home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/arch/x86/kernel/smpboot.c:220 [inline]
+ start_secondary+0xd5/0x2f0 home/wmy/Fuzzer/third_tool/linux-6.7-syzbot/arch/x86/kernel/smpboot.c:304
+ secondary_startup_64_no_verify+0x166/0x16b
+ </TASK>
+Shutting down cpus with NMI
+Rebooting in 86400 seconds..
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
