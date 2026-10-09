@@ -1,4 +1,4 @@
-# Automated Generation of Virtual Device Models for Kernel Drivers via Large Language Models
+# From Driver Code to Virtual Devices: LLM-Guided Modeling for Linux Driver Fuzzing
 
 ## Driver Information Collection
 
