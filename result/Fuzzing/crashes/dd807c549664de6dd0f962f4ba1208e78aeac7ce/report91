@@ -1,0 +1,197 @@
+kworker/u16:2 (44) used greatest stack depth: 24032 bytes left
+INFO: task syz.2.335:3010 blocked for more than 143 seconds.
+      Tainted: G        W        N  7.1.0+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.335       state:D stack:29504 pid:3010  tgid:3005  ppid:309    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5504 [inline]
+ __schedule+0x10cf/0x47a0 kernel/sched/core.c:7228
+ __schedule_loop kernel/sched/core.c:7307 [inline]
+ schedule+0xe9/0x3a0 kernel/sched/core.c:7322
+ schedule_timeout+0x118/0x280 kernel/time/sleep_timeout.c:99
+ do_wait_for_common kernel/sched/completion.c:100 [inline]
+ __wait_for_common kernel/sched/completion.c:121 [inline]
+ wait_for_common kernel/sched/completion.c:132 [inline]
+ wait_for_completion_timeout+0x166/0x370 kernel/sched/completion.c:172
+ i801_block_transaction_byte_by_byte+0x6a9/0xb60 drivers/i2c/busses/i2c-i801.c:709 [i2c_i801]
+ i801_i2c_block_transaction drivers/i2c/busses/i2c-i801.c:881 [inline] [i2c_i801]
+ i801_access+0x1011/0x1e50 drivers/i2c/busses/i2c-i801.c:923 [i2c_i801]
+ __i2c_smbus_xfer drivers/i2c/i2c-core-smbus.c:604 [inline]
+ __i2c_smbus_xfer+0x58c/0xf30 drivers/i2c/i2c-core-smbus.c:555
+ i2c_smbus_xfer drivers/i2c/i2c-core-smbus.c:547 [inline]
+ i2c_smbus_xfer+0x20c/0x3d0 drivers/i2c/i2c-core-smbus.c:537
+ i2cdev_ioctl_smbus+0x510/0x830 drivers/i2c/i2c-dev.c:389
+ i2cdev_ioctl+0x3a9/0x810 drivers/i2c/i2c-dev.c:478
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fa97b68359d
+RSP: 002b:00007fa97a0c6f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fa97b915fa0 RCX: 00007fa97b68359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007fa97b722b08 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007fa97b916038 R14: 00007fa97b915fa0 R15: 00007fa97a0a7000
+ </TASK>
+INFO: lockdep is turned off.
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 41 Comm: khungtaskd Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xdb/0x140 lib/dump_stack.c:120
+ nmi_cpu_backtrace+0x1fd/0x270 lib/nmi_backtrace.c:113
+ nmi_trigger_cpumask_backtrace+0x22c/0x270 lib/nmi_backtrace.c:62
+ trigger_all_cpu_backtrace include/linux/nmi.h:162 [inline]
+ __sys_info lib/sys_info.c:157 [inline]
+ sys_info+0x133/0x180 lib/sys_info.c:165
+ check_hung_uninterruptible_tasks kernel/hung_task.c:353 [inline]
+ watchdog+0x105c/0x1560 kernel/hung_task.c:561
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x667/0xa80 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+Sending NMI from CPU 3 to CPUs 0-2:
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30 arch/x86/kernel/paravirt.c:64
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 89 8b 12 00 0f 1f 44 00 00 fb f4 <e9> 7d ff 02 00 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffffffff87607e20 EFLAGS: 00000246
+RAX: ffff8881d07ac000 RBX: ffffffff8762a9c0 RCX: ffffffff8612ee24
+RDX: ffffed102b50662b RSI: 0000000000000004 RDI: ffffffff814fcf63
+RBP: fffffbfff0ec5538 R08: 0000000000000000 R09: ffffed102b50662a
+R10: ffff88815a833153 R11: 0000000000000000 R12: dffffc0000000000
+R13: 1ffffffff0ec0fc8 R14: 0000000000000000 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d07ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f14a0a01988 CR3: 000000011a1bc000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ arch_safe_halt arch/x86/include/asm/paravirt.h:62 [inline]
+ default_idle+0xe/0x20 arch/x86/kernel/process.c:767
+ default_idle_call+0x6c/0xb0 kernel/sched/idle.c:122
+ cpuidle_idle_call kernel/sched/idle.c:199 [inline]
+ do_idle+0x363/0x490 kernel/sched/idle.c:355
+ cpu_startup_entry+0x54/0x60 kernel/sched/idle.c:454
+ rest_init+0x169/0x290 init/main.c:717
+ start_kernel+0x413/0x530 init/main.c:1175
+ x86_64_start_reservations+0x21/0x40 arch/x86/kernel/head64.c:310
+ x86_64_start_kernel+0xd9/0xe0 arch/x86/kernel/head64.c:291
+ common_startup_64+0x12c/0x148
+ </TASK>
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 0 Comm: swapper/1 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30 arch/x86/kernel/paravirt.c:64
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 89 8b 12 00 0f 1f 44 00 00 fb f4 <e9> 7d ff 02 00 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d3fe70 EFLAGS: 00000246
+RAX: ffff8881d082c000 RBX: ffff888100d10000 RCX: ffffffff8612ee24
+RDX: ffffed102b51662b RSI: 0000000000000004 RDI: ffffffff814fcf63
+RBP: ffffed10201a2000 R08: 0000000000000000 R09: ffffed102b51662a
+R10: ffff88815a8b3153 R11: 0000000000000000 R12: dffffc0000000000
+R13: 1ffff110201a7fd2 R14: 0000000000000000 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d082c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fcf0be27f00 CR3: 000000011a1bc000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ arch_safe_halt arch/x86/include/asm/paravirt.h:62 [inline]
+ default_idle+0xe/0x20 arch/x86/kernel/process.c:767
+ default_idle_call+0x6c/0xb0 kernel/sched/idle.c:122
+ cpuidle_idle_call kernel/sched/idle.c:199 [inline]
+ do_idle+0x363/0x490 kernel/sched/idle.c:355
+ cpu_startup_entry+0x54/0x60 kernel/sched/idle.c:454
+ start_secondary+0x1c2/0x220 arch/x86/kernel/smpboot.c:312
+ common_startup_64+0x12c/0x148
+ </TASK>
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 50 Comm: kworker/2:1 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: events_power_efficient gc_worker
+RIP: 0010:check_kcov_mode kernel/kcov.c:183 [inline]
+RIP: 0010:write_comp_data+0x12/0xa0 kernel/kcov.c:246
+Code: 00 c3 cc cc cc cc 66 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 49 89 d2 65 8b 05 a6 8b 8d 08 65 48 8b 15 86 8b 8d 08 <a9> 00 01 ff 00 74 27 f6 c4 01 74 1d a9 00 00 0f 00 75 16 a9 00 00
+RSP: 0018:ffff88815a908dd8 EFLAGS: 00000083
+RAX: 0000000000010102 RBX: dffffc0000000000 RCX: ffffffff81675ff9
+RDX: ffff8881013a5280 RSI: 7fffffffffffffff RDI: 0000000000000006
+RBP: ffff88815a9296c0 R08: 0000000000000001 R09: 0000000000000000
+R10: 000000752988ba00 R11: 0000000000000001 R12: 00000075297d6a85
+R13: 7fffffffffffffff R14: 0000000000000000 R15: ffff88815a929968
+FS:  0000000000000000(0000) GS:ffff8881d08ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b2fb23ffc CR3: 000000000766c000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ hrtimer_update_next_event kernel/time/hrtimer.c:669 [inline]
+ hrtimer_interrupt+0x659/0x890 kernel/time/hrtimer.c:2228
+ local_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1051 [inline]
+ __sysvec_apic_timer_interrupt+0xc0/0x390 arch/x86/kernel/apic/apic.c:1068
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1062 [inline]
+ sysvec_apic_timer_interrupt+0x34/0x80 arch/x86/kernel/apic/apic.c:1062
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:674
+RIP: 0010:variable_ffs arch/x86/include/asm/bitops.h:312 [inline]
+RIP: 0010:handle_softirqs+0x179/0x860 kernel/softirq.c:610
+Code: c8 83 83 ec 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 ea 6d c9 08 00 00 e8 dd 56 47 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 a0 60 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815a908f70 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: ffff8881013a5280 RCX: ffffffff81852818
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffffffff813dd253
+RBP: ffff8881013af958 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000001 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000200 R15: 0000000000000000
+ __do_softirq kernel/softirq.c:656 [inline]
+ invoke_softirq kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0x143/0x1c0 kernel/softirq.c:735
+ irq_exit_rcu+0xe/0x20 kernel/softirq.c:752
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1062 [inline]
+ sysvec_apic_timer_interrupt+0x70/0x80 arch/x86/kernel/apic/apic.c:1062
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:674
+RIP: 0010:preempt_schedule_irq+0x52/0xa0 kernel/sched/core.c:7552
+Code: 6c 4d f3 03 48 b8 00 00 00 00 00 fc ff df 48 89 eb 48 c1 eb 03 48 01 c3 65 ff 05 69 4d f3 03 e8 64 36 71 fb fb 0f 1f 44 00 00 <bf> 01 00 00 00 e8 f4 b0 ff ff 9c 58 0f 1f 40 00 48 89 c2 fa 0f 1f
+RSP: 0018:ffff8881013afa08 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: ffffed1020274a50 RCX: ffffffff81852818
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffffffff8613f2cc
+RBP: ffff8881013a5280 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000001 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+ irqentry_exit_to_kernel_mode_preempt include/linux/irq-entry-common.h:468 [inline]
+ irqentry_exit_to_kernel_mode include/linux/irq-entry-common.h:539 [inline]
+ irqentry_exit+0x205/0x810 kernel/entry/common.c:167
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:674
+RIP: 0010:resched_offsets_ok kernel/sched/core.c:9142 [inline]
+RIP: 0010:__might_resched+0x5b/0x520 kernel/sched/core.c:9157
+Code: 0f 85 d0 03 00 00 65 4c 8b 35 69 1a be 08 49 8d be 7c 04 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 0f b6 14 02 <48> 89 f8 83 e0 07 83 c0 03 65 44 8b 2d 54 1a be 08 41 81 e5 ff ff
+RSP: 0018:ffff8881013afb28 EFLAGS: 00000a03
+RAX: dffffc0000000000 RBX: 0000000000000000 RCX: ffffffff850d0a11
+RDX: 0000000000000000 RSI: 000000000000062b RDI: ffff8881013a56fc
+RBP: ffffffff86b79c40 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: ffff88815a9395a0 R12: 000000000000062b
+R13: 000000000000f88c R14: ffff8881013a5280 R15: dffffc0000000000
+ gc_worker+0x939/0x15a0 net/netfilter/nf_conntrack_core.c:1579
+ process_one_work+0x920/0x1a80 kernel/workqueue.c:3314
+ process_scheduled_works kernel/workqueue.c:3397 [inline]
+ worker_thread+0x698/0xeb0 kernel/workqueue.c:3478
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x667/0xa80 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

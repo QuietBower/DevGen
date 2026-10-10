@@ -1,0 +1,3383 @@
+INFO: task syz.4.1562:6081 blocked for more than 143 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.4.1562      state:D stack:28288 pid:6081  tgid:6078  ppid:784    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x108b/0x40b0 kernel/sched/core.c:6911
+ __schedule_loop kernel/sched/core.c:6993 [inline]
+ rt_mutex_schedule+0xa0/0xf0 kernel/sched/core.c:7289
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0 kernel/locking/rtmutex.c:1647
+ __rt_mutex_slowlock kernel/locking/rtmutex.c:1721 [inline]
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700 kernel/locking/rtmutex.c:1760
+ rt_mutex_slowlock.constprop.0+0x92/0x110 kernel/locking/rtmutex.c:1800
+ __rt_mutex_lock kernel/locking/rtmutex.c:1815 [inline]
+ __rt_mutex_lock_common kernel/locking/rtmutex_api.c:49 [inline]
+ rt_mutex_lock_nested+0xd8/0x110 kernel/locking/rtmutex_api.c:70
+ i2c_lock_bus include/linux/i2c.h:809 [inline]
+ __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+ i2cdev_ioctl_smbus+0x2db/0x830 drivers/i2c/i2c-dev.c:389
+ i2cdev_ioctl+0x3a9/0x810 drivers/i2c/i2c-dev.c:478
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f638d1a359d
+RSP: 002b:00007f638bbe6f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f638d435fa0 RCX: 00007f638d1a359d
+RDX: 0000200000000080 RSI: 0000000000000720 RDI: 0000000000000007
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d436038 R14: 00007f638d435fa0 R15: 00007f638bbc7000
+ </TASK>
+INFO: task syz.4.1562:6090 blocked for more than 143 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.4.1562      state:D stack:29736 pid:6090  tgid:6078  ppid:784    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x108b/0x40b0 kernel/sched/core.c:6911
+ __schedule_loop kernel/sched/core.c:6993 [inline]
+ rt_mutex_schedule+0xa0/0xf0 kernel/sched/core.c:7289
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0 kernel/locking/rtmutex.c:1647
+ __rt_mutex_slowlock kernel/locking/rtmutex.c:1721 [inline]
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700 kernel/locking/rtmutex.c:1760
+ rt_mutex_slowlock.constprop.0+0x92/0x110 kernel/locking/rtmutex.c:1800
+ __rt_mutex_lock kernel/locking/rtmutex.c:1815 [inline]
+ __rt_mutex_lock_common kernel/locking/rtmutex_api.c:49 [inline]
+ rt_mutex_lock_nested+0xd8/0x110 kernel/locking/rtmutex_api.c:70
+ i2c_lock_bus include/linux/i2c.h:809 [inline]
+ __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+ i2cdev_ioctl_smbus+0x2db/0x830 drivers/i2c/i2c-dev.c:389
+ i2cdev_ioctl+0x3a9/0x810 drivers/i2c/i2c-dev.c:478
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f638d1a359d
+RSP: 002b:00007f638bbc5f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f638d436090 RCX: 00007f638d1a359d
+RDX: 0000200000000100 RSI: 0000000000000720 RDI: 0000000000000007
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d436128 R14: 00007f638d436090 R15: 00007f638bba6000
+ </TASK>
+INFO: task syz.4.1562:6093 blocked for more than 143 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.4.1562      state:D stack:29736 pid:6093  tgid:6078  ppid:784    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x108b/0x40b0 kernel/sched/core.c:6911
+ __schedule_loop kernel/sched/core.c:6993 [inline]
+ rt_mutex_schedule+0xa0/0xf0 kernel/sched/core.c:7289
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0 kernel/locking/rtmutex.c:1647
+ __rt_mutex_slowlock kernel/locking/rtmutex.c:1721 [inline]
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700 kernel/locking/rtmutex.c:1760
+ rt_mutex_slowlock.constprop.0+0x92/0x110 kernel/locking/rtmutex.c:1800
+ __rt_mutex_lock kernel/locking/rtmutex.c:1815 [inline]
+ __rt_mutex_lock_common kernel/locking/rtmutex_api.c:49 [inline]
+ rt_mutex_lock_nested+0xd8/0x110 kernel/locking/rtmutex_api.c:70
+ i2c_lock_bus include/linux/i2c.h:809 [inline]
+ __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+ i2cdev_ioctl_smbus+0x2db/0x830 drivers/i2c/i2c-dev.c:389
+ i2cdev_ioctl+0x3a9/0x810 drivers/i2c/i2c-dev.c:478
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f638d1a359d
+RSP: 002b:00007f638bba4f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f638d436180 RCX: 00007f638d1a359d
+RDX: 0000200000000080 RSI: 0000000000000720 RDI: 0000000000000006
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d436218 R14: 00007f638d436180 R15: 00007f638bb85000
+ </TASK>
+INFO: task syz.4.1562:6096 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.4.1562      state:D stack:29256 pid:6096  tgid:6078  ppid:784    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x108b/0x40b0 kernel/sched/core.c:6911
+ __schedule_loop kernel/sched/core.c:6993 [inline]
+ rt_mutex_schedule+0xa0/0xf0 kernel/sched/core.c:7289
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0 kernel/locking/rtmutex.c:1647
+ __rt_mutex_slowlock kernel/locking/rtmutex.c:1721 [inline]
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700 kernel/locking/rtmutex.c:1760
+ rt_mutex_slowlock.constprop.0+0x92/0x110 kernel/locking/rtmutex.c:1800
+ __rt_mutex_lock kernel/locking/rtmutex.c:1815 [inline]
+ __rt_mutex_lock_common kernel/locking/rtmutex_api.c:49 [inline]
+ rt_mutex_lock_nested+0xd8/0x110 kernel/locking/rtmutex_api.c:70
+ i2c_lock_bus include/linux/i2c.h:809 [inline]
+ __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+ i2cdev_ioctl_smbus+0x2db/0x830 drivers/i2c/i2c-dev.c:389
+ i2cdev_ioctl+0x3a9/0x810 drivers/i2c/i2c-dev.c:478
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f638d1a359d
+RSP: 002b:00007f638b781f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f638d436270 RCX: 00007f638d1a359d
+RDX: 0000200000000780 RSI: 0000000000000720 RDI: 0000000000000008
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d436308 R14: 00007f638d436270 R15: 00007f638b762000
+ </TASK>
+INFO: task syz.4.1562:6100 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.4.1562      state:D stack:29736 pid:6100  tgid:6078  ppid:784    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x108b/0x40b0 kernel/sched/core.c:6911
+ __schedule_loop kernel/sched/core.c:6993 [inline]
+ rt_mutex_schedule+0xa0/0xf0 kernel/sched/core.c:7289
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0 kernel/locking/rtmutex.c:1647
+ __rt_mutex_slowlock kernel/locking/rtmutex.c:1721 [inline]
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700 kernel/locking/rtmutex.c:1760
+ rt_mutex_slowlock.constprop.0+0x92/0x110 kernel/locking/rtmutex.c:1800
+ __rt_mutex_lock kernel/locking/rtmutex.c:1815 [inline]
+ __rt_mutex_lock_common kernel/locking/rtmutex_api.c:49 [inline]
+ rt_mutex_lock_nested+0xd8/0x110 kernel/locking/rtmutex_api.c:70
+ i2c_lock_bus include/linux/i2c.h:809 [inline]
+ __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+ i2cdev_ioctl_smbus+0x2db/0x830 drivers/i2c/i2c-dev.c:389
+ i2cdev_ioctl+0x3a9/0x810 drivers/i2c/i2c-dev.c:478
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f638d1a359d
+RSP: 002b:00007f638b35ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f638d436360 RCX: 00007f638d1a359d
+RDX: 0000200000000180 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d4363f8 R14: 00007f638d436360 R15: 00007f638b33f000
+ </TASK>
+INFO: task syz.3.1565:6083 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.3.1565      state:D stack:29256 pid:6083  tgid:6082  ppid:791    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x108b/0x40b0 kernel/sched/core.c:6911
+ __schedule_loop kernel/sched/core.c:6993 [inline]
+ schedule+0xe9/0x3a0 kernel/sched/core.c:7008
+ schedule_timeout+0x118/0x280 kernel/time/sleep_timeout.c:99
+ do_wait_for_common kernel/sched/completion.c:100 [inline]
+ __wait_for_common kernel/sched/completion.c:121 [inline]
+ wait_for_common kernel/sched/completion.c:132 [inline]
+ wait_for_completion_timeout+0x166/0x370 kernel/sched/completion.c:172
+ i801_block_transaction_byte_by_byte+0x6a9/0xb60 drivers/i2c/busses/i2c-i801.c:705 [i2c_i801]
+ i801_i2c_block_transaction drivers/i2c/busses/i2c-i801.c:869 [inline] [i2c_i801]
+ i801_access+0x1011/0x1e50 drivers/i2c/busses/i2c-i801.c:923 [i2c_i801]
+ __i2c_smbus_xfer drivers/i2c/i2c-core-smbus.c:591 [inline]
+ __i2c_smbus_xfer+0x435/0xf30 drivers/i2c/i2c-core-smbus.c:554
+ i2c_smbus_xfer drivers/i2c/i2c-core-smbus.c:546 [inline]
+ i2c_smbus_xfer+0x20c/0x3d0 drivers/i2c/i2c-core-smbus.c:536
+ i2cdev_ioctl_smbus+0x510/0x830 drivers/i2c/i2c-dev.c:389
+ i2cdev_ioctl+0x3a9/0x810 drivers/i2c/i2c-dev.c:478
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fd14e09359d
+RSP: 002b:00007fd14cad6f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fd14e325fa0 RCX: 00007fd14e09359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007fd14e132ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007fd14e326038 R14: 00007fd14e325fa0 R15: 00007fd14cab7000
+ </TASK>
+INFO: task syz.2.1566:6091 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29256 pid:6091  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x108b/0x40b0 kernel/sched/core.c:6911
+ __schedule_loop kernel/sched/core.c:6993 [inline]
+ rt_mutex_schedule+0xa0/0xf0 kernel/sched/core.c:7289
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0 kernel/locking/rtmutex.c:1647
+ __rt_mutex_slowlock kernel/locking/rtmutex.c:1721 [inline]
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700 kernel/locking/rtmutex.c:1760
+ rt_mutex_slowlock.constprop.0+0x92/0x110 kernel/locking/rtmutex.c:1800
+ __rt_mutex_lock kernel/locking/rtmutex.c:1815 [inline]
+ __rt_mutex_lock_common kernel/locking/rtmutex_api.c:49 [inline]
+ rt_mutex_lock_nested+0xd8/0x110 kernel/locking/rtmutex_api.c:70
+ i2c_lock_bus include/linux/i2c.h:809 [inline]
+ __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+ i2cdev_ioctl_smbus+0x2db/0x830 drivers/i2c/i2c-dev.c:389
+ i2cdev_ioctl+0x3a9/0x810 drivers/i2c/i2c-dev.c:478
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8234005f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876090 RCX: 00007f82355e359d
+RDX: 0000200000000080 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876128 R14: 00007f8235876090 R15: 00007f8233fe6000
+ </TASK>
+INFO: task syz.2.1566:6094 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6094  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x108b/0x40b0 kernel/sched/core.c:6911
+ __schedule_loop kernel/sched/core.c:6993 [inline]
+ rt_mutex_schedule+0xa0/0xf0 kernel/sched/core.c:7289
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0 kernel/locking/rtmutex.c:1647
+ __rt_mutex_slowlock kernel/locking/rtmutex.c:1721 [inline]
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700 kernel/locking/rtmutex.c:1760
+ rt_mutex_slowlock.constprop.0+0x92/0x110 kernel/locking/rtmutex.c:1800
+ __rt_mutex_lock kernel/locking/rtmutex.c:1815 [inline]
+ __rt_mutex_lock_common kernel/locking/rtmutex_api.c:49 [inline]
+ rt_mutex_lock_nested+0xd8/0x110 kernel/locking/rtmutex_api.c:70
+ i2c_lock_bus include/linux/i2c.h:809 [inline]
+ __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+ i2cdev_ioctl_smbus+0x2db/0x830 drivers/i2c/i2c-dev.c:389
+ i2cdev_ioctl+0x3a9/0x810 drivers/i2c/i2c-dev.c:478
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233fe4f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876180 RCX: 00007f82355e359d
+RDX: 0000200000000100 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876218 R14: 00007f8235876180 R15: 00007f8233fc5000
+ </TASK>
+INFO: task syz.2.1566:6097 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:28792 pid:6097  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x108b/0x40b0 kernel/sched/core.c:6911
+ __schedule_loop kernel/sched/core.c:6993 [inline]
+ rt_mutex_schedule+0xa0/0xf0 kernel/sched/core.c:7289
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0 kernel/locking/rtmutex.c:1647
+ __rt_mutex_slowlock kernel/locking/rtmutex.c:1721 [inline]
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700 kernel/locking/rtmutex.c:1760
+ rt_mutex_slowlock.constprop.0+0x92/0x110 kernel/locking/rtmutex.c:1800
+ __rt_mutex_lock kernel/locking/rtmutex.c:1815 [inline]
+ __rt_mutex_lock_common kernel/locking/rtmutex_api.c:49 [inline]
+ rt_mutex_lock_nested+0xd8/0x110 kernel/locking/rtmutex_api.c:70
+ i2c_lock_bus include/linux/i2c.h:809 [inline]
+ __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+ i2cdev_ioctl_smbus+0x2db/0x830 drivers/i2c/i2c-dev.c:389
+ i2cdev_ioctl+0x3a9/0x810 drivers/i2c/i2c-dev.c:478
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233bc1f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876270 RCX: 00007f82355e359d
+RDX: 00002000000003c0 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876308 R14: 00007f8235876270 R15: 00007f8233ba2000
+ </TASK>
+INFO: task syz.2.1566:6101 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6101  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x108b/0x40b0 kernel/sched/core.c:6911
+ __schedule_loop kernel/sched/core.c:6993 [inline]
+ rt_mutex_schedule+0xa0/0xf0 kernel/sched/core.c:7289
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0 kernel/locking/rtmutex.c:1647
+ __rt_mutex_slowlock kernel/locking/rtmutex.c:1721 [inline]
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700 kernel/locking/rtmutex.c:1760
+ rt_mutex_slowlock.constprop.0+0x92/0x110 kernel/locking/rtmutex.c:1800
+ __rt_mutex_lock kernel/locking/rtmutex.c:1815 [inline]
+ __rt_mutex_lock_common kernel/locking/rtmutex_api.c:49 [inline]
+ rt_mutex_lock_nested+0xd8/0x110 kernel/locking/rtmutex_api.c:70
+ i2c_lock_bus include/linux/i2c.h:809 [inline]
+ __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+ i2cdev_ioctl_smbus+0x2db/0x830 drivers/i2c/i2c-dev.c:389
+ i2cdev_ioctl+0x3a9/0x810 drivers/i2c/i2c-dev.c:478
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f823379ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876360 RCX: 00007f82355e359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f82358763f8 R14: 00007f8235876360 R15: 00007f823377f000
+ </TASK>
+Future hung task reports are suppressed, see sysctl kernel.hung_task_warnings
+
+Showing all locks held in the system:
+1 lock held by khungtaskd/41:
+ #0: ffffffff87606da0 (rcu_read_lock){....}-{1:3}, at: rcu_lock_acquire include/linux/rcupdate.h:312 [inline]
+ #0: ffffffff87606da0 (rcu_read_lock){....}-{1:3}, at: rcu_read_lock include/linux/rcupdate.h:850 [inline]
+ #0: ffffffff87606da0 (rcu_read_lock){....}-{1:3}, at: debug_show_all_locks+0x36/0x1c0 kernel/locking/lockdep.c:6775
+1 lock held by in:imklog/216:
+1 lock held by syz.4.1562/6081:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.4.1562/6090:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.4.1562/6093:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.4.1562/6096:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.4.1562/6100:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+2 locks held by syz.3.1565/6083:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+ #1: ffff888114902890 (&priv->acpi_lock){+.+.}-{4:4}, at: i801_access+0xcc/0x1e50 drivers/i2c/busses/i2c-i801.c:894 [i2c_i801]
+1 lock held by syz.2.1566/6091:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.2.1566/6094:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.2.1566/6097:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.2.1566/6101:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.1.1569/6099:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.8.1577/7861:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.8.1577/7868:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.5.1574/7862:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.6.1578/7865:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.6.1578/7871:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.7.1579/7866:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.7.1579/7873:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.7.1579/7876:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.0.1581/8649:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.9.1580/8757:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+1 lock held by syz.9.1580/8758:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_lock_bus include/linux/i2c.h:809 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0 drivers/i2c/i2c-core-smbus.c:542
+
+=============================================
+
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 41 Comm: khungtaskd Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xdb/0x140 lib/dump_stack.c:120
+ nmi_cpu_backtrace+0x1fd/0x270 lib/nmi_backtrace.c:113
+ nmi_trigger_cpumask_backtrace+0x22c/0x270 lib/nmi_backtrace.c:62
+ trigger_all_cpu_backtrace include/linux/nmi.h:161 [inline]
+ __sys_info lib/sys_info.c:157 [inline]
+ sys_info+0x133/0x180 lib/sys_info.c:165
+ check_hung_uninterruptible_tasks kernel/hung_task.c:346 [inline]
+ watchdog+0x1068/0x1510 kernel/hung_task.c:515
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x690/0xaa0 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+Sending NMI from CPU 2 to CPUs 0-1,3:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 0 Comm: swapper/1 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30 arch/x86/kernel/paravirt.c:63
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d67e60 EFLAGS: 00000202
+RAX: 000000000013f2a1 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000001 R08: 0000000000000001 R09: ffffed102b55663a
+R10: ffff88815aab31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201acfd2 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0d64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a0bafa0 CR3: 0000000111446000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ arch_safe_halt arch/x86/include/asm/paravirt.h:73 [inline]
+ default_idle+0xe/0x20 arch/x86/kernel/process.c:767
+ default_idle_call+0x6c/0xb0 kernel/sched/idle.c:122
+ cpuidle_idle_call kernel/sched/idle.c:199 [inline]
+ do_idle+0x3c6/0x460 kernel/sched/idle.c:352
+ cpu_startup_entry+0x54/0x60 kernel/sched/idle.c:451
+ start_secondary+0x1c2/0x220 arch/x86/kernel/smpboot.c:312
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30 arch/x86/kernel/paravirt.c:63
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffffffff87407e10 EFLAGS: 00000206
+RAX: 0000000000194ff5 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000000 R08: 0000000000000001 R09: ffffed102b54663a
+R10: ffff88815aa331d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffffffff0e80fc8 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0ce4000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a51ab08 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ arch_safe_halt arch/x86/include/asm/paravirt.h:73 [inline]
+ default_idle+0xe/0x20 arch/x86/kernel/process.c:767
+ default_idle_call+0x6c/0xb0 kernel/sched/idle.c:122
+ cpuidle_idle_call kernel/sched/idle.c:199 [inline]
+ do_idle+0x3c6/0x460 kernel/sched/idle.c:352
+ cpu_startup_entry+0x54/0x60 kernel/sched/idle.c:451
+ rest_init+0x169/0x290 init/main.c:760
+ start_kernel+0x40e/0x530 init/main.c:1210
+ x86_64_start_reservations+0x21/0x40 arch/x86/kernel/head64.c:310
+ x86_64_start_kernel+0xd9/0xe0 arch/x86/kernel/head64.c:291
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 0 Comm: swapper/3 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:native_apic_mem_eoi+0xd/0x20 arch/x86/include/asm/apic.h:110
+Code: 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 31 c0 89 04 25 b0 c0 5f ff <e9> be d8 bb 04 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 90 90 90
+RSP: 0018:ffff88815ab88db8 EFLAGS: 00000046
+RAX: 0000000000000000 RBX: ffff8881d0e64000 RCX: ffffffff813689b8
+RDX: ffff888100d6b580 RSI: ffffffff813689c1 RDI: 0000000000000001
+RBP: ffff888104897828 R08: 0000000000000001 R09: ffffed102b5749a9
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000022
+R13: 0000000000000000 R14: 0000000000000004 R15: ffff888103f6f784
+FS:  0000000000000000(0000) GS:ffff8881d0e64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f0ab00d84a1 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ apic_native_eoi arch/x86/include/asm/apic.h:415 [inline]
+ kvm_guest_apic_eoi_write+0x46/0x50 arch/x86/kernel/kvm.c:363
+ apic_eoi arch/x86/include/asm/apic.h:410 [inline]
+ ioapic_ack_level+0xcf/0x400 arch/x86/kernel/apic/io_apic.c:1706
+ cond_unmask_eoi_irq kernel/irq/chip.c:703 [inline]
+ handle_fasteoi_irq+0x6c5/0xb70 kernel/irq/chip.c:766
+ generic_handle_irq_desc include/linux/irqdesc.h:186 [inline]
+ handle_irq arch/x86/kernel/irq.c:262 [inline]
+ call_irq_handler arch/x86/kernel/irq.c:286 [inline]
+ __common_interrupt+0xa1/0x240 arch/x86/kernel/irq.c:333
+ common_interrupt+0x6e/0xd0 arch/x86/kernel/irq.c:326
+ asm_common_interrupt+0x26/0x40 arch/x86/include/asm/idtentry.h:688
+RIP: 0010:variable_ffs arch/x86/include/asm/bitops.h:312 [inline]
+RIP: 0010:handle_softirqs+0x178/0x890 kernel/softirq.c:610
+Code: c8 83 83 64 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 1b 0c 96 08 00 00 e8 2e b1 45 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 c0 40 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815ab88f70 EFLAGS: 00000202
+RAX: 000000000016018c RBX: ffff888100d6b580 RCX: ffffffff81836418
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff813db422
+RBP: ffff888100d7fdb8 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff88233f97 R11: 0000000000000000 R12: 0000000000000001
+R13: 0000000000000000 R14: 0000000000000002 R15: 0000000000000000
+ __do_softirq kernel/softirq.c:656 [inline]
+ invoke_softirq kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0xd0/0x100 kernel/softirq.c:723
+ irq_exit_rcu+0xe/0x20 kernel/softirq.c:739
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1056 [inline]
+ sysvec_apic_timer_interrupt+0x70/0x80 arch/x86/kernel/apic/apic.c:1056
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:697
+RIP: 0010:pv_native_safe_halt+0x1e/0x30 arch/x86/kernel/paravirt.c:63
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d7fe60 EFLAGS: 00000206
+RAX: 000000000016017d RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000003 R08: 0000000000000001 R09: ffffed102b57663a
+R10: ffff88815abb31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201affd2 R15: 0000000000000000
+ arch_safe_halt arch/x86/include/asm/paravirt.h:73 [inline]
+ default_idle+0xe/0x20 arch/x86/kernel/process.c:767
+ default_idle_call+0x6c/0xb0 kernel/sched/idle.c:122
+ cpuidle_idle_call kernel/sched/idle.c:199 [inline]
+ do_idle+0x3c6/0x460 kernel/sched/idle.c:352
+ cpu_startup_entry+0x54/0x60 kernel/sched/idle.c:451
+ start_secondary+0x1c2/0x220 arch/x86/kernel/smpboot.c:312
+ common_startup_64+0x12c/0x138
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+RDX: 0000200000000080 RSI: 0000000000000720 RDI: 0000000000000007
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d436038 R14: 00007f638d435fa0 R15: 00007f638bbc7000
+ </TASK>
+INFO: task syz.4.1562:6090 blocked for more than 143 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.4.1562      state:D stack:29736 pid:6090  tgid:6078  ppid:784    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f638d1a359d
+RSP: 002b:00007f638bbc5f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f638d436090 RCX: 00007f638d1a359d
+RDX: 0000200000000100 RSI: 0000000000000720 RDI: 0000000000000007
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d436128 R14: 00007f638d436090 R15: 00007f638bba6000
+ </TASK>
+INFO: task syz.4.1562:6093 blocked for more than 143 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.4.1562      state:D stack:29736 pid:6093  tgid:6078  ppid:784    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f638d1a359d
+RSP: 002b:00007f638bba4f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f638d436180 RCX: 00007f638d1a359d
+RDX: 0000200000000080 RSI: 0000000000000720 RDI: 0000000000000006
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d436218 R14: 00007f638d436180 R15: 00007f638bb85000
+ </TASK>
+INFO: task syz.4.1562:6096 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.4.1562      state:D stack:29256 pid:6096  tgid:6078  ppid:784    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f638d1a359d
+RSP: 002b:00007f638b781f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f638d436270 RCX: 00007f638d1a359d
+RDX: 0000200000000780 RSI: 0000000000000720 RDI: 0000000000000008
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d436308 R14: 00007f638d436270 R15: 00007f638b762000
+ </TASK>
+INFO: task syz.4.1562:6100 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.4.1562      state:D stack:29736 pid:6100  tgid:6078  ppid:784    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f638d1a359d
+RSP: 002b:00007f638b35ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f638d436360 RCX: 00007f638d1a359d
+RDX: 0000200000000180 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d4363f8 R14: 00007f638d436360 R15: 00007f638b33f000
+ </TASK>
+INFO: task syz.3.1565:6083 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.3.1565      state:D stack:29256 pid:6083  tgid:6082  ppid:791    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ schedule+0xe9/0x3a0
+ schedule_timeout+0x118/0x280
+ wait_for_completion_timeout+0x166/0x370
+ i801_block_transaction_byte_by_byte+0x6a9/0xb60 [i2c_i801]
+ i801_access+0x1011/0x1e50 [i2c_i801]
+ __i2c_smbus_xfer+0x435/0xf30
+ i2c_smbus_xfer+0x20c/0x3d0
+ i2cdev_ioctl_smbus+0x510/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fd14e09359d
+RSP: 002b:00007fd14cad6f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fd14e325fa0 RCX: 00007fd14e09359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007fd14e132ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007fd14e326038 R14: 00007fd14e325fa0 R15: 00007fd14cab7000
+ </TASK>
+INFO: task syz.2.1566:6091 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29256 pid:6091  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8234005f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876090 RCX: 00007f82355e359d
+RDX: 0000200000000080 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876128 R14: 00007f8235876090 R15: 00007f8233fe6000
+ </TASK>
+INFO: task syz.2.1566:6094 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6094  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233fe4f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876180 RCX: 00007f82355e359d
+RDX: 0000200000000100 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876218 R14: 00007f8235876180 R15: 00007f8233fc5000
+ </TASK>
+INFO: task syz.2.1566:6097 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:28792 pid:6097  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233bc1f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876270 RCX: 00007f82355e359d
+RDX: 00002000000003c0 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876308 R14: 00007f8235876270 R15: 00007f8233ba2000
+ </TASK>
+INFO: task syz.2.1566:6101 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6101  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f823379ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876360 RCX: 00007f82355e359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f82358763f8 R14: 00007f8235876360 R15: 00007f823377f000
+ </TASK>
+Future hung task reports are suppressed, see sysctl kernel.hung_task_warnings
+
+Showing all locks held in the system:
+1 lock held by khungtaskd/41:
+ #0: ffffffff87606da0 (rcu_read_lock){....}-{1:3}, at: debug_show_all_locks+0x36/0x1c0
+1 lock held by in:imklog/216:
+1 lock held by syz.4.1562/6081:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6090:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6093:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6096:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6100:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+2 locks held by syz.3.1565/6083:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+ #1: ffff888114902890 (&priv->acpi_lock){+.+.}-{4:4}, at: i801_access+0xcc/0x1e50 [i2c_i801]
+1 lock held by syz.2.1566/6091:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6094:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6097:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6101:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.1.1569/6099:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7861:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7868:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.5.1574/7862:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7865:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7871:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7866:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7873:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7876:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.0.1581/8649:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8757:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8758:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+
+=============================================
+
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 41 Comm: khungtaskd Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0xdb/0x140
+ nmi_cpu_backtrace+0x1fd/0x270
+ nmi_trigger_cpumask_backtrace+0x22c/0x270
+ sys_info+0x133/0x180
+ watchdog+0x1068/0x1510
+ kthread+0x38a/0x4a0
+ ret_from_fork+0x690/0xaa0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+Sending NMI from CPU 2 to CPUs 0-1,3:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 0 Comm: swapper/1 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d67e60 EFLAGS: 00000202
+RAX: 000000000013f2a1 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000001 R08: 0000000000000001 R09: ffffed102b55663a
+R10: ffff88815aab31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201acfd2 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0d64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a0bafa0 CR3: 0000000111446000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffffffff87407e10 EFLAGS: 00000206
+RAX: 0000000000194ff5 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000000 R08: 0000000000000001 R09: ffffed102b54663a
+R10: ffff88815aa331d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffffffff0e80fc8 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0ce4000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a51ab08 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ rest_init+0x169/0x290
+ start_kernel+0x40e/0x530
+ x86_64_start_reservations+0x21/0x40
+ x86_64_start_kernel+0xd9/0xe0
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 0 Comm: swapper/3 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:native_apic_mem_eoi+0xd/0x20
+Code: 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 31 c0 89 04 25 b0 c0 5f ff <e9> be d8 bb 04 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 90 90 90
+RSP: 0018:ffff88815ab88db8 EFLAGS: 00000046
+RAX: 0000000000000000 RBX: ffff8881d0e64000 RCX: ffffffff813689b8
+RDX: ffff888100d6b580 RSI: ffffffff813689c1 RDI: 0000000000000001
+RBP: ffff888104897828 R08: 0000000000000001 R09: ffffed102b5749a9
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000022
+R13: 0000000000000000 R14: 0000000000000004 R15: ffff888103f6f784
+FS:  0000000000000000(0000) GS:ffff8881d0e64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f0ab00d84a1 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ kvm_guest_apic_eoi_write+0x46/0x50
+ ioapic_ack_level+0xcf/0x400
+ handle_fasteoi_irq+0x6c5/0xb70
+ __common_interrupt+0xa1/0x240
+ common_interrupt+0x6e/0xd0
+ asm_common_interrupt+0x26/0x40
+RIP: 0010:handle_softirqs+0x178/0x890
+Code: c8 83 83 64 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 1b 0c 96 08 00 00 e8 2e b1 45 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 c0 40 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815ab88f70 EFLAGS: 00000202
+RAX: 000000000016018c RBX: ffff888100d6b580 RCX: ffffffff81836418
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff813db422
+RBP: ffff888100d7fdb8 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff88233f97 R11: 0000000000000000 R12: 0000000000000001
+R13: 0000000000000000 R14: 0000000000000002 R15: 0000000000000000
+ __irq_exit_rcu+0xd0/0x100
+ irq_exit_rcu+0xe/0x20
+ sysvec_apic_timer_interrupt+0x70/0x80
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d7fe60 EFLAGS: 00000206
+RAX: 000000000016017d RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000003 R08: 0000000000000001 R09: ffffed102b57663a
+R10: ffff88815abb31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201affd2 R15: 0000000000000000
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+RDX: 0000200000000100 RSI: 0000000000000720 RDI: 0000000000000007
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d436128 R14: 00007f638d436090 R15: 00007f638bba6000
+ </TASK>
+INFO: task syz.4.1562:6093 blocked for more than 143 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.4.1562      state:D stack:29736 pid:6093  tgid:6078  ppid:784    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f638d1a359d
+RSP: 002b:00007f638bba4f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f638d436180 RCX: 00007f638d1a359d
+RDX: 0000200000000080 RSI: 0000000000000720 RDI: 0000000000000006
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d436218 R14: 00007f638d436180 R15: 00007f638bb85000
+ </TASK>
+INFO: task syz.4.1562:6096 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.4.1562      state:D stack:29256 pid:6096  tgid:6078  ppid:784    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f638d1a359d
+RSP: 002b:00007f638b781f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f638d436270 RCX: 00007f638d1a359d
+RDX: 0000200000000780 RSI: 0000000000000720 RDI: 0000000000000008
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d436308 R14: 00007f638d436270 R15: 00007f638b762000
+ </TASK>
+INFO: task syz.4.1562:6100 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.4.1562      state:D stack:29736 pid:6100  tgid:6078  ppid:784    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f638d1a359d
+RSP: 002b:00007f638b35ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f638d436360 RCX: 00007f638d1a359d
+RDX: 0000200000000180 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d4363f8 R14: 00007f638d436360 R15: 00007f638b33f000
+ </TASK>
+INFO: task syz.3.1565:6083 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.3.1565      state:D stack:29256 pid:6083  tgid:6082  ppid:791    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ schedule+0xe9/0x3a0
+ schedule_timeout+0x118/0x280
+ wait_for_completion_timeout+0x166/0x370
+ i801_block_transaction_byte_by_byte+0x6a9/0xb60 [i2c_i801]
+ i801_access+0x1011/0x1e50 [i2c_i801]
+ __i2c_smbus_xfer+0x435/0xf30
+ i2c_smbus_xfer+0x20c/0x3d0
+ i2cdev_ioctl_smbus+0x510/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fd14e09359d
+RSP: 002b:00007fd14cad6f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fd14e325fa0 RCX: 00007fd14e09359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007fd14e132ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007fd14e326038 R14: 00007fd14e325fa0 R15: 00007fd14cab7000
+ </TASK>
+INFO: task syz.2.1566:6091 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29256 pid:6091  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8234005f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876090 RCX: 00007f82355e359d
+RDX: 0000200000000080 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876128 R14: 00007f8235876090 R15: 00007f8233fe6000
+ </TASK>
+INFO: task syz.2.1566:6094 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6094  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233fe4f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876180 RCX: 00007f82355e359d
+RDX: 0000200000000100 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876218 R14: 00007f8235876180 R15: 00007f8233fc5000
+ </TASK>
+INFO: task syz.2.1566:6097 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:28792 pid:6097  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233bc1f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876270 RCX: 00007f82355e359d
+RDX: 00002000000003c0 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876308 R14: 00007f8235876270 R15: 00007f8233ba2000
+ </TASK>
+INFO: task syz.2.1566:6101 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6101  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f823379ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876360 RCX: 00007f82355e359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f82358763f8 R14: 00007f8235876360 R15: 00007f823377f000
+ </TASK>
+Future hung task reports are suppressed, see sysctl kernel.hung_task_warnings
+
+Showing all locks held in the system:
+1 lock held by khungtaskd/41:
+ #0: ffffffff87606da0 (rcu_read_lock){....}-{1:3}, at: debug_show_all_locks+0x36/0x1c0
+1 lock held by in:imklog/216:
+1 lock held by syz.4.1562/6081:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6090:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6093:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6096:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6100:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+2 locks held by syz.3.1565/6083:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+ #1: ffff888114902890 (&priv->acpi_lock){+.+.}-{4:4}, at: i801_access+0xcc/0x1e50 [i2c_i801]
+1 lock held by syz.2.1566/6091:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6094:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6097:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6101:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.1.1569/6099:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7861:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7868:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.5.1574/7862:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7865:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7871:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7866:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7873:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7876:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.0.1581/8649:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8757:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8758:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+
+=============================================
+
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 41 Comm: khungtaskd Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0xdb/0x140
+ nmi_cpu_backtrace+0x1fd/0x270
+ nmi_trigger_cpumask_backtrace+0x22c/0x270
+ sys_info+0x133/0x180
+ watchdog+0x1068/0x1510
+ kthread+0x38a/0x4a0
+ ret_from_fork+0x690/0xaa0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+Sending NMI from CPU 2 to CPUs 0-1,3:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 0 Comm: swapper/1 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d67e60 EFLAGS: 00000202
+RAX: 000000000013f2a1 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000001 R08: 0000000000000001 R09: ffffed102b55663a
+R10: ffff88815aab31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201acfd2 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0d64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a0bafa0 CR3: 0000000111446000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffffffff87407e10 EFLAGS: 00000206
+RAX: 0000000000194ff5 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000000 R08: 0000000000000001 R09: ffffed102b54663a
+R10: ffff88815aa331d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffffffff0e80fc8 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0ce4000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a51ab08 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ rest_init+0x169/0x290
+ start_kernel+0x40e/0x530
+ x86_64_start_reservations+0x21/0x40
+ x86_64_start_kernel+0xd9/0xe0
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 0 Comm: swapper/3 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:native_apic_mem_eoi+0xd/0x20
+Code: 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 31 c0 89 04 25 b0 c0 5f ff <e9> be d8 bb 04 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 90 90 90
+RSP: 0018:ffff88815ab88db8 EFLAGS: 00000046
+RAX: 0000000000000000 RBX: ffff8881d0e64000 RCX: ffffffff813689b8
+RDX: ffff888100d6b580 RSI: ffffffff813689c1 RDI: 0000000000000001
+RBP: ffff888104897828 R08: 0000000000000001 R09: ffffed102b5749a9
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000022
+R13: 0000000000000000 R14: 0000000000000004 R15: ffff888103f6f784
+FS:  0000000000000000(0000) GS:ffff8881d0e64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f0ab00d84a1 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ kvm_guest_apic_eoi_write+0x46/0x50
+ ioapic_ack_level+0xcf/0x400
+ handle_fasteoi_irq+0x6c5/0xb70
+ __common_interrupt+0xa1/0x240
+ common_interrupt+0x6e/0xd0
+ asm_common_interrupt+0x26/0x40
+RIP: 0010:handle_softirqs+0x178/0x890
+Code: c8 83 83 64 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 1b 0c 96 08 00 00 e8 2e b1 45 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 c0 40 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815ab88f70 EFLAGS: 00000202
+RAX: 000000000016018c RBX: ffff888100d6b580 RCX: ffffffff81836418
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff813db422
+RBP: ffff888100d7fdb8 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff88233f97 R11: 0000000000000000 R12: 0000000000000001
+R13: 0000000000000000 R14: 0000000000000002 R15: 0000000000000000
+ __irq_exit_rcu+0xd0/0x100
+ irq_exit_rcu+0xe/0x20
+ sysvec_apic_timer_interrupt+0x70/0x80
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d7fe60 EFLAGS: 00000206
+RAX: 000000000016017d RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000003 R08: 0000000000000001 R09: ffffed102b57663a
+R10: ffff88815abb31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201affd2 R15: 0000000000000000
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+RDX: 0000200000000080 RSI: 0000000000000720 RDI: 0000000000000006
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d436218 R14: 00007f638d436180 R15: 00007f638bb85000
+ </TASK>
+INFO: task syz.4.1562:6096 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.4.1562      state:D stack:29256 pid:6096  tgid:6078  ppid:784    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f638d1a359d
+RSP: 002b:00007f638b781f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f638d436270 RCX: 00007f638d1a359d
+RDX: 0000200000000780 RSI: 0000000000000720 RDI: 0000000000000008
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d436308 R14: 00007f638d436270 R15: 00007f638b762000
+ </TASK>
+INFO: task syz.4.1562:6100 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.4.1562      state:D stack:29736 pid:6100  tgid:6078  ppid:784    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f638d1a359d
+RSP: 002b:00007f638b35ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f638d436360 RCX: 00007f638d1a359d
+RDX: 0000200000000180 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d4363f8 R14: 00007f638d436360 R15: 00007f638b33f000
+ </TASK>
+INFO: task syz.3.1565:6083 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.3.1565      state:D stack:29256 pid:6083  tgid:6082  ppid:791    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ schedule+0xe9/0x3a0
+ schedule_timeout+0x118/0x280
+ wait_for_completion_timeout+0x166/0x370
+ i801_block_transaction_byte_by_byte+0x6a9/0xb60 [i2c_i801]
+ i801_access+0x1011/0x1e50 [i2c_i801]
+ __i2c_smbus_xfer+0x435/0xf30
+ i2c_smbus_xfer+0x20c/0x3d0
+ i2cdev_ioctl_smbus+0x510/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fd14e09359d
+RSP: 002b:00007fd14cad6f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fd14e325fa0 RCX: 00007fd14e09359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007fd14e132ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007fd14e326038 R14: 00007fd14e325fa0 R15: 00007fd14cab7000
+ </TASK>
+INFO: task syz.2.1566:6091 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29256 pid:6091  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8234005f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876090 RCX: 00007f82355e359d
+RDX: 0000200000000080 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876128 R14: 00007f8235876090 R15: 00007f8233fe6000
+ </TASK>
+INFO: task syz.2.1566:6094 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6094  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233fe4f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876180 RCX: 00007f82355e359d
+RDX: 0000200000000100 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876218 R14: 00007f8235876180 R15: 00007f8233fc5000
+ </TASK>
+INFO: task syz.2.1566:6097 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:28792 pid:6097  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233bc1f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876270 RCX: 00007f82355e359d
+RDX: 00002000000003c0 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876308 R14: 00007f8235876270 R15: 00007f8233ba2000
+ </TASK>
+INFO: task syz.2.1566:6101 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6101  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f823379ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876360 RCX: 00007f82355e359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f82358763f8 R14: 00007f8235876360 R15: 00007f823377f000
+ </TASK>
+Future hung task reports are suppressed, see sysctl kernel.hung_task_warnings
+
+Showing all locks held in the system:
+1 lock held by khungtaskd/41:
+ #0: ffffffff87606da0 (rcu_read_lock){....}-{1:3}, at: debug_show_all_locks+0x36/0x1c0
+1 lock held by in:imklog/216:
+1 lock held by syz.4.1562/6081:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6090:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6093:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6096:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6100:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+2 locks held by syz.3.1565/6083:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+ #1: ffff888114902890 (&priv->acpi_lock){+.+.}-{4:4}, at: i801_access+0xcc/0x1e50 [i2c_i801]
+1 lock held by syz.2.1566/6091:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6094:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6097:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6101:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.1.1569/6099:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7861:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7868:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.5.1574/7862:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7865:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7871:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7866:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7873:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7876:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.0.1581/8649:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8757:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8758:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+
+=============================================
+
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 41 Comm: khungtaskd Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0xdb/0x140
+ nmi_cpu_backtrace+0x1fd/0x270
+ nmi_trigger_cpumask_backtrace+0x22c/0x270
+ sys_info+0x133/0x180
+ watchdog+0x1068/0x1510
+ kthread+0x38a/0x4a0
+ ret_from_fork+0x690/0xaa0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+Sending NMI from CPU 2 to CPUs 0-1,3:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 0 Comm: swapper/1 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d67e60 EFLAGS: 00000202
+RAX: 000000000013f2a1 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000001 R08: 0000000000000001 R09: ffffed102b55663a
+R10: ffff88815aab31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201acfd2 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0d64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a0bafa0 CR3: 0000000111446000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffffffff87407e10 EFLAGS: 00000206
+RAX: 0000000000194ff5 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000000 R08: 0000000000000001 R09: ffffed102b54663a
+R10: ffff88815aa331d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffffffff0e80fc8 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0ce4000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a51ab08 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ rest_init+0x169/0x290
+ start_kernel+0x40e/0x530
+ x86_64_start_reservations+0x21/0x40
+ x86_64_start_kernel+0xd9/0xe0
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 0 Comm: swapper/3 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:native_apic_mem_eoi+0xd/0x20
+Code: 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 31 c0 89 04 25 b0 c0 5f ff <e9> be d8 bb 04 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 90 90 90
+RSP: 0018:ffff88815ab88db8 EFLAGS: 00000046
+RAX: 0000000000000000 RBX: ffff8881d0e64000 RCX: ffffffff813689b8
+RDX: ffff888100d6b580 RSI: ffffffff813689c1 RDI: 0000000000000001
+RBP: ffff888104897828 R08: 0000000000000001 R09: ffffed102b5749a9
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000022
+R13: 0000000000000000 R14: 0000000000000004 R15: ffff888103f6f784
+FS:  0000000000000000(0000) GS:ffff8881d0e64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f0ab00d84a1 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ kvm_guest_apic_eoi_write+0x46/0x50
+ ioapic_ack_level+0xcf/0x400
+ handle_fasteoi_irq+0x6c5/0xb70
+ __common_interrupt+0xa1/0x240
+ common_interrupt+0x6e/0xd0
+ asm_common_interrupt+0x26/0x40
+RIP: 0010:handle_softirqs+0x178/0x890
+Code: c8 83 83 64 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 1b 0c 96 08 00 00 e8 2e b1 45 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 c0 40 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815ab88f70 EFLAGS: 00000202
+RAX: 000000000016018c RBX: ffff888100d6b580 RCX: ffffffff81836418
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff813db422
+RBP: ffff888100d7fdb8 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff88233f97 R11: 0000000000000000 R12: 0000000000000001
+R13: 0000000000000000 R14: 0000000000000002 R15: 0000000000000000
+ __irq_exit_rcu+0xd0/0x100
+ irq_exit_rcu+0xe/0x20
+ sysvec_apic_timer_interrupt+0x70/0x80
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d7fe60 EFLAGS: 00000206
+RAX: 000000000016017d RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000003 R08: 0000000000000001 R09: ffffed102b57663a
+R10: ffff88815abb31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201affd2 R15: 0000000000000000
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+RDX: 0000200000000780 RSI: 0000000000000720 RDI: 0000000000000008
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d436308 R14: 00007f638d436270 R15: 00007f638b762000
+ </TASK>
+INFO: task syz.4.1562:6100 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.4.1562      state:D stack:29736 pid:6100  tgid:6078  ppid:784    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f638d1a359d
+RSP: 002b:00007f638b35ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f638d436360 RCX: 00007f638d1a359d
+RDX: 0000200000000180 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d4363f8 R14: 00007f638d436360 R15: 00007f638b33f000
+ </TASK>
+INFO: task syz.3.1565:6083 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.3.1565      state:D stack:29256 pid:6083  tgid:6082  ppid:791    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ schedule+0xe9/0x3a0
+ schedule_timeout+0x118/0x280
+ wait_for_completion_timeout+0x166/0x370
+ i801_block_transaction_byte_by_byte+0x6a9/0xb60 [i2c_i801]
+ i801_access+0x1011/0x1e50 [i2c_i801]
+ __i2c_smbus_xfer+0x435/0xf30
+ i2c_smbus_xfer+0x20c/0x3d0
+ i2cdev_ioctl_smbus+0x510/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fd14e09359d
+RSP: 002b:00007fd14cad6f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fd14e325fa0 RCX: 00007fd14e09359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007fd14e132ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007fd14e326038 R14: 00007fd14e325fa0 R15: 00007fd14cab7000
+ </TASK>
+INFO: task syz.2.1566:6091 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29256 pid:6091  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8234005f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876090 RCX: 00007f82355e359d
+RDX: 0000200000000080 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876128 R14: 00007f8235876090 R15: 00007f8233fe6000
+ </TASK>
+INFO: task syz.2.1566:6094 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6094  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233fe4f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876180 RCX: 00007f82355e359d
+RDX: 0000200000000100 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876218 R14: 00007f8235876180 R15: 00007f8233fc5000
+ </TASK>
+INFO: task syz.2.1566:6097 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:28792 pid:6097  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233bc1f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876270 RCX: 00007f82355e359d
+RDX: 00002000000003c0 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876308 R14: 00007f8235876270 R15: 00007f8233ba2000
+ </TASK>
+INFO: task syz.2.1566:6101 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6101  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f823379ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876360 RCX: 00007f82355e359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f82358763f8 R14: 00007f8235876360 R15: 00007f823377f000
+ </TASK>
+Future hung task reports are suppressed, see sysctl kernel.hung_task_warnings
+
+Showing all locks held in the system:
+1 lock held by khungtaskd/41:
+ #0: ffffffff87606da0 (rcu_read_lock){....}-{1:3}, at: debug_show_all_locks+0x36/0x1c0
+1 lock held by in:imklog/216:
+1 lock held by syz.4.1562/6081:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6090:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6093:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6096:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6100:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+2 locks held by syz.3.1565/6083:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+ #1: ffff888114902890 (&priv->acpi_lock){+.+.}-{4:4}, at: i801_access+0xcc/0x1e50 [i2c_i801]
+1 lock held by syz.2.1566/6091:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6094:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6097:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6101:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.1.1569/6099:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7861:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7868:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.5.1574/7862:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7865:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7871:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7866:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7873:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7876:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.0.1581/8649:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8757:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8758:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+
+=============================================
+
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 41 Comm: khungtaskd Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0xdb/0x140
+ nmi_cpu_backtrace+0x1fd/0x270
+ nmi_trigger_cpumask_backtrace+0x22c/0x270
+ sys_info+0x133/0x180
+ watchdog+0x1068/0x1510
+ kthread+0x38a/0x4a0
+ ret_from_fork+0x690/0xaa0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+Sending NMI from CPU 2 to CPUs 0-1,3:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 0 Comm: swapper/1 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d67e60 EFLAGS: 00000202
+RAX: 000000000013f2a1 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000001 R08: 0000000000000001 R09: ffffed102b55663a
+R10: ffff88815aab31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201acfd2 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0d64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a0bafa0 CR3: 0000000111446000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffffffff87407e10 EFLAGS: 00000206
+RAX: 0000000000194ff5 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000000 R08: 0000000000000001 R09: ffffed102b54663a
+R10: ffff88815aa331d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffffffff0e80fc8 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0ce4000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a51ab08 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ rest_init+0x169/0x290
+ start_kernel+0x40e/0x530
+ x86_64_start_reservations+0x21/0x40
+ x86_64_start_kernel+0xd9/0xe0
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 0 Comm: swapper/3 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:native_apic_mem_eoi+0xd/0x20
+Code: 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 31 c0 89 04 25 b0 c0 5f ff <e9> be d8 bb 04 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 90 90 90
+RSP: 0018:ffff88815ab88db8 EFLAGS: 00000046
+RAX: 0000000000000000 RBX: ffff8881d0e64000 RCX: ffffffff813689b8
+RDX: ffff888100d6b580 RSI: ffffffff813689c1 RDI: 0000000000000001
+RBP: ffff888104897828 R08: 0000000000000001 R09: ffffed102b5749a9
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000022
+R13: 0000000000000000 R14: 0000000000000004 R15: ffff888103f6f784
+FS:  0000000000000000(0000) GS:ffff8881d0e64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f0ab00d84a1 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ kvm_guest_apic_eoi_write+0x46/0x50
+ ioapic_ack_level+0xcf/0x400
+ handle_fasteoi_irq+0x6c5/0xb70
+ __common_interrupt+0xa1/0x240
+ common_interrupt+0x6e/0xd0
+ asm_common_interrupt+0x26/0x40
+RIP: 0010:handle_softirqs+0x178/0x890
+Code: c8 83 83 64 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 1b 0c 96 08 00 00 e8 2e b1 45 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 c0 40 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815ab88f70 EFLAGS: 00000202
+RAX: 000000000016018c RBX: ffff888100d6b580 RCX: ffffffff81836418
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff813db422
+RBP: ffff888100d7fdb8 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff88233f97 R11: 0000000000000000 R12: 0000000000000001
+R13: 0000000000000000 R14: 0000000000000002 R15: 0000000000000000
+ __irq_exit_rcu+0xd0/0x100
+ irq_exit_rcu+0xe/0x20
+ sysvec_apic_timer_interrupt+0x70/0x80
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d7fe60 EFLAGS: 00000206
+RAX: 000000000016017d RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000003 R08: 0000000000000001 R09: ffffed102b57663a
+R10: ffff88815abb31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201affd2 R15: 0000000000000000
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+RDX: 0000200000000180 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f638d242ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f638d4363f8 R14: 00007f638d436360 R15: 00007f638b33f000
+ </TASK>
+INFO: task syz.3.1565:6083 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.3.1565      state:D stack:29256 pid:6083  tgid:6082  ppid:791    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ schedule+0xe9/0x3a0
+ schedule_timeout+0x118/0x280
+ wait_for_completion_timeout+0x166/0x370
+ i801_block_transaction_byte_by_byte+0x6a9/0xb60 [i2c_i801]
+ i801_access+0x1011/0x1e50 [i2c_i801]
+ __i2c_smbus_xfer+0x435/0xf30
+ i2c_smbus_xfer+0x20c/0x3d0
+ i2cdev_ioctl_smbus+0x510/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fd14e09359d
+RSP: 002b:00007fd14cad6f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fd14e325fa0 RCX: 00007fd14e09359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007fd14e132ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007fd14e326038 R14: 00007fd14e325fa0 R15: 00007fd14cab7000
+ </TASK>
+INFO: task syz.2.1566:6091 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29256 pid:6091  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8234005f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876090 RCX: 00007f82355e359d
+RDX: 0000200000000080 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876128 R14: 00007f8235876090 R15: 00007f8233fe6000
+ </TASK>
+INFO: task syz.2.1566:6094 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6094  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233fe4f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876180 RCX: 00007f82355e359d
+RDX: 0000200000000100 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876218 R14: 00007f8235876180 R15: 00007f8233fc5000
+ </TASK>
+INFO: task syz.2.1566:6097 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:28792 pid:6097  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233bc1f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876270 RCX: 00007f82355e359d
+RDX: 00002000000003c0 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876308 R14: 00007f8235876270 R15: 00007f8233ba2000
+ </TASK>
+INFO: task syz.2.1566:6101 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6101  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f823379ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876360 RCX: 00007f82355e359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f82358763f8 R14: 00007f8235876360 R15: 00007f823377f000
+ </TASK>
+Future hung task reports are suppressed, see sysctl kernel.hung_task_warnings
+
+Showing all locks held in the system:
+1 lock held by khungtaskd/41:
+ #0: ffffffff87606da0 (rcu_read_lock){....}-{1:3}, at: debug_show_all_locks+0x36/0x1c0
+1 lock held by in:imklog/216:
+1 lock held by syz.4.1562/6081:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6090:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6093:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6096:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6100:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+2 locks held by syz.3.1565/6083:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+ #1: ffff888114902890 (&priv->acpi_lock){+.+.}-{4:4}, at: i801_access+0xcc/0x1e50 [i2c_i801]
+1 lock held by syz.2.1566/6091:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6094:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6097:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6101:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.1.1569/6099:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7861:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7868:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.5.1574/7862:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7865:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7871:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7866:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7873:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7876:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.0.1581/8649:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8757:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8758:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+
+=============================================
+
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 41 Comm: khungtaskd Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0xdb/0x140
+ nmi_cpu_backtrace+0x1fd/0x270
+ nmi_trigger_cpumask_backtrace+0x22c/0x270
+ sys_info+0x133/0x180
+ watchdog+0x1068/0x1510
+ kthread+0x38a/0x4a0
+ ret_from_fork+0x690/0xaa0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+Sending NMI from CPU 2 to CPUs 0-1,3:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 0 Comm: swapper/1 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d67e60 EFLAGS: 00000202
+RAX: 000000000013f2a1 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000001 R08: 0000000000000001 R09: ffffed102b55663a
+R10: ffff88815aab31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201acfd2 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0d64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a0bafa0 CR3: 0000000111446000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffffffff87407e10 EFLAGS: 00000206
+RAX: 0000000000194ff5 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000000 R08: 0000000000000001 R09: ffffed102b54663a
+R10: ffff88815aa331d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffffffff0e80fc8 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0ce4000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a51ab08 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ rest_init+0x169/0x290
+ start_kernel+0x40e/0x530
+ x86_64_start_reservations+0x21/0x40
+ x86_64_start_kernel+0xd9/0xe0
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 0 Comm: swapper/3 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:native_apic_mem_eoi+0xd/0x20
+Code: 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 31 c0 89 04 25 b0 c0 5f ff <e9> be d8 bb 04 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 90 90 90
+RSP: 0018:ffff88815ab88db8 EFLAGS: 00000046
+RAX: 0000000000000000 RBX: ffff8881d0e64000 RCX: ffffffff813689b8
+RDX: ffff888100d6b580 RSI: ffffffff813689c1 RDI: 0000000000000001
+RBP: ffff888104897828 R08: 0000000000000001 R09: ffffed102b5749a9
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000022
+R13: 0000000000000000 R14: 0000000000000004 R15: ffff888103f6f784
+FS:  0000000000000000(0000) GS:ffff8881d0e64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f0ab00d84a1 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ kvm_guest_apic_eoi_write+0x46/0x50
+ ioapic_ack_level+0xcf/0x400
+ handle_fasteoi_irq+0x6c5/0xb70
+ __common_interrupt+0xa1/0x240
+ common_interrupt+0x6e/0xd0
+ asm_common_interrupt+0x26/0x40
+RIP: 0010:handle_softirqs+0x178/0x890
+Code: c8 83 83 64 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 1b 0c 96 08 00 00 e8 2e b1 45 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 c0 40 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815ab88f70 EFLAGS: 00000202
+RAX: 000000000016018c RBX: ffff888100d6b580 RCX: ffffffff81836418
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff813db422
+RBP: ffff888100d7fdb8 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff88233f97 R11: 0000000000000000 R12: 0000000000000001
+R13: 0000000000000000 R14: 0000000000000002 R15: 0000000000000000
+ __irq_exit_rcu+0xd0/0x100
+ irq_exit_rcu+0xe/0x20
+ sysvec_apic_timer_interrupt+0x70/0x80
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d7fe60 EFLAGS: 00000206
+RAX: 000000000016017d RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000003 R08: 0000000000000001 R09: ffffed102b57663a
+R10: ffff88815abb31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201affd2 R15: 0000000000000000
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007fd14e132ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007fd14e326038 R14: 00007fd14e325fa0 R15: 00007fd14cab7000
+ </TASK>
+INFO: task syz.2.1566:6091 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29256 pid:6091  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8234005f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876090 RCX: 00007f82355e359d
+RDX: 0000200000000080 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876128 R14: 00007f8235876090 R15: 00007f8233fe6000
+ </TASK>
+INFO: task syz.2.1566:6094 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6094  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233fe4f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876180 RCX: 00007f82355e359d
+RDX: 0000200000000100 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876218 R14: 00007f8235876180 R15: 00007f8233fc5000
+ </TASK>
+INFO: task syz.2.1566:6097 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:28792 pid:6097  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233bc1f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876270 RCX: 00007f82355e359d
+RDX: 00002000000003c0 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876308 R14: 00007f8235876270 R15: 00007f8233ba2000
+ </TASK>
+INFO: task syz.2.1566:6101 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6101  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f823379ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876360 RCX: 00007f82355e359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f82358763f8 R14: 00007f8235876360 R15: 00007f823377f000
+ </TASK>
+Future hung task reports are suppressed, see sysctl kernel.hung_task_warnings
+
+Showing all locks held in the system:
+1 lock held by khungtaskd/41:
+ #0: ffffffff87606da0 (rcu_read_lock){....}-{1:3}, at: debug_show_all_locks+0x36/0x1c0
+1 lock held by in:imklog/216:
+1 lock held by syz.4.1562/6081:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6090:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6093:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6096:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6100:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+2 locks held by syz.3.1565/6083:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+ #1: ffff888114902890 (&priv->acpi_lock){+.+.}-{4:4}, at: i801_access+0xcc/0x1e50 [i2c_i801]
+1 lock held by syz.2.1566/6091:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6094:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6097:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6101:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.1.1569/6099:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7861:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7868:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.5.1574/7862:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7865:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7871:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7866:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7873:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7876:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.0.1581/8649:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8757:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8758:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+
+=============================================
+
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 41 Comm: khungtaskd Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0xdb/0x140
+ nmi_cpu_backtrace+0x1fd/0x270
+ nmi_trigger_cpumask_backtrace+0x22c/0x270
+ sys_info+0x133/0x180
+ watchdog+0x1068/0x1510
+ kthread+0x38a/0x4a0
+ ret_from_fork+0x690/0xaa0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+Sending NMI from CPU 2 to CPUs 0-1,3:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 0 Comm: swapper/1 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d67e60 EFLAGS: 00000202
+RAX: 000000000013f2a1 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000001 R08: 0000000000000001 R09: ffffed102b55663a
+R10: ffff88815aab31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201acfd2 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0d64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a0bafa0 CR3: 0000000111446000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffffffff87407e10 EFLAGS: 00000206
+RAX: 0000000000194ff5 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000000 R08: 0000000000000001 R09: ffffed102b54663a
+R10: ffff88815aa331d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffffffff0e80fc8 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0ce4000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a51ab08 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ rest_init+0x169/0x290
+ start_kernel+0x40e/0x530
+ x86_64_start_reservations+0x21/0x40
+ x86_64_start_kernel+0xd9/0xe0
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 0 Comm: swapper/3 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:native_apic_mem_eoi+0xd/0x20
+Code: 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 31 c0 89 04 25 b0 c0 5f ff <e9> be d8 bb 04 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 90 90 90
+RSP: 0018:ffff88815ab88db8 EFLAGS: 00000046
+RAX: 0000000000000000 RBX: ffff8881d0e64000 RCX: ffffffff813689b8
+RDX: ffff888100d6b580 RSI: ffffffff813689c1 RDI: 0000000000000001
+RBP: ffff888104897828 R08: 0000000000000001 R09: ffffed102b5749a9
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000022
+R13: 0000000000000000 R14: 0000000000000004 R15: ffff888103f6f784
+FS:  0000000000000000(0000) GS:ffff8881d0e64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f0ab00d84a1 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ kvm_guest_apic_eoi_write+0x46/0x50
+ ioapic_ack_level+0xcf/0x400
+ handle_fasteoi_irq+0x6c5/0xb70
+ __common_interrupt+0xa1/0x240
+ common_interrupt+0x6e/0xd0
+ asm_common_interrupt+0x26/0x40
+RIP: 0010:handle_softirqs+0x178/0x890
+Code: c8 83 83 64 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 1b 0c 96 08 00 00 e8 2e b1 45 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 c0 40 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815ab88f70 EFLAGS: 00000202
+RAX: 000000000016018c RBX: ffff888100d6b580 RCX: ffffffff81836418
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff813db422
+RBP: ffff888100d7fdb8 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff88233f97 R11: 0000000000000000 R12: 0000000000000001
+R13: 0000000000000000 R14: 0000000000000002 R15: 0000000000000000
+ __irq_exit_rcu+0xd0/0x100
+ irq_exit_rcu+0xe/0x20
+ sysvec_apic_timer_interrupt+0x70/0x80
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d7fe60 EFLAGS: 00000206
+RAX: 000000000016017d RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000003 R08: 0000000000000001 R09: ffffed102b57663a
+R10: ffff88815abb31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201affd2 R15: 0000000000000000
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+RDX: 0000200000000080 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876128 R14: 00007f8235876090 R15: 00007f8233fe6000
+ </TASK>
+INFO: task syz.2.1566:6094 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6094  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233fe4f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876180 RCX: 00007f82355e359d
+RDX: 0000200000000100 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876218 R14: 00007f8235876180 R15: 00007f8233fc5000
+ </TASK>
+INFO: task syz.2.1566:6097 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:28792 pid:6097  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233bc1f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876270 RCX: 00007f82355e359d
+RDX: 00002000000003c0 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876308 R14: 00007f8235876270 R15: 00007f8233ba2000
+ </TASK>
+INFO: task syz.2.1566:6101 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6101  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f823379ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876360 RCX: 00007f82355e359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f82358763f8 R14: 00007f8235876360 R15: 00007f823377f000
+ </TASK>
+Future hung task reports are suppressed, see sysctl kernel.hung_task_warnings
+
+Showing all locks held in the system:
+1 lock held by khungtaskd/41:
+ #0: ffffffff87606da0 (rcu_read_lock){....}-{1:3}, at: debug_show_all_locks+0x36/0x1c0
+1 lock held by in:imklog/216:
+1 lock held by syz.4.1562/6081:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6090:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6093:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6096:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6100:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+2 locks held by syz.3.1565/6083:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+ #1: ffff888114902890 (&priv->acpi_lock){+.+.}-{4:4}, at: i801_access+0xcc/0x1e50 [i2c_i801]
+1 lock held by syz.2.1566/6091:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6094:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6097:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6101:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.1.1569/6099:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7861:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7868:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.5.1574/7862:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7865:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7871:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7866:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7873:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7876:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.0.1581/8649:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8757:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8758:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+
+=============================================
+
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 41 Comm: khungtaskd Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0xdb/0x140
+ nmi_cpu_backtrace+0x1fd/0x270
+ nmi_trigger_cpumask_backtrace+0x22c/0x270
+ sys_info+0x133/0x180
+ watchdog+0x1068/0x1510
+ kthread+0x38a/0x4a0
+ ret_from_fork+0x690/0xaa0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+Sending NMI from CPU 2 to CPUs 0-1,3:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 0 Comm: swapper/1 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d67e60 EFLAGS: 00000202
+RAX: 000000000013f2a1 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000001 R08: 0000000000000001 R09: ffffed102b55663a
+R10: ffff88815aab31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201acfd2 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0d64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a0bafa0 CR3: 0000000111446000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffffffff87407e10 EFLAGS: 00000206
+RAX: 0000000000194ff5 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000000 R08: 0000000000000001 R09: ffffed102b54663a
+R10: ffff88815aa331d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffffffff0e80fc8 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0ce4000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a51ab08 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ rest_init+0x169/0x290
+ start_kernel+0x40e/0x530
+ x86_64_start_reservations+0x21/0x40
+ x86_64_start_kernel+0xd9/0xe0
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 0 Comm: swapper/3 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:native_apic_mem_eoi+0xd/0x20
+Code: 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 31 c0 89 04 25 b0 c0 5f ff <e9> be d8 bb 04 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 90 90 90
+RSP: 0018:ffff88815ab88db8 EFLAGS: 00000046
+RAX: 0000000000000000 RBX: ffff8881d0e64000 RCX: ffffffff813689b8
+RDX: ffff888100d6b580 RSI: ffffffff813689c1 RDI: 0000000000000001
+RBP: ffff888104897828 R08: 0000000000000001 R09: ffffed102b5749a9
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000022
+R13: 0000000000000000 R14: 0000000000000004 R15: ffff888103f6f784
+FS:  0000000000000000(0000) GS:ffff8881d0e64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f0ab00d84a1 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ kvm_guest_apic_eoi_write+0x46/0x50
+ ioapic_ack_level+0xcf/0x400
+ handle_fasteoi_irq+0x6c5/0xb70
+ __common_interrupt+0xa1/0x240
+ common_interrupt+0x6e/0xd0
+ asm_common_interrupt+0x26/0x40
+RIP: 0010:handle_softirqs+0x178/0x890
+Code: c8 83 83 64 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 1b 0c 96 08 00 00 e8 2e b1 45 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 c0 40 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815ab88f70 EFLAGS: 00000202
+RAX: 000000000016018c RBX: ffff888100d6b580 RCX: ffffffff81836418
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff813db422
+RBP: ffff888100d7fdb8 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff88233f97 R11: 0000000000000000 R12: 0000000000000001
+R13: 0000000000000000 R14: 0000000000000002 R15: 0000000000000000
+ __irq_exit_rcu+0xd0/0x100
+ irq_exit_rcu+0xe/0x20
+ sysvec_apic_timer_interrupt+0x70/0x80
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d7fe60 EFLAGS: 00000206
+RAX: 000000000016017d RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000003 R08: 0000000000000001 R09: ffffed102b57663a
+R10: ffff88815abb31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201affd2 R15: 0000000000000000
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+RDX: 0000200000000100 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876218 R14: 00007f8235876180 R15: 00007f8233fc5000
+ </TASK>
+INFO: task syz.2.1566:6097 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:28792 pid:6097  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f8233bc1f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876270 RCX: 00007f82355e359d
+RDX: 00002000000003c0 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876308 R14: 00007f8235876270 R15: 00007f8233ba2000
+ </TASK>
+INFO: task syz.2.1566:6101 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6101  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f823379ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876360 RCX: 00007f82355e359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f82358763f8 R14: 00007f8235876360 R15: 00007f823377f000
+ </TASK>
+Future hung task reports are suppressed, see sysctl kernel.hung_task_warnings
+
+Showing all locks held in the system:
+1 lock held by khungtaskd/41:
+ #0: ffffffff87606da0 (rcu_read_lock){....}-{1:3}, at: debug_show_all_locks+0x36/0x1c0
+1 lock held by in:imklog/216:
+1 lock held by syz.4.1562/6081:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6090:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6093:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6096:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6100:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+2 locks held by syz.3.1565/6083:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+ #1: ffff888114902890 (&priv->acpi_lock){+.+.}-{4:4}, at: i801_access+0xcc/0x1e50 [i2c_i801]
+1 lock held by syz.2.1566/6091:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6094:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6097:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6101:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.1.1569/6099:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7861:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7868:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.5.1574/7862:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7865:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7871:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7866:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7873:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7876:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.0.1581/8649:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8757:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8758:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+
+=============================================
+
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 41 Comm: khungtaskd Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0xdb/0x140
+ nmi_cpu_backtrace+0x1fd/0x270
+ nmi_trigger_cpumask_backtrace+0x22c/0x270
+ sys_info+0x133/0x180
+ watchdog+0x1068/0x1510
+ kthread+0x38a/0x4a0
+ ret_from_fork+0x690/0xaa0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+Sending NMI from CPU 2 to CPUs 0-1,3:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 0 Comm: swapper/1 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d67e60 EFLAGS: 00000202
+RAX: 000000000013f2a1 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000001 R08: 0000000000000001 R09: ffffed102b55663a
+R10: ffff88815aab31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201acfd2 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0d64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a0bafa0 CR3: 0000000111446000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffffffff87407e10 EFLAGS: 00000206
+RAX: 0000000000194ff5 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000000 R08: 0000000000000001 R09: ffffed102b54663a
+R10: ffff88815aa331d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffffffff0e80fc8 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0ce4000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a51ab08 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ rest_init+0x169/0x290
+ start_kernel+0x40e/0x530
+ x86_64_start_reservations+0x21/0x40
+ x86_64_start_kernel+0xd9/0xe0
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 0 Comm: swapper/3 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:native_apic_mem_eoi+0xd/0x20
+Code: 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 31 c0 89 04 25 b0 c0 5f ff <e9> be d8 bb 04 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 90 90 90
+RSP: 0018:ffff88815ab88db8 EFLAGS: 00000046
+RAX: 0000000000000000 RBX: ffff8881d0e64000 RCX: ffffffff813689b8
+RDX: ffff888100d6b580 RSI: ffffffff813689c1 RDI: 0000000000000001
+RBP: ffff888104897828 R08: 0000000000000001 R09: ffffed102b5749a9
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000022
+R13: 0000000000000000 R14: 0000000000000004 R15: ffff888103f6f784
+FS:  0000000000000000(0000) GS:ffff8881d0e64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f0ab00d84a1 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ kvm_guest_apic_eoi_write+0x46/0x50
+ ioapic_ack_level+0xcf/0x400
+ handle_fasteoi_irq+0x6c5/0xb70
+ __common_interrupt+0xa1/0x240
+ common_interrupt+0x6e/0xd0
+ asm_common_interrupt+0x26/0x40
+RIP: 0010:handle_softirqs+0x178/0x890
+Code: c8 83 83 64 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 1b 0c 96 08 00 00 e8 2e b1 45 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 c0 40 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815ab88f70 EFLAGS: 00000202
+RAX: 000000000016018c RBX: ffff888100d6b580 RCX: ffffffff81836418
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff813db422
+RBP: ffff888100d7fdb8 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff88233f97 R11: 0000000000000000 R12: 0000000000000001
+R13: 0000000000000000 R14: 0000000000000002 R15: 0000000000000000
+ __irq_exit_rcu+0xd0/0x100
+ irq_exit_rcu+0xe/0x20
+ sysvec_apic_timer_interrupt+0x70/0x80
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d7fe60 EFLAGS: 00000206
+RAX: 000000000016017d RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000003 R08: 0000000000000001 R09: ffffed102b57663a
+R10: ffff88815abb31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201affd2 R15: 0000000000000000
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+RDX: 00002000000003c0 RSI: 0000000000000720 RDI: 0000000000000005
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f8235876308 R14: 00007f8235876270 R15: 00007f8233ba2000
+ </TASK>
+INFO: task syz.2.1566:6101 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #2
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.1566      state:D stack:29736 pid:6101  tgid:6084  ppid:787    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ rt_mutex_schedule+0xa0/0xf0
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x700
+ rt_mutex_slowlock.constprop.0+0x92/0x110
+ rt_mutex_lock_nested+0xd8/0x110
+ i2c_smbus_xfer+0x1e8/0x3d0
+ i2cdev_ioctl_smbus+0x2db/0x830
+ i2cdev_ioctl+0x3a9/0x810
+ __x64_sys_ioctl+0x194/0x210
+ do_syscall_64+0x116/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f82355e359d
+RSP: 002b:00007f823379ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f8235876360 RCX: 00007f82355e359d
+RDX: 0000200000000040 RSI: 0000000000000720 RDI: 0000000000000004
+RBP: 00007f8235682ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f82358763f8 R14: 00007f8235876360 R15: 00007f823377f000
+ </TASK>
+Future hung task reports are suppressed, see sysctl kernel.hung_task_warnings
+
+Showing all locks held in the system:
+1 lock held by khungtaskd/41:
+ #0: ffffffff87606da0 (rcu_read_lock){....}-{1:3}, at: debug_show_all_locks+0x36/0x1c0
+1 lock held by in:imklog/216:
+1 lock held by syz.4.1562/6081:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6090:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6093:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6096:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.4.1562/6100:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+2 locks held by syz.3.1565/6083:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+ #1: ffff888114902890 (&priv->acpi_lock){+.+.}-{4:4}, at: i801_access+0xcc/0x1e50 [i2c_i801]
+1 lock held by syz.2.1566/6091:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6094:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6097:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.2.1566/6101:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.1.1569/6099:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7861:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.8.1577/7868:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.5.1574/7862:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7865:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.6.1578/7871:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7866:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7873:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.7.1579/7876:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.0.1581/8649:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8757:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+1 lock held by syz.9.1580/8758:
+ #0: ffff8881149020a8 (i2c_register_adapter){+.+.}-{4:4}, at: i2c_smbus_xfer+0x1e8/0x3d0
+
+=============================================
+
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 41 Comm: khungtaskd Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0xdb/0x140
+ nmi_cpu_backtrace+0x1fd/0x270
+ nmi_trigger_cpumask_backtrace+0x22c/0x270
+ sys_info+0x133/0x180
+ watchdog+0x1068/0x1510
+ kthread+0x38a/0x4a0
+ ret_from_fork+0x690/0xaa0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+Sending NMI from CPU 2 to CPUs 0-1,3:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 0 Comm: swapper/1 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d67e60 EFLAGS: 00000202
+RAX: 000000000013f2a1 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000001 R08: 0000000000000001 R09: ffffed102b55663a
+R10: ffff88815aab31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201acfd2 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0d64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a0bafa0 CR3: 0000000111446000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffffffff87407e10 EFLAGS: 00000206
+RAX: 0000000000194ff5 RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000000 R08: 0000000000000001 R09: ffffed102b54663a
+R10: ffff88815aa331d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffffffff0e80fc8 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0ce4000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe77a51ab08 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ rest_init+0x169/0x290
+ start_kernel+0x40e/0x530
+ x86_64_start_reservations+0x21/0x40
+ x86_64_start_kernel+0xd9/0xe0
+ common_startup_64+0x12c/0x138
+ </TASK>
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 0 Comm: swapper/3 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:native_apic_mem_eoi+0xd/0x20
+Code: 2e 0f 1f 84 00 00 00 00 00 0f 1f 40 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 31 c0 89 04 25 b0 c0 5f ff <e9> be d8 bb 04 66 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 00 90 90 90
+RSP: 0018:ffff88815ab88db8 EFLAGS: 00000046
+RAX: 0000000000000000 RBX: ffff8881d0e64000 RCX: ffffffff813689b8
+RDX: ffff888100d6b580 RSI: ffffffff813689c1 RDI: 0000000000000001
+RBP: ffff888104897828 R08: 0000000000000001 R09: ffffed102b5749a9
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000022
+R13: 0000000000000000 R14: 0000000000000004 R15: ffff888103f6f784
+FS:  0000000000000000(0000) GS:ffff8881d0e64000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f0ab00d84a1 CR3: 0000000114856000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ kvm_guest_apic_eoi_write+0x46/0x50
+ ioapic_ack_level+0xcf/0x400
+ handle_fasteoi_irq+0x6c5/0xb70
+ __common_interrupt+0xa1/0x240
+ common_interrupt+0x6e/0xd0
+ asm_common_interrupt+0x26/0x40
+RIP: 0010:handle_softirqs+0x178/0x890
+Code: c8 83 83 64 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 1b 0c 96 08 00 00 e8 2e b1 45 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 c0 40 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815ab88f70 EFLAGS: 00000202
+RAX: 000000000016018c RBX: ffff888100d6b580 RCX: ffffffff81836418
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff813db422
+RBP: ffff888100d7fdb8 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff88233f97 R11: 0000000000000000 R12: 0000000000000001
+R13: 0000000000000000 R14: 0000000000000002 R15: 0000000000000000
+ __irq_exit_rcu+0xd0/0x100
+ irq_exit_rcu+0xe/0x20
+ sysvec_apic_timer_interrupt+0x70/0x80
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:pv_native_safe_halt+0x1e/0x30
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 49 1a 17 00 0f 1f 44 00 00 fb f4 <c3> cc cc cc cc 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d7fe60 EFLAGS: 00000206
+RAX: 000000000016017d RBX: 0000000000000000 RCX: ffffffff85ee5a14
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: ffffffff814f3546
+RBP: 0000000000000003 R08: 0000000000000001 R09: ffffed102b57663a
+R10: ffff88815abb31d3 R11: 0000000000000000 R12: dffffc0000000000
+R13: ffffffff88233f90 R14: 1ffff110201affd2 R15: 0000000000000000
+ default_idle+0xe/0x20
+ default_idle_call+0x6c/0xb0
+ do_idle+0x3c6/0x460
+ cpu_startup_entry+0x54/0x60
+ start_secondary+0x1c2/0x220
+ common_startup_64+0x12c/0x138
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

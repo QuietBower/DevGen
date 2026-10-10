@@ -1,0 +1,42 @@
+{
+    "target": "linux/amd64",
+    "http": "127.0.0.1:10004",
+    "workdir": "/home/wmy/Fuzzer/out/workdir_defconfig",
+    "kernel_obj": "/home/wmy/Fuzzer/build/linux/linux-7.1-defconfig",
+    "kernel_src": "/home/wmy/Fuzzer/third_tool/linux-7.1",
+    "image": "/home/wmy/Fuzzer/third_tool/Image-7.0/bullseye.img",
+    "sshkey": "/home/wmy/Fuzzer/third_tool/Image-7.0/bullseye.id_rsa",
+    "syzkaller": "/home/wmy/Fuzzer/third_tool/syzkaller_defconfig_dev",
+    "procs": 4,
+    "type": "qemu",
+    "sandbox": "none",
+    "reproduce": false,
+    "enable_syscalls": [
+        "openat$comedi",
+        "ioctl$COMEDI_DEVCONFIG",
+        "ioctl$COMEDI_DEVINFO",
+        "ioctl$COMEDI_SUBDINFO",
+        "ioctl$COMEDI_CHANINFO",
+        "ioctl$COMEDI_LOCK",
+        "ioctl$COMEDI_UNLOCK",
+        "ioctl$COMEDI_CANCEL",
+        "ioctl$COMEDI_RANGEINFO",
+        "ioctl$COMEDI_CMD",
+        "ioctl$COMEDI_CMDTEST",
+        "ioctl$COMEDI_INSNLIST",
+        "ioctl$COMEDI_INSN",
+        "ioctl$COMEDI_BUFCONFIG",
+        "ioctl$COMEDI_BUFINFO",
+        "ioctl$COMEDI_POLL",
+        "ioctl$COMEDI_SETRSUBD",
+        "ioctl$COMEDI_SETWSUBD"
+    ],
+    "vm": {
+        "count": 2,
+        "kernel": "/home/wmy/Fuzzer/build/linux/linux-7.1-defconfig/arch/x86/boot/bzImage",
+        "cpu": 4,
+        "mem": 4096,
+        "qemu_args": "-machine q35 --enable-kvm -fsdev local,id=fsdev0,path=/home/wmy/Fuzzer/out/shares,security_model=none -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=hostshare  -device pcie-root-port,id=rp1 -device amplc_dio200_pci_pci,bus=rp1",
+        "qemu": "/home/wmy/Fuzzer/bin/qemu/bin/qemu-system-x86_64"
+    }
+}

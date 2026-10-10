@@ -1,0 +1,57 @@
+pci-endpoint-test 0000:01:00.0: Invalid IRQ type option
+pci-endpoint-test 0000:01:00.0: Failed to get transfer param
+pci-endpoint-test 0000:01:00.0: Invalid IRQ type option
+------------[ cut here ]------------
+WARNING: kernel/irq/msi.c:462 at msi_domain_get_virq+0x81/0x380 kernel/irq/msi.c:462, CPU#0: syz.3.19/2151
+Modules linked in: bochs iTCO_wdt drm_shmem_helper intel_pmc_bxt watchdog drm_client_lib i2c_i801 pci_endpoint_test drm_kms_helper i2c_smbus lpc_ich
+CPU: 0 UID: 0 PID: 2151 Comm: syz.3.19 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:msi_domain_get_virq+0x81/0x380 kernel/irq/msi.c:462
+Code: ff 00 00 e8 91 34 1d 00 81 fd ff ff 00 00 77 14 e8 94 39 1d 00 31 ff 44 89 ee e8 7a 34 1d 00 45 85 ed 74 23 e8 80 39 1d 00 90 <0f> 0b 90 45 31 ed e8 74 39 1d 00 44 89 e8 5b 5d 41 5c 41 5d 41 5e
+RSP: 0018:ffff88811b637d90 EFLAGS: 00010212
+RAX: 00000000000000ea RBX: ffff8881020f60c8 RCX: ffffc90003c04000
+RDX: 0000000000080000 RSI: ffffffff815c81e0 RDI: 0000000000000005
+RBP: 00000000ffffffff R08: 0000000000000000 R09: 0000000000000000
+R10: 00000000ffffffff R11: 0000000000000000 R12: ffff888106c78038
+R13: 0000000000000000 R14: ffff8881020f6490 R15: ffff88811d204d68
+FS:  00007fc370917640(0000) GS:ffff8881d07ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f48b59d89c0 CR3: 000000011ab04000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ msi_get_virq include/linux/msi_api.h:69 [inline]
+ pci_irq_vector drivers/pci/msi/api.c:318 [inline]
+ pci_irq_vector+0xe9/0x130 drivers/pci/msi/api.c:311
+ pci_endpoint_test_msi_irq drivers/misc/pci_endpoint_test.c:653 [inline] [pci_endpoint_test]
+ pci_endpoint_test_ioctl+0xecd/0x3790 drivers/misc/pci_endpoint_test.c:1179 [pci_endpoint_test]
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fc371ed359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fc370916f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fc372165fa0 RCX: 00007fc371ed359d
+RDX: 0000000000000000 RSI: 0000000040045003 RDI: 0000000000000003
+RBP: 00007fc371f72b08 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007fc372166038 R14: 00007fc372165fa0 R15: 00007fc3708f7000
+ </TASK>
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff813b6e93>] copy_process+0x23a3/0x7a00 kernel/fork.c:2232
+softirqs last  enabled at (0): [<ffffffff813b6ee0>] copy_process+0x23f0/0x7a00 kernel/fork.c:2233
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

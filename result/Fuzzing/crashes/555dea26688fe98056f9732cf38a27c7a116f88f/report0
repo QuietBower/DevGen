@@ -1,0 +1,271 @@
+nfs4: Bad value for 'source'
+netlink: 8 bytes leftover after parsing attributes in process `syz.1.4156'.
+pimreg: entered allmulticast mode
+pimreg: left allmulticast mode
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	0-...!: (1 GPs behind) idle=894c/1/0x4000000000000000 softirq=163325/163326 fqs=0
+clocksource: Marking clocksource tsc unstable due to frequency skew
+rcu: 	2-...!: (1 GPs behind) idle=15a4/1/0x4000000000000000 softirq=162242/162243 fqs=0
+rcu: 	3-...!: (1 GPs behind) idle=e0f4/1/0x4000000000000000 softirq=141939/141945 fqs=0
+rcu: 	(detected by 1, t=202053 jiffies, g=109301, q=345 ncpus=4)
+Sending NMI from CPU 1 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 163 Comm: systemd-udevd Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:io_serial_out+0x72/0x90 drivers/tty/serial/8250/8250_port.c:408
+Code: 0f b6 8d f9 00 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 d3 e3 80 3c 02 00 75 1a 66 03 5d 40 44 89 e0 89 da ee <5b> 5d 41 5c c3 cc cc cc cc e8 90 36 e6 fe eb c2 e8 19 37 e6 fe eb
+RSP: 0018:ffff88815a8087f0 EFLAGS: 00000002
+RAX: 000000000000006b RBX: 00000000000003f8 RCX: 0000000000000000
+RDX: 00000000000003f8 RSI: ffffffff82d62c0a RDI: ffffffff8af6a660
+RBP: ffffffff8af6a620 R08: 0000000000000000 R09: ffffed102087c046
+R10: 000000000000006b R11: 7374206563726c63 R12: 000000000000006b
+R13: 0000000000000010 R14: ffffffff8af6a620 R15: ffffffff82d62bf0
+FS:  00007f051107e8c0(0000) GS:ffff8881d07ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f8cb7a36ff0 CR3: 0000000101ad0000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ serial_port_out include/linux/serial_core.h:811 [inline]
+ serial8250_console_putchar drivers/tty/serial/8250/8250_port.c:3220 [inline]
+ serial8250_console_fifo_write drivers/tty/serial/8250/8250_port.c:3282 [inline]
+ serial8250_console_write+0xf54/0x1850 drivers/tty/serial/8250/8250_port.c:3360
+ console_emit_next_record kernel/printk/printk.c:3183 [inline]
+ console_flush_one_record+0x778/0xb60 kernel/printk/printk.c:3269
+ console_flush_all kernel/printk/printk.c:3343 [inline]
+ __console_flush_and_unlock kernel/printk/printk.c:3373 [inline]
+ console_unlock+0xec/0x240 kernel/printk/printk.c:3413
+ vprintk_emit+0x3fa/0x630 kernel/printk/printk.c:2479
+ _printk+0xc3/0x100 kernel/printk/printk.c:2504
+ watchdog_print_freq_skew kernel/time/clocksource.c:583 [inline]
+ watchdog_check_result kernel/time/clocksource.c:628 [inline]
+ clocksource_watchdog kernel/time/clocksource.c:668 [inline]
+ clocksource_watchdog+0x4cc/0x1100 kernel/time/clocksource.c:643
+ call_timer_fn+0x18e/0x590 kernel/time/timer.c:1748
+ expire_timers kernel/time/timer.c:1799 [inline]
+ __run_timers kernel/time/timer.c:2374 [inline]
+ __run_timer_base.part.0+0x6d6/0xab0 kernel/time/timer.c:2386
+ __run_timer_base kernel/time/timer.c:2381 [inline]
+ run_timer_base kernel/time/timer.c:2395 [inline]
+ run_timer_softirq+0x8c/0x1e0 kernel/time/timer.c:2403
+ handle_softirqs+0x1bb/0x860 kernel/softirq.c:622
+ __do_softirq kernel/softirq.c:656 [inline]
+ invoke_softirq kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0x143/0x1c0 kernel/softirq.c:735
+ irq_exit_rcu+0xe/0x20 kernel/softirq.c:752
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1062 [inline]
+ sysvec_apic_timer_interrupt+0x70/0x80 arch/x86/kernel/apic/apic.c:1062
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:674
+RIP: 0010:__preempt_count_dec_and_test arch/x86/include/asm/preempt.h:95 [inline]
+RIP: 0010:__raw_spin_unlock_irqrestore include/linux/spinlock_api_smp.h:179 [inline]
+RIP: 0010:_raw_spin_unlock_irqrestore+0x37/0x60 kernel/locking/spinlock.c:198
+Code: 48 83 c7 18 53 48 89 f3 48 8b 74 24 10 e8 11 19 40 fb 48 89 ef e8 b9 62 40 fb 80 e7 02 74 0b e8 ff 7a 6f fb fb 0f 1f 44 00 00 <65> ff 0d f2 91 f1 03 74 07 5b 5d e9 d9 25 00 00 e8 b4 ef 0a fb 5b
+RSP: 0018:ffff888114217c48 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: 0000000000000282 RCX: ffffffff81852818
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffffffff8615ae31
+RBP: ffffffff87908120 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000000 R12: ffff88810cab0ec0
+R13: 0000000000000008 R14: 0000000000000001 R15: 0000000000000282
+ __create_object+0x5e/0x90 mm/kmemleak.c:785
+ kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+ slab_post_alloc_hook mm/slub.c:4615 [inline]
+ slab_alloc_node mm/slub.c:4939 [inline]
+ __do_kmalloc_node mm/slub.c:5333 [inline]
+ __kmalloc_noprof+0x4c0/0x7a0 mm/slub.c:5347
+ _kmalloc_noprof include/linux/slab.h:973 [inline]
+ kernfs_fop_write_iter+0x240/0x580 fs/kernfs/file.c:322
+ new_sync_write fs/read_write.c:595 [inline]
+ vfs_write+0xc0c/0x1140 fs/read_write.c:687
+ ksys_write+0x126/0x240 fs/read_write.c:739
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f051152a513
+Code: 8b 15 81 29 0e 00 f7 d8 64 89 02 48 c7 c0 ff ff ff ff eb b7 0f 1f 00 64 8b 04 25 18 00 00 00 85 c0 75 14 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 55 c3 0f 1f 40 00 48 83 ec 28 48 89 54 24 18
+RSP: 002b:00007fff0c0c3148 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 0000000000000007 RCX: 00007f051152a513
+RDX: 0000000000000007 RSI: 00007fff0c0c3230 RDI: 000000000000000f
+RBP: 00007fff0c0c3230 R08: fefefefefefefeff R09: ffffffffffffff00
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000007
+R13: 0000557ee17b7fc0 R14: 0000000000000007 R15: 00007f0511609880
+ </TASK>
+Sending NMI from CPU 1 to CPUs 2:
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 318 Comm: syz-executor Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:do_wait+0x5/0x570 kernel/exit.c:1740
+Code: 01 de 7e 00 e9 e5 f7 ff ff 66 66 2e 0f 1f 84 00 00 00 00 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 0f 1f 44 00 00 <41> 57 41 56 41 55 41 54 55 48 89 fd 53 48 83 ec 18 e8 d5 34 3c 00
+RSP: 0018:ffff888118f1fcc0 EFLAGS: 00000206
+RAX: 0000000000000000 RBX: 0000000040000005 RCX: ffffffff813d9978
+RDX: ffff888117993700 RSI: ffffffff813d99d2 RDI: ffff888118f1fce8
+RBP: 0000000000000000 R08: 1ffff110231e3ff9 R09: 0000000000000000
+R10: 00000000ffffffff R11: 0000000000000000 R12: 1ffff110231e3f99
+R13: 00007ffe38e0734c R14: 0000000000000004 R15: 0000000000000000
+FS:  000055558411e500(0000) GS:ffff8881d08ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00002000005d4000 CR3: 000000011c9ba000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ kernel_wait4+0x153/0x260 kernel/exit.c:1910
+ __do_sys_wait4+0x149/0x160 kernel/exit.c:1938
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fda663996aa
+Code: f3 0f 1e fa 31 c9 e9 05 00 00 00 0f 1f 44 00 00 f3 0f 1e fa 49 89 ca 64 8b 04 25 18 00 00 00 85 c0 75 15 b8 3d 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 5e c3 0f 1f 44 00 00 48 83 ec 28 89 54 24 14
+RSP: 002b:00007ffe38e07308 EFLAGS: 00000246 ORIG_RAX: 000000000000003d
+RAX: ffffffffffffffda RBX: 0000000000000893 RCX: 00007fda663996aa
+RDX: 0000000040000001 RSI: 00007ffe38e0734c RDI: 00000000ffffffff
+RBP: 00007ffe38e0734c R08: 00000050411ba23f R09: 0000000000000001
+R10: 0000000000000000 R11: 0000000000000246 R12: 00000000000927c0
+R13: 0000000000000032 R14: 00007ffe38e073d0 R15: 000000000003afbf
+ </TASK>
+Sending NMI from CPU 1 to CPUs 3:
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 32 Comm: migration/3 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Stopper: 0x0 <- 0x0
+RIP: 0010:ip_list_rcv+0x43/0x3f0 net/ipv4/ip_input.c:689
+Code: 00 00 00 00 fc ff df 48 81 ec 90 00 00 00 48 8d 44 24 30 48 89 7c 24 10 48 c7 44 24 30 b3 8a b5 41 48 c1 e8 03 48 89 44 24 18 <48> 01 d8 48 c7 44 24 38 84 e3 3a 87 48 c7 44 24 40 c0 5f 16 85 c7
+RSP: 0000:ffff88815a9887d0 EFLAGS: 00000a06
+RAX: 1ffff1102b531100 RBX: dffffc0000000000 RCX: ffffffff84e3e0df
+RDX: ffff8881051b4000 RSI: ffffffff884a7000 RDI: ffff88815a988950
+RBP: ffffffff884a7000 R08: 0000000000000001 R09: ffffed1022038c1c
+R10: 0000000000000000 R11: f802004500080202 R12: ffff8881051b51f8
+R13: ffff88815a988950 R14: ffff8881051b4000 R15: ffff88815a988950
+FS:  0000000000000000(0000) GS:ffff8881d092c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b30d23ffc CR3: 000000011c8d6000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ __netif_receive_skb_list_ptype net/core/dev.c:6249 [inline]
+ __netif_receive_skb_list_core+0x66d/0x8a0 net/core/dev.c:6296
+ __netif_receive_skb_list net/core/dev.c:6348 [inline]
+ netif_receive_skb_list_internal+0x6ba/0xca0 net/core/dev.c:6439
+ gro_normal_list include/net/gro.h:523 [inline]
+ gro_normal_one include/net/gro.h:543 [inline]
+ gro_skb_finish net/core/gro.c:615 [inline]
+ gro_receive_skb+0x960/0xba0 net/core/gro.c:645
+ napi_gro_receive include/linux/netdevice.h:4307 [inline]
+ e1000_receive_skb drivers/net/ethernet/intel/e1000/e1000_main.c:4009 [inline]
+ e1000_clean_rx_irq+0x5fb/0x1170 drivers/net/ethernet/intel/e1000/e1000_main.c:4470
+ e1000_clean+0x971/0x2670 drivers/net/ethernet/intel/e1000/e1000_main.c:3804
+ __napi_poll.constprop.0+0xb8/0x540 net/core/dev.c:7729
+ napi_poll net/core/dev.c:7792 [inline]
+ net_rx_action+0x990/0xd60 net/core/dev.c:7949
+ handle_softirqs+0x1bb/0x860 kernel/softirq.c:622
+ __do_softirq kernel/softirq.c:656 [inline]
+ invoke_softirq kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0x143/0x1c0 kernel/softirq.c:735
+ irq_exit_rcu+0xe/0x20 kernel/softirq.c:752
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1062 [inline]
+ sysvec_apic_timer_interrupt+0x70/0x80 arch/x86/kernel/apic/apic.c:1062
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:674
+RIP: 0010:get_current arch/x86/include/asm/current.h:25 [inline]
+RIP: 0010:finish_task_switch.isra.0+0x1de/0x9e0 kernel/sched/core.c:5361
+Code: 84 c0 74 08 3c 03 0f 8e ef 05 00 00 c7 83 40 0d 00 00 00 00 00 00 48 8d 7b 48 e8 8d 3d cb 04 e8 b8 b9 3a 00 fb 0f 1f 44 00 00 <65> 48 8b 1d 92 d0 bc 08 48 8d bb e8 15 00 00 48 b8 00 00 00 00 00
+RSP: 0000:ffff888100e27ca8 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: ffff88815a9b9540 RCX: ffffffff81852818
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffffffff814a6f78
+RBP: ffff888100e27cf0 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000000 R12: ffff888100e08000
+R13: 0000000000000000 R14: ffff8881d092c000 R15: 0000000000000000
+ context_switch kernel/sched/core.c:5507 [inline]
+ __schedule+0x10d7/0x47a0 kernel/sched/core.c:7228
+ __schedule_loop kernel/sched/core.c:7307 [inline]
+ schedule+0xe9/0x3a0 kernel/sched/core.c:7322
+ smpboot_thread_fn+0x684/0x9e0 kernel/smpboot.c:156
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x667/0xa80 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+rcu: rcu_preempt kthread timer wakeup didn't happen for 202078 jiffies! g109301 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402
+clocksource: Watchdog               kvm-clock interval:             4371ns
+rcu: 	Possible timer handling issue on cpu=1 timer-softirq=14357
+rcu: rcu_preempt kthread starved for 202102 jiffies! g109301 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402 ->cpu=1
+clocksource: Clocksource                  tsc interval:             4124ns
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:I
+tsc: Marking TSC unstable due to clocksource watchdog
+  running task     stack:29544 pid:15    tgid:15    ppid:2      task_flags:0x208040 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5504 [inline]
+ __schedule+0x10cf/0x47a0 kernel/sched/core.c:7228
+ __schedule_loop kernel/sched/core.c:7307 [inline]
+ schedule+0xe9/0x3a0 kernel/sched/core.c:7322
+ schedule_timeout+0x118/0x280 kernel/time/sleep_timeout.c:99
+ rcu_gp_fqs_loop+0x1ab/0x870 kernel/rcu/tree.c:2123
+ rcu_gp_kthread+0x354/0x460 kernel/rcu/tree.c:2325
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x667/0xa80 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+CPU: 1 UID: 0 PID: 10783 Comm: syz.3.4204 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:ptep_get include/linux/pgtable.h:495 [inline]
+RIP: 0010:vmf_pte_changed mm/memory.c:5648 [inline]
+RIP: 0010:finish_fault+0xaeb/0x1040 mm/memory.c:5762
+Code: 00 89 ee e8 f7 c3 d0 ff 85 ed 0f 85 18 01 00 00 e8 fa c8 d0 ff 48 89 da 48 b8 00 00 00 00 00 fc ff df 48 c1 ea 03 80 3c 02 00 <0f> 85 d8 03 00 00 48 8b 1b 31 ff 48 83 e3 9f 48 89 de e8 ee c3 d0
+RSP: 0000:ffff88811f7b7c28 EFLAGS: 00000246
+RAX: dffffc0000000000 RBX: ffff888111f41918 RCX: ffffffff81a8f259
+RDX: 1ffff110223e8323 RSI: ffffffff81a8f266 RDI: 0000000000000005
+RBP: 0000000000000000 R08: 0000000111f41067 R09: ffffed1023ef6f5f
+R10: 0000000000000000 R11: 0000000000000000 R12: ffff88811dba2580
+R13: ffff8881104e4c30 R14: ffffea00044ec7c0 R15: dffffc0000000000
+FS:  000055557c5d7500(0000) GS:ffff8881d082c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffe09575708 CR3: 000000011c8d6000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ do_shared_fault mm/memory.c:5993 [inline]
+ do_fault mm/memory.c:6047 [inline]
+ do_pte_missing mm/memory.c:4566 [inline]
+ handle_pte_fault mm/memory.c:6427 [inline]
+ __handle_mm_fault+0xdd1/0x2240 mm/memory.c:6565
+ handle_mm_fault+0x2f7/0x770 mm/memory.c:6734
+ do_user_addr_fault+0x505/0xec0 arch/x86/mm/fault.c:1343
+ handle_page_fault arch/x86/mm/fault.c:1483 [inline]
+ exc_page_fault+0xb5/0x190 arch/x86/mm/fault.c:1536
+ asm_exc_page_fault+0x26/0x30 arch/x86/include/asm/idtentry.h:595
+RIP: 0033:0x7f8cb8eb23df
+Code: 83 e5 03 0f 85 72 01 00 00 48 89 df be 04 00 00 00 e8 75 d8 fe ff 48 8b 43 40 8b 7c 24 10 83 43 30 04 48 8d 50 fc 48 89 53 40 <89> 78 fc 8b 43 30 48 83 c4 28 5b 5d 41 5c 41 5d 41 5e 41 5f c3 0f
+RSP: 002b:00007ffd81980970 EFLAGS: 00010202
+RAX: 0000001b30d24000 RBX: 00007f8cb9db5720 RCX: 0000001b30924218
+RDX: 0000001b30d23ffc RSI: 00000000003ffde8 RDI: 0000000000000000
+RBP: 0000000000000000 R08: 00007f8cb9270000 R09: 00007f8cb9272000
+R10: 00007f8cb9db5700 R11: 0000000000000000 R12: 0000000000000000
+R13: 00007f8cb8a3f008 R14: ffffffff8612543c R15: 00000000000009ff
+ </TASK>
+systemd[1]: systemd-journald.service: Main process exited, code=killed, status=6/ABRT
+systemd[1]: systemd-journald.service: Failed with result 'watchdog'.
+systemd[1]: systemd-journald.service: Consumed 5.589s CPU time.
+systemd[1]: systemd-journald.service: Scheduled restart job, restart counter is at 1.
+systemd[1]: Stopping Flush Journal to Persistent Storage...
+pimreg: left allmulticast mode
+systemd[1]: systemd-journal-flush.service: Succeeded.
+systemd[1]: Stopped Flush Journal to Persistent Storage.
+systemd[1]: Stopped Journal Service.
+systemd[1]: systemd-journald.service: Consumed 5.589s CPU time.
+systemd[1]: Starting Journal Service...
+systemd-journald[10800]: File /var/log/journal/2d5cc7b0e35b4a7f891feea41daf48ae/system.journal corrupted or uncleanly shut down, renaming and replacing.
+systemd[1]: Started Journal Service.
+systemd-journald[10800]: Received client request to flush runtime journal.
+audit: type=1400 audit(1782097369.341:62): avc:  denied  { getattr } for  pid=163 comm="systemd-udevd" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to send rpc
+fd=3 want=160 sent=0 n=-1 (errno 32: Broken pipe)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

@@ -1,0 +1,132 @@
+==================================================================
+BUG: KASAN: stack-out-of-bounds in i801_isr_byte_done drivers/i2c/busses/i2c-i801.c:582 [inline] [i2c_i801]
+BUG: KASAN: stack-out-of-bounds in i801_isr drivers/i2c/busses/i2c-i801.c:648 [inline] [i2c_i801]
+BUG: KASAN: stack-out-of-bounds in i801_isr+0x933/0x990 drivers/i2c/busses/i2c-i801.c:629 [i2c_i801]
+Write of size 1 at addr ffff88811f68fd9a by task syz.0.1021/4111
+
+CPU: 0 UID: 0 PID: 4111 Comm: syz.0.1021 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <IRQ>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xdb/0x140 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:378 [inline]
+ print_report+0xcb/0x5e0 mm/kasan/report.c:482
+ kasan_report+0xca/0x100 mm/kasan/report.c:595
+ i801_isr_byte_done drivers/i2c/busses/i2c-i801.c:582 [inline] [i2c_i801]
+ i801_isr drivers/i2c/busses/i2c-i801.c:648 [inline] [i2c_i801]
+ i801_isr+0x933/0x990 drivers/i2c/busses/i2c-i801.c:629 [i2c_i801]
+ __handle_irq_event_percpu+0x222/0x830 kernel/irq/handle.c:209
+ handle_irq_event_percpu kernel/irq/handle.c:246 [inline]
+ handle_irq_event+0xb0/0x1f0 kernel/irq/handle.c:263
+ handle_fasteoi_irq+0x2f3/0x6d0 kernel/irq/chip.c:768
+ generic_handle_irq_desc include/linux/irqdesc.h:188 [inline]
+ handle_irq arch/x86/kernel/irq.c:209 [inline]
+ call_irq_handler arch/x86/kernel/irq.c:233 [inline]
+ __common_interrupt+0xa1/0x240 arch/x86/kernel/irq.c:280
+ common_interrupt+0x6e/0xd0 arch/x86/kernel/irq.c:273
+ asm_common_interrupt+0x26/0x40 arch/x86/include/asm/idtentry.h:665
+RIP: 0010:variable_ffs arch/x86/include/asm/bitops.h:312 [inline]
+RIP: 0010:handle_softirqs+0x179/0x860 kernel/softirq.c:610
+Code: c8 83 83 ec 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 ea 6d c9 08 00 00 e8 dd 56 47 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 a0 60 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815a808f70 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: ffff888101ddb700 RCX: ffffffff81852818
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffffffff813dd253
+RBP: ffff88811d3cf878 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000200 R15: 0000000000000000
+ __do_softirq kernel/softirq.c:656 [inline]
+ invoke_softirq kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0x143/0x1c0 kernel/softirq.c:735
+ irq_exit_rcu+0xe/0x20 kernel/softirq.c:752
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1062 [inline]
+ sysvec_apic_timer_interrupt+0x70/0x80 arch/x86/kernel/apic/apic.c:1062
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:674
+RIP: 0010:__preempt_count_dec_and_test arch/x86/include/asm/preempt.h:95 [inline]
+RIP: 0010:__raw_spin_unlock_irqrestore include/linux/spinlock_api_smp.h:179 [inline]
+RIP: 0010:_raw_spin_unlock_irqrestore+0x37/0x60 kernel/locking/spinlock.c:198
+Code: 48 83 c7 18 53 48 89 f3 48 8b 74 24 10 e8 11 19 40 fb 48 89 ef e8 b9 62 40 fb 80 e7 02 74 0b e8 ff 7a 6f fb fb 0f 1f 44 00 00 <65> ff 0d f2 91 f1 03 74 07 5b 5d e9 d9 25 00 00 e8 b4 ef 0a fb 5b
+RSP: 0018:ffff88811d3cf928 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: 0000000000000246 RCX: ffffffff81852818
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffffffff8615ae31
+RBP: ffffffff87908120 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000246 R14: ffff888100aa2000 R15: ffff888112a9d960
+ find_and_remove_object mm/kmemleak.c:637 [inline]
+ delete_object_full+0x4b/0x70 mm/kmemleak.c:839
+ kmemleak_free_recursive include/linux/kmemleak.h:50 [inline]
+ slab_free_hook mm/slub.c:2625 [inline]
+ slab_free mm/slub.c:6310 [inline]
+ kmem_cache_free+0x3f1/0x5f0 mm/slub.c:6437
+ anon_vma_chain_free mm/rmap.c:147 [inline]
+ unlink_anon_vmas+0x43c/0x770 mm/rmap.c:539
+ free_pgtables+0x2e6/0xd10 mm/memory.c:414
+ exit_mmap+0x41a/0x990 mm/mmap.c:1312
+ __mmput kernel/fork.c:1181 [inline]
+ mmput+0xda/0x3a0 kernel/fork.c:1204
+ exit_mm kernel/exit.c:610 [inline]
+ do_exit+0x854/0x2960 kernel/exit.c:992
+ do_group_exit+0xd8/0x2b0 kernel/exit.c:1147
+ __do_sys_exit_group kernel/exit.c:1158 [inline]
+ __se_sys_exit_group kernel/exit.c:1156 [inline]
+ __x64_sys_exit_group+0x43/0x50 kernel/exit.c:1156
+ x64_sys_call+0x18d3/0x18e0 arch/x86/include/generated/asm/syscalls_64.h:232
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f90e364359d
+Code: Unable to access opcode bytes at 0x7f90e3643573.
+RSP: 002b:00007ffeb4236a88 EFLAGS: 00000206 ORIG_RAX: 00000000000000e7
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f90e364359d
+RDX: 0000000000000064 RSI: 0000000000000000 RDI: 0000000000000000
+RBP: 00007ffeb4236b00 R08: 0000000000000000 R09: 0000000000000032
+R10: 0000001b31e2007d R11: 0000000000000206 R12: 0000000000000030
+R13: 0000000000000032 R14: 00007ffeb4236b70 R15: 000000000001f17d
+ </TASK>
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x11f68f
+flags: 0x200000000000000(node=0|zone=2)
+raw: 0200000000000000 0000000000000000 00000000ffffffff 0000000000000000
+raw: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff88811f68fc80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff88811f68fd00: 00 00 00 00 00 00 f1 f1 f1 f1 04 f3 f3 f3 00 00
+>ffff88811f68fd80: 00 00 00 00 00 00 00 00 00 00 f1 f1 f1 f1 00 00
+                            ^
+ ffff88811f68fe00: 00 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 00 00
+ ffff88811f68fe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+==================================================================
+----------------
+Code disassembly (best guess):
+   0:	c8 83 83 ec          	enter  $0x8383,$0xec
+   4:	0a 00                	or     (%rax),%al
+   6:	00 01                	add    %al,(%rcx)
+   8:	c7 44 24 20 0a 00 00 	movl   $0xa,0x20(%rsp)
+   f:	00
+  10:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
+  15:	65 66 c7 05 ea 6d c9 	movw   $0x0,%gs:0x8c96dea(%rip)        # 0x8c96e09
+  1c:	08 00 00
+  1f:	e8 dd 56 47 00       	call   0x475701
+  24:	fb                   	sti
+  25:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+* 2a:	bb ff ff ff ff       	mov    $0xffffffff,%ebx <-- trapping instruction
+  2f:	49 c7 c4 c0 a0 60 87 	mov    $0xffffffff8760a0c0,%r12
+  36:	41 0f bc de          	bsf    %r14d,%ebx
+  3a:	83 c3 01             	add    $0x1,%ebx
+  3d:	0f                   	.byte 0xf
+  3e:	85                   	.byte 0x85
+  3f:	94                   	xchg   %eax,%esp
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

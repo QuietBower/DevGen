@@ -1,0 +1,29 @@
+R13: 00007f5c95576038 R14: 00007f5c95575fa0 R15: 00007f5c93d07000
+ </TASK>
+i801_smbus 0000:00:1f.3: Illegal SMBus block read size 0
+i801_smbus 0000:00:1f.3: Illegal SMBus block read size 0
+i801_smbus 0000:00:1f.3: Illegal SMBus block read size 0
+INFO: task syz.2.367:3090 blocked for more than 148 seconds.
+      Not tainted 6.18.0 #10
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.367       state:D stack:28968 pid:3090  tgid:3085  ppid:305    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:5325 [inline]
+ __schedule+0xebb/0x3550 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:6929
+ __schedule_loop home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7011 [inline]
+ schedule+0xe9/0x3a0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7026
+ schedule_timeout+0x118/0x280 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/sleep_timeout.c:99
+ do_wait_for_common+0x1b2/0x440 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/completion.c:100
+ __wait_for_common home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/completion.c:121 [inline]
+ wait_for_common home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/completion.c:132 [inline]
+ wait_for_completion_timeout+0x4d/0x70 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/completion.c:172
+ i801_block_transaction_byte_by_byte+0x6a9/0xb60 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/i2c/busses/i2c-i801.c:704 [i2c_i801]
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

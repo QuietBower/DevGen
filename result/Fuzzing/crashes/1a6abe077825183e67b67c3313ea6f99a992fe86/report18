@@ -1,0 +1,59 @@
+sched: DL replenish lagged too much
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	0-....: (1 GPs behind) idle=156c/1/0x4000000000000000 softirq=41730/41731 fqs=1124
+rcu: 	         hardirqs   softirqs   csw/system
+rcu: 	 number:       14          5            0
+rcu: 	cputime:    16020         63            6   ==> 106270(ms)
+rcu: 	(detected by 2, t=16455 jiffies, g=47861, q=1280 ncpus=4)
+Sending NMI from CPU 2 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 1355 Comm: aoe_tx0 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:kasan_check_range+0x106/0x1c0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/generic.c:201
+Code: 00 74 f2 48 89 c2 b8 01 00 00 00 48 85 d2 0f 84 4c ff ff ff 41 83 e2 07 49 39 d1 0f 85 34 ff ff ff 45 3a 11 0f 8d 2b ff ff ff <5b> b8 01 00 00 00 5d 41 5c c3 cc cc cc cc 41 bc 08 00 00 00 45 29
+RSP: 0018:ffffc9000736f5c8 EFLAGS: 00000046
+RAX: fffffbfff1c3a529 RBX: fffffbfff1c3a529 RCX: ffffffff8b43f32e
+RDX: fffffbfff1c3a529 RSI: 0000000000000004 RDI: ffffffff8e1d2940
+RBP: fffffbfff1c3a528 R08: 0000000000000000 R09: fffffbfff1c3a528
+R10: ffffffff8e1d2943 R11: 0000000000000000 R12: 1ffff92000e6debf
+R13: 0000000000000003 R14: fffffbfff1c3a528 R15: ffffc9000736f628
+FS:  0000000000000000(0000) GS:ffff8880cf001000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000555560eeb638 CR3: 0000000127d56000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ instrument_atomic_read home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/instrumented.h:68 [inline]
+ atomic_read home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/atomic/atomic-instrumented.h:32 [inline]
+ virt_spin_lock home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/qspinlock.h:102 [inline]
+ native_queued_spin_lock_slowpath+0xae/0x9c0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/qspinlock.c:141
+ pv_queued_spin_lock_slowpath home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/paravirt.h:557 [inline]
+ queued_spin_lock_slowpath home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/qspinlock.h:51 [inline]
+ queued_spin_lock home/wmy/Fuzzer/third_tool/linux-6.18/include/asm-generic/qspinlock.h:114 [inline]
+ do_raw_spin_lock+0x20d/0x2b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/spinlock_debug.c:116
+ __raw_spin_lock_irqsave home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/spinlock_api_smp.h:111 [inline]
+ _raw_spin_lock_irqsave+0x45/0x60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/spinlock.c:162
+ rcu_report_exp_rdp home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree_exp.h:272 [inline]
+ rcu_preempt_deferred_qs_irqrestore+0x54b/0xb70 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree_plugin.h:521
+ rcu_note_context_switch+0x18d/0x1980 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree_plugin.h:356
+ __schedule+0x2e7/0x5bb0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:6814
+ preempt_schedule_common+0x44/0xb0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7113
+ preempt_schedule_thunk+0x16/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/thunk.S:12
+ __local_bh_enable_ip+0x107/0x120 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:457
+ local_bh_enable home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/bottom_half.h:33 [inline]
+ rcu_read_unlock_bh home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/rcupdate.h:936 [inline]
+ __dev_queue_xmit+0x1bf9/0x4160 home/wmy/Fuzzer/third_tool/linux-6.18/net/core/dev.c:4790
+ dev_queue_xmit home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/netdevice.h:3365 [inline]
+ tx+0xcc/0x170 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/block/aoe/aoenet.c:62
+ kthread+0x1e9/0x3e0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/block/aoe/aoecmd.c:1241
+ kthread+0x3d0/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x676/0x7d0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

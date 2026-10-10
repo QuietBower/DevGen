@@ -1,0 +1,73 @@
+mtip32xx 0000:01:00.0: 0 command(s) completed (TFE): tagmap [0000000000000000 0000000000000000 0000000000000000 0000000000000000 ]
+mtip32xx 0000:01:00.0: Issuing COM reset
+mtip32xx 0000:01:00.0: Internal command [61] failed 2
+mtip32xx 0000:01:00.0: Issuing COM reset
+mtip32xx 0000:01:00.0: retiring tag 0
+Oops: general protection fault, probably for non-canonical address 0xdffffc0000000031: 0000 [#1] SMP KASAN PTI
+KASAN: null-ptr-deref in range [0x0000000000000188-0x000000000000018f]
+CPU: 1 UID: 0 PID: 217 Comm: mtip_svc_thd_00 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:blk_mq_complete_request_remote+0xe2/0x970 block/blk-mq.c:1297
+Code: c1 ea 03 80 3c 02 00 0f 85 94 07 00 00 48 b8 00 00 00 00 00 fc ff df 4c 8b 63 10 49 8d bc 24 8e 01 00 00 48 89 fa 48 c1 ea 03 <0f> b6 14 02 48 89 f8 83 e0 07 83 c0 01 38 d0 7c 08 84 d2 0f 85 c3
+RSP: 0018:ffff888119cafba8 EFLAGS: 00010203
+RAX: dffffc0000000000 RBX: ffff888105ca0000 RCX: ffffffffa0007867
+RDX: 0000000000000031 RSI: ffffffff8256cf74 RDI: 000000000000018e
+RBP: 1ffff11023395f7a R08: 0000000000000000 R09: ffffed1020512a63
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000000
+R13: ffff888102895318 R14: ffff888105ca00f8 R15: dffffc0000000000
+FS:  0000000000000000(0000) GS:ffff8881d082c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffc4e397ff8 CR3: 0000000107842000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ blk_mq_complete_request+0x1b/0xb0 block/blk-mq.c:1324
+ mtip_complete_command+0xb8/0x110 drivers/block/mtip32xx/mtip32xx.c:484 [mtip32xx]
+ mtip_handle_tfe drivers/block/mtip32xx/mtip32xx.c:637 [inline] [mtip32xx]
+ mtip_service_thread+0x1084/0x20e0 drivers/block/mtip32xx/mtip32xx.c:2498 [mtip32xx]
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x667/0xa80 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+Modules linked in: iTCO_wdt intel_pmc_bxt watchdog bochs drm_shmem_helper drm_client_lib i2c_i801 drm_kms_helper mtip32xx i2c_smbus lpc_ich
+---[ end trace 0000000000000000 ]---
+RIP: 0010:blk_mq_complete_request_remote+0xe2/0x970 block/blk-mq.c:1297
+Code: c1 ea 03 80 3c 02 00 0f 85 94 07 00 00 48 b8 00 00 00 00 00 fc ff df 4c 8b 63 10 49 8d bc 24 8e 01 00 00 48 89 fa 48 c1 ea 03 <0f> b6 14 02 48 89 f8 83 e0 07 83 c0 01 38 d0 7c 08 84 d2 0f 85 c3
+RSP: 0018:ffff888119cafba8 EFLAGS: 00010203
+RAX: dffffc0000000000 RBX: ffff888105ca0000 RCX: ffffffffa0007867
+RDX: 0000000000000031 RSI: ffffffff8256cf74 RDI: 000000000000018e
+RBP: 1ffff11023395f7a R08: 0000000000000000 R09: ffffed1020512a63
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000000
+R13: ffff888102895318 R14: ffff888105ca00f8 R15: dffffc0000000000
+FS:  0000000000000000(0000) GS:ffff8881d082c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffc4e397ff8 CR3: 0000000107842000 CR4: 00000000000006f0
+----------------
+Code disassembly (best guess):
+   0:	c1 ea 03             	shr    $0x3,%edx
+   3:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1)
+   7:	0f 85 94 07 00 00    	jne    0x7a1
+   d:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  14:	fc ff df
+  17:	4c 8b 63 10          	mov    0x10(%rbx),%r12
+  1b:	49 8d bc 24 8e 01 00 	lea    0x18e(%r12),%rdi
+  22:	00
+  23:	48 89 fa             	mov    %rdi,%rdx
+  26:	48 c1 ea 03          	shr    $0x3,%rdx
+* 2a:	0f b6 14 02          	movzbl (%rdx,%rax,1),%edx <-- trapping instruction
+  2e:	48 89 f8             	mov    %rdi,%rax
+  31:	83 e0 07             	and    $0x7,%eax
+  34:	83 c0 01             	add    $0x1,%eax
+  37:	38 d0                	cmp    %dl,%al
+  39:	7c 08                	jl     0x43
+  3b:	84 d2                	test   %dl,%dl
+  3d:	0f                   	.byte 0xf
+  3e:	85 c3                	test   %eax,%ebx
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

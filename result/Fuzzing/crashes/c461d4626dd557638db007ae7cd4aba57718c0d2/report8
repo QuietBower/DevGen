@@ -1,0 +1,153 @@
+QAT: failed to copy from user.
+QAT: Stopping acceleration device qat_dev0.
+QAT: Device 1 not found
+4xxx 0000:01:00.0: Starting acceleration device qat_dev0.
+==================================================================
+BUG: KASAN: slab-use-after-free in owner_on_cpu include/linux/sched.h:2314 [inline]
+BUG: KASAN: slab-use-after-free in mutex_can_spin_on_owner kernel/locking/mutex.c:413 [inline]
+BUG: KASAN: slab-use-after-free in mutex_optimistic_spin kernel/locking/mutex.c:456 [inline]
+BUG: KASAN: slab-use-after-free in __mutex_lock_common kernel/locking/mutex.c:618 [inline]
+BUG: KASAN: slab-use-after-free in __mutex_lock+0x18c0/0x1f40 kernel/locking/mutex.c:776
+Read of size 4 at addr ffff888113fa1af4 by task syz.0.1991/7726
+
+CPU: 3 UID: 0 PID: 7726 Comm: syz.0.1991 Tainted: G      D             7.0.0 #2 PREEMPT(full) 
+Tainted: [D]=DIE
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xdb/0x140 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:378 [inline]
+ print_report+0xcb/0x610 mm/kasan/report.c:482
+ kasan_report+0xca/0x100 mm/kasan/report.c:595
+ owner_on_cpu include/linux/sched.h:2314 [inline]
+ mutex_can_spin_on_owner kernel/locking/mutex.c:413 [inline]
+ mutex_optimistic_spin kernel/locking/mutex.c:456 [inline]
+ __mutex_lock_common kernel/locking/mutex.c:618 [inline]
+ __mutex_lock+0x18c0/0x1f40 kernel/locking/mutex.c:776
+ adf_dev_up+0x44/0x14c0 drivers/crypto/intel/qat/qat_common/adf_hw_arbiter.c:98 [intel_qat]
+ adf_ctl_ioctl+0x1d6/0x1080 qat_algs.c:-1 [intel_qat]
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fa88d22359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fa88bc66f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fa88d4b5fa0 RCX: 00007fa88d22359d
+RDX: 0000200000000480 RSI: 0000000040096102 RDI: 0000000000000003
+RBP: 00007fa88d2c2ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007fa88d4b6038 R14: 00007fa88d4b5fa0 R15: 00007fa88bc47000
+ </TASK>
+
+Allocated by task 329:
+ kasan_save_stack+0x24/0x50 mm/kasan/common.c:57
+ kasan_save_track+0x14/0x30 mm/kasan/common.c:78
+ unpoison_slab_object mm/kasan/common.c:340 [inline]
+ __kasan_slab_alloc+0x59/0x70 mm/kasan/common.c:366
+ kasan_slab_alloc include/linux/kasan.h:253 [inline]
+ slab_post_alloc_hook mm/slub.c:4538 [inline]
+ slab_alloc_node mm/slub.c:4866 [inline]
+ kmem_cache_alloc_node_noprof+0x227/0x730 mm/slub.c:4918
+ alloc_task_struct_node kernel/fork.c:185 [inline]
+ dup_task_struct kernel/fork.c:916 [inline]
+ copy_process+0x49c/0x71f0 kernel/fork.c:2050
+ kernel_clone+0xef/0x840 kernel/fork.c:2653
+ __do_sys_clone+0xce/0x120 kernel/fork.c:2794
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+Freed by task 7335:
+ kasan_save_stack+0x24/0x50 mm/kasan/common.c:57
+ kasan_save_track+0x14/0x30 mm/kasan/common.c:78
+ kasan_save_free_info+0x3b/0x60 mm/kasan/generic.c:584
+ poison_slab_object mm/kasan/common.c:253 [inline]
+ __kasan_slab_free+0x43/0x70 mm/kasan/common.c:285
+ kasan_slab_free include/linux/kasan.h:235 [inline]
+ slab_free_hook mm/slub.c:2685 [inline]
+ slab_free mm/slub.c:6165 [inline]
+ kmem_cache_free+0x29f/0x5e0 mm/slub.c:6295
+ rcu_do_batch kernel/rcu/tree.c:2617 [inline]
+ rcu_core+0x653/0x1570 kernel/rcu/tree.c:2869
+ handle_softirqs+0x1ba/0x890 kernel/softirq.c:622
+ __do_softirq kernel/softirq.c:656 [inline]
+ invoke_softirq kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0xd0/0x100 kernel/softirq.c:723
+ irq_exit_rcu+0xe/0x20 kernel/softirq.c:739
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1056 [inline]
+ sysvec_apic_timer_interrupt+0x70/0x80 arch/x86/kernel/apic/apic.c:1056
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:697
+
+Last potentially related work creation:
+ kasan_save_stack+0x24/0x50 mm/kasan/common.c:57
+ kasan_record_aux_stack+0x8c/0xa0 mm/kasan/generic.c:556
+ __call_rcu_common.constprop.0+0x75/0x9f0 kernel/rcu/tree.c:3131
+ put_task_struct include/linux/sched/task.h:159 [inline]
+ delayed_put_task_struct+0xe7/0x2a0 kernel/exit.c:231
+ rcu_do_batch kernel/rcu/tree.c:2617 [inline]
+ rcu_core+0x653/0x1570 kernel/rcu/tree.c:2869
+ handle_softirqs+0x1ba/0x890 kernel/softirq.c:622
+ run_ksoftirqd kernel/softirq.c:1063 [inline]
+ run_ksoftirqd+0x35/0x60 kernel/softirq.c:1055
+ smpboot_thread_fn+0x424/0x9e0 kernel/smpboot.c:160
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x690/0xaa0 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+
+Second to last potentially related work creation:
+ kasan_save_stack+0x24/0x50 mm/kasan/common.c:57
+ kasan_record_aux_stack+0x8c/0xa0 mm/kasan/generic.c:556
+ __call_rcu_common.constprop.0+0x75/0x9f0 kernel/rcu/tree.c:3131
+ put_task_struct_rcu_user+0x7a/0xc0 kernel/exit.c:237
+ release_task+0xc3b/0x15f0 kernel/exit.c:307
+ wait_task_zombie kernel/exit.c:1280 [inline]
+ wait_consider_task+0x18b9/0x3b50 kernel/exit.c:1507
+ do_wait_thread kernel/exit.c:1570 [inline]
+ __do_wait+0x1d8/0x870 kernel/exit.c:1688
+ do_wait+0x1d0/0x5a0 kernel/exit.c:1722
+ kernel_wait4+0x153/0x260 kernel/exit.c:1881
+ __do_sys_wait4+0x149/0x160 kernel/exit.c:1909
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+The buggy address belongs to the object at ffff888113fa1ac0
+ which belongs to the cache task_struct of size 6592
+The buggy address is located 52 bytes inside of
+ freed 6592-byte region [ffff888113fa1ac0, ffff888113fa3480)
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x113fa0
+head: order:3 mapcount:0 entire_mapcount:0 nr_pages_mapped:0 pincount:0
+memcg:ffff888113fa6b01
+flags: 0x200000000000040(head|node=0|zone=2)
+page_type: f5(slab)
+raw: 0200000000000040 ffff888100a78280 dead000000000100 dead000000000122
+raw: 0000000000000000 0000000800040004 00000000f5000000 ffff888113fa6b01
+head: 0200000000000040 ffff888100a78280 dead000000000100 dead000000000122
+head: 0000000000000000 0000000800040004 00000000f5000000 ffff888113fa6b01
+head: 0200000000000003 ffffea00044fe801 00000000ffffffff 00000000ffffffff
+head: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000008
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888113fa1980: fb fb fb fb fb fb fb fb fc fc fc fc fc fc fc fc
+ ffff888113fa1a00: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+>ffff888113fa1a80: fc fc fc fc fc fc fc fc fa fb fb fb fb fb fb fb
+                                                             ^
+ ffff888113fa1b00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff888113fa1b80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

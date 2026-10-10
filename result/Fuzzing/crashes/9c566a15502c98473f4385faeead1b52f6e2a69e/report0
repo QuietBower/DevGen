@@ -1,0 +1,360 @@
+netlink: 296 bytes leftover after parsing attributes in process `syz.3.1029'.
+netlink: 296 bytes leftover after parsing attributes in process `syz.0.1050'.
+process 'syz.2.1274' launched './file1' with NULL argv: empty string added
+BUG: unable to handle page fault for address: ffffc90001206014
+#PF: supervisor read access in kernel mode
+#PF: error_code(0x0000) - not-present page
+PGD 100000067 P4D 100000067 PUD 100ad4067 PMD 105a5e067 PTE 0
+Oops: Oops: 0000 [#1] SMP KASAN PTI
+CPU: 0 UID: 0 PID: 5876 Comm: syz.1.1406 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:readb arch/x86/include/asm/io.h:57 [inline]
+RIP: 0010:mem_serial_in+0x67/0x90 drivers/tty/serial/8250/8250_port.c:352
+Code: 75 34 48 8d 7d 48 0f b6 8d f9 00 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 d3 e3 80 3c 02 00 75 17 48 03 5d 48 <8a> 03 0f b6 c0 5b 5d e9 0d ac 3f 03 e8 e8 3a e6 fe eb c5 e8 71 3b
+RSP: 0018:ffff888115537698 EFLAGS: 00010286
+RAX: dffffc0000000000 RBX: ffffc90001206014 RCX: 0000000000000002
+RDX: 1ffffffff15ed545 RSI: ffffffff82d627b5 RDI: ffffffff8af6aa28
+RBP: ffffffff8af6a9e0 R08: 0000000000000001 R09: ffffed10208690ee
+R10: 0000000000000000 R11: ffff888115537550 R12: ffffffff8af6aa30
+R13: ffffffff8af6ab40 R14: ffffffff8af6ac90 R15: 0000000000000002
+FS:  00007f108e3a7640(0000) GS:ffff8881d07ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffc90001206014 CR3: 000000011560c000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ serial_port_in include/linux/serial_core.h:806 [inline]
+ serial8250_clear_interrupts+0x40/0xf0 drivers/tty/serial/8250/8250_port.c:705
+ serial8250_do_startup+0x3f5/0x3220 drivers/tty/serial/8250/8250_port.c:2278
+ serial8250_startup+0x6c/0x90 drivers/tty/serial/8250/8250_port.c:2357
+ uart_port_startup drivers/tty/serial/serial_core.c:321 [inline]
+ uart_startup+0x4ff/0x12c0 drivers/tty/serial/serial_core.c:365
+ uart_port_activate+0xf3/0x1a0 drivers/tty/serial/serial_core.c:1949
+ tty_port_open+0x15c/0x200 drivers/tty/tty_port.c:769
+ uart_open+0x47/0x60 drivers/tty/serial/serial_core.c:1929
+ tty_open+0x39b/0x1310 drivers/tty/tty_io.c:2137
+ chrdev_open+0x23b/0x690 fs/char_dev.c:411
+ do_dentry_open+0x684/0x14b0 fs/open.c:947
+ vfs_open+0x87/0x400 fs/open.c:1079
+ do_open fs/namei.c:4700 [inline]
+ path_openat+0x2a2e/0x3de0 fs/namei.c:4859
+ do_file_open+0x21b/0x470 fs/namei.c:4888
+ do_sys_openat2+0xed/0x220 fs/open.c:1395
+ do_sys_open fs/open.c:1401 [inline]
+ __do_sys_openat fs/open.c:1417 [inline]
+ __se_sys_openat fs/open.c:1412 [inline]
+ __x64_sys_openat+0x144/0x200 fs/open.c:1412
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f108f961d94
+Code: 24 20 eb 8f 66 90 44 89 54 24 0c e8 e6 0f 03 00 44 8b 54 24 0c 44 89 e2 48 89 ee 41 89 c0 bf 9c ff ff ff b8 01 01 00 00 0f 05 <48> 3d 00 f0 ff ff 77 34 44 89 c7 89 44 24 0c e8 28 10 03 00 8b 44
+RSP: 002b:00007f108e3a6ac0 EFLAGS: 00000293 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f108f961d94
+RDX: 0000000000040100 RSI: 00007f108e3a6b60 RDI: 00000000ffffff9c
+RBP: 00007f108e3a6b60 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000293 R12: 0000000000040100
+R13: 00007f108fbf6038 R14: 00007f108fbf5fa0 R15: 00007f108e387000
+ </TASK>
+Modules linked in: iTCO_wdt intel_pmc_bxt watchdog bochs drm_shmem_helper drm_client_lib i2c_i801 drm_kms_helper lpc_ich i2c_smbus sm501
+CR2: ffffc90001206014
+---[ end trace 0000000000000000 ]---
+RIP: 0010:readb arch/x86/include/asm/io.h:57 [inline]
+RIP: 0010:mem_serial_in+0x67/0x90 drivers/tty/serial/8250/8250_port.c:352
+Code: 75 34 48 8d 7d 48 0f b6 8d f9 00 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 d3 e3 80 3c 02 00 75 17 48 03 5d 48 <8a> 03 0f b6 c0 5b 5d e9 0d ac 3f 03 e8 e8 3a e6 fe eb c5 e8 71 3b
+RSP: 0018:ffff888115537698 EFLAGS: 00010286
+RAX: dffffc0000000000 RBX: ffffc90001206014 RCX: 0000000000000002
+RDX: 1ffffffff15ed545 RSI: ffffffff82d627b5 RDI: ffffffff8af6aa28
+RBP: ffffffff8af6a9e0 R08: 0000000000000001 R09: ffffed10208690ee
+R10: 0000000000000000 R11: ffff888115537550 R12: ffffffff8af6aa30
+R13: ffffffff8af6ab40 R14: ffffffff8af6ac90 R15: 0000000000000002
+FS:  00007f108e3a7640(0000) GS:ffff8881d07ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffc90001206014 CR3: 000000011560c000 CR4: 00000000000006f0
+note: syz.1.1406[5876] exited with irqs disabled
+==================================================================
+BUG: KASAN: slab-use-after-free in owner_on_cpu include/linux/sched.h:2320 [inline]
+BUG: KASAN: slab-use-after-free in mutex_spin_on_owner+0x251/0x2b0 kernel/locking/mutex.c:406
+Read of size 1 at addr ffff888120681bb4 by task syz.1.1406/5882
+
+CPU: 3 UID: 0 PID: 5882 Comm: syz.1.1406 Tainted: G      D W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [D]=DIE, [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xdb/0x140 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:378 [inline]
+ print_report+0xcb/0x5e0 mm/kasan/report.c:482
+ kasan_report+0xca/0x100 mm/kasan/report.c:595
+ owner_on_cpu include/linux/sched.h:2320 [inline]
+ mutex_spin_on_owner+0x251/0x2b0 kernel/locking/mutex.c:406
+ mutex_optimistic_spin kernel/locking/mutex.c:509 [inline]
+ __mutex_lock_common kernel/locking/mutex.c:761 [inline]
+ __mutex_lock+0x1250/0x1ee0 kernel/locking/mutex.c:821
+ tty_lock_interruptible+0x85/0xf0 drivers/tty/tty_mutex.c:27
+ tty_open_by_driver drivers/tty/tty_io.c:2059 [inline]
+ tty_open+0x9e1/0x1310 drivers/tty/tty_io.c:2120
+ chrdev_open+0x23b/0x690 fs/char_dev.c:411
+ do_dentry_open+0x684/0x14b0 fs/open.c:947
+ vfs_open+0x87/0x400 fs/open.c:1079
+ do_open fs/namei.c:4700 [inline]
+ path_openat+0x2a2e/0x3de0 fs/namei.c:4859
+ do_file_open+0x21b/0x470 fs/namei.c:4888
+ do_sys_openat2+0xed/0x220 fs/open.c:1395
+ do_sys_open fs/open.c:1401 [inline]
+ __do_sys_openat fs/open.c:1417 [inline]
+ __se_sys_openat fs/open.c:1412 [inline]
+ __x64_sys_openat+0x144/0x200 fs/open.c:1412
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f108f961d94
+Code: 24 20 eb 8f 66 90 44 89 54 24 0c e8 e6 0f 03 00 44 8b 54 24 0c 44 89 e2 48 89 ee 41 89 c0 bf 9c ff ff ff b8 01 01 00 00 0f 05 <48> 3d 00 f0 ff ff 77 34 44 89 c7 89 44 24 0c e8 28 10 03 00 8b 44
+RSP: 002b:00007f108e385ac0 EFLAGS: 00000293 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f108f961d94
+RDX: 0000000000000100 RSI: 00007f108e385b60 RDI: 00000000ffffff9c
+RBP: 00007f108e385b60 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000293 R12: 0000000000000100
+R13: 00007f108fbf6128 R14: 00007f108fbf6090 R15: 00007f108e366000
+ </TASK>
+
+Allocated by task 5874:
+ kasan_save_stack+0x24/0x50 mm/kasan/common.c:57
+ kasan_save_track+0x14/0x30 mm/kasan/common.c:78
+ unpoison_slab_object mm/kasan/common.c:340 [inline]
+ __kasan_slab_alloc+0x59/0x70 mm/kasan/common.c:366
+ kasan_slab_alloc include/linux/kasan.h:253 [inline]
+ slab_post_alloc_hook mm/slub.c:4610 [inline]
+ slab_alloc_node mm/slub.c:4939 [inline]
+ kmem_cache_alloc_node_noprof+0x227/0x710 mm/slub.c:4991
+ alloc_task_struct_node kernel/fork.c:188 [inline]
+ dup_task_struct kernel/fork.c:920 [inline]
+ copy_process+0x699/0x7a00 kernel/fork.c:2109
+ kernel_clone+0x202/0x860 kernel/fork.c:2745
+ __do_sys_clone3+0x1f6/0x280 kernel/fork.c:3047
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+Freed by task 33:
+ kasan_save_stack+0x24/0x50 mm/kasan/common.c:57
+ kasan_save_track+0x14/0x30 mm/kasan/common.c:78
+ kasan_save_free_info+0x3b/0x60 mm/kasan/generic.c:584
+ poison_slab_object mm/kasan/common.c:253 [inline]
+ __kasan_slab_free+0x43/0x70 mm/kasan/common.c:285
+ kasan_slab_free include/linux/kasan.h:235 [inline]
+ slab_free_hook mm/slub.c:2700 [inline]
+ slab_free mm/slub.c:6310 [inline]
+ kmem_cache_free+0x28f/0x5f0 mm/slub.c:6437
+ rcu_do_batch kernel/rcu/tree.c:2645 [inline]
+ rcu_core+0x570/0x1550 kernel/rcu/tree.c:2897
+ handle_softirqs+0x1bb/0x860 kernel/softirq.c:622
+ run_ksoftirqd kernel/softirq.c:1076 [inline]
+ run_ksoftirqd+0x35/0x60 kernel/softirq.c:1068
+ smpboot_thread_fn+0x424/0x9e0 kernel/smpboot.c:160
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x667/0xa80 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+
+Last potentially related work creation:
+ kasan_save_stack+0x24/0x50 mm/kasan/common.c:57
+ kasan_record_aux_stack+0x8c/0xa0 mm/kasan/generic.c:556
+ __call_rcu_common.constprop.0+0x75/0x9d0 kernel/rcu/tree.c:3159
+ put_task_struct include/linux/sched/task.h:159 [inline]
+ delayed_put_task_struct+0xe7/0x270 kernel/exit.c:231
+ rcu_do_batch kernel/rcu/tree.c:2645 [inline]
+ rcu_core+0x570/0x1550 kernel/rcu/tree.c:2897
+ handle_softirqs+0x1bb/0x860 kernel/softirq.c:622
+ run_ksoftirqd kernel/softirq.c:1076 [inline]
+ run_ksoftirqd+0x35/0x60 kernel/softirq.c:1068
+ smpboot_thread_fn+0x424/0x9e0 kernel/smpboot.c:160
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x667/0xa80 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+
+Second to last potentially related work creation:
+ kasan_save_stack+0x24/0x50 mm/kasan/common.c:57
+ kasan_record_aux_stack+0x8c/0xa0 mm/kasan/generic.c:556
+ __call_rcu_common.constprop.0+0x75/0x9d0 kernel/rcu/tree.c:3159
+ put_task_struct_rcu_user+0x7a/0xc0 kernel/exit.c:237
+ context_switch kernel/sched/core.c:5507 [inline]
+ __schedule+0x10d7/0x47a0 kernel/sched/core.c:7228
+ __schedule_loop kernel/sched/core.c:7307 [inline]
+ schedule+0xe9/0x3a0 kernel/sched/core.c:7322
+ worker_thread+0x15e/0xeb0 kernel/workqueue.c:3493
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x667/0xa80 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+
+The buggy address belongs to the object at ffff888120681b80
+ which belongs to the cache task_struct of size 6784
+The buggy address is located 52 bytes inside of
+ freed 6784-byte region [ffff888120681b80, ffff888120683600)
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x120680
+head: order:3 mapcount:0 entire_mapcount:0 nr_pages_mapped:0 pincount:0
+memcg:ffff888120686e01
+flags: 0x200000000000040(head|node=0|zone=2)
+page_type: f5(slab)
+raw: 0200000000000040 ffff888100aa2280 dead000000000100 dead000000000122
+raw: 0000000000000000 0000000800040004 00000000f5000000 ffff888120686e01
+head: 0200000000000040 ffff888100aa2280 dead000000000100 dead000000000122
+head: 0000000000000000 0000000800040004 00000000f5000000 ffff888120686e01
+head: 0200000000000003 fffffffffffffe01 00000000ffffffff 00000000ffffffff
+head: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000008
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888120681a80: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+ ffff888120681b00: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+>ffff888120681b80: fa fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                                     ^
+ ffff888120681c00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff888120681c80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================
+----------------
+Code disassembly (best guess):
+   0:	75 34                	jne    0x36
+   2:	48 8d 7d 48          	lea    0x48(%rbp),%rdi
+   6:	0f b6 8d f9 00 00 00 	movzbl 0xf9(%rbp),%ecx
+   d:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  14:	fc ff df
+  17:	48 89 fa             	mov    %rdi,%rdx
+  1a:	48 c1 ea 03          	shr    $0x3,%rdx
+  1e:	d3 e3                	shl    %cl,%ebx
+  20:	80 3c 02 00          	cmpb   $0x0,(%rdx,%rax,1)
+  24:	75 17                	jne    0x3d
+  26:	48 03 5d 48          	add    0x48(%rbp),%rbx
+* 2a:	8a 03                	mov    (%rbx),%al <-- trapping instruction
+  2c:	0f b6 c0             	movzbl %al,%eax
+  2f:	5b                   	pop    %rbx
+  30:	5d                   	pop    %rbp
+  31:	e9 0d ac 3f 03       	jmp    0x33fac43
+  36:	e8 e8 3a e6 fe       	call   0xfee63b23
+  3b:	eb c5                	jmp    0x2
+  3d:	e8                   	.byte 0xe8
+  3e:	71 3b                	jno    0x7b
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+FS:  00007f108e3a7640(0000) GS:ffff8881d07ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffc90001206014 CR3: 000000011560c000 CR4: 00000000000006f0
+note: syz.1.1406[5876] exited with irqs disabled
+==================================================================
+BUG: KASAN: slab-use-after-free in mutex_spin_on_owner+0x251/0x2b0
+Read of size 1 at addr ffff888120681bb4 by task syz.1.1406/5882
+
+CPU: 3 UID: 0 PID: 5882 Comm: syz.1.1406 Tainted: G      D W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [D]=DIE, [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0xdb/0x140
+ print_report+0xcb/0x5e0
+ kasan_report+0xca/0x100
+ mutex_spin_on_owner+0x251/0x2b0
+ __mutex_lock+0x1250/0x1ee0
+ tty_lock_interruptible+0x85/0xf0
+ tty_open+0x9e1/0x1310
+ chrdev_open+0x23b/0x690
+ do_dentry_open+0x684/0x14b0
+ vfs_open+0x87/0x400
+ path_openat+0x2a2e/0x3de0
+ do_file_open+0x21b/0x470
+ do_sys_openat2+0xed/0x220
+ __x64_sys_openat+0x144/0x200
+ do_syscall_64+0x11a/0x6a0
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f108f961d94
+Code: 24 20 eb 8f 66 90 44 89 54 24 0c e8 e6 0f 03 00 44 8b 54 24 0c 44 89 e2 48 89 ee 41 89 c0 bf 9c ff ff ff b8 01 01 00 00 0f 05 <48> 3d 00 f0 ff ff 77 34 44 89 c7 89 44 24 0c e8 28 10 03 00 8b 44
+RSP: 002b:00007f108e385ac0 EFLAGS: 00000293 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f108f961d94
+RDX: 0000000000000100 RSI: 00007f108e385b60 RDI: 00000000ffffff9c
+RBP: 00007f108e385b60 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000293 R12: 0000000000000100
+R13: 00007f108fbf6128 R14: 00007f108fbf6090 R15: 00007f108e366000
+ </TASK>
+
+Allocated by task 5874:
+ kasan_save_stack+0x24/0x50
+ kasan_save_track+0x14/0x30
+ __kasan_slab_alloc+0x59/0x70
+ kmem_cache_alloc_node_noprof+0x227/0x710
+ copy_process+0x699/0x7a00
+ kernel_clone+0x202/0x860
+ __do_sys_clone3+0x1f6/0x280
+ do_syscall_64+0x11a/0x6a0
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+Freed by task 33:
+ kasan_save_stack+0x24/0x50
+ kasan_save_track+0x14/0x30
+ kasan_save_free_info+0x3b/0x60
+ __kasan_slab_free+0x43/0x70
+ kmem_cache_free+0x28f/0x5f0
+ rcu_core+0x570/0x1550
+ handle_softirqs+0x1bb/0x860
+ run_ksoftirqd+0x35/0x60
+ smpboot_thread_fn+0x424/0x9e0
+ kthread+0x38a/0x4a0
+ ret_from_fork+0x667/0xa80
+ ret_from_fork_asm+0x1a/0x30
+
+Last potentially related work creation:
+ kasan_save_stack+0x24/0x50
+ kasan_record_aux_stack+0x8c/0xa0
+ __call_rcu_common.constprop.0+0x75/0x9d0
+ delayed_put_task_struct+0xe7/0x270
+ rcu_core+0x570/0x1550
+ handle_softirqs+0x1bb/0x860
+ run_ksoftirqd+0x35/0x60
+ smpboot_thread_fn+0x424/0x9e0
+ kthread+0x38a/0x4a0
+ ret_from_fork+0x667/0xa80
+ ret_from_fork_asm+0x1a/0x30
+
+Second to last potentially related work creation:
+ kasan_save_stack+0x24/0x50
+ kasan_record_aux_stack+0x8c/0xa0
+ __call_rcu_common.constprop.0+0x75/0x9d0
+ put_task_struct_rcu_user+0x7a/0xc0
+ __schedule+0x10d7/0x47a0
+ schedule+0xe9/0x3a0
+ worker_thread+0x15e/0xeb0
+ kthread+0x38a/0x4a0
+ ret_from_fork+0x667/0xa80
+ ret_from_fork_asm+0x1a/0x30
+
+The buggy address belongs to the object at ffff888120681b80
+ which belongs to the cache task_struct of size 6784
+The buggy address is located 52 bytes inside of
+ freed 6784-byte region [ffff888120681b80, ffff888120683600)
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x120680
+head: order:3 mapcount:0 entire_mapcount:0 nr_pages_mapped:0 pincount:0
+memcg:ffff888120686e01
+flags: 0x200000000000040(head|node=0|zone=2)
+page_type: f5(slab)
+raw: 0200000000000040 ffff888100aa2280 dead000000000100 dead000000000122
+raw: 0000000000000000 0000000800040004 00000000f5000000 ffff888120686e01
+head: 0200000000000040 ffff888100aa2280 dead000000000100 dead000000000122
+head: 0000000000000000 0000000800040004 00000000f5000000 ffff888120686e01
+head: 0200000000000003 fffffffffffffe01 00000000ffffffff 00000000ffffffff
+head: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000008
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888120681a80: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+ ffff888120681b00: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+>ffff888120681b80: fa fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+                                     ^
+ ffff888120681c00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+ ffff888120681c80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+==================================================================
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

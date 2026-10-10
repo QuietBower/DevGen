@@ -1,0 +1,81 @@
+SELinux: unrecognized netlink message: protocol=6 nlmsg_type=0 sclass=netlink_xfrm_socket pid=177495 comm=syz.2.13551
+i801_smbus 0000:00:1f.3: Illegal SMBus block read size 0
+------------[ cut here ]------------
+[CRTC:35:crtc-0] vblank wait timed out
+WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_crtc_index include/drm/drm_crtc.h:1284 [inline] [drm_kms_helper], CPU#2: kworker/2:1/47139
+WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_get_new_crtc_state include/drm/drm_atomic.h:785 [inline] [drm_kms_helper], CPU#2: kworker/2:1/47139
+WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_helper_wait_for_vblanks.part.0+0x627/0x7b0 drivers/gpu/drm/drm_atomic_helper.c:1199 [drm_kms_helper], CPU#2: kworker/2:1/47139
+Modules linked in: qrtr intel_vpu(+) iTCO_wdt bochs intel_pmc_bxt drm_shmem_helper drm_client_lib watchdog i2c_i801 drm_kms_helper i2c_smbus lpc_ich
+CPU: 2 UID: 0 PID: 47139 Comm: kworker/2:1 Tainted: G      D W        N  7.0.0 #7 PREEMPT(full) 
+Tainted: [D]=DIE, [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: events drm_fb_helper_damage_work [drm_kms_helper]
+RIP: 0010:drm_crtc_index include/drm/drm_crtc.h:1284 [inline] [drm_kms_helper]
+RIP: 0010:drm_atomic_get_new_crtc_state include/drm/drm_atomic.h:785 [inline] [drm_kms_helper]
+RIP: 0010:drm_atomic_helper_wait_for_vblanks.part.0+0x62d/0x7b0 drivers/gpu/drm/drm_atomic_helper.c:1199 [drm_kms_helper]
+Code: 00 48 8b 55 20 48 89 f8 48 c1 e8 03 42 0f b6 04 20 84 c0 74 08 3c 03 0f 8e 63 01 00 00 48 8d 3d 29 72 22 00 8b b5 d8 00 00 00 <67> 48 0f b9 3a e9 9b fd ff ff 44 8b 7c 24 3c 4c 89 eb e8 9c 4f 77
+RSP: 0018:ffff888131cf7738 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff81838b98
+RDX: ffff888101b56f20 RSI: 0000000000000023 RDI: ffffffffa0238190
+RBP: ffff888114eb1318 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff88486997 R11: 000000000000b9f6 R12: dffffc0000000000
+R13: 0000000000000000 R14: ffff8881096eaf00 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d08f9000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fa5bf686658 CR3: 000000012bff2000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ drm_atomic_helper_commit_tail+0x100/0x130 drivers/gpu/drm/drm_atomic_helper.c:2984 [drm_kms_helper]
+ commit_tail+0x2c2/0x390 drivers/gpu/drm/drm_atomic_helper.c:2573 [drm_kms_helper]
+ drm_atomic_helper_commit+0x308/0x390 drivers/gpu/drm/drm_atomic_helper.c:3528 [drm_kms_helper]
+ drm_atomic_commit+0x238/0x300 drivers/gpu/drm/drm_atomic.c:1775
+ drm_atomic_helper_dirtyfb+0x60f/0x790 drivers/gpu/drm/drm_damage_helper.c:246 [drm_kms_helper]
+ drm_fbdev_shmem_helper_fb_dirty+0x1d1/0x320 drivers/gpu/drm/drm_fbdev_shmem.c:109 [drm_shmem_helper]
+ drm_fb_helper_damage_work+0x335/0x630 drivers/gpu/drm/bridge/panel.c:91 [drm_kms_helper]
+ process_one_work+0x920/0x1ac0 kernel/workqueue.c:3288
+ process_scheduled_works kernel/workqueue.c:3371 [inline]
+ worker_thread+0x698/0xeb0 kernel/workqueue.c:3452
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x690/0xaa0 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff813b5c94>] copy_process+0x1dc4/0x71f0 kernel/fork.c:2169
+softirqs last  enabled at (0): [<ffffffff813b5ce4>] copy_process+0x1e14/0x71f0 kernel/fork.c:2170
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+audit: type=1400 audit(1780126629.651:51): avc:  denied  { read } for  pid=180490 comm="modprobe" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1780126629.682:52): avc:  denied  { open } for  pid=180490 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1780126629.684:53): avc:  denied  { getattr } for  pid=180490 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1780126629.688:54): avc:  denied  { map } for  pid=180490 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+----------------
+Code disassembly (best guess):
+   0:	00 48 8b             	add    %cl,-0x75(%rax)
+   3:	55                   	push   %rbp
+   4:	20 48 89             	and    %cl,-0x77(%rax)
+   7:	f8                   	clc
+   8:	48 c1 e8 03          	shr    $0x3,%rax
+   c:	42 0f b6 04 20       	movzbl (%rax,%r12,1),%eax
+  11:	84 c0                	test   %al,%al
+  13:	74 08                	je     0x1d
+  15:	3c 03                	cmp    $0x3,%al
+  17:	0f 8e 63 01 00 00    	jle    0x180
+  1d:	48 8d 3d 29 72 22 00 	lea    0x227229(%rip),%rdi        # 0x22724d
+  24:	8b b5 d8 00 00 00    	mov    0xd8(%rbp),%esi
+* 2a:	67 48 0f b9 3a       	ud1    (%edx),%rdi <-- trapping instruction
+  2f:	e9 9b fd ff ff       	jmp    0xfffffdcf
+  34:	44 8b 7c 24 3c       	mov    0x3c(%rsp),%r15d
+  39:	4c 89 eb             	mov    %r13,%rbx
+  3c:	e8                   	.byte 0xe8
+  3d:	9c                   	pushf
+  3e:	4f                   	rex.WRXB
+  3f:	77                   	.byte 0x77
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

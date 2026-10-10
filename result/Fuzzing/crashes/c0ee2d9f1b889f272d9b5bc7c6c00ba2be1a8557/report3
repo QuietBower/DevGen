@@ -1,0 +1,38 @@
+BUG: memory leak
+unreferenced object 0xffff8881127a8600 (size 224):
+  comm "syz.0.10198", pid 24966, jiffies 4295527211
+  hex dump (first 32 bytes):
+    00 00 43 05 81 88 ff ff c0 47 93 2a 81 88 ff ff  ..C......G.*....
+    61 29 66 86 ff ff ff ff 00 00 00 00 00 00 00 00  a)f.............
+  backtrace (crc 723dbd1c):
+    kmemleak_alloc_recursive home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:4983 [inline]
+    slab_alloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5288 [inline]
+    kmem_cache_alloc_noprof+0x40b/0x6d0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5295
+    dst_alloc+0xa1/0x630 home/wmy/Fuzzer/third_tool/linux-6.18/net/core/dst.c:89
+    ip6_dst_alloc home/wmy/Fuzzer/third_tool/linux-6.18/net/ipv6/route.c:342 [inline]
+    ip6_rt_pcpu_alloc home/wmy/Fuzzer/third_tool/linux-6.18/net/ipv6/route.c:1418 [inline]
+    rt6_make_pcpu_route home/wmy/Fuzzer/third_tool/linux-6.18/net/ipv6/route.c:1467 [inline]
+    ip6_pol_route+0x8fe/0x1210 home/wmy/Fuzzer/third_tool/linux-6.18/net/ipv6/route.c:2305
+    pol_lookup_func home/wmy/Fuzzer/third_tool/linux-6.18/include/net/ip6_fib.h:617 [inline]
+    fib6_rule_lookup+0x75/0x300 home/wmy/Fuzzer/third_tool/linux-6.18/net/ipv6/ip6_fib.c:326
+    ip6_route_output_flags_noref home/wmy/Fuzzer/third_tool/linux-6.18/net/ipv6/route.c:2684 [inline]
+    ip6_route_output_flags+0x2f3/0x5c0 home/wmy/Fuzzer/third_tool/linux-6.18/net/ipv6/route.c:2696
+    ip6_route_output home/wmy/Fuzzer/third_tool/linux-6.18/include/net/ip6_route.h:93 [inline]
+    ip6_dst_lookup_tail.constprop.0+0x307/0x11f0 home/wmy/Fuzzer/third_tool/linux-6.18/net/ipv6/ip6_output.c:1141
+    ip6_dst_lookup_flow+0x94/0x1d0 home/wmy/Fuzzer/third_tool/linux-6.18/net/ipv6/ip6_output.c:1272
+    tcp_v6_connect+0xe5f/0x1c30 home/wmy/Fuzzer/third_tool/linux-6.18/net/ipv6/tcp_ipv6.c:281
+    __inet_stream_connect+0x3aa/0xed0 home/wmy/Fuzzer/third_tool/linux-6.18/net/ipv4/af_inet.c:679
+    inet_stream_connect+0x5c/0xb0 home/wmy/Fuzzer/third_tool/linux-6.18/net/ipv4/af_inet.c:750
+    __sys_connect_file+0x151/0x1b0 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:2102
+    __sys_connect+0x166/0x1a0 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:2121
+    __do_sys_connect home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:2127 [inline]
+    __se_sys_connect home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:2124 [inline]
+    __x64_sys_connect+0x77/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/net/socket.c:2124
+    do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

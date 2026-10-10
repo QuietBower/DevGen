@@ -1,0 +1,61 @@
+WARNING: CPU: 1 PID: 12402 at drivers/gpu/drm/drm_gem.c:300 drm_gem_object_handle_put_unlocked+0x313/0x3e0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/drm_gem.c:300 [drm]
+Modules linked in: bochs drm_shmem_helper drm_kms_helper qat_4xxx(+) drm intel_qat i2c_i801 dh_generic lpc_ich i2c_smbus drm_panel_orientation_quirks
+CPU: 1 UID: 0 PID: 12402 Comm: syz.2.3849 Tainted: G      D             6.18.0 #10 PREEMPT(voluntary) 
+Tainted: [D]=DIE
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:drm_gem_object_handle_put_unlocked+0x313/0x3e0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/drm_gem.c:300 [drm]
+Code: ed 74 61 e8 df 68 66 e1 4c 89 e7 e8 a7 99 b8 e2 48 c7 c1 e0 f1 37 a0 4c 89 ea 48 c7 c7 60 ee 37 a0 48 89 c6 e8 ee 95 2b e1 90 <0f> 0b 90 90 5b 5d 41 5c 41 5d 41 5e 41 5f e9 aa 68 66 e1 4c 89 ff
+RSP: 0018:ffff888139317898 EFLAGS: 00010282
+RAX: 0000000000000000 RBX: ffff888118c5ccf8 RCX: ffffffff813b5905
+RDX: ffff88811848b500 RSI: ffffffff813b5913 RDI: 0000000000000001
+RBP: ffff88810679f800 R08: 0000000000000001 R09: ffffed102b5549d1
+R10: 0000000000000001 R11: 0000000000000001 R12: ffff888101c300c0
+R13: ffff888101674820 R14: 0000000000000000 R15: ffff88810679f804
+FS:  00007f0646a65640(0000) GS:ffff8881d12b7000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 000000000706c000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ drm_gem_object_release_handle+0xcc/0x200 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/drm_gem.c:345 [drm]
+ idr_for_each+0x119/0x230 home/wmy/Fuzzer/third_tool/linux-6.18/lib/idr.c:208
+ drm_gem_release+0x2e/0x40 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/drm_gem.c:1046 [drm]
+ drm_file_free.part.0+0x64e/0xba0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/drm_file.c:261 [drm]
+ drm_file_free home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/drm_file.c:237 [inline] [drm]
+ drm_close_helper.isra.0+0x11f/0x170 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/drm_file.c:290 [drm]
+ drm_release+0x1b0/0x340 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/drm_file.c:438 [drm]
+ __fput+0x407/0xb50 home/wmy/Fuzzer/third_tool/linux-6.18/fs/file_table.c:468
+ task_work_run+0x170/0x260 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/task_work.c:227
+ exit_task_work home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/task_work.h:40 [inline]
+ do_exit+0x85b/0x2990 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:966
+ do_group_exit+0xd8/0x2b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/exit.c:1107
+ get_signal+0x2327/0x2350 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/signal.c:3034
+ arch_do_signal_or_restart+0x85/0x790 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/signal.c:337
+ exit_to_user_mode_loop+0x7f/0xf0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/entry/common.c:40
+ exit_to_user_mode_prepare home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/irq-entry-common.h:225 [inline]
+ syscall_exit_to_user_mode_work home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/entry-common.h:175 [inline]
+ syscall_exit_to_user_mode home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/entry-common.h:210 [inline]
+ do_syscall_64+0x327/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f064806359d
+Code: Unable to access opcode bytes at 0x7f0648063573.
+RSP: 002b:00007f0646a65068 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+RAX: fffffffffffffe00 RBX: 00007f06482f6188 RCX: 00007f064806359d
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f06482f6188
+RBP: 00007f06482f6180 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f06482f6218 R14: 00007f0647fff5e0 R15: 00007f0646a45000
+ </TASK>
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff813ad9c3>] copy_process+0x1e63/0x72b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2127
+softirqs last  enabled at (0): [<ffffffff813ada13>] copy_process+0x1eb3/0x72b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2128
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

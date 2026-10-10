@@ -1,0 +1,205 @@
+ACPI: \_SB_.LNKA: Enabled at IRQ 10
+ast 0000:00:05.0: VGA not enabled on entry, requesting chip POST
+ACPI: \_SB_.LNKD: Enabled at IRQ 11
+audit: type=1400 audit(1773182576.209:18): avc:  denied  { getattr } for  pid=150 comm="systemd-udevd" path="/usr/lib/modules/6.18.0/modules.dep.bin" dev="sda" ino=9714089 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1773182666.866:19): avc:  denied  { checkpoint_restore } for  pid=221 comm="agetty" capability=40  scontext=system_u:system_r:getty_t:s0 tcontext=system_u:system_r:getty_t:s0 tclass=capability2 permissive=1
+watchdog: BUG: soft lockup - CPU#2 stuck for 143s! [systemd-udevd:163]
+Modules linked in: ast(+) bochs drm_shmem_helper drm_kms_helper drm virtio_pci virtio_pci_legacy_dev i2c_piix4 ata_generic virtio_pci_modern_dev drm_panel_orientation_quirks i2c_smbus pata_acpi
+irq event stamp: 2711318
+hardirqs last  enabled at (2711317): [<ffffffff85c4da1b>] irqentry_exit+0x3b/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/entry/common.c:214
+hardirqs last disabled at (2711318): [<ffffffff85c4c33f>] sysvec_apic_timer_interrupt+0xf/0x80 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052
+softirqs last  enabled at (2711078): [<ffffffff813d2e09>] softirq_handle_end home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:468 [inline]
+softirqs last  enabled at (2711078): [<ffffffff813d2e09>] handle_softirqs+0x509/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:650
+softirqs last disabled at (2711073): [<ffffffff813d3140>] __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+softirqs last disabled at (2711073): [<ffffffff813d3140>] invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+softirqs last disabled at (2711073): [<ffffffff813d3140>] __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+CPU: 2 UID: 0 PID: 163 Comm: systemd-udevd Not tainted 6.18.0 #9 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:readl home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/io.h:59 [inline]
+RIP: 0010:ioread32+0x8c/0xa0 home/wmy/Fuzzer/third_tool/linux-6.18/lib/iomap.c:99
+Code: 48 c7 c6 20 67 03 86 41 bc ff ff ff ff e8 ac fd ff ff e8 87 c5 17 ff 44 89 e0 41 5c e9 7d 04 69 03 e8 78 c5 17 ff 45 8b 24 24 <e8> 6f c5 17 ff 44 89 e0 41 5c c3 cc cc cc cc 0f 1f 44 00 00 90 90
+RSP: 0018:ffff888105cef3d0 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: 000000001e600000 RCX: ffffffff825e647b
+RDX: ffff888111b44f80 RSI: ffffffff825e64e8 RDI: 0000000000000007
+RBP: 000000001e600000 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffc90000149004 R11: 0000000000000000 R12: 0000000000000000
+R13: ffffc9000013a000 R14: 00000000aeed1a03 R15: 0000000000000000
+FS:  00007fdfb3ab78c0(0000) GS:ffff88819133f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fdfb317f37c CR3: 00000001018a0000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ __ast_read32 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/ast/ast_drv.h:253 [inline] [ast]
+ __ast_moutdwm+0x50/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/ast/ast_post.c:59 [ast]
+ ast_2500_patch_ahb+0x25/0x120 [ast]
+ ast_detect_chip home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/ast/ast_drv.c:174 [inline] [ast]
+ ast_pci_probe+0xa1a/0xb70 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/ast/ast_drv.c:351 [ast]
+ local_pci_probe+0xe7/0x1c0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:324
+ pci_call_probe home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:392 [inline]
+ __pci_device_probe home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:417 [inline]
+ pci_device_probe+0x661/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:451
+ call_driver_probe home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:581 [inline]
+ really_probe+0x266/0x850 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:659
+ __driver_probe_device+0x2c9/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:801
+ driver_probe_device+0x53/0x2a0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:831
+ __driver_attach home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:1217 [inline]
+ __driver_attach+0x1b5/0x590 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:1157
+ bus_for_each_dev+0x131/0x1c0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/bus.c:370
+ bus_add_driver+0x253/0x5d0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/bus.c:678
+ driver_register+0x167/0x4a0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/driver.c:249
+ ast_pci_driver_init+0x73/0xff0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/ast/ast_2000.c:45 [ast]
+ do_one_initcall+0xfa/0x640 home/wmy/Fuzzer/third_tool/linux-6.18/init/main.c:1283
+ do_init_module+0x280/0x860 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3039
+ load_module+0x5a7c/0x6a30 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3509
+ init_module_from_file+0xe9/0x150 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3701
+ idempotent_init_module+0x335/0x620 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3713
+ __do_sys_finit_module home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3739 [inline]
+ __se_sys_finit_module home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3723 [inline]
+ __x64_sys_finit_module+0xc3/0x130 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3723
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fdfb3f6cfc9
+Code: 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 97 8e 0d 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffe246424b8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+RAX: ffffffffffffffda RBX: 0000561aa5d7a610 RCX: 00007fdfb3f6cfc9
+RDX: 0000000000000000 RSI: 00007fdfb410ae2d RDI: 0000000000000013
+RBP: 0000000000020000 R08: 0000000000000000 R09: 0000561aa5d7b170
+R10: 0000000000000013 R11: 0000000000000246 R12: 00007fdfb410ae2d
+R13: 0000000000000000 R14: 0000561aa5d4d6e0 R15: 0000561aa5d7a610
+ </TASK>
+watchdog: BUG: soft lockup - CPU#2 stuck for 287s! [systemd-udevd:163]
+Modules linked in: ast(+) bochs drm_shmem_helper drm_kms_helper drm virtio_pci virtio_pci_legacy_dev i2c_piix4 ata_generic virtio_pci_modern_dev drm_panel_orientation_quirks i2c_smbus pata_acpi
+irq event stamp: 3042272
+hardirqs last  enabled at (3042271): [<ffffffff85c4da1b>] irqentry_exit+0x3b/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/entry/common.c:214
+hardirqs last disabled at (3042272): [<ffffffff85c4c33f>] sysvec_apic_timer_interrupt+0xf/0x80 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052
+softirqs last  enabled at (3042042): [<ffffffff813d2e09>] softirq_handle_end home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:468 [inline]
+softirqs last  enabled at (3042042): [<ffffffff813d2e09>] handle_softirqs+0x509/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:650
+softirqs last disabled at (3042037): [<ffffffff813d3140>] __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+softirqs last disabled at (3042037): [<ffffffff813d3140>] invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+softirqs last disabled at (3042037): [<ffffffff813d3140>] __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+CPU: 2 UID: 0 PID: 163 Comm: systemd-udevd Tainted: G             L      6.18.0 #9 PREEMPT(voluntary) 
+Tainted: [L]=SOFTLOCKUP
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:readl home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/io.h:59 [inline]
+RIP: 0010:ioread32+0x8c/0xa0 home/wmy/Fuzzer/third_tool/linux-6.18/lib/iomap.c:99
+Code: 48 c7 c6 20 67 03 86 41 bc ff ff ff ff e8 ac fd ff ff e8 87 c5 17 ff 44 89 e0 41 5c e9 7d 04 69 03 e8 78 c5 17 ff 45 8b 24 24 <e8> 6f c5 17 ff 44 89 e0 41 5c c3 cc cc cc cc 0f 1f 44 00 00 90 90
+RSP: 0018:ffff888105cef3d0 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: 000000001e600000 RCX: ffffffff825e647b
+RDX: ffff888111b44f80 RSI: ffffffff825e64e8 RDI: 0000000000000007
+RBP: 000000001e600000 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffc90000149004 R11: 0000000000000000 R12: 0000000000000000
+R13: ffffc9000013a000 R14: 00000000aeed1a03 R15: 0000000000000000
+FS:  00007fdfb3ab78c0(0000) GS:ffff88819133f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fdfb317f37c CR3: 00000001018a0000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ __ast_read32 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/ast/ast_drv.h:253 [inline] [ast]
+ __ast_moutdwm+0x50/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/ast/ast_post.c:59 [ast]
+ ast_2500_patch_ahb+0x25/0x120 [ast]
+ ast_detect_chip home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/ast/ast_drv.c:174 [inline] [ast]
+ ast_pci_probe+0xa1a/0xb70 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/ast/ast_drv.c:351 [ast]
+ local_pci_probe+0xe7/0x1c0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:324
+ pci_call_probe home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:392 [inline]
+ __pci_device_probe home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:417 [inline]
+ pci_device_probe+0x661/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:451
+ call_driver_probe home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:581 [inline]
+ really_probe+0x266/0x850 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:659
+ __driver_probe_device+0x2c9/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:801
+ driver_probe_device+0x53/0x2a0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:831
+ __driver_attach home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:1217 [inline]
+ __driver_attach+0x1b5/0x590 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:1157
+ bus_for_each_dev+0x131/0x1c0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/bus.c:370
+ bus_add_driver+0x253/0x5d0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/bus.c:678
+ driver_register+0x167/0x4a0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/driver.c:249
+ ast_pci_driver_init+0x73/0xff0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/ast/ast_2000.c:45 [ast]
+ do_one_initcall+0xfa/0x640 home/wmy/Fuzzer/third_tool/linux-6.18/init/main.c:1283
+ do_init_module+0x280/0x860 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3039
+ load_module+0x5a7c/0x6a30 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3509
+ init_module_from_file+0xe9/0x150 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3701
+ idempotent_init_module+0x335/0x620 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3713
+ __do_sys_finit_module home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3739 [inline]
+ __se_sys_finit_module home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3723 [inline]
+ __x64_sys_finit_module+0xc3/0x130 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3723
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fdfb3f6cfc9
+Code: 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 97 8e 0d 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffe246424b8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+RAX: ffffffffffffffda RBX: 0000561aa5d7a610 RCX: 00007fdfb3f6cfc9
+RDX: 0000000000000000 RSI: 00007fdfb410ae2d RDI: 0000000000000013
+RBP: 0000000000020000 R08: 0000000000000000 R09: 0000561aa5d7b170
+R10: 0000000000000013 R11: 0000000000000246 R12: 00007fdfb410ae2d
+R13: 0000000000000000 R14: 0000561aa5d4d6e0 R15: 0000561aa5d7a610
+ </TASK>
+watchdog: BUG: soft lockup - CPU#2 stuck for 430s! [systemd-udevd:163]
+Modules linked in: ast(+) bochs drm_shmem_helper drm_kms_helper drm virtio_pci virtio_pci_legacy_dev i2c_piix4 ata_generic virtio_pci_modern_dev drm_panel_orientation_quirks i2c_smbus pata_acpi
+irq event stamp: 3371744
+hardirqs last  enabled at (3371743): [<ffffffff85c4da1b>] irqentry_exit+0x3b/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/entry/common.c:214
+hardirqs last disabled at (3371744): [<ffffffff85c4c33f>] sysvec_apic_timer_interrupt+0xf/0x80 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052
+softirqs last  enabled at (3371584): [<ffffffff813d2e09>] softirq_handle_end home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:468 [inline]
+softirqs last  enabled at (3371584): [<ffffffff813d2e09>] handle_softirqs+0x509/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:650
+softirqs last disabled at (3371563): [<ffffffff813d3140>] __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+softirqs last disabled at (3371563): [<ffffffff813d3140>] invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+softirqs last disabled at (3371563): [<ffffffff813d3140>] __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+CPU: 2 UID: 0 PID: 163 Comm: systemd-udevd Tainted: G             L      6.18.0 #9 PREEMPT(voluntary) 
+Tainted: [L]=SOFTLOCKUP
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:readl home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/io.h:59 [inline]
+RIP: 0010:ioread32+0x8c/0xa0 home/wmy/Fuzzer/third_tool/linux-6.18/lib/iomap.c:99
+Code: 48 c7 c6 20 67 03 86 41 bc ff ff ff ff e8 ac fd ff ff e8 87 c5 17 ff 44 89 e0 41 5c e9 7d 04 69 03 e8 78 c5 17 ff 45 8b 24 24 <e8> 6f c5 17 ff 44 89 e0 41 5c c3 cc cc cc cc 0f 1f 44 00 00 90 90
+RSP: 0018:ffff888105cef3d0 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: 000000001e600000 RCX: ffffffff825e647b
+RDX: ffff888111b44f80 RSI: ffffffff825e64e8 RDI: 0000000000000007
+RBP: 000000001e600000 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffc90000149004 R11: 0000000000000000 R12: 0000000000000000
+R13: ffffc9000013a000 R14: 00000000aeed1a03 R15: 0000000000000000
+FS:  00007fdfb3ab78c0(0000) GS:ffff88819133f000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fdfb317f37c CR3: 00000001018a0000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ __ast_read32 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/ast/ast_drv.h:253 [inline] [ast]
+ __ast_moutdwm+0x50/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/ast/ast_post.c:59 [ast]
+ ast_2500_patch_ahb+0x25/0x120 [ast]
+ ast_detect_chip home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/ast/ast_drv.c:174 [inline] [ast]
+ ast_pci_probe+0xa1a/0xb70 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/ast/ast_drv.c:351 [ast]
+ local_pci_probe+0xe7/0x1c0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:324
+ pci_call_probe home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:392 [inline]
+ __pci_device_probe home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:417 [inline]
+ pci_device_probe+0x661/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:451
+ call_driver_probe home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:581 [inline]
+ really_probe+0x266/0x850 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:659
+ __driver_probe_device+0x2c9/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:801
+ driver_probe_device+0x53/0x2a0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:831
+ __driver_attach home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:1217 [inline]
+ __driver_attach+0x1b5/0x590 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:1157
+ bus_for_each_dev+0x131/0x1c0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/bus.c:370
+ bus_add_driver+0x253/0x5d0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/bus.c:678
+ driver_register+0x167/0x4a0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/driver.c:249
+ ast_pci_driver_init+0x73/0xff0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/ast/ast_2000.c:45 [ast]
+ do_one_initcall+0xfa/0x640 home/wmy/Fuzzer/third_tool/linux-6.18/init/main.c:1283
+ do_init_module+0x280/0x860 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3039
+ load_module+0x5a7c/0x6a30 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3509
+ init_module_from_file+0xe9/0x150 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3701
+ idempotent_init_module+0x335/0x620 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3713
+ __do_sys_finit_module home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3739 [inline]
+ __se_sys_finit_module home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3723 [inline]
+ __x64_sys_finit_module+0xc3/0x130 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3723
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fdfb3f6cfc9
+Code: 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 97 8e 0d 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffe246424b8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+RAX: ffffffffffffffda RBX: 0000561aa5d7a610 RCX: 00007fdfb3f6cfc9
+RDX: 0000000000000000 RSI: 00007fdfb410ae2d RDI: 0000000000000013
+RBP: 0000000000020000 R08: 0000000000000000 R09: 0000561aa5d7b170
+R10: 0000000000000013 R11: 0000000000000246 R12: 00007fdfb410ae2d
+R13: 0000000000000000 R14: 0000561aa5d4d6e0 R15: 0000561aa5d7a610
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

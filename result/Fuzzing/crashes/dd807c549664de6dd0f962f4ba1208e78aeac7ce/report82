@@ -1,0 +1,195 @@
+RBP: 00007fcf340f7010 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+R13: 00007fcf35946038 R14: 00007fcf35945fa0 R15: 00007fcf340d7000
+ </TASK>
+INFO: task kworker/1:0:24 blocked for more than 143 seconds.
+      Tainted: G        W        N  7.1.0+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:kworker/1:0     state:D stack:27624 pid:24    tgid:24    ppid:2      task_flags:0x4208060 flags:0x00080000
+Workqueue: events output_poll_execute [drm_kms_helper]
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5504 [inline]
+ __schedule+0x10cf/0x47a0 kernel/sched/core.c:7228
+ __schedule_loop kernel/sched/core.c:7307 [inline]
+ rt_mutex_schedule+0xa0/0xf0 kernel/sched/core.c:7603
+ rt_mutex_slowlock_block.constprop.0+0x77/0x7e0 kernel/locking/rtmutex.c:1670
+ __rt_mutex_slowlock kernel/locking/rtmutex.c:1747 [inline]
+ __rt_mutex_slowlock_locked.constprop.0+0x1c8/0x6e0 kernel/locking/rtmutex.c:1787
+ rt_mutex_slowlock.constprop.0+0x92/0x110 kernel/locking/rtmutex.c:1827
+ __rt_mutex_lock kernel/locking/rtmutex.c:1842 [inline]
+ __rt_mutex_lock_common kernel/locking/rtmutex_api.c:50 [inline]
+ rt_mutex_lock_nested+0xd8/0x110 kernel/locking/rtmutex_api.c:71
+ i2c_lock_bus include/linux/i2c.h:809 [inline]
+ __i2c_lock_bus_helper drivers/i2c/i2c-core.h:46 [inline]
+ i2c_transfer+0x1d0/0x390 drivers/i2c/i2c-core-base.c:2339
+ drm_do_probe_ddc_edid+0x177/0x270 drivers/gpu/drm/drm_edid.c:2205
+ drm_probe_ddc+0x75/0xb0 drivers/gpu/drm/drm_edid.c:2613
+ drm_connector_helper_detect_from_ddc+0x51/0x90 drivers/gpu/drm/drm_probe_helper.c:1327 [drm_kms_helper]
+ ast_vga_connector_helper_detect_ctx+0x29/0xc0 drivers/gpu/drm/ast/ast_vga.c:54 [ast]
+ detect_connector_status+0x84/0x130 drivers/gpu/drm/drm_probe_helper.c:349 [drm_kms_helper]
+ drm_helper_probe_detect_ctx+0x103/0x230 drivers/gpu/drm/drm_probe_helper.c:367 [drm_kms_helper]
+ drm_helper_probe_detect drivers/gpu/drm/drm_probe_helper.c:405 [inline] [drm_kms_helper]
+ output_poll_execute+0x39c/0x840 drivers/gpu/drm/drm_probe_helper.c:807 [drm_kms_helper]
+ process_one_work+0x920/0x1a80 kernel/workqueue.c:3314
+ process_scheduled_works kernel/workqueue.c:3397 [inline]
+ worker_thread+0x698/0xeb0 kernel/workqueue.c:3478
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x667/0xa80 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+INFO: lockdep is turned off.
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 41 Comm: khungtaskd Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xdb/0x140 lib/dump_stack.c:120
+ nmi_cpu_backtrace+0x1fd/0x270 lib/nmi_backtrace.c:113
+ nmi_trigger_cpumask_backtrace+0x22c/0x270 lib/nmi_backtrace.c:62
+ trigger_all_cpu_backtrace include/linux/nmi.h:162 [inline]
+ __sys_info lib/sys_info.c:157 [inline]
+ sys_info+0x133/0x180 lib/sys_info.c:165
+ check_hung_uninterruptible_tasks kernel/hung_task.c:353 [inline]
+ watchdog+0x105c/0x1560 kernel/hung_task.c:561
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x667/0xa80 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+Sending NMI from CPU 3 to CPUs 0-2:
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 14 Comm: ksoftirqd/0 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:rcu_preempt_read_exit kernel/rcu/tree_plugin.h:396 [inline]
+RIP: 0010:__rcu_read_unlock+0x40/0x5e0 kernel/rcu/tree_plugin.h:435
+Code: a6 08 53 48 8d bd 7c 04 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 0f b6 14 02 48 89 f8 83 e0 07 83 c0 03 38 d0 <7c> 08 84 d2 0f 85 7d 02 00 00 65 4c 8b 25 86 a9 a6 08 49 8d bc 24
+RSP: 0018:ffff888100cff798 EFLAGS: 00000202
+RAX: 0000000000000007 RBX: ffff888100cffda8 RCX: ffff888100d00001
+RDX: 0000000000000000 RSI: ffffffff81377164 RDI: ffff888100cdbb7c
+RBP: ffff888100cdb700 R08: ffffffff889de60a R09: ffffffff889de60e
+R10: ffff888100cff880 R11: ffff888100cffda0 R12: ffff888100cff801
+R13: ffff888100cff8a0 R14: ffff888100cffda8 R15: ffff888100cff840
+FS:  0000000000000000(0000) GS:ffff8881d07ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000563b05734688 CR3: 000000010dd6e000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ rcu_read_unlock include/linux/rcupdate.h:873 [inline]
+ class_rcu_destructor include/linux/rcupdate.h:1183 [inline]
+ unwind_next_frame+0x4ce/0x22c0 arch/x86/kernel/unwind_orc.c:495
+ arch_stack_walk+0x8b/0xf0 arch/x86/kernel/stacktrace.c:25
+ stack_trace_save+0x93/0xd0 kernel/stacktrace.c:122
+ kasan_save_stack+0x24/0x50 mm/kasan/common.c:57
+ kasan_record_aux_stack+0x8c/0xa0 mm/kasan/generic.c:556
+ __call_rcu_common.constprop.0+0x75/0x9d0 kernel/rcu/tree.c:3159
+ kmemleak_free_recursive include/linux/kmemleak.h:50 [inline]
+ slab_free_hook mm/slub.c:2625 [inline]
+ slab_free mm/slub.c:6310 [inline]
+ kfree+0x3e2/0x5c0 mm/slub.c:6625
+ slab_free_after_rcu_debug+0x6c/0x220 mm/slub.c:6359
+ rcu_do_batch kernel/rcu/tree.c:2645 [inline]
+ rcu_core+0x570/0x1550 kernel/rcu/tree.c:2897
+ handle_softirqs+0x1bb/0x860 kernel/softirq.c:622
+ run_ksoftirqd kernel/softirq.c:1076 [inline]
+ run_ksoftirqd+0x35/0x60 kernel/softirq.c:1068
+ smpboot_thread_fn+0x424/0x9e0 kernel/smpboot.c:160
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x667/0xa80 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 2967 Comm: syz.1.358 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:io_serial_out+0x72/0x90 drivers/tty/serial/8250/8250_port.c:408
+Code: 0f b6 8d f9 00 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 d3 e3 80 3c 02 00 75 1a 66 03 5d 40 44 89 e0 89 da ee <5b> 5d 41 5c c3 cc cc cc cc e8 90 36 e6 fe eb c2 e8 19 37 e6 fe eb
+RSP: 0018:ffff888123617288 EFLAGS: 00000002
+RAX: 0000000000000037 RBX: 00000000000003f8 RCX: 0000000000000000
+RDX: 00000000000003f8 RSI: ffffffff82d62c0a RDI: ffffffff8af6a660
+RBP: ffffffff8af6a620 R08: 0000000000000000 R09: ffffed10208ae046
+R10: 0000000000000037 R11: 74735f706d756420 R12: 0000000000000037
+R13: 0000000000000010 R14: ffffffff8af6a620 R15: ffffffff82d62bf0
+FS:  00007f2a9b6a7640(0000) GS:ffff8881d08ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f66efd616e0 CR3: 000000012d9ae000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ serial_port_out include/linux/serial_core.h:811 [inline]
+ serial8250_console_putchar drivers/tty/serial/8250/8250_port.c:3220 [inline]
+ serial8250_console_fifo_write drivers/tty/serial/8250/8250_port.c:3282 [inline]
+ serial8250_console_write+0xf54/0x1850 drivers/tty/serial/8250/8250_port.c:3360
+ console_emit_next_record kernel/printk/printk.c:3183 [inline]
+ console_flush_one_record+0x778/0xb60 kernel/printk/printk.c:3269
+ console_flush_all kernel/printk/printk.c:3343 [inline]
+ __console_flush_and_unlock kernel/printk/printk.c:3373 [inline]
+ console_unlock+0xec/0x240 kernel/printk/printk.c:3413
+ vprintk_emit+0x3fa/0x630 kernel/printk/printk.c:2479
+ dev_vprintk_emit drivers/base/core.c:4996 [inline]
+ dev_printk_emit+0xe6/0x130 drivers/base/core.c:5007
+ __dev_printk+0xfd/0x270 drivers/base/core.c:5019
+ _dev_printk+0xd9/0x120 drivers/base/core.c:5036
+ i2c_outb+0x3ee/0x520 drivers/i2c/algos/i2c-algo-bit.c:165
+ try_address+0x106/0x2d0 drivers/i2c/algos/i2c-algo-bit.c:326
+ bit_doAddress drivers/i2c/algos/i2c-algo-bit.c:512 [inline]
+ bit_xfer+0xd85/0x1510 drivers/i2c/algos/i2c-algo-bit.c:552
+ __i2c_transfer+0x698/0x2010 drivers/i2c/i2c-core-base.c:2287
+ i2c_smbus_xfer_emulated+0x1d6/0x1210 drivers/i2c/i2c-core-smbus.c:471
+ __i2c_smbus_xfer drivers/i2c/i2c-core-smbus.c:621 [inline]
+ __i2c_smbus_xfer+0x2c1/0xf30 drivers/i2c/i2c-core-smbus.c:555
+ i2c_smbus_xfer drivers/i2c/i2c-core-smbus.c:547 [inline]
+ i2c_smbus_xfer+0x20c/0x3d0 drivers/i2c/i2c-core-smbus.c:537
+ i2cdev_ioctl_smbus+0x2db/0x830 drivers/i2c/i2c-dev.c:389
+ i2cdev_ioctl+0x3a9/0x810 drivers/i2c/i2c-dev.c:478
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f2a9cc6359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f2a9b6a6f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f2a9cef5fa0 RCX: 00007f2a9cc6359d
+RDX: 0000200000000100 RSI: 0000000000000720 RDI: 0000000000000003
+RBP: 00007f2a9cd02b08 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f2a9cef6038 R14: 00007f2a9cef5fa0 R15: 00007f2a9b687000
+ </TASK>
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 0 Comm: swapper/1 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:pv_native_safe_halt+0x1e/0x30 arch/x86/kernel/paravirt.c:64
+Code: 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 0f 1f 44 00 00 eb 0c 0f 1f 44 00 00 0f 00 2d 89 8b 12 00 0f 1f 44 00 00 fb f4 <e9> 7d ff 02 00 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 90 90 90 90
+RSP: 0018:ffff888100d3fe70 EFLAGS: 00000246
+RAX: ffff8881d082c000 RBX: ffff888100d10000 RCX: ffffffff8612ee24
+RDX: ffffed102b51662b RSI: 0000000000000004 RDI: ffffffff814fcf63
+RBP: ffffed10201a2000 R08: 0000000000000000 R09: ffffed102b51662a
+R10: ffff88815a8b3153 R11: 0000000000000000 R12: dffffc0000000000
+R13: 1ffff110201a7fd2 R14: 0000000000000000 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d082c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f66f006f770 CR3: 0000000111cd6000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ arch_safe_halt arch/x86/include/asm/paravirt.h:62 [inline]
+ default_idle+0xe/0x20 arch/x86/kernel/process.c:767
+ default_idle_call+0x6c/0xb0 kernel/sched/idle.c:122
+ cpuidle_idle_call kernel/sched/idle.c:199 [inline]
+ do_idle+0x363/0x490 kernel/sched/idle.c:355
+ cpu_startup_entry+0x54/0x60 kernel/sched/idle.c:454
+ start_secondary+0x1c2/0x220 arch/x86/kernel/smpboot.c:312
+ common_startup_64+0x12c/0x148
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

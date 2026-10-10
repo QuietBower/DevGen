@@ -1,0 +1,683 @@
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 100149 Comm: syz.1.22188 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:console_trylock_spinning kernel/printk/printk.c:2028 [inline]
+RIP: 0010:vprintk_emit+0x519/0x6b0 kernel/printk/printk.c:2478
+Code: f6 48 c7 c7 80 d1 4d 8e e8 c4 ef fc ff 0f b6 2d 7d f8 4b 19 31 ff 89 ee e8 a4 5f 21 00 5a 40 84 ed 74 1c e8 89 65 21 00 f3 90 <0f> b6 2d 60 f8 4b 19 31 ff 89 ee e8 87 5f 21 00 40 84 ed 75 e4 e8
+RSP: 0018:ffffc90000660a58 EFLAGS: 00000046
+RAX: 0000000000010004 RBX: 1ffff920000cc14c RCX: ffffffff819cd469
+RDX: ffff888022ab9d40 RSI: ffffffff819cd457 RDI: 0000000000000001
+RBP: 0000000000000001 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 000000000000000e R12: 0000000000000035
+R13: 0000000000000000 R14: ffff888022a53a80 R15: ffffc90000660b18
+FS:  00007f4ec6247640(0000) GS:ffff8880d6b4b000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000000110c281732 CR3: 00000000250dc000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ _printk+0xbe/0xf0 kernel/printk/printk.c:2504
+ print_other_cpu_stall kernel/rcu/tree_stall.h:656 [inline]
+ check_cpu_stall kernel/rcu/tree_stall.h:856 [inline]
+ rcu_pending kernel/rcu/tree.c:3679 [inline]
+ rcu_sched_clock_irq+0x1404/0x2eb0 kernel/rcu/tree.c:2716
+ update_process_times+0x128/0x270 kernel/time/timer.c:2474
+ tick_sched_handle kernel/time/tick-sched.c:298 [inline]
+ tick_nohz_handler+0x50f/0x730 kernel/time/tick-sched.c:319
+ __run_hrtimer kernel/time/hrtimer.c:1785 [inline]
+ __hrtimer_run_queues+0x612/0xbb0 kernel/time/hrtimer.c:1849
+ hrtimer_interrupt+0x3c6/0x8c0 kernel/time/hrtimer.c:1912
+ local_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1045 [inline]
+ __sysvec_apic_timer_interrupt+0x10d/0x490 arch/x86/kernel/apic/apic.c:1062
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1056 [inline]
+ sysvec_apic_timer_interrupt+0xa3/0xc0 arch/x86/kernel/apic/apic.c:1056
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:697
+RIP: 0010:csd_lock_wait kernel/smp.c:342 [inline]
+RIP: 0010:smp_call_function_many_cond+0x811/0x1610 kernel/smp.c:877
+Code: 48 b9 00 00 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 01 65 0c 00 f3 90 <41> 0f b6 06 41 38 c4 7c 08 84 c0 0f 85 93 0b 00 00 44 8b 7b 08 31
+RSP: 0018:ffffc90002bc75d0 EFLAGS: 00000246
+RAX: 0000000000080000 RBX: ffff88806a842cc0 RCX: ffffc90025423000
+RDX: 0000000000080000 RSI: ffffffff81b1d4df RDI: 0000000000000005
+RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 000000000000001e R12: 0000000000000003
+R13: ffff88806a93c580 R14: ffffed100d508599 R15: 0000000000000001
+ on_each_cpu_cond_mask+0x40/0x90 kernel/smp.c:1043
+ on_each_cpu include/linux/smp.h:72 [inline]
+ kernel_tlb_flush_range arch/x86/mm/tlb.c:1546 [inline]
+ flush_tlb_kernel_range+0x12d/0x220 arch/x86/mm/tlb.c:1561
+ pmd_free_pte_page+0xfe/0x3c0 arch/x86/mm/pgtable.c:781
+ vmap_try_huge_pmd mm/vmalloc.c:161 [inline]
+ vmap_pmd_range mm/vmalloc.c:181 [inline]
+ vmap_pud_range mm/vmalloc.c:239 [inline]
+ vmap_p4d_range mm/vmalloc.c:291 [inline]
+ vmap_range_noflush+0x8fb/0x1530 mm/vmalloc.c:320
+ __vmap_pages_range_noflush+0x115/0x270 mm/vmalloc.c:673
+ vmap_pages_range_noflush mm/vmalloc.c:694 [inline]
+ __vmap_pages_range mm/vmalloc.c:703 [inline]
+ __vmalloc_area_node mm/vmalloc.c:3914 [inline]
+ __vmalloc_node_range_noprof+0x9cb/0x15c0 mm/vmalloc.c:4064
+ __kvmalloc_node_noprof+0x451/0x9f0 mm/slub.c:6780
+ drm_property_create_blob.part.0+0x34/0x320 drivers/gpu/drm/drm_property.c:565
+ drm_property_create_blob drivers/gpu/drm/drm_property.c:562 [inline]
+ drm_mode_createblob_ioctl+0x139/0x490 drivers/gpu/drm/drm_property.c:863
+ drm_ioctl_kernel+0x1ed/0x3e0 drivers/gpu/drm/drm_ioctl.c:804
+ drm_ioctl+0x574/0xb90 drivers/gpu/drm/drm_ioctl.c:901
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x18f/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11b/0xf80 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f4ec53b359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f4ec6246f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f4ec5646090 RCX: 00007f4ec53b359d
+RDX: 0000200000000180 RSI: 00000000c01064bd RDI: 0000000000000007
+RBP: 00007f4ec5452ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f4ec5646128 R14: 00007f4ec5646090 R15: 00007f4ec6227000
+ </TASK>
+rcu: 	0-...!: (1 GPs behind) idle=e0d4/1/0x4000000000000000 softirq=235317/235319 fqs=3
+rcu: 	Tasks blocked on level-0 rcu_node (CPUs 0-3): P100150/1:b..l
+rcu: 	(detected by 2, t=17471 jiffies, g=311425, q=262 ncpus=4)
+Sending NMI from CPU 2 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 9899 Comm: sshd Tainted: G             L      7.0.0 #2 PREEMPT(full) 
+Tainted: [L]=SOFTLOCKUP
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:console_trylock_spinning kernel/printk/printk.c:2028 [inline]
+RIP: 0010:vprintk_emit+0x519/0x6b0 kernel/printk/printk.c:2478
+Code: f6 48 c7 c7 80 d1 4d 8e e8 c4 ef fc ff 0f b6 2d 7d f8 4b 19 31 ff 89 ee e8 a4 5f 21 00 5a 40 84 ed 74 1c e8 89 65 21 00 f3 90 <0f> b6 2d 60 f8 4b 19 31 ff 89 ee e8 87 5f 21 00 40 84 ed 75 e4 e8
+RSP: 0018:ffffc90000007b40 EFLAGS: 00000046
+RAX: 0000000000000000 RBX: 1ffff92000000f69 RCX: ffffffff819cd469
+RDX: ffff888022a53a80 RSI: ffffffff819cd457 RDI: 0000000000000001
+RBP: 0000000000000001 R08: ffffffff95e5d650 R09: 0000000000000014
+R10: 0000000000000001 R11: 000000000000000e R12: 0000000000000068
+R13: 0000000000000200 R14: ffff888022ab9d40 R15: ffffc90000007c00
+FS:  00007f42e386b900(0000) GS:ffff8880d6a4b000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe66d3fe0f4 CR3: 0000000109ef2000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ _printk+0xbe/0xf0 kernel/printk/printk.c:2504
+ clocksource_watchdog+0xddc/0x1000 kernel/time/clocksource.c:508
+ call_timer_fn+0x1a5/0x670 kernel/time/timer.c:1748
+ expire_timers kernel/time/timer.c:1799 [inline]
+ __run_timers+0x6d2/0xb20 kernel/time/timer.c:2373
+ __run_timer_base kernel/time/timer.c:2385 [inline]
+ __run_timer_base kernel/time/timer.c:2377 [inline]
+ run_timer_base+0xc5/0x120 kernel/time/timer.c:2394
+ run_timer_softirq+0x10/0x40 kernel/time/timer.c:2402
+ handle_softirqs+0x1d3/0x9b0 kernel/softirq.c:622
+ do_softirq kernel/softirq.c:523 [inline]
+ do_softirq+0xac/0xe0 kernel/softirq.c:510
+ </IRQ>
+ <TASK>
+ __local_bh_enable_ip+0x100/0x120 kernel/softirq.c:450
+ local_bh_enable include/linux/bottom_half.h:33 [inline]
+ rcu_read_unlock_bh include/linux/rcupdate.h:924 [inline]
+ __dev_queue_xmit+0x108a/0x43b0 net/core/dev.c:4890
+ dev_queue_xmit include/linux/netdevice.h:3385 [inline]
+ neigh_hh_output include/net/neighbour.h:540 [inline]
+ neigh_output include/net/neighbour.h:554 [inline]
+ ip_finish_output2+0xc52/0x1f80 net/ipv4/ip_output.c:237
+ __ip_finish_output.part.0+0x1bb/0x350 net/ipv4/ip_output.c:315
+ __ip_finish_output net/ipv4/ip_output.c:303 [inline]
+ ip_finish_output net/ipv4/ip_output.c:325 [inline]
+ NF_HOOK_COND include/linux/netfilter.h:307 [inline]
+ ip_output+0x376/0x860 net/ipv4/ip_output.c:438
+ dst_output include/net/dst.h:470 [inline]
+ ip_local_out+0x1b4/0x200 net/ipv4/ip_output.c:131
+ __ip_queue_xmit+0x877/0x1e70 net/ipv4/ip_output.c:534
+ __tcp_transmit_skb+0x3281/0x5110 net/ipv4/tcp_output.c:1693
+ tcp_transmit_skb net/ipv4/tcp_output.c:1711 [inline]
+ tcp_write_xmit+0x1879/0x7db0 net/ipv4/tcp_output.c:3064
+ __tcp_push_pending_frames+0xb0/0x3c0 net/ipv4/tcp_output.c:3247
+ tcp_push+0x229/0x700 net/ipv4/tcp.c:783
+ tcp_sendmsg_locked+0x2bf6/0x3d40 net/ipv4/tcp.c:1428
+ tcp_sendmsg+0x2f/0x50 net/ipv4/tcp.c:1465
+ inet_sendmsg+0xb9/0x150 net/ipv4/af_inet.c:865
+ sock_sendmsg_nosec net/socket.c:727 [inline]
+ __sock_sendmsg net/socket.c:742 [inline]
+ sock_write_iter+0x4ed/0x590 net/socket.c:1195
+ new_sync_write fs/read_write.c:595 [inline]
+ vfs_write+0xc0d/0x1170 fs/read_write.c:688
+ ksys_write+0x1ef/0x240 fs/read_write.c:740
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11b/0xf80 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f42e3d17513
+Code: 8b 15 81 29 0e 00 f7 d8 64 89 02 48 c7 c0 ff ff ff ff eb b7 0f 1f 00 64 8b 04 25 18 00 00 00 85 c0 75 14 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 55 c3 0f 1f 40 00 48 83 ec 28 48 89 54 24 18
+RSP: 002b:00007ffc9db37ea8 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 000000000000203c RCX: 00007f42e3d17513
+RDX: 000000000000203c RSI: 000055e912f66990 RDI: 0000000000000004
+RBP: 000055e912f29a70 R08: 0000031d00f1337a R09: 00007f42e43f2000
+R10: 0000000000000007 R11: 0000000000000246 R12: 000055e8ffadd768
+R13: 0000000000000000 R14: 0000000000000004 R15: 000055e8ffa92ac0
+ </TASK>
+task:syz.1.22188     state:R  running task     stack:26904 pid:100150 tgid:100145 ppid:10749  task_flags:0x400140 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x1006/0x5f00 kernel/sched/core.c:6911
+ preempt_schedule_irq+0x51/0x90 kernel/sched/core.c:7238
+ irqentry_exit+0x1e4/0x740 kernel/entry/common.c:239
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:697
+RIP: 0010:deref_stack_reg arch/x86/kernel/unwind_orc.c:419 [inline]
+RIP: 0010:unwind_next_frame+0x15c8/0x20c0 arch/x86/kernel/unwind_orc.c:663
+Code: 0f 85 c5 09 00 00 83 e0 07 38 c2 40 0f 9e c6 84 d2 0f 95 c0 40 84 c6 0f 85 ae 09 00 00 48 0f bf 69 02 ba 08 00 00 00 4c 89 ef <4d> 8d 7d 34 4c 01 f5 48 89 ee e8 29 e8 ff ff 84 c0 0f 84 5f ed ff
+RSP: 0018:ffffc90002be71b8 EFLAGS: 00000246
+RAX: 0000000000000000 RBX: 0000000000000001 RCX: ffffffff918fe14e
+RDX: 0000000000000008 RSI: 0000000000000001 RDI: ffffc90002be7228
+RBP: ffffffffffffffd0 R08: 0000000000000001 R09: ffffc90002be7ed0
+R10: 0000000000045218 R11: 00000000000a7865 R12: ffffc90002be7278
+R13: ffffc90002be7228 R14: ffffc90002be7ed8 R15: ffffc90002be725c
+ arch_stack_walk+0x86/0xf0 arch/x86/kernel/stacktrace.c:25
+ stack_trace_save+0x8e/0xc0 kernel/stacktrace.c:122
+ save_stack+0x151/0x1e0 mm/page_owner.c:165
+ __set_page_owner+0x8f/0x570 mm/page_owner.c:341
+ set_page_owner include/linux/page_owner.h:32 [inline]
+ post_alloc_hook+0x134/0x160 mm/page_alloc.c:1889
+ prep_new_page mm/page_alloc.c:1897 [inline]
+ get_page_from_freelist+0xde8/0x2ae0 mm/page_alloc.c:3962
+ __alloc_frozen_pages_noprof+0x264/0x27e0 mm/page_alloc.c:5250
+ alloc_pages_mpol+0x1f1/0x550 mm/mempolicy.c:2490
+ alloc_frozen_pages_noprof mm/mempolicy.c:2561 [inline]
+ alloc_pages_noprof+0x132/0x390 mm/mempolicy.c:2581
+ vm_area_alloc_pages mm/vmalloc.c:3731 [inline]
+ __vmalloc_area_node mm/vmalloc.c:3876 [inline]
+ __vmalloc_node_range_noprof+0x7b2/0x15c0 mm/vmalloc.c:4064
+ __kvmalloc_node_noprof+0x451/0x9f0 mm/slub.c:6780
+ drm_property_create_blob.part.0+0x34/0x320 drivers/gpu/drm/drm_property.c:565
+ drm_property_create_blob drivers/gpu/drm/drm_property.c:562 [inline]
+ drm_mode_createblob_ioctl+0x139/0x490 drivers/gpu/drm/drm_property.c:863
+ drm_ioctl_kernel+0x1ed/0x3e0 drivers/gpu/drm/drm_ioctl.c:804
+ drm_ioctl+0x574/0xb90 drivers/gpu/drm/drm_ioctl.c:901
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x18f/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11b/0xf80 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f4ec53b359d
+RSP: 002b:00007f4ec6225f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f4ec5646180 RCX: 00007f4ec53b359d
+RDX: 0000200000000180 RSI: 00000000c01064bd RDI: 0000000000000006
+RBP: 00007f4ec5452ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f4ec5646218 R14: 00007f4ec5646180 R15: 00007f4ec6206000
+ </TASK>
+rcu: rcu_preempt kthread starved for 17281 jiffies! g311425 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=2
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:R  running task     stack:28920 pid:16    tgid:16    ppid:2      task_flags:0x208040 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x1006/0x5f00 kernel/sched/core.c:6911
+ __schedule_loop kernel/sched/core.c:6993 [inline]
+ schedule+0xe7/0x3a0 kernel/sched/core.c:7008
+ schedule_timeout+0x113/0x280 kernel/time/sleep_timeout.c:99
+ rcu_gp_fqs_loop+0x18c/0x7e0 kernel/rcu/tree.c:2095
+ rcu_gp_kthread+0x1aa/0x260 kernel/rcu/tree.c:2297
+ kthread+0x38d/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0xb32/0xde0 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+CPU: 2 UID: 0 PID: 100149 Comm: syz.1.22188 Tainted: G             L      7.0.0 #2 PREEMPT(full) 
+Tainted: [L]=SOFTLOCKUP
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:csd_lock_wait kernel/smp.c:342 [inline]
+RIP: 0010:smp_call_function_many_cond+0x811/0x1610 kernel/smp.c:877
+Code: 48 b9 00 00 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 01 65 0c 00 f3 90 <41> 0f b6 06 41 38 c4 7c 08 84 c0 0f 85 93 0b 00 00 44 8b 7b 08 31
+RSP: 0018:ffffc90002bc75d0 EFLAGS: 00000246
+RAX: 0000000000080000 RBX: ffff88806a842cc0 RCX: ffffc90025423000
+RDX: 0000000000080000 RSI: ffffffff81b1d4df RDI: 0000000000000005
+RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 000000000000001e R12: 0000000000000003
+R13: ffff88806a93c580 R14: ffffed100d508599 R15: 0000000000000001
+FS:  00007f4ec6247640(0000) GS:ffff8880d6b4b000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000000110c281732 CR3: 00000000250dc000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ on_each_cpu_cond_mask+0x40/0x90 kernel/smp.c:1043
+ on_each_cpu include/linux/smp.h:72 [inline]
+ kernel_tlb_flush_range arch/x86/mm/tlb.c:1546 [inline]
+ flush_tlb_kernel_range+0x12d/0x220 arch/x86/mm/tlb.c:1561
+ pmd_free_pte_page+0xfe/0x3c0 arch/x86/mm/pgtable.c:781
+ vmap_try_huge_pmd mm/vmalloc.c:161 [inline]
+ vmap_pmd_range mm/vmalloc.c:181 [inline]
+ vmap_pud_range mm/vmalloc.c:239 [inline]
+ vmap_p4d_range mm/vmalloc.c:291 [inline]
+ vmap_range_noflush+0x8fb/0x1530 mm/vmalloc.c:320
+ __vmap_pages_range_noflush+0x115/0x270 mm/vmalloc.c:673
+ vmap_pages_range_noflush mm/vmalloc.c:694 [inline]
+ __vmap_pages_range mm/vmalloc.c:703 [inline]
+ __vmalloc_area_node mm/vmalloc.c:3914 [inline]
+ __vmalloc_node_range_noprof+0x9cb/0x15c0 mm/vmalloc.c:4064
+ __kvmalloc_node_noprof+0x451/0x9f0 mm/slub.c:6780
+ drm_property_create_blob.part.0+0x34/0x320 drivers/gpu/drm/drm_property.c:565
+ drm_property_create_blob drivers/gpu/drm/drm_property.c:562 [inline]
+ drm_mode_createblob_ioctl+0x139/0x490 drivers/gpu/drm/drm_property.c:863
+ drm_ioctl_kernel+0x1ed/0x3e0 drivers/gpu/drm/drm_ioctl.c:804
+ drm_ioctl+0x574/0xb90 drivers/gpu/drm/drm_ioctl.c:901
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x18f/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11b/0xf80 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f4ec53b359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f4ec6246f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f4ec5646090 RCX: 00007f4ec53b359d
+RDX: 0000200000000180 RSI: 00000000c01064bd RDI: 0000000000000007
+RBP: 00007f4ec5452ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f4ec5646128 R14: 00007f4ec5646090 R15: 00007f4ec6227000
+ </TASK>
+hpet: Lost 9 RTC interrupts
+hpet: Lost 6 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet_rtc_timer_reinit: 17 callbacks suppressed
+hpet: Lost 1 RTC interrupts
+hpet: Lost 2 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet: Lost 1 RTC interrupts
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+watchdog: BUG: soft lockup - CPU#1 stuck for 121s! [syz.2.22187:100143]
+Modules linked in:
+irq event stamp: 96330
+hardirqs last  enabled at (96329): [<ffffffff8b744ef9>] irqentry_exit+0x1e9/0x740
+hardirqs last disabled at (96330): [<ffffffff8b74386f>] sysvec_apic_timer_interrupt+0xf/0xc0
+softirqs last  enabled at (96316): [<ffffffff817ddf79>] __irq_exit_rcu+0x109/0x170
+softirqs last disabled at (96289): [<ffffffff817ddf79>] __irq_exit_rcu+0x109/0x170
+CPU: 1 UID: 0 PID: 100143 Comm: syz.2.22187 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:smp_call_function_many_cond+0x811/0x1610
+Code: 48 b9 00 00 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 01 65 0c 00 f3 90 <41> 0f b6 06 41 38 c4 7c 08 84 c0 0f 85 93 0b 00 00 44 8b 7b 08 31
+RSP: 0018:ffffc90002eef580 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: ffff88806a842ca0 RCX: ffffffff81b1d504
+RDX: ffff888023f6d7c0 RSI: ffffffff81b1d4df RDI: 0000000000000005
+RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 00000000000001d5 R12: 0000000000000003
+R13: ffff88816dc3c580 R14: ffffed100d508595 R15: 0000000000000001
+FS:  0000000000000000(0000) GS:ffff8881d9e4b000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000555557a0a638 CR3: 000000000e38c000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ on_each_cpu_cond_mask+0x40/0x90
+ flush_tlb_mm_range+0x275/0x1310
+ tlb_finish_mmu+0x425/0x850
+ free_ldt_pgtables+0x138/0x1b0
+ exit_mmap+0x11d/0xa40
+ __mmput+0x131/0x400
+ mmput+0x60/0x70
+ do_exit+0x83c/0x2c60
+ do_group_exit+0xd3/0x2a0
+ get_signal+0x2286/0x2560
+ arch_do_signal_or_restart+0x80/0x790
+ irqentry_exit+0x3c3/0x740
+ exc_page_fault+0xec/0x170
+ asm_exc_page_fault+0x26/0x30
+RIP: 0033:0x7fc53d06ade5
+Code: Unable to access opcode bytes at 0x7fc53d06adbb.
+RSP: 002b:00007ffcd991d830 EFLAGS: 00010206
+RAX: 000000000000c2e7 RBX: 0000000000000004 RCX: 0000000000000007
+RDX: fffffffffffff488 RSI: 00007fc53d2de880 RDI: 00007ffcd991d8c8
+RBP: 00007ffcd991d8c8 R08: 0000001b33720000 R09: 0000001b33320044
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000b77
+R13: 00007fc53d445fac R14: 00007fc53d447da0 R15: 00007ffcd991d8f0
+ </TASK>
+Sending NMI from CPU 1 to CPUs 0,2-3:
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 100149 Comm: syz.1.22188 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:vprintk_emit+0x519/0x6b0
+Code: f6 48 c7 c7 80 d1 4d 8e e8 c4 ef fc ff 0f b6 2d 7d f8 4b 19 31 ff 89 ee e8 a4 5f 21 00 5a 40 84 ed 74 1c e8 89 65 21 00 f3 90 <0f> b6 2d 60 f8 4b 19 31 ff 89 ee e8 87 5f 21 00 40 84 ed 75 e4 e8
+RSP: 0018:ffffc90000660a58 EFLAGS: 00000046
+RAX: 0000000000010004 RBX: 1ffff920000cc14c RCX: ffffffff819cd469
+RDX: ffff888022ab9d40 RSI: ffffffff819cd457 RDI: 0000000000000001
+RBP: 0000000000000001 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 000000000000000e R12: 0000000000000035
+R13: 0000000000000000 R14: ffff888022a53a80 R15: ffffc90000660b18
+FS:  00007f4ec6247640(0000) GS:ffff8880d6b4b000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000000110c281732 CR3: 00000000250dc000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ _printk+0xbe/0xf0
+ rcu_sched_clock_irq+0x1404/0x2eb0
+ update_process_times+0x128/0x270
+ tick_nohz_handler+0x50f/0x730
+ __hrtimer_run_queues+0x612/0xbb0
+ hrtimer_interrupt+0x3c6/0x8c0
+ __sysvec_apic_timer_interrupt+0x10d/0x490
+ sysvec_apic_timer_interrupt+0xa3/0xc0
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:smp_call_function_many_cond+0x811/0x1610
+Code: 48 b9 00 00 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 01 65 0c 00 f3 90 <41> 0f b6 06 41 38 c4 7c 08 84 c0 0f 85 93 0b 00 00 44 8b 7b 08 31
+RSP: 0018:ffffc90002bc75d0 EFLAGS: 00000246
+RAX: 0000000000080000 RBX: ffff88806a842cc0 RCX: ffffc90025423000
+RDX: 0000000000080000 RSI: ffffffff81b1d4df RDI: 0000000000000005
+RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 000000000000001e R12: 0000000000000003
+R13: ffff88806a93c580 R14: ffffed100d508599 R15: 0000000000000001
+ on_each_cpu_cond_mask+0x40/0x90
+ flush_tlb_kernel_range+0x12d/0x220
+ pmd_free_pte_page+0xfe/0x3c0
+ vmap_range_noflush+0x8fb/0x1530
+ __vmap_pages_range_noflush+0x115/0x270
+ __vmalloc_node_range_noprof+0x9cb/0x15c0
+ __kvmalloc_node_noprof+0x451/0x9f0
+ drm_property_create_blob.part.0+0x34/0x320
+ drm_mode_createblob_ioctl+0x139/0x490
+ drm_ioctl_kernel+0x1ed/0x3e0
+ drm_ioctl+0x574/0xb90
+ __x64_sys_ioctl+0x18f/0x210
+ do_syscall_64+0x11b/0xf80
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f4ec53b359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f4ec6246f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f4ec5646090 RCX: 00007f4ec53b359d
+RDX: 0000200000000180 RSI: 00000000c01064bd RDI: 0000000000000007
+RBP: 00007f4ec5452ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f4ec5646128 R14: 00007f4ec5646090 R15: 00007f4ec6227000
+ </TASK>
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 109 Comm: kswapd0 Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:smp_call_function_many_cond+0x811/0x1610
+Code: 48 b9 00 00 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 01 65 0c 00 f3 90 <41> 0f b6 06 41 38 c4 7c 08 84 c0 0f 85 93 0b 00 00 44 8b 7b 08 31
+RSP: 0018:ffffc90001f2efd8 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: ffff88806a842ce0 RCX: ffffffff81b1d504
+RDX: ffff88801cb18000 RSI: ffffffff81b1d4df RDI: 0000000000000005
+RBP: 0000000000000000 R08: 0000000000000000 R09: ffffed10039632c2
+R10: 0000000000000001 R11: 0000000000000036 R12: 0000000000000003
+R13: ffff88816dd3c580 R14: ffffed100d50859d R15: 0000000000000001
+FS:  0000000000000000(0000) GS:ffff8881d9f4b000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f27ced756c0 CR3: 0000000029af8000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ on_each_cpu_cond_mask+0x40/0x90
+ arch_tlbbatch_flush+0x23c/0x340
+ try_to_unmap_flush_dirty+0xb9/0x140
+ shrink_folio_list+0x1803/0x4b10
+ evict_folios+0x79a/0x1b20
+ try_to_shrink_lruvec+0x59a/0x9d0
+ shrink_one+0x309/0x690
+ shrink_node+0x24ee/0x3c90
+ balance_pgdat+0xaf8/0x1b60
+ kswapd+0x576/0xba0
+ kthread+0x38d/0x4a0
+ ret_from_fork+0xb32/0xde0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 9899 Comm: sshd Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:io_serial_out+0x8f/0xb0
+Code: 48 8d 7d 40 44 89 e1 48 b8 00 00 00 00 00 fc ff df 48 89 fa d3 e3 48 c1 ea 03 80 3c 02 00 75 1c 66 03 5d 40 44 89 e8 89 da ee <5b> 5d 41 5c 41 5d c3 cc cc cc cc e8 a1 00 f3 fc eb a0 e8 2a 01 f3
+RSP: 0018:ffffc90000007950 EFLAGS: 00000002
+RAX: 0000000000000069 RBX: 00000000000003f8 RCX: 0000000000000000
+RDX: 00000000000003f8 RSI: ffffffff8534f775 RDI: ffffffff9b18d6c0
+RBP: ffffffff9b18d680 R08: 0000000000000000 R09: ffffed1003965046
+R10: 0000000000000000 R11: 000000000000005c R12: 0000000000000000
+R13: 0000000000000069 R14: ffffffff9b18d680 R15: ffffffff8534f710
+FS:  00007f42e386b900(0000) GS:ffff8880d6a4b000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe66d3fe0f4 CR3: 0000000109ef2000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ serial8250_console_write+0xf81/0x1890
+ console_flush_one_record+0x78c/0xbd0
+ console_unlock+0xe7/0x240
+ vprintk_emit+0x42b/0x6b0
+ _printk+0xbe/0xf0
+ hpet_rtc_interrupt+0x49e/0x660
+ __handle_irq_event_percpu+0x237/0x940
+ handle_irq_event+0xab/0x1e0
+ handle_edge_irq+0x3ca/0x9b0
+ __common_interrupt+0xd1/0x2f0
+ common_interrupt+0xf2/0x110
+ </IRQ>
+ <TASK>
+ asm_common_interrupt+0x26/0x40
+RIP: 0010:e1000_xmit_frame+0x352b/0x5440
+Code: 48 c1 ea 03 48 01 c3 48 b8 00 00 00 00 00 fc ff df 0f b6 04 02 84 c0 74 08 3c 03 0f 8e d0 1e 00 00 48 8b 04 24 8b 40 18 89 03 <e9> 8b f1 ff ff e8 bb 3f 34 fb 48 8b 54 24 60 48 b8 00 00 00 00 00
+RSP: 0018:ffffc900248deef8 EFLAGS: 00000246
+RAX: 0000000000000083 RBX: ffffc90007283818 RCX: ffffffff8689f96f
+RDX: 1ffff110214fcf13 RSI: ffffffff8689f97c RDI: ffff88810a7e78aa
+RBP: 0000000000000000 R08: 0000000000000000 R09: fffffbfff215c822
+R10: 0000000000000000 R11: 000000000000001e R12: 0000000000000018
+R13: ffff8880249c8820 R14: 0000000000000000 R15: ffff88810ae74000
+ dev_hard_start_xmit+0x17f/0x7f0
+ sch_direct_xmit+0x1b0/0xcd0
+ __dev_queue_xmit+0x168e/0x43b0
+ ip_finish_output2+0xc52/0x1f80
+ __ip_finish_output.part.0+0x1bb/0x350
+ ip_output+0x376/0x860
+ ip_local_out+0x1b4/0x200
+ __ip_queue_xmit+0x877/0x1e70
+ __tcp_transmit_skb+0x3281/0x5110
+ tcp_write_xmit+0x1879/0x7db0
+ __tcp_push_pending_frames+0xb0/0x3c0
+ tcp_push+0x229/0x700
+ tcp_sendmsg_locked+0x2bf6/0x3d40
+ tcp_sendmsg+0x2f/0x50
+ inet_sendmsg+0xb9/0x150
+ sock_write_iter+0x4ed/0x590
+ vfs_write+0xc0d/0x1170
+ ksys_write+0x1ef/0x240
+ do_syscall_64+0x11b/0xf80
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f42e3d17513
+Code: 8b 15 81 29 0e 00 f7 d8 64 89 02 48 c7 c0 ff ff ff ff eb b7 0f 1f 00 64 8b 04 25 18 00 00 00 85 c0 75 14 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 55 c3 0f 1f 40 00 48 83 ec 28 48 89 54 24 18
+RSP: 002b:00007ffc9db37ea8 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 000000000000203c RCX: 00007f42e3d17513
+RDX: 000000000000203c RSI: 000055e912f66990 RDI: 0000000000000004
+RBP: 000055e912f29a70 R08: 0000031d00f1337a R09: 00007f42e43f2000
+R10: 0000000000000007 R11: 0000000000000246 R12: 000055e8ffadd768
+R13: 0000000000000000 R14: 0000000000000004 R15: 000055e8ffa92ac0
+ </TASK>
+hpet: Lost 134 RTC interrupts
+rcu: 	0-...!: (1 GPs behind) idle=e0d4/1/0x4000000000000000 softirq=235317/235319 fqs=3
+hpet: Lost 8 RTC interrupts
+clocksource: Long readout interval, skipping watchdog check: cs_nsec: 173533808300 wd_nsec: 173533754527
+rcu: 	Tasks blocked on level-0 rcu_node (CPUs 0-3): P100150/1:b..l
+rcu: 	(detected by 2, t=17471 jiffies, g=311425, q=262 ncpus=4)
+Sending NMI from CPU 2 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 9899 Comm: sshd Tainted: G             L      7.0.0 #2 PREEMPT(full) 
+Tainted: [L]=SOFTLOCKUP
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:vprintk_emit+0x519/0x6b0
+Code: f6 48 c7 c7 80 d1 4d 8e e8 c4 ef fc ff 0f b6 2d 7d f8 4b 19 31 ff 89 ee e8 a4 5f 21 00 5a 40 84 ed 74 1c e8 89 65 21 00 f3 90 <0f> b6 2d 60 f8 4b 19 31 ff 89 ee e8 87 5f 21 00 40 84 ed 75 e4 e8
+RSP: 0018:ffffc90000007b40 EFLAGS: 00000046
+RAX: 0000000000000000 RBX: 1ffff92000000f69 RCX: ffffffff819cd469
+RDX: ffff888022a53a80 RSI: ffffffff819cd457 RDI: 0000000000000001
+RBP: 0000000000000001 R08: ffffffff95e5d650 R09: 0000000000000014
+R10: 0000000000000001 R11: 000000000000000e R12: 0000000000000068
+R13: 0000000000000200 R14: ffff888022ab9d40 R15: ffffc90000007c00
+FS:  00007f42e386b900(0000) GS:ffff8880d6a4b000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fe66d3fe0f4 CR3: 0000000109ef2000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ _printk+0xbe/0xf0
+ clocksource_watchdog+0xddc/0x1000
+ call_timer_fn+0x1a5/0x670
+ __run_timers+0x6d2/0xb20
+ run_timer_base+0xc5/0x120
+ run_timer_softirq+0x10/0x40
+ handle_softirqs+0x1d3/0x9b0
+ do_softirq+0xac/0xe0
+ </IRQ>
+ <TASK>
+ __local_bh_enable_ip+0x100/0x120
+ __dev_queue_xmit+0x108a/0x43b0
+ ip_finish_output2+0xc52/0x1f80
+ __ip_finish_output.part.0+0x1bb/0x350
+ ip_output+0x376/0x860
+ ip_local_out+0x1b4/0x200
+ __ip_queue_xmit+0x877/0x1e70
+ __tcp_transmit_skb+0x3281/0x5110
+ tcp_write_xmit+0x1879/0x7db0
+ __tcp_push_pending_frames+0xb0/0x3c0
+ tcp_push+0x229/0x700
+ tcp_sendmsg_locked+0x2bf6/0x3d40
+ tcp_sendmsg+0x2f/0x50
+ inet_sendmsg+0xb9/0x150
+ sock_write_iter+0x4ed/0x590
+ vfs_write+0xc0d/0x1170
+ ksys_write+0x1ef/0x240
+ do_syscall_64+0x11b/0xf80
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f42e3d17513
+Code: 8b 15 81 29 0e 00 f7 d8 64 89 02 48 c7 c0 ff ff ff ff eb b7 0f 1f 00 64 8b 04 25 18 00 00 00 85 c0 75 14 b8 01 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 55 c3 0f 1f 40 00 48 83 ec 28 48 89 54 24 18
+RSP: 002b:00007ffc9db37ea8 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+RAX: ffffffffffffffda RBX: 000000000000203c RCX: 00007f42e3d17513
+RDX: 000000000000203c RSI: 000055e912f66990 RDI: 0000000000000004
+RBP: 000055e912f29a70 R08: 0000031d00f1337a R09: 00007f42e43f2000
+R10: 0000000000000007 R11: 0000000000000246 R12: 000055e8ffadd768
+R13: 0000000000000000 R14: 0000000000000004 R15: 000055e8ffa92ac0
+ </TASK>
+task:syz.1.22188     state:R  running task     stack:26904 pid:100150 tgid:100145 ppid:10749  task_flags:0x400140 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x1006/0x5f00
+ preempt_schedule_irq+0x51/0x90
+ irqentry_exit+0x1e4/0x740
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:unwind_next_frame+0x15c8/0x20c0
+Code: 0f 85 c5 09 00 00 83 e0 07 38 c2 40 0f 9e c6 84 d2 0f 95 c0 40 84 c6 0f 85 ae 09 00 00 48 0f bf 69 02 ba 08 00 00 00 4c 89 ef <4d> 8d 7d 34 4c 01 f5 48 89 ee e8 29 e8 ff ff 84 c0 0f 84 5f ed ff
+RSP: 0018:ffffc90002be71b8 EFLAGS: 00000246
+RAX: 0000000000000000 RBX: 0000000000000001 RCX: ffffffff918fe14e
+RDX: 0000000000000008 RSI: 0000000000000001 RDI: ffffc90002be7228
+RBP: ffffffffffffffd0 R08: 0000000000000001 R09: ffffc90002be7ed0
+R10: 0000000000045218 R11: 00000000000a7865 R12: ffffc90002be7278
+R13: ffffc90002be7228 R14: ffffc90002be7ed8 R15: ffffc90002be725c
+ arch_stack_walk+0x86/0xf0
+ stack_trace_save+0x8e/0xc0
+ save_stack+0x151/0x1e0
+ __set_page_owner+0x8f/0x570
+ post_alloc_hook+0x134/0x160
+ get_page_from_freelist+0xde8/0x2ae0
+ __alloc_frozen_pages_noprof+0x264/0x27e0
+ alloc_pages_mpol+0x1f1/0x550
+ alloc_pages_noprof+0x132/0x390
+ __vmalloc_node_range_noprof+0x7b2/0x15c0
+ __kvmalloc_node_noprof+0x451/0x9f0
+ drm_property_create_blob.part.0+0x34/0x320
+ drm_mode_createblob_ioctl+0x139/0x490
+ drm_ioctl_kernel+0x1ed/0x3e0
+ drm_ioctl+0x574/0xb90
+ __x64_sys_ioctl+0x18f/0x210
+ do_syscall_64+0x11b/0xf80
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f4ec53b359d
+RSP: 002b:00007f4ec6225f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f4ec5646180 RCX: 00007f4ec53b359d
+RDX: 0000200000000180 RSI: 00000000c01064bd RDI: 0000000000000006
+RBP: 00007f4ec5452ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f4ec5646218 R14: 00007f4ec5646180 R15: 00007f4ec6206000
+ </TASK>
+rcu: rcu_preempt kthread starved for 17281 jiffies! g311425 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=2
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:R  running task     stack:28920 pid:16    tgid:16    ppid:2      task_flags:0x208040 flags:0x00080000
+Call Trace:
+ <TASK>
+ __schedule+0x1006/0x5f00
+ schedule+0xe7/0x3a0
+ schedule_timeout+0x113/0x280
+ rcu_gp_fqs_loop+0x18c/0x7e0
+ rcu_gp_kthread+0x1aa/0x260
+ kthread+0x38d/0x4a0
+ ret_from_fork+0xb32/0xde0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+CPU: 2 UID: 0 PID: 100149 Comm: syz.1.22188 Tainted: G             L      7.0.0 #2 PREEMPT(full) 
+Tainted: [L]=SOFTLOCKUP
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:smp_call_function_many_cond+0x811/0x1610
+Code: 48 b9 00 00 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 01 65 0c 00 f3 90 <41> 0f b6 06 41 38 c4 7c 08 84 c0 0f 85 93 0b 00 00 44 8b 7b 08 31
+RSP: 0018:ffffc90002bc75d0 EFLAGS: 00000246
+RAX: 0000000000080000 RBX: ffff88806a842cc0 RCX: ffffc90025423000
+RDX: 0000000000080000 RSI: ffffffff81b1d4df RDI: 0000000000000005
+RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 000000000000001e R12: 0000000000000003
+R13: ffff88806a93c580 R14: ffffed100d508599 R15: 0000000000000001
+FS:  00007f4ec6247640(0000) GS:ffff8880d6b4b000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000000110c281732 CR3: 00000000250dc000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ on_each_cpu_cond_mask+0x40/0x90
+ flush_tlb_kernel_range+0x12d/0x220
+ pmd_free_pte_page+0xfe/0x3c0
+ vmap_range_noflush+0x8fb/0x1530
+ __vmap_pages_range_noflush+0x115/0x270
+ __vmalloc_node_range_noprof+0x9cb/0x15c0
+ __kvmalloc_node_noprof+0x451/0x9f0
+ drm_property_create_blob.part.0+0x34/0x320
+ drm_mode_createblob_ioctl+0x139/0x490
+ drm_ioctl_kernel+0x1ed/0x3e0
+ drm_ioctl+0x574/0xb90
+ __x64_sys_ioctl+0x18f/0x210
+ do_syscall_64+0x11b/0xf80
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f4ec53b359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f4ec6246f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f4ec5646090 RCX: 00007f4ec53b359d
+RDX: 0000200000000180 RSI: 00000000c01064bd RDI: 0000000000000007
+RBP: 00007f4ec5452ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f4ec5646128 R14: 00007f4ec5646090 R15: 00007f4ec6227000
+ </TASK>
+hpet: Lost 9 RTC interrupts
+hpet: Lost 6 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet_rtc_timer_reinit: 17 callbacks suppressed
+hpet: Lost 1 RTC interrupts
+hpet: Lost 2 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet: Lost 1 RTC interrupts
+hpet: Lost 1 RTC interrupts
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

@@ -1,0 +1,36 @@
+{
+    "target": "linux/amd64",
+    "http": "127.0.0.1:10004",
+    "workdir": "/home/wmy/Fuzzer/out/workdir_defconfig",
+    "kernel_obj": "/home/wmy/Fuzzer/build/linux/linux-6.18-defconfig",
+    "kernel_src": "/home/wmy/Fuzzer/linux-6.18",
+    "image": "/home/wmy/Fuzzer/third_tool/Image-fuzz-6.18/bullseye.img",
+    "sshkey": "/home/wmy/Fuzzer/third_tool/Image-fuzz-6.18/bullseye.id_rsa",
+    "syzkaller": "/home/wmy/Fuzzer/third_tool/syzkaller_defconfig_dev",
+    "procs": 4,
+    "type": "qemu",
+    "sandbox": "none",
+    "reproduce": false,
+    "enable_syscalls": [
+        "syz_open_dev$I2C",
+        "ioctl$I2C_RETRIES",
+        "ioctl$I2C_TIMEOUT",
+        "ioctl$I2C_SLAVE",
+        "ioctl$I2C_SLAVE_FORCE",
+        "ioctl$I2C_TENBIT",
+        "ioctl$I2C_PEC",
+        "ioctl$I2C_FUNCS",
+        "ioctl$I2C_RDWR",
+        "ioctl$I2C_SMBUS",
+        "syz_open_dev$KGPT_adv7842",
+        "ioctl$KGPT_ADV7842_CMD_RAM_TEST"
+    ],
+    "vm": {
+        "count": 2,
+        "kernel": "/home/wmy/Fuzzer/build/linux/linux-6.18-defconfig/arch/x86/boot/bzImage",
+        "cpu": 4,
+        "mem": 4096,
+        "qemu_args": "-machine q35 --enable-kvm -fsdev local,id=fsdev0,path=/home/wmy/Fuzzer/out/shares,security_model=none -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=hostshare  -device pcie-root-port,id=rp1 -device i2c_amd_mp2_pci,bus=rp1",
+        "qemu": "/home/wmy/Fuzzer/bin/qemu/bin/qemu-system-x86_64"
+    }
+}

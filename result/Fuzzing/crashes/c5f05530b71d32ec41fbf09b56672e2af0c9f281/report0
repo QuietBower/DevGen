@@ -1,0 +1,403 @@
+EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+syz-executor (318) used greatest stack depth: 23784 bytes left
+EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+sit0: entered allmulticast mode
+INFO: task syz.5.2590:11515 blocked for more than 143 seconds.
+      Not tainted 7.0.0 #3
+      Blocked by coredump.
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.5.2590      state:D stack:28248 pid:11515 tgid:11511 ppid:8516   task_flags:0x40044c flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x108b/0x40b0 kernel/sched/core.c:6911
+ __schedule_loop kernel/sched/core.c:6993 [inline]
+ schedule+0xe9/0x3a0 kernel/sched/core.c:7008
+ schedule_preempt_disabled+0x15/0x30 kernel/sched/core.c:7065
+ rwsem_down_read_slowpath+0x58f/0xcc0 kernel/locking/rwsem.c:1086
+ __down_read_common kernel/locking/rwsem.c:1261 [inline]
+ __down_read kernel/locking/rwsem.c:1274 [inline]
+ down_read+0xf1/0x450 kernel/locking/rwsem.c:1539
+ mmap_read_lock include/linux/mmap_lock.h:592 [inline]
+ exit_mm kernel/exit.c:557 [inline]
+ do_exit+0x71f/0x2a80 kernel/exit.c:964
+ do_group_exit+0xd8/0x2b0 kernel/exit.c:1118
+ get_signal+0x2327/0x2350 kernel/signal.c:3034
+ arch_do_signal_or_restart+0x85/0x7a0 arch/x86/kernel/signal.c:337
+ __exit_to_user_mode_loop kernel/entry/common.c:64 [inline]
+ exit_to_user_mode_loop+0xab/0x4f0 kernel/entry/common.c:98
+ __exit_to_user_mode_prepare include/linux/irq-entry-common.h:226 [inline]
+ syscall_exit_to_user_mode_prepare include/linux/irq-entry-common.h:256 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:325 [inline]
+ do_syscall_64+0x572/0x690 arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f74d6ed359d
+RSP: 002b:00007f74d5917068 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+RAX: fffffffffffffe00 RBX: 00007f74d7165fa8 RCX: 00007f74d6ed359d
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f74d7165fa8
+RBP: 00007f74d7165fa0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f74d7166038 R14: 00007f74d6e6f5e0 R15: 00007f74d58f7000
+ </TASK>
+INFO: task syz.5.2590:11515 <reader> blocked on an rw-semaphore likely owned by task syz.5.2590:11511 <writer>
+task:syz.5.2590      state:R  running task     stack:26408 pid:11511 tgid:11511 ppid:8516   task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ </TASK>
+INFO: task syz.5.2590:11517 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #3
+      Blocked by coredump.
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.5.2590      state:D stack:29064 pid:11517 tgid:11511 ppid:8516   task_flags:0x40044c flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x108b/0x40b0 kernel/sched/core.c:6911
+ __schedule_loop kernel/sched/core.c:6993 [inline]
+ schedule+0xe9/0x3a0 kernel/sched/core.c:7008
+ schedule_preempt_disabled+0x15/0x30 kernel/sched/core.c:7065
+ rwsem_down_read_slowpath+0x58f/0xcc0 kernel/locking/rwsem.c:1086
+ __down_read_common kernel/locking/rwsem.c:1261 [inline]
+ __down_read kernel/locking/rwsem.c:1274 [inline]
+ down_read+0xf1/0x450 kernel/locking/rwsem.c:1539
+ mmap_read_lock include/linux/mmap_lock.h:592 [inline]
+ exit_mm kernel/exit.c:557 [inline]
+ do_exit+0x71f/0x2a80 kernel/exit.c:964
+ do_group_exit+0xd8/0x2b0 kernel/exit.c:1118
+ get_signal+0x2327/0x2350 kernel/signal.c:3034
+ arch_do_signal_or_restart+0x85/0x7a0 arch/x86/kernel/signal.c:337
+ __exit_to_user_mode_loop kernel/entry/common.c:64 [inline]
+ exit_to_user_mode_loop+0xab/0x4f0 kernel/entry/common.c:98
+ __exit_to_user_mode_prepare include/linux/irq-entry-common.h:226 [inline]
+ syscall_exit_to_user_mode_prepare include/linux/irq-entry-common.h:256 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:325 [inline]
+ do_syscall_64+0x572/0x690 arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f74d6ed359d
+RSP: 002b:00007f74d58f6068 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+RAX: fffffffffffffe00 RBX: 00007f74d7166098 RCX: 00007f74d6ed359d
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f74d7166098
+RBP: 00007f74d7166090 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f74d7166128 R14: 00007f74d6e6f5e0 R15: 00007f74d58d6000
+ </TASK>
+INFO: task syz.5.2590:11517 <reader> blocked on an rw-semaphore likely owned by task syz.5.2590:11511 <writer>
+task:syz.5.2590      state:R  running task     stack:26408 pid:11511 tgid:11511 ppid:8516   task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ </TASK>
+INFO: task syz.6.2588:11514 blocked for more than 145 seconds.
+      Not tainted 7.0.0 #3
+      Blocked by coredump.
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.6.2588      state:D stack:27472 pid:11514 tgid:11512 ppid:8552   task_flags:0x40044c flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x108b/0x40b0 kernel/sched/core.c:6911
+ __schedule_loop kernel/sched/core.c:6993 [inline]
+ schedule+0xe9/0x3a0 kernel/sched/core.c:7008
+ schedule_preempt_disabled+0x15/0x30 kernel/sched/core.c:7065
+ rwsem_down_read_slowpath+0x58f/0xcc0 kernel/locking/rwsem.c:1086
+ __down_read_common kernel/locking/rwsem.c:1261 [inline]
+ __down_read kernel/locking/rwsem.c:1274 [inline]
+ down_read+0xf1/0x450 kernel/locking/rwsem.c:1539
+ mmap_read_lock include/linux/mmap_lock.h:592 [inline]
+ exit_mm kernel/exit.c:557 [inline]
+ do_exit+0x71f/0x2a80 kernel/exit.c:964
+ do_group_exit+0xd8/0x2b0 kernel/exit.c:1118
+ get_signal+0x2327/0x2350 kernel/signal.c:3034
+ arch_do_signal_or_restart+0x85/0x7a0 arch/x86/kernel/signal.c:337
+ __exit_to_user_mode_loop kernel/entry/common.c:64 [inline]
+ exit_to_user_mode_loop+0xab/0x4f0 kernel/entry/common.c:98
+ __exit_to_user_mode_prepare include/linux/irq-entry-common.h:226 [inline]
+ syscall_exit_to_user_mode_prepare include/linux/irq-entry-common.h:256 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:325 [inline]
+ do_syscall_64+0x572/0x690 arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f75774d359d
+RSP: 002b:00007f7575f17068 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+RAX: fffffffffffffe00 RBX: 00007f7577765fa8 RCX: 00007f75774d359d
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f7577765fa8
+RBP: 00007f7577765fa0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f7577766038 R14: 00007f757746f5e0 R15: 00007f7575ef7000
+ </TASK>
+INFO: task syz.6.2588:11514 <reader> blocked on an rw-semaphore likely owned by task syz.6.2588:11512 <writer>
+task:syz.6.2588      state:R  running task     stack:25944 pid:11512 tgid:11512 ppid:8552   task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5298 [inline]
+ __schedule+0x108b/0x40b0 kernel/sched/core.c:6911
+ preempt_schedule_irq+0x5c/0xa0 kernel/sched/core.c:7238
+ irqentry_exit+0x176/0x620 kernel/entry/common.c:239
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:697
+RIP: 0010:security_vm_enough_memory_mm+0x0/0x120 security/security.c:711
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f74d7165fa8
+RBP: 00007f74d7165fa0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f74d7166038 R14: 00007f74d6e6f5e0 R15: 00007f74d58f7000
+ </TASK>
+INFO: task syz.5.2590:11515 <reader> blocked on an rw-semaphore likely owned by task syz.5.2590:11511 <writer>
+task:syz.5.2590      state:R  running task     stack:26408 pid:11511 tgid:11511 ppid:8516   task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ </TASK>
+INFO: task syz.5.2590:11517 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #3
+      Blocked by coredump.
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.5.2590      state:D stack:29064 pid:11517 tgid:11511 ppid:8516   task_flags:0x40044c flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ schedule+0xe9/0x3a0
+ schedule_preempt_disabled+0x15/0x30
+ rwsem_down_read_slowpath+0x58f/0xcc0
+ down_read+0xf1/0x450
+ do_exit+0x71f/0x2a80
+ do_group_exit+0xd8/0x2b0
+ get_signal+0x2327/0x2350
+ arch_do_signal_or_restart+0x85/0x7a0
+ exit_to_user_mode_loop+0xab/0x4f0
+ do_syscall_64+0x572/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f74d6ed359d
+RSP: 002b:00007f74d58f6068 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+RAX: fffffffffffffe00 RBX: 00007f74d7166098 RCX: 00007f74d6ed359d
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f74d7166098
+RBP: 00007f74d7166090 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f74d7166128 R14: 00007f74d6e6f5e0 R15: 00007f74d58d6000
+ </TASK>
+INFO: task syz.5.2590:11517 <reader> blocked on an rw-semaphore likely owned by task syz.5.2590:11511 <writer>
+task:syz.5.2590      state:R  running task     stack:26408 pid:11511 tgid:11511 ppid:8516   task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ </TASK>
+INFO: task syz.6.2588:11514 blocked for more than 145 seconds.
+      Not tainted 7.0.0 #3
+      Blocked by coredump.
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.6.2588      state:D stack:27472 pid:11514 tgid:11512 ppid:8552   task_flags:0x40044c flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ schedule+0xe9/0x3a0
+ schedule_preempt_disabled+0x15/0x30
+ rwsem_down_read_slowpath+0x58f/0xcc0
+ down_read+0xf1/0x450
+ do_exit+0x71f/0x2a80
+ do_group_exit+0xd8/0x2b0
+ get_signal+0x2327/0x2350
+ arch_do_signal_or_restart+0x85/0x7a0
+ exit_to_user_mode_loop+0xab/0x4f0
+ do_syscall_64+0x572/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f75774d359d
+RSP: 002b:00007f7575f17068 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+RAX: fffffffffffffe00 RBX: 00007f7577765fa8 RCX: 00007f75774d359d
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f7577765fa8
+RBP: 00007f7577765fa0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f7577766038 R14: 00007f757746f5e0 R15: 00007f7575ef7000
+ </TASK>
+INFO: task syz.6.2588:11514 <reader> blocked on an rw-semaphore likely owned by task syz.6.2588:11512 <writer>
+task:syz.6.2588      state:R  running task     stack:25944 pid:11512 tgid:11512 ppid:8552   task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ preempt_schedule_irq+0x5c/0xa0
+ irqentry_exit+0x176/0x620
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:security_vm_enough_memory_mm+0x0/0x120
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+task:syz.5.2590      state:R  running task     stack:26408 pid:11511 tgid:11511 ppid:8516   task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ </TASK>
+INFO: task syz.5.2590:11517 blocked for more than 144 seconds.
+      Not tainted 7.0.0 #3
+      Blocked by coredump.
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.5.2590      state:D stack:29064 pid:11517 tgid:11511 ppid:8516   task_flags:0x40044c flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ schedule+0xe9/0x3a0
+ schedule_preempt_disabled+0x15/0x30
+ rwsem_down_read_slowpath+0x58f/0xcc0
+ down_read+0xf1/0x450
+ do_exit+0x71f/0x2a80
+ do_group_exit+0xd8/0x2b0
+ get_signal+0x2327/0x2350
+ arch_do_signal_or_restart+0x85/0x7a0
+ exit_to_user_mode_loop+0xab/0x4f0
+ do_syscall_64+0x572/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f74d6ed359d
+RSP: 002b:00007f74d58f6068 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+RAX: fffffffffffffe00 RBX: 00007f74d7166098 RCX: 00007f74d6ed359d
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f74d7166098
+RBP: 00007f74d7166090 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f74d7166128 R14: 00007f74d6e6f5e0 R15: 00007f74d58d6000
+ </TASK>
+INFO: task syz.5.2590:11517 <reader> blocked on an rw-semaphore likely owned by task syz.5.2590:11511 <writer>
+task:syz.5.2590      state:R  running task     stack:26408 pid:11511 tgid:11511 ppid:8516   task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ </TASK>
+INFO: task syz.6.2588:11514 blocked for more than 145 seconds.
+      Not tainted 7.0.0 #3
+      Blocked by coredump.
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.6.2588      state:D stack:27472 pid:11514 tgid:11512 ppid:8552   task_flags:0x40044c flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ schedule+0xe9/0x3a0
+ schedule_preempt_disabled+0x15/0x30
+ rwsem_down_read_slowpath+0x58f/0xcc0
+ down_read+0xf1/0x450
+ do_exit+0x71f/0x2a80
+ do_group_exit+0xd8/0x2b0
+ get_signal+0x2327/0x2350
+ arch_do_signal_or_restart+0x85/0x7a0
+ exit_to_user_mode_loop+0xab/0x4f0
+ do_syscall_64+0x572/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f75774d359d
+RSP: 002b:00007f7575f17068 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+RAX: fffffffffffffe00 RBX: 00007f7577765fa8 RCX: 00007f75774d359d
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f7577765fa8
+RBP: 00007f7577765fa0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f7577766038 R14: 00007f757746f5e0 R15: 00007f7575ef7000
+ </TASK>
+INFO: task syz.6.2588:11514 <reader> blocked on an rw-semaphore likely owned by task syz.6.2588:11512 <writer>
+task:syz.6.2588      state:R  running task     stack:25944 pid:11512 tgid:11512 ppid:8552   task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ preempt_schedule_irq+0x5c/0xa0
+ irqentry_exit+0x176/0x620
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:security_vm_enough_memory_mm+0x0/0x120
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f74d7166098
+RBP: 00007f74d7166090 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f74d7166128 R14: 00007f74d6e6f5e0 R15: 00007f74d58d6000
+ </TASK>
+INFO: task syz.5.2590:11517 <reader> blocked on an rw-semaphore likely owned by task syz.5.2590:11511 <writer>
+task:syz.5.2590      state:R  running task     stack:26408 pid:11511 tgid:11511 ppid:8516   task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ </TASK>
+INFO: task syz.6.2588:11514 blocked for more than 145 seconds.
+      Not tainted 7.0.0 #3
+      Blocked by coredump.
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.6.2588      state:D stack:27472 pid:11514 tgid:11512 ppid:8552   task_flags:0x40044c flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ schedule+0xe9/0x3a0
+ schedule_preempt_disabled+0x15/0x30
+ rwsem_down_read_slowpath+0x58f/0xcc0
+ down_read+0xf1/0x450
+ do_exit+0x71f/0x2a80
+ do_group_exit+0xd8/0x2b0
+ get_signal+0x2327/0x2350
+ arch_do_signal_or_restart+0x85/0x7a0
+ exit_to_user_mode_loop+0xab/0x4f0
+ do_syscall_64+0x572/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f75774d359d
+RSP: 002b:00007f7575f17068 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+RAX: fffffffffffffe00 RBX: 00007f7577765fa8 RCX: 00007f75774d359d
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f7577765fa8
+RBP: 00007f7577765fa0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f7577766038 R14: 00007f757746f5e0 R15: 00007f7575ef7000
+ </TASK>
+INFO: task syz.6.2588:11514 <reader> blocked on an rw-semaphore likely owned by task syz.6.2588:11512 <writer>
+task:syz.6.2588      state:R  running task     stack:25944 pid:11512 tgid:11512 ppid:8552   task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ preempt_schedule_irq+0x5c/0xa0
+ irqentry_exit+0x176/0x620
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:security_vm_enough_memory_mm+0x0/0x120
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+task:syz.5.2590      state:R  running task     stack:26408 pid:11511 tgid:11511 ppid:8516   task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ </TASK>
+INFO: task syz.6.2588:11514 blocked for more than 145 seconds.
+      Not tainted 7.0.0 #3
+      Blocked by coredump.
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.6.2588      state:D stack:27472 pid:11514 tgid:11512 ppid:8552   task_flags:0x40044c flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ schedule+0xe9/0x3a0
+ schedule_preempt_disabled+0x15/0x30
+ rwsem_down_read_slowpath+0x58f/0xcc0
+ down_read+0xf1/0x450
+ do_exit+0x71f/0x2a80
+ do_group_exit+0xd8/0x2b0
+ get_signal+0x2327/0x2350
+ arch_do_signal_or_restart+0x85/0x7a0
+ exit_to_user_mode_loop+0xab/0x4f0
+ do_syscall_64+0x572/0x690
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f75774d359d
+RSP: 002b:00007f7575f17068 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+RAX: fffffffffffffe00 RBX: 00007f7577765fa8 RCX: 00007f75774d359d
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f7577765fa8
+RBP: 00007f7577765fa0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f7577766038 R14: 00007f757746f5e0 R15: 00007f7575ef7000
+ </TASK>
+INFO: task syz.6.2588:11514 <reader> blocked on an rw-semaphore likely owned by task syz.6.2588:11512 <writer>
+task:syz.6.2588      state:R  running task     stack:25944 pid:11512 tgid:11512 ppid:8552   task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ preempt_schedule_irq+0x5c/0xa0
+ irqentry_exit+0x176/0x620
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:security_vm_enough_memory_mm+0x0/0x120
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+RDX: 0000000000000000 RSI: 0000000000000080 RDI: 00007f7577765fa8
+RBP: 00007f7577765fa0 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f7577766038 R14: 00007f757746f5e0 R15: 00007f7575ef7000
+ </TASK>
+INFO: task syz.6.2588:11514 <reader> blocked on an rw-semaphore likely owned by task syz.6.2588:11512 <writer>
+task:syz.6.2588      state:R  running task     stack:25944 pid:11512 tgid:11512 ppid:8552   task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ __schedule+0x108b/0x40b0
+ preempt_schedule_irq+0x5c/0xa0
+ irqentry_exit+0x176/0x620
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:security_vm_enough_memory_mm+0x0/0x120
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

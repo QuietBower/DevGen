@@ -1,0 +1,450 @@
+BUG: memory leak
+unreferenced object 0xffff888100078000 (size 512):
+  comm "swapper", pid 0, jiffies 4294667296
+  hex dump (first 32 bytes):
+    c8 18 d4 01 81 88 ff ff 50 68 b2 81 ff ff ff ff  ........Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc b7ae8ebb):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4543 [inline]
+    slab_alloc_node mm/slub.c:4866 [inline]
+    __do_kmalloc_node mm/slub.c:5259 [inline]
+    __kmalloc_noprof+0x4d6/0x7c0 mm/slub.c:5272
+    kmalloc_noprof include/linux/slab.h:954 [inline]
+    kzalloc_noprof include/linux/slab.h:1188 [inline]
+    __alloc_empty_sheaf+0x3a/0x50 mm/slub.c:2764
+    alloc_empty_sheaf mm/slub.c:2779 [inline]
+    init_percpu_sheaves mm/slub.c:7494 [inline]
+    do_kmem_cache_create+0x4c5/0x550 mm/slub.c:8502
+    create_cache mm/slab_common.c:252 [inline]
+    __kmem_cache_create_args+0x3a1/0x490 mm/slab_common.c:380
+    maple_tree_init+0xc4/0x100 lib/maple_tree.c:5870
+    start_kernel+0x1a3/0x530 init/main.c:1071
+    x86_64_start_reservations+0x21/0x40 arch/x86/kernel/head64.c:310
+    x86_64_start_kernel+0xd9/0xe0 arch/x86/kernel/head64.c:291
+    common_startup_64+0x12c/0x138
+
+BUG: memory leak
+unreferenced object 0xffff888106b83000 (size 512):
+  comm "init", pid 1, jiffies 4294679685
+  hex dump (first 32 bytes):
+    a0 77 02 14 81 88 ff ff 50 68 b2 81 ff ff ff ff  .w......Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc f61e04e8):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4543 [inline]
+    slab_alloc_node mm/slub.c:4866 [inline]
+    __do_kmalloc_node mm/slub.c:5259 [inline]
+    __kmalloc_noprof+0x4d6/0x7c0 mm/slub.c:5272
+    kmalloc_noprof include/linux/slab.h:954 [inline]
+    kzalloc_noprof include/linux/slab.h:1188 [inline]
+    __alloc_empty_sheaf+0x3a/0x50 mm/slub.c:2764
+    alloc_empty_sheaf mm/slub.c:2779 [inline]
+    __kfree_rcu_sheaf+0x34f/0x5c0 mm/slub.c:5909
+    kfree_rcu_sheaf mm/slab_common.c:1608 [inline]
+    kvfree_call_rcu+0x20a/0x3c0 mm/slab_common.c:1957
+    ma_free_rcu+0x41/0x60 lib/maple_tree.c:208
+    mas_free lib/maple_tree.c:1174 [inline]
+    mas_replace_node lib/maple_tree.c:1581 [inline]
+    mas_wr_node_store+0xc06/0x1120 lib/maple_tree.c:3553
+    mas_wr_store_entry+0xd22/0x1be0 lib/maple_tree.c:3764
+    mas_store_prealloc+0x630/0xc70 lib/maple_tree.c:5169
+    vma_iter_store_overwrite mm/vma.h:607 [inline]
+    vma_iter_store_new mm/vma.h:614 [inline]
+    vma_complete+0xbc8/0x1390 mm/vma.c:356
+    __split_vma+0x9dd/0xcf0 mm/vma.c:566
+    vms_gather_munmap_vmas+0x335/0xe80 mm/vma.c:1429
+    __mmap_setup mm/vma.c:2411 [inline]
+    __mmap_region+0x4a5/0x29f0 mm/vma.c:2741
+    mmap_region+0x1be/0x3e0 mm/vma.c:2844
+    do_mmap+0xa36/0x11d0 mm/mmap.c:559
+    vm_mmap_pgoff+0x201/0x390 mm/util.c:581
+    ksys_mmap_pgoff+0x460/0x570 mm/mmap.c:605
+
+BUG: memory leak
+unreferenced object 0xffff8881052f1800 (size 512):
+  comm "systemd-cryptse", pid 124, jiffies 4294685848
+  hex dump (first 32 bytes):
+    40 7c 00 11 81 88 ff ff 50 68 b2 81 ff ff ff ff  @|......Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc 5f4fcfd5):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4543 [inline]
+    slab_alloc_node mm/slub.c:4866 [inline]
+    __do_kmalloc_node mm/slub.c:5259 [inline]
+    __kmalloc_noprof+0x4d6/0x7c0 mm/slub.c:5272
+    kmalloc_noprof include/linux/slab.h:954 [inline]
+    kzalloc_noprof include/linux/slab.h:1188 [inline]
+    __alloc_empty_sheaf+0x3a/0x50 mm/slub.c:2764
+    alloc_empty_sheaf mm/slub.c:2779 [inline]
+    __kfree_rcu_sheaf+0x34f/0x5c0 mm/slub.c:5909
+    kfree_rcu_sheaf mm/slab_common.c:1608 [inline]
+    kvfree_call_rcu+0x20a/0x3c0 mm/slab_common.c:1957
+    ma_free_rcu+0x41/0x60 lib/maple_tree.c:208
+    mas_free lib/maple_tree.c:1174 [inline]
+    mas_replace_node lib/maple_tree.c:1581 [inline]
+    mas_wr_node_store+0xc06/0x1120 lib/maple_tree.c:3553
+    mas_wr_store_entry+0xd22/0x1be0 lib/maple_tree.c:3764
+    mas_store_prealloc+0x630/0xc70 lib/maple_tree.c:5169
+    vma_iter_store_overwrite mm/vma.h:607 [inline]
+    vma_iter_store_new mm/vma.h:614 [inline]
+    vma_complete+0xbc8/0x1390 mm/vma.c:356
+    __split_vma+0x92f/0xcf0 mm/vma.c:566
+    vms_gather_munmap_vmas+0x178/0xe80 mm/vma.c:1408
+    __mmap_setup mm/vma.c:2411 [inline]
+    __mmap_region+0x4a5/0x29f0 mm/vma.c:2741
+    mmap_region+0x1be/0x3e0 mm/vma.c:2844
+    do_mmap+0xa36/0x11d0 mm/mmap.c:559
+    vm_mmap_pgoff+0x201/0x390 mm/util.c:581
+    ksys_mmap_pgoff+0x460/0x570 mm/mmap.c:605
+
+BUG: memory leak
+unreferenced object 0xffff8881052f1400 (size 512):
+  comm "systemd-fstab-g", pid 126, jiffies 4294685860
+  hex dump (first 32 bytes):
+    78 d6 00 02 81 88 ff ff 50 68 b2 81 ff ff ff ff  x.......Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc 8a3b7300):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4543 [inline]
+    slab_alloc_node mm/slub.c:4866 [inline]
+    __do_kmalloc_node mm/slub.c:5259 [inline]
+    __kmalloc_noprof+0x4d6/0x7c0 mm/slub.c:5272
+    kmalloc_noprof include/linux/slab.h:954 [inline]
+    kzalloc_noprof include/linux/slab.h:1188 [inline]
+    __alloc_empty_sheaf+0x3a/0x50 mm/slub.c:2764
+    alloc_empty_sheaf mm/slub.c:2779 [inline]
+    __kfree_rcu_sheaf+0x34f/0x5c0 mm/slub.c:5909
+    kfree_rcu_sheaf mm/slab_common.c:1608 [inline]
+    kvfree_call_rcu+0x20a/0x3c0 mm/slab_common.c:1957
+    ma_free_rcu+0x41/0x60 lib/maple_tree.c:208
+    mas_free lib/maple_tree.c:1174 [inline]
+    mas_replace_node lib/maple_tree.c:1581 [inline]
+    mas_wr_node_store+0xc06/0x1120 lib/maple_tree.c:3553
+    mas_wr_store_entry+0xd22/0x1be0 lib/maple_tree.c:3764
+    mas_store_prealloc+0x630/0xc70 lib/maple_tree.c:5169
+    vma_iter_store_overwrite mm/vma.h:607 [inline]
+    vma_iter_store_new mm/vma.h:614 [inline]
+    vma_complete+0xbc8/0x1390 mm/vma.c:356
+    __split_vma+0x9dd/0xcf0 mm/vma.c:566
+    vms_gather_munmap_vmas+0x335/0xe80 mm/vma.c:1429
+    __mmap_setup mm/vma.c:2411 [inline]
+    __mmap_region+0x4a5/0x29f0 mm/vma.c:2741
+    mmap_region+0x1be/0x3e0 mm/vma.c:2844
+    do_mmap+0xa36/0x11d0 mm/mmap.c:559
+    vm_mmap_pgoff+0x201/0x390 mm/util.c:581
+    ksys_mmap_pgoff+0x460/0x570 mm/mmap.c:605
+
+BUG: memory leak
+unreferenced object 0xffff88811e089800 (size 512):
+  comm "modprobe", pid 610, jiffies 4294760668
+  hex dump (first 32 bytes):
+    18 bb a4 13 81 88 ff ff 50 68 b2 81 ff ff ff ff  ........Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc f9fbaa98):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4543 [inline]
+    slab_alloc_node mm/slub.c:4866 [inline]
+    __do_kmalloc_node mm/slub.c:5259 [inline]
+    __kmalloc_noprof+0x4d6/0x7c0 mm/slub.c:5272
+    kmalloc_noprof include/linux/slab.h:954 [inline]
+    kzalloc_noprof include/linux/slab.h:1188 [inline]
+    __alloc_empty_sheaf+0x3a/0x50 mm/slub.c:2764
+    alloc_empty_sheaf mm/slub.c:2779 [inline]
+    __kfree_rcu_sheaf+0x34f/0x5c0 mm/slub.c:5909
+    kfree_rcu_sheaf mm/slab_common.c:1608 [inline]
+    kvfree_call_rcu+0x20a/0x3c0 mm/slab_common.c:1957
+    ma_free_rcu+0x41/0x60 lib/maple_tree.c:208
+    mas_topiary_node lib/maple_tree.c:2311 [inline]
+    mas_topiary_node lib/maple_tree.c:2299 [inline]
+    mas_topiary_replace+0x1012/0x16d0 lib/maple_tree.c:2410
+    mas_wmb_replace lib/maple_tree.c:2433 [inline]
+    mas_split+0xb5b/0xe40 lib/maple_tree.c:3052
+    mas_commit_b_node.isra.0+0x72/0xb0 lib/maple_tree.c:3072
+    mas_wr_bnode+0x12d/0x1b0 lib/maple_tree.c:3739
+    mas_wr_store_entry+0x7d7/0x1be0 lib/maple_tree.c:3771
+    mas_store_prealloc+0x630/0xc70 lib/maple_tree.c:5169
+    vma_iter_store_overwrite mm/vma.h:607 [inline]
+    vma_iter_store_new mm/vma.h:614 [inline]
+    vma_complete+0xbc8/0x1390 mm/vma.c:356
+    __split_vma+0x9dd/0xcf0 mm/vma.c:566
+    split_vma mm/vma.c:596 [inline]
+    vma_modify+0xa8d/0x2260 mm/vma.c:1680
+    vma_modify_flags+0x1ec/0x340 mm/vma.c:1700
+    mprotect_fixup+0x217/0xbd0 mm/mprotect.c:756
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    maple_tree_init+0xc4/0x100
+    start_kernel+0x1a3/0x530
+    x86_64_start_reservations+0x21/0x40
+    x86_64_start_kernel+0xd9/0xe0
+    common_startup_64+0x12c/0x138
+BUG: memory leak
+unreferenced object 0xffff888106b83000 (size 512):
+  comm "init", pid 1, jiffies 4294679685
+  hex dump (first 32 bytes):
+    a0 77 02 14 81 88 ff ff 50 68 b2 81 ff ff ff ff  .w......Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc f61e04e8):
+    __kmalloc_noprof+0x4d6/0x7c0
+    __alloc_empty_sheaf+0x3a/0x50
+    __kfree_rcu_sheaf+0x34f/0x5c0
+    kvfree_call_rcu+0x20a/0x3c0
+    ma_free_rcu+0x41/0x60
+    mas_wr_node_store+0xc06/0x1120
+    mas_wr_store_entry+0xd22/0x1be0
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xbc8/0x1390
+    __split_vma+0x9dd/0xcf0
+    vms_gather_munmap_vmas+0x335/0xe80
+    __mmap_region+0x4a5/0x29f0
+    mmap_region+0x1be/0x3e0
+    do_mmap+0xa36/0x11d0
+    vm_mmap_pgoff+0x201/0x390
+    ksys_mmap_pgoff+0x460/0x570
+
+BUG: memory leak
+unreferenced object 0xffff8881052f1800 (size 512):
+  comm "systemd-cryptse", pid 124, jiffies 4294685848
+  hex dump (first 32 bytes):
+    40 7c 00 11 81 88 ff ff 50 68 b2 81 ff ff ff ff  @|......Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc 5f4fcfd5):
+    __kmalloc_noprof+0x4d6/0x7c0
+    __alloc_empty_sheaf+0x3a/0x50
+    __kfree_rcu_sheaf+0x34f/0x5c0
+    kvfree_call_rcu+0x20a/0x3c0
+    ma_free_rcu+0x41/0x60
+    mas_wr_node_store+0xc06/0x1120
+    mas_wr_store_entry+0xd22/0x1be0
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xbc8/0x1390
+    __split_vma+0x92f/0xcf0
+    vms_gather_munmap_vmas+0x178/0xe80
+    __mmap_region+0x4a5/0x29f0
+    mmap_region+0x1be/0x3e0
+    do_mmap+0xa36/0x11d0
+    vm_mmap_pgoff+0x201/0x390
+    ksys_mmap_pgoff+0x460/0x570
+
+BUG: memory leak
+unreferenced object 0xffff8881052f1400 (size 512):
+  comm "systemd-fstab-g", pid 126, jiffies 4294685860
+  hex dump (first 32 bytes):
+    78 d6 00 02 81 88 ff ff 50 68 b2 81 ff ff ff ff  x.......Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc 8a3b7300):
+    __kmalloc_noprof+0x4d6/0x7c0
+    __alloc_empty_sheaf+0x3a/0x50
+    __kfree_rcu_sheaf+0x34f/0x5c0
+    kvfree_call_rcu+0x20a/0x3c0
+    ma_free_rcu+0x41/0x60
+    mas_wr_node_store+0xc06/0x1120
+    mas_wr_store_entry+0xd22/0x1be0
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xbc8/0x1390
+    __split_vma+0x9dd/0xcf0
+    vms_gather_munmap_vmas+0x335/0xe80
+    __mmap_region+0x4a5/0x29f0
+    mmap_region+0x1be/0x3e0
+    do_mmap+0xa36/0x11d0
+    vm_mmap_pgoff+0x201/0x390
+    ksys_mmap_pgoff+0x460/0x570
+
+BUG: memory leak
+unreferenced object 0xffff88811e089800 (size 512):
+  comm "modprobe", pid 610, jiffies 4294760668
+  hex dump (first 32 bytes):
+    18 bb a4 13 81 88 ff ff 50 68 b2 81 ff ff ff ff  ........Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc f9fbaa98):
+    __kmalloc_noprof+0x4d6/0x7c0
+    __alloc_empty_sheaf+0x3a/0x50
+    __kfree_rcu_sheaf+0x34f/0x5c0
+    kvfree_call_rcu+0x20a/0x3c0
+    ma_free_rcu+0x41/0x60
+    mas_topiary_replace+0x1012/0x16d0
+    mas_split+0xb5b/0xe40
+    mas_commit_b_node.isra.0+0x72/0xb0
+    mas_wr_bnode+0x12d/0x1b0
+    mas_wr_store_entry+0x7d7/0x1be0
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xbc8/0x1390
+    __split_vma+0x9dd/0xcf0
+    vma_modify+0xa8d/0x2260
+    vma_modify_flags+0x1ec/0x340
+    mprotect_fixup+0x217/0xbd0
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    __mmap_region+0x4a5/0x29f0
+    mmap_region+0x1be/0x3e0
+    do_mmap+0xa36/0x11d0
+    vm_mmap_pgoff+0x201/0x390
+    ksys_mmap_pgoff+0x460/0x570
+BUG: memory leak
+unreferenced object 0xffff8881052f1800 (size 512):
+  comm "systemd-cryptse", pid 124, jiffies 4294685848
+  hex dump (first 32 bytes):
+    40 7c 00 11 81 88 ff ff 50 68 b2 81 ff ff ff ff  @|......Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc 5f4fcfd5):
+    __kmalloc_noprof+0x4d6/0x7c0
+    __alloc_empty_sheaf+0x3a/0x50
+    __kfree_rcu_sheaf+0x34f/0x5c0
+    kvfree_call_rcu+0x20a/0x3c0
+    ma_free_rcu+0x41/0x60
+    mas_wr_node_store+0xc06/0x1120
+    mas_wr_store_entry+0xd22/0x1be0
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xbc8/0x1390
+    __split_vma+0x92f/0xcf0
+    vms_gather_munmap_vmas+0x178/0xe80
+    __mmap_region+0x4a5/0x29f0
+    mmap_region+0x1be/0x3e0
+    do_mmap+0xa36/0x11d0
+    vm_mmap_pgoff+0x201/0x390
+    ksys_mmap_pgoff+0x460/0x570
+
+BUG: memory leak
+unreferenced object 0xffff8881052f1400 (size 512):
+  comm "systemd-fstab-g", pid 126, jiffies 4294685860
+  hex dump (first 32 bytes):
+    78 d6 00 02 81 88 ff ff 50 68 b2 81 ff ff ff ff  x.......Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc 8a3b7300):
+    __kmalloc_noprof+0x4d6/0x7c0
+    __alloc_empty_sheaf+0x3a/0x50
+    __kfree_rcu_sheaf+0x34f/0x5c0
+    kvfree_call_rcu+0x20a/0x3c0
+    ma_free_rcu+0x41/0x60
+    mas_wr_node_store+0xc06/0x1120
+    mas_wr_store_entry+0xd22/0x1be0
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xbc8/0x1390
+    __split_vma+0x9dd/0xcf0
+    vms_gather_munmap_vmas+0x335/0xe80
+    __mmap_region+0x4a5/0x29f0
+    mmap_region+0x1be/0x3e0
+    do_mmap+0xa36/0x11d0
+    vm_mmap_pgoff+0x201/0x390
+    ksys_mmap_pgoff+0x460/0x570
+
+BUG: memory leak
+unreferenced object 0xffff88811e089800 (size 512):
+  comm "modprobe", pid 610, jiffies 4294760668
+  hex dump (first 32 bytes):
+    18 bb a4 13 81 88 ff ff 50 68 b2 81 ff ff ff ff  ........Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc f9fbaa98):
+    __kmalloc_noprof+0x4d6/0x7c0
+    __alloc_empty_sheaf+0x3a/0x50
+    __kfree_rcu_sheaf+0x34f/0x5c0
+    kvfree_call_rcu+0x20a/0x3c0
+    ma_free_rcu+0x41/0x60
+    mas_topiary_replace+0x1012/0x16d0
+    mas_split+0xb5b/0xe40
+    mas_commit_b_node.isra.0+0x72/0xb0
+    mas_wr_bnode+0x12d/0x1b0
+    mas_wr_store_entry+0x7d7/0x1be0
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xbc8/0x1390
+    __split_vma+0x9dd/0xcf0
+    vma_modify+0xa8d/0x2260
+    vma_modify_flags+0x1ec/0x340
+    mprotect_fixup+0x217/0xbd0
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    __mmap_region+0x4a5/0x29f0
+    mmap_region+0x1be/0x3e0
+    do_mmap+0xa36/0x11d0
+    vm_mmap_pgoff+0x201/0x390
+    ksys_mmap_pgoff+0x460/0x570
+BUG: memory leak
+unreferenced object 0xffff8881052f1400 (size 512):
+  comm "systemd-fstab-g", pid 126, jiffies 4294685860
+  hex dump (first 32 bytes):
+    78 d6 00 02 81 88 ff ff 50 68 b2 81 ff ff ff ff  x.......Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc 8a3b7300):
+    __kmalloc_noprof+0x4d6/0x7c0
+    __alloc_empty_sheaf+0x3a/0x50
+    __kfree_rcu_sheaf+0x34f/0x5c0
+    kvfree_call_rcu+0x20a/0x3c0
+    ma_free_rcu+0x41/0x60
+    mas_wr_node_store+0xc06/0x1120
+    mas_wr_store_entry+0xd22/0x1be0
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xbc8/0x1390
+    __split_vma+0x9dd/0xcf0
+    vms_gather_munmap_vmas+0x335/0xe80
+    __mmap_region+0x4a5/0x29f0
+    mmap_region+0x1be/0x3e0
+    do_mmap+0xa36/0x11d0
+    vm_mmap_pgoff+0x201/0x390
+    ksys_mmap_pgoff+0x460/0x570
+
+BUG: memory leak
+unreferenced object 0xffff88811e089800 (size 512):
+  comm "modprobe", pid 610, jiffies 4294760668
+  hex dump (first 32 bytes):
+    18 bb a4 13 81 88 ff ff 50 68 b2 81 ff ff ff ff  ........Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc f9fbaa98):
+    __kmalloc_noprof+0x4d6/0x7c0
+    __alloc_empty_sheaf+0x3a/0x50
+    __kfree_rcu_sheaf+0x34f/0x5c0
+    kvfree_call_rcu+0x20a/0x3c0
+    ma_free_rcu+0x41/0x60
+    mas_topiary_replace+0x1012/0x16d0
+    mas_split+0xb5b/0xe40
+    mas_commit_b_node.isra.0+0x72/0xb0
+    mas_wr_bnode+0x12d/0x1b0
+    mas_wr_store_entry+0x7d7/0x1be0
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xbc8/0x1390
+    __split_vma+0x9dd/0xcf0
+    vma_modify+0xa8d/0x2260
+    vma_modify_flags+0x1ec/0x340
+    mprotect_fixup+0x217/0xbd0
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    __mmap_region+0x4a5/0x29f0
+    mmap_region+0x1be/0x3e0
+    do_mmap+0xa36/0x11d0
+    vm_mmap_pgoff+0x201/0x390
+    ksys_mmap_pgoff+0x460/0x570
+BUG: memory leak
+unreferenced object 0xffff88811e089800 (size 512):
+  comm "modprobe", pid 610, jiffies 4294760668
+  hex dump (first 32 bytes):
+    18 bb a4 13 81 88 ff ff 50 68 b2 81 ff ff ff ff  ........Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc f9fbaa98):
+    __kmalloc_noprof+0x4d6/0x7c0
+    __alloc_empty_sheaf+0x3a/0x50
+    __kfree_rcu_sheaf+0x34f/0x5c0
+    kvfree_call_rcu+0x20a/0x3c0
+    ma_free_rcu+0x41/0x60
+    mas_topiary_replace+0x1012/0x16d0
+    mas_split+0xb5b/0xe40
+    mas_commit_b_node.isra.0+0x72/0xb0
+    mas_wr_bnode+0x12d/0x1b0
+    mas_wr_store_entry+0x7d7/0x1be0
+    mas_store_prealloc+0x630/0xc70
+    vma_complete+0xbc8/0x1390
+    __split_vma+0x9dd/0xcf0
+    vma_modify+0xa8d/0x2260
+    vma_modify_flags+0x1ec/0x340
+    mprotect_fixup+0x217/0xbd0
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

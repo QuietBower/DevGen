@@ -1,0 +1,558 @@
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	(detected by 3, t=10510 jiffies, g=43465, q=233 ncpus=4)
+rcu: All QSes seen, last rcu_preempt kthread activity 9055 (4295003367-4294994312), jiffies_till_next_fqs=1, root ->qsmask 0x0
+rcu: rcu_preempt kthread starved for 9055 jiffies! g43465 f0x2 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=2
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:R  running task     stack:28520 pid:16    tgid:16    ppid:2      task_flags:0x208040 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:5325 [inline]
+ __schedule+0x1044/0x5bb0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:6929
+ __schedule_loop home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7011 [inline]
+ schedule+0xe7/0x3a0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7026
+ schedule_timeout+0x113/0x280 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/sleep_timeout.c:99
+ rcu_gp_fqs_loop+0x18c/0xa00 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2083
+ rcu_gp_kthread+0x26f/0x370 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2285
+ kthread+0x3d0/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x676/0x7d0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+Sending NMI from CPU 3 to CPUs 2:
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 23100 Comm: syz.0.3278 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:io_serial_out+0x8f/0xb0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:407
+Code: 48 8d 7d 40 44 89 e1 48 b8 00 00 00 00 00 fc ff df 48 89 fa d3 e3 48 c1 ea 03 80 3c 02 00 75 1c 66 03 5d 40 44 89 e8 89 da ee <5b> 5d 41 5c 41 5d e9 86 83 2a 06 e8 41 ff 06 fd eb a0 e8 ca ff 06
+RSP: 0018:ffffc90002947070 EFLAGS: 00000002
+RAX: 0000000000000065 RBX: 00000000000003f8 RCX: 0000000000000000
+RDX: 00000000000003f8 RSI: ffffffff8519b0e5 RDI: ffffffff9abd1e20
+RBP: ffffffff9abd1de0 R08: 0000000000000000 R09: ffffed10043d4046
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000065 R14: ffffffff9abd1de0 R15: ffffffff8519b080
+FS:  00007f52d23d8640(0000) GS:ffff8880cf101000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f9703bf7938 CR3: 0000000118c6a000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ serial_port_out home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/serial_core.h:811 [inline]
+ serial8250_console_putchar home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:3192 [inline]
+ serial8250_console_fifo_write home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:3264 [inline]
+ serial8250_console_write+0x100f/0x1890 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:3342
+ console_emit_next_record home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3111 [inline]
+ console_flush_all+0x751/0xbe0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3199
+ __console_flush_and_unlock home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3258 [inline]
+ console_unlock+0xc2/0x1f0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3298
+ vprintk_emit+0x3e7/0x670 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2423
+ _printk+0xbe/0xf0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2448
+ bt_err+0xdb/0x120 home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/lib.c:296
+ __hci_cmd_sync_status_sk+0x16b/0x1a0 home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/hci_sync.c:271
+ __hci_cmd_sync_status home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/hci_sync.c:287 [inline]
+ hci_write_scan_enable_sync home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/hci_sync.c:3461 [inline]
+ hci_pause_scan_sync home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/hci_sync.c:6155 [inline]
+ hci_suspend_sync+0x6f0/0xb20 home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/hci_sync.c:6198
+ hci_suspend_dev+0x307/0x500 home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/hci_core.c:2849
+ hci_suspend_notifier+0x291/0x2f0 home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/hci_core.c:2420
+ notifier_call_chain+0xbc/0x420 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/notifier.c:85
+ notifier_call_chain_robust home/wmy/Fuzzer/third_tool/linux-6.18/kernel/notifier.c:120 [inline]
+ blocking_notifier_call_chain_robust home/wmy/Fuzzer/third_tool/linux-6.18/kernel/notifier.c:345 [inline]
+ blocking_notifier_call_chain_robust+0xc7/0x160 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/notifier.c:333
+ pm_notifier_call_chain_robust+0x2a/0x60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/power/main.c:115
+ snapshot_open+0x18e/0x2b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/power/user.c:77
+ misc_open+0x266/0x440 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/char/misc.c:163
+ chrdev_open+0x236/0x730 home/wmy/Fuzzer/third_tool/linux-6.18/fs/char_dev.c:414
+ do_dentry_open+0x979/0x1570 home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:965
+ vfs_open+0x82/0x3f0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1097
+ do_open home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:3975 [inline]
+ path_openat+0x1cb7/0x2870 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4134
+ do_filp_open+0x1f7/0x460 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4161
+ do_sys_openat2+0x104/0x1b0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1437
+ do_sys_open home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1452 [inline]
+ __do_sys_openat home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1468 [inline]
+ __se_sys_openat home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1463 [inline]
+ __x64_sys_openat+0x13f/0x1f0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1463
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xcb/0xfa0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f52d15b059d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f52d23d7f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffda RBX: 00007f52d1825fa0 RCX: 00007f52d15b059d
+RDX: 0000000000004100 RSI: 0000200000000000 RDI: ffffffffffffff9c
+RBP: 00007f52d164e078 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f52d1826038 R14: 00007f52d1825fa0 R15: 00007f52d23b8000
+ </TASK>
+watchdog: BUG: soft lockup - CPU#3 stuck for 204s! [kworker/u18:3:66]
+Modules linked in:
+irq event stamp: 1166856
+hardirqs last  enabled at (1166855): [<ffffffff8b41324b>] irqentry_exit+0x3b/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/entry/common.c:214
+hardirqs last disabled at (1166856): [<ffffffff8b4119df>] sysvec_apic_timer_interrupt+0xf/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052
+softirqs last  enabled at (1166854): [<ffffffff817bddf6>] softirq_handle_end home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:468 [inline]
+softirqs last  enabled at (1166854): [<ffffffff817bddf6>] handle_softirqs+0x576/0x870 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:650
+softirqs last disabled at (1166831): [<ffffffff817be289>] __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+softirqs last disabled at (1166831): [<ffffffff817be289>] invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+softirqs last disabled at (1166831): [<ffffffff817be289>] __irq_exit_rcu+0x109/0x170 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+CPU: 3 UID: 0 PID: 66 Comm: kworker/u18:3 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: writeback wb_workfn (flush-8:0)
+RIP: 0010:csd_lock_wait home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:342 [inline]
+RIP: 0010:smp_call_function_many_cond+0x811/0x15e0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:877
+Code: 48 b9 00 00 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 21 07 0c 00 f3 90 <41> 0f b6 06 41 38 c4 7c 08 84 c0 0f 85 6d 0b 00 00 44 8b 7b 08 31
+RSP: 0018:ffffc90000cd69d8 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: ffff888135e426c0 RCX: ffffffff81ae5104
+RDX: ffff8881007a1d00 RSI: ffffffff81ae50df RDI: 0000000000000005
+RBP: 0000000000000001 R08: 0000000000000000 R09: ffffed10054b5d58
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000003
+R13: ffff888135f3b740 R14: ffffed1026bc84d9 R15: 0000000000000001
+FS:  0000000000000000(0000) GS:ffff8881a2701000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fb914bff000 CR3: 000000011693c000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ on_each_cpu_cond_mask+0x40/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:1043
+ __flush_tlb_multi home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/paravirt.h:91 [inline]
+ flush_tlb_multi home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/tlb.c:1381 [inline]
+ flush_tlb_mm_range+0x42d/0x17d0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/tlb.c:1471
+ flush_tlb_page home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/tlbflush.h:324 [inline]
+ ptep_clear_flush+0x13d/0x180 home/wmy/Fuzzer/third_tool/linux-6.18/mm/pgtable-generic.c:101
+ page_vma_mkclean_one.constprop.0+0x39e/0x7f0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/rmap.c:1041
+ page_mkclean_one+0x196/0x260 home/wmy/Fuzzer/third_tool/linux-6.18/mm/rmap.c:1082
+ __rmap_walk_file+0x409/0x640 home/wmy/Fuzzer/third_tool/linux-6.18/mm/rmap.c:2918
+ rmap_walk_file+0x170/0x1f0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/rmap.c:2951
+ rmap_walk home/wmy/Fuzzer/third_tool/linux-6.18/mm/rmap.c:2962 [inline]
+ folio_mkclean+0x250/0x3f0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/rmap.c:1114
+ folio_clear_dirty_for_io+0x151/0x740 home/wmy/Fuzzer/third_tool/linux-6.18/mm/page-writeback.c:2938
+ mpage_submit_folio+0x84/0x2d0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/ext4/inode.c:2061
+ mpage_process_page_bufs+0x6aa/0x830 home/wmy/Fuzzer/third_tool/linux-6.18/fs/ext4/inode.c:2191
+ mpage_prepare_extent_to_map+0x761/0x13f0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/ext4/inode.c:2736
+ ext4_do_writepages+0x983/0x3a30 home/wmy/Fuzzer/third_tool/linux-6.18/fs/ext4/inode.c:2877
+ ext4_writepages+0x37a/0x7c0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/ext4/inode.c:3025
+ do_writepages+0x242/0x5b0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/page-writeback.c:2604
+ __writeback_single_inode+0x129/0xf30 home/wmy/Fuzzer/third_tool/linux-6.18/fs/fs-writeback.c:1719
+ writeback_sb_inodes+0x5bf/0xe90 home/wmy/Fuzzer/third_tool/linux-6.18/fs/fs-writeback.c:2015
+ __writeback_inodes_wb+0xbe/0x270 home/wmy/Fuzzer/third_tool/linux-6.18/fs/fs-writeback.c:2086
+ wb_writeback+0x732/0xb70 home/wmy/Fuzzer/third_tool/linux-6.18/fs/fs-writeback.c:2197
+ wb_check_old_data_flush home/wmy/Fuzzer/third_tool/linux-6.18/fs/fs-writeback.c:2301 [inline]
+ wb_do_writeback home/wmy/Fuzzer/third_tool/linux-6.18/fs/fs-writeback.c:2354 [inline]
+ wb_workfn+0x72d/0xbb0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/fs-writeback.c:2382
+ process_one_work+0x992/0x1b60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3263
+ process_scheduled_works home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3346 [inline]
+ worker_thread+0x67e/0xe90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3427
+ kthread+0x3d0/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x676/0x7d0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+Sending NMI from CPU 3 to CPUs 0-2:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 23101 Comm: syz.5.3280 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:console_trylock_spinning home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2023 [inline]
+RIP: 0010:vprintk_emit+0x4d5/0x670 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2422
+Code: f6 48 c7 c7 a0 4a 0d 8e e8 b8 10 fd ff 0f b6 2d 91 9b f3 18 31 ff 89 ee e8 08 94 20 00 5a 40 84 ed 74 1c e8 3d 99 20 00 f3 90 <0f> b6 2d 74 9b f3 18 31 ff 89 ee e8 eb 93 20 00 40 84 ed 75 e4 e8
+RSP: 0018:ffffc90009757658 EFLAGS: 00000046
+RAX: 0000000000080000 RBX: 1ffff920012eaecc RCX: ffffc90014fdb000
+RDX: 0000000000080000 RSI: ffffffff8199bec3 RDI: 0000000000000001
+RBP: 0000000000000001 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000030
+R13: 0000000000000200 R14: ffff88812943ba00 R15: ffffc90009757718
+FS:  00007fb917eca640(0000) GS:ffff8881a2601000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fb917ecafb2 CR3: 000000011884a000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ _printk+0xbe/0xf0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2448
+ set_capacity_and_notify+0x16a/0x240 home/wmy/Fuzzer/third_tool/linux-6.18/block/genhd.c:93
+ loop_set_size home/wmy/Fuzzer/third_tool/linux-6.18/drivers/block/loop.c:220 [inline]
+ loop_configure+0xcba/0x15d0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/block/loop.c:1081
+ lo_ioctl+0x68a/0x1d10 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/block/loop.c:1536
+ blkdev_ioctl+0x27c/0x6c0 home/wmy/Fuzzer/third_tool/linux-6.18/block/ioctl.c:705
+ vfs_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:51 [inline]
+ __do_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:597 [inline]
+ __se_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x18f/0x210 home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xcb/0xfa0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fb916fb015f
+Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 <41> 89 c0 3d 00 f0 ff ff 77 1f 48 8b 44 24 18 64 48 2b 04 25 28 00
+RSP: 002b:00007fb917ec9d00 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fb916fb015f
+RDX: 0000000000000003 RSI: 0000000000004c00 RDI: 0000000000000004
+RBP: 0000000000000004 R08: 0000000000000000 R09: 0000000000022317
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000003
+R13: 00007fb917ec9dfc R14: 00007fb917ec9e00 R15: 00007fb90cc00000
+ </TASK>
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 20532 Comm: kworker/u17:7 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: events_unbound toggle_allocation_gate
+RIP: 0010:e1000_irq_enable home/wmy/Fuzzer/third_tool/linux-6.18/drivers/net/ethernet/intel/e1000/e1000_main.c:295 [inline]
+RIP: 0010:e1000_clean+0xeda/0x2810 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/net/ethernet/intel/e1000/e1000_main.c:3818
+Code: fa 48 c1 ea 03 80 3c 02 00 0f 85 0d 18 00 00 48 8b 4c 24 40 ba 9d 00 00 00 48 8b 81 60 02 00 00 48 89 04 24 89 90 d0 00 00 00 <48> 8b 81 60 02 00 00 8b 40 08 e8 97 8a 52 fb 8b 84 24 e8 00 00 00
+RSP: 0018:ffffc90000007c00 EFLAGS: 00000246
+RAX: ffffc90006f20000 RBX: 0000000000000000 RCX: ffff888102331070
+RDX: 000000000000009d RSI: ffffffff8667cd18 RDI: ffff8881023312d0
+RBP: ffff8881023316b8 R08: 0000000000000000 R09: ffffed10204662d7
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000001
+R13: ffff888102330ffa R14: 0000000000004e20 R15: ffff888102330ff0
+FS:  0000000000000000(0000) GS:ffff8880cf001000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f55e00460f8 CR3: 000000000df84000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ __napi_poll.constprop.0+0xb9/0x540 home/wmy/Fuzzer/third_tool/linux-6.18/net/core/dev.c:7594
+ napi_poll home/wmy/Fuzzer/third_tool/linux-6.18/net/core/dev.c:7657 [inline]
+ net_rx_action+0x92d/0xe00 home/wmy/Fuzzer/third_tool/linux-6.18/net/core/dev.c:7784
+ handle_softirqs+0x1d4/0x870 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:622
+ __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+ invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0x109/0x170 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+ irq_exit_rcu+0x9/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:739
+ common_interrupt+0xf7/0x110 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/irq.c:318
+ </IRQ>
+ <TASK>
+ asm_common_interrupt+0x26/0x40 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:688
+RIP: 0010:csd_lock_wait home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:342 [inline]
+RIP: 0010:smp_call_function_many_cond+0x811/0x15e0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:877
+Code: 48 b9 00 00 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 21 07 0c 00 f3 90 <41> 0f b6 06 41 38 c4 7c 08 84 c0 0f 85 6d 0b 00 00 44 8b 7b 08 31
+RSP: 0018:ffffc9000a417880 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: ffff888135e40460 RCX: ffffffff81ae5104
+RDX: ffff888030e05700 RSI: ffffffff81ae50df RDI: 0000000000000005
+RBP: 0000000000000001 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000003
+R13: ffff88806283b740 R14: ffffed1026bc808d R15: 0000000000000001
+ on_each_cpu_cond_mask+0x40/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:1043
+ on_each_cpu home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/smp.h:71 [inline]
+ smp_text_poke_sync_each_cpu home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/alternative.c:2713 [inline]
+ smp_text_poke_batch_finish+0x27b/0xd50 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/alternative.c:2923
+ arch_jump_label_transform_apply+0x1c/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/jump_label.c:146
+ jump_label_update+0x369/0x540 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/jump_label.c:919
+ static_key_enable_cpuslocked+0x1b7/0x270 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/jump_label.c:210
+ static_key_enable+0x1a/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/jump_label.c:223
+ toggle_allocation_gate home/wmy/Fuzzer/third_tool/linux-6.18/mm/kfence/core.c:852 [inline]
+ toggle_allocation_gate+0xfa/0x250 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kfence/core.c:844
+ process_one_work+0x992/0x1b60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3263
+ process_scheduled_works home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3346 [inline]
+ worker_thread+0x67e/0xe90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3427
+ kthread+0x3d0/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x676/0x7d0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 23100 Comm: syz.0.3278 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:io_serial_out+0x8f/0xb0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:407
+Code: 48 8d 7d 40 44 89 e1 48 b8 00 00 00 00 00 fc ff df 48 89 fa d3 e3 48 c1 ea 03 80 3c 02 00 75 1c 66 03 5d 40 44 89 e8 89 da ee <5b> 5d 41 5c 41 5d e9 86 83 2a 06 e8 41 ff 06 fd eb a0 e8 ca ff 06
+RSP: 0018:ffffc90002947070 EFLAGS: 00000002
+RAX: 0000000000000069 RBX: 00000000000003f8 RCX: 0000000000000000
+RDX: 00000000000003f8 RSI: ffffffff8519b0e5 RDI: ffffffff9abd1e20
+RBP: ffffffff9abd1de0 R08: 0000000000000000 R09: ffffed10043d4046
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000069 R14: ffffffff9abd1de0 R15: ffffffff8519b080
+FS:  00007f52d23d8640(0000) GS:ffff8880cf101000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f9703bf7938 CR3: 0000000118c6a000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ serial_port_out home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/serial_core.h:811 [inline]
+ serial8250_console_putchar home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:3192 [inline]
+ serial8250_console_fifo_write home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:3264 [inline]
+ serial8250_console_write+0x100f/0x1890 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/tty/serial/8250/8250_port.c:3342
+ console_emit_next_record home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3111 [inline]
+ console_flush_all+0x751/0xbe0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3199
+ __console_flush_and_unlock home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3258 [inline]
+ console_unlock+0xc2/0x1f0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:3298
+ vprintk_emit+0x3e7/0x670 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2423
+ _printk+0xbe/0xf0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2448
+ bt_err+0xdb/0x120 home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/lib.c:296
+ __hci_cmd_sync_status_sk+0x16b/0x1a0 home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/hci_sync.c:271
+ __hci_cmd_sync_status home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/hci_sync.c:287 [inline]
+ hci_write_scan_enable_sync home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/hci_sync.c:3461 [inline]
+ hci_pause_scan_sync home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/hci_sync.c:6155 [inline]
+ hci_suspend_sync+0x6f0/0xb20 home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/hci_sync.c:6198
+ hci_suspend_dev+0x307/0x500 home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/hci_core.c:2849
+ hci_suspend_notifier+0x291/0x2f0 home/wmy/Fuzzer/third_tool/linux-6.18/net/bluetooth/hci_core.c:2420
+ notifier_call_chain+0xbc/0x420 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/notifier.c:85
+ notifier_call_chain_robust home/wmy/Fuzzer/third_tool/linux-6.18/kernel/notifier.c:120 [inline]
+ blocking_notifier_call_chain_robust home/wmy/Fuzzer/third_tool/linux-6.18/kernel/notifier.c:345 [inline]
+ blocking_notifier_call_chain_robust+0xc7/0x160 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/notifier.c:333
+ pm_notifier_call_chain_robust+0x2a/0x60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/power/main.c:115
+ snapshot_open+0x18e/0x2b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/power/user.c:77
+ misc_open+0x266/0x440 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/char/misc.c:163
+ chrdev_open+0x236/0x730 home/wmy/Fuzzer/third_tool/linux-6.18/fs/char_dev.c:414
+ do_dentry_open+0x979/0x1570 home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:965
+ vfs_open+0x82/0x3f0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1097
+ do_open home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:3975 [inline]
+ path_openat+0x1cb7/0x2870 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4134
+ do_filp_open+0x1f7/0x460 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:4161
+ do_sys_openat2+0x104/0x1b0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1437
+ do_sys_open home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1452 [inline]
+ __do_sys_openat home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1468 [inline]
+ __se_sys_openat home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1463 [inline]
+ __x64_sys_openat+0x13f/0x1f0 home/wmy/Fuzzer/third_tool/linux-6.18/fs/open.c:1463
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xcb/0xfa0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f52d15b059d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f52d23d7f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffda RBX: 00007f52d1825fa0 RCX: 00007f52d15b059d
+RDX: 0000000000004100 RSI: 0000200000000000 RDI: ffffffffffffff9c
+RBP: 00007f52d164e078 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f52d1826038 R14: 00007f52d1825fa0 R15: 00007f52d23b8000
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+ ret_from_fork+0x676/0x7d0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+Sending NMI from CPU 3 to CPUs 2:
+watchdog: BUG: soft lockup - CPU#3 stuck for 204s! [kworker/u18:3:66]
+Modules linked in:
+irq event stamp: 1166856
+hardirqs last  enabled at (1166855): [<ffffffff8b41324b>] irqentry_exit+0x3b/0x90
+hardirqs last disabled at (1166856): [<ffffffff8b4119df>] sysvec_apic_timer_interrupt+0xf/0xc0
+softirqs last  enabled at (1166854): [<ffffffff817bddf6>] handle_softirqs+0x576/0x870
+softirqs last disabled at (1166831): [<ffffffff817be289>] __irq_exit_rcu+0x109/0x170
+CPU: 3 UID: 0 PID: 66 Comm: kworker/u18:3 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: writeback wb_workfn (flush-8:0)
+RIP: 0010:smp_call_function_many_cond+0x811/0x15e0
+Code: 48 b9 00 00 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 21 07 0c 00 f3 90 <41> 0f b6 06 41 38 c4 7c 08 84 c0 0f 85 6d 0b 00 00 44 8b 7b 08 31
+RSP: 0018:ffffc90000cd69d8 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: ffff888135e426c0 RCX: ffffffff81ae5104
+RDX: ffff8881007a1d00 RSI: ffffffff81ae50df RDI: 0000000000000005
+RBP: 0000000000000001 R08: 0000000000000000 R09: ffffed10054b5d58
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000003
+R13: ffff888135f3b740 R14: ffffed1026bc84d9 R15: 0000000000000001
+FS:  0000000000000000(0000) GS:ffff8881a2701000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fb914bff000 CR3: 000000011693c000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ on_each_cpu_cond_mask+0x40/0x90
+ flush_tlb_mm_range+0x42d/0x17d0
+ ptep_clear_flush+0x13d/0x180
+ page_vma_mkclean_one.constprop.0+0x39e/0x7f0
+ page_mkclean_one+0x196/0x260
+ __rmap_walk_file+0x409/0x640
+ rmap_walk_file+0x170/0x1f0
+ folio_mkclean+0x250/0x3f0
+ folio_clear_dirty_for_io+0x151/0x740
+ mpage_submit_folio+0x84/0x2d0
+ mpage_process_page_bufs+0x6aa/0x830
+ mpage_prepare_extent_to_map+0x761/0x13f0
+ ext4_do_writepages+0x983/0x3a30
+ ext4_writepages+0x37a/0x7c0
+ do_writepages+0x242/0x5b0
+ __writeback_single_inode+0x129/0xf30
+ writeback_sb_inodes+0x5bf/0xe90
+ __writeback_inodes_wb+0xbe/0x270
+ wb_writeback+0x732/0xb70
+ wb_workfn+0x72d/0xbb0
+ process_one_work+0x992/0x1b60
+ worker_thread+0x67e/0xe90
+ kthread+0x3d0/0x780
+ ret_from_fork+0x676/0x7d0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+Sending NMI from CPU 3 to CPUs 0-2:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 23101 Comm: syz.5.3280 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:vprintk_emit+0x4d5/0x670
+Code: f6 48 c7 c7 a0 4a 0d 8e e8 b8 10 fd ff 0f b6 2d 91 9b f3 18 31 ff 89 ee e8 08 94 20 00 5a 40 84 ed 74 1c e8 3d 99 20 00 f3 90 <0f> b6 2d 74 9b f3 18 31 ff 89 ee e8 eb 93 20 00 40 84 ed 75 e4 e8
+RSP: 0018:ffffc90009757658 EFLAGS: 00000046
+RAX: 0000000000080000 RBX: 1ffff920012eaecc RCX: ffffc90014fdb000
+RDX: 0000000000080000 RSI: ffffffff8199bec3 RDI: 0000000000000001
+RBP: 0000000000000001 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000030
+R13: 0000000000000200 R14: ffff88812943ba00 R15: ffffc90009757718
+FS:  00007fb917eca640(0000) GS:ffff8881a2601000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fb917ecafb2 CR3: 000000011884a000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ _printk+0xbe/0xf0
+ set_capacity_and_notify+0x16a/0x240
+ loop_configure+0xcba/0x15d0
+ lo_ioctl+0x68a/0x1d10
+ blkdev_ioctl+0x27c/0x6c0
+ __x64_sys_ioctl+0x18f/0x210
+ do_syscall_64+0xcb/0xfa0
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fb916fb015f
+Code: 00 48 89 44 24 18 31 c0 48 8d 44 24 60 c7 04 24 10 00 00 00 48 89 44 24 08 48 8d 44 24 20 48 89 44 24 10 b8 10 00 00 00 0f 05 <41> 89 c0 3d 00 f0 ff ff 77 1f 48 8b 44 24 18 64 48 2b 04 25 28 00
+RSP: 002b:00007fb917ec9d00 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007fb916fb015f
+RDX: 0000000000000003 RSI: 0000000000004c00 RDI: 0000000000000004
+RBP: 0000000000000004 R08: 0000000000000000 R09: 0000000000022317
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000003
+R13: 00007fb917ec9dfc R14: 00007fb917ec9e00 R15: 00007fb90cc00000
+ </TASK>
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 20532 Comm: kworker/u17:7 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: events_unbound toggle_allocation_gate
+RIP: 0010:e1000_clean+0xeda/0x2810
+Code: fa 48 c1 ea 03 80 3c 02 00 0f 85 0d 18 00 00 48 8b 4c 24 40 ba 9d 00 00 00 48 8b 81 60 02 00 00 48 89 04 24 89 90 d0 00 00 00 <48> 8b 81 60 02 00 00 8b 40 08 e8 97 8a 52 fb 8b 84 24 e8 00 00 00
+RSP: 0018:ffffc90000007c00 EFLAGS: 00000246
+RAX: ffffc90006f20000 RBX: 0000000000000000 RCX: ffff888102331070
+RDX: 000000000000009d RSI: ffffffff8667cd18 RDI: ffff8881023312d0
+RBP: ffff8881023316b8 R08: 0000000000000000 R09: ffffed10204662d7
+R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000001
+R13: ffff888102330ffa R14: 0000000000004e20 R15: ffff888102330ff0
+FS:  0000000000000000(0000) GS:ffff8880cf001000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f55e00460f8 CR3: 000000000df84000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ __napi_poll.constprop.0+0xb9/0x540
+ net_rx_action+0x92d/0xe00
+ handle_softirqs+0x1d4/0x870
+ __irq_exit_rcu+0x109/0x170
+ irq_exit_rcu+0x9/0x30
+ common_interrupt+0xf7/0x110
+ </IRQ>
+ <TASK>
+ asm_common_interrupt+0x26/0x40
+RIP: 0010:smp_call_function_many_cond+0x811/0x15e0
+Code: 48 b9 00 00 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 21 07 0c 00 f3 90 <41> 0f b6 06 41 38 c4 7c 08 84 c0 0f 85 6d 0b 00 00 44 8b 7b 08 31
+RSP: 0018:ffffc9000a417880 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: ffff888135e40460 RCX: ffffffff81ae5104
+RDX: ffff888030e05700 RSI: ffffffff81ae50df RDI: 0000000000000005
+RBP: 0000000000000001 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000003
+R13: ffff88806283b740 R14: ffffed1026bc808d R15: 0000000000000001
+ on_each_cpu_cond_mask+0x40/0x90
+ smp_text_poke_batch_finish+0x27b/0xd50
+ arch_jump_label_transform_apply+0x1c/0x30
+ jump_label_update+0x369/0x540
+ static_key_enable_cpuslocked+0x1b7/0x270
+ static_key_enable+0x1a/0x20
+ toggle_allocation_gate+0xfa/0x250
+ process_one_work+0x992/0x1b60
+ worker_thread+0x67e/0xe90
+ kthread+0x3d0/0x780
+ ret_from_fork+0x676/0x7d0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 23100 Comm: syz.0.3278 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:io_serial_out+0x8f/0xb0
+Code: 48 8d 7d 40 44 89 e1 48 b8 00 00 00 00 00 fc ff df 48 89 fa d3 e3 48 c1 ea 03 80 3c 02 00 75 1c 66 03 5d 40 44 89 e8 89 da ee <5b> 5d 41 5c 41 5d e9 86 83 2a 06 e8 41 ff 06 fd eb a0 e8 ca ff 06
+RSP: 0018:ffffc90002947070 EFLAGS: 00000002
+RAX: 0000000000000069 RBX: 00000000000003f8 RCX: 0000000000000000
+RDX: 00000000000003f8 RSI: ffffffff8519b0e5 RDI: ffffffff9abd1e20
+RBP: ffffffff9abd1de0 R08: 0000000000000000 R09: ffffed10043d4046
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000069 R14: ffffffff9abd1de0 R15: ffffffff8519b080
+FS:  00007f52d23d8640(0000) GS:ffff8880cf101000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f9703bf7938 CR3: 0000000118c6a000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ serial8250_console_write+0x100f/0x1890
+ console_flush_all+0x751/0xbe0
+ console_unlock+0xc2/0x1f0
+ vprintk_emit+0x3e7/0x670
+ _printk+0xbe/0xf0
+ bt_err+0xdb/0x120
+ __hci_cmd_sync_status_sk+0x16b/0x1a0
+ hci_suspend_sync+0x6f0/0xb20
+ hci_suspend_dev+0x307/0x500
+ hci_suspend_notifier+0x291/0x2f0
+ notifier_call_chain+0xbc/0x420
+ blocking_notifier_call_chain_robust+0xc7/0x160
+ pm_notifier_call_chain_robust+0x2a/0x60
+ snapshot_open+0x18e/0x2b0
+ misc_open+0x266/0x440
+ chrdev_open+0x236/0x730
+ do_dentry_open+0x979/0x1570
+ vfs_open+0x82/0x3f0
+ path_openat+0x1cb7/0x2870
+ do_filp_open+0x1f7/0x460
+ do_sys_openat2+0x104/0x1b0
+ __x64_sys_openat+0x13f/0x1f0
+ do_syscall_64+0xcb/0xfa0
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f52d15b059d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f52d23d7f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffda RBX: 00007f52d1825fa0 RCX: 00007f52d15b059d
+RDX: 0000000000004100 RSI: 0000200000000000 RDI: ffffffffffffff9c
+RBP: 00007f52d164e078 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f52d1826038 R14: 00007f52d1825fa0 R15: 00007f52d23b8000
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+ kthread+0x3d0/0x780
+ ret_from_fork+0x676/0x7d0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+Sending NMI from CPU 3 to CPUs 0-2:
+Kernel panic - not syncing: softlockup: hung tasks
+CPU: 3 UID: 0 PID: 66 Comm: kworker/u18:3 Tainted: G             L      6.18.0 #1 PREEMPT(full) 
+Tainted: [L]=SOFTLOCKUP
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: writeback wb_workfn (flush-8:0)
+Call Trace:
+ <IRQ>
+ dump_stack_lvl+0x3d/0x1b0
+ vpanic+0x679/0x710
+ panic+0xc2/0xd0
+ watchdog_timer_fn+0x622/0x760
+ __hrtimer_run_queues+0x607/0xb30
+ hrtimer_interrupt+0x39a/0x880
+ __sysvec_apic_timer_interrupt+0x10d/0x400
+ sysvec_apic_timer_interrupt+0xa3/0xc0
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20
+RIP: 0010:smp_call_function_many_cond+0x811/0x15e0
+Code: 48 b9 00 00 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 21 07 0c 00 f3 90 <41> 0f b6 06 41 38 c4 7c 08 84 c0 0f 85 6d 0b 00 00 44 8b 7b 08 31
+RSP: 0018:ffffc90000cd69d8 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: ffff888135e426c0 RCX: ffffffff81ae5104
+RDX: ffff8881007a1d00 RSI: ffffffff81ae50df RDI: 0000000000000005
+RBP: 0000000000000001 R08: 0000000000000000 R09: ffffed10054b5d58
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000003
+R13: ffff888135f3b740 R14: ffffed1026bc84d9 R15: 0000000000000001
+ on_each_cpu_cond_mask+0x40/0x90
+ flush_tlb_mm_range+0x42d/0x17d0
+ ptep_clear_flush+0x13d/0x180
+ page_vma_mkclean_one.constprop.0+0x39e/0x7f0
+ page_mkclean_one+0x196/0x260
+ __rmap_walk_file+0x409/0x640
+ rmap_walk_file+0x170/0x1f0
+ folio_mkclean+0x250/0x3f0
+ folio_clear_dirty_for_io+0x151/0x740
+ mpage_submit_folio+0x84/0x2d0
+ mpage_process_page_bufs+0x6aa/0x830
+ mpage_prepare_extent_to_map+0x761/0x13f0
+ ext4_do_writepages+0x983/0x3a30
+ ext4_writepages+0x37a/0x7c0
+ do_writepages+0x242/0x5b0
+ __writeback_single_inode+0x129/0xf30
+ writeback_sb_inodes+0x5bf/0xe90
+ __writeback_inodes_wb+0xbe/0x270
+ wb_writeback+0x732/0xb70
+ wb_workfn+0x72d/0xbb0
+ process_one_work+0x992/0x1b60
+ worker_thread+0x67e/0xe90
+ kthread+0x3d0/0x780
+ ret_from_fork+0x676/0x7d0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+Shutting down cpus with NMI
+Kernel Offset: disabled
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

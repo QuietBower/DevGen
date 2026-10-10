@@ -1,0 +1,67 @@
+ALSA: seq fatal error: cannot create timer (-19)
+clocksource: Long readout interval, skipping watchdog check: cs_nsec: 1137710684 wd_nsec: 1137710421
+------------[ cut here ]------------
+bochs-drm 0000:00:01.0: [drm] vblank wait timed out on crtc 0
+WARNING: drivers/gpu/drm/drm_vblank.c:1320 at drm_crtc_wait_one_vblank+0x316/0x4c0 drivers/gpu/drm/drm_vblank.c:1320, CPU#2: kworker/2:1/52
+Modules linked in: iTCO_wdt bochs intel_pmc_bxt drm_shmem_helper snd_maestro3 watchdog i2c_i801 drm_client_lib snd_ac97_codec i2c_smbus drm_kms_helper ac97_bus lpc_ich
+CPU: 2 UID: 0 PID: 52 Comm: kworker/2:1 Tainted: G        W        N  7.0.0 #7 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: events drm_fb_helper_damage_work [drm_kms_helper]
+RIP: 0010:drm_crtc_wait_one_vblank+0x31c/0x4c0 drivers/gpu/drm/drm_vblank.c:1320
+Code: 8b 74 24 50 4d 85 f6 0f 84 07 01 00 00 e8 ac d7 89 fe 4c 89 e7 e8 64 51 04 00 48 89 c6 48 8d 3d 3a 95 5d 05 44 89 e9 4c 89 f2 <67> 48 0f b9 3a 44 89 ee 48 89 ef 41 be 92 ff ff ff e8 fe f7 ff ff
+RSP: 0018:ffff888101d6faa0 EFLAGS: 00010293
+RAX: ffffffffa03603c0 RBX: 00000000000115e9 RCX: 0000000000000000
+RDX: ffff888101ef75c0 RSI: ffffffffa03603c0 RDI: ffffffff884c1cc0
+RBP: ffff888116ee8000 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff88486997 R11: 0000000000000000 R12: ffff8881020fa0c8
+R13: 0000000000000000 R14: ffff888101ef75c0 R15: ffff888101d6fae8
+FS:  0000000000000000(0000) GS:ffff8881d08f9000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00005582650c6010 CR3: 0000000119a96000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ drm_client_modeset_wait_for_vblank+0xf6/0x130 drivers/gpu/drm/drm_client_modeset.c:1331
+ drm_fb_helper_damage_work+0x154/0x630 drivers/gpu/drm/bridge/panel.c:70 [drm_kms_helper]
+ process_one_work+0x920/0x1ac0 kernel/workqueue.c:3288
+ process_scheduled_works kernel/workqueue.c:3371 [inline]
+ worker_thread+0x698/0xeb0 kernel/workqueue.c:3452
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x690/0xaa0 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+irq event stamp: 371757
+hardirqs last  enabled at (371767): [<ffffffff81572ad9>] __up_console_sem+0x89/0xa0 kernel/printk/printk.c:347
+hardirqs last disabled at (371776): [<ffffffff81572abe>] __up_console_sem+0x6e/0xa0 kernel/printk/printk.c:345
+softirqs last  enabled at (371614): [<ffffffff813dbc30>] __do_softirq kernel/softirq.c:656 [inline]
+softirqs last  enabled at (371614): [<ffffffff813dbc30>] invoke_softirq kernel/softirq.c:496 [inline]
+softirqs last  enabled at (371614): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100 kernel/softirq.c:723
+softirqs last disabled at (371599): [<ffffffff813dbc30>] __do_softirq kernel/softirq.c:656 [inline]
+softirqs last disabled at (371599): [<ffffffff813dbc30>] invoke_softirq kernel/softirq.c:496 [inline]
+softirqs last disabled at (371599): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100 kernel/softirq.c:723
+---[ end trace 0000000000000000 ]---
+----------------
+Code disassembly (best guess):
+   0:	8b 74 24 50          	mov    0x50(%rsp),%esi
+   4:	4d 85 f6             	test   %r14,%r14
+   7:	0f 84 07 01 00 00    	je     0x114
+   d:	e8 ac d7 89 fe       	call   0xfe89d7be
+  12:	4c 89 e7             	mov    %r12,%rdi
+  15:	e8 64 51 04 00       	call   0x4517e
+  1a:	48 89 c6             	mov    %rax,%rsi
+  1d:	48 8d 3d 3a 95 5d 05 	lea    0x55d953a(%rip),%rdi        # 0x55d955e
+  24:	44 89 e9             	mov    %r13d,%ecx
+  27:	4c 89 f2             	mov    %r14,%rdx
+* 2a:	67 48 0f b9 3a       	ud1    (%edx),%rdi <-- trapping instruction
+  2f:	44 89 ee             	mov    %r13d,%esi
+  32:	48 89 ef             	mov    %rbp,%rdi
+  35:	41 be 92 ff ff ff    	mov    $0xffffff92,%r14d
+  3b:	e8 fe f7 ff ff       	call   0xfffff83e
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

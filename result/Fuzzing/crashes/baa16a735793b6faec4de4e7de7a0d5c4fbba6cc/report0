@@ -1,0 +1,127 @@
+i801_smbus 0000:00:1f.3: Illegal SMBus block read size 0
+systemd-journald[145]: /dev/kmsg buffer overrun, some messages lost.
+systemd-journald[145]: /dev/kmsg buffer overrun, some messages lost.
+==================================================================
+BUG: KASAN: stack-out-of-bounds in i801_isr_byte_done drivers/i2c/busses/i2c-i801.c:592 [inline] [i2c_i801]
+BUG: KASAN: stack-out-of-bounds in i801_isr drivers/i2c/busses/i2c-i801.c:648 [inline] [i2c_i801]
+BUG: KASAN: stack-out-of-bounds in i801_isr+0x97a/0x990 drivers/i2c/busses/i2c-i801.c:629 [i2c_i801]
+Read of size 1 at addr ffff8881026dfd91 by task in:imklog/218
+
+CPU: 2 UID: 0 PID: 218 Comm: in:imklog Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <IRQ>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xdb/0x140 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:378 [inline]
+ print_report+0xcb/0x5e0 mm/kasan/report.c:482
+ kasan_report+0xca/0x100 mm/kasan/report.c:595
+ i801_isr_byte_done drivers/i2c/busses/i2c-i801.c:592 [inline] [i2c_i801]
+ i801_isr drivers/i2c/busses/i2c-i801.c:648 [inline] [i2c_i801]
+ i801_isr+0x97a/0x990 drivers/i2c/busses/i2c-i801.c:629 [i2c_i801]
+ __handle_irq_event_percpu+0x222/0x830 kernel/irq/handle.c:209
+ handle_irq_event_percpu kernel/irq/handle.c:246 [inline]
+ handle_irq_event+0xb0/0x1f0 kernel/irq/handle.c:263
+ handle_fasteoi_irq+0x2f3/0x6d0 kernel/irq/chip.c:768
+ generic_handle_irq_desc include/linux/irqdesc.h:188 [inline]
+ handle_irq arch/x86/kernel/irq.c:209 [inline]
+ call_irq_handler arch/x86/kernel/irq.c:233 [inline]
+ __common_interrupt+0xa1/0x240 arch/x86/kernel/irq.c:280
+ common_interrupt+0x6e/0xd0 arch/x86/kernel/irq.c:273
+ asm_common_interrupt+0x26/0x40 arch/x86/include/asm/idtentry.h:665
+RIP: 0010:variable_ffs arch/x86/include/asm/bitops.h:312 [inline]
+RIP: 0010:handle_softirqs+0x179/0x860 kernel/softirq.c:610
+Code: c8 83 83 ec 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 ea 6d c9 08 00 00 e8 dd 56 47 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 a0 60 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815a908f70 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: ffff888104bd9b80 RCX: ffffffff81852818
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffffffff813dd253
+RBP: ffff8881024afa28 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000001 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000200 R15: 0000000000000000
+ __do_softirq kernel/softirq.c:656 [inline]
+ invoke_softirq kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0x143/0x1c0 kernel/softirq.c:735
+ irq_exit_rcu+0xe/0x20 kernel/softirq.c:752
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1062 [inline]
+ sysvec_apic_timer_interrupt+0x70/0x80 arch/x86/kernel/apic/apic.c:1062
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:674
+RIP: 0010:__preempt_count_dec_and_test arch/x86/include/asm/preempt.h:95 [inline]
+RIP: 0010:__raw_spin_unlock_irqrestore include/linux/spinlock_api_smp.h:179 [inline]
+RIP: 0010:_raw_spin_unlock_irqrestore+0x37/0x60 kernel/locking/spinlock.c:198
+Code: 48 83 c7 18 53 48 89 f3 48 8b 74 24 10 e8 11 19 40 fb 48 89 ef e8 b9 62 40 fb 80 e7 02 74 0b e8 ff 7a 6f fb fb 0f 1f 44 00 00 <65> ff 0d f2 91 f1 03 74 07 5b 5d e9 d9 25 00 00 e8 b4 ef 0a fb 5b
+RSP: 0018:ffff8881024afad8 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: 0000000000000202 RCX: ffffffff81852818
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffffffff8615ae31
+RBP: ffff8881122909d8 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: ffff88815a9395a0 R12: ffff8881122909d8
+R13: ffff888112290000 R14: ffff88815a939588 R15: ffff88815a939540
+ class_raw_spinlock_irqsave_destructor include/linux/spinlock.h:571 [inline]
+ try_to_wake_up+0x9b0/0x18a0 kernel/sched/core.c:4292
+ wake_up_process kernel/sched/core.c:4547 [inline]
+ wake_up_q+0xa6/0x130 kernel/sched/core.c:1173
+ futex_wake+0x506/0x5f0 kernel/futex/waitwake.c:225
+ do_futex+0x27b/0x430 kernel/futex/syscalls.c:138
+ __do_sys_futex kernel/futex/syscalls.c:210 [inline]
+ __se_sys_futex kernel/futex/syscalls.c:191 [inline]
+ __x64_sys_futex+0x1ca/0x4d0 kernel/futex/syscalls.c:191
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f3c2b206014
+Code: 83 e1 fc f0 41 0f b1 09 75 f2 83 e2 03 80 f3 81 83 fa 02 0f 84 dd 01 00 00 45 31 d2 ba 01 00 00 00 89 de b8 ca 00 00 00 0f 05 <48> 3d 00 f0 ff ff 0f 87 88 01 00 00 48 83 c4 28 31 c0 5b 5d 41 5c
+RSP: 002b:00007f3c2a798260 EFLAGS: 00000246 ORIG_RAX: 00000000000000ca
+RAX: ffffffffffffffda RBX: 0000000000000081 RCX: 00007f3c2b206014
+RDX: 0000000000000001 RSI: 0000000000000081 RDI: 000055c2a092ee70
+RBP: 0000000000000000 R08: 000055c2a092ee48 R09: 000055c2a092ee68
+R10: 0000000000000000 R11: 0000000000000246 R12: 00000000000012a4
+R13: 0000000000000000 R14: 000055c2a092ee70 R15: 000055c2a092ee48
+ </TASK>
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x1026df
+flags: 0x200000000000000(node=0|zone=2)
+raw: 0200000000000000 0000000000000000 ffffea000409b7c8 0000000000000000
+raw: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff8881026dfc80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff8881026dfd00: 00 00 00 00 00 f1 f1 f1 f1 00 00 f2 f2 00 00 00
+>ffff8881026dfd80: f3 f3 f3 f3 f3 00 00 00 00 00 00 00 00 00 00 00
+                         ^
+ ffff8881026dfe00: 00 00 00 00 00 00 f1 f1 f1 f1 f1 f1 04 f2 00 00
+ ffff8881026dfe80: f3 f3 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+==================================================================
+systemd-journald[145]: /dev/kmsg buffer overrun, some messages lost.
+systemd-journald[145]: /dev/kmsg buffer overrun, some messages lost.
+----------------
+Code disassembly (best guess):
+   0:	c8 83 83 ec          	enter  $0x8383,$0xec
+   4:	0a 00                	or     (%rax),%al
+   6:	00 01                	add    %al,(%rcx)
+   8:	c7 44 24 20 0a 00 00 	movl   $0xa,0x20(%rsp)
+   f:	00
+  10:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
+  15:	65 66 c7 05 ea 6d c9 	movw   $0x0,%gs:0x8c96dea(%rip)        # 0x8c96e09
+  1c:	08 00 00
+  1f:	e8 dd 56 47 00       	call   0x475701
+  24:	fb                   	sti
+  25:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+* 2a:	bb ff ff ff ff       	mov    $0xffffffff,%ebx <-- trapping instruction
+  2f:	49 c7 c4 c0 a0 60 87 	mov    $0xffffffff8760a0c0,%r12
+  36:	41 0f bc de          	bsf    %r14d,%ebx
+  3a:	83 c3 01             	add    $0x1,%ebx
+  3d:	0f                   	.byte 0xf
+  3e:	85                   	.byte 0x85
+  3f:	94                   	xchg   %eax,%esp
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

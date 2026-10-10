@@ -1,0 +1,139 @@
+==================================================================
+BUG: KASAN: out-of-bounds in i801_isr_byte_done drivers/i2c/busses/i2c-i801.c:582 [inline] [i2c_i801]
+BUG: KASAN: out-of-bounds in i801_isr drivers/i2c/busses/i2c-i801.c:648 [inline] [i2c_i801]
+BUG: KASAN: out-of-bounds in i801_isr+0x933/0x990 drivers/i2c/busses/i2c-i801.c:629 [i2c_i801]
+Write of size 1 at addr ffff888122b97d99 by task syz-executor/810
+
+CPU: 3 UID: 0 PID: 810 Comm: syz-executor Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <IRQ>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xdb/0x140 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:378 [inline]
+ print_report+0xcb/0x5e0 mm/kasan/report.c:482
+ kasan_report+0xca/0x100 mm/kasan/report.c:595
+ i801_isr_byte_done drivers/i2c/busses/i2c-i801.c:582 [inline] [i2c_i801]
+ i801_isr drivers/i2c/busses/i2c-i801.c:648 [inline] [i2c_i801]
+ i801_isr+0x933/0x990 drivers/i2c/busses/i2c-i801.c:629 [i2c_i801]
+ __handle_irq_event_percpu+0x222/0x830 kernel/irq/handle.c:209
+ handle_irq_event_percpu kernel/irq/handle.c:246 [inline]
+ handle_irq_event+0xb0/0x1f0 kernel/irq/handle.c:263
+ handle_fasteoi_irq+0x2f3/0x6d0 kernel/irq/chip.c:768
+ generic_handle_irq_desc include/linux/irqdesc.h:188 [inline]
+ handle_irq arch/x86/kernel/irq.c:209 [inline]
+ call_irq_handler arch/x86/kernel/irq.c:233 [inline]
+ __common_interrupt+0xa1/0x240 arch/x86/kernel/irq.c:280
+ common_interrupt+0x6e/0xd0 arch/x86/kernel/irq.c:273
+ asm_common_interrupt+0x26/0x40 arch/x86/include/asm/idtentry.h:665
+RIP: 0010:variable_ffs arch/x86/include/asm/bitops.h:312 [inline]
+RIP: 0010:handle_softirqs+0x179/0x860 kernel/softirq.c:610
+Code: c8 83 83 ec 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 ea 6d c9 08 00 00 e8 dd 56 47 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 a0 60 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815a988f70 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: ffff888104888000 RCX: ffffffff81852818
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffffffff813dd253
+RBP: ffff8881064bf408 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000001 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000002 R15: 0000000000000000
+ __do_softirq kernel/softirq.c:656 [inline]
+ invoke_softirq kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0x143/0x1c0 kernel/softirq.c:735
+ irq_exit_rcu+0xe/0x20 kernel/softirq.c:752
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1062 [inline]
+ sysvec_apic_timer_interrupt+0x70/0x80 arch/x86/kernel/apic/apic.c:1062
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:674
+RIP: 0010:__sanitizer_cov_trace_pc+0x4b/0x80 kernel/kcov.c:217
+Code: 74 1d a9 00 00 0f 00 75 16 a9 00 00 f0 00 74 05 e9 8a 18 9c 04 8b 82 0c 16 00 00 85 c0 75 05 c3 cc cc cc cc 8b 82 e8 15 00 00 <83> f8 02 75 f0 48 8b 8a f0 15 00 00 8b 92 ec 15 00 00 48 8b 01 48
+RSP: 0018:ffff8881064bf4b8 EFLAGS: 00000246
+RAX: 0000000000000000 RBX: 000000000012e856 RCX: ffffffff81a7e0c6
+RDX: ffff888104888000 RSI: ffffffff81a7e0d4 RDI: 0000000000000001
+RBP: ffff888112aa6a80 R08: 800000012e856007 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000001 R15: 0000000000000000
+ __vm_normal_page+0x94/0x4a0 mm/memory.c:742
+ vm_normal_page+0x122/0x170 mm/memory.c:770
+ copy_present_ptes mm/memory.c:1138 [inline]
+ copy_pte_range mm/memory.c:1320 [inline]
+ copy_pmd_range mm/memory.c:1408 [inline]
+ copy_pud_range mm/memory.c:1445 [inline]
+ copy_p4d_range mm/memory.c:1469 [inline]
+ copy_page_range+0xe9b/0x50b0 mm/memory.c:1555
+ dup_mmap+0xcf7/0x1f50 mm/mmap.c:1840
+ dup_mm kernel/fork.c:1537 [inline]
+ copy_mm kernel/fork.c:1589 [inline]
+ copy_process+0x3e25/0x7a00 kernel/fork.c:2287
+ kernel_clone+0x202/0x860 kernel/fork.c:2745
+ __do_sys_clone+0xce/0x120 kernel/fork.c:2886
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f0e07cc9d07
+Code: 00 00 90 f3 0f 1e fa 64 48 8b 04 25 10 00 00 00 45 31 c0 31 d2 31 f6 bf 11 00 20 01 4c 8d 90 d0 02 00 00 b8 38 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 41 41 89 c0 85 c0 75 2c 64 48 8b 04 25 10 00
+RSP: 002b:00007ffe1368f898 EFLAGS: 00000246 ORIG_RAX: 0000000000000038
+RAX: ffffffffffffffda RBX: 00007f0e08a9d680 RCX: 00007f0e07cc9d07
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000001200011
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000001
+R10: 000055558c9427d0 R11: 0000000000000246 R12: 0000000000000001
+R13: 0000000000000032 R14: 00007ffe1368fa80 R15: 0000000000023a32
+ </TASK>
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x122b97
+flags: 0x200000000000000(node=0|zone=2)
+raw: 0200000000000000 0000000000000000 dead000000000122 0000000000000000
+raw: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888122b97c80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff888122b97d00: 00 00 00 00 00 00 f1 f1 f1 f1 04 f3 f3 f3 00 00
+>ffff888122b97d80: 00 00 00 00 00 00 00 00 00 00 f1 f1 f1 f1 00 00
+                               ^
+ ffff888122b97e00: 00 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 00 00
+ ffff888122b97e80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+==================================================================
+i801_smbus 0000:01:00.0: Refused to change power state from D0 to D3hot
+----------------
+Code disassembly (best guess):
+   0:	c8 83 83 ec          	enter  $0x8383,$0xec
+   4:	0a 00                	or     (%rax),%al
+   6:	00 01                	add    %al,(%rcx)
+   8:	c7 44 24 20 0a 00 00 	movl   $0xa,0x20(%rsp)
+   f:	00
+  10:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
+  15:	65 66 c7 05 ea 6d c9 	movw   $0x0,%gs:0x8c96dea(%rip)        # 0x8c96e09
+  1c:	08 00 00
+  1f:	e8 dd 56 47 00       	call   0x475701
+  24:	fb                   	sti
+  25:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+* 2a:	bb ff ff ff ff       	mov    $0xffffffff,%ebx <-- trapping instruction
+  2f:	49 c7 c4 c0 a0 60 87 	mov    $0xffffffff8760a0c0,%r12
+  36:	41 0f bc de          	bsf    %r14d,%ebx
+  3a:	83 c3 01             	add    $0x1,%ebx
+  3d:	0f                   	.byte 0xf
+  3e:	85                   	.byte 0x85
+  3f:	94                   	xchg   %eax,%esp
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+smbus: error: Unexpected recv start condition in state -1
+smbus: error: Unexpected recv start condition in state -1
+smbus: error: Unexpected recv start condition in state -1
+smbus: error: Unexpected recv start condition in state -1
+smbus: error: Unexpected recv start condition in state -1
+SYZFAIL: failed to send rpc
+fd=3 want=56 sent=0 n=-1 (errno 32: Broken pipe)
+smbus: error: Unexpected recv start condition in state -1
+smbus: error: Unexpected recv start condition in state -1
+smbus: error: Unexpected recv start condition in state -1
+smbus: error: Unexpected recv start condition in state -1
+smbus: error: Unexpected recv start condition in state -1
+smbus: error: Unexpected recv start condition in state -1
+smbus: error: Unexpected recv start condition in state -1
+smbus: error: Unexpected recv start condition in state -1
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

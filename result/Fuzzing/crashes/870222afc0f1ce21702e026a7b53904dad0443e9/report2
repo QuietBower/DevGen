@@ -1,0 +1,94 @@
+audit: type=1400 audit(1783338834.236:39): avc:  denied  { map } for  pid=311 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+BUG: unable to handle page fault for address: ffffc90003000000
+#PF: supervisor read access in kernel mode
+#PF: error_code(0x0000) - not-present page
+PGD 100000067 P4D 100000067 PUD 100ad4067 PMD 10682b067 PTE 0
+Oops: Oops: 0000 [#1] SMP KASAN PTI
+CPU: 1 UID: 0 PID: 2058 Comm: syz.3.9 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:rep_movs arch/x86/lib/iomem.c:13 [inline]
+RIP: 0010:string_memcpy_fromio arch/x86/lib/iomem.c:43 [inline]
+RIP: 0010:memcpy_fromio+0x8c/0xe0 arch/x86/lib/iomem.c:101
+Code: f6 fe 49 89 dd 31 ff 41 83 e5 02 4c 89 ee e8 0b b3 f6 fe 4d 85 ed 75 2e e8 e1 b7 f6 fe 48 89 e9 4c 89 e7 48 89 de 48 c1 e9 02 <f3> a5 40 f6 c5 02 74 02 66 a5 40 f6 c5 01 74 01 a4 5b 5d 41 5c 41
+i2c i2c-0: ioctl, cmd=0x720, arg=0x200000000040
+RSP: 0018:ffff888106fcfc80 EFLAGS: 00010202
+RAX: 0000000000080000 RBX: ffffc90003000000 RCX: 00000000000000b0
+RDX: 0000000000080000 RSI: ffffc90003000000 RDI: ffff8881070ae000
+RBP: 00000000000002c0 R08: 0000000000000000 R09: ffffed1020e15dff
+R10: 0000000000000000 R11: 0000000000000000 R12: ffff8881070ae000
+R13: 0000000000000000 R14: ffff8881070ae000 R15: 00000000000002c0
+FS:  00007fb0a3aa7640(0000) GS:ffff8881d082c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffc90003000000 CR3: 0000000117cf6000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ fb_memcpy_fromio include/asm-generic/video.h:115 [inline]
+ fb_io_read+0x2eb/0x490 drivers/video/fbdev/core/fb_io_fops.c:49
+ fb_read+0x191/0x260 drivers/video/fbdev/core/fb_chrdev.c:43
+ vfs_read+0x1eb/0xc80 fs/read_write.c:572
+ ksys_read+0x126/0x240 fs/read_write.c:716
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fb0a506359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fb0a3aa6f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000000
+RAX: ffffffffffffffda RBX: 00007fb0a52f5fa0 RCX: 00007fb0a506359d
+RDX: 00000000ffffffc0 RSI: 00002000000002c0 RDI: 0000000000000003
+RBP: 00007fb0a5102b08 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007fb0a52f6038 R14: 00007fb0a52f5fa0 R15: 00007fb0a3a87000
+ </TASK>
+Modules linked in: iTCO_wdt intel_pmc_bxt bochs drm_shmem_helper watchdog drm_client_lib drm_kms_helper i740fb lpc_ich i2c_i801 i2c_smbus
+CR2: ffffc90003000000
+---[ end trace 0000000000000000 ]---
+RIP: 0010:rep_movs arch/x86/lib/iomem.c:13 [inline]
+RIP: 0010:string_memcpy_fromio arch/x86/lib/iomem.c:43 [inline]
+RIP: 0010:memcpy_fromio+0x8c/0xe0 arch/x86/lib/iomem.c:101
+Code: f6 fe 49 89 dd 31 ff 41 83 e5 02 4c 89 ee e8 0b b3 f6 fe 4d 85 ed 75 2e e8 e1 b7 f6 fe 48 89 e9 4c 89 e7 48 89 de 48 c1 e9 02 <f3> a5 40 f6 c5 02 74 02 66 a5 40 f6 c5 01 74 01 a4 5b 5d 41 5c 41
+RSP: 0018:ffff888106fcfc80 EFLAGS: 00010202
+RAX: 0000000000080000 RBX: ffffc90003000000 RCX: 00000000000000b0
+RDX: 0000000000080000 RSI: ffffc90003000000 RDI: ffff8881070ae000
+RBP: 00000000000002c0 R08: 0000000000000000 R09: ffffed1020e15dff
+R10: 0000000000000000 R11: 0000000000000000 R12: ffff8881070ae000
+R13: 0000000000000000 R14: ffff8881070ae000 R15: 00000000000002c0
+FS:  00007fb0a3aa7640(0000) GS:ffff8881d082c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffc90003000000 CR3: 0000000117cf6000 CR4: 00000000000006f0
+note: syz.3.9[2058] exited with irqs disabled
+i2c i2c-0: ioctl, cmd=0x707, arg=0x200000000840
+----------------
+Code disassembly (best guess):
+   0:	f6 fe                	idiv   %dh
+   2:	49 89 dd             	mov    %rbx,%r13
+   5:	31 ff                	xor    %edi,%edi
+   7:	41 83 e5 02          	and    $0x2,%r13d
+   b:	4c 89 ee             	mov    %r13,%rsi
+   e:	e8 0b b3 f6 fe       	call   0xfef6b31e
+  13:	4d 85 ed             	test   %r13,%r13
+  16:	75 2e                	jne    0x46
+  18:	e8 e1 b7 f6 fe       	call   0xfef6b7fe
+  1d:	48 89 e9             	mov    %rbp,%rcx
+  20:	4c 89 e7             	mov    %r12,%rdi
+  23:	48 89 de             	mov    %rbx,%rsi
+  26:	48 c1 e9 02          	shr    $0x2,%rcx
+* 2a:	f3 a5                	rep movsl %ds:(%rsi),%es:(%rdi) <-- trapping instruction
+  2c:	40 f6 c5 02          	test   $0x2,%bpl
+  30:	74 02                	je     0x34
+  32:	66 a5                	movsw  %ds:(%rsi),%es:(%rdi)
+  34:	40 f6 c5 01          	test   $0x1,%bpl
+  38:	74 01                	je     0x3b
+  3a:	a4                   	movsb  %ds:(%rsi),%es:(%rdi)
+  3b:	5b                   	pop    %rbx
+  3c:	5d                   	pop    %rbp
+  3d:	41 5c                	pop    %r12
+  3f:	41                   	rex.B
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

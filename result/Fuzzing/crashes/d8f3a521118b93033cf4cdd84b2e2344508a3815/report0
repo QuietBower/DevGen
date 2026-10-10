@@ -1,0 +1,108 @@
+systemd[1]: Started Journal Service.
+systemd-journald[146]: Received client request to flush runtime journal.
+systemd-journald[146]: File /var/log/journal/2d5cc7b0e35b4a7f891feea41daf48ae/system.journal corrupted or uncleanly shut down, renaming and replacing.
+agpgart-amd64 0000:01:00.0: AMD 8151 AGP Bridge rev A0
+agpgart-amd64 0000:01:00.0: correcting AGP revision (reports 3.5, is really 3.0)
+Oops: general protection fault, probably for non-canonical address 0xdffffc0000000000: 0000 [#1] SMP KASAN PTI
+KASAN: null-ptr-deref in range [0x0000000000000000-0x0000000000000007]
+CPU: 2 UID: 0 PID: 172 Comm: systemd-udevd Not tainted 7.0.0 #2 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:amd64_fetch_size+0x7c/0x330 drivers/char/agp/amd64-agp.c:743 [amd64_agp]
+Code: f1 c7 40 04 04 f3 f3 f3 65 48 8b 05 96 7f d3 e9 48 89 44 24 68 31 c0 e8 22 f7 77 e1 31 ff e8 4b 29 36 e1 48 89 c2 48 c1 ea 03 <80> 3c 1a 00 0f 85 4b 02 00 00 48 8b 28 48 85 ed 0f 84 df 01 00 00
+RSP: 0018:ffff888102527200 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: dffffc0000000000 RCX: ffffffff813669f8
+RDX: 0000000000000000 RSI: ffffffff81366a15 RDI: 0000000000000004
+RBP: ffff88811c508000 R08: 0000000000000001 R09: ffffed10238a1010
+audit: type=1400 audit(1777392247.374:3): avc:  denied  { create } for  pid=194 comm="ifquery" name="network" scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:var_run_t:s0 tclass=dir permissive=1
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000001
+R13: 00000000000004c7 R14: 0000000000000800 R15: 0000000000000800
+FS:  00007f28dba568c0(0000) GS:ffff8881d0de4000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f28db1132c5 CR3: 000000011aa2e000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ agp_backend_initialize drivers/char/agp/backend.c:162 [inline]
+ agp_add_bridge+0x41c/0x1070 drivers/char/agp/backend.c:288
+ agp_amd64_probe+0x716/0xd10 drivers/char/agp/amd64-agp.c:554 [amd64_agp]
+ local_pci_probe+0xde/0x1b0 drivers/pci/pci-driver.c:323
+ pci_call_probe+0x178/0x7a0 drivers/pci/pci-driver.c:385
+ __pci_device_probe drivers/pci/pci-driver.c:446 [inline]
+ pci_device_probe+0x1da/0x2c0 drivers/pci/pci-driver.c:480
+ call_driver_probe drivers/base/dd.c:643 [inline]
+ really_probe+0x266/0x850 drivers/base/dd.c:721
+ __driver_probe_device+0x2c9/0x390 drivers/base/dd.c:863
+ driver_probe_device+0x53/0x2a0 drivers/base/dd.c:893
+ __driver_attach drivers/base/dd.c:1287 [inline]
+ __driver_attach+0x1c1/0x5a0 drivers/base/dd.c:1227
+ bus_for_each_dev+0x131/0x1c0 drivers/base/bus.c:383
+ bus_add_driver+0x253/0x5d0 drivers/base/bus.c:756
+ driver_register+0x167/0x4a0 drivers/base/driver.c:249
+ agp_amd64_init+0x7e/0x340 drivers/char/agp/amd64-agp.c:743 [amd64_agp]
+ do_one_initcall+0xfa/0x6a0 init/main.c:1382
+ do_init_module+0x280/0x860 kernel/module/main.c:3046
+ load_module+0x5bd8/0x6b10 kernel/module/main.c:3516
+ init_module_from_file+0x15d/0x180 kernel/module/main.c:3713
+ idempotent_init_module+0x335/0x620 kernel/module/main.c:3725
+ __do_sys_finit_module kernel/module/main.c:3751 [inline]
+ __se_sys_finit_module kernel/module/main.c:3735 [inline]
+ __x64_sys_finit_module+0xc3/0x130 kernel/module/main.c:3735
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f28dbf0bfc9
+Code: 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 97 8e 0d 00 f7 d8 64 89 01 48
+RSP: 002b:00007fff30c7f028 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+RAX: ffffffffffffffda RBX: 0000561e7da82670 RCX: 00007f28dbf0bfc9
+RDX: 0000000000000000 RSI: 00007f28dc0a9e2d RDI: 0000000000000007
+RBP: 0000000000020000 R08: 0000000000000000 R09: 0000561e7da55b60
+R10: 0000000000000007 R11: 0000000000000246 R12: 00007f28dc0a9e2d
+R13: 0000000000000000 R14: 0000561e7da83ac0 R15: 0000561e7da82670
+ </TASK>
+Modules linked in: i2c_smbus(+) lpc_ich(+) amd64_agp(+) drm_panel_orientation_quirks
+---[ end trace 0000000000000000 ]---
+RIP: 0010:amd64_fetch_size+0x7c/0x330 drivers/char/agp/amd64-agp.c:743 [amd64_agp]
+Code: f1 c7 40 04 04 f3 f3 f3 65 48 8b 05 96 7f d3 e9 48 89 44 24 68 31 c0 e8 22 f7 77 e1 31 ff e8 4b 29 36 e1 48 89 c2 48 c1 ea 03 <80> 3c 1a 00 0f 85 4b 02 00 00 48 8b 28 48 85 ed 0f 84 df 01 00 00
+RSP: 0018:ffff888102527200 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: dffffc0000000000 RCX: ffffffff813669f8
+RDX: 0000000000000000 RSI: ffffffff81366a15 RDI: 0000000000000004
+RBP: ffff88811c508000 R08: 0000000000000001 R09: ffffed10238a1010
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000001
+lpc_ich 0000:00:1f.0: I/O space for GPIO uninitialized
+R13: 00000000000004c7 R14: 0000000000000800 R15: 0000000000000800
+FS:  00007f28dba568c0(0000) GS:ffff8881d0de4000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f28db1132c5 CR3: 000000011aa2e000 CR4: 00000000000006f0
+i2c-core: driver [smbus_alert] registered
+i801_smbus 0000:00:1f.3: SMBus using PCI interrupt
+i2c_dev: adapter [SMBus I801 adapter at 0000:00:1f.3] registered as minor 0
+i2c i2c-0: adapter [SMBus I801 adapter at 0000:00:1f.3] registered
+i2c i2c-0: Memory type 0x07 not supported yet, not instantiating SPD
+ACPI: bus type drm_connector registered
+iTCO_wdt iTCO_wdt.1.auto: Found a ICH9 TCO device (Version=2, TCOBASE=0x0660)
+iTCO_wdt iTCO_wdt.1.auto: initialized. heartbeat=30 sec (nowayout=0)
+bochs-drm 0000:00:01.0: vgaarb: deactivate vga console
+Console: switching to colour dummy device 80x25
+[drm] Found bochs VGA, ID 0xb0c5.
+[drm] Framebuffer size 16384 kB @ 0xfd000000, mmio @ 0xfea70000.
+[drm] Initialized bochs-drm 1.0.0 for 0000:00:01.0 on minor 0
+----------------
+Code disassembly (best guess):
+   0:	f1                   	int1
+   1:	c7 40 04 04 f3 f3 f3 	movl   $0xf3f3f304,0x4(%rax)
+   8:	65 48 8b 05 96 7f d3 	mov    %gs:-0x162c806a(%rip),%rax        # 0xe9d37fa6
+   f:	e9
+  10:	48 89 44 24 68       	mov    %rax,0x68(%rsp)
+  15:	31 c0                	xor    %eax,%eax
+  17:	e8 22 f7 77 e1       	call   0xe177f73e
+  1c:	31 ff                	xor    %edi,%edi
+  1e:	e8 4b 29 36 e1       	call   0xe136296e
+  23:	48 89 c2             	mov    %rax,%rdx
+  26:	48 c1 ea 03          	shr    $0x3,%rdx
+* 2a:	80 3c 1a 00          	cmpb   $0x0,(%rdx,%rbx,1) <-- trapping instruction
+  2e:	0f 85 4b 02 00 00    	jne    0x27f
+  34:	48 8b 28             	mov    (%rax),%rbp
+  37:	48 85 ed             	test   %rbp,%rbp
+  3a:	0f 84 df 01 00 00    	je     0x21f
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

@@ -1,68 +1,87 @@
-i2c i2c-0: Unsupported transaction 4
-i2c i2c-0: Unsupported transaction 8
-i2c i2c-0: Unsupported transaction 8
-i2c i2c-0: Unsupported transaction 8
+systemd-udevd (167) used greatest stack depth: 23504 bytes left
+i801_smbus 0000:00:1f.3: Illegal SMBus block read size 0
 ------------[ cut here ]------------
-WARNING: CPU: 1 PID: 5976 at mm/page_alloc.c:5154 __alloc_frozen_pages_noprof+0x306/0x1f60 home/wmy/Fuzzer/third_tool/linux-6.18/mm/page_alloc.c:5154
-Modules linked in: bochs drm_shmem_helper drm_kms_helper drm virtio_pci dt3155 virtio_pci_legacy_dev i2c_piix4 ata_generic pata_acpi drm_panel_orientation_quirks videobuf2_dma_contig virtio_pci_modern_dev i2c_smbus
-CPU: 1 UID: 0 PID: 5976 Comm: syz.0.1460 Not tainted 6.18.0 #3 PREEMPT(voluntary) 
-Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
-RIP: 0010:__alloc_frozen_pages_noprof+0x306/0x1f60 home/wmy/Fuzzer/third_tool/linux-6.18/mm/page_alloc.c:5154
-Code: 5b 5d 41 5c 41 5d 41 5e 41 5f c3 cc cc cc cc 41 83 fe 0a 0f 86 08 fe ff ff 80 3d 3f e6 2a 06 00 75 0b c6 05 36 e6 2a 06 01 90 <0f> 0b 90 48 c7 44 24 10 00 00 00 00 e9 77 ff ff ff 48 8b 44 24 10
-RSP: 0018:ffff88810562f4d0 EFLAGS: 00010246
-RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
-RDX: 0000000000000000 RSI: 1ffff11020ac5ead RDI: 0000000000000cc4
-RBP: 0000000000ffffff R08: 0000000000000000 R09: ffffed10203b601f
-R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
-R13: 0000000000000000 R14: 0000000000000010 R15: 00000000ffffffff
-FS:  00007f45a235f640(0000) GS:ffff8881912bf000(0000) knlGS:0000000000000000
+[CRTC:37:crtc-0] vblank wait timed out
+WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_helper_wait_for_vblanks.part.0+0x627/0x7b0 drivers/gpu/drm/drm_atomic_helper.c:1921 [drm_kms_helper], CPU#1: syz.1.8/2048
+Modules linked in: hibmc_drm iTCO_wdt drm_vram_helper intel_pmc_bxt drm_ttm_helper watchdog ttm bochs drm_shmem_helper drm_display_helper drm_client_lib i2c_i801 drm_kms_helper cec i2c_smbus lpc_ich
+CPU: 1 UID: 0 PID: 2048 Comm: syz.1.8 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:drm_atomic_helper_wait_for_vblanks.part.0+0x62d/0x7b0 drivers/gpu/drm/drm_atomic_helper.c:1921 [drm_kms_helper]
+Code: 00 48 8b 55 20 48 89 f8 48 c1 e8 03 42 0f b6 04 20 84 c0 74 08 3c 03 0f 8e 63 01 00 00 48 8d 3d c9 60 23 00 8b b5 d0 00 00 00 <67> 48 0f b9 3a e9 9b fd ff ff 44 8b 7c 24 3c 4c 89 eb e8 7c 1a 77
+RSP: 0018:ffff88810595f7b8 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff81852818
+RDX: ffff8881055a7380 RSI: 0000000000000025 RDI: ffffffffa0260190
+RBP: ffff888104629328 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000000 R12: dffffc0000000000
+R13: 0000000000000000 R14: ffff888101d27300 R15: 0000000000000000
+FS:  00005555890af500(0000) GS:ffff8881d082c000(0000) knlGS:0000000000000000
 CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
-CR2: 00007f45a38d59c0 CR3: 0000000118672000 CR4: 00000000000006f0
+CR2: 00007f928aa09000 CR3: 000000011f6b0000 CR4: 00000000000006f0
 Call Trace:
  <TASK>
- __alloc_pages_noprof+0x11/0x1c0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/page_alloc.c:5212
- __alloc_pages_node_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/gfp.h:285 [inline]
- alloc_pages_node_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/gfp.h:312 [inline]
- __dma_direct_alloc_pages.constprop.0+0x3ac/0x850 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/dma/direct.c:141
- dma_direct_alloc+0x90/0x550 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/dma/direct.c:254
- dma_alloc_attrs+0x1c8/0x3d0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/dma/mapping.c:658
- vb2_dc_alloc_coherent home/wmy/Fuzzer/third_tool/linux-6.18/drivers/media/common/videobuf2/videobuf2-dma-contig.c:195 [inline] [videobuf2_dma_contig]
- vb2_dc_alloc+0x325/0x850 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/media/common/videobuf2/videobuf2-dma-contig.c:257 [videobuf2_dma_contig]
- __vb2_buf_mem_alloc home/wmy/Fuzzer/third_tool/linux-6.18/drivers/media/common/videobuf2/videobuf2-core.c:242 [inline]
- __vb2_queue_alloc+0x7c0/0x10b0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/media/common/videobuf2/videobuf2-core.c:523
- vb2_core_create_bufs+0x5b1/0xad0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/media/common/videobuf2/videobuf2-core.c:1100
- vb2_create_bufs+0x383/0x6e0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/media/common/videobuf2/videobuf2-v4l2.c:801
- vb2_ioctl_create_bufs+0x24a/0x3f0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/media/common/videobuf2/videobuf2-v4l2.c:1065
- v4l_create_bufs+0x158/0x270 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/media/v4l2-core/v4l2-ioctl.c:2216
- __video_do_ioctl+0x662/0xdc0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/media/v4l2-core/v4l2-ioctl.c:3129
- video_usercopy+0x396/0x11d0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/media/v4l2-core/v4l2-ioctl.c:3471
- v4l2_ioctl+0x1b5/0x240 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/media/v4l2-core/v4l2-dev.c:366
- vfs_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:51 [inline]
- __do_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:597 [inline]
- __se_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583 [inline]
- __x64_sys_ioctl+0x194/0x210 home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583
- do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
- do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ drm_atomic_helper_wait_for_vblanks drivers/gpu/drm/drm_atomic_helper.c:1895 [inline] [drm_kms_helper]
+ drm_atomic_helper_commit_tail+0x100/0x130 drivers/gpu/drm/drm_atomic_helper.c:1997 [drm_kms_helper]
+ commit_tail+0x2c2/0x390 drivers/gpu/drm/drm_atomic_helper.c:2074 [drm_kms_helper]
+ drm_atomic_helper_commit drivers/gpu/drm/drm_atomic_helper.c:2312 [inline] [drm_kms_helper]
+ drm_atomic_helper_commit+0x308/0x390 drivers/gpu/drm/drm_atomic_helper.c:2245 [drm_kms_helper]
+ drm_atomic_commit+0x238/0x300 drivers/gpu/drm/drm_atomic.c:1789
+ drm_client_modeset_commit_atomic+0x684/0x7c0 drivers/gpu/drm/drm_client_modeset.c:1104
+ drm_client_modeset_commit_locked+0x14e/0x590 drivers/gpu/drm/drm_client_modeset.c:1207
+ drm_client_modeset_commit+0x56/0x90 drivers/gpu/drm/drm_client_modeset.c:1233
+ __drm_fb_helper_restore_fbdev_mode_unlocked.part.0+0x137/0x160 drivers/gpu/drm/drm_fb_helper.c:138 [drm_kms_helper]
+ __drm_fb_helper_restore_fbdev_mode_unlocked drivers/gpu/drm/drm_fb_helper.c:169 [inline] [drm_kms_helper]
+ drm_fb_helper_restore_fbdev_mode_unlocked+0x97/0xc0 drivers/gpu/drm/drm_fb_helper.c:169 [drm_kms_helper]
+ drm_fbdev_client_restore+0x20/0x30 drm_fbdev_client.c:-1 [drm_client_lib]
+ drm_client_dev_restore+0x205/0x2a0 drivers/gpu/drm/drm_client_event.c:118
+ drm_lastclose drivers/gpu/drm/drm_file.c:408 [inline]
+ drm_release+0x2cb/0x370 drivers/gpu/drm/drm_file.c:441
+ __fput+0x407/0xb60 fs/file_table.c:512
+ task_work_run+0x170/0x260 kernel/task_work.c:233
+ resume_user_mode_work include/linux/resume_user_mode.h:50 [inline]
+ __exit_to_user_mode_loop kernel/entry/common.c:70 [inline]
+ exit_to_user_mode_loop+0x1a8/0x5d0 kernel/entry/common.c:101
+ __exit_to_user_mode_prepare include/linux/irq-entry-common.h:207 [inline]
+ syscall_exit_to_user_mode_prepare include/linux/irq-entry-common.h:230 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:318 [inline]
+ do_syscall_64+0x52c/0x6a0 arch/x86/entry/syscall_64.c:100
  entry_SYSCALL_64_after_hwframe+0x77/0x7f
-RIP: 0033:0x7f45a392059d
+RIP: 0033:0x7f043a22359d
 Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
-RSP: 002b:00007f45a235ef98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
-RAX: ffffffffffffffda RBX: 00007f45a3b95fa0 RCX: 00007f45a392059d
-RDX: 00002000000003c0 RSI: 00000000c100565c RDI: 0000000000000004
-RBP: 00007f45a39be078 R08: 0000000000000000 R09: 0000000000000000
-R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
-R13: 00007f45a3b96038 R14: 00007f45a3b95fa0 R15: 00007f45a233f000
+RSP: 002b:00007ffdec248b68 EFLAGS: 00000246 ORIG_RAX: 00000000000001b4
+RAX: 0000000000000000 RBX: 00007f043a4b7da0 RCX: 00007f043a22359d
+RDX: 0000000000000000 RSI: 000000000000001e RDI: 0000000000000003
+RBP: 00007ffdec248c08 R08: 0000001b2ea25143 R09: 0000000000000000
+R10: 0000001b2ee20000 R11: 0000000000000246 R12: ffffffffffffffff
+R13: 00007f043a4b5fac R14: 00007f043a4b7da0 R15: 00007ffdec248c30
  </TASK>
-irq event stamp: 1045
-hardirqs last  enabled at (1055): [<ffffffff8155bd39>] __up_console_sem+0x89/0xa0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:345
-hardirqs last disabled at (1064): [<ffffffff8155bd1e>] __up_console_sem+0x6e/0xa0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:343
-softirqs last  enabled at (876): [<ffffffff813d2e09>] softirq_handle_end home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:468 [inline]
-softirqs last  enabled at (876): [<ffffffff813d2e09>] handle_softirqs+0x509/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:650
-softirqs last disabled at (867): [<ffffffff813d3140>] __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
-softirqs last disabled at (867): [<ffffffff813d3140>] invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
-softirqs last disabled at (867): [<ffffffff813d3140>] __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff813b6e93>] copy_process+0x23a3/0x7a00 kernel/fork.c:2232
+softirqs last  enabled at (0): [<ffffffff813b6ee0>] copy_process+0x23f0/0x7a00 kernel/fork.c:2233
+softirqs last disabled at (0): [<0000000000000000>] 0x0
 ---[ end trace 0000000000000000 ]---
-dt3155 0000:00:05.0: dma alloc of size 252776448 failed
+----------------
+Code disassembly (best guess):
+   0:	00 48 8b             	add    %cl,-0x75(%rax)
+   3:	55                   	push   %rbp
+   4:	20 48 89             	and    %cl,-0x77(%rax)
+   7:	f8                   	clc
+   8:	48 c1 e8 03          	shr    $0x3,%rax
+   c:	42 0f b6 04 20       	movzbl (%rax,%r12,1),%eax
+  11:	84 c0                	test   %al,%al
+  13:	74 08                	je     0x1d
+  15:	3c 03                	cmp    $0x3,%al
+  17:	0f 8e 63 01 00 00    	jle    0x180
+  1d:	48 8d 3d c9 60 23 00 	lea    0x2360c9(%rip),%rdi        # 0x2360ed
+  24:	8b b5 d0 00 00 00    	mov    0xd0(%rbp),%esi
+* 2a:	67 48 0f b9 3a       	ud1    (%edx),%rdi <-- trapping instruction
+  2f:	e9 9b fd ff ff       	jmp    0xfffffdcf
+  34:	44 8b 7c 24 3c       	mov    0x3c(%rsp),%r15d
+  39:	4c 89 eb             	mov    %r13,%rbx
+  3c:	e8                   	.byte 0xe8
+  3d:	7c 1a                	jl     0x59
+  3f:	77                   	.byte 0x77
 
 <<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
 

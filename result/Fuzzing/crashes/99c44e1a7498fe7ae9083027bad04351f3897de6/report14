@@ -1,0 +1,220 @@
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+R13: 00007f32081a6038 R14: 00007f32081a5fa0 R15: 00007f3206937000
+ </TASK>
+------------[ cut here ]------------
+[CRTC:37:crtc-0] vblank wait timed out
+WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_helper_wait_for_vblanks.part.0+0x627/0x7b0 drivers/gpu/drm/drm_atomic_helper.c:1921 [drm_kms_helper], CPU#3: syz.1.3/2018
+Modules linked in: hibmc_drm drm_vram_helper drm_ttm_helper ttm drm_display_helper iTCO_wdt bochs intel_pmc_bxt watchdog drm_shmem_helper i2c_i801 drm_client_lib cec i2c_smbus drm_kms_helper lpc_ich
+CPU: 3 UID: 0 PID: 2018 Comm: syz.1.3 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:drm_atomic_helper_wait_for_vblanks.part.0+0x62d/0x7b0 drivers/gpu/drm/drm_atomic_helper.c:1921 [drm_kms_helper]
+Code: 00 48 8b 55 20 48 89 f8 48 c1 e8 03 42 0f b6 04 20 84 c0 74 08 3c 03 0f 8e 63 01 00 00 48 8d 3d c9 20 21 00 8b b5 d0 00 00 00 <67> 48 0f b9 3a e9 9b fd ff ff 44 8b 7c 24 3c 4c 89 eb e8 7c da 78
+RSP: 0018:ffff8881113777b8 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffc90003f04000
+RDX: ffff888100e96d60 RSI: 0000000000000025 RDI: ffffffffa0220190
+RBP: ffff88811fb19328 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000000 R12: dffffc0000000000
+R13: 0000000000000000 R14: ffff888105eecc00 R15: 0000000000000000
+FS:  00007f3206957640(0000) GS:ffff8881d092c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ffe5abbcea8 CR3: 0000000119a68000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ drm_atomic_helper_wait_for_vblanks drivers/gpu/drm/drm_atomic_helper.c:1895 [inline] [drm_kms_helper]
+ drm_atomic_helper_commit_tail+0x100/0x130 drivers/gpu/drm/drm_atomic_helper.c:1997 [drm_kms_helper]
+ commit_tail+0x2c2/0x390 drivers/gpu/drm/drm_atomic_helper.c:2074 [drm_kms_helper]
+ drm_atomic_helper_commit drivers/gpu/drm/drm_atomic_helper.c:2312 [inline] [drm_kms_helper]
+ drm_atomic_helper_commit+0x308/0x390 drivers/gpu/drm/drm_atomic_helper.c:2245 [drm_kms_helper]
+ drm_atomic_commit+0x238/0x300 drivers/gpu/drm/drm_atomic.c:1789
+ drm_client_modeset_commit_atomic+0x684/0x7c0 drivers/gpu/drm/drm_client_modeset.c:1104
+ drm_client_modeset_commit_locked+0x14e/0x590 drivers/gpu/drm/drm_client_modeset.c:1207
+ drm_client_modeset_commit+0x56/0x90 drivers/gpu/drm/drm_client_modeset.c:1233
+ __drm_fb_helper_restore_fbdev_mode_unlocked.part.0+0x137/0x160 drivers/gpu/drm/drm_fb_helper.c:138 [drm_kms_helper]
+ __drm_fb_helper_restore_fbdev_mode_unlocked drivers/gpu/drm/drm_fb_helper.c:169 [inline] [drm_kms_helper]
+ drm_fb_helper_restore_fbdev_mode_unlocked+0x97/0xc0 drivers/gpu/drm/drm_fb_helper.c:169 [drm_kms_helper]
+ drm_fbdev_client_restore+0x20/0x30 drm_fbdev_client.c:-1 [drm_client_lib]
+ drm_client_dev_restore+0x205/0x2a0 drivers/gpu/drm/drm_client_event.c:118
+ drm_lastclose drivers/gpu/drm/drm_file.c:408 [inline]
+ drm_release+0x2cb/0x370 drivers/gpu/drm/drm_file.c:441
+ __fput+0x407/0xb60 fs/file_table.c:512
+ task_work_run+0x170/0x260 kernel/task_work.c:233
+ resume_user_mode_work include/linux/resume_user_mode.h:50 [inline]
+ __exit_to_user_mode_loop kernel/entry/common.c:70 [inline]
+ exit_to_user_mode_loop+0x1a8/0x5d0 kernel/entry/common.c:101
+ __exit_to_user_mode_prepare include/linux/irq-entry-common.h:207 [inline]
+ syscall_exit_to_user_mode_prepare include/linux/irq-entry-common.h:230 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:318 [inline]
+ do_syscall_64+0x52c/0x6a0 arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f3207f11d94
+Code: 24 20 eb 8f 66 90 44 89 54 24 0c e8 e6 0f 03 00 44 8b 54 24 0c 44 89 e2 48 89 ee 41 89 c0 bf 9c ff ff ff b8 01 01 00 00 0f 05 <48> 3d 00 f0 ff ff 77 34 44 89 c7 89 44 24 0c e8 28 10 03 00 8b 44
+RSP: 002b:00007f3206956ac0 EFLAGS: 00000293 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffea RBX: 0000000000000000 RCX: 00007f3207f11d94
+RDX: 0000000000107000 RSI: 00007f3206956b60 RDI: 00000000ffffff9c
+RBP: 00007f3206956b60 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000293 R12: 0000000000107000
+R13: 00007f32081a6038 R14: 00007f32081a5fa0 R15: 00007f3206937000
+ </TASK>
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff813b6e93>] copy_process+0x23a3/0x7a00 kernel/fork.c:2232
+softirqs last  enabled at (0): [<ffffffff813b6ee0>] copy_process+0x23f0/0x7a00 kernel/fork.c:2233
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
+[CRTC:37:crtc-0] vblank wait timed out
+WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_helper_wait_for_vblanks.part.0+0x627/0x7b0 drivers/gpu/drm/drm_atomic_helper.c:1921 [drm_kms_helper], CPU#1: syz.1.3/2046
+Modules linked in: hibmc_drm drm_vram_helper drm_ttm_helper ttm drm_display_helper iTCO_wdt bochs intel_pmc_bxt watchdog drm_shmem_helper i2c_i801 drm_client_lib cec i2c_smbus drm_kms_helper lpc_ich
+CPU: 1 UID: 0 PID: 2046 Comm: syz.1.3 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:drm_atomic_helper_wait_for_vblanks.part.0+0x62d/0x7b0 drivers/gpu/drm/drm_atomic_helper.c:1921 [drm_kms_helper]
+Code: 00 48 8b 55 20 48 89 f8 48 c1 e8 03 42 0f b6 04 20 84 c0 74 08 3c 03 0f 8e 63 01 00 00 48 8d 3d c9 20 21 00 8b b5 d0 00 00 00 <67> 48 0f b9 3a e9 9b fd ff ff 44 8b 7c 24 3c 4c 89 eb e8 7c da 78
+RSP: 0018:ffff888111197498 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff81852818
+RDX: ffff888100e96d60 RSI: 0000000000000025 RDI: ffffffffa0220190
+RBP: ffff88811fb19328 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: ffff88815a8a4f50 R12: dffffc0000000000
+R13: 0000000000000000 R14: ffff88810ac2a000 R15: 0000000000000000
+FS:  00007f32060cf640(0000) GS:ffff8881d082c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000555697821000 CR3: 00000001123a6000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ drm_atomic_helper_wait_for_vblanks drivers/gpu/drm/drm_atomic_helper.c:1895 [inline] [drm_kms_helper]
+ drm_atomic_helper_commit_tail+0x100/0x130 drivers/gpu/drm/drm_atomic_helper.c:1997 [drm_kms_helper]
+ commit_tail+0x2c2/0x390 drivers/gpu/drm/drm_atomic_helper.c:2074 [drm_kms_helper]
+ drm_atomic_helper_commit drivers/gpu/drm/drm_atomic_helper.c:2312 [inline] [drm_kms_helper]
+ drm_atomic_helper_commit+0x308/0x390 drivers/gpu/drm/drm_atomic_helper.c:2245 [drm_kms_helper]
+ drm_atomic_commit+0x238/0x300 drivers/gpu/drm/drm_atomic.c:1789
+ drm_client_modeset_commit_atomic+0x684/0x7c0 drivers/gpu/drm/drm_client_modeset.c:1104
+ drm_client_modeset_commit_locked+0x14e/0x590 drivers/gpu/drm/drm_client_modeset.c:1207
+ drm_client_modeset_commit+0x56/0x90 drivers/gpu/drm/drm_client_modeset.c:1233
+ __drm_fb_helper_restore_fbdev_mode_unlocked.part.0+0x137/0x160 drivers/gpu/drm/drm_fb_helper.c:138 [drm_kms_helper]
+ __drm_fb_helper_restore_fbdev_mode_unlocked drivers/gpu/drm/drm_fb_helper.c:169 [inline] [drm_kms_helper]
+ drm_fb_helper_restore_fbdev_mode_unlocked+0x97/0xc0 drivers/gpu/drm/drm_fb_helper.c:169 [drm_kms_helper]
+ drm_fbdev_client_restore+0x20/0x30 drm_fbdev_client.c:-1 [drm_client_lib]
+ drm_client_dev_restore+0x205/0x2a0 drivers/gpu/drm/drm_client_event.c:118
+ drm_lastclose drivers/gpu/drm/drm_file.c:408 [inline]
+ drm_release+0x2cb/0x370 drivers/gpu/drm/drm_file.c:441
+ __fput+0x407/0xb60 fs/file_table.c:512
+ task_work_run+0x170/0x260 kernel/task_work.c:233
+ exit_task_work include/linux/task_work.h:40 [inline]
+ do_exit+0x8fd/0x2960 kernel/exit.c:1004
+ do_group_exit+0xd8/0x2b0 kernel/exit.c:1147
+ get_signal+0x2327/0x2350 kernel/signal.c:3038
+ arch_do_signal_or_restart+0x85/0x800 arch/x86/kernel/signal.c:337
+ __exit_to_user_mode_loop kernel/entry/common.c:66 [inline]
+ exit_to_user_mode_loop+0xf4/0x5d0 kernel/entry/common.c:101
+ __exit_to_user_mode_prepare include/linux/irq-entry-common.h:207 [inline]
+ syscall_exit_to_user_mode_prepare include/linux/irq-entry-common.h:230 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:318 [inline]
+ do_syscall_64+0x52c/0x6a0 arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f3207f11d94
+Code: Unable to access opcode bytes at 0x7f3207f11d6a.
+RSP: 002b:00007f32060ceac0 EFLAGS: 00000293 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffea RBX: 0000000000000000 RCX: 00007f3207f11d94
+RDX: 0000000000006a00 RSI: 00007f32060ceb60 RDI: 00000000ffffff9c
+RBP: 00007f32060ceb60 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000293 R12: 0000000000006a00
+R13: 00007f32081a63f8 R14: 00007f32081a6360 R15: 00007f32060af000
+ </TASK>
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff813b6e93>] copy_process+0x23a3/0x7a00 kernel/fork.c:2232
+softirqs last  enabled at (0): [<ffffffff813b6ee0>] copy_process+0x23f0/0x7a00 kernel/fork.c:2233
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+----------------
+Code disassembly (best guess):
+   0:	00 48 8b             	add    %cl,-0x75(%rax)
+   3:	55                   	push   %rbp
+   4:	20 48 89             	and    %cl,-0x77(%rax)
+   7:	f8                   	clc
+   8:	48 c1 e8 03          	shr    $0x3,%rax
+   c:	42 0f b6 04 20       	movzbl (%rax,%r12,1),%eax
+  11:	84 c0                	test   %al,%al
+  13:	74 08                	je     0x1d
+  15:	3c 03                	cmp    $0x3,%al
+  17:	0f 8e 63 01 00 00    	jle    0x180
+  1d:	48 8d 3d c9 20 21 00 	lea    0x2120c9(%rip),%rdi        # 0x2120ed
+  24:	8b b5 d0 00 00 00    	mov    0xd0(%rbp),%esi
+* 2a:	67 48 0f b9 3a       	ud1    (%edx),%rdi <-- trapping instruction
+  2f:	e9 9b fd ff ff       	jmp    0xfffffdcf
+  34:	44 8b 7c 24 3c       	mov    0x3c(%rsp),%r15d
+  39:	4c 89 eb             	mov    %r13,%rbx
+  3c:	e8                   	.byte 0xe8
+  3d:	7c da                	jl     0x19
+  3f:	78                   	.byte 0x78
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+softirqs last  enabled at (0): [<ffffffff813b6ee0>] copy_process+0x23f0/0x7a00
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+------------[ cut here ]------------
+[CRTC:37:crtc-0] vblank wait timed out
+WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_helper_wait_for_vblanks.part.0+0x627/0x7b0 [drm_kms_helper], CPU#1: syz.1.3/2046
+Modules linked in: hibmc_drm drm_vram_helper drm_ttm_helper ttm drm_display_helper iTCO_wdt bochs intel_pmc_bxt watchdog drm_shmem_helper i2c_i801 drm_client_lib cec i2c_smbus drm_kms_helper lpc_ich
+CPU: 1 UID: 0 PID: 2046 Comm: syz.1.3 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:drm_atomic_helper_wait_for_vblanks.part.0+0x62d/0x7b0 [drm_kms_helper]
+Code: 00 48 8b 55 20 48 89 f8 48 c1 e8 03 42 0f b6 04 20 84 c0 74 08 3c 03 0f 8e 63 01 00 00 48 8d 3d c9 20 21 00 8b b5 d0 00 00 00 <67> 48 0f b9 3a e9 9b fd ff ff 44 8b 7c 24 3c 4c 89 eb e8 7c da 78
+RSP: 0018:ffff888111197498 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff81852818
+RDX: ffff888100e96d60 RSI: 0000000000000025 RDI: ffffffffa0220190
+RBP: ffff88811fb19328 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: ffff88815a8a4f50 R12: dffffc0000000000
+R13: 0000000000000000 R14: ffff88810ac2a000 R15: 0000000000000000
+FS:  00007f32060cf640(0000) GS:ffff8881d082c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000555697821000 CR3: 00000001123a6000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ drm_atomic_helper_commit_tail+0x100/0x130 [drm_kms_helper]
+ commit_tail+0x2c2/0x390 [drm_kms_helper]
+ drm_atomic_helper_commit+0x308/0x390 [drm_kms_helper]
+ drm_atomic_commit+0x238/0x300
+ drm_client_modeset_commit_atomic+0x684/0x7c0
+ drm_client_modeset_commit_locked+0x14e/0x590
+ drm_client_modeset_commit+0x56/0x90
+ __drm_fb_helper_restore_fbdev_mode_unlocked.part.0+0x137/0x160 [drm_kms_helper]
+ drm_fb_helper_restore_fbdev_mode_unlocked+0x97/0xc0 [drm_kms_helper]
+ drm_fbdev_client_restore+0x20/0x30 [drm_client_lib]
+ drm_client_dev_restore+0x205/0x2a0
+ drm_release+0x2cb/0x370
+ __fput+0x407/0xb60
+ task_work_run+0x170/0x260
+ do_exit+0x8fd/0x2960
+ do_group_exit+0xd8/0x2b0
+ get_signal+0x2327/0x2350
+ arch_do_signal_or_restart+0x85/0x800
+ exit_to_user_mode_loop+0xf4/0x5d0
+ do_syscall_64+0x52c/0x6a0
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f3207f11d94
+Code: Unable to access opcode bytes at 0x7f3207f11d6a.
+RSP: 002b:00007f32060ceac0 EFLAGS: 00000293 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffea RBX: 0000000000000000 RCX: 00007f3207f11d94
+RDX: 0000000000006a00 RSI: 00007f32060ceb60 RDI: 00000000ffffff9c
+RBP: 00007f32060ceb60 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000293 R12: 0000000000006a00
+R13: 00007f32081a63f8 R14: 00007f32081a6360 R15: 00007f32060af000
+ </TASK>
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff813b6e93>] copy_process+0x23a3/0x7a00
+softirqs last  enabled at (0): [<ffffffff813b6ee0>] copy_process+0x23f0/0x7a00
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

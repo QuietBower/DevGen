@@ -1,0 +1,69 @@
+audit: type=1400 audit(1782043225.863:52): avc:  denied  { checkpoint_restore } for  pid=201851 comm="agetty" capability=40  scontext=system_u:system_r:getty_t:s0 tcontext=system_u:system_r:getty_t:s0 tclass=capability2 permissive=1
+EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+------------[ cut here ]------------
+bochs-drm 0000:00:01.0: [drm] vblank wait timed out on crtc 0
+WARNING: drivers/gpu/drm/drm_vblank.c:1329 at drm_crtc_wait_one_vblank+0x33a/0x560 drivers/gpu/drm/drm_vblank.c:1329, CPU#1: kworker/1:2/22318
+clocksource: Marking clocksource tsc unstable due to frequency skew
+clocksource: Watchdog               kvm-clock interval:             3949ns
+Modules linked in:
+clocksource: Clocksource                  tsc interval:             3660ns
+tsc: Marking TSC unstable due to clocksource watchdog
+ scsi_transport_iscsi qrtr iTCO_wdt intel_pmc_bxt bochs watchdog drm_shmem_helper drm_client_lib i2c_i801 drm_kms_helper i2c_smbus lpc_ich
+CPU: 1 UID: 0 PID: 22318 Comm: kworker/1:2 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: events drm_fb_helper_damage_work [drm_kms_helper]
+RIP: 0010:drm_crtc_wait_one_vblank+0x340/0x560 drivers/gpu/drm/drm_vblank.c:1329
+Code: 8b 74 24 50 4d 85 f6 0f 84 2f 01 00 00 e8 f8 54 85 fe 4c 89 e7 e8 20 51 04 00 48 89 c6 48 8d 3d 76 3f 59 05 44 89 e9 4c 89 f2 <67> 48 0f b9 3a 44 89 ee 48 89 ef 41 be 92 ff ff ff e8 3a f7 ff ff
+RSP: 0018:ffff888131cefaa0 EFLAGS: 00010293
+RAX: ffffffffa02e03c0 RBX: 000000000001c7a8 RCX: 0000000000000000
+RDX: ffff888101b4c020 RSI: ffffffffa02e03c0 RDI: ffffffff884da5f0
+RBP: ffff888114db0000 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000185 R12: ffff88810203c0c8
+R13: 0000000000000000 R14: ffff888101b4c020 R15: ffff888131cefae8
+FS:  0000000000000000(0000) GS:ffff8881d082c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f9a67e8d586 CR3: 0000000115a56000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ drm_client_modeset_wait_for_vblank+0xf6/0x130 drivers/gpu/drm/drm_client_modeset.c:1331
+ drm_fb_helper_fb_dirty drivers/gpu/drm/drm_fb_helper.c:237 [inline] [drm_kms_helper]
+ drm_fb_helper_damage_work+0x154/0x680 drivers/gpu/drm/drm_fb_helper.c:275 [drm_kms_helper]
+ process_one_work+0x920/0x1a80 kernel/workqueue.c:3314
+ process_scheduled_works kernel/workqueue.c:3397 [inline]
+ worker_thread+0x698/0xeb0 kernel/workqueue.c:3478
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x667/0xa80 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff813b6e93>] copy_process+0x23a3/0x7a00 kernel/fork.c:2232
+softirqs last  enabled at (0): [<ffffffff813b6ee0>] copy_process+0x23f0/0x7a00 kernel/fork.c:2233
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+----------------
+Code disassembly (best guess):
+   0:	8b 74 24 50          	mov    0x50(%rsp),%esi
+   4:	4d 85 f6             	test   %r14,%r14
+   7:	0f 84 2f 01 00 00    	je     0x13c
+   d:	e8 f8 54 85 fe       	call   0xfe85550a
+  12:	4c 89 e7             	mov    %r12,%rdi
+  15:	e8 20 51 04 00       	call   0x4513a
+  1a:	48 89 c6             	mov    %rax,%rsi
+  1d:	48 8d 3d 76 3f 59 05 	lea    0x5593f76(%rip),%rdi        # 0x5593f9a
+  24:	44 89 e9             	mov    %r13d,%ecx
+  27:	4c 89 f2             	mov    %r14,%rdx
+* 2a:	67 48 0f b9 3a       	ud1    (%edx),%rdi <-- trapping instruction
+  2f:	44 89 ee             	mov    %r13d,%esi
+  32:	48 89 ef             	mov    %rbp,%rdi
+  35:	41 be 92 ff ff ff    	mov    $0xffffff92,%r14d
+  3b:	e8 3a f7 ff ff       	call   0xfffff77a
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

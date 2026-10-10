@@ -1,0 +1,150 @@
+BUG: memory leak
+unreferenced object 0xffff88810f4e1000 (size 512):
+  comm "syz.2.8092", pid 27249, jiffies 4296701314
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 75aec3c8):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4615 [inline]
+    slab_alloc_node mm/slub.c:4939 [inline]
+    __kmalloc_cache_noprof+0x4f3/0x6d0 mm/slub.c:5446
+    _kmalloc_noprof include/linux/slab.h:969 [inline]
+    _kzalloc_noprof include/linux/slab.h:1286 [inline]
+    con_allocate_new+0x8f/0x1b0 drivers/tty/vt/consolemap.c:542
+    con_do_clear_unimap drivers/tty/vt/consolemap.c:561 [inline]
+    con_clear_unimap+0xb3/0x140 drivers/tty/vt/consolemap.c:572
+    vt_io_ioctl drivers/tty/vt/vt_ioctl.c:539 [inline]
+    vt_ioctl+0x17b1/0x2ed0 drivers/tty/vt/vt_ioctl.c:747
+    tty_ioctl+0x717/0x1620 drivers/tty/tty_io.c:2792
+    vfs_ioctl fs/ioctl.c:51 [inline]
+    __do_sys_ioctl fs/ioctl.c:597 [inline]
+    __se_sys_ioctl fs/ioctl.c:583 [inline]
+    __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811a873c00 (size 512):
+  comm "syz.5.8103", pid 27285, jiffies 4296709984
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 0):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4615 [inline]
+    slab_alloc_node mm/slub.c:4939 [inline]
+    __kmalloc_cache_noprof+0x4f3/0x6d0 mm/slub.c:5446
+    _kmalloc_noprof include/linux/slab.h:969 [inline]
+    set_inverse_transl+0x2c1/0x3a0 drivers/tty/vt/consolemap.c:237
+    update_user_maps+0xb1/0x110 drivers/tty/vt/consolemap.c:337
+    con_set_trans_new+0xbc/0x120 drivers/tty/vt/consolemap.c:395
+    vt_io_ioctl drivers/tty/vt/vt_ioctl.c:531 [inline]
+    vt_ioctl+0xc3a/0x2ed0 drivers/tty/vt/vt_ioctl.c:747
+    tty_ioctl+0x717/0x1620 drivers/tty/tty_io.c:2792
+    vfs_ioctl fs/ioctl.c:51 [inline]
+    __do_sys_ioctl fs/ioctl.c:597 [inline]
+    __se_sys_ioctl fs/ioctl.c:583 [inline]
+    __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811e76b800 (size 1024):
+  comm "syz.5.8103", pid 27285, jiffies 4296709984
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 0):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4615 [inline]
+    slab_alloc_node mm/slub.c:4939 [inline]
+    __kmalloc_cache_noprof+0x4f3/0x6d0 mm/slub.c:5446
+    _kmalloc_noprof include/linux/slab.h:969 [inline]
+    _kmalloc_array_noprof include/linux/slab.h:1185 [inline]
+    set_inverse_trans_unicode+0x291/0x300 drivers/tty/vt/consolemap.c:263
+    update_user_maps+0xbc/0x110 drivers/tty/vt/consolemap.c:338
+    con_set_trans_new+0xbc/0x120 drivers/tty/vt/consolemap.c:395
+    vt_io_ioctl drivers/tty/vt/vt_ioctl.c:531 [inline]
+    vt_ioctl+0xc3a/0x2ed0 drivers/tty/vt/vt_ioctl.c:747
+    tty_ioctl+0x717/0x1620 drivers/tty/tty_io.c:2792
+    vfs_ioctl fs/ioctl.c:51 [inline]
+    __do_sys_ioctl fs/ioctl.c:597 [inline]
+    __se_sys_ioctl fs/ioctl.c:583 [inline]
+    __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    vt_ioctl+0x17b1/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff88811a873c00 (size 512):
+  comm "syz.5.8103", pid 27285, jiffies 4296709984
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 0):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    set_inverse_transl+0x2c1/0x3a0
+    update_user_maps+0xb1/0x110
+    con_set_trans_new+0xbc/0x120
+    vt_ioctl+0xc3a/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811e76b800 (size 1024):
+  comm "syz.5.8103", pid 27285, jiffies 4296709984
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 0):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    set_inverse_trans_unicode+0x291/0x300
+    update_user_maps+0xbc/0x110
+    con_set_trans_new+0xbc/0x120
+    vt_ioctl+0xc3a/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    vt_ioctl+0xc3a/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff88811e76b800 (size 1024):
+  comm "syz.5.8103", pid 27285, jiffies 4296709984
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 0):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    set_inverse_trans_unicode+0x291/0x300
+    update_user_maps+0xbc/0x110
+    con_set_trans_new+0xbc/0x120
+    vt_ioctl+0xc3a/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

@@ -1,0 +1,109 @@
+RBP: 00007f77a1cd7010 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+R13: 00007f77a3526038 R14: 00007f77a3525fa0 R15: 00007f77a1cb7000
+ </TASK>
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	1-....: (9517 ticks this GP) idle=6844/1/0x4000000000000000 softirq=89961/89962 fqs=25499
+rcu: 	(detected by 0, t=105007 jiffies, g=73029, q=5747 ncpus=4)
+Sending NMI from CPU 0 to CPUs 1:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 5410 Comm: syz.1.956 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:io_serial_in+0x6a/0x90 drivers/tty/serial/8250/8250_port.c:401
+Code: 8d 7d 40 0f b6 8d f9 00 00 00 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 d3 e3 80 3c 02 00 75 18 66 03 5d 40 89 da ec <0f> b6 c0 5b 5d c3 cc cc cc cc e8 37 37 e6 fe eb c4 e8 c0 37 e6 fe
+RSP: 0018:ffff88815a888ce0 EFLAGS: 00000082
+RAX: dffffc00000000c0 RBX: 000000000000c002 RCX: 0000000000000000
+RDX: 000000000000c002 RSI: ffffffff82d62b65 RDI: ffffffff8af6aa20
+RBP: ffffffff8af6a9e0 R08: 0000000000000000 R09: fffffbfff15ed53c
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: ffffffff8af6ac88 R14: 000000000000004c R15: ffffffff8af6a9e0
+FS:  00007f5f38aa7640(0000) GS:ffff8881d082c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000056375c911000 CR3: 0000000120d0a000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ serial_port_in include/linux/serial_core.h:806 [inline]
+ serial8250_default_handle_irq+0x9a/0x280 drivers/tty/serial/8250/8250_port.c:1857
+ serial8250_interrupt+0xfd/0x1b0 drivers/tty/serial/8250/8250_core.c:86
+ __handle_irq_event_percpu+0x222/0x830 kernel/irq/handle.c:209
+ handle_irq_event_percpu kernel/irq/handle.c:246 [inline]
+ handle_irq_event+0xb0/0x1f0 kernel/irq/handle.c:263
+ handle_fasteoi_irq+0x2f3/0x6d0 kernel/irq/chip.c:768
+ generic_handle_irq_desc include/linux/irqdesc.h:188 [inline]
+ handle_irq arch/x86/kernel/irq.c:209 [inline]
+ call_irq_handler arch/x86/kernel/irq.c:233 [inline]
+ __common_interrupt+0xa1/0x240 arch/x86/kernel/irq.c:280
+ common_interrupt+0x6e/0xd0 arch/x86/kernel/irq.c:273
+ asm_common_interrupt+0x26/0x40 arch/x86/include/asm/idtentry.h:665
+RIP: 0010:variable_ffs arch/x86/include/asm/bitops.h:312 [inline]
+RIP: 0010:handle_softirqs+0x179/0x860 kernel/softirq.c:610
+Code: c8 83 83 ec 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 ea 6d c9 08 00 00 e8 dd 56 47 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 a0 60 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815a888f70 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: ffff8881053c5280 RCX: ffffffff81852818
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffffffff813dd253
+RBP: ffff888104147558 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000002 R15: 0000000000000000
+ __do_softirq kernel/softirq.c:656 [inline]
+ invoke_softirq kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0x143/0x1c0 kernel/softirq.c:735
+ irq_exit_rcu+0xe/0x20 kernel/softirq.c:752
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1062 [inline]
+ sysvec_apic_timer_interrupt+0x70/0x80 arch/x86/kernel/apic/apic.c:1062
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:674
+RIP: 0010:__preempt_count_dec_and_test arch/x86/include/asm/preempt.h:95 [inline]
+RIP: 0010:__raw_spin_unlock_irqrestore include/linux/spinlock_api_smp.h:179 [inline]
+RIP: 0010:_raw_spin_unlock_irqrestore+0x37/0x60 kernel/locking/spinlock.c:198
+Code: 48 83 c7 18 53 48 89 f3 48 8b 74 24 10 e8 11 19 40 fb 48 89 ef e8 b9 62 40 fb 80 e7 02 74 0b e8 ff 7a 6f fb fb 0f 1f 44 00 00 <65> ff 0d f2 91 f1 03 74 07 5b 5d e9 d9 25 00 00 e8 b4 ef 0a fb 5b
+RSP: 0018:ffff888104147600 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: 0000000000000216 RCX: ffffffff81852818
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffffffff8615ae31
+RBP: ffffffff8af6a9e0 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000000 R12: ffff88811be20378
+R13: 0000000000000000 R14: 0000000000002580 R15: ffffffff8af6a9e0
+ spin_unlock_irqrestore include/linux/spinlock.h:408 [inline]
+ uart_port_unlock_irqrestore include/linux/serial_core.h:788 [inline]
+ class_uart_port_lock_irqsave_destructor include/linux/serial_core.h:797 [inline]
+ serial8250_do_set_termios+0xcb9/0x17b0 drivers/tty/serial/8250/8250_port.c:2777
+ serial8250_set_termios+0x72/0x90 drivers/tty/serial/8250/8250_port.c:2804
+ uart_change_line_settings+0x150/0x9a0 drivers/tty/serial/serial_core.c:216
+ uart_port_startup drivers/tty/serial/serial_core.c:334 [inline]
+ uart_startup+0x6b3/0x12c0 drivers/tty/serial/serial_core.c:365
+ uart_port_activate+0xf3/0x1a0 drivers/tty/serial/serial_core.c:1949
+ tty_port_open+0x15c/0x200 drivers/tty/tty_port.c:769
+ uart_open+0x47/0x60 drivers/tty/serial/serial_core.c:1929
+ tty_open+0x39b/0x1310 drivers/tty/tty_io.c:2137
+ chrdev_open+0x23b/0x690 fs/char_dev.c:411
+ do_dentry_open+0x684/0x14b0 fs/open.c:947
+ vfs_open+0x87/0x400 fs/open.c:1079
+ do_open fs/namei.c:4700 [inline]
+ path_openat+0x2a2e/0x3de0 fs/namei.c:4859
+ do_file_open+0x21b/0x470 fs/namei.c:4888
+ do_sys_openat2+0xed/0x220 fs/open.c:1395
+ do_sys_open fs/open.c:1401 [inline]
+ __do_sys_openat fs/open.c:1417 [inline]
+ __se_sys_openat fs/open.c:1412 [inline]
+ __x64_sys_openat+0x144/0x200 fs/open.c:1412
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f5f3a061d94
+Code: 24 20 eb 8f 66 90 44 89 54 24 0c e8 e6 0f 03 00 44 8b 54 24 0c 44 89 e2 48 89 ee 41 89 c0 bf 9c ff ff ff b8 01 01 00 00 0f 05 <48> 3d 00 f0 ff ff 77 34 44 89 c7 89 44 24 0c e8 28 10 03 00 8b 44
+RSP: 002b:00007f5f38aa6ac0 EFLAGS: 00000293 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007f5f3a061d94
+RDX: 0000000000000100 RSI: 00007f5f38aa6b60 RDI: 00000000ffffff9c
+RBP: 00007f5f38aa6b60 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000293 R12: 0000000000000100
+R13: 00007f5f3a2f6038 R14: 00007f5f3a2f5fa0 R15: 00007f5f38a87000
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

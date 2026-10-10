@@ -1,0 +1,130 @@
+------------[ cut here ]------------
+WARNING: CPU: 3 PID: 134534 at mm/page_alloc.c:5154 __alloc_frozen_pages_noprof+0x304/0x2140 home/wmy/Fuzzer/third_tool/linux-6.18/mm/page_alloc.c:5154
+Modules linked in:
+CPU: 3 UID: 0 PID: 134534 Comm: syz.0.9767 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:__alloc_frozen_pages_noprof+0x304/0x2140 home/wmy/Fuzzer/third_tool/linux-6.18/mm/page_alloc.c:5154
+Code: 5b 5d 41 5c 41 5d 41 5e 41 5f e9 47 e7 30 09 41 83 fd 0a 0f 86 0c fe ff ff 80 3d 71 42 3a 0e 00 75 0b c6 05 68 42 3a 0e 01 90 <0f> 0b 90 48 c7 04 24 00 00 00 00 e9 78 ff ff ff 48 8b 04 24 48 85
+RSP: 0018:ffffc900096afa10 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: 0000000000000001 RSI: 1ffff920012d5f56 RDI: 0000000000040cc0
+RBP: 0000000000000013 R08: 0000000000000001 R09: fffff520012d5fcd
+R10: 0000000000000013 R11: 0000000000000000 R12: 0000000000040cc0
+R13: 0000000000000013 R14: ffffffff9a9354c4 R15: 0000000000000001
+FS:  00007ff4f9a99640(0000) GS:ffff8881da501000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fd4d3907e30 CR3: 0000000127cf8000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ alloc_pages_mpol+0x1f1/0x550 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mempolicy.c:2416
+ ___kmalloc_large_node+0xff/0x170 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5591
+ __kmalloc_large_node_noprof+0x1a/0x70 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5622
+ __do_kmalloc_node home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5638 [inline]
+ __kmalloc_noprof+0x5ab/0x8c0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/slub.c:5662
+ kmalloc_noprof home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/slab.h:961 [inline]
+ raw_alloc_io_data home/wmy/Fuzzer/third_tool/linux-6.18/drivers/usb/gadget/legacy/raw_gadget.c:673 [inline]
+ raw_alloc_io_data+0x138/0x1a0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/usb/gadget/legacy/raw_gadget.c:659
+ raw_ioctl_ep0_read home/wmy/Fuzzer/third_tool/linux-6.18/drivers/usb/gadget/legacy/raw_gadget.c:776 [inline]
+ raw_ioctl+0x15d0/0x2c00 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/usb/gadget/legacy/raw_gadget.c:1313
+ vfs_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:51 [inline]
+ __do_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:597 [inline]
+ __se_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x18f/0x210 home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xcb/0xfa0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7ff4f8bb359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ff4f9a98f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007ff4f8e45fa0 RCX: 00007ff4f8bb359d
+RDX: 0000200000001640 RSI: 00000000c0085504 RDI: 0000000000000003
+RBP: 00007ff4f8c52a38 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007ff4f8e46038 R14: 00007ff4f8e45fa0 R15: 00007ff4f9a79000
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+CPU: 3 UID: 0 PID: 134534 Comm: syz.0.9767 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:__alloc_frozen_pages_noprof+0x304/0x2140
+Code: 5b 5d 41 5c 41 5d 41 5e 41 5f e9 47 e7 30 09 41 83 fd 0a 0f 86 0c fe ff ff 80 3d 71 42 3a 0e 00 75 0b c6 05 68 42 3a 0e 01 90 <0f> 0b 90 48 c7 04 24 00 00 00 00 e9 78 ff ff ff 48 8b 04 24 48 85
+RSP: 0018:ffffc900096afa10 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: 0000000000000001 RSI: 1ffff920012d5f56 RDI: 0000000000040cc0
+RBP: 0000000000000013 R08: 0000000000000001 R09: fffff520012d5fcd
+R10: 0000000000000013 R11: 0000000000000000 R12: 0000000000040cc0
+R13: 0000000000000013 R14: ffffffff9a9354c4 R15: 0000000000000001
+FS:  00007ff4f9a99640(0000) GS:ffff8881da501000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fd4d3907e30 CR3: 0000000127cf8000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ alloc_pages_mpol+0x1f1/0x550
+ ___kmalloc_large_node+0xff/0x170
+ __kmalloc_large_node_noprof+0x1a/0x70
+ __kmalloc_noprof+0x5ab/0x8c0
+ raw_alloc_io_data+0x138/0x1a0
+ raw_ioctl+0x15d0/0x2c00
+ __x64_sys_ioctl+0x18f/0x210
+ do_syscall_64+0xcb/0xfa0
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7ff4f8bb359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ff4f9a98f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007ff4f8e45fa0 RCX: 00007ff4f8bb359d
+RDX: 0000200000001640 RSI: 00000000c0085504 RDI: 0000000000000003
+RBP: 00007ff4f8c52a38 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007ff4f8e46038 R14: 00007ff4f8e45fa0 R15: 00007ff4f9a79000
+ </TASK>
+Kernel panic - not syncing: kernel: panic_on_warn set ...
+CPU: 3 UID: 0 PID: 134534 Comm: syz.0.9767 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0x3d/0x1b0
+ vpanic+0x679/0x710
+ panic+0xc2/0xd0
+ check_panic_on_warn+0xb1/0xc0
+ __warn+0xf6/0x3d0
+ report_bug+0x2e1/0x500
+ handle_bug+0x2dd/0x410
+ exc_invalid_op+0x35/0x80
+ asm_exc_invalid_op+0x1a/0x20
+RIP: 0010:__alloc_frozen_pages_noprof+0x304/0x2140
+Code: 5b 5d 41 5c 41 5d 41 5e 41 5f e9 47 e7 30 09 41 83 fd 0a 0f 86 0c fe ff ff 80 3d 71 42 3a 0e 00 75 0b c6 05 68 42 3a 0e 01 90 <0f> 0b 90 48 c7 04 24 00 00 00 00 e9 78 ff ff ff 48 8b 04 24 48 85
+RSP: 0018:ffffc900096afa10 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: 0000000000000001 RSI: 1ffff920012d5f56 RDI: 0000000000040cc0
+RBP: 0000000000000013 R08: 0000000000000001 R09: fffff520012d5fcd
+R10: 0000000000000013 R11: 0000000000000000 R12: 0000000000040cc0
+R13: 0000000000000013 R14: ffffffff9a9354c4 R15: 0000000000000001
+ alloc_pages_mpol+0x1f1/0x550
+ ___kmalloc_large_node+0xff/0x170
+ __kmalloc_large_node_noprof+0x1a/0x70
+ __kmalloc_noprof+0x5ab/0x8c0
+ raw_alloc_io_data+0x138/0x1a0
+ raw_ioctl+0x15d0/0x2c00
+ __x64_sys_ioctl+0x18f/0x210
+ do_syscall_64+0xcb/0xfa0
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7ff4f8bb359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ff4f9a98f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007ff4f8e45fa0 RCX: 00007ff4f8bb359d
+RDX: 0000200000001640 RSI: 00000000c0085504 RDI: 0000000000000003
+RBP: 00007ff4f8c52a38 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007ff4f8e46038 R14: 00007ff4f8e45fa0 R15: 00007ff4f9a79000
+ </TASK>
+Kernel Offset: disabled
+Rebooting in 86400 seconds..
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

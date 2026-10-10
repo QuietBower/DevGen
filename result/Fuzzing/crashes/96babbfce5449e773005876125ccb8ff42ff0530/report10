@@ -1,0 +1,211 @@
+modprobe (693) used greatest stack depth: 24792 bytes left
+mtip32xx 0000:01:00.0: Issuing COM reset
+systemd-udevd (171) used greatest stack depth: 24144 bytes left
+mtip32xx 0000:01:00.0: Issuing COM reset
+INFO: task syz.2.34:2131 blocked in I/O wait for more than 143 seconds.
+      Tainted: G        W        N  7.1.0+ #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:syz.2.34        state:D stack:27456 pid:2131  tgid:2131  ppid:308    task_flags:0x400040 flags:0x00080002
+Call Trace:
+ <TASK>
+ context_switch kernel/sched/core.c:5504 [inline]
+ __schedule+0x10cf/0x47a0 kernel/sched/core.c:7228
+ __schedule_loop kernel/sched/core.c:7307 [inline]
+ schedule+0xe9/0x3a0 kernel/sched/core.c:7322
+ io_schedule+0xc4/0x140 kernel/sched/core.c:8150
+ folio_wait_bit_common+0x385/0x900 mm/filemap.c:1324
+ folio_wait_writeback+0x50/0xa0 mm/page-writeback.c:3068
+ __filemap_fdatawait_range+0x114/0x1f0 mm/filemap.c:533
+ filemap_write_and_wait_range mm/filemap.c:693 [inline]
+ filemap_write_and_wait_range+0xf6/0x130 mm/filemap.c:676
+ filemap_write_and_wait include/linux/pagemap.h:65 [inline]
+ sync_blockdev block/bdev.c:276 [inline]
+ sync_blockdev block/bdev.c:272 [inline]
+ bdev_release+0x4d5/0x6f0 block/bdev.c:1129
+ blkdev_release+0x1a/0x30 block/fops.c:680
+ __fput+0x407/0xb60 fs/file_table.c:512
+ task_work_run+0x170/0x260 kernel/task_work.c:233
+ resume_user_mode_work include/linux/resume_user_mode.h:50 [inline]
+ __exit_to_user_mode_loop kernel/entry/common.c:70 [inline]
+ exit_to_user_mode_loop+0x1a8/0x5d0 kernel/entry/common.c:101
+ __exit_to_user_mode_prepare include/linux/irq-entry-common.h:207 [inline]
+ syscall_exit_to_user_mode_prepare include/linux/irq-entry-common.h:230 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:318 [inline]
+ do_syscall_64+0x52c/0x6a0 arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f8997b1459d
+RSP: 002b:00007ffe98e6cf58 EFLAGS: 00000246 ORIG_RAX: 00000000000001b4
+RAX: 0000000000000000 RBX: 00007f8997da7da0 RCX: 00007f8997b1459d
+RDX: 0000000000000000 RSI: 000000000000001e RDI: 0000000000000003
+RBP: 00007f8997da7da0 R08: 0000001b2fb2421c R09: 0000000000000000
+R10: 0000001b2fb24218 R11: 0000000000000246 R12: 000000000000d4a9
+R13: 00007f8997da5fac R14: 00007f8997da7da0 R15: 00007ffe98e6d020
+ </TASK>
+INFO: lockdep is turned off.
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 41 Comm: khungtaskd Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xdb/0x140 lib/dump_stack.c:120
+ nmi_cpu_backtrace+0x1fd/0x270 lib/nmi_backtrace.c:113
+ nmi_trigger_cpumask_backtrace+0x22c/0x270 lib/nmi_backtrace.c:62
+ trigger_all_cpu_backtrace include/linux/nmi.h:162 [inline]
+ __sys_info lib/sys_info.c:157 [inline]
+ sys_info+0x133/0x180 lib/sys_info.c:165
+ check_hung_uninterruptible_tasks kernel/hung_task.c:353 [inline]
+ watchdog+0x105c/0x1560 kernel/hung_task.c:561
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x667/0xa80 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+Sending NMI from CPU 1 to CPUs 0,2-3:
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 302 Comm: syz-executor Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:memset_orig+0x36/0xb0 arch/x86/lib/memset_64.S:70
+Code: 01 01 01 01 01 48 0f af c1 41 89 f9 41 83 e1 07 75 74 48 89 d1 48 c1 e9 06 74 39 66 0f 1f 84 00 00 00 00 00 48 ff c9 48 89 07 <48> 89 47 08 48 89 47 10 48 89 47 18 48 89 47 20 48 89 47 28 48 89
+RSP: 0018:ffff888124237958 EFLAGS: 00000202
+RAX: ffffffffffffffff RBX: 0000000000000000 RCX: 0000000000000007
+RDX: 0000000000000200 RSI: 00000000000000ff RDI: ffffed1025ad6000
+RBP: 0000000000000000 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffed1025ad6000 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000000 R14: ffffea0004b5ac00 R15: 0000000000000000
+FS:  0000555584a1b500(0000) GS:ffff8881d07ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007ff5ece97f00 CR3: 000000000766c000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ kasan_poison_pages include/linux/kasan.h:118 [inline]
+ __free_pages_prepare mm/page_alloc.c:1419 [inline]
+ __free_frozen_pages+0x2a9/0xcd0 mm/page_alloc.c:2938
+ vfree+0x1a1/0x960 mm/vmalloc.c:3472
+ kcov_put kernel/kcov.c:442 [inline]
+ kcov_put kernel/kcov.c:438 [inline]
+ kcov_close+0x3a/0x60 kernel/kcov.c:543
+ __fput+0x407/0xb60 fs/file_table.c:512
+ task_work_run+0x170/0x260 kernel/task_work.c:233
+ exit_task_work include/linux/task_work.h:40 [inline]
+ do_exit+0x8fd/0x2960 kernel/exit.c:1004
+ do_group_exit+0xd8/0x2b0 kernel/exit.c:1147
+ get_signal+0x2327/0x2350 kernel/signal.c:3038
+ arch_do_signal_or_restart+0x85/0x800 arch/x86/kernel/signal.c:337
+ __exit_to_user_mode_loop kernel/entry/common.c:66 [inline]
+ exit_to_user_mode_loop+0xf4/0x5d0 kernel/entry/common.c:101
+ __exit_to_user_mode_prepare include/linux/irq-entry-common.h:207 [inline]
+ syscall_exit_to_user_mode_prepare include/linux/irq-entry-common.h:230 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:318 [inline]
+ do_syscall_64+0x52c/0x6a0 arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f210eb3a6aa
+Code: Unable to access opcode bytes at 0x7f210eb3a680.
+RSP: 002b:00007ffea5da4148 EFLAGS: 00000246 ORIG_RAX: 000000000000003d
+RAX: fffffffffffffe00 RBX: 0000000000000135 RCX: 00007f210eb3a6aa
+RDX: 0000000040000000 RSI: 00007ffea5da4154 RDI: 00000000ffffffff
+RBP: 00007ffea5da4154 R08: 0000000000000135 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000008
+R13: 0000000000000003 R14: 00007f210ebe4523 R15: 00007ffea5da42a0
+ </TASK>
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 146 Comm: systemd-journal Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0033:0x7ffbf5f176b0
+Code: 5c 41 5d 5d c3 0f 1f 44 00 00 b8 ea ff ff ff eb da b8 de ff ff ff eb d3 e8 2d 22 f3 ff 66 66 2e 0f 1f 84 00 00 00 00 00 66 90 <41> 54 55 53 48 83 ec 20 64 48 8b 04 25 28 00 00 00 48 89 44 24 18
+RSP: 002b:00007ffd7066c8b8 EFLAGS: 00000206
+RAX: 00007ffd7066d141 RBX: 0000000000000030 RCX: 0000000000000000
+RDX: 000000000000002f RSI: 00007ffd7066c8e4 RDI: 00007ffd7066d140
+RBP: 00007ffd7066f270 R08: 0000000000000000 R09: 000056219a178c38
+R10: 0000000000000010 R11: 0000000000000000 R12: 00007ffd7066d141
+R13: 00007ffd7066d140 R14: 0000000000000100 R15: 0000000000000000
+FS:  00007ffbf541e900 GS:  0000000000000000
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 301 Comm: syz-executor Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:memset_orig+0x36/0xb0 arch/x86/lib/memset_64.S:70
+Code: 01 01 01 01 01 48 0f af c1 41 89 f9 41 83 e1 07 75 74 48 89 d1 48 c1 e9 06 74 39 66 0f 1f 84 00 00 00 00 00 48 ff c9 48 89 07 <48> 89 47 08 48 89 47 10 48 89 47 18 48 89 47 20 48 89 47 28 48 89
+RSP: 0018:ffff88812422f2c8 EFLAGS: 00000202
+RAX: ffffffffffffffff RBX: ffffea00048bf400 RCX: 0000000000000007
+RDX: 0000000000000200 RSI: 00000000000000ff RDI: ffffed10245fa000
+RBP: ffffea00048bf428 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffed10245fa000 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000122fd0000 R14: 0000000000000000 R15: dffffc0000000000
+FS:  000055556f55e500(0000) GS:ffff8881d08ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000559f45eea8d0 CR3: 0000000107554000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ kasan_poison_pages include/linux/kasan.h:118 [inline]
+ __free_pages_prepare mm/page_alloc.c:1419 [inline]
+ free_unref_folios+0x263/0x1100 mm/page_alloc.c:2999
+ folios_put_refs+0x3b2/0x600 mm/swap.c:1008
+ folio_batch_release include/linux/folio_batch.h:101 [inline]
+ truncate_inode_pages_range+0x2b6/0xcf0 mm/truncate.c:408
+ ext4_evict_inode+0x2ad/0x1850 fs/ext4/inode.c:210
+ evict+0x342/0xa00 fs/inode.c:828
+ iput_final fs/inode.c:2022 [inline]
+ iput fs/inode.c:2071 [inline]
+ iput+0x783/0xd20 fs/inode.c:2034
+ dentry_unlink_inode+0x27d/0x460 fs/dcache.c:479
+ dentry_kill+0x267/0xc10 fs/dcache.c:826
+ finish_dput fs/dcache.c:1001 [inline]
+ dput.part.0+0xc0/0x220 fs/dcache.c:1042
+ dput+0x24/0x30 fs/dcache.c:1037
+ __fput+0x51b/0xb60 fs/file_table.c:520
+ task_work_run+0x170/0x260 kernel/task_work.c:233
+ exit_task_work include/linux/task_work.h:40 [inline]
+ do_exit+0x8fd/0x2960 kernel/exit.c:1004
+ do_group_exit+0xd8/0x2b0 kernel/exit.c:1147
+ get_signal+0x2327/0x2350 kernel/signal.c:3038
+ arch_do_signal_or_restart+0x85/0x800 arch/x86/kernel/signal.c:337
+ __exit_to_user_mode_loop kernel/entry/common.c:66 [inline]
+ exit_to_user_mode_loop+0xf4/0x5d0 kernel/entry/common.c:101
+ __exit_to_user_mode_prepare include/linux/irq-entry-common.h:207 [inline]
+ syscall_exit_to_user_mode_prepare include/linux/irq-entry-common.h:230 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:318 [inline]
+ do_syscall_64+0x52c/0x6a0 arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fe82adba6aa
+Code: Unable to access opcode bytes at 0x7fe82adba680.
+RSP: 002b:00007ffdda392b88 EFLAGS: 00000246 ORIG_RAX: 000000000000003d
+RAX: fffffffffffffe00 RBX: 0000000000000131 RCX: 00007fe82adba6aa
+RDX: 0000000040000000 RSI: 00007ffdda392b94 RDI: 00000000ffffffff
+RBP: 00007ffdda392b94 R08: 0000000000000131 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000008
+R13: 0000000000000003 R14: 00007fe82ae64523 R15: 00007ffdda392ce0
+ </TASK>
+----------------
+Code disassembly (best guess):
+   0:	01 01                	add    %eax,(%rcx)
+   2:	01 01                	add    %eax,(%rcx)
+   4:	01 48 0f             	add    %ecx,0xf(%rax)
+   7:	af                   	scas   %es:(%rdi),%eax
+   8:	c1 41 89 f9          	roll   $0xf9,-0x77(%rcx)
+   c:	41 83 e1 07          	and    $0x7,%r9d
+  10:	75 74                	jne    0x86
+  12:	48 89 d1             	mov    %rdx,%rcx
+  15:	48 c1 e9 06          	shr    $0x6,%rcx
+  19:	74 39                	je     0x54
+  1b:	66 0f 1f 84 00 00 00 	nopw   0x0(%rax,%rax,1)
+  22:	00 00
+  24:	48 ff c9             	dec    %rcx
+  27:	48 89 07             	mov    %rax,(%rdi)
+* 2a:	48 89 47 08          	mov    %rax,0x8(%rdi) <-- trapping instruction
+  2e:	48 89 47 10          	mov    %rax,0x10(%rdi)
+  32:	48 89 47 18          	mov    %rax,0x18(%rdi)
+  36:	48 89 47 20          	mov    %rax,0x20(%rdi)
+  3a:	48 89 47 28          	mov    %rax,0x28(%rdi)
+  3e:	48                   	rex.W
+  3f:	89                   	.byte 0x89
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

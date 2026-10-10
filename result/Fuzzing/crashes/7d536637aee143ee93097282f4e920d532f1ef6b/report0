@@ -1,0 +1,259 @@
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	(detected by 3, t=13418 jiffies, g=64185, q=2430 ncpus=4)
+rcu: All QSes seen, last rcu_preempt kthread activity 13364 (4295011868-4294998504), jiffies_till_next_fqs=1, root ->qsmask 0x0
+rcu: rcu_preempt kthread starved for 13364 jiffies! g64185 f0x2 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=3
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:R  running task     stack:28168 pid:16    tgid:16    ppid:2      task_flags:0x208040 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:5325 [inline]
+ __schedule+0x1044/0x5bb0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:6929
+ __schedule_loop home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7011 [inline]
+ schedule+0xe7/0x3a0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7026
+ schedule_timeout+0x113/0x280 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/sleep_timeout.c:99
+ rcu_gp_fqs_loop+0x18c/0xa00 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2083
+ rcu_gp_kthread+0x26f/0x370 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2285
+ kthread+0x3d0/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x676/0x7d0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+CPU: 3 UID: 0 PID: 10973 Comm: kworker/3:4 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: events e1000_watchdog
+RIP: 0010:__raw_spin_unlock_irq home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/spinlock_api_smp.h:160 [inline]
+RIP: 0010:_raw_spin_unlock_irq+0x29/0x50 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/spinlock.c:202
+Code: 90 f3 0f 1e fa 55 48 8b 74 24 08 48 89 fd 48 83 c7 18 e8 4a e2 52 f6 48 89 ef e8 52 33 53 f6 e8 2d 5d 7e f6 fb bf 01 00 00 00 <e8> 72 95 43 f6 65 8b 05 1b 07 3e 08 85 c0 74 06 5d e9 81 4b 00 00
+RSP: 0018:ffffc900006b0e08 EFLAGS: 00000206
+RAX: 000000000000df5c RBX: ffffc900006b0e98 RCX: 0000000000000004
+RDX: 0000000000000000 RSI: 0000000000000102 RDI: 0000000000000001
+RBP: ffff888135f25b00 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff90650fd7 R11: 0000000000000001 R12: fffff520000d61d3
+R13: ffff888036c5a708 R14: dffffc0000000000 R15: ffff888135f25b00
+FS:  0000000000000000(0000) GS:ffff8881a2701000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f7c6334e038 CR3: 000000002b36e000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ expire_timers home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/timer.c:1798 [inline]
+ __run_timers+0x656/0x920 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/timer.c:2373
+ __run_timer_base home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/timer.c:2385 [inline]
+ __run_timer_base home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/timer.c:2377 [inline]
+ run_timer_base+0xc5/0x120 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/timer.c:2394
+ run_timer_softirq+0x1a/0x40 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/timer.c:2404
+ handle_softirqs+0x1d4/0x870 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:622
+ __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+ invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0x109/0x170 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+ irq_exit_rcu+0x9/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:739
+ instr_sysvec_apic_timer_interrupt home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052 [inline]
+ sysvec_apic_timer_interrupt+0xa8/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:697
+RIP: 0010:__raw_spin_unlock_irqrestore home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/spinlock_api_smp.h:152 [inline]
+RIP: 0010:_raw_spin_unlock_irqrestore+0x3c/0x70 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/spinlock.c:194
+Code: 74 24 10 e8 e6 e1 52 f6 48 89 ef e8 ee 32 53 f6 81 e3 00 02 00 00 75 29 9c 58 f6 c4 02 75 35 48 85 db 74 01 fb bf 01 00 00 00 <e8> ff 94 43 f6 65 8b 05 a8 06 3e 08 85 c0 74 0e 5b 5d e9 0d 4b 00
+RSP: 0018:ffffc90011127a58 EFLAGS: 00000206
+RAX: 0000000000000002 RBX: 0000000000000200 RCX: 0000000000000040
+RDX: 0000000000000000 RSI: 0000000000000001 RDI: 0000000000000001
+RBP: ffff888108198fa0 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff90650fd7 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000000 R14: ffff888108198000 R15: ffff8881081992e8
+ spin_unlock_irqrestore home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/spinlock.h:406 [inline]
+ e1000_update_stats+0x14fe/0x1e20 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/net/ethernet/intel/e1000/e1000_main.c:3740
+ e1000_watchdog+0x375/0x14b0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/net/ethernet/intel/e1000/e1000_main.c:2500
+ process_one_work+0x992/0x1b60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3263
+ process_scheduled_works home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3346 [inline]
+ worker_thread+0x67e/0xe90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3427
+ kthread+0x3d0/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x676/0x7d0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+INFO: task pool_workqueue_:3 blocked for more than 157 seconds.
+      Not tainted 6.18.0 #1
+"echo 0 > /proc/sys/kernel/hung_task_timeout_secs" disables this message.
+task:pool_workqueue_ state:D stack:28520 pid:3     tgid:3     ppid:2      task_flags:0x208040 flags:0x00080000
+Call Trace:
+ <TASK>
+ __schedule+0x1044/0x5bb0
+ schedule+0xe7/0x3a0
+ exp_funnel_lock+0x329/0x3b0
+ synchronize_rcu_expedited+0x27a/0x400
+ pwq_release_workfn+0x5f6/0xa90
+ kthread_worker_fn+0x30a/0xc00
+ kthread+0x3d0/0x780
+ ret_from_fork+0x676/0x7d0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+
+Showing all locks held in the system:
+4 locks held by kworker/3:0/34:
+ #0: ffff88801b07a148 ((wq_completion)events){+.+.}-{0:0}, at: process_one_work+0x128c/0x1b60
+ #1: ffffc90000697d10 ((work_completion)(&aux->work)){+.+.}-{0:0}, at: process_one_work+0x8ec/0x1b60
+ #2: ffffffff8e280308 (pack_mutex){+.+.}-{4:4}, at: bpf_prog_pack_free+0x27/0x440
+ #3: ffffffff8e0847a8 (text_mutex){+.+.}-{4:4}, at: text_poke_set+0x99/0x160
+1 lock held by khungtaskd/44:
+ #0: ffffffff8e1c7aa0 (rcu_read_lock){....}-{1:3}, at: debug_show_all_locks+0x36/0x1c0
+4 locks held by kworker/u18:2/58:
+ #0: ffff88801bbb5148 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x128c/0x1b60
+ #1: ffffc90000a4fd10 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8ec/0x1b60
+ #2: ffff8880262080e0 (&type->s_umount_key#42){++++}-{4:4}, at: super_trylock_shared+0x21/0x100
+ #3: ffff888026276b98 (&sbi->s_writepages_rwsem){++++}-{0:0}, at: do_writepages+0x242/0x5b0
+2 locks held by kworker/3:1/59:
+4 locks held by kworker/u18:3/66:
+ #0: ffff88801bbb5148 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x128c/0x1b60
+ #1: ffffc90000cd7d10 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8ec/0x1b60
+ #2: ffff8880262080e0 (&type->s_umount_key#42){++++}-{4:4}, at: super_trylock_shared+0x21/0x100
+ #3: ffff888026276b98 (&sbi->s_writepages_rwsem){++++}-{0:0}, at: do_writepages+0x242/0x5b0
+4 locks held by kworker/u19:0/68:
+4 locks held by kworker/u18:4/80:
+ #0: ffff88801bbb5148 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x128c/0x1b60
+ #1: ffffc9000163fd10 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8ec/0x1b60
+ #2: ffff8880262080e0 (&type->s_umount_key#42){++++}-{4:4}, at: super_trylock_shared+0x21/0x100
+ #3: ffff888026276b98 (&sbi->s_writepages_rwsem){++++}-{0:0}, at: do_writepages+0x242/0x5b0
+5 locks held by kworker/u17:2/83:
+4 locks held by kworker/u17:3/168:
+ #0: ffff88801bbb5148 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x128c/0x1b60
+ #1: ffffc900028c7d10 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8ec/0x1b60
+ #2: ffff8880262080e0 (&type->s_umount_key#42){++++}-{4:4}, at: super_trylock_shared+0x21/0x100
+ #3: ffff888026276b98 (&sbi->s_writepages_rwsem){++++}-{0:0}, at: do_writepages+0x242/0x5b0
+4 locks held by kworker/u18:6/1132:
+ #0: ffff88801bbb5148 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x128c/0x1b60
+ #1: ffffc900061cfd10 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8ec/0x1b60
+ #2: ffff8880262080e0 (&type->s_umount_key#42){++++}-{4:4}, at: super_trylock_shared+0x21/0x100
+ #3: ffff888026276b98 (&sbi->s_writepages_rwsem){++++}-{0:0}, at: do_writepages+0x242/0x5b0
+4 locks held by kworker/u17:5/3122:
+ #0: ffff88801bbb5148 ((wq_completion)writeback){+.+.}-{0:0}, at: process_one_work+0x128c/0x1b60
+ #1: ffffc900110a7d10 ((work_completion)(&(&wb->dwork)->work)){+.+.}-{0:0}, at: process_one_work+0x8ec/0x1b60
+ #2: ffff8880262080e0 (&type->s_umount_key#42){++++}-{4:4}, at: super_trylock_shared+0x21/0x100
+ #3: ffff888026276b98 (&sbi->s_writepages_rwsem){++++}-{0:0}, at: do_writepages+0x242/0x5b0
+2 locks held by kworker/u18:7/4068:
+5 locks held by kworker/u19:1/5201:
+ #0: ffff888037472948 ((wq_completion)hci2){+.+.}-{0:0}, at: process_one_work+0x128c/0x1b60
+ #1: ffffc900111f7d10 ((work_completion)(&hdev->cmd_sync_work)){+.+.}-{0:0}, at: process_one_work+0x8ec/0x1b60
+ #2: ffff888012a18dc8 (&hdev->req_lock){+.+.}-{4:4}, at: hci_cmd_sync_work+0x18a/0x440
+ #3: ffff888012a180b8 (&hdev->lock){+.+.}-{4:4}, at: hci_abort_conn_sync+0x13b/0xaf0
+ #4: ffffffff90188988 (hci_cb_list_lock){+.+.}-{4:4}, at: hci_conn_failed+0x151/0x330
+1 lock held by systemd-journal/5248:
+1 lock held by systemd-udevd/5261:
+2 locks held by syz-executor/9847:
+6 locks held by kworker/u19:2/9873:
+ #0: ffff88810c303148 ((wq_completion)hci3){+.+.}-{0:0}, at: process_one_work+0x128c/0x1b60
+ #1: ffffc90014347d10 ((work_completion)(&hdev->cmd_sync_work)){+.+.}-{0:0}, at: process_one_work+0x8ec/0x1b60
+ #2: ffff88812be20dc8 (&hdev->req_lock){+.+.}-{4:4}, at: hci_cmd_sync_work+0x18a/0x440
+ #3: ffff88812be200b8 (&hdev->lock){+.+.}-{4:4}, at: hci_abort_conn_sync+0x13b/0xaf0
+ #4: ffffffff90188988 (hci_cb_list_lock){+.+.}-{4:4}, at: hci_conn_failed+0x151/0x330
+ #5: ffff8880313c6b38 (&conn->lock#2){+.+.}-{4:4}, at: l2cap_conn_del+0x7f/0x740
+3 locks held by kworker/3:4/10973:
+ #0: ffff88801b07a148 ((wq_completion)events){+.+.}-{0:0}, at: process_one_work+0x128c/0x1b60
+ #1: ffffc90011127d10 ((work_completion)(&aux->work)){+.+.}-{0:0}, at: process_one_work+0x8ec/0x1b60
+ #2: ffffffff8e280308 (pack_mutex){+.+.}-{4:4}, at: bpf_prog_pack_free+0x27/0x440
+5 locks held by kworker/u19:3/23415:
+ #0: ffff8881111ab148 ((wq_completion)hci0){+.+.}-{0:0}, at: process_one_work+0x128c/0x1b60
+ #1: ffffc9000673fd10 ((work_completion)(&hdev->cmd_sync_work)){+.+.}-{0:0}, at: process_one_work+0x8ec/0x1b60
+ #2: ffff88811f594dc8 (&hdev->req_lock){+.+.}-{4:4}, at: hci_cmd_sync_work+0x18a/0x440
+ #3: ffff88811f5940b8 (&hdev->lock){+.+.}-{4:4}, at: hci_abort_conn_sync+0x13b/0xaf0
+ #4: ffffffff90188988 (hci_cb_list_lock){+.+.}-{4:4}, at: hci_conn_failed+0x151/0x330
+5 locks held by kworker/u19:4/24589:
+ #0: ffff888113fd5948 ((wq_completion)hci1){+.+.}-{0:0}, at: process_one_work+0x128c/0x1b60
+ #1: ffffc90004bcfd10 ((work_completion)(&hdev->cmd_sync_work)){+.+.}-{0:0}, at: process_one_work+0x8ec/0x1b60
+ #2: ffff8880370a8dc8 (&hdev->req_lock){+.+.}-{4:4}, at: hci_cmd_sync_work+0x18a/0x440
+ #3: ffff8880370a80b8 (&hdev->lock){+.+.}-{4:4}, at: hci_abort_conn_sync+0x13b/0xaf0
+ #4: ffffffff90188988 (hci_cb_list_lock){+.+.}-{4:4}, at: hci_conn_failed+0x151/0x330
+3 locks held by kworker/0:3/25319:
+2 locks held by syz-executor/27319:
+1 lock held by syz-executor/28092:
+ #0: ffffffff8e1d30b8 (rcu_state.exp_mutex){+.+.}-{4:4}, at: exp_funnel_lock+0x1a3/0x3b0
+1 lock held by syz-executor/28431:
+ #0: ffffffff8ff0ca88 (rtnl_mutex){+.+.}-{4:4}, at: inet_rtm_newaddr+0x30d/0x1570
+1 lock held by syz.8.3183/29050:
+ #0: ffffffff8e1d30b8 (rcu_state.exp_mutex){+.+.}-{4:4}, at: exp_funnel_lock+0x1a3/0x3b0
+2 locks held by syz-executor/29057:
+
+=============================================
+
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 44 Comm: khungtaskd Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ dump_stack_lvl+0x116/0x1b0
+ nmi_cpu_backtrace+0x2a0/0x350
+ nmi_trigger_cpumask_backtrace+0x29c/0x300
+ watchdog+0xf16/0x1150
+ kthread+0x3d0/0x780
+ ret_from_fork+0x676/0x7d0
+ ret_from_fork_asm+0x1a/0x30
+ </TASK>
+Sending NMI from CPU 3 to CPUs 0-2:
+NMI backtrace for cpu 1
+CPU: 1 UID: 0 PID: 27319 Comm: syz-executor Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:smp_call_function_many_cond+0x811/0x15e0
+Code: 48 b9 00 00 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 21 07 0c 00 f3 90 <41> 0f b6 06 41 38 c4 7c 08 84 c0 0f 85 6d 0b 00 00 44 8b 7b 08 31
+RSP: 0018:ffffc9000632f760 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: ffff888062842680 RCX: ffffffff81ae5104
+RDX: ffff888105e61d00 RSI: ffffffff81ae50df RDI: 0000000000000005
+RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000003
+R13: ffff888135e3b740 R14: ffffed100c5084d1 R15: 0000000000000001
+FS:  000055557eabc500(0000) GS:ffff8881a2601000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f34d21556c0 CR3: 000000004f52a000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ on_each_cpu_cond_mask+0x40/0x90
+ flush_tlb_mm_range+0x42d/0x17d0
+ dup_mmap+0xebb/0x20d0
+ copy_process+0x36ba/0x76c0
+ kernel_clone+0xea/0x8b0
+ __do_sys_clone+0xce/0x120
+ do_syscall_64+0xcb/0xfa0
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f34d13a6d07
+Code: 00 00 90 f3 0f 1e fa 64 48 8b 04 25 10 00 00 00 45 31 c0 31 d2 31 f6 bf 11 00 20 01 4c 8d 90 d0 02 00 00 b8 38 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 41 41 89 c0 85 c0 75 2c 64 48 8b 04 25 10 00
+RSP: 002b:00007ffda464b3e8 EFLAGS: 00000246 ORIG_RAX: 0000000000000038
+RAX: ffffffffffffffda RBX: 00007f34d215d680 RCX: 00007f34d13a6d07
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000001200011
+RBP: 0000000000000001 R08: 0000000000000000 R09: 0000000000000001
+R10: 000055557eabc7d0 R11: 0000000000000246 R12: 0000000000000000
+R13: 0000000000000032 R14: 00007ffda464b5d0 R15: 000000000009298a
+ </TASK>
+NMI backtrace for cpu 2
+CPU: 2 UID: 0 PID: 83 Comm: kworker/u17:2 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: events_unbound toggle_allocation_gate
+RIP: 0010:smp_call_function_many_cond+0x811/0x15e0
+Code: 48 b9 00 00 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 21 07 0c 00 f3 90 <41> 0f b6 06 41 38 c4 7c 08 84 c0 0f 85 6d 0b 00 00 44 8b 7b 08 31
+RSP: 0018:ffffc9000162f880 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: ffff8880628426a0 RCX: ffffffff81ae5104
+RDX: ffff88801e70ba00 RSI: ffffffff81ae50df RDI: 0000000000000005
+RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000003
+R13: ffff88806293b740 R14: ffffed100c5084d5 R15: 0000000000000001
+FS:  0000000000000000(0000) GS:ffff8880cf101000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000562d88d86f60 CR3: 000000000df84000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ on_each_cpu_cond_mask+0x40/0x90
+ smp_text_poke_batch_finish+0x698/0xd50
+ arch_jump_label_transform_apply+0x1c/0x30
+ jump_label_update+0x369/0x540
+ static_key_enable_cpuslocked+0x1b7/0x270
+ static_key_enable+0x1a/0x20
+ toggle_allocation_gate+0xfa/0x250
+ process_one_work+0x992/0x1b60
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

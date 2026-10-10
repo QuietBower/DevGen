@@ -1,0 +1,100 @@
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	0-....: (6947 ticks this GP) idle=fb04/1/0x4000000000000000 softirq=136224/142845 fqs=1173
+rcu: 	         hardirqs   softirqs   csw/system
+rcu: 	 number:     3417       4532            0
+rcu: 	cputime:    18000       1360        14812   ==> 52480(ms)
+rcu: 	3-...0: (1 GPs behind) idle=22e4/1/0x4000000000000000 softirq=156885/156886 fqs=1173
+rcu: 	         hardirqs   softirqs   csw/system
+rcu: 	 number:        0          0            0
+rcu: 	cputime:        0          0            0   ==> 52480(ms)
+rcu: 	(detected by 2, t=10503 jiffies, g=182629, q=193 ncpus=4)
+Sending NMI from CPU 2 to CPUs 0:
+NMI backtrace for cpu 0
+CPU: 0 UID: 0 PID: 38617 Comm: kworker/u17:7 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: events_unbound toggle_allocation_gate
+RIP: 0010:csd_lock_wait home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:342 [inline]
+RIP: 0010:smp_call_function_many_cond+0x815/0x15e0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:877
+Code: 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 21 07 0c 00 f3 90 41 0f b6 06 <41> 38 c4 7c 08 84 c0 0f 85 6d 0b 00 00 44 8b 7b 08 31 ff 41 83 e7
+RSP: 0018:ffffc90003d5f880 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: ffff888135f40460 RCX: ffffffff81ae5104
+RDX: ffff888024ac5700 RSI: ffffffff81ae50df RDI: 0000000000000005
+RBP: 0000000000000003 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000003
+R13: ffff88806283b740 R14: ffffed1026be808d R15: 0000000000000001
+FS:  0000000000000000(0000) GS:ffff8880cf001000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000055ef8c356098 CR3: 000000000df84000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ on_each_cpu_cond_mask+0x40/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:1043
+ on_each_cpu home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/smp.h:71 [inline]
+ smp_text_poke_sync_each_cpu home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/alternative.c:2713 [inline]
+ smp_text_poke_batch_finish+0x698/0xd50 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/alternative.c:2985
+ arch_jump_label_transform_apply+0x1c/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/jump_label.c:146
+ jump_label_update+0x369/0x540 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/jump_label.c:919
+ static_key_disable_cpuslocked+0x15a/0x1c0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/jump_label.c:240
+ static_key_disable+0x1a/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/jump_label.c:248
+ toggle_allocation_gate home/wmy/Fuzzer/third_tool/linux-6.18/mm/kfence/core.c:857 [inline]
+ toggle_allocation_gate+0x145/0x250 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kfence/core.c:844
+ process_one_work+0x992/0x1b60 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3263
+ process_scheduled_works home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3346 [inline]
+ worker_thread+0x67e/0xe90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/workqueue.c:3427
+ kthread+0x3d0/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x676/0x7d0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+Sending NMI from CPU 2 to CPUs 3:
+NMI backtrace for cpu 3
+CPU: 3 UID: 0 PID: 59098 Comm: kworker/u18:3 Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: events_unbound nsim_dev_trap_report_work
+RIP: 0010:console_trylock_spinning home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2023 [inline]
+RIP: 0010:vprintk_emit+0x4d5/0x670 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2422
+Code: f6 48 c7 c7 a0 4a 0d 8e e8 b8 10 fd ff 0f b6 2d 91 9b f3 18 31 ff 89 ee e8 08 94 20 00 5a 40 84 ed 74 1c e8 3d 99 20 00 f3 90 <0f> b6 2d 74 9b f3 18 31 ff 89 ee e8 eb 93 20 00 40 84 ed 75 e4 e8
+RSP: 0018:ffffc900006b0c90 EFLAGS: 00000046
+RAX: 0000000000010002 RBX: 1ffff920000d6193 RCX: ffffffff8199bed5
+RDX: ffff888102f80000 RSI: ffffffff8199bec3 RDI: 0000000000000001
+RBP: 0000000000000001 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 0000000000000000 R12: 000000000000002a
+R13: 0000000000000000 R14: ffff888022eb3a00 R15: ffffc900006b0d50
+FS:  0000000000000000(0000) GS:ffff8881a2701000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000055ef8c362f80 CR3: 000000010c8fe000 CR4: 00000000000006f0
+Call Trace:
+ <IRQ>
+ _printk+0xbe/0xf0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:2448
+ vkms_vblank_simulate+0x8f/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/vkms/vkms_crtc.c:27
+ __run_hrtimer home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/hrtimer.c:1777 [inline]
+ __hrtimer_run_queues+0x1f5/0xb30 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/hrtimer.c:1841
+ hrtimer_interrupt+0x39a/0x880 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/hrtimer.c:1903
+ local_apic_timer_interrupt home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1041 [inline]
+ __sysvec_apic_timer_interrupt+0x10d/0x400 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1058
+ instr_sysvec_apic_timer_interrupt home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052 [inline]
+ sysvec_apic_timer_interrupt+0xa3/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/apic/apic.c:1052
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/idtentry.h:697
+RIP: 0010:lock_acquire+0x63/0x340 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/lockdep.c:5872
+Code: 20 eb 11 83 f8 07 0f 87 b0 01 00 00 89 c0 48 0f a3 05 21 40 ce 0e 0f 82 68 01 00 00 8b 35 59 70 ce 0e 85 f6 0f 85 8d 00 00 00 <48> 8b 44 24 30 65 48 2b 05 38 20 eb 11 0f 85 c0 02 00 00 48 83 c4
+RSP: 0018:ffffc9000983f5b0 EFLAGS: 00000206
+RAX: 0000000000000046 RBX: 0000000000000000 RCX: 00000000c8da3ef4
+RDX: c7b08a278230849c RSI: 0000000000000001 RDI: 0000000000000000
+RBP: ffffffff8e1c7aa0 R08: 0000000000000000 R09: 0000000000000001
+R10: 00000000000000a0 R11: 0000000000000000 R12: 0000000000000002
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+ rcu_lock_acquire home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/rcupdate.h:331 [inline]
+ rcu_read_lock home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/rcupdate.h:867 [inline]
+ class_rcu_constructor home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/rcupdate.h:1195 [inline]
+ unwind_next_frame+0xd3/0x20b0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/unwind_orc.c:479
+ arch_stack_walk+0x86/0xf0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/stacktrace.c:25
+ stack_trace_save+0x8e/0xc0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/stacktrace.c:122
+ kasan_save_stack+0x24/0x50 home/wmy/Fuzzer/third_tool/linux-6.18/mm/kasan/common.c:56
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

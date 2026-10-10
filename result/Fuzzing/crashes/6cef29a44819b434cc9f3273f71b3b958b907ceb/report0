@@ -1,0 +1,27 @@
+smbus: error: Unexpected NACK in state -1
+BUG: memory leak
+unreferenced object 0xffff888119d66600 (size 192):
+  comm "syz.2.3733", pid 9641, jiffies 4294902934
+  hex dump (first 32 bytes):
+    18 66 d6 19 81 88 ff ff 01 00 00 00 63 02 58 04  .f..........c.X.
+    00 00 00 00 00 00 00 00 2f 64 65 76 2f 69 32 63  ......../dev/i2c
+  backtrace (crc b7d5ee52):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4615 [inline]
+    slab_alloc_node mm/slub.c:4939 [inline]
+    kmem_cache_alloc_noprof+0x4d6/0x6b0 mm/slub.c:4946
+    alloc_filename fs/namei.c:147 [inline]
+    do_getname+0x39/0x3e0 fs/namei.c:187
+    class_filename_flags_constructor include/linux/fs.h:2566 [inline]
+    do_sys_openat2+0xa7/0x220 fs/open.c:1394
+    do_sys_open fs/open.c:1401 [inline]
+    __do_sys_openat fs/open.c:1417 [inline]
+    __se_sys_openat fs/open.c:1412 [inline]
+    __x64_sys_openat+0x144/0x200 fs/open.c:1412
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

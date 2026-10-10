@@ -1,0 +1,115 @@
+RBP: 00007fcafb616b60 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000293 R12: 0000000000000002
+R13: 00007fcafce66038 R14: 00007fcafce65fa0 R15: 00007fcafb5f7000
+ </TASK>
+Mem-Info:
+WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_crtc_index include/drm/drm_crtc.h:1284 [inline] [drm_kms_helper], CPU#1: kworker/1:0/24752
+WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_get_new_crtc_state include/drm/drm_atomic.h:785 [inline] [drm_kms_helper], CPU#1: kworker/1:0/24752
+WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_helper_wait_for_vblanks.part.0+0x627/0x7b0 drivers/gpu/drm/drm_atomic_helper.c:1199 [drm_kms_helper], CPU#1: kworker/1:0/24752
+active_anon:26 inactive_anon:10022 isolated_anon:0
+ active_file:21654 inactive_file:38687 isolated_file:0
+ unevictable:1000 dirty:73 writeback:0
+ slab_reclaimable:7074 slab_unreclaimable:62172
+ mapped:28946 shmem:1060 pagetables:869
+ sec_pagetables:0 bounce:0
+ kernel_misc_reclaimable:0
+ free:637871 free_pcp:1335 free_cma:0
+Node 0 active_anon:104kB inactive_anon:40088kB active_file:86616kB inactive_file:154748kB unevictable:4000kB isolated(anon):0kB isolated(file):0kB mapped:115784kB dirty:292kB writeback:0kB shmem:4240kB kernel_stack:5248kB pagetables:3476kB sec_pagetables:0kB all_unreclaimable? no Balloon:0kB
+Node 0 DMA free:15360kB boost:0kB min:32kB low:44kB high:56kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB zspages:0kB present:15992kB managed:15360kB mlocked:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+lowmem_reserve[]: 0 1825 3253 3253
+Node 0 DMA32 free:1867540kB boost:0kB min:4056kB low:5904kB high:7752kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB zspages:0kB present:2080636kB managed:1869328kB mlocked:0kB bounce:0kB free_pcp:1780kB local_pcp:244kB free_cma:0kB
+lowmem_reserve[]: 0 0 1427 1427
+Node 0 Normal free:668584kB boost:0kB min:3204kB low:4664kB high:6124kB reserved_highatomic:0KB free_highatomic:0KB active_anon:104kB inactive_anon:40088kB active_file:86616kB inactive_file:154748kB unevictable:4000kB writepending:292kB zspages:0kB present:2097152kB managed:1462172kB mlocked:0kB bounce:0kB free_pcp:3560kB local_pcp:1256kB free_cma:0kB
+lowmem_reserve[]: 0
+Modules linked in: iTCO_wdt intel_pmc_bxt bochs watchdog drm_shmem_helper drm_client_lib i2c_i801 drm_kms_helper lpc_ich i2c_smbus 8250_pci
+ 0 0 0
+Node 0 DMA: 0*4kB 0*8kB 0*16kB 0*32kB 0*64kB 0*128kB 0*256kB 0*512kB 1*1024kB (U) 1*2048kB (M) 3*4096kB (M) = 15360kB
+Node 0 DMA32: 3*4kB (UM) 5*8kB (M) 
+CPU: 1 UID: 0 PID: 24752 Comm: kworker/1:0 Tainted: G        W        N  7.0.0 #6 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Workqueue: events drm_fb_helper_damage_work [drm_kms_helper]
+2*16kB (M) 2*32kB (M) 4*64kB (M) 1*128kB (M) 5*256kB (UM) 4*512kB (UM) 2*1024kB (UM) 3*2048kB (UM) 453*4096kB (M) = 1867540kB
+Node 0 Normal: 693*4kB (UME) 1365*8kB (UME) 520*16kB (UME) 95*32kB (UME) 181*64kB (UME) 100*128kB (UME) 44*256kB 
+
+RIP: 0010:drm_crtc_index include/drm/drm_crtc.h:1284 [inline] [drm_kms_helper]
+RIP: 0010:drm_atomic_get_new_crtc_state include/drm/drm_atomic.h:785 [inline] [drm_kms_helper]
+RIP: 0010:drm_atomic_helper_wait_for_vblanks.part.0+0x62d/0x7b0 drivers/gpu/drm/drm_atomic_helper.c:1199 [drm_kms_helper]
+(UME) 23*512kB (UME) 18*1024kB (UM) 12*2048kB (UME) 135*4096kB (UM) = 668444kB
+Node 0 hugepages_total=4 hugepages_free=4 hugepages_surp=0 hugepages_size=2048kB
+Code: 00 48 8b 55 20 48 89 f8 48 c1 e8 03 42 0f b6 04 20 84 c0 74 08 3c 03 0f 8e 63 01 00 00 48 8d 3d 29 52 24 00 8b b5 d8 00 00 00 <67> 48 0f b9 3a e9 9b fd ff ff 44 8b 7c 24 3c 4c 89 eb e8 9c af 76
+61403 total pagecache pages
+RSP: 0018:ffff888103dd7738 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000040
+RDX: ffff888101f72060 RSI: 0000000000000023 RDI: ffffffffa0260190
+RBP: ffff88811cf6d318 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff88486897 R11: 0000000000000000 R12: dffffc0000000000
+R13: 0000000000000000 R14: ffff8881263b1f00 R15: 0000000000000000
+FS:  0000000000000000(0000) GS:ffff8881d0879000(0000) knlGS:0000000000000000
+0 pages in swap cache
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f4034845ff0 CR3: 000000012440c000 CR4: 00000000000006f0
+Call Trace:
+Free swap  = 124996kB
+Total swap = 124996kB
+1048445 pages RAM
+0 pages HighMem/MovableOnly
+211730 pages reserved
+Memory cgroup min protection 0kB -- low protection 0kB
+tty tty26: ldisc open failed (-12), clearing slot 25
+ <TASK>
+kworker/u16:4 (96) used greatest stack depth: 23336 bytes left
+ drm_atomic_helper_commit_tail+0x100/0x130 drivers/gpu/drm/drm_atomic_helper.c:2984 [drm_kms_helper]
+ commit_tail+0x2c2/0x390 drivers/gpu/drm/drm_atomic_helper.c:2573 [drm_kms_helper]
+ drm_atomic_helper_commit+0x308/0x390 drivers/gpu/drm/drm_atomic_helper.c:3528 [drm_kms_helper]
+ drm_atomic_commit+0x238/0x300 drivers/gpu/drm/drm_atomic.c:1775
+ drm_atomic_helper_dirtyfb+0x60f/0x790 drivers/gpu/drm/drm_damage_helper.c:246 [drm_kms_helper]
+ drm_fbdev_shmem_helper_fb_dirty+0x1d1/0x320 drivers/gpu/drm/drm_fbdev_shmem.c:109 [drm_shmem_helper]
+ drm_fb_helper_damage_work+0x335/0x630 drivers/gpu/drm/bridge/panel.c:91 [drm_kms_helper]
+ process_one_work+0x920/0x1ac0 kernel/workqueue.c:3288
+ process_scheduled_works kernel/workqueue.c:3371 [inline]
+ worker_thread+0x698/0xeb0 kernel/workqueue.c:3452
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x690/0xaa0 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+irq event stamp: 331697
+hardirqs last  enabled at (331707): [<ffffffff81572ad9>] __up_console_sem+0x89/0xa0 kernel/printk/printk.c:347
+hardirqs last disabled at (331716): [<ffffffff81572abe>] __up_console_sem+0x6e/0xa0 kernel/printk/printk.c:345
+softirqs last  enabled at (331404): [<ffffffff813dbc30>] __do_softirq kernel/softirq.c:656 [inline]
+softirqs last  enabled at (331404): [<ffffffff813dbc30>] invoke_softirq kernel/softirq.c:496 [inline]
+softirqs last  enabled at (331404): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100 kernel/softirq.c:723
+softirqs last disabled at (331399): [<ffffffff813dbc30>] __do_softirq kernel/softirq.c:656 [inline]
+softirqs last disabled at (331399): [<ffffffff813dbc30>] invoke_softirq kernel/softirq.c:496 [inline]
+softirqs last disabled at (331399): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100 kernel/softirq.c:723
+---[ end trace 0000000000000000 ]---
+----------------
+Code disassembly (best guess):
+   0:	00 48 8b             	add    %cl,-0x75(%rax)
+   3:	55                   	push   %rbp
+   4:	20 48 89             	and    %cl,-0x77(%rax)
+   7:	f8                   	clc
+   8:	48 c1 e8 03          	shr    $0x3,%rax
+   c:	42 0f b6 04 20       	movzbl (%rax,%r12,1),%eax
+  11:	84 c0                	test   %al,%al
+  13:	74 08                	je     0x1d
+  15:	3c 03                	cmp    $0x3,%al
+  17:	0f 8e 63 01 00 00    	jle    0x180
+  1d:	48 8d 3d 29 52 24 00 	lea    0x245229(%rip),%rdi        # 0x24524d
+  24:	8b b5 d8 00 00 00    	mov    0xd8(%rbp),%esi
+* 2a:	67 48 0f b9 3a       	ud1    (%edx),%rdi <-- trapping instruction
+  2f:	e9 9b fd ff ff       	jmp    0xfffffdcf
+  34:	44 8b 7c 24 3c       	mov    0x3c(%rsp),%r15d
+  39:	4c 89 eb             	mov    %r13,%rbx
+  3c:	e8                   	.byte 0xe8
+  3d:	9c                   	pushf
+  3e:	af                   	scas   %es:(%rdi),%eax
+  3f:	76                   	.byte 0x76
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

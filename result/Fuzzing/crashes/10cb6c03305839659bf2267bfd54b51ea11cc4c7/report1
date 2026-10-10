@@ -1,0 +1,132 @@
+==================================================================
+BUG: KASAN: out-of-bounds in i801_isr_byte_done drivers/i2c/busses/i2c-i801.c:582 [inline] [i2c_i801]
+BUG: KASAN: out-of-bounds in i801_isr drivers/i2c/busses/i2c-i801.c:648 [inline] [i2c_i801]
+BUG: KASAN: out-of-bounds in i801_isr+0x933/0x990 drivers/i2c/busses/i2c-i801.c:629 [i2c_i801]
+Write of size 1 at addr ffff888126acfd9b by task syz.0.1470/5034
+
+CPU: 3 UID: 0 PID: 5034 Comm: syz.0.1470 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <IRQ>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xdb/0x140 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:378 [inline]
+ print_report+0xcb/0x5e0 mm/kasan/report.c:482
+ kasan_report+0xca/0x100 mm/kasan/report.c:595
+ i801_isr_byte_done drivers/i2c/busses/i2c-i801.c:582 [inline] [i2c_i801]
+ i801_isr drivers/i2c/busses/i2c-i801.c:648 [inline] [i2c_i801]
+ i801_isr+0x933/0x990 drivers/i2c/busses/i2c-i801.c:629 [i2c_i801]
+ __handle_irq_event_percpu+0x222/0x830 kernel/irq/handle.c:209
+ handle_irq_event_percpu kernel/irq/handle.c:246 [inline]
+ handle_irq_event+0xb0/0x1f0 kernel/irq/handle.c:263
+ handle_fasteoi_irq+0x2f3/0x6d0 kernel/irq/chip.c:768
+ generic_handle_irq_desc include/linux/irqdesc.h:188 [inline]
+ handle_irq arch/x86/kernel/irq.c:209 [inline]
+ call_irq_handler arch/x86/kernel/irq.c:233 [inline]
+ __common_interrupt+0xa1/0x240 arch/x86/kernel/irq.c:280
+ common_interrupt+0x6e/0xd0 arch/x86/kernel/irq.c:273
+ asm_common_interrupt+0x26/0x40 arch/x86/include/asm/idtentry.h:665
+RIP: 0010:variable_ffs arch/x86/include/asm/bitops.h:312 [inline]
+RIP: 0010:handle_softirqs+0x179/0x860 kernel/softirq.c:610
+Code: c8 83 83 ec 0a 00 00 01 c7 44 24 20 0a 00 00 00 48 89 44 24 18 65 66 c7 05 ea 6d c9 08 00 00 e8 dd 56 47 00 fb 0f 1f 44 00 00 <bb> ff ff ff ff 49 c7 c4 c0 a0 60 87 41 0f bc de 83 c3 01 0f 85 94
+RSP: 0018:ffff88815a988f70 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: ffff88812f551b80 RCX: ffffffff81852818
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffffffff813dd253
+RBP: ffff88811ce0f518 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: ffff88815a9b95a0 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000200 R15: 0000000000000000
+ __do_softirq kernel/softirq.c:656 [inline]
+ invoke_softirq kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0x143/0x1c0 kernel/softirq.c:735
+ irq_exit_rcu+0xe/0x20 kernel/softirq.c:752
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1062 [inline]
+ sysvec_apic_timer_interrupt+0x70/0x80 arch/x86/kernel/apic/apic.c:1062
+ </IRQ>
+ <TASK>
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:674
+RIP: 0010:preempt_schedule_irq+0x52/0xa0 kernel/sched/core.c:7552
+Code: 6c 4d f3 03 48 b8 00 00 00 00 00 fc ff df 48 89 eb 48 c1 eb 03 48 01 c3 65 ff 05 69 4d f3 03 e8 64 36 71 fb fb 0f 1f 44 00 00 <bf> 01 00 00 00 e8 f4 b0 ff ff 9c 58 0f 1f 40 00 48 89 c2 fa 0f 1f
+RSP: 0018:ffff88811ce0f5c8 EFLAGS: 00000246
+RAX: 0000000000000001 RBX: ffffed1025eaa370 RCX: ffffffff81852818
+RDX: 0000000000000000 RSI: 0000000000000008 RDI: ffffffff8613f2cc
+RBP: ffff88812f551b80 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+ irqentry_exit_to_kernel_mode_preempt include/linux/irq-entry-common.h:468 [inline]
+ irqentry_exit_to_kernel_mode include/linux/irq-entry-common.h:539 [inline]
+ irqentry_exit+0x205/0x810 kernel/entry/common.c:167
+ asm_sysvec_reschedule_ipi+0x1a/0x20 arch/x86/include/asm/idtentry.h:679
+RIP: 0010:bochs_get_edid_block+0xec/0x170 drivers/gpu/drm/tiny/bochs.c:208 [bochs]
+Code: eb 16 e8 87 1a 71 e1 48 8b 44 24 08 80 38 00 75 74 4d 8b ae 60 0d 00 00 e8 71 1a 71 e1 48 8b 04 24 48 01 d8 4c 01 e8 44 8a 28 <48> 89 d8 48 89 da 48 c1 e8 03 83 e2 07 42 0f b6 04 38 38 d0 7f 04
+RSP: 0018:ffff88811ce0f6e0 EFLAGS: 00000282
+RAX: ffffc9000013e02f RBX: ffff88811a62562f RCX: ffffc90006004000
+RDX: 0000000000080000 RSI: ffffffffa008a0ef RDI: 0000000000000006
+RBP: 000000000000002f R08: 00000000101676da R09: ffff888159ded430
+R10: 000000000000002f R11: 0000000000000000 R12: 0000000000000080
+R13: ffffc9000013e000 R14: ffff88811ec60000 R15: dffffc0000000000
+ edid_block_read+0x78/0x250 drivers/gpu/drm/drm_edid.c:2365
+ _drm_do_get_edid+0x178/0x950 drivers/gpu/drm/drm_edid.c:2413
+ drm_edid_read_custom+0x8d/0x350 drivers/gpu/drm/drm_edid.c:2675
+ bochs_hw_read_edid drivers/gpu/drm/tiny/bochs.c:226 [inline] [bochs]
+ bochs_connector_helper_get_modes+0x1d4/0x2e0 drivers/gpu/drm/tiny/bochs.c:571 [bochs]
+ drm_helper_probe_get_modes drivers/gpu/drm/drm_probe_helper.c:426 [inline] [drm_kms_helper]
+ drm_helper_probe_single_connector_modes+0x567/0x15c0 drivers/gpu/drm/drm_probe_helper.c:649 [drm_kms_helper]
+ drm_mode_getconnector+0x6a7/0x1460 drivers/gpu/drm/drm_connector.c:3376
+ drm_ioctl_kernel+0x1f2/0x3e0 drivers/gpu/drm/drm_ioctl.c:805
+ drm_ioctl+0x580/0xb70 drivers/gpu/drm/drm_ioctl.c:902
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f084d3f359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f084be36f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f084d685fa0 RCX: 00007f084d3f359d
+RDX: 0000200000000680 RSI: 00000000c05064a7 RDI: 0000000000000003
+RBP: 00007f084d492b08 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f084d686038 R14: 00007f084d685fa0 R15: 00007f084be17000
+ </TASK>
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x126acf
+flags: 0x200000000000000(node=0|zone=2)
+raw: 0200000000000000 0000000000000000 00000000ffffffff 0000000000000000
+raw: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888126acfc80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff888126acfd00: 00 00 00 00 00 00 f1 f1 f1 f1 04 f3 f3 f3 00 00
+>ffff888126acfd80: 00 00 00 00 00 00 00 00 00 00 f1 f1 f1 f1 00 00
+                               ^
+ ffff888126acfe00: 00 00 00 00 00 00 00 00 00 f3 f3 f3 f3 f3 00 00
+ ffff888126acfe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+==================================================================
+----------------
+Code disassembly (best guess):
+   0:	c8 83 83 ec          	enter  $0x8383,$0xec
+   4:	0a 00                	or     (%rax),%al
+   6:	00 01                	add    %al,(%rcx)
+   8:	c7 44 24 20 0a 00 00 	movl   $0xa,0x20(%rsp)
+   f:	00
+  10:	48 89 44 24 18       	mov    %rax,0x18(%rsp)
+  15:	65 66 c7 05 ea 6d c9 	movw   $0x0,%gs:0x8c96dea(%rip)        # 0x8c96e09
+  1c:	08 00 00
+  1f:	e8 dd 56 47 00       	call   0x475701
+  24:	fb                   	sti
+  25:	0f 1f 44 00 00       	nopl   0x0(%rax,%rax,1)
+* 2a:	bb ff ff ff ff       	mov    $0xffffffff,%ebx <-- trapping instruction
+  2f:	49 c7 c4 c0 a0 60 87 	mov    $0xffffffff8760a0c0,%r12
+  36:	41 0f bc de          	bsf    %r14d,%ebx
+  3a:	83 c3 01             	add    $0x1,%ebx
+  3d:	0f                   	.byte 0xf
+  3e:	85                   	.byte 0x85
+  3f:	94                   	xchg   %eax,%esp
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

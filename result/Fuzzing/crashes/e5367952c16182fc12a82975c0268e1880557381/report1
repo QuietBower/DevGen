@@ -1,0 +1,102 @@
+   Some modifications by Eric kasten <kasten@nscl.msu.edu>
+   Further modifications by Keith Underwood <keithu@parl.clemson.edu>
+i801_smbus 0000:00:1f.3: SMBus using PCI interrupt
+i2c i2c-0: Memory type 0x07 not supported yet, not instantiating SPD
+eth1: Hamachi GNIC-II type 1 at ffffc900001fb000, 52:54:00:12:34:56, IRQ 20.
+Oops: divide error: 0000 [#1] SMP KASAN PTI
+CPU: 2 UID: 0 PID: 186 Comm: systemd-udevd Not tainted 6.18.0 #13 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:hamachi_init_one+0xdcf/0x1610 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/net/ethernet/packetengines/hamachi.c:748 [hamachi]
+Code: 41 89 c7 88 44 24 20 e8 6f b7 75 e1 59 0f b6 44 24 18 0f b6 db 41 83 e7 7f 31 c9 84 c0 74 10 e8 b7 bc 75 e1 b8 d0 07 00 00 99 <41> f7 ff 89 c1 89 4c 24 20 e8 a3 bc 75 e1 48 8b 44 24 10 66 8b 50
+RSP: 0018:ffff8881138c73f0 EFLAGS: 00010293
+RAX: 00000000000007d0 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: ffffffffa0006da9 RDI: 0000000000000001
+RBP: 0000000000000000 R08: 0000000000000001 R09: ffffed1022718e3a
+R10: 0000000000000080 R11: 0000000000000001 R12: 0000000000000000
+R13: ffff88810547c000 R14: ffff88810547c120 R15: 0000000000000000
+FS:  00007f79c79938c0(0000) GS:ffff8881d131a000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000055ef22c623a8 CR3: 0000000113970000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ local_pci_probe+0xe7/0x1c0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:324
+ pci_call_probe home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:392 [inline]
+ __pci_device_probe home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:417 [inline]
+ pci_device_probe+0x661/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/pci/pci-driver.c:451
+ call_driver_probe home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:581 [inline]
+ really_probe+0x266/0x850 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:659
+ __driver_probe_device+0x2c9/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:801
+ driver_probe_device+0x53/0x2a0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:831
+ __driver_attach home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:1217 [inline]
+ __driver_attach+0x1b5/0x590 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/dd.c:1157
+ bus_for_each_dev+0x131/0x1c0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/bus.c:370
+ bus_add_driver+0x253/0x5d0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/bus.c:678
+ driver_register+0x167/0x4a0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/base/driver.c:249
+ do_one_initcall+0xfa/0x640 home/wmy/Fuzzer/third_tool/linux-6.18/init/main.c:1283
+ do_init_module+0x280/0x860 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3039
+ load_module+0x5a7c/0x6a30 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3509
+ init_module_from_file+0xe9/0x150 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3701
+ idempotent_init_module+0x335/0x620 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3713
+ __do_sys_finit_module home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3739 [inline]
+ __se_sys_finit_module home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3723 [inline]
+ __x64_sys_finit_module+0xc3/0x130 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/module/main.c:3723
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f79c7e48fc9
+Code: 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 97 8e 0d 00 f7 d8 64 89 01 48
+RSP: 002b:00007ffd564299d8 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+RAX: ffffffffffffffda RBX: 000055af691033b0 RCX: 00007f79c7e48fc9
+RDX: 0000000000000000 RSI: 00007f79c7fe6e2d RDI: 0000000000000007
+RBP: 0000000000020000 R08: 0000000000000000 R09: 000055af690d6bd0
+R10: 0000000000000007 R11: 0000000000000246 R12: 00007f79c7fe6e2d
+R13: 0000000000000000 R14: 000055af6910ceb0 R15: 000055af691033b0
+ </TASK>
+Modules linked in: drm(+) watchdog i2c_i801 hamachi(+) i2c_smbus drm_panel_orientation_quirks lpc_ich
+---[ end trace 0000000000000000 ]---
+RIP: 0010:hamachi_init_one+0xdcf/0x1610 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/net/ethernet/packetengines/hamachi.c:748 [hamachi]
+Code: 41 89 c7 88 44 24 20 e8 6f b7 75 e1 59 0f b6 44 24 18 0f b6 db 41 83 e7 7f 31 c9 84 c0 74 10 e8 b7 bc 75 e1 b8 d0 07 00 00 99 <41> f7 ff 89 c1 89 4c 24 20 e8 a3 bc 75 e1 48 8b 44 24 10 66 8b 50
+RSP: 0018:ffff8881138c73f0 EFLAGS: 00010293
+RAX: 00000000000007d0 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: ffffffffa0006da9 RDI: 0000000000000001
+RBP: 0000000000000000 R08: 0000000000000001 R09: ffffed1022718e3a
+R10: 0000000000000080 R11: 0000000000000001 R12: 0000000000000000
+R13: ffff88810547c000 R14: ffff88810547c120 R15: 0000000000000000
+FS:  00007f79c79938c0(0000) GS:ffff8881d131a000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 000055ef22c623a8 CR3: 0000000113970000 CR4: 00000000000006f0
+systemd-udevd (186) used greatest stack depth: 24168 bytes left
+ACPI: bus type drm_connector registered
+iTCO_wdt iTCO_wdt.1.auto: Found a ICH9 TCO device (Version=2, TCOBASE=0x0660)
+iTCO_wdt iTCO_wdt.1.auto: initialized. heartbeat=30 sec (nowayout=0)
+bochs-drm 0000:00:01.0: vgaarb: deactivate vga console
+Console: switching to colour dummy device 80x25
+[drm] Found bochs VGA, ID 0xb0c5.
+[drm] Framebuffer size 16384 kB @ 0xfd000000, mmio @ 0xfea70000.
+[drm] Initialized bochs-drm 1.0.0 for 0000:00:01.0 on minor 0
+----------------
+Code disassembly (best guess):
+   0:	41 89 c7             	mov    %eax,%r15d
+   3:	88 44 24 20          	mov    %al,0x20(%rsp)
+   7:	e8 6f b7 75 e1       	call   0xe175b77b
+   c:	59                   	pop    %rcx
+   d:	0f b6 44 24 18       	movzbl 0x18(%rsp),%eax
+  12:	0f b6 db             	movzbl %bl,%ebx
+  15:	41 83 e7 7f          	and    $0x7f,%r15d
+  19:	31 c9                	xor    %ecx,%ecx
+  1b:	84 c0                	test   %al,%al
+  1d:	74 10                	je     0x2f
+  1f:	e8 b7 bc 75 e1       	call   0xe175bcdb
+  24:	b8 d0 07 00 00       	mov    $0x7d0,%eax
+  29:	99                   	cltd
+* 2a:	41 f7 ff             	idiv   %r15d <-- trapping instruction
+  2d:	89 c1                	mov    %eax,%ecx
+  2f:	89 4c 24 20          	mov    %ecx,0x20(%rsp)
+  33:	e8 a3 bc 75 e1       	call   0xe175bcdb
+  38:	48 8b 44 24 10       	mov    0x10(%rsp),%rax
+  3d:	66                   	data16
+  3e:	8b                   	.byte 0x8b
+  3f:	50                   	push   %rax
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

@@ -1,0 +1,59 @@
+RBP: 00007f3427997010 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+R13: 00007f34291e6038 R14: 00007f34291e5fa0 R15: 00007f3427977000
+ </TASK>
+------------[ cut here ]------------
+WARNING: CPU: 2 PID: 6448 at lib/idr.c:84 idr_alloc+0x123/0x140 home/wmy/Fuzzer/third_tool/linux-6.18/lib/idr.c:84
+Modules linked in: bochs drm_shmem_helper drm_kms_helper drm i2c_i801 i2c_smbus lpc_ich drm_panel_orientation_quirks
+CPU: 2 UID: 0 PID: 6448 Comm: syz.3.1618 Not tainted 6.18.0 #10 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:idr_alloc+0x123/0x140 home/wmy/Fuzzer/third_tool/linux-6.18/lib/idr.c:84
+Code: 8b 44 24 58 65 48 2b 05 83 f0 c1 03 75 27 48 83 c4 60 44 89 e0 5b 5d 41 5c 41 5d 41 5e 41 5f e9 c3 a9 0b 00 e8 be 8a b9 fb 90 <0f> 0b 90 41 bc ea ff ff ff eb b2 e8 4d 0f 09 00 66 66 2e 0f 1f 84
+RSP: 0018:ffff88811dabfb60 EFLAGS: 00010212
+RAX: 000000000000008b RBX: 00000000fffffffe RCX: ffffc90001b4c000
+RDX: 0000000000080000 RSI: ffffffff85bc9fa2 RDI: 0000000000000005
+RBP: 1ffff11023b57f6c R08: 0000000000002800 R09: ffffed1023b57f71
+R10: 00000000fffffffd R11: 0000000000000000 R12: 00000000fffffffd
+R13: ffff888146abd088 R14: ffff88810f6ce800 R15: 0000000000002800
+FS:  00007fc3dcf47640(0000) GS:ffff8881d1337000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fc3de6589a8 CR3: 000000010519a000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ drm_gem_change_handle_ioctl+0x2bf/0x4f0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/drm_gem.c:988 [drm]
+ drm_ioctl_kernel+0x1f2/0x3e0 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/drm_ioctl.c:797 [drm]
+ drm_ioctl+0x580/0xb70 home/wmy/Fuzzer/third_tool/linux-6.18/drivers/gpu/drm/drm_ioctl.c:894 [drm]
+ vfs_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:51 [inline]
+ __do_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:597 [inline]
+ __se_sys_ioctl home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 home/wmy/Fuzzer/third_tool/linux-6.18/fs/ioctl.c:583
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xc6/0x390 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fc3de50359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fc3dcf46f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fc3de795fa0 RCX: 00007fc3de50359d
+RDX: 0000200000000380 RSI: 00000000c02064d2 RDI: 0000000000000007
+RBP: 00007fc3de5a2a38 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007fc3de796038 R14: 00007fc3de795fa0 R15: 00007fc3dcf27000
+ </TASK>
+irq event stamp: 1645
+hardirqs last  enabled at (1655): [<ffffffff8155bd39>] __up_console_sem+0x89/0xa0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:345
+hardirqs last disabled at (1664): [<ffffffff8155bd1e>] __up_console_sem+0x6e/0xa0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/printk/printk.c:343
+softirqs last  enabled at (1642): [<ffffffff813d2e09>] softirq_handle_end home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:468 [inline]
+softirqs last  enabled at (1642): [<ffffffff813d2e09>] handle_softirqs+0x509/0x760 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:650
+softirqs last disabled at (1637): [<ffffffff813d3140>] __do_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:656 [inline]
+softirqs last disabled at (1637): [<ffffffff813d3140>] invoke_softirq home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:496 [inline]
+softirqs last disabled at (1637): [<ffffffff813d3140>] __irq_exit_rcu+0xd0/0x100 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/softirq.c:723
+---[ end trace 0000000000000000 ]---
+sshd (286) used greatest stack depth: 21328 bytes left
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

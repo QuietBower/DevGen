@@ -1,0 +1,576 @@
+BUG: memory leak
+unreferenced object 0xffff88811ae80400 (size 512):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    00 5e 84 18 81 88 ff ff 00 00 00 00 00 00 00 00  .^..............
+    00 52 84 18 81 88 ff ff 00 00 00 00 00 00 00 00  .R..............
+  backtrace (crc 538e3c0e):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4615 [inline]
+    slab_alloc_node mm/slub.c:4939 [inline]
+    __kmalloc_cache_noprof+0x4f3/0x6d0 mm/slub.c:5446
+    _kmalloc_noprof include/linux/slab.h:969 [inline]
+    _kzalloc_noprof include/linux/slab.h:1286 [inline]
+    con_allocate_new+0x8f/0x1b0 drivers/tty/vt/consolemap.c:542
+    con_unshare_unimap drivers/tty/vt/consolemap.c:583 [inline]
+    con_set_unimap+0x290/0x630 drivers/tty/vt/consolemap.c:653
+    do_unimap_ioctl drivers/tty/vt/vt_ioctl.c:498 [inline]
+    vt_io_ioctl drivers/tty/vt/vt_ioctl.c:544 [inline]
+    vt_ioctl+0x183e/0x2ed0 drivers/tty/vt/vt_ioctl.c:747
+    tty_ioctl+0x717/0x1620 drivers/tty/tty_io.c:2792
+    vfs_ioctl fs/ioctl.c:51 [inline]
+    __do_sys_ioctl fs/ioctl.c:597 [inline]
+    __se_sys_ioctl fs/ioctl.c:583 [inline]
+    __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888118845e00 (size 256):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    00 5b ae 1a 81 88 ff ff 00 00 00 00 00 00 00 00  .[..............
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 6d47d8e9):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4615 [inline]
+    slab_alloc_node mm/slub.c:4939 [inline]
+    __kmalloc_cache_noprof+0x4f3/0x6d0 mm/slub.c:5446
+    _kmalloc_noprof include/linux/slab.h:969 [inline]
+    _kmalloc_array_noprof include/linux/slab.h:1185 [inline]
+    con_insert_unipair+0x157/0x270 drivers/tty/vt/consolemap.c:514
+    con_set_unimap+0x1bc/0x630 drivers/tty/vt/consolemap.c:664
+    do_unimap_ioctl drivers/tty/vt/vt_ioctl.c:498 [inline]
+    vt_io_ioctl drivers/tty/vt/vt_ioctl.c:544 [inline]
+    vt_ioctl+0x183e/0x2ed0 drivers/tty/vt/vt_ioctl.c:747
+    tty_ioctl+0x717/0x1620 drivers/tty/tty_io.c:2792
+    vfs_ioctl fs/ioctl.c:51 [inline]
+    __do_sys_ioctl fs/ioctl.c:597 [inline]
+    __se_sys_ioctl fs/ioctl.c:583 [inline]
+    __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811aae5a00 (size 128):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    02 00 ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+    ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+  backtrace (crc 5735e550):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4615 [inline]
+    slab_alloc_node mm/slub.c:4939 [inline]
+    __kmalloc_cache_noprof+0x4f3/0x6d0 mm/slub.c:5446
+    _kmalloc_noprof include/linux/slab.h:969 [inline]
+    _kmalloc_array_noprof include/linux/slab.h:1185 [inline]
+    con_insert_unipair+0x1c7/0x270 drivers/tty/vt/consolemap.c:523
+    con_set_unimap+0x1bc/0x630 drivers/tty/vt/consolemap.c:664
+    do_unimap_ioctl drivers/tty/vt/vt_ioctl.c:498 [inline]
+    vt_io_ioctl drivers/tty/vt/vt_ioctl.c:544 [inline]
+    vt_ioctl+0x183e/0x2ed0 drivers/tty/vt/vt_ioctl.c:747
+    tty_ioctl+0x717/0x1620 drivers/tty/tty_io.c:2792
+    vfs_ioctl fs/ioctl.c:51 [inline]
+    __do_sys_ioctl fs/ioctl.c:597 [inline]
+    __se_sys_ioctl fs/ioctl.c:583 [inline]
+    __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811aae5b00 (size 128):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    ff ff ff ff ff ff 07 00 ff ff 08 00 ff ff ff ff  ................
+    ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+  backtrace (crc a1881622):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4615 [inline]
+    slab_alloc_node mm/slub.c:4939 [inline]
+    __kmalloc_cache_noprof+0x4f3/0x6d0 mm/slub.c:5446
+    _kmalloc_noprof include/linux/slab.h:969 [inline]
+    _kmalloc_array_noprof include/linux/slab.h:1185 [inline]
+    con_insert_unipair+0x1c7/0x270 drivers/tty/vt/consolemap.c:523
+    con_set_unimap+0x1bc/0x630 drivers/tty/vt/consolemap.c:664
+    do_unimap_ioctl drivers/tty/vt/vt_ioctl.c:498 [inline]
+    vt_io_ioctl drivers/tty/vt/vt_ioctl.c:544 [inline]
+    vt_ioctl+0x183e/0x2ed0 drivers/tty/vt/vt_ioctl.c:747
+    tty_ioctl+0x717/0x1620 drivers/tty/tty_io.c:2792
+    vfs_ioctl fs/ioctl.c:51 [inline]
+    __do_sys_ioctl fs/ioctl.c:597 [inline]
+    __se_sys_ioctl fs/ioctl.c:583 [inline]
+    __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888118845200 (size 256):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    00 56 ae 1a 81 88 ff ff 00 00 00 00 00 00 00 00  .V..............
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc bfa5c68):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4615 [inline]
+    slab_alloc_node mm/slub.c:4939 [inline]
+    __kmalloc_cache_noprof+0x4f3/0x6d0 mm/slub.c:5446
+    _kmalloc_noprof include/linux/slab.h:969 [inline]
+    _kmalloc_array_noprof include/linux/slab.h:1185 [inline]
+    con_insert_unipair+0x157/0x270 drivers/tty/vt/consolemap.c:514
+    con_set_unimap+0x1bc/0x630 drivers/tty/vt/consolemap.c:664
+    do_unimap_ioctl drivers/tty/vt/vt_ioctl.c:498 [inline]
+    vt_io_ioctl drivers/tty/vt/vt_ioctl.c:544 [inline]
+    vt_ioctl+0x183e/0x2ed0 drivers/tty/vt/vt_ioctl.c:747
+    tty_ioctl+0x717/0x1620 drivers/tty/tty_io.c:2792
+    vfs_ioctl fs/ioctl.c:51 [inline]
+    __do_sys_ioctl fs/ioctl.c:597 [inline]
+    __se_sys_ioctl fs/ioctl.c:583 [inline]
+    __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811aae5600 (size 128):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    04 00 ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+    ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+  backtrace (crc ff35dbfa):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4615 [inline]
+    slab_alloc_node mm/slub.c:4939 [inline]
+    __kmalloc_cache_noprof+0x4f3/0x6d0 mm/slub.c:5446
+    _kmalloc_noprof include/linux/slab.h:969 [inline]
+    _kmalloc_array_noprof include/linux/slab.h:1185 [inline]
+    con_insert_unipair+0x1c7/0x270 drivers/tty/vt/consolemap.c:523
+    con_set_unimap+0x1bc/0x630 drivers/tty/vt/consolemap.c:664
+    do_unimap_ioctl drivers/tty/vt/vt_ioctl.c:498 [inline]
+    vt_io_ioctl drivers/tty/vt/vt_ioctl.c:544 [inline]
+    vt_ioctl+0x183e/0x2ed0 drivers/tty/vt/vt_ioctl.c:747
+    tty_ioctl+0x717/0x1620 drivers/tty/tty_io.c:2792
+    vfs_ioctl fs/ioctl.c:51 [inline]
+    __do_sys_ioctl fs/ioctl.c:597 [inline]
+    __se_sys_ioctl fs/ioctl.c:583 [inline]
+    __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811ae81000 (size 512):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 0):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4615 [inline]
+    slab_alloc_node mm/slub.c:4939 [inline]
+    __kmalloc_cache_noprof+0x4f3/0x6d0 mm/slub.c:5446
+    _kmalloc_noprof include/linux/slab.h:969 [inline]
+    set_inverse_transl+0x2c1/0x3a0 drivers/tty/vt/consolemap.c:237
+    con_set_unimap+0x222/0x630 drivers/tty/vt/consolemap.c:676
+    do_unimap_ioctl drivers/tty/vt/vt_ioctl.c:498 [inline]
+    vt_io_ioctl drivers/tty/vt/vt_ioctl.c:544 [inline]
+    vt_ioctl+0x183e/0x2ed0 drivers/tty/vt/vt_ioctl.c:747
+    tty_ioctl+0x717/0x1620 drivers/tty/tty_io.c:2792
+    vfs_ioctl fs/ioctl.c:51 [inline]
+    __do_sys_ioctl fs/ioctl.c:597 [inline]
+    __se_sys_ioctl fs/ioctl.c:583 [inline]
+    __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff888118845e00 (size 256):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    00 5b ae 1a 81 88 ff ff 00 00 00 00 00 00 00 00  .[..............
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 6d47d8e9):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    con_insert_unipair+0x157/0x270
+    con_set_unimap+0x1bc/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811aae5a00 (size 128):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    02 00 ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+    ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+  backtrace (crc 5735e550):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    con_insert_unipair+0x1c7/0x270
+    con_set_unimap+0x1bc/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811aae5b00 (size 128):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    ff ff ff ff ff ff 07 00 ff ff 08 00 ff ff ff ff  ................
+    ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+  backtrace (crc a1881622):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    con_insert_unipair+0x1c7/0x270
+    con_set_unimap+0x1bc/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888118845200 (size 256):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    00 56 ae 1a 81 88 ff ff 00 00 00 00 00 00 00 00  .V..............
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc bfa5c68):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    con_insert_unipair+0x157/0x270
+    con_set_unimap+0x1bc/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811aae5600 (size 128):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    04 00 ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+    ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+  backtrace (crc ff35dbfa):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    con_insert_unipair+0x1c7/0x270
+    con_set_unimap+0x1bc/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811ae81000 (size 512):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 0):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    set_inverse_transl+0x2c1/0x3a0
+    con_set_unimap+0x222/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff88811aae5a00 (size 128):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    02 00 ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+    ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+  backtrace (crc 5735e550):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    con_insert_unipair+0x1c7/0x270
+    con_set_unimap+0x1bc/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811aae5b00 (size 128):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    ff ff ff ff ff ff 07 00 ff ff 08 00 ff ff ff ff  ................
+    ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+  backtrace (crc a1881622):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    con_insert_unipair+0x1c7/0x270
+    con_set_unimap+0x1bc/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888118845200 (size 256):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    00 56 ae 1a 81 88 ff ff 00 00 00 00 00 00 00 00  .V..............
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc bfa5c68):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    con_insert_unipair+0x157/0x270
+    con_set_unimap+0x1bc/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811aae5600 (size 128):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    04 00 ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+    ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+  backtrace (crc ff35dbfa):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    con_insert_unipair+0x1c7/0x270
+    con_set_unimap+0x1bc/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811ae81000 (size 512):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 0):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    set_inverse_transl+0x2c1/0x3a0
+    con_set_unimap+0x222/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff88811aae5b00 (size 128):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    ff ff ff ff ff ff 07 00 ff ff 08 00 ff ff ff ff  ................
+    ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+  backtrace (crc a1881622):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    con_insert_unipair+0x1c7/0x270
+    con_set_unimap+0x1bc/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff888118845200 (size 256):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    00 56 ae 1a 81 88 ff ff 00 00 00 00 00 00 00 00  .V..............
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc bfa5c68):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    con_insert_unipair+0x157/0x270
+    con_set_unimap+0x1bc/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811aae5600 (size 128):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    04 00 ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+    ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+  backtrace (crc ff35dbfa):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    con_insert_unipair+0x1c7/0x270
+    con_set_unimap+0x1bc/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811ae81000 (size 512):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 0):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    set_inverse_transl+0x2c1/0x3a0
+    con_set_unimap+0x222/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff888118845200 (size 256):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    00 56 ae 1a 81 88 ff ff 00 00 00 00 00 00 00 00  .V..............
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc bfa5c68):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    con_insert_unipair+0x157/0x270
+    con_set_unimap+0x1bc/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811aae5600 (size 128):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    04 00 ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+    ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+  backtrace (crc ff35dbfa):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    con_insert_unipair+0x1c7/0x270
+    con_set_unimap+0x1bc/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811ae81000 (size 512):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 0):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    set_inverse_transl+0x2c1/0x3a0
+    con_set_unimap+0x222/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff88811aae5600 (size 128):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    04 00 ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+    ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff  ................
+  backtrace (crc ff35dbfa):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    con_insert_unipair+0x1c7/0x270
+    con_set_unimap+0x1bc/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88811ae81000 (size 512):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 0):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    set_inverse_transl+0x2c1/0x3a0
+    con_set_unimap+0x222/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff88811ae81000 (size 512):
+  comm "syz.2.8540", pid 30078, jiffies 4297365527
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+  backtrace (crc 0):
+    __kmalloc_cache_noprof+0x4f3/0x6d0
+    set_inverse_transl+0x2c1/0x3a0
+    con_set_unimap+0x222/0x630
+    vt_ioctl+0x183e/0x2ed0
+    tty_ioctl+0x717/0x1620
+    __x64_sys_ioctl+0x194/0x210
+    do_syscall_64+0x11a/0x6a0
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

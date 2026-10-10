@@ -1,0 +1,28 @@
+ ext2
+ ext4
+ vfat
+ msdos
+ iso9660
+Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0)
+CPU: 0 UID: 0 PID: 1 Comm: swapper/0 Not tainted 6.18.0 #10 PREEMPT(voluntary) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack home/wmy/Fuzzer/third_tool/linux-6.18/lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0x3d/0x140 home/wmy/Fuzzer/third_tool/linux-6.18/lib/dump_stack.c:120
+ vpanic+0x66f/0x6e0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/panic.c:489
+ panic+0xc7/0xd0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/panic.c:626
+ mount_root_generic+0x2bf/0x6e0 home/wmy/Fuzzer/third_tool/linux-6.18/init/do_mounts.c:236
+ mount_block_root home/wmy/Fuzzer/third_tool/linux-6.18/init/do_mounts.c:380 [inline]
+ mount_root+0x236/0x430 home/wmy/Fuzzer/third_tool/linux-6.18/init/do_mounts.c:407
+ prepare_namespace+0xea/0x3f0 home/wmy/Fuzzer/third_tool/linux-6.18/init/do_mounts.c:491
+ kernel_init_freeable+0x670/0x7d0 home/wmy/Fuzzer/third_tool/linux-6.18/init/main.c:1610
+ kernel_init+0x23/0x2e0 home/wmy/Fuzzer/third_tool/linux-6.18/init/main.c:1483
+ ret_from_fork+0x3a1/0x490 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+Kernel Offset: disabled
+---[ end Kernel panic - not syncing: VFS: Unable to mount root fs on unknown-block(0,0) ]---
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

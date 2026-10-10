@@ -1,0 +1,104 @@
+printk: legacy console [ttyS0] enabled
+printk: legacy console [ttyS0] enabled
+printk: legacy bootconsole [earlyser0] disabled
+printk: legacy bootconsole [earlyser0] disabled
+Lock dependency validator: Copyright (c) 2006 Red Hat, Inc., Ingo Molnar
+... MAX_LOCKDEP_SUBCLASSES:  8
+... MAX_LOCK_DEPTH:          48
+... MAX_LOCKDEP_KEYS:        8192
+... CLASSHASH_SIZE:          4096
+... MAX_LOCKDEP_ENTRIES:     1048576
+... MAX_LOCKDEP_CHAINS:      1048576
+... CHAINHASH_SIZE:          524288
+ memory used by lock dependency info: 106625 kB
+ memory used for stack traces: 8320 kB
+ per task-struct memory footprint: 1920 bytes
+mempolicy: Enabling automatic NUMA balancing. Configure with numa_balancing= or the kernel.numa_balancing sysctl
+ACPI: Core revision 20251212
+clocksource: hpet: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604467 ns
+APIC: Switch to symmetric I/O mode setup
+x2apic enabled
+APIC: Switched APIC routing to: physical x2apic
+..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x2868139ef5d, max_idle_ns: 440795282642 ns
+Calibrating delay loop (skipped) preset value.. 5606.40 BogoMIPS (lpj=28032040)
+Last level iTLB entries: 4KB 0, 2MB 0, 4MB 0
+Last level dTLB entries: 4KB 0, 2MB 0, 4MB 0, 1GB 0
+mitigations: Enabled attack vectors: user_kernel, user_user, guest_host, guest_guest, SMT mitigations: auto
+Speculative Store Bypass: Vulnerable
+Spectre V2 : Mitigation: Retpolines
+ITS: Mitigation: Aligned branch/return thunks
+MDS: Vulnerable: Clear CPU buffers attempted, no microcode
+Spectre V1 : Mitigation: usercopy/swapgs barriers and __user pointer sanitization
+Spectre V2 : Spectre v2 / SpectreRSB: Filling RSB on context switch and VMEXIT
+active return thunk: its_return_thunk
+x86/fpu: x87 FPU will use FXSAVE
+Freeing SMP alternatives memory: 132K
+pid_max: default: 32768 minimum: 301
+landlock: Up and running.
+Yama: becoming mindful.
+TOMOYO Linux initialized
+AppArmor: AppArmor initialized
+LSM support for eBPF active
+Dentry cache hash table entries: 524288 (order: 10, 4194304 bytes, vmalloc hugepage)
+Inode-cache hash table entries: 262144 (order: 9, 2097152 bytes, vmalloc hugepage)
+Mount-cache hash table entries: 8192 (order: 4, 65536 bytes, vmalloc)
+Mountpoint-cache hash table entries: 8192 (order: 4, 65536 bytes, vmalloc)
+VFS: Finished mounting rootfs on nullfs
+Running RCU synchronous self tests
+Running RCU synchronous self tests
+------------[ cut here ]------------
+WARNING: arch/x86/kernel/smpboot.c:698 at set_cpu_sibling_map+0x1206/0x1f20 arch/x86/kernel/smpboot.c:698, CPU#1: swapper/1/0
+Modules linked in:
+CPU: 1 UID: 0 PID: 0 Comm: swapper/1 Not tainted 7.0.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:set_cpu_sibling_map+0x1206/0x1f20 arch/x86/kernel/smpboot.c:698
+Code: 08 84 d2 0f 85 ed 0b 00 00 8b 1d cd 0f 7a 0c bf 01 00 00 00 89 de e8 f9 7c 54 00 83 fb 01 0f 85 4b f3 ff ff e8 7b 82 54 00 90 <0f> 0b 90 e9 3d f3 ff ff e8 6d 82 54 00 48 c7 c3 68 5c dd 93 49 83
+RSP: 0000:ffffc90000177df8 EFLAGS: 00010093
+RAX: 0000000000000000 RBX: 0000000000000001 RCX: ffffffff8169b747
+RDX: ffff888100690000 RSI: ffffffff8169b755 RDI: 0000000000000005
+RBP: 0000000000000000 R08: 0000000000000001 R09: fffffbfff27c5bb4
+R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000001 R15: dffffc0000000000
+FS:  0000000000000000(0000) GS:ffff8881d9e4b000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 000000000e38c000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ ap_starting arch/x86/kernel/smpboot.c:196 [inline]
+ start_secondary+0xd8/0x2d0 arch/x86/kernel/smpboot.c:280
+ common_startup_64+0x13e/0x148
+ </TASK>
+Kernel panic - not syncing: kernel: panic_on_warn set ...
+CPU: 1 UID: 0 PID: 0 Comm: swapper/1 Not tainted 7.0.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0x3d/0x1b0 lib/dump_stack.c:120
+ vpanic+0x7f2/0xa70 kernel/panic.c:650
+ panic+0xc2/0xd0 kernel/panic.c:787
+ check_panic_on_warn+0xb1/0xc0 kernel/panic.c:524
+ __warn+0x108/0x420 kernel/panic.c:1062
+ __report_bug+0x43a/0x4f0 lib/bug.c:246
+ report_bug+0xb2/0x210 lib/bug.c:278
+ handle_bug+0x2d7/0x4e0 arch/x86/kernel/traps.c:435
+ exc_invalid_op+0x35/0x80 arch/x86/kernel/traps.c:489
+ asm_exc_invalid_op+0x1a/0x20 arch/x86/include/asm/idtentry.h:616
+RIP: 0010:set_cpu_sibling_map+0x1206/0x1f20 arch/x86/kernel/smpboot.c:698
+Code: 08 84 d2 0f 85 ed 0b 00 00 8b 1d cd 0f 7a 0c bf 01 00 00 00 89 de e8 f9 7c 54 00 83 fb 01 0f 85 4b f3 ff ff e8 7b 82 54 00 90 <0f> 0b 90 e9 3d f3 ff ff e8 6d 82 54 00 48 c7 c3 68 5c dd 93 49 83
+RSP: 0000:ffffc90000177df8 EFLAGS: 00010093
+RAX: 0000000000000000 RBX: 0000000000000001 RCX: ffffffff8169b747
+RDX: ffff888100690000 RSI: ffffffff8169b755 RDI: 0000000000000005
+RBP: 0000000000000000 R08: 0000000000000001 R09: fffffbfff27c5bb4
+R10: 0000000000000001 R11: 0000000000000001 R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000000000001 R15: dffffc0000000000
+ ap_starting arch/x86/kernel/smpboot.c:196 [inline]
+ start_secondary+0xd8/0x2d0 arch/x86/kernel/smpboot.c:280
+ common_startup_64+0x13e/0x148
+ </TASK>
+Shutting down cpus with NMI
+Rebooting in 86400 seconds..
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

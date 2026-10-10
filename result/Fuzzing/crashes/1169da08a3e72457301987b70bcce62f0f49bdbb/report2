@@ -1,0 +1,23 @@
+BUG: memory leak
+unreferenced object 0xffff88811007b580 (size 6592):
+  comm "syz.0.4563", pid 18021, jiffies 4297623390
+  hex dump (first 32 bytes):
+    00 00 08 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    00 00 00 00 03 00 00 00 80 00 00 00 00 00 00 00  ................
+  backtrace (crc 18cb56de):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4543 [inline]
+    slab_alloc_node mm/slub.c:4866 [inline]
+    kmem_cache_alloc_node_noprof+0x450/0x730 mm/slub.c:4918
+    alloc_task_struct_node kernel/fork.c:185 [inline]
+    dup_task_struct kernel/fork.c:916 [inline]
+    copy_process+0x49c/0x71f0 kernel/fork.c:2050
+    kernel_clone+0xef/0x840 kernel/fork.c:2653
+    __do_sys_clone3+0x1f6/0x280 kernel/fork.c:2955
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

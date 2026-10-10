@@ -1,0 +1,40 @@
+{
+    "target": "linux/amd64",
+    "http": "127.0.0.1:10004",
+    "workdir": "/home/wmy/Fuzzer/out/workdir_defconfig",
+    "kernel_obj": "/home/wmy/Fuzzer/build/linux/linux-7.1-defconfig",
+    "kernel_src": "/home/wmy/Fuzzer/third_tool/linux-7.1",
+    "image": "/home/wmy/Fuzzer/third_tool/Image-7.0/bullseye.img",
+    "sshkey": "/home/wmy/Fuzzer/third_tool/Image-7.0/bullseye.id_rsa",
+    "syzkaller": "/home/wmy/Fuzzer/third_tool/syzkaller_defconfig_dev",
+    "procs": 4,
+    "type": "qemu",
+    "sandbox": "none",
+    "reproduce": false,
+    "enable_syscalls": [
+        "syz_open_dev$KGPT_gpiochip",
+        "ioctl$KGPT_GPIO_GET_CHIPINFO",
+        "ioctl$KGPT_GPIO_GET_LINEINFO",
+        "ioctl$KGPT_GPIO_GET_LINEINFO_WATCH",
+        "ioctl$KGPT_GPIO_GET_LINEINFO_UNWATCH",
+        "ioctl$KGPT_GPIO_GET_LINEHANDLE",
+        "ioctl$KGPT_GPIO_GET_LINEEVENT",
+        "ioctl$KGPT_GPIOHANDLE_GET_LINE_VALUES",
+        "ioctl$KGPT_GPIOHANDLE_SET_LINE_VALUES",
+        "ioctl$KGPT_GPIOHANDLE_SET_CONFIG",
+        "ioctl$KGPT_GPIO_V2_GET_LINEINFO",
+        "ioctl$KGPT_GPIO_V2_GET_LINEINFO_WATCH",
+        "ioctl$KGPT_GPIO_V2_GET_LINE",
+        "syz_open_dev$KGPT_uacce_qm",
+        "ioctl$KGPT_UACCE_CMD_QM_SET_QP_CTX",
+        "ioctl$KGPT_UACCE_CMD_QM_SET_QP_INFO"
+    ],
+    "vm": {
+        "count": 2,
+        "kernel": "/home/wmy/Fuzzer/build/linux/linux-7.1-defconfig/arch/x86/boot/bzImage",
+        "cpu": 4,
+        "mem": 4096,
+        "qemu_args": "-machine q35 --enable-kvm -fsdev local,id=fsdev0,path=/home/wmy/Fuzzer/out/shares,security_model=none -device virtio-9p-pci,id=fs0,fsdev=fsdev0,mount_tag=hostshare  -device pcie-root-port,id=rp1 -device gpio_thunderx_pci,bus=rp1",
+        "qemu": "/home/wmy/Fuzzer/bin/qemu/bin/qemu-system-x86_64"
+    }
+}

@@ -1,0 +1,29 @@
+BUG: memory leak
+unreferenced object 0xffff888127ea0000 (size 33296):
+  comm "syz.0.8726", pid 33224, jiffies 4297754643
+  hex dump (first 32 bytes):
+    a6 e4 f9 dd 00 00 00 00 00 82 00 00 01 00 00 00  ................
+    d2 09 6c bf 52 8a 7d d4 ef 1d 59 16 51 86 32 bf  ..l.R.}...Y.Q.2.
+  backtrace (crc 4a0a57dd):
+    ___kmalloc_large_node+0xe7/0x180 mm/slub.c:5214
+    __kmalloc_large_node_noprof+0x29/0x130 mm/slub.c:5232
+    __do_kmalloc_node mm/slub.c:5248 [inline]
+    __kmalloc_noprof+0x5fc/0x7c0 mm/slub.c:5272
+    kmalloc_noprof include/linux/slab.h:954 [inline]
+    fbcon_set_font+0x431/0xa60 drivers/video/fbdev/core/fbcon.c:2525
+    con_font_set drivers/tty/vt/vt.c:4918 [inline]
+    con_font_op+0x94d/0xe80 drivers/tty/vt/vt.c:4958
+    vt_k_ioctl drivers/tty/vt/vt_ioctl.c:472 [inline]
+    vt_ioctl+0x63c/0x2ee0 drivers/tty/vt/vt_ioctl.c:743
+    tty_ioctl+0x717/0x1670 drivers/tty/tty_io.c:2792
+    vfs_ioctl fs/ioctl.c:51 [inline]
+    __do_sys_ioctl fs/ioctl.c:597 [inline]
+    __se_sys_ioctl fs/ioctl.c:583 [inline]
+    __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

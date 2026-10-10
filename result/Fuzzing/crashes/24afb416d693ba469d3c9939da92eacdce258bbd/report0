@@ -1,0 +1,249 @@
+audit: type=1400 audit(1782399238.018:39): avc:  denied  { execmem } for  pid=310 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+can: request_module (can-proto-7) failed.
+==================================================================
+BUG: KASAN: slab-out-of-bounds in idempotent kernel/module/main.c:3682 [inline]
+BUG: KASAN: slab-out-of-bounds in idempotent_init_module+0x54a/0x620 kernel/module/main.c:3788
+Read of size 8 at addr ffff888106367df8 by task modprobe/433
+
+CPU: 2 UID: 0 PID: 433 Comm: modprobe Tainted: G      D W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [D]=DIE, [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xdb/0x140 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:378 [inline]
+ print_report+0xcb/0x5e0 mm/kasan/report.c:482
+ kasan_report+0xca/0x100 mm/kasan/report.c:595
+ idempotent kernel/module/main.c:3682 [inline]
+ idempotent_init_module+0x54a/0x620 kernel/module/main.c:3788
+ __do_sys_finit_module kernel/module/main.c:3815 [inline]
+ __se_sys_finit_module kernel/module/main.c:3799 [inline]
+ __x64_sys_finit_module+0xc3/0x130 kernel/module/main.c:3799
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f1c14bcdfc9
+Code: 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 97 8e 0d 00 f7 d8 64 89 01 48
+RSP: 002b:00007fffe2cf8678 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+RAX: ffffffffffffffda RBX: 000055ae1217d3e0 RCX: 00007f1c14bcdfc9
+RDX: 0000000000000000 RSI: 000055adfde09260 RDI: 0000000000000000
+RBP: 0000000000040000 R08: 0000000000000000 R09: 000055ae1217e560
+R10: 0000000000000000 R11: 0000000000000246 R12: 000055adfde09260
+R13: 0000000000000000 R14: 000055ae1217d340 R15: 000055ae1217d3e0
+ </TASK>
+
+Allocated by task 36:
+ kasan_save_stack+0x24/0x50 mm/kasan/common.c:57
+ kasan_save_track+0x14/0x30 mm/kasan/common.c:78
+ unpoison_slab_object mm/kasan/common.c:340 [inline]
+ __kasan_slab_alloc+0x59/0x70 mm/kasan/common.c:366
+ kasan_slab_alloc include/linux/kasan.h:253 [inline]
+ slab_post_alloc_hook mm/slub.c:4610 [inline]
+ slab_alloc_node mm/slub.c:4939 [inline]
+ kmem_cache_alloc_lru_noprof+0x1eb/0x690 mm/slub.c:4958
+ shmem_alloc_inode+0x2c/0x50 mm/shmem.c:5143
+ alloc_inode+0x6d/0x250 fs/inode.c:341
+ new_inode+0x23/0x160 fs/inode.c:1177
+ __shmem_get_inode+0x1ca/0xf70 mm/shmem.c:3074
+ shmem_get_inode mm/shmem.c:3174 [inline]
+ shmem_mknod+0xd2/0x2f0 mm/shmem.c:3859
+ vfs_mknod+0x3a0/0x7d0 fs/namei.c:5131
+ handle_create drivers/base/devtmpfs.c:232 [inline]
+ handle drivers/base/devtmpfs.c:384 [inline]
+ devtmpfs_work_loop+0x1a1/0xc60 drivers/base/devtmpfs.c:399
+ devtmpfsd+0x57/0x60 drivers/base/devtmpfs.c:441
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x667/0xa80 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+
+Freed by task 270:
+ kasan_save_stack+0x24/0x50 mm/kasan/common.c:57
+ kasan_save_track+0x14/0x30 mm/kasan/common.c:78
+ kasan_save_free_info+0x3b/0x60 mm/kasan/generic.c:584
+ poison_slab_object mm/kasan/common.c:253 [inline]
+ __kasan_slab_free+0x43/0x70 mm/kasan/common.c:285
+ kasan_slab_free include/linux/kasan.h:235 [inline]
+ slab_free_hook mm/slub.c:2700 [inline]
+ slab_free mm/slub.c:6310 [inline]
+ kmem_cache_free+0x28f/0x5f0 mm/slub.c:6437
+ i_callback+0x4b/0x80 fs/inode.c:320
+ rcu_do_batch kernel/rcu/tree.c:2645 [inline]
+ rcu_core+0x570/0x1550 kernel/rcu/tree.c:2897
+ handle_softirqs+0x1bb/0x860 kernel/softirq.c:622
+ __do_softirq kernel/softirq.c:656 [inline]
+ invoke_softirq kernel/softirq.c:496 [inline]
+ __irq_exit_rcu+0x143/0x1c0 kernel/softirq.c:735
+ irq_exit_rcu+0xe/0x20 kernel/softirq.c:752
+ instr_sysvec_apic_timer_interrupt arch/x86/kernel/apic/apic.c:1062 [inline]
+ sysvec_apic_timer_interrupt+0x70/0x80 arch/x86/kernel/apic/apic.c:1062
+ asm_sysvec_apic_timer_interrupt+0x1a/0x20 arch/x86/include/asm/idtentry.h:674
+
+Last potentially related work creation:
+ kasan_save_stack+0x24/0x50 mm/kasan/common.c:57
+ kasan_record_aux_stack+0x8c/0xa0 mm/kasan/generic.c:556
+ __call_rcu_common.constprop.0+0x75/0x9d0 kernel/rcu/tree.c:3159
+ destroy_inode+0x131/0x1b0 fs/inode.c:395
+ evict+0x515/0xa00 fs/inode.c:852
+ iput_final fs/inode.c:2022 [inline]
+ iput fs/inode.c:2071 [inline]
+ iput+0x783/0xd20 fs/inode.c:2034
+ d_delete_notify include/linux/fsnotify.h:381 [inline]
+ vfs_unlink+0x667/0xc00 fs/namei.c:5526
+ handle_remove drivers/base/devtmpfs.c:344 [inline]
+ handle drivers/base/devtmpfs.c:386 [inline]
+ devtmpfs_work_loop+0x545/0xc60 drivers/base/devtmpfs.c:399
+ devtmpfsd+0x57/0x60 drivers/base/devtmpfs.c:441
+ kthread+0x38a/0x4a0 kernel/kthread.c:436
+ ret_from_fork+0x667/0xa80 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+
+The buggy address belongs to the object at ffff8881063676c0
+ which belongs to the cache shmem_inode_cache of size 1392
+The buggy address is located 456 bytes to the right of
+ allocated 1392-byte region [ffff8881063676c0, ffff888106367c30)
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0xffff888106365320 pfn:0x106360
+head: order:3 mapcount:0 entire_mapcount:0 nr_pages_mapped:0 pincount:0
+memcg:ffff888106367cb1
+flags: 0x200000000000240(workingset|head|node=0|zone=2)
+page_type: f5(slab)
+raw: 0200000000000240 ffff888100abe8c0 ffffea0004834c10 ffff888100ae11c8
+raw: ffff888106365320 000000080015000f 00000000f5000000 ffff888106367cb1
+head: 0200000000000240 ffff888100abe8c0 ffffea0004834c10 ffff888100ae11c8
+head: ffff888106365320 000000080015000f 00000000f5000000 ffff888106367cb1
+head: 0200000000000003 fffffffffffffe01 00000000ffffffff 00000000ffffffff
+head: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000008
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff888106367c80: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+ ffff888106367d00: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+>ffff888106367d80: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+                                                                ^
+ ffff888106367e00: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+ ffff888106367e80: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+==================================================================
+Oops: general protection fault, probably for non-canonical address 0xfbfffb7fffffffff: 0000 [#2] SMP KASAN PTI
+KASAN: maybe wild-memory-access in range [0xdffffbfffffffff8-0xdffffbffffffffff]
+CPU: 2 UID: 0 PID: 433 Comm: modprobe Tainted: G    B D W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:idempotent kernel/module/main.c:3682 [inline]
+RIP: 0010:idempotent_init_module+0x16d/0x620 kernel/module/main.c:3788
+Code: 8b 3c ed a0 27 b8 8a 4d 85 ff 0f 84 85 01 00 00 4c 89 fb 48 83 eb 08 74 4a 49 bc 00 00 00 00 00 fc ff df 48 89 da 48 c1 ea 03 <42> 80 3c 22 00 0f 85 c5 03 00 00 48 3b 0b 0f 84 8b 00 00 00 48 8d
+RSP: 0018:ffff888110fcfdb8 EFLAGS: 00010a06
+RAX: 0000000000000000 RBX: dffffbfffffffff8 RCX: ffff8881006d9e28
+RDX: 1bffff7fffffffff RSI: 0000000000000008 RDI: ffff888106367e00
+RBP: 00000000000000fb R08: 0000000000000001 R09: fffffbfff14192e0
+R10: 0000000000000000 R11: 0000000000000001 R12: dffffc0000000000
+R13: ffffffff8ab82f78 R14: ffff888119691800 R15: ffff888106367e00
+FS:  00007f1c14ab0540(0000) GS:ffff8881d08ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fa911ffe6f4 CR3: 000000011325a000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ __do_sys_finit_module kernel/module/main.c:3815 [inline]
+ __se_sys_finit_module kernel/module/main.c:3799 [inline]
+ __x64_sys_finit_module+0xc3/0x130 kernel/module/main.c:3799
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f1c14bcdfc9
+Code: 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 97 8e 0d 00 f7 d8 64 89 01 48
+RSP: 002b:00007fffe2cf8678 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+RAX: ffffffffffffffda RBX: 000055ae1217d3e0 RCX: 00007f1c14bcdfc9
+RDX: 0000000000000000 RSI: 000055adfde09260 RDI: 0000000000000000
+RBP: 0000000000040000 R08: 0000000000000000 R09: 000055ae1217e560
+R10: 0000000000000000 R11: 0000000000000246 R12: 000055adfde09260
+R13: 0000000000000000 R14: 000055ae1217d340 R15: 000055ae1217d3e0
+ </TASK>
+Modules linked in: bochs iTCO_wdt drm_shmem_helper intel_pmc_bxt watchdog i2c_i801 drm_client_lib atlantic(+) i2c_smbus lpc_ich drm_kms_helper
+---[ end trace 0000000000000000 ]---
+RIP: 0010:writel arch/x86/include/asm/io.h:67 [inline] [atlantic]
+RIP: 0010:aq_hw_write_reg+0x39/0x50 drivers/net/ethernet/aquantia/atlantic/aq_hw_utils.c:54 [atlantic]
+Code: 48 89 fd 53 89 f3 e8 a6 e5 72 e1 48 8d 7d 18 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 80 3c 02 00 75 10 48 03 5d 18 <44> 89 23 5b 5d 41 5c c3 cc cc cc cc e8 a6 8d b5 e1 eb e9 0f 1f 40
+RSP: 0018:ffff888106367300 EFLAGS: 00010282
+RAX: dffffc0000000000 RBX: ffffc900001fc2a8 RCX: ffffffffa006d556
+RDX: 1ffff11022297e03 RSI: ffffffffa006d5ba RDI: ffff8881114bf018
+RBP: ffff8881114bf000 R08: 0000000000000001 R09: 00000000002ac618
+R10: 0000000000000000 R11: 181a06cd7467450d R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000004000000 R15: ffff888105ea4e00
+FS:  00007f1c14ab0540(0000) GS:ffff8881d08ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fa911ffe6f4 CR3: 000000011325a000 CR4: 00000000000006f0
+note: modprobe[433] exited with preempt_count 1
+----------------
+Code disassembly (best guess):
+   0:	8b 3c ed a0 27 b8 8a 	mov    -0x7547d860(,%rbp,8),%edi
+   7:	4d 85 ff             	test   %r15,%r15
+   a:	0f 84 85 01 00 00    	je     0x195
+  10:	4c 89 fb             	mov    %r15,%rbx
+  13:	48 83 eb 08          	sub    $0x8,%rbx
+  17:	74 4a                	je     0x63
+  19:	49 bc 00 00 00 00 00 	movabs $0xdffffc0000000000,%r12
+  20:	fc ff df
+  23:	48 89 da             	mov    %rbx,%rdx
+  26:	48 c1 ea 03          	shr    $0x3,%rdx
+* 2a:	42 80 3c 22 00       	cmpb   $0x0,(%rdx,%r12,1) <-- trapping instruction
+  2f:	0f 85 c5 03 00 00    	jne    0x3fa
+  35:	48 3b 0b             	cmp    (%rbx),%rcx
+  38:	0f 84 8b 00 00 00    	je     0xc9
+  3e:	48                   	rex.W
+  3f:	8d                   	.byte 0x8d
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+Oops: general protection fault, probably for non-canonical address 0xfbfffb7fffffffff: 0000 [#2] SMP KASAN PTI
+KASAN: maybe wild-memory-access in range [0xdffffbfffffffff8-0xdffffbffffffffff]
+CPU: 2 UID: 0 PID: 433 Comm: modprobe Tainted: G    B D W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [B]=BAD_PAGE, [D]=DIE, [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:idempotent_init_module+0x16d/0x620
+Code: 8b 3c ed a0 27 b8 8a 4d 85 ff 0f 84 85 01 00 00 4c 89 fb 48 83 eb 08 74 4a 49 bc 00 00 00 00 00 fc ff df 48 89 da 48 c1 ea 03 <42> 80 3c 22 00 0f 85 c5 03 00 00 48 3b 0b 0f 84 8b 00 00 00 48 8d
+RSP: 0018:ffff888110fcfdb8 EFLAGS: 00010a06
+RAX: 0000000000000000 RBX: dffffbfffffffff8 RCX: ffff8881006d9e28
+RDX: 1bffff7fffffffff RSI: 0000000000000008 RDI: ffff888106367e00
+RBP: 00000000000000fb R08: 0000000000000001 R09: fffffbfff14192e0
+R10: 0000000000000000 R11: 0000000000000001 R12: dffffc0000000000
+R13: ffffffff8ab82f78 R14: ffff888119691800 R15: ffff888106367e00
+FS:  00007f1c14ab0540(0000) GS:ffff8881d08ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fa911ffe6f4 CR3: 000000011325a000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ __x64_sys_finit_module+0xc3/0x130
+ do_syscall_64+0x11a/0x6a0
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f1c14bcdfc9
+Code: 00 c3 66 2e 0f 1f 84 00 00 00 00 00 0f 1f 44 00 00 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 8b 0d 97 8e 0d 00 f7 d8 64 89 01 48
+RSP: 002b:00007fffe2cf8678 EFLAGS: 00000246 ORIG_RAX: 0000000000000139
+RAX: ffffffffffffffda RBX: 000055ae1217d3e0 RCX: 00007f1c14bcdfc9
+RDX: 0000000000000000 RSI: 000055adfde09260 RDI: 0000000000000000
+RBP: 0000000000040000 R08: 0000000000000000 R09: 000055ae1217e560
+R10: 0000000000000000 R11: 0000000000000246 R12: 000055adfde09260
+R13: 0000000000000000 R14: 000055ae1217d340 R15: 000055ae1217d3e0
+ </TASK>
+Modules linked in: bochs iTCO_wdt drm_shmem_helper intel_pmc_bxt watchdog i2c_i801 drm_client_lib atlantic(+) i2c_smbus lpc_ich drm_kms_helper
+---[ end trace 0000000000000000 ]---
+RIP: 0010:aq_hw_write_reg+0x39/0x50 [atlantic]
+Code: 48 89 fd 53 89 f3 e8 a6 e5 72 e1 48 8d 7d 18 48 b8 00 00 00 00 00 fc ff df 48 89 fa 48 c1 ea 03 80 3c 02 00 75 10 48 03 5d 18 <44> 89 23 5b 5d 41 5c c3 cc cc cc cc e8 a6 8d b5 e1 eb e9 0f 1f 40
+RSP: 0018:ffff888106367300 EFLAGS: 00010282
+RAX: dffffc0000000000 RBX: ffffc900001fc2a8 RCX: ffffffffa006d556
+RDX: 1ffff11022297e03 RSI: ffffffffa006d5ba RDI: ffff8881114bf018
+RBP: ffff8881114bf000 R08: 0000000000000001 R09: 00000000002ac618
+R10: 0000000000000000 R11: 181a06cd7467450d R12: 0000000000000000
+R13: 0000000000000000 R14: 0000000004000000 R15: ffff888105ea4e00
+FS:  00007f1c14ab0540(0000) GS:ffff8881d08ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007fa911ffe6f4 CR3: 000000011325a000 CR4: 00000000000006f0
+note: modprobe[433] exited with preempt_count 1
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

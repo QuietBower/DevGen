@@ -1,0 +1,227 @@
+RCU Tasks Rude: Setting shift to 2 and lim to 1 rcu_task_cb_adjust=1 rcu_task_cpu_ids=4.
+NR_IRQS: 4352, nr_irqs: 456, preallocated irqs: 16
+rcu: srcu_init: Setting srcu_struct sizes based on contention.
+clocksource: jiffies: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 1911260446275000 ns
+=============================
+[ BUG: Invalid wait context ]
+7.1.0+ #1 Not tainted
+-----------------------------
+swapper/0/0 is trying to lock:
+ffffffff878389a0 (clocksource_mutex){....}-{4:4}, at: __clocksource_register_scale+0x3a7/0x1050 kernel/time/clocksource.c:1319
+other info that might help us debug this:
+context-{5:5}
+1 lock held by swapper/0/0:
+ #0: ffffffff8ab83b30 (&tkd->lock){....}-{2:2}, at: class_raw_spinlock_irqsave_constructor include/linux/spinlock.h:571 [inline]
+ #0: ffffffff8ab83b30 (&tkd->lock){....}-{2:2}, at: timekeeping_init+0x29f/0x430 kernel/time/timekeeping.c:2064
+stack backtrace:
+CPU: 0 UID: 0 PID: 0 Comm: swapper/0 Not tainted 7.1.0+ #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xdb/0x140 lib/dump_stack.c:120
+ print_lock_invalid_wait_context kernel/locking/lockdep.c:4830 [inline]
+ check_wait_context kernel/locking/lockdep.c:4902 [inline]
+ __lock_acquire+0xaeb/0x2200 kernel/locking/lockdep.c:5187
+ lock_acquire kernel/locking/lockdep.c:5868 [inline]
+ lock_acquire+0x181/0x2f0 kernel/locking/lockdep.c:5825
+ __mutex_lock_common kernel/locking/mutex.c:646 [inline]
+ __mutex_lock+0x17a/0x1ee0 kernel/locking/mutex.c:821
+ __clocksource_register_scale+0x3a7/0x1050 kernel/time/clocksource.c:1319
+ __clocksource_register include/linux/clocksource.h:273 [inline]
+ clocksource_default_clock+0x4d/0x70 kernel/time/jiffies.c:68
+ timekeeping_init+0x2ac/0x430 kernel/time/timekeeping.c:2068
+ start_kernel+0x245/0x530 init/main.c:1087
+ x86_64_start_reservations+0x21/0x40 arch/x86/kernel/head64.c:310
+ x86_64_start_kernel+0xd9/0xe0 arch/x86/kernel/head64.c:291
+ common_startup_64+0x12c/0x148
+ </TASK>
+Console: colour VGA+ 80x25
+printk: legacy console [ttyS0] enabled
+printk: legacy console [ttyS0] enabled
+printk: legacy bootconsole [earlyser0] disabled
+printk: legacy bootconsole [earlyser0] disabled
+Lock dependency validator: Copyright (c) 2006 Red Hat, Inc., Ingo Molnar
+... MAX_LOCKDEP_SUBCLASSES:  8
+... MAX_LOCK_DEPTH:          48
+... MAX_LOCKDEP_KEYS:        8192
+... CLASSHASH_SIZE:          4096
+... MAX_LOCKDEP_ENTRIES:     32768
+... MAX_LOCKDEP_CHAINS:      65536
+... CHAINHASH_SIZE:          32768
+ memory used by lock dependency info: 6429 kB
+ memory used for stack traces: 4224 kB
+ per task-struct memory footprint: 1920 bytes
+ACPI: Core revision 20260408
+clocksource: hpet: mask: 0xffffffff max_cycles: 0xffffffff, max_idle_ns: 19112604467 ns
+APIC: Switch to symmetric I/O mode setup
+..TIMER: vector=0x30 apic1=0 pin1=2 apic2=-1 pin2=-1
+clocksource: tsc-early: mask: 0xffffffffffffffff max_cycles: 0x28680fa287f, max_idle_ns: 440795281151 ns
+Calibrating delay loop (skipped) preset value.. 5606.40 BogoMIPS (lpj=2803200)
+Last level iTLB entries: 4KB 0, 2MB 0, 4MB 0
+Last level dTLB entries: 4KB 0, 2MB 0, 4MB 0, 1GB 0
+mitigations: Enabled attack vectors: user_kernel, user_user, SMT mitigations: auto
+Speculative Store Bypass: Vulnerable
+Spectre V2 : Mitigation: Retpolines
+ITS: Mitigation: Aligned branch/return thunks
+MDS: Vulnerable: Clear CPU buffers attempted, no microcode
+Spectre V1 : Mitigation: usercopy/swapgs barriers and __user pointer sanitization
+Spectre V2 : Spectre v2 / SpectreRSB: Filling RSB on context switch and VMEXIT
+active return thunk: its_return_thunk
+x86/fpu: x87 FPU will use FXSAVE
+pid_max: default: 32768 minimum: 301
+SELinux:  Initializing.
+Mount-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+Mountpoint-cache hash table entries: 8192 (order: 4, 65536 bytes, linear)
+VFS: Finished mounting rootfs on nullfs
+Running RCU synchronous self tests
+Running RCU synchronous self tests
+smpboot: CPU0: Intel QEMU Virtual CPU version 2.5+ (family: 0xf, model: 0x6b, stepping: 0x1)
+Performance Events: unsupported Netburst CPU model 107 no PMU driver, software events only.
+signal: max sigframe size: 1440
+rcu: Hierarchical SRCU implementation.
+rcu: 	Max phase no-delay instances is 400.
+Timer migration: 1 hierarchy levels; 8 children per group; 1 crossnode level
+NMI watchdog: Perf NMI watchdog permanently disabled
+smp: Bringing up secondary CPUs ...
+smpboot: x86: Booting SMP configuration:
+.... node  #0, CPUs:      #1 #2 #3
+smp: Brought up 1 node, 4 CPUs
+smpboot: Total of 4 processors activated (22425.60 BogoMIPS)
+Memory: 3316412K/4193780K available (83339K kernel code, 15013K rwdata, 20320K rodata, 15608K init, 15672K bss, 865020K reserved, 0K cma-reserved)
+devtmpfs: initialized
+Running RCU synchronous self tests
+Running RCU synchronous self tests
+Running RCU Tasks wait API self tests
+Running RCU Tasks Rude wait API self tests
+Running RCU Tasks Trace wait API self tests
+posixtimers hash table entries: 2048 (order: 6, 147456 bytes, linear)
+futex hash table entries: 1024 (131072 bytes on 1 NUMA nodes, total 128 KiB, linear).
+Callback from call_rcu_tasks_trace() invoked.
+PM: RTC time: 14:09:06, date: 2026-07-11
+NET: Registered PF_NETLINK/PF_ROUTE protocol family
+audit: initializing netlink subsys (disabled)
+audit: type=2000 audit(1783778945.825:1): state=initialized audit_enabled=0 res=1
+i2c-core: driver [dummy] registered
+thermal_sys: Registered thermal governor 'step_wise'
+thermal_sys: Registered thermal governor 'user_space'
+cpuidle: using governor menu
+Freeing SMP alternatives memory: 60K
+PCI: ECAM [mem 0xb0000000-0xbfffffff] (base 0xb0000000) for domain 0000 [bus 00-ff]
+PCI: ECAM [mem 0xb0000000-0xbfffffff] reserved as E820 entry
+PCI: Using configuration type 1 for base access
+kprobes: kprobe jump-optimization is enabled. All kprobes are optimized if possible.
+HugeTLB: registered 2.00 MiB page size, pre-allocated 0 pages
+HugeTLB: 28 KiB vmemmap can be freed for a 2.00 MiB page
+ACPI: Added _OSI(Module Device)
+ACPI: Added _OSI(Processor Device)
+ACPI: Added _OSI(Processor Aggregator Device)
+Callback from call_rcu_tasks() invoked.
+ACPI: 1 ACPI AML tables successfully acquired and loaded
+ACPI: \_SB_: platform _OSC: OS support mask [002e7eee]
+ACPI: Interpreter enabled
+ACPI: PM: (supports S0 S3 S4 S5)
+ACPI: Using IOAPIC for interrupt routing
+PCI: Using host bridge windows from ACPI; if necessary, use "pci=nocrs" and report a bug
+PCI: Using E820 reservations for host bridge windows
+ACPI: Enabled 2 GPEs in block 00 to 3F
+ACPI: PCI Root Bridge [PCI0] (domain 0000 [bus 00-ff])
+acpi PNP0A08:00: _OSC: OS supports [ExtendedConfig ASPM ClockPM Segments MSI HPX-Type3]
+acpi PNP0A08:00: _OSC: platform does not support [LTR]
+acpi PNP0A08:00: _OSC: OS now controls [SHPCHotplug PME PCIeCapability]
+PCI host bridge to bus 0000:00
+pci_bus 0000:00: root bus resource [io  0x0000-0x0cf7 window]
+pci_bus 0000:00: root bus resource [io  0x0d00-0xffff window]
+pci_bus 0000:00: root bus resource [mem 0x000a0000-0x000bffff window]
+pci_bus 0000:00: root bus resource [mem 0x80000000-0xafffffff window]
+pci_bus 0000:00: root bus resource [mem 0xc0000000-0xfebfffff window]
+pci_bus 0000:00: root bus resource [mem 0x180000000-0x97fffffff window]
+pci_bus 0000:00: root bus resource [bus 00-ff]
+pci 0000:00:00.0: [8086:29c0] type 00 class 0x060000 conventional PCI endpoint
+pci 0000:00:01.0: [1234:1111] type 00 class 0x030000 conventional PCI endpoint
+pci 0000:00:01.0: BAR 0 [mem 0xfd000000-0xfdffffff pref]
+pci 0000:00:01.0: BAR 2 [mem 0xfebf0000-0xfebf0fff]
+pci 0000:00:01.0: ROM [mem 0xfebe0000-0xfebeffff pref]
+pci 0000:00:01.0: Video device with shadowed ROM at [mem 0x000c0000-0x000dffff]
+pci 0000:00:01.0: pci_fixup_video+0x0/0x340 arch/x86/pci/fixup.c:312 took 10742 usecs
+pci 0000:00:02.0: [1af4:1005] type 00 class 0x00ff00 conventional PCI endpoint
+pci 0000:00:02.0: BAR 0 [io  0xc0c0-0xc0df]
+pci 0000:00:02.0: BAR 1 [mem 0xfebf1000-0xfebf1fff]
+pci 0000:00:02.0: BAR 4 [mem 0xfe000000-0xfe003fff 64bit pref]
+pci 0000:00:03.0: [1af4:1009] type 00 class 0x000200 conventional PCI endpoint
+pci 0000:00:03.0: BAR 0 [io  0xc000-0xc03f]
+pci 0000:00:03.0: BAR 1 [mem 0xfebf2000-0xfebf2fff]
+pci 0000:00:03.0: BAR 4 [mem 0xfe004000-0xfe007fff 64bit pref]
+pci 0000:00:04.0: [8086:100e] type 00 class 0x020000 conventional PCI endpoint
+pci 0000:00:04.0: BAR 0 [mem 0xfebc0000-0xfebdffff]
+pci 0000:00:04.0: BAR 1 [io  0xc040-0xc07f]
+pci 0000:00:04.0: ROM [mem 0xfeb80000-0xfebbffff pref]
+pci 0000:00:1f.0: [8086:2918] type 00 class 0x060100 conventional PCI endpoint
+pci 0000:00:1f.0: quirk: [io  0x0600-0x067f] claimed by ICH6 ACPI/GPIO/TCO
+pci 0000:00:1f.0: quirk_ich7_lpc+0x0/0x260 drivers/pci/quirks.c:2725 took 12695 usecs
+pci 0000:00:1f.2: [8086:2922] type 00 class 0x010601 conventional PCI endpoint
+pci 0000:00:1f.2: BAR 4 [io  0xc0e0-0xc0ff]
+pci 0000:00:1f.2: BAR 5 [mem 0xfebf3000-0xfebf3fff]
+pci 0000:00:1f.3: [8086:2930] type 00 class 0x0c0500 conventional PCI endpoint
+pci 0000:00:1f.3: BAR 4 [io  0x0700-0x073f]
+ACPI: PCI: Interrupt link LNKA configured for IRQ 10
+ACPI: PCI: Interrupt link LNKB configured for IRQ 10
+ACPI: PCI: Interrupt link LNKC configured for IRQ 11
+ACPI: PCI: Interrupt link LNKD configured for IRQ 11
+ACPI: PCI: Interrupt link LNKE configured for IRQ 10
+ACPI: PCI: Interrupt link LNKF configured for IRQ 10
+ACPI: PCI: Interrupt link LNKG configured for IRQ 11
+ACPI: PCI: Interrupt link LNKH configured for IRQ 11
+ACPI: PCI: Interrupt link GSIA configured for IRQ 16
+ACPI: PCI: Interrupt link GSIB configured for IRQ 17
+ACPI: PCI: Interrupt link GSIC configured for IRQ 18
+ACPI: PCI: Interrupt link GSID configured for IRQ 19
+ACPI: PCI: Interrupt link GSIE configured for IRQ 20
+ACPI: PCI: Interrupt link GSIF configured for IRQ 21
+ACPI: PCI: Interrupt link GSIG configured for IRQ 22
+ACPI: PCI: Interrupt link GSIH configured for IRQ 23
+iommu: Default domain type: Translated
+iommu: DMA domain TLB invalidation policy: lazy mode
+SCSI subsystem initialized
+libata version 3.00 loaded.
+ACPI: bus type USB registered
+usbcore: registered new interface driver usbfs
+usbcore: registered new interface driver hub
+usbcore: registered new device driver usb
+mc: Linux media interface: v0.10
+videodev: Linux video capture interface: v2.00
+pps_core: LinuxPPS API ver. 1 registered
+pps_core: Software ver. 5.3.6 - Copyright 2005-2007 Rodolfo Giometti <giometti@linux.it>
+PTP clock support registered
+EDAC MC: Ver: 3.0.0
+FPGA manager framework
+Advanced Linux Sound Architecture Driver Initialized.
+Bluetooth: Core ver 2.22
+NET: Registered PF_BLUETOOTH protocol family
+Bluetooth: HCI device and connection manager initialized
+Bluetooth: HCI socket layer initialized
+Bluetooth: L2CAP socket layer initialized
+Bluetooth: SCO socket layer initialized
+NET: Registered PF_ATMPVC protocol family
+NetLabel: Initializing
+NetLabel:  domain hash size = 128
+NetLabel:  protocols = UNLABELED CIPSOv4 CALIPSO
+NetLabel:  unlabeled traffic allowed by default
+nfc: nfc_init: NFC Core ver 0.1
+NET: Registered PF_NFC protocol family
+mctp: management component transport protocol core
+NET: Registered PF_MCTP protocol family
+PCI: Using ACPI for IRQ routing
+PCI: pci_cache_line_size set to 64 bytes
+e820: register RAM buffer resource [mem 0x0009fc00-0x0009ffff]
+e820: register RAM buffer resource [mem 0x7ffdf000-0x7fffffff]
+pci 0000:00:01.0: vgaarb: setting as boot VGA device
+pci 0000:00:01.0: vgaarb: bridge control possible
+pci 0000:00:01.0: vgaarb: VGA device added: decodes=io+mem,owns=io+mem,locks=none
+vgaarb: loaded
+hpet: 3 channels of 0 reserved for per-cpu timers
+hpet0: at MMIO 0xfed00000, IRQs 2, 8, 0
+hpet0: 3 comparators, 64-bit 100.000000 MHz counter
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

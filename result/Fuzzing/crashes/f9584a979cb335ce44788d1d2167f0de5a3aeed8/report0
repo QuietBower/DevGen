@@ -1,0 +1,92 @@
+BUG: unable to handle page fault for address: ffffedff24c3cfb6
+#PF: supervisor write access in kernel mode
+#PF: error_code(0x0002) - not-present page
+PGD 0 P4D 0 
+Oops: Oops: 0002 [#1] SMP KASAN PTI
+i2c i2c-0: ioctl, cmd=0x720, arg=0x2000000000c0
+CPU: 2 UID: 0 PID: 3075 Commsmbus: error: Unexpected send start condition in state 2
+Tainted: [W]=WARN, [C]=CRAP, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:do_sys_openat2+0x156/0x220 fs/open.c:1388
+Code: 3c 0a 00 e8 2c 41 b8 ff 45 89 fc e8 24 41 b8 ff 4c 89 ef e8 6c 91 04 00 e8 17 41 b8 ff 48 b8 00 00 00 00 00 fc ff df 48 01 e8 <48> c7 00 00 00 00 00 c7 40 08 00 00 00 00 48 8b 44 24 78 65 48 2b
+RSP: 0018:ffff8881261e7db0 EFLAGS: 00010282
+RAX: ffffedff24c3cfb6 RBX: ffff8881261e7e88 RCX: ffffc90008bfb000
+RDX: 0000000000080000 RSI: ffffffff81c17a49 RDI: ffffffff81bc72c7
+RBP: 1ffff1ff24c3cfb6 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000000 R12: 0000000000000008
+R13: ffff8881092cda00 R14: ffff88811ed07600 R15: 0000000000000008
+FS:  00007ff9763f7640(0000) GS:ffff8881d08ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffedff24c3cfb6 CR3: 000000011686a000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ do_sys_open fs/open.c:1401 [inline]
+ __do_sys_openat fs/open.c:1417 [inline]
+ __se_sys_openat fs/open.c:1412 [inline]
+ __x64_sys_openat+0x144/0x200 fs/open.c:1412
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7ff9779b1d94
+Code: 24 20 eb 8f 66 90 44 89 54 24 0c e8 e6 0f 03 00 44 8b 54 24 0c 44 89 e2 48 89 ee 41 89 c0 bf 9c ff ff ff b8 01 01 00 00 0f 05 <48> 3d 00 f0 ff ff 77 34 44 89 c7 89 44 24 0c e8 28 10 03 00 8b 44
+RSP: 002b:00007ff9763f6ac0 EFLAGS: 00000293 ORIG_RAX: 0000000000000101
+RAX: ffffffffffffffda RBX: 0000000000000000 RCX: 00007ff9779b1d94
+RDX: 00000000000c8100 RSI: 00007ff9763f6b60 RDI: 00000000ffffff9c
+RBP: 00007ff9763f6b60 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000293 R12: 00000000000c8100
+R13: 00007ff977c46038 R14: 00007ff977c45fa0 R15: 00007ff9763d7000
+ </TASK>
+Modules linked in:
+i2c i2c-0: ioctl, cmd=0x704, arg=0x01
+ atomisp(C) atomisp_gmin_platform(C) bochs iTCO_wdt intel_skl_int3472_discrete drm_shmem_helper intel_pmc_bxt drm_client_lib watchdog i2c_i801 intel_skl_int3472_common i2c_smbus drm_kms_helper lpc_ich
+CR2: ffffedff24c3cfb6
+i2c i2c-0: ioctl, cmd=0x720, arg=0x2000000000c0
+---[ end trace 0000000000000000 ]---
+i2c i2c-0: ioctl, cmd=0x703, arg=0x18d
+RIP: 0010:do_sys_openat2+0x156/0x220 fs/open.c:1388
+Code: 3c 0a 00 e8 2c 41 b8 ff 45 89 fc e8 24 41 b8 ff 4c 89 ef e8 6c 91 04 00 e8 17 41 b8 ff 48 b8 00 00 00 00 00 fc ff df 48 01 e8 <48> c7 00 00 00 00 00 c7 40 08 00 00 00 00 48 8b 44 24 78 65 48 2b
+RSP: 0018:ffff8881261e7db0 EFLAGS: 00010282
+RAX: ffffedff24c3cfb6 RBX: ffff8881261e7e88 RCX: ffffc90008bfb000
+RDX: 0000000000080000 RSI: ffffffff81c17a49 RDI: ffffffff81bc72c7
+RBP: 1ffff1ff24c3cfb6 R08: 0000000000000000 R09: 0000000000000000
+R10: ffffffff8849c217 R11: 0000000000000000 R12: 0000000000000008
+R13: ffff8881092cda00 R14: ffff88811ed07600 R15: 0000000000000008
+FS:  00007ff9763f7640(0000) GS:ffff8881d08ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: ffffedff24c3cfb6 CR3: 000000011686a000 CR4: 00000000000006f0
+note: syz.3.487[3075] exited with irqs disabled
+i2c i2c-0: ioctl, cmd=0x704, arg=0x01
+i2c i2c-0: ioctl, cmd=0x703, arg=0x18d
+i2c i2c-0: ioctl, cmd=0x40086602, arg=0x200000ffd000
+----------------
+Code disassembly (best guess):
+   0:	3c 0a                	cmp    $0xa,%al
+   2:	00 e8                	add    %ch,%al
+   4:	2c 41                	sub    $0x41,%al
+   6:	b8 ff 45 89 fc       	mov    $0xfc8945ff,%eax
+   b:	e8 24 41 b8 ff       	call   0xffb84134
+  10:	4c 89 ef             	mov    %r13,%rdi
+  13:	e8 6c 91 04 00       	call   0x49184
+  18:	e8 17 41 b8 ff       	call   0xffb84134
+  1d:	48 b8 00 00 00 00 00 	movabs $0xdffffc0000000000,%rax
+  24:	fc ff df
+  27:	48 01 e8             	add    %rbp,%rax
+* 2a:	48 c7 00 00 00 00 00 	movq   $0x0,(%rax) <-- trapping instruction
+  31:	c7 40 08 00 00 00 00 	movl   $0x0,0x8(%rax)
+  38:	48 8b 44 24 78       	mov    0x78(%rsp),%rax
+  3d:	65                   	gs
+  3e:	48                   	rex.W
+  3f:	2b                   	.byte 0x2b
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+smbus: error: Unexpected write in state -1
+smbus: error: Unexpected write in state -1
+smbus: error: Unexpected write in state -1
+smbus: error: Unexpected write in state -1
+: syz.3.487 Tainted: G        WC       N  7.1.0+ #1 PREEMPT(full) 
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

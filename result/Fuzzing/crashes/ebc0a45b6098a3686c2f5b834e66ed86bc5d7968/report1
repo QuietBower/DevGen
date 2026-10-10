@@ -1,0 +1,508 @@
+BUG: memory leak
+unreferenced object 0xffff88810101f000 (size 256):
+  comm "swapper/0", pid 1, jiffies 4294667861
+  hex dump (first 32 bytes):
+    10 4c 05 18 81 88 ff ff 50 68 b2 81 ff ff ff ff  .L......Ph......
+    00 2a 04 00 81 88 ff ff 1c 00 00 00 00 00 00 00  .*..............
+  backtrace (crc 7b8912b3):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4543 [inline]
+    slab_alloc_node mm/slub.c:4866 [inline]
+    __do_kmalloc_node mm/slub.c:5259 [inline]
+    __kmalloc_noprof+0x4d6/0x7c0 mm/slub.c:5272
+    kmalloc_noprof include/linux/slab.h:954 [inline]
+    kzalloc_noprof include/linux/slab.h:1188 [inline]
+    __alloc_empty_sheaf+0x3a/0x50 mm/slub.c:2764
+    alloc_empty_sheaf mm/slub.c:2779 [inline]
+    alloc_full_sheaf mm/slub.c:2829 [inline]
+    __pcs_replace_empty_main+0x3da/0x5d0 mm/slub.c:4626
+    alloc_from_pcs mm/slub.c:4717 [inline]
+    slab_alloc_node mm/slub.c:4851 [inline]
+    __kmalloc_cache_node_noprof+0x50e/0x750 mm/slub.c:5388
+    kmalloc_node_noprof include/linux/slab.h:1077 [inline]
+    init_kmem_cache_nodes mm/slub.c:7590 [inline]
+    do_kmem_cache_create+0x170/0x550 mm/slub.c:8494
+    create_cache mm/slab_common.c:252 [inline]
+    __kmem_cache_create_args+0x3a1/0x490 mm/slab_common.c:380
+    __kmem_cache_create include/linux/slab.h:390 [inline]
+    posixtimer_init+0xcb/0x240 kernel/time/posix-timers.c:1546
+    do_one_initcall+0xfa/0x6a0 init/main.c:1382
+    do_initcall_level init/main.c:1444 [inline]
+    do_initcalls init/main.c:1460 [inline]
+    do_basic_setup init/main.c:1479 [inline]
+    kernel_init_freeable+0x554/0x7f0 init/main.c:1692
+    kernel_init+0x23/0x2e0 init/main.c:1582
+    ret_from_fork+0x690/0xaa0 arch/x86/kernel/process.c:158
+    ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+
+BUG: memory leak
+unreferenced object 0xffff88811b34d800 (size 512):
+  comm "modprobe", pid 14286, jiffies 4295105298
+  hex dump (first 32 bytes):
+    d8 71 9b 14 81 88 ff ff 50 68 b2 81 ff ff ff ff  .q......Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc 28a1fadc):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4543 [inline]
+    slab_alloc_node mm/slub.c:4866 [inline]
+    __do_kmalloc_node mm/slub.c:5259 [inline]
+    __kmalloc_noprof+0x4d6/0x7c0 mm/slub.c:5272
+    kmalloc_noprof include/linux/slab.h:954 [inline]
+    kzalloc_noprof include/linux/slab.h:1188 [inline]
+    __alloc_empty_sheaf+0x3a/0x50 mm/slub.c:2764
+    alloc_empty_sheaf mm/slub.c:2779 [inline]
+    kmem_cache_prefill_sheaf+0x26a/0x360 mm/slub.c:5018
+    mt_get_sheaf lib/maple_tree.c:189 [inline]
+    mas_alloc_nodes lib/maple_tree.c:1140 [inline]
+    mas_preallocate+0x77a/0xd90 lib/maple_tree.c:5194
+    vma_iter_prealloc mm/vma.h:568 [inline]
+    vma_link+0xfe/0x9c0 mm/vma.c:1829
+    insert_vm_struct+0xf9/0x2e0 mm/vma.c:3302
+    __install_special_mapping mm/mmap.c:1474 [inline]
+    _install_special_mapping+0x197/0x3d0 mm/mmap.c:1510
+    map_vdso+0x1ab/0x580 arch/x86/entry/vdso/vma.c:168
+    arch_setup_additional_pages+0x4a/0x60 arch/x86/entry/vdso/vma.c:238
+    load_elf_binary+0x1e9d/0x4e90 fs/binfmt_elf.c:1292
+    search_binary_handler fs/exec.c:1664 [inline]
+    exec_binprm fs/exec.c:1696 [inline]
+    bprm_execve fs/exec.c:1748 [inline]
+    bprm_execve+0x8d5/0x15e0 fs/exec.c:1724
+    kernel_execve+0x2e3/0x3a0 fs/exec.c:1892
+    call_usermodehelper_exec_async+0x264/0x4e0 kernel/umh.c:109
+    ret_from_fork+0x690/0xaa0 arch/x86/kernel/process.c:158
+    ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+
+BUG: memory leak
+unreferenced object 0xffff88810a25c900 (size 128):
+  comm "systemd-udevd", pid 163, jiffies 4296321366
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc c18684d2):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4543 [inline]
+    slab_alloc_node mm/slub.c:4866 [inline]
+    __kmalloc_cache_noprof+0x509/0x6e0 mm/slub.c:5375
+    kmalloc_noprof include/linux/slab.h:950 [inline]
+    kzalloc_noprof include/linux/slab.h:1188 [inline]
+    kernfs_get_open_node fs/kernfs/file.c:543 [inline]
+    kernfs_fop_open+0x9df/0xdd0 fs/kernfs/file.c:718
+    do_dentry_open+0x684/0x14b0 fs/open.c:949
+    vfs_open+0x87/0x400 fs/open.c:1081
+    do_open fs/namei.c:4677 [inline]
+    path_openat+0x1fca/0x2cf0 fs/namei.c:4836
+    do_file_open+0x21b/0x470 fs/namei.c:4865
+    do_sys_openat2+0xeb/0x210 fs/open.c:1366
+    do_sys_open fs/open.c:1372 [inline]
+    __do_sys_openat fs/open.c:1388 [inline]
+    __se_sys_openat fs/open.c:1383 [inline]
+    __x64_sys_openat+0x144/0x200 fs/open.c:1383
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810a25c200 (size 128):
+  comm "systemd-udevd", pid 21235, jiffies 4296328646
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc c7796cbc):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4543 [inline]
+    slab_alloc_node mm/slub.c:4866 [inline]
+    __kmalloc_cache_noprof+0x509/0x6e0 mm/slub.c:5375
+    kmalloc_noprof include/linux/slab.h:950 [inline]
+    kzalloc_noprof include/linux/slab.h:1188 [inline]
+    kernfs_get_open_node fs/kernfs/file.c:543 [inline]
+    kernfs_fop_open+0x9df/0xdd0 fs/kernfs/file.c:718
+    do_dentry_open+0x684/0x14b0 fs/open.c:949
+    vfs_open+0x87/0x400 fs/open.c:1081
+    do_open fs/namei.c:4677 [inline]
+    path_openat+0x1fca/0x2cf0 fs/namei.c:4836
+    do_file_open+0x21b/0x470 fs/namei.c:4865
+    do_sys_openat2+0xeb/0x210 fs/open.c:1366
+    do_sys_open fs/open.c:1372 [inline]
+    __do_sys_openat fs/open.c:1388 [inline]
+    __se_sys_openat fs/open.c:1383 [inline]
+    __x64_sys_openat+0x144/0x200 fs/open.c:1383
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810a25ce00 (size 128):
+  comm "systemd-udevd", pid 21235, jiffies 4296328703
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc 3647bd4f):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4543 [inline]
+    slab_alloc_node mm/slub.c:4866 [inline]
+    __kmalloc_cache_noprof+0x509/0x6e0 mm/slub.c:5375
+    kmalloc_noprof include/linux/slab.h:950 [inline]
+    kzalloc_noprof include/linux/slab.h:1188 [inline]
+    kernfs_get_open_node fs/kernfs/file.c:543 [inline]
+    kernfs_fop_open+0x9df/0xdd0 fs/kernfs/file.c:718
+    do_dentry_open+0x684/0x14b0 fs/open.c:949
+    vfs_open+0x87/0x400 fs/open.c:1081
+    do_open fs/namei.c:4677 [inline]
+    path_openat+0x1fca/0x2cf0 fs/namei.c:4836
+    do_file_open+0x21b/0x470 fs/namei.c:4865
+    do_sys_openat2+0xeb/0x210 fs/open.c:1366
+    do_sys_open fs/open.c:1372 [inline]
+    __do_sys_openat fs/open.c:1388 [inline]
+    __se_sys_openat fs/open.c:1383 [inline]
+    __x64_sys_openat+0x144/0x200 fs/open.c:1383
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810a25ca00 (size 128):
+  comm "systemd-journal", pid 145, jiffies 4296335917
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc 66adf21e):
+    kmemleak_alloc_recursive include/linux/kmemleak.h:44 [inline]
+    slab_post_alloc_hook mm/slub.c:4543 [inline]
+    slab_alloc_node mm/slub.c:4866 [inline]
+    __kmalloc_cache_noprof+0x509/0x6e0 mm/slub.c:5375
+    kmalloc_noprof include/linux/slab.h:950 [inline]
+    kzalloc_noprof include/linux/slab.h:1188 [inline]
+    kernfs_get_open_node fs/kernfs/file.c:543 [inline]
+    kernfs_fop_open+0x9df/0xdd0 fs/kernfs/file.c:718
+    do_dentry_open+0x684/0x14b0 fs/open.c:949
+    vfs_open+0x87/0x400 fs/open.c:1081
+    do_open fs/namei.c:4677 [inline]
+    path_openat+0x1fca/0x2cf0 fs/namei.c:4836
+    do_file_open+0x21b/0x470 fs/namei.c:4865
+    do_sys_openat2+0xeb/0x210 fs/open.c:1366
+    do_sys_open fs/open.c:1372 [inline]
+    __do_sys_openat fs/open.c:1388 [inline]
+    __se_sys_openat fs/open.c:1383 [inline]
+    __x64_sys_openat+0x144/0x200 fs/open.c:1383
+    do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+    do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    do_one_initcall+0xfa/0x6a0
+    kernel_init_freeable+0x554/0x7f0
+    kernel_init+0x23/0x2e0
+    ret_from_fork+0x690/0xaa0
+    ret_from_fork_asm+0x1a/0x30
+BUG: memory leak
+unreferenced object 0xffff88811b34d800 (size 512):
+  comm "modprobe", pid 14286, jiffies 4295105298
+  hex dump (first 32 bytes):
+    d8 71 9b 14 81 88 ff ff 50 68 b2 81 ff ff ff ff  .q......Ph......
+    40 ab 06 00 81 88 ff ff 20 00 00 00 00 00 00 00  @....... .......
+  backtrace (crc 28a1fadc):
+    __kmalloc_noprof+0x4d6/0x7c0
+    __alloc_empty_sheaf+0x3a/0x50
+    kmem_cache_prefill_sheaf+0x26a/0x360
+    mas_preallocate+0x77a/0xd90
+    vma_link+0xfe/0x9c0
+    insert_vm_struct+0xf9/0x2e0
+    _install_special_mapping+0x197/0x3d0
+    map_vdso+0x1ab/0x580
+    arch_setup_additional_pages+0x4a/0x60
+    load_elf_binary+0x1e9d/0x4e90
+    bprm_execve+0x8d5/0x15e0
+    kernel_execve+0x2e3/0x3a0
+    call_usermodehelper_exec_async+0x264/0x4e0
+    ret_from_fork+0x690/0xaa0
+    ret_from_fork_asm+0x1a/0x30
+
+BUG: memory leak
+unreferenced object 0xffff88810a25c900 (size 128):
+  comm "systemd-udevd", pid 163, jiffies 4296321366
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc c18684d2):
+    __kmalloc_cache_noprof+0x509/0x6e0
+    kernfs_fop_open+0x9df/0xdd0
+    do_dentry_open+0x684/0x14b0
+    vfs_open+0x87/0x400
+    path_openat+0x1fca/0x2cf0
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810a25c200 (size 128):
+  comm "systemd-udevd", pid 21235, jiffies 4296328646
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc c7796cbc):
+    __kmalloc_cache_noprof+0x509/0x6e0
+    kernfs_fop_open+0x9df/0xdd0
+    do_dentry_open+0x684/0x14b0
+    vfs_open+0x87/0x400
+    path_openat+0x1fca/0x2cf0
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810a25ce00 (size 128):
+  comm "systemd-udevd", pid 21235, jiffies 4296328703
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc 3647bd4f):
+    __kmalloc_cache_noprof+0x509/0x6e0
+    kernfs_fop_open+0x9df/0xdd0
+    do_dentry_open+0x684/0x14b0
+    vfs_open+0x87/0x400
+    path_openat+0x1fca/0x2cf0
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810a25ca00 (size 128):
+  comm "systemd-journal", pid 145, jiffies 4296335917
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc 66adf21e):
+    __kmalloc_cache_noprof+0x509/0x6e0
+    kernfs_fop_open+0x9df/0xdd0
+    do_dentry_open+0x684/0x14b0
+    vfs_open+0x87/0x400
+    path_openat+0x1fca/0x2cf0
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    bprm_execve+0x8d5/0x15e0
+    kernel_execve+0x2e3/0x3a0
+    call_usermodehelper_exec_async+0x264/0x4e0
+    ret_from_fork+0x690/0xaa0
+    ret_from_fork_asm+0x1a/0x30
+BUG: memory leak
+unreferenced object 0xffff88810a25c900 (size 128):
+  comm "systemd-udevd", pid 163, jiffies 4296321366
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc c18684d2):
+    __kmalloc_cache_noprof+0x509/0x6e0
+    kernfs_fop_open+0x9df/0xdd0
+    do_dentry_open+0x684/0x14b0
+    vfs_open+0x87/0x400
+    path_openat+0x1fca/0x2cf0
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810a25c200 (size 128):
+  comm "systemd-udevd", pid 21235, jiffies 4296328646
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc c7796cbc):
+    __kmalloc_cache_noprof+0x509/0x6e0
+    kernfs_fop_open+0x9df/0xdd0
+    do_dentry_open+0x684/0x14b0
+    vfs_open+0x87/0x400
+    path_openat+0x1fca/0x2cf0
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810a25ce00 (size 128):
+  comm "systemd-udevd", pid 21235, jiffies 4296328703
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc 3647bd4f):
+    __kmalloc_cache_noprof+0x509/0x6e0
+    kernfs_fop_open+0x9df/0xdd0
+    do_dentry_open+0x684/0x14b0
+    vfs_open+0x87/0x400
+    path_openat+0x1fca/0x2cf0
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810a25ca00 (size 128):
+  comm "systemd-journal", pid 145, jiffies 4296335917
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc 66adf21e):
+    __kmalloc_cache_noprof+0x509/0x6e0
+    kernfs_fop_open+0x9df/0xdd0
+    do_dentry_open+0x684/0x14b0
+    vfs_open+0x87/0x400
+    path_openat+0x1fca/0x2cf0
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff88810a25c200 (size 128):
+  comm "systemd-udevd", pid 21235, jiffies 4296328646
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc c7796cbc):
+    __kmalloc_cache_noprof+0x509/0x6e0
+    kernfs_fop_open+0x9df/0xdd0
+    do_dentry_open+0x684/0x14b0
+    vfs_open+0x87/0x400
+    path_openat+0x1fca/0x2cf0
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810a25ce00 (size 128):
+  comm "systemd-udevd", pid 21235, jiffies 4296328703
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc 3647bd4f):
+    __kmalloc_cache_noprof+0x509/0x6e0
+    kernfs_fop_open+0x9df/0xdd0
+    do_dentry_open+0x684/0x14b0
+    vfs_open+0x87/0x400
+    path_openat+0x1fca/0x2cf0
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810a25ca00 (size 128):
+  comm "systemd-journal", pid 145, jiffies 4296335917
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc 66adf21e):
+    __kmalloc_cache_noprof+0x509/0x6e0
+    kernfs_fop_open+0x9df/0xdd0
+    do_dentry_open+0x684/0x14b0
+    vfs_open+0x87/0x400
+    path_openat+0x1fca/0x2cf0
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff88810a25ce00 (size 128):
+  comm "systemd-udevd", pid 21235, jiffies 4296328703
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc 3647bd4f):
+    __kmalloc_cache_noprof+0x509/0x6e0
+    kernfs_fop_open+0x9df/0xdd0
+    do_dentry_open+0x684/0x14b0
+    vfs_open+0x87/0x400
+    path_openat+0x1fca/0x2cf0
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+BUG: memory leak
+unreferenced object 0xffff88810a25ca00 (size 128):
+  comm "systemd-journal", pid 145, jiffies 4296335917
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc 66adf21e):
+    __kmalloc_cache_noprof+0x509/0x6e0
+    kernfs_fop_open+0x9df/0xdd0
+    do_dentry_open+0x684/0x14b0
+    vfs_open+0x87/0x400
+    path_openat+0x1fca/0x2cf0
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+BUG: memory leak
+unreferenced object 0xffff88810a25ca00 (size 128):
+  comm "systemd-journal", pid 145, jiffies 4296335917
+  hex dump (first 32 bytes):
+    00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00  ................
+    01 00 00 00 00 00 00 00 00 00 00 00 ad 4e ad de  .............N..
+  backtrace (crc 66adf21e):
+    __kmalloc_cache_noprof+0x509/0x6e0
+    kernfs_fop_open+0x9df/0xdd0
+    do_dentry_open+0x684/0x14b0
+    vfs_open+0x87/0x400
+    path_openat+0x1fca/0x2cf0
+    do_file_open+0x21b/0x470
+    do_sys_openat2+0xeb/0x210
+    __x64_sys_openat+0x144/0x200
+    do_syscall_64+0x116/0x690
+    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

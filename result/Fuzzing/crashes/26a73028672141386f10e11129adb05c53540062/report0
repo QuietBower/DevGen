@@ -1,0 +1,262 @@
+### dt-test ### EXPECT \ : OF: ERROR: of_node_release() detected bad of_node_put() on /testcase-data/refcount-node
+### dt-test ### pass of_unittest_lifecycle():3681
+OF: ERROR: of_node_release() detected bad of_node_put() on /testcase-data/refcount-node
+### dt-test ### EXPECT / : OF: ERROR: of_node_release() detected bad of_node_put() on /testcase-data/refcount-node
+### dt-test ### EXPECT \ : ------------[ cut here ]------------
+### dt-test ### EXPECT \ : WARNING: <<all>>
+### dt-test ### EXPECT \ : refcount_t: underflow; use-after-free.
+### dt-test ### EXPECT \ : ---[ end trace <<int>> ]---
+### dt-test ### pass of_unittest_lifecycle():3701
+------------[ cut here ]------------
+refcount_t: underflow; use-after-free.
+WARNING: lib/refcount.c:28 at refcount_warn_saturate+0xc5/0x110 lib/refcount.c:28, CPU#3: swapper/0/1
+Modules linked in:
+CPU: 3 UID: 0 PID: 1 Comm: swapper/0 Tainted: G                 N  7.0.0 #7 PREEMPT(full) 
+Tainted: [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:refcount_warn_saturate+0xc5/0x110 lib/refcount.c:28
+Code: 5d e9 5f 74 0b ff e8 5a 74 0b ff 48 8d 3d e3 c6 de 05 67 48 0f b9 3a 5b 5d e9 47 74 0b ff e8 42 74 0b ff 48 8d 3d db c6 de 05 <67> 48 0f b9 3a 5b 5d e9 2f 74 0b ff e8 2a 74 0b ff 48 8d 3d d3 c6
+RSP: 0000:ffff888100c4fa20 EFLAGS: 00010293
+RAX: 0000000000000000 RBX: 0000000000000003 RCX: ffffffff826cea7c
+RDX: ffff888100c45040 RSI: ffffffff826ceade RDI: ffffffff884bb1c0
+RBP: ffff888106a8ff98 R08: 0000000000000001 R09: ffffed1020d51ff3
+R10: 0000000000000003 R11: 0000000000000001 R12: ffff888106a8ff9c
+R13: dffffc0000000000 R14: ffff888106a8ff98 R15: ffffed1020d51ff3
+FS:  0000000000000000(0000) GS:ffff8881d0979000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000000000000000 CR3: 000000000766c000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ __refcount_sub_and_test include/linux/refcount.h:400 [inline]
+ __refcount_dec_and_test include/linux/refcount.h:432 [inline]
+ refcount_dec_and_test include/linux/refcount.h:450 [inline]
+ kref_put include/linux/kref.h:64 [inline]
+ kobject_put+0x1d0/0x260 lib/kobject.c:737
+ of_node_put+0x28/0x30 drivers/of/dynamic.c:50
+ of_unittest_lifecycle drivers/of/unittest.c:3702 [inline]
+ of_unittest+0x345d/0x4940 drivers/of/unittest.c:4526
+ do_one_initcall+0xfa/0x6a0 init/main.c:1382
+ do_initcall_level init/main.c:1444 [inline]
+ do_initcalls init/main.c:1460 [inline]
+ do_basic_setup init/main.c:1479 [inline]
+ kernel_init_freeable+0x554/0x7f0 init/main.c:1692
+ kernel_init+0x23/0x2e0 init/main.c:1582
+ ret_from_fork+0x690/0xaa0 arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 arch/x86/entry/entry_64.S:245
+ </TASK>
+irq event stamp: 806201
+hardirqs last  enabled at (806211): [<ffffffff81572ad9>] __up_console_sem+0x89/0xa0 kernel/printk/printk.c:347
+hardirqs last disabled at (806242): [<ffffffff81572abe>] __up_console_sem+0x6e/0xa0 kernel/printk/printk.c:345
+softirqs last  enabled at (806274): [<ffffffff813dbc30>] __do_softirq kernel/softirq.c:656 [inline]
+softirqs last  enabled at (806274): [<ffffffff813dbc30>] invoke_softirq kernel/softirq.c:496 [inline]
+softirqs last  enabled at (806274): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100 kernel/softirq.c:723
+softirqs last disabled at (806285): [<ffffffff813dbc30>] __do_softirq kernel/softirq.c:656 [inline]
+softirqs last disabled at (806285): [<ffffffff813dbc30>] invoke_softirq kernel/softirq.c:496 [inline]
+softirqs last disabled at (806285): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100 kernel/softirq.c:723
+---[ end trace 0000000000000000 ]---
+### dt-test ### EXPECT / : ---[ end trace <<int>> ]---
+### dt-test ### EXPECT / : refcount_t: underflow; use-after-free.
+### dt-test ### EXPECT / : WARNING: <<all>>
+### dt-test ### EXPECT / : ------------[ cut here ]------------
+### dt-test ### EXPECT_NOT \ : ------------[ cut here ]------------
+### dt-test ### EXPECT_NOT \ : WARNING: <<all>>
+### dt-test ### EXPECT_NOT \ : refcount_t: underflow; use-after-free.
+### dt-test ### EXPECT_NOT \ : ---[ end trace <<int>> ]---
+### dt-test ### pass of_unittest_lifecycle():3718
+### dt-test ### EXPECT_NOT / : ---[ end trace <<int>> ]---
+### dt-test ### EXPECT_NOT / : refcount_t: underflow; use-after-free.
+### dt-test ### EXPECT_NOT / : WARNING: <<all>>
+### dt-test ### EXPECT_NOT / : ------------[ cut here ]------------
+### dt-test ### pass of_unittest_lifecycle():3744
+### dt-test ### pass of_unittest_lifecycle():3745
+### dt-test ### pass of_unittest_check_tree_linkage():281
+### dt-test ### pass of_unittest_check_tree_linkage():282
+### dt-test ### end of unittest - 363 passed, 0 failed
+cfg80211: Loading compiled-in X.509 certificates for regulatory database
+kworker/u16:3 (118) used greatest stack depth: 28568 bytes left
+Loaded X.509 cert 'sforshee: 00b28ddf47aef9cea7'
+Loaded X.509 cert 'wens: 61c038651aabdcf94bd0ac7ff06c7248db18c600'
+clk: Disabling unused clocks
+faux_driver regulatory: Direct firmware load for regulatory.db failed with error -2
+ALSA device list:
+  No soundcards found.
+cfg80211: failed to load regulatory.db
+md: Waiting for all devices to be available before autodetect
+md: If you don't use raid, use raid=noautodetect
+md: Autodetecting RAID arrays.
+md: autorun ...
+md: ... autorun DONE.
+EXT4-fs (sda): mounted filesystem 2fcd8a85-892e-41ea-9ca6-d569b837edef ro with ordered data mode. Quota mode: none.
+VFS: Mounted root (ext4 filesystem) readonly on device 8:0.
+devtmpfs: mounted
+VFS: Pivoted into new rootfs
+Freeing unused kernel image (initmem) memory: 15476K
+Write protecting the kernel read-only data: 104448k
+Freeing unused kernel image (text/rodata gap) memory: 1220K
+Freeing unused kernel image (rodata/data gap) memory: 976K
+x86/mm: Checked W+X mappings: passed, no W+X pages found.
+x86/mm: Checking user space page tables
+x86/mm: Checked W+X mappings: passed, no W+X pages found.
+Run /sbin/init as init process
+SELinux:  Permission firmware_load in class system not defined in policy.
+SELinux:  Permission kexec_image_load in class system not defined in policy.
+SELinux:  Permission kexec_initramfs_load in class system not defined in policy.
+SELinux:  Permission policy_load in class system not defined in policy.
+SELinux:  Permission x509_certificate_load in class system not defined in policy.
+SELinux:  Permission watch_mountns in class file not defined in policy.
+SELinux:  Permission watch_mountns in class dir not defined in policy.
+SELinux:  Permission watch_mountns in class lnk_file not defined in policy.
+SELinux:  Permission watch_mountns in class chr_file not defined in policy.
+SELinux:  Permission watch_mountns in class blk_file not defined in policy.
+SELinux:  Permission watch_mountns in class sock_file not defined in policy.
+SELinux:  Permission watch_mountns in class fifo_file not defined in policy.
+SELinux:  Permission nlmsg in class netlink_route_socket not defined in policy.
+SELinux:  Permission nlmsg in class netlink_tcpdiag_socket not defined in policy.
+SELinux:  Permission nlmsg in class netlink_xfrm_socket not defined in policy.
+SELinux:  Permission nlmsg in class netlink_audit_socket not defined in policy.
+SELinux:  Permission map_create_as in class bpf not defined in policy.
+SELinux:  Permission prog_load_as in class bpf not defined in policy.
+SELinux:  Class mctp_socket not defined in policy.
+SELinux:  Class anon_inode not defined in policy.
+SELinux:  Class io_uring not defined in policy.
+SELinux:  Class user_namespace not defined in policy.
+SELinux:  Class memfd_file not defined in policy.
+SELinux: the above unknown classes and permissions will be allowed
+SELinux:  policy capability network_peer_controls=1
+SELinux:  policy capability open_perms=1
+SELinux:  policy capability extended_socket_class=1
+SELinux:  policy capability always_check_network=0
+SELinux:  policy capability cgroup_seclabel=1
+SELinux:  policy capability nnp_nosuid_transition=1
+SELinux:  policy capability genfs_seclabel_symlinks=0
+SELinux:  policy capability ioctl_skip_cloexec=0
+SELinux:  policy capability userspace_initial_context=0
+SELinux:  policy capability netlink_xperm=0
+SELinux:  policy capability netif_wildcard=0
+SELinux:  policy capability genfs_seclabel_wildcard=0
+SELinux:  policy capability functionfs_seclabel=0
+SELinux:  policy capability memfd_class=0
+SELinux:  policy capability bpf_token_perms=0
+audit: type=1403 audit(1780182630.004:2): auid=4294967295 ses=4294967295 lsm=selinux res=1
+systemd[1]: Successfully loaded SELinux policy in 3.874142s.
+systemd[1]: Relabelled /dev, /dev/shm, /run, /sys/fs/cgroup in 165.726ms.
+systemd[1]: systemd 247.3-7+deb11u5 running in system mode. (+PAM +AUDIT +SELINUX +IMA +APPARMOR +SMACK +SYSVINIT +UTMP +LIBCRYPTSETUP +GCRYPT +GNUTLS +ACL +XZ +LZ4 +ZSTD +SECCOMP +BLKID +ELFUTILS +KMOD +IDN2 -IDN +PCRE2 default-hierarchy=unified)
+systemd[1]: Detected virtualization kvm.
+systemd[1]: Detected architecture x86-64.
+systemd[1]: Set hostname to <syzkaller>.
+selinuxenabled (128) used greatest stack depth: 25416 bytes left
+systemd-bless-b (126) used greatest stack depth: 25080 bytes left
+random: crng init done
+systemd-cryptse (127) used greatest stack depth: 24680 bytes left
+systemd-gpt-aut (133) used greatest stack depth: 24488 bytes left
+systemd[1]: Queued start job for default target Graphical Interface.
+systemd[1]: system-getty.slice: unit configures an IP firewall, but the local system does not support BPF/cgroup firewalling.
+systemd[1]: (This warning is only shown for the first unit using IP firewalling.)
+systemd[1]: Created slice system-getty.slice.
+systemd[1]: Created slice system-modprobe.slice.
+systemd[1]: Created slice system-serial\x2dgetty.slice.
+systemd[1]: Started Dispatch Password Requests to Console Directory Watch.
+systemd[1]: Started Forward Password Requests to Wall Directory Watch.
+systemd[1]: Set up automount Arbitrary Executable File Formats File System Automount Point.
+systemd[1]: Reached target Local Encrypted Volumes.
+systemd[1]: Reached target Paths.
+systemd[1]: Reached target Remote File Systems.
+systemd[1]: Reached target Slices.
+systemd[1]: Reached target Swap.
+systemd[1]: Listening on Syslog Socket.
+systemd[1]: Listening on initctl Compatibility Named Pipe.
+systemd[1]: Listening on Journal Audit Socket.
+systemd[1]: Listening on Journal Socket (/dev/log).
+systemd[1]: Listening on Journal Socket.
+systemd[1]: Listening on udev Control Socket.
+systemd[1]: Listening on udev Kernel Socket.
+systemd[1]: Reached target Sockets.
+systemd[1]: Mounting Huge Pages File System...
+systemd[1]: Mounting POSIX Message Queue File System...
+systemd[1]: Mounting /proc/sys/fs/binfmt_misc...
+systemd[1]: Mounting /sys/kernel/config...
+systemd[1]: Mounting /sys/kernel/debug...
+systemd[1]: Mounting Kernel Trace File System...
+systemd[1]: Condition check resulted in Create list of static device nodes for the current kernel being skipped.
+systemd[1]: Starting Load Kernel Module fuse...
+systemd[1]: Starting Journal Service...
+audit: type=1400 audit(1780182634.723:3): avc:  denied  { read } for  pid=147 comm="modprobe" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1780182634.727:4): avc:  denied  { open } for  pid=147 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1780182634.729:5): avc:  denied  { getattr } for  pid=147 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1780182634.729:6): avc:  denied  { map } for  pid=147 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+systemd[1]: Starting Load Kernel Modules...
+systemd[1]: Starting Remount Root and Kernel File Systems...
+audit: type=1400 audit(1780182635.123:7): avc:  denied  { search } for  pid=149 comm="systemd-modules" name="modules" dev="sda" ino=14430914 scontext=system_u:system_r:systemd_modules_load_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=dir permissive=1
+audit: type=1400 audit(1780182635.124:8): avc:  denied  { search } for  pid=149 comm="systemd-modules" name="7.0.0" dev="sda" ino=14430915 scontext=system_u:system_r:systemd_modules_load_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=dir permissive=1
+audit: type=1400 audit(1780182635.124:9): avc:  denied  { read } for  pid=149 comm="systemd-modules" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:systemd_modules_load_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+systemd[1]: Starting Coldplug All udev Devices...
+audit: type=1400 audit(1780182635.125:11): avc:  denied  { getattr } for  pid=149 comm="systemd-modules" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:systemd_modules_load_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1780182635.129:12): avc:  denied  { search } for  pid=149 comm="systemd-modules" name="modules" dev="sda" ino=14430914 scontext=system_u:system_r:systemd_modules_load_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=dir permissive=1
+audit: type=1400 audit(1780182635.129:13): avc:  denied  { search } for  pid=149 comm="systemd-modules" name="7.0.0" dev="sda" ino=14430915 scontext=system_u:system_r:systemd_modules_load_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=dir permissive=1
+audit: type=1400 audit(1780182635.130:14): avc:  denied  { map } for  pid=149 comm="systemd-modules" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:systemd_modules_load_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1780182635.130:15): avc:  denied  { search } for  pid=149 comm="systemd-modules" name="modules" dev="sda" ino=14430914 scontext=system_u:system_r:systemd_modules_load_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=dir permissive=1
+audit: type=1400 audit(1780182635.131:16): avc:  denied  { search } for  pid=149 comm="systemd-modules" name="7.0.0" dev="sda" ino=14430915 scontext=system_u:system_r:systemd_modules_load_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=dir permissive=1
+systemd[1]: Mounted Huge Pages File System.
+EXT4-fs (sda): re-mounted 2fcd8a85-892e-41ea-9ca6-d569b837edef r/w.
+systemd[1]: Mounted POSIX Message Queue File System.
+systemd[1]: Mounted /proc/sys/fs/binfmt_misc.
+systemd[1]: Mounted /sys/kernel/config.
+systemd[1]: Mounted /sys/kernel/debug.
+systemd[1]: Mounted Kernel Trace File System.
+systemd[1]: modprobe@fuse.service: Succeeded.
+systemd[1]: Finished Load Kernel Module fuse.
+systemd[1]: Finished Load Kernel Modules.
+systemd[1]: Finished Remount Root and Kernel File Systems.
+systemd[1]: Condition check resulted in FUSE Control File System being skipped.
+systemd[1]: Condition check resulted in Set Up Additional Binary Formats being skipped.
+systemd[1]: Condition check resulted in Rebuild Hardware Database being skipped.
+systemd[1]: Condition check resulted in Platform Persistent Storage Archival being skipped.
+systemd[1]: Starting Load/Save Random Seed...
+systemd[1]: Starting Apply Kernel Variables...
+systemd[1]: Starting Create System Users...
+systemd[1]: Finished Load/Save Random Seed.
+systemd[1]: Condition check resulted in First Boot Complete being skipped.
+systemd[1]: Finished Apply Kernel Variables.
+systemd[1]: Started Journal Service.
+systemd-journald[148]: Received client request to flush runtime journal.
+systemd-journald[148]: File /var/log/journal/2d5cc7b0e35b4a7f891feea41daf48ae/system.journal corrupted or uncleanly shut down, renaming and replacing.
+udevadm (151) used greatest stack depth: 24400 bytes left
+kauditd_printk_skb: 11 callbacks suppressed
+audit: type=1400 audit(1780182644.852:28): avc:  denied  { read } for  pid=176 comm="systemd-udevd" name="drm_kms_helper.ko" dev="sda" ino=14431406 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1780182644.852:29): avc:  denied  { open } for  pid=176 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/kernel/drivers/gpu/drm/drm_kms_helper.ko" dev="sda" ino=14431406 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1780182644.939:30): avc:  denied  { map } for  pid=176 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/kernel/drivers/gpu/drm/drm_kms_helper.ko" dev="sda" ino=14431406 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+audit: type=1400 audit(1780182644.940:31): avc:  denied  { module_load } for  pid=176 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/kernel/drivers/gpu/drm/drm_kms_helper.ko" dev="sda" ino=14431406 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=system permissive=1
+lpc_ich 0000:00:1f.0: I/O space for GPIO uninitialized
+i801_smbus 0000:00:1f.3: SMBus using PCI interrupt
+i2c i2c-0: Memory type 0x07 not supported yet, not instantiating SPD
+iTCO_wdt iTCO_wdt.1.auto: Found a ICH9 TCO device (Version=2, TCOBASE=0x0660)
+iTCO_wdt iTCO_wdt.1.auto: initialized. heartbeat=30 sec (nowayout=0)
+bochs-drm 0000:00:01.0: vgaarb: deactivate vga console
+Console: switching to colour dummy device 80x25
+[drm] Found bochs VGA, ID 0xb0c5.
+[drm] Framebuffer size 16384 kB @ 0xfd000000, mmio @ 0xfea70000.
+[drm] Initialized bochs-drm 1.0.0 for 0000:00:01.0 on minor 0
+----------------
+Code disassembly (best guess):
+   0:	5d                   	pop    %rbp
+   1:	e9 5f 74 0b ff       	jmp    0xff0b7465
+   6:	e8 5a 74 0b ff       	call   0xff0b7465
+   b:	48 8d 3d e3 c6 de 05 	lea    0x5dec6e3(%rip),%rdi        # 0x5dec6f5
+  12:	67 48 0f b9 3a       	ud1    (%edx),%rdi
+  17:	5b                   	pop    %rbx
+  18:	5d                   	pop    %rbp
+  19:	e9 47 74 0b ff       	jmp    0xff0b7465
+  1e:	e8 42 74 0b ff       	call   0xff0b7465
+  23:	48 8d 3d db c6 de 05 	lea    0x5dec6db(%rip),%rdi        # 0x5dec705
+* 2a:	67 48 0f b9 3a       	ud1    (%edx),%rdi <-- trapping instruction
+  2f:	5b                   	pop    %rbx
+  30:	5d                   	pop    %rbp
+  31:	e9 2f 74 0b ff       	jmp    0xff0b7465
+  36:	e8 2a 74 0b ff       	call   0xff0b7465
+  3b:	48                   	rex.W
+  3c:	8d                   	.byte 0x8d
+  3d:	3d                   	.byte 0x3d
+  3e:	d3 c6                	rol    %cl,%esi
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

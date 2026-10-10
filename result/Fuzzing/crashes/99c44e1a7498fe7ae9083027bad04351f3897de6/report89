@@ -1,0 +1,63 @@
+pci-endpoint-test 0000:01:00.0: Failed to get transfer param
+pci-endpoint-test 0000:01:00.0: Failed to get transfer param
+pci-endpoint-test 0000:01:00.0: Invalid IRQ type option
+------------[ cut here ]------------
+WARNING: mm/page_alloc.c:5197 at __alloc_frozen_pages_noprof+0x310/0x24f0 mm/page_alloc.c:5197, CPU#0: syz.0.341/3446
+Modules linked in: iTCO_wdt intel_pmc_bxt watchdog bochs drm_shmem_helper drm_client_lib i2c_i801 i2c_smbus drm_kms_helper pci_endpoint_test lpc_ich
+CPU: 0 UID: 0 PID: 3446 Comm: syz.0.341 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:__alloc_frozen_pages_noprof+0x310/0x24f0 mm/page_alloc.c:5197
+Code: 5b 5d 41 5c 41 5d 41 5e 41 5f e9 4b 90 62 04 41 83 fc 0a 0f 86 05 fe ff ff 80 3d 76 cc 92 06 00 75 0b c6 05 6d cc 92 06 01 90 <0f> 0b 90 48 c7 04 24 00 00 00 00 e9 78 ff ff ff 48 8b 04 24 48 85
+RSP: 0018:ffff88811e1dfa60 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+RDX: 0000000000000000 RSI: 1ffff11023c3bf61 RDI: 0000000000040dc0
+RBP: 0000000000040dc0 R08: 0000000000000000 R09: dffffc0000000000
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000015
+R13: 0000000000000000 R14: ffffffff8ab98cc4 R15: 0000000000000015
+FS:  00007f30f9cb6640(0000) GS:ffff8881d07ac000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f30f87e5ff0 CR3: 00000001117de000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ alloc_pages_mpol+0xf2/0x350 mm/mempolicy.c:2490
+ ___kmalloc_large_node+0x105/0x140 mm/slub.c:5275
+ __kmalloc_large_node_noprof+0x29/0x120 mm/slub.c:5306
+ __do_kmalloc_node mm/slub.c:5322 [inline]
+ __kmalloc_noprof+0x5e6/0x7a0 mm/slub.c:5347
+ _kmalloc_noprof include/linux/slab.h:973 [inline] [pci_endpoint_test]
+ _kzalloc_noprof include/linux/slab.h:1286 [inline] [pci_endpoint_test]
+ pci_endpoint_test_read drivers/misc/pci_endpoint_test.c:967 [inline] [pci_endpoint_test]
+ pci_endpoint_test_ioctl+0x1f73/0x3790 drivers/misc/pci_endpoint_test.c:1185 [pci_endpoint_test]
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f30fb29359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f30f9cb5f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f30fb526090 RCX: 00007f30fb29359d
+RDX: 0000200000000180 RSI: 0000000040085005 RDI: 0000000000000003
+RBP: 00007f30fb332b08 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f30fb526128 R14: 00007f30fb526090 R15: 00007f30f9c96000
+ </TASK>
+irq event stamp: 0
+hardirqs last  enabled at (0): [<0000000000000000>] 0x0
+hardirqs last disabled at (0): [<ffffffff813b6e93>] copy_process+0x23a3/0x7a00 kernel/fork.c:2232
+softirqs last  enabled at (0): [<ffffffff813b6ee0>] copy_process+0x23f0/0x7a00 kernel/fork.c:2233
+softirqs last disabled at (0): [<0000000000000000>] 0x0
+---[ end trace 0000000000000000 ]---
+pci-endpoint-test 0000:01:00.0: Failed to allocate destination address
+pci-endpoint-test 0000:01:00.0: Failed to get transfer param
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

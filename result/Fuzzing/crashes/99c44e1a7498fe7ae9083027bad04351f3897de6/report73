@@ -1,0 +1,104 @@
+ALSA: seq fatal error: cannot create timer (-19)
+ALSA: seq fatal error: cannot create timer (-19)
+ALSA: seq fatal error: cannot create timer (-19)
+------------[ cut here ]------------
+[CRTC:35:crtc-0] vblank wait timed out
+WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_crtc_index include/drm/drm_crtc.h:1284 [inline] [drm_kms_helper], CPU#1: syz.4.4242/11907
+WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_get_new_crtc_state include/drm/drm_atomic.h:785 [inline] [drm_kms_helper], CPU#1: syz.4.4242/11907
+WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_helper_wait_for_vblanks.part.0+0x627/0x7b0 drivers/gpu/drm/drm_atomic_helper.c:1199 [drm_kms_helper], CPU#1: syz.4.4242/11907
+Modules linked in: snd_via82xx_modem snd_ac97_codec ac97_bus bochs iTCO_wdt drm_shmem_helper intel_pmc_bxt drm_client_lib watchdog i2c_i801 drm_kms_helper i2c_smbus 8250_pci lpc_ich
+CPU: 1 UID: 0 PID: 11907 Comm: syz.4.4242 Tainted: G        W        N  7.0.0 #7 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:drm_crtc_index include/drm/drm_crtc.h:1284 [inline] [drm_kms_helper]
+RIP: 0010:drm_atomic_get_new_crtc_state include/drm/drm_atomic.h:785 [inline] [drm_kms_helper]
+RIP: 0010:drm_atomic_helper_wait_for_vblanks.part.0+0x62d/0x7b0 drivers/gpu/drm/drm_atomic_helper.c:1199 [drm_kms_helper]
+Code: 00 48 8b 55 20 48 89 f8 48 c1 e8 03 42 0f b6 04 20 84 c0 74 08 3c 03 0f 8e 63 01 00 00 48 8d 3d 29 52 24 00 8b b5 d8 00 00 00 <67> 48 0f b9 3a e9 9b fd ff ff 44 8b 7c 24 3c 4c 89 eb e8 9c af 76
+RSP: 0000:ffff8881243377c8 EFLAGS: 00010246
+RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000040
+RDX: ffff888100e3cc60 RSI: 0000000000000023 RDI: ffffffffa0260190
+RBP: ffff88810ffb1318 R08: 0000000000000001 R09: 0000000000000001
+R10: ffffffff88486997 R11: 0000000000000000 R12: dffffc0000000000
+R13: 0000000000000000 R14: ffff8881042e2800 R15: 0000000000000000
+FS:  000055555609a500(0000) GS:ffff8881d0879000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f55034689c0 CR3: 0000000103f42000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ drm_atomic_helper_commit_tail+0x100/0x130 drivers/gpu/drm/drm_atomic_helper.c:2984 [drm_kms_helper]
+ commit_tail+0x2c2/0x390 drivers/gpu/drm/drm_atomic_helper.c:2573 [drm_kms_helper]
+ drm_atomic_helper_commit+0x308/0x390 drivers/gpu/drm/drm_atomic_helper.c:3528 [drm_kms_helper]
+ drm_atomic_commit+0x238/0x300 drivers/gpu/drm/drm_atomic.c:1775
+ drm_client_modeset_commit_atomic+0x684/0x7c0 drivers/gpu/drm/drm_client_modeset.c:1104
+ drm_client_modeset_commit_locked+0x14e/0x590 drivers/gpu/drm/drm_client_modeset.c:1207
+ drm_client_modeset_commit+0x56/0x90 drivers/gpu/drm/drm_client_modeset.c:1233
+ drm_fb_helper_find_sizes drivers/gpu/drm/drm_fb_helper.c:1439 [inline] [drm_kms_helper]
+ drm_fb_helper_single_fb_probe drivers/gpu/drm/drm_fb_helper.c:1459 [inline] [drm_kms_helper]
+ __drm_fb_helper_restore_fbdev_mode_unlocked.part.0+0x137/0x160 drivers/gpu/drm/drm_fb_helper.c:1647 [drm_kms_helper]
+ setcmap_pseudo_palette drivers/gpu/drm/drm_fb_helper.c:666 [inline] [drm_kms_helper]
+ drm_fb_helper_restore_fbdev_mode_unlocked+0x97/0xc0 drivers/gpu/drm/drm_fb_helper.c:884 [drm_kms_helper]
+ drm_fbdev_client_restore+0x20/0x30 drm_fbdev_client.c:-1 [drm_client_lib]
+ drm_client_dev_restore+0x205/0x2a0 drivers/gpu/drm/drm_client_event.c:118
+ drm_lastclose drivers/gpu/drm/drm_file.c:408 [inline]
+ drm_release+0x2cb/0x370 drivers/gpu/drm/drm_file.c:441
+ __fput+0x407/0xb50 fs/file_table.c:469
+ task_work_run+0x170/0x260 kernel/task_work.c:233
+ resume_user_mode_work include/linux/resume_user_mode.h:50 [inline]
+ __exit_to_user_mode_loop kernel/entry/common.c:67 [inline]
+ exit_to_user_mode_loop+0x123/0x4f0 kernel/entry/common.c:98
+ __exit_to_user_mode_prepare include/linux/irq-entry-common.h:226 [inline]
+ syscall_exit_to_user_mode_prepare include/linux/irq-entry-common.h:256 [inline]
+ syscall_exit_to_user_mode include/linux/entry-common.h:325 [inline]
+ do_syscall_64+0x572/0x690 arch/x86/entry/syscall_64.c:100
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fa68ed5359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007ffe03814918 EFLAGS: 00000246 ORIG_RAX: 00000000000001b4
+RAX: 0000000000000000 RBX: 00007fa68efe7da0 RCX: 00007fa68ed5359d
+RDX: 0000000000000000 RSI: 000000000000001e RDI: 0000000000000003
+RBP: 00007ffe038149b8 R08: 0000001b30820569 R09: 0000000000000000
+R10: 0000001b30c20000 R11: 0000000000000246 R12: ffffffffffffffff
+R13: 00007fa68efe5fac R14: 00007fa68efe7da0 R15: 00007ffe038149e0
+ </TASK>
+irq event stamp: 2695
+hardirqs last  enabled at (2701): [<ffffffff8157baea>] console_trylock_spinning kernel/printk/printk.c:2021 [inline]
+hardirqs last  enabled at (2701): [<ffffffff8157baea>] vprintk_emit+0x5ea/0x630 kernel/printk/printk.c:2478
+hardirqs last disabled at (2706): [<ffffffff8157ba80>] console_trylock_spinning kernel/printk/printk.c:2000 [inline]
+hardirqs last disabled at (2706): [<ffffffff8157ba80>] vprintk_emit+0x580/0x630 kernel/printk/printk.c:2478
+softirqs last  enabled at (2514): [<ffffffff813dbc30>] __do_softirq kernel/softirq.c:656 [inline]
+softirqs last  enabled at (2514): [<ffffffff813dbc30>] invoke_softirq kernel/softirq.c:496 [inline]
+softirqs last  enabled at (2514): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100 kernel/softirq.c:723
+softirqs last disabled at (2499): [<ffffffff813dbc30>] __do_softirq kernel/softirq.c:656 [inline]
+softirqs last disabled at (2499): [<ffffffff813dbc30>] invoke_softirq kernel/softirq.c:496 [inline]
+softirqs last disabled at (2499): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100 kernel/softirq.c:723
+---[ end trace 0000000000000000 ]---
+----------------
+Code disassembly (best guess):
+   0:	00 48 8b             	add    %cl,-0x75(%rax)
+   3:	55                   	push   %rbp
+   4:	20 48 89             	and    %cl,-0x77(%rax)
+   7:	f8                   	clc
+   8:	48 c1 e8 03          	shr    $0x3,%rax
+   c:	42 0f b6 04 20       	movzbl (%rax,%r12,1),%eax
+  11:	84 c0                	test   %al,%al
+  13:	74 08                	je     0x1d
+  15:	3c 03                	cmp    $0x3,%al
+  17:	0f 8e 63 01 00 00    	jle    0x180
+  1d:	48 8d 3d 29 52 24 00 	lea    0x245229(%rip),%rdi        # 0x24524d
+  24:	8b b5 d8 00 00 00    	mov    0xd8(%rbp),%esi
+* 2a:	67 48 0f b9 3a       	ud1    (%edx),%rdi <-- trapping instruction
+  2f:	e9 9b fd ff ff       	jmp    0xfffffdcf
+  34:	44 8b 7c 24 3c       	mov    0x3c(%rsp),%r15d
+  39:	4c 89 eb             	mov    %r13,%rbx
+  3c:	e8                   	.byte 0xe8
+  3d:	9c                   	pushf
+  3e:	af                   	scas   %es:(%rdi),%eax
+  3f:	76                   	.byte 0x76
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

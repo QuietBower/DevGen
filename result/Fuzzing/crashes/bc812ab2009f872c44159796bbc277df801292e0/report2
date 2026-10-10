@@ -1,0 +1,58 @@
+BUG: Bad page state in process syz.0.3505  pfn:10010
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x10010
+flags: 0x100000000200000(arch_2|node=0|zone=1)
+raw: 0100000000200000 ffffea0000400408 ffffea0000400408 0000000000000000
+raw: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000000
+page dumped because: PAGE_FLAGS_CHECK_AT_PREP flag(s) set
+Modules linked in: loongson(+) bochs drm_ttm_helper iTCO_wdt drm_shmem_helper ttm intel_pmc_bxt drm_client_lib watchdog drm_kms_helper i2c_i801 lpc_ich i2c_smbus
+CPU: 3 UID: 0 PID: 9318 Comm: syz.0.3505 Tainted: G      D W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [D]=DIE, [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0x10b/0x140 lib/dump_stack.c:120
+ bad_page+0x91/0x1c0 mm/page_alloc.c:632
+ check_new_page_bad mm/page_alloc.c:1744 [inline]
+ check_new_page mm/page_alloc.c:1757 [inline]
+ check_new_pages mm/page_alloc.c:1767 [inline]
+ check_new_pages mm/page_alloc.c:1761 [inline]
+ rmqueue_buddy mm/page_alloc.c:3235 [inline]
+ rmqueue mm/page_alloc.c:3403 [inline]
+ get_page_from_freelist+0x10be/0x2b80 mm/page_alloc.c:3938
+ __alloc_frozen_pages_noprof+0x262/0x24f0 mm/page_alloc.c:5221
+ alloc_pages_mpol+0xf2/0x350 mm/mempolicy.c:2490
+ alloc_pages_noprof+0x21/0x170 mm/mempolicy.c:2581
+ vm_area_alloc_pages mm/vmalloc.c:3653 [inline]
+ __vmalloc_area_node mm/vmalloc.c:3878 [inline]
+ __vmalloc_node_range_noprof+0xef1/0x15a0 mm/vmalloc.c:4064
+ __kvmalloc_node_noprof+0x3cb/0x940 mm/slub.c:6861
+ drm_property_create_blob.part.0+0x35/0x2b0 drivers/gpu/drm/drm_property.c:565
+ drm_property_create_blob drivers/gpu/drm/drm_property.c:562 [inline]
+ drm_mode_createblob_ioctl+0x13e/0x420 drivers/gpu/drm/drm_property.c:863
+ drm_ioctl_kernel+0x1f2/0x3e0 drivers/gpu/drm/drm_ioctl.c:805
+ drm_ioctl+0x580/0xb70 drivers/gpu/drm/drm_ioctl.c:902
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7fd82a9d359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007fd829416f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007fd82ac65fa0 RCX: 00007fd82a9d359d
+RDX: 0000200000000040 RSI: 00000000c02064bd RDI: 0000000000000003
+RBP: 00007fd82aa72b08 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007fd82ac66038 R14: 00007fd82ac65fa0 R15: 00007fd8293f7000
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

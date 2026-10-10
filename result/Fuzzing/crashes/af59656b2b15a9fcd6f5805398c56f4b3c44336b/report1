@@ -1,0 +1,84 @@
+[drm] GMBUS timed out, falling back to bit banging on pin 0 [gma500 gmbus disabled]
+[drm] GMBUS timed out, falling back to bit banging on pin 0 [gma500 gmbus disabled]
+[drm] GMBUS timed out, falling back to bit banging on pin 0 [gma500 gmbus disabled]
+Oops: general protection fault, probably for non-canonical address 0xdffffc0000000002: 0000 [#1] SMP KASAN PTI
+KASAN: null-ptr-deref in range [0x0000000000000010-0x0000000000000017]
+CPU: 3 UID: 0 PID: 2058 Comm: syz.1.8 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+Tainted: [W]=WARN, [N]=TEST
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:gmbus_xfer+0x5e6/0xd80 drivers/gpu/drm/gma500/intel_gmbus.c:298 [gma500_gfx]
+Code: ff ff 31 ed 45 31 e4 e8 f8 76 70 e1 4c 89 ef 49 83 c5 01 48 b9 00 00 00 00 00 fc ff df 48 89 f8 48 89 fa 48 c1 e8 03 83 e2 07 <0f> b6 04 08 38 d0 7f 08 84 c0 0f 85 4e 07 00 00 41 0f b6 45 ff 83
+RSP: 0018:ffff88811aac7c80 EFLAGS: 00010246
+RAX: 0000000000000002 RBX: 0000000000000000 RCX: dffffc0000000000
+RDX: 0000000000000000 RSI: ffffffffa0094468 RDI: 0000000000000010
+RBP: 0000000000000000 R08: 0000000000000000 R09: ffffed10203938c0
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000011 R14: ffff888102a94000 R15: ffffed1020552a03
+FS:  00007f3260717640(0000) GS:ffff8881d092c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 0000001b3001eff8 CR3: 000000011f1fc000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ __i2c_transfer+0x698/0x2010 drivers/i2c/i2c-core-base.c:2287
+ i2c_transfer drivers/i2c/i2c-core-base.c:2343 [inline]
+ i2c_transfer+0x1e3/0x390 drivers/i2c/i2c-core-base.c:2319
+ i2cdev_ioctl_rdwr+0x38e/0x710 drivers/i2c/i2c-dev.c:306
+ i2cdev_ioctl+0x2df/0x810 drivers/i2c/i2c-dev.c:467
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x11a/0x6a0 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f3261cd359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f3260716f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f3261f65fa0 RCX: 00007f3261cd359d
+RDX: 00002000000002c0 RSI: 0000000000000707 RDI: 0000000000000003
+RBP: 00007f3261d72b08 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f3261f66038 R14: 00007f3261f65fa0 R15: 00007f32606f7000
+ </TASK>
+Modules linked in: gma500_gfx iTCO_wdt bochs intel_pmc_bxt drm_shmem_helper watchdog drm_client_lib drm_kms_helper i2c_i801 i2c_smbus lpc_ich
+---[ end trace 0000000000000000 ]---
+RIP: 0010:gmbus_xfer+0x5e6/0xd80 drivers/gpu/drm/gma500/intel_gmbus.c:298 [gma500_gfx]
+Code: ff ff 31 ed 45 31 e4 e8 f8 76 70 e1 4c 89 ef 49 83 c5 01 48 b9 00 00 00 00 00 fc ff df 48 89 f8 48 89 fa 48 c1 e8 03 83 e2 07 <0f> b6 04 08 38 d0 7f 08 84 c0 0f 85 4e 07 00 00 41 0f b6 45 ff 83
+RSP: 0018:ffff88811aac7c80 EFLAGS: 00010246
+RAX: 0000000000000002 RBX: 0000000000000000 RCX: dffffc0000000000
+RDX: 0000000000000000 RSI: ffffffffa0094468 RDI: 0000000000000010
+RBP: 0000000000000000 R08: 0000000000000000 R09: ffffed10203938c0
+R10: 0000000000000000 R11: 0000000000000000 R12: 0000000000000000
+R13: 0000000000000011 R14: ffff888102a94000 R15: ffffed1020552a03
+FS:  00007f3260717640(0000) GS:ffff8881d082c000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00005599b9c165f8 CR3: 000000011f1fc000 CR4: 00000000000006f0
+----------------
+Code disassembly (best guess), 1 bytes skipped:
+   0:	ff 31                	push   (%rcx)
+   2:	ed                   	in     (%dx),%eax
+   3:	45 31 e4             	xor    %r12d,%r12d
+   6:	e8 f8 76 70 e1       	call   0xe1707703
+   b:	4c 89 ef             	mov    %r13,%rdi
+   e:	49 83 c5 01          	add    $0x1,%r13
+  12:	48 b9 00 00 00 00 00 	movabs $0xdffffc0000000000,%rcx
+  19:	fc ff df
+  1c:	48 89 f8             	mov    %rdi,%rax
+  1f:	48 89 fa             	mov    %rdi,%rdx
+  22:	48 c1 e8 03          	shr    $0x3,%rax
+  26:	83 e2 07             	and    $0x7,%edx
+* 29:	0f b6 04 08          	movzbl (%rax,%rcx,1),%eax <-- trapping instruction
+  2d:	38 d0                	cmp    %dl,%al
+  2f:	7f 08                	jg     0x39
+  31:	84 c0                	test   %al,%al
+  33:	0f 85 4e 07 00 00    	jne    0x787
+  39:	41 0f b6 45 ff       	movzbl -0x1(%r13),%eax
+  3e:	83                   	.byte 0x83
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

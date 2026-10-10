@@ -1,0 +1,67 @@
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	2-...!: (1 GPs behind) idle=3b04/1/0x4000000000000000 softirq=45776/45777 fqs=254
+rcu: 	(detected by 0, t=10567 jiffies, g=47029, q=5543 ncpus=4)
+rcu: rcu_preempt kthread starved for 9173 jiffies! g47029 f0x2 RCU_GP_WAIT_FQS(5) ->state=0x0 ->cpu=0
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:R  running task     stack:28520 pid:16    tgid:16    ppid:2      task_flags:0x208040 flags:0x00080000
+Call Trace:
+ <TASK>
+ context_switch home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:5325 [inline]
+ __schedule+0x1044/0x5bb0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:6929
+ __schedule_loop home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7011 [inline]
+ schedule+0xe7/0x3a0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/sched/core.c:7026
+ schedule_timeout+0x113/0x280 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/time/sleep_timeout.c:99
+ rcu_gp_fqs_loop+0x18c/0xa00 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2083
+ rcu_gp_kthread+0x26f/0x370 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/rcu/tree.c:2285
+ kthread+0x3d0/0x780 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x676/0x7d0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/kernel/process.c:158
+ ret_from_fork_asm+0x1a/0x30 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+rcu: Stack dump where RCU GP kthread last ran:
+CPU: 0 UID: 0 PID: 9884 Comm: syz-executor Not tainted 6.18.0 #1 PREEMPT(full) 
+Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+RIP: 0010:csd_lock_wait home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:342 [inline]
+RIP: 0010:smp_call_function_many_cond+0x811/0x15e0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:877
+Code: 48 b9 00 00 00 00 00 fc ff df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 21 07 0c 00 f3 90 <41> 0f b6 06 41 38 c4 7c 08 84 c0 0f 85 6d 0b 00 00 44 8b 7b 08 31
+RSP: 0018:ffffc900143e7760 EFLAGS: 00000293
+RAX: 0000000000000000 RBX: ffff888062940460 RCX: ffffffff81ae5104
+RDX: ffff888022beba00 RSI: ffffffff81ae50df RDI: 0000000000000005
+RBP: 0000000000000002 R08: 0000000000000001 R09: 0000000000000001
+R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000003
+R13: ffff88806283b740 R14: ffffed100c52808d R15: 0000000000000001
+FS:  000055555ada5500(0000) GS:ffff8880cf001000(0000) knlGS:0000000000000000
+CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+CR2: 00007f22119556c0 CR3: 0000000028fea000 CR4: 00000000000006f0
+Call Trace:
+ <TASK>
+ on_each_cpu_cond_mask+0x40/0x90 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/smp.c:1043
+ __flush_tlb_multi home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/include/asm/paravirt.h:91 [inline]
+ flush_tlb_multi home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/tlb.c:1381 [inline]
+ flush_tlb_mm_range+0x42d/0x17d0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/mm/tlb.c:1471
+ dup_mmap+0xebb/0x20d0 home/wmy/Fuzzer/third_tool/linux-6.18/mm/mmap.c:1873
+ dup_mm home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:1489 [inline]
+ copy_mm home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:1541 [inline]
+ copy_process+0x36ba/0x76c0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2181
+ kernel_clone+0xea/0x8b0 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2609
+ __do_sys_clone+0xce/0x120 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/fork.c:2750
+ do_syscall_x64 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0xcb/0xfa0 home/wmy/Fuzzer/third_tool/linux-6.18/arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f2210ba6d07
+Code: 00 00 90 f3 0f 1e fa 64 48 8b 04 25 10 00 00 00 45 31 c0 31 d2 31 f6 bf 11 00 20 01 4c 8d 90 d0 02 00 00 b8 38 00 00 00 0f 05 <48> 3d 00 f0 ff ff 77 41 41 89 c0 85 c0 75 2c 64 48 8b 04 25 10 00
+RSP: 002b:00007ffd076becc8 EFLAGS: 00000246 ORIG_RAX: 0000000000000038
+RAX: ffffffffffffffda RBX: 00007f221195d680 RCX: 00007f2210ba6d07
+RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000001200011
+RBP: 0000000000000001 R08: 0000000000000000 R09: 0000000000000001
+R10: 000055555ada57d0 R11: 0000000000000246 R12: 0000000000000000
+R13: 0000000000000032 R14: 00007ffd076beeb0 R15: 0000000000073cba
+ </TASK>
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+

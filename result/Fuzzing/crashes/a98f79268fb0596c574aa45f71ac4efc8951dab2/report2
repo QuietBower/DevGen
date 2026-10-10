@@ -1,0 +1,70 @@
+4xxx 0000:01:00.0: Unknown type given.
+4xxx 0000:01:00.0: failed to add keyvalue.
+QAT: Device 8 not found
+4xxx 0000:01:00.0: Starting acceleration device qat_dev0.
+==================================================================
+BUG: KASAN: use-after-free in owner_on_cpu include/linux/sched.h:2314 [inline]
+BUG: KASAN: use-after-free in mutex_can_spin_on_owner kernel/locking/mutex.c:413 [inline]
+BUG: KASAN: use-after-free in mutex_optimistic_spin kernel/locking/mutex.c:456 [inline]
+BUG: KASAN: use-after-free in __mutex_lock_common kernel/locking/mutex.c:618 [inline]
+BUG: KASAN: use-after-free in __mutex_lock+0x18c0/0x1f40 kernel/locking/mutex.c:776
+Read of size 4 at addr ffff888101230034 by task syz.0.4783/14625
+
+CPU: 3 UID: 0 PID: 14625 Comm: syz.0.4783 Tainted: G      D             7.0.0 #2 PREEMPT(full) 
+Tainted: [D]=DIE
+Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+Call Trace:
+ <TASK>
+ __dump_stack lib/dump_stack.c:94 [inline]
+ dump_stack_lvl+0xdb/0x140 lib/dump_stack.c:120
+ print_address_description mm/kasan/report.c:378 [inline]
+ print_report+0xcb/0x610 mm/kasan/report.c:482
+ kasan_report+0xca/0x100 mm/kasan/report.c:595
+ owner_on_cpu include/linux/sched.h:2314 [inline]
+ mutex_can_spin_on_owner kernel/locking/mutex.c:413 [inline]
+ mutex_optimistic_spin kernel/locking/mutex.c:456 [inline]
+ __mutex_lock_common kernel/locking/mutex.c:618 [inline]
+ __mutex_lock+0x18c0/0x1f40 kernel/locking/mutex.c:776
+ adf_dev_up+0x44/0x14c0 drivers/crypto/intel/qat/qat_common/adf_hw_arbiter.c:98 [intel_qat]
+ adf_ctl_ioctl+0x1d6/0x1080 qat_algs.c:-1 [intel_qat]
+ vfs_ioctl fs/ioctl.c:51 [inline]
+ __do_sys_ioctl fs/ioctl.c:597 [inline]
+ __se_sys_ioctl fs/ioctl.c:583 [inline]
+ __x64_sys_ioctl+0x194/0x210 fs/ioctl.c:583
+ do_syscall_x64 arch/x86/entry/syscall_64.c:63 [inline]
+ do_syscall_64+0x116/0x690 arch/x86/entry/syscall_64.c:94
+ entry_SYSCALL_64_after_hwframe+0x77/0x7f
+RIP: 0033:0x7f3ca807359d
+Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+RSP: 002b:00007f3ca6ab6f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+RAX: ffffffffffffffda RBX: 00007f3ca8305fa0 RCX: 00007f3ca807359d
+RDX: 0000200000000f40 RSI: 0000000040096102 RDI: 0000000000000004
+RBP: 00007f3ca8112ab8 R08: 0000000000000000 R09: 0000000000000000
+R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+R13: 00007f3ca8306038 R14: 00007f3ca8305fa0 R15: 00007f3ca6a97000
+ </TASK>
+
+The buggy address belongs to the physical page:
+page: refcount:0 mapcount:0 mapping:0000000000000000 index:0xffff888101232000 pfn:0x101230
+flags: 0x200000000000000(node=0|zone=2)
+page_type: f0(buddy)
+raw: 0200000000000000 ffffea000553fc08 ffffea00050edc08 0000000000000000
+raw: ffff888101232000 0000000000000004 00000000f0000000 0000000000000000
+page dumped because: kasan: bad access detected
+
+Memory state around the buggy address:
+ ffff88810122ff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+ ffff88810122ff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+>ffff888101230000: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+                                     ^
+ ffff888101230080: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+ ffff888101230100: ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff ff
+==================================================================
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+
+<<<<<<<<<<<<<<< tail report >>>>>>>>>>>>>>>
+
