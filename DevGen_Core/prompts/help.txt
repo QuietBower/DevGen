@@ -1,7 +1,7 @@
-DRIVER_NAMKE          代表的是驱动名——静态分析提供的
-QEMU_CODE             代表的是上一步返回值提供的QEMU源码
-Relevant_Source       代表要提供的驱动源码——静态分析提供的
-ERR_MSG               代表的是编译过程中的错误信息
+DRIVER_NAMKE          stands for the driver name — provided by static analysis
+QEMU_CODE             stands for the QEMU source code provided by the return value of the previous step
+Relevant_Source       stands for the driver source code to be provided — provided by static analysis
+ERR_MSG               stands for the error message during compilation
 
 {
     "role": "system",
@@ -11,40 +11,40 @@ ERR_MSG               代表的是编译过程中的错误信息
                 You only reply with JSON."
 }
 
-每个prompt需要填充的内容：
+Content to fill in for each prompt:
 
 pci_template:
-    需要对其中的DRIVER_NAME进行替换,换成驱动的名字。
+    Replace DRIVER_NAME inside it with the driver's name.
 
-full_output：
-    仅仅只有一句话，就是请继续回答，主要是解决代码量过长不能一次性输出的问题，不需要进行替换。
+full_output:
+    Contains only a single sentence: "please continue". It mainly solves the problem that code which is too long cannot be output all at once; no replacement is needed.
 
-step0：
-    不需要填充任何内容，作为一个背景介绍，注意回复OK即代表成功，对于这一步可以不用实现。
-    这一块不需要询问LLM，我们自动设置回复的值为"OK"（因为询问没有意义，不能让他们有会话记录功能）
+step0:
+    No content needs to be filled in; it serves as a background introduction. Note that replying with OK means success, and this step does not need to be implemented.
+    This part does not need to query the LLM; we automatically set the reply value to "OK" (because querying is meaningless, and they must not have conversation-memory capability).
 
-step1：
-    需要替换三处，分别是PCI_TEMPLATE，即我们的模板代码，DRIVER_NAME，即驱动的名字，Relevant_Source，第一次传递给驱动的相关头文件（不需要查找）。
+step1:
+    Three placeholders need to be replaced: PCI_TEMPLATE (our template code), DRIVER_NAME (the driver's name), and Relevant_Source (the relevant header files passed to the driver for the first time; no lookup needed).
 
-step1-iteration：
-    需要替换三处，DRIVER_NAME，即驱动的名字，QEMU_CODE，即上次回答的QEMU代码，Relevant_Source，即need_resource中所需的相关源码
+step1-iteration:
+    Three placeholders need to be replaced: DRIVER_NAME (the driver's name), QEMU_CODE (the QEMU code from the previous answer), and Relevant_Source (the relevant source code required in need_resource).
 
-step2：
-    需要替换三处，DRIVER_NAME，即驱动的名字，QEMU_CODE，即上一步回答的QEMU代码，Relevant_Source，即第二步第一次需要传递的相关函数源码（不需要查找）。
+step2:
+    Three placeholders need to be replaced: DRIVER_NAME (the driver's name), QEMU_CODE (the QEMU code from the previous answer), and Relevant_Source (the relevant function source code that needs to be passed for the first time in step 2; no lookup needed).
 
-step2-iteration：
-    需要替换三处，DRIVER_NAME，即驱动的名字，QEMU_CODE，即上一步回答的QEMU代码，Relevant_Source，即need_resource中所需的相关源码
+step2-iteration:
+    Three placeholders need to be replaced: DRIVER_NAME (the driver's name), QEMU_CODE (the QEMU code from the previous answer), and Relevant_Source (the relevant source code required in need_resource).
 
-step3：
-    仅需两处，一处是DRIVER_NAME，即驱动的名字，QEMU_CODE，即上一步回答的QEMU代码。
+step3:
+    Only two placeholders: DRIVER_NAME (the driver's name) and QEMU_CODE (the QEMU code from the previous answer).
 
-step3-iteration：
-    需要两处，一处是QEMU_CODE，即上一步QEMU代码，一处是Relevant_Source，即need_resource中所需的相关源码
+step3-iteration:
+    Two placeholders: QEMU_CODE (the previous step's QEMU code) and Relevant_Source (the relevant source code required in need_resource).
 
 
-构造历史记录：
-    step1：system -> step0:OK -> two_examples:OK -> step1
-    step1-iteration：system -> step0:OK ->two_examples:OK -> step1-iteration
-    step2：system -> step0:OK -> two_examples:OK -> step2
+Constructing the conversation history:
+    step1: system -> step0:OK -> two_examples:OK -> step1
+    step1-iteration: system -> step0:OK -> two_examples:OK -> step1-iteration
+    step2: system -> step0:OK -> two_examples:OK -> step2
 
-step1_examples.txt、three_examples.txt暂时没有用到
+step1_examples.txt and three_examples.txt are not used for now

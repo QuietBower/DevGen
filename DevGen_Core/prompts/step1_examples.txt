@@ -27,7 +27,7 @@ struct EduState {
     PCIDevice pdev;
     MemoryRegion mmio;
 
-    // 线程和同步机制（将在后续阶段处理）
+    // Thread and synchronization mechanism (to be handled in a later phase)
     QemuThread thread;
     QemuMutex thr_mutex;
     QemuCond thr_cond;
@@ -51,7 +51,7 @@ struct EduState {
     uint64_t dma_mask;
 };
 
-// 不涉及具体逻辑操作
+// No specific logic operations involved
 static bool edu_msi_enabled(EduState *edu) {
     return msi_enabled(&edu->pdev);
 }

@@ -1,38 +1,26 @@
-# The previous answer exceeded the token limit.
-# Continue the response EXACTLY from the next character after the last output.
-# DO NOT repeat, rephrase, or modify any previously generated content.
-# DO NOT restart or create a new code block, JSON object, struct, or function.
-# Continue ONLY the existing one.
+# SYSTEM DIRECTIVE: Truncation Recovery (Strict Continuation)
 
-# STRICT CONTINUATION RULES:
-  1. Continue the output literally from where it stopped.
-  2. Preserve formatting, indentation, and open/close braces exactly.
-  3. If the previous output ends inside:
-      - a JSON string  : continue JSON-escaped characters.
-      - a JSON array   : continue listing items.
-      - a JSON object  : continue adding fields ONLY if still inside that object.
-      - a C code block : continue valid C code.
-      - a struct/function : finish it properly without changes.
-  4. DO NOT restart or open a new:
-      - JSON object
-      - JSON array
-      - "code": "" block
-      - C file beginning
-      - include section
-      - type definition
-  5. DO NOT introduce:
-      - new placeholders
-      - TODO
-      - "..." ellipses
-      - comments or explanation text
-      - duplicated lines
-  6. If the previous text ended:
-      - mid-line : continue on the SAME line
-      - end of line : continue on the NEXT line
-  7. You MUST NOT create a new JSON object. Only continue the existing JSON output.
-  8. Continue inside the SAME JSON field unless it was already properly closed.
-  9. The continuation must not alter previously generated logic, syntax, or structure.
+The previous response reached the maximum token limit and was abruptly truncated. 
+Your objective is to resume the output **mathematically perfectly** from the exact next character. 
 
-# Output MUST strictly be the continuation only.
+--------------------------------------------------------------------
+## ABSOLUTE CONTINUATION RULES (ZERO TOLERANCE)
+--------------------------------------------------------------------
+1. **Seamless Concatenation**: Your output will be directly appended to the previous string by an automated script. Do NOT repeat a single character, word, or symbol that was already printed in the previous output.
+2. **No Markdown Wrappers**: Do NOT start your response with ```json, ```c, or any other markdown formatting block. Assume the block is already open. 
+3. **No Conversational Filler**: Do NOT output "Here is the rest", "Continuing from...", or any explanatory text. Output ONLY the raw missing data.
+4. **Strict Context Preservation**:
+   - If the truncation occurred mid-word, output the remainder of the word.
+   - If the truncation occurred mid-line, continue on the SAME line.
+   - If the truncation occurred inside the JSON `"code"` string, continue outputting valid JSON-escaped C code.
+   - If the truncation occurred inside a C function, finish the function with correct syntax and indentation.
+5. **No Hallucinated Restarts**: 
+   - Do NOT restart the JSON object (`{`).
+   - Do NOT restart the `"code": ""` key.
+   - Do NOT re-import `#include` headers or redefine structures that were already completed.
 
-## Continue your output below:
+--------------------------------------------------------------------
+## YOUR TASK
+--------------------------------------------------------------------
+Resume the exact stream of characters from the point of truncation. 
+Output nothing but the direct continuation.

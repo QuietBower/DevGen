@@ -1,181 +1,59 @@
-# Structure Phase – Iteration (STATIC REFINEMENT ONLY)
+# Phase 1: Structure - Iteration (Static Refinement Only)
 
-You are performing an **incremental refinement** of a QEMU PCI device model
-for the Linux driver located at `DRIVER_PATH`.
+You are performing an **incremental refinement** of a QEMU 8.2.10 virtual PCI device model for the Linux driver located at `DRIVER_PATH`.
 
-This iteration exists ONLY to:
-- Correct mistakes in the previous structure-phase output
-- Complete missing static definitions
-based STRICTLY on newly provided driver source code.
-
-This is still **Stage-1 (Structure Phase)**.
-NO runtime logic is allowed under any circumstances.
+**OBJECTIVE:** This iteration exists ONLY to correct omissions or mistakes in the previous structure-phase output based STRICTLY on **newly provided supplementary driver source code**. 
+This is still **Stage-1 (Structure Phase)**. You are NOT implementing behavior. You are ONLY transcribing explicit static definitions.
 
 --------------------------------------------------------------------
-## ABSOLUTE ITERATION SCOPE
+## ABSOLUTE ITERATION SCOPE (PURE DELTA UPDATE)
 --------------------------------------------------------------------
-
-You MUST treat this iteration as a **pure delta update** over the previous structure-phase output.
-
-You are allowed to:
-- Fix incorrect static values
-- Fill previously unknown placeholders
-- Remove placeholders proven unnecessary by new source
-
-You are NOT allowed to:
-- Introduce any new structural concepts
-- Expand scope beyond what the new driver source explicitly reveals
-- Reinterpret or "improve" earlier correct content
-
-If the new source does not explicitly justify a change, DO NOT change it.
+You MUST treat this iteration as a pure delta update over the previous structure-phase output.
+- You MAY: Fix incorrect static values, fill previously unknown placeholders, or remove placeholders proven unnecessary by the new source.
+- You MUST NOT: Introduce any new structural concepts, expand scope beyond what the new source explicitly reveals, or reinterpret earlier correct content.
 
 --------------------------------------------------------------------
-## ALLOWED UPDATES (STRUCTURE-ONLY)
+## EXTRACTION SCOPE (ALLOWED UPDATES)
 --------------------------------------------------------------------
+You may update or extract ONLY the following, and ONLY when explicitly visible in the supplementary driver source:
 
-You MAY update ONLY the following, and ONLY when the supplementary driver
-source explicitly provides evidence:
-
-### 1. BAR Definitions
-- BAR count
-- BAR size
-- BAR type (MMIO / I/O)
-
-**Allowed evidence includes**:
-- Fixed-length macros
-- Header-defined region sizes
-- Hard-coded constants
-- `pci_resource_len()` returning a literal or macro
-
-If ambiguity remains:
-- DO NOT guess
-- Add missing symbols to `"needed_sources"`
-
-### 2. Register Offsets
-- `#define` offsets directly appearing in source or headers
-- Literal numeric values only
-- No synthesis, merging, or inference
-
-### 3. Static Data Types
-- `struct` definitions
-- `enum` values
-- bit fields
-- masks
-- constants
-
-Only those explicitly declared in the driver or headers.
-
-### 4. Interrupt Capability Presence (NOT behavior)
-- Legacy / MSI / MSI-X presence
-- Only if explicitly referenced via:
-  - macros
-  - capability flags
-  - `pci_enable_msi()`
-  - `pci_enable_msix()`
-
-No inference from naming or comments.
-
-### 5. Static Tables
-- Constant arrays
-- Lookup tables
-- Descriptor templates (static only)
-- Only if referenced during probe/init
-
-### 6. PCI Identification Rule (MANDATORY)
-- If multiple entries exist in `struct pci_device_id`,
-  you MUST ALWAYS use the **first entry only**.
+1. **PCI Identification**: Vendor ID and Device ID. 
+   - *Rule*: If multiple entries exist in the `pci_device_id` table, ALWAYS select the FIRST entry ONLY.
+2. **BAR Information**: BAR index, count, sizes, and type (MMIO / IO). 
+   - *Rule*: Extract ONLY if explicitly defined via macros (e.g., `BAR0_SIZE`), fixed constants, or explicit `pci_resource_len()` checks. Do NOT guess or approximate.
+3. **Hardware Definitions**: 
+   - Literal numeric register offsets (`#define` only).
+   - Bitfields, masks, enums, constants, control/status bits, and command values explicitly declared in headers or source.
+4. **Static Structures & Tables**: 
+   - `struct` definitions used by the driver to map hardware registers. 
+   - Static arrays, lookup tables, or descriptor templates referenced during probe/init.
+5. **Capability Presence**: Legacy IRQ, MSI, or MSI-X.
+   - *Rule*: Note presence ONLY if explicitly requested (e.g., `pci_enable_msi()`, `pci_enable_msix()`, MSI-X tables, or related capability flags).
 
 --------------------------------------------------------------------
-## STRICTLY FORBIDDEN ACTIONS
+## STRICT CONSTRAINTS & PLACEHOLDER RULES (ZERO TOLERANCE)
 --------------------------------------------------------------------
+1. **NO Behavioral Logic**: Do NOT implement MMIO/PIO read/write handlers, DMA transfers, reset logic, or IRQ firing.
+2. **NO Hallucination**: Do NOT invent register offsets, BAR sizes, DMA rings, or QEMU-internal state fields. If a fact is not in the source, it does not exist.
+3. **Placeholder Deletion (MANDATORY)**: If the supplementary source proves the driver does NOT reference a specific feature (e.g., DMA, MSI-X, PM), you MUST **DELETE** the entire corresponding `#Placeholder#` block. Partial or empty placeholders MUST NOT remain.
+4. **Template Integrity**: Modify ONLY sections marked with `#...#`. Do NOT alter non-placeholder logic (e.g., `msix_uninit(pdev, NULL, 0)`), modify `#define TYPE_PCIBASE_DEVICE`, or add/remove/reorder fields in any QEMU state struct outside placeholders.
+5. **API Bans**: NEVER include or reference `pci_set_dma` or `pci_set_dma_mask`.
 
-You MUST NOT:
-
-- Implement MMIO / PIO / DMA / IRQ logic
-- Add handlers, callbacks, timers, or reset flows
-- Modify the QEMU template outside `##PLACEHOLDER##`
-- Add, remove, or reorder fields in any QEMU state struct
-- Call:
-  - `memory_region_init_io`
-  - `pci_register_bar`
-  - MSI / MSI-X initialization routines
-- Infer BAR layouts, register maps, or features
-- Perform ANY Stage-2 reasoning (no behavioral inference)
-- Add speculative fields based on domain knowledge
-
-This iteration is **NOT** a design phase.
+## MISSING INFORMATION HANDLING
+--------------------------------------------------------------------
+If required static information (macros, structs, enums) used by the driver is still missing:
+- Do NOT guess its value.
+- Add the missing symbol to the `"needed_sources"` array.
+- Allowed formats: `"define:XXX"`, `"enum:YYY"`, `"struct:ZZZ"`, `"function:AAA"`.
+- Do NOT list standard Linux kernel APIs, PCI macros, or common kernel helpers in QEMU code.
 
 --------------------------------------------------------------------
-## DRIVER-SPECIFIC HARD CONSTRAINTS
+## OUTPUT SCHEMA (STRICT)
 --------------------------------------------------------------------
-
-1. NEVER modify:
-   `#define TYPE_PCIBASE_DEVICE`
-
-2. NEVER include or reference:
-   - `pci_set_dma`
-   - `pci_set_dma_mask`
-
-3. NEVER alter non-placeholder code.
-   Example:
-   - Do NOT modify `msix_uninit(pdev, NULL, 0)`
-   - Do NOT refactor or simplify template logic
-
---------------------------------------------------------------------
-## PLACEHOLDER HANDLING RULE (MANDATORY)
---------------------------------------------------------------------
-
-- You may ONLY touch sections explicitly marked as placeholders
-- You may ONLY:
-  - Fill a placeholder
-  - OR delete the entire placeholder block
-
-If a feature (DMA / MSI / MSI-X / GPIO / PM / clocks / timers / reset logic /
-descriptor rings) does NOT appear in the driver or supplementary source:
-- DELETE the entire placeholder block
-- Partial placeholders MUST NOT remain
-
---------------------------------------------------------------------
-## BAR INFERENCE RULE (REINFORCED)
---------------------------------------------------------------------
-
-You may update BAR count or size ONLY if the supplementary driver source
-explicitly provides:
-- fixed-size resource constants
-- region size macros
-- hard-coded lengths
-- header-defined sizes
-
-If information is incomplete or ambiguous:
-- DO NOT guess
-- Add missing symbols to `"needed_sources"`
-
---------------------------------------------------------------------
-## MISSING INFORMATION RULE
---------------------------------------------------------------------
-
-If required static symbols are still missing:
-- DO NOT invent them
-- Add them to `"needed_sources"`
-
-Allowed entries ONLY:
-- `define:XXX`
-- `enum:YYY`
-- `struct:ZZZ`
-- `function:AAA`
-
-Do NOT include:
-- Linux kernel public APIs
-- Standard PCI macros
-- Common kernel utilities
-
---------------------------------------------------------------------
-## OUTPUT FORMAT (STRICT)
---------------------------------------------------------------------
-
+Provide your response EXACTLY in the following JSON format. No markdown wrappers outside the JSON, no explanations.
 ```json
 {
-  "code": "/* Updated QEMU structure-only code, JSON-escaped */",
+  "code": "/* FULL Updated QEMU structure-only code, JSON-escaped.*/",
   "needed_sources": [
     "define:EXAMPLE_MACRO",
     "struct:example_struct",
@@ -183,26 +61,30 @@ Do NOT include:
   ]
 }
 ```
--"code" MUST be valid JSON (escaped newlines & quotes).No explanations outside JSON.
--"needed_sources" MUST contain ONLY missing driver-specific symbols.
--If nothing is missing: "needed_sources": [].
+- `"code"` MUST be a valid JSON string representing the COMPLETE `.c` file structure (escaped quotes and newlines).
+- `"needed_sources"` contains ONLY missing driver-specific symbols. If nothing is missing, output `[]`.
+- If the output truncates, wait for the user to say "continue" and resume exactly from the last character.
 
-# INPUTS
-## Previous Structure-Phase Output
-```QEMU
+--------------------------------------------------------------------
+## INPUTS
+--------------------------------------------------------------------
+### Previous Structure-Phase Output:
+```QEMU 
 `QEMU_CODE`
 ```
 
-## Supplementary Linux Driver Source
+### Supplementary Linux Driver Source:
 ```c
 `Relevant_Source`
 ```
 
-# YOUR TASK
-## Refine the existing structure-phase QEMU template by applying ONLY the static information explicitly revealed by the supplementary driver source.
-Do NOT introduce behavior.
-Do NOT expand scope.
-Do NOT modify non-placeholder content.
-Produce the JSON output exactly as specified.
+--------------------------------------------------------------------
+## YOUR TASK
+--------------------------------------------------------------------
+1. Refine the existing structure-phase QEMU template by applying ONLY the static information explicitly revealed by the supplementary driver source.
+2. DO NOT implement behavior. DO NOT infer runtime logic.
+3. DO NOT modify non-placeholder content.
+4. Produce the FULL updated code in the JSON output exactly as specified.
+5. If information is still missing, list it in "needed_sources".
 
-## Your output
+# Your output:

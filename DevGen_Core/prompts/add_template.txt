@@ -1,0 +1,160 @@
++#include "qemu/osdep.h"
++#include "qemu/units.h"
++#include "hw/pci/pci.h"
++#include "hw/hw.h"
++#include "hw/pci/msi.h"
++#include "qemu/timer.h"
++#include "qemu/main-loop.h" /* iothread mutex */
++#include "qemu/module.h"
++#include "qapi/visitor.h"
++
++#define PCIBASE_BUF_LEN 1024
++
++extern uint64_t target_value[PCIBASE_BUF_LEN];
++extern bool target_value_reset;
++
++typedef struct {
++    PCIDevice pdev;
++    MemoryRegion mmio[7];
++
++    uint32_t len;
++    uint64_t buf[PCIBASE_BUF_LEN];
++    int is_probe_time;
++} PCIBaseState;
++
++#define TYPE_PCI_PCIBASE_DEVICE "pcibase"
++#define PCIBASE(obj)        OBJECT_CHECK(PCIBaseState, obj, TYPE_PCI_PCIBASE_DEVICE)
++
++static uint64_t pcibase_mmio_read(void *opaque, hwaddr addr, unsigned size)
++{
++    PCIBaseState *pcibase = opaque;
++    int i;
++
++    if (target_value_reset) {
++        pcibase->len = 0;
++        target_value_reset = false;
++    }
++
++    if (!pcibase->is_probe_time) {
++        for (i = 0; i < PCIBASE_BUF_LEN; ++i) {
++            pcibase->buf[i] = target_value[i];
++        }
++    } else {
++        pcibase->is_probe_time--;
++    }
++
++    return pcibase->buf[(pcibase->len++) % PCIBASE_BUF_LEN];
++}
++
++static void pcibase_mmio_write(void *opaque, hwaddr addr, uint64_t val,
++                unsigned size)
++{
++	return;
++}
++
++static const MemoryRegionOps pcibase_mmio_ops = {
++    .read = pcibase_mmio_read,
++    .write = pcibase_mmio_write,
++    .endianness = DEVICE_NATIVE_ENDIAN,
++    .valid = {
++        .min_access_size = 4,
++        .max_access_size = 8,
++    },
++    .impl = {
++        .min_access_size = 4,
++        .max_access_size = 8,
++    },
++
++};
++
++static void pci_pcibase_realize(PCIDevice *pdev, Error **errp)
++{
++    PCIBaseState *pcibase = PCIBASE(pdev);
++    uint8_t *pci_conf = pdev->config;
++	int pos;
++
++    pci_config_set_interrupt_pin(pci_conf, 1);
++	#PCI_CONFIG#
++
++    if (msi_init(pdev, 0, 1, true, false, errp)) {
++        return;
++    }
++	
++	pdev->cap_present |= QEMU_PCI_CAP_EXPRESS;
++	pcie_endpoint_cap_init(pdev, 0);
++
++	pos = pci_add_capability(pdev, PCI_CAP_ID_PM, 0, PCI_PM_SIZEOF, errp);
++	pdev->exp.pm_cap = pos;
++	pci_set_word(pdev->config + pos + PCI_PM_PMC, 0x3);
++
++    pcibase->len = 0;
++    pcibase->is_probe_time = #PROBECNT#;
++	#REGVALUE;
++
++    memory_region_init_io(&pcibase->mmio[0], OBJECT(pcibase), &pcibase_mmio_ops, pcibase,
++                    "pcibase-mmio0", 16 * MiB);
++    pci_register_bar(pdev, 0, PCI_BASE_ADDRESS_SPACE_MEMORY, &pcibase->mmio[0]);
++    memory_region_init_io(&pcibase->mmio[1], OBJECT(pcibase), &pcibase_mmio_ops, pcibase,
++                    "pcibase-mmio1", 16 * MiB);
++    pci_register_bar(pdev, 1, PCI_BASE_ADDRESS_SPACE_MEMORY, &pcibase->mmio[1]);
++    memory_region_init_io(&pcibase->mmio[2], OBJECT(pcibase), &pcibase_mmio_ops, pcibase,
++                    "pcibase-mmio2", 16 * MiB);
++    pci_register_bar(pdev, 2, PCI_BASE_ADDRESS_SPACE_MEMORY, &pcibase->mmio[2]);
++    memory_region_init_io(&pcibase->mmio[3], OBJECT(pcibase), &pcibase_mmio_ops, pcibase,
++                    "pcibase-mmio3", 16 * MiB);
++    pci_register_bar(pdev, 3, PCI_BASE_ADDRESS_SPACE_MEMORY, &pcibase->mmio[3]);
++    memory_region_init_io(&pcibase->mmio[4], OBJECT(pcibase), &pcibase_mmio_ops, pcibase,
++                    "pcibase-mmio4", 16 * MiB);
++    pci_register_bar(pdev, 4, PCI_BASE_ADDRESS_SPACE_MEMORY, &pcibase->mmio[4]);
++    memory_region_init_io(&pcibase->mmio[5], OBJECT(pcibase), &pcibase_mmio_ops, pcibase,
++                    "pcibase-mmio5", 16 * MiB);
++    pci_register_bar(pdev, 5, PCI_BASE_ADDRESS_SPACE_MEMORY, &pcibase->mmio[5]);
++    memory_region_init_io(&pcibase->mmio[6], OBJECT(pcibase), &pcibase_mmio_ops, pcibase,
++                    "pcibase-mmio5", 16 * MiB);
++    pci_register_bar(pdev, 6, PCI_BASE_ADDRESS_SPACE_MEMORY, &pcibase->mmio[6]);
++}
++
++static void pci_pcibase_uninit(PCIDevice *pdev)
++{
++    msi_uninit(pdev);
++}
++
++static void pcibase_instance_init(Object *obj)
++{
++	return;
++}
++
++static void pcibase_class_init(ObjectClass *class, void *data)
++{
++    DeviceClass *dc = DEVICE_CLASS(class);
++    PCIDeviceClass *k = PCI_DEVICE_CLASS(class);
++
++    k->realize = pci_pcibase_realize;
++    k->exit = pci_pcibase_uninit;
++    k->vendor_id = #VENDOR_ID#;
++    k->device_id = #DEVICE_ID#;
++    k->revision = #REVISION#;
++    k->subsystem_vendor_id = #SUBSYSTEM_VENDOR_ID#;
++    k->subsystem_id = #SUBSYSTEM_ID#;
++    k->class_id = #CLASS_ID#;
++    set_bit(DEVICE_CATEGORY_MISC, dc->categories);
++}
++
++static void pci_pcibase_register_types(void)
++{
++    static InterfaceInfo interfaces[] = {
++        { INTERFACE_CONVENTIONAL_PCI_DEVICE },
++        { },
++    };
++    static const TypeInfo pcibase_info = {
++        .name          = TYPE_PCI_PCIBASE_DEVICE,
++        .parent        = TYPE_PCI_DEVICE,
++        .instance_size = sizeof(PCIBaseState),
++        .instance_init = pcibase_instance_init,
++        .class_init    = pcibase_class_init,
++        .interfaces = interfaces,
++    };
++
++    type_register_static(&pcibase_info);
++}
++type_init(pci_pcibase_register_types)

@@ -1,0 +1,12 @@
+--------------------------------------------------------------------
+## STRICT CONSTRAINTS & STRUCTURAL INTEGRITY
+--------------------------------------------------------------------
+1. **Structural Integrity**: Because placeholders are no longer present, you MUST preserve the overall QEMU device architecture and lifecycle routines. Modify ONLY the specific logic directly related to the probe failure. Do NOT alter valid, working template logic (e.g., do not change `msix_uninit(pdev, NULL, 0)`).
+2. **PCI ID Rule**: Always use the FIRST entry if multiple entries exist in `struct pci_device_id`.
+3. **Device Type Ban**: NEVER modify the `#define TYPE_PCIBASE_DEVICE` macro.
+4. **QOM Registration Ban**: NEVER modify or simplify the `static void pcibase_register_types(void)` function. It MUST strictly retain the `InterfaceInfo` array declaring `{ INTERFACE_PCIE_DEVICE }` and `{ INTERFACE_CONVENTIONAL_PCI_DEVICE }`. Stripping these interfaces will trigger a fatal QEMU 8.2 assertion crash (`Assertion 'conventional || pcie || cxl' failed`).
+5. **QEMU 8.2.10 API Restrictions & Mandatory Boilerplate**:
+   - **Allowed**: `pci_dma_read`, `pci_dma_write`, `msi_notify`, `msix_notify`, `pci_set_irq`, `qemu_irq_raise/lower`, `pci_default_read_config/write_config`, `vmstate_register`.
+   - **Forbidden APIs**: Do NOT use `pci_set_dma`, `pci_set_dma_mask`, or any APIs introduced in QEMU 9.0+ (e.g., DO NOT use `device_class_set_legacy_reset`, use the legacy `dc->reset = pcibase_reset;` assignment instead).
+   - **PCIe Topology**: If initializing PCIe capabilities (`pcie_endpoint_cap_init`), it MUST be immediately preceded by `pdev->cap_present |= QEMU_PCI_CAP_EXPRESS;` to prevent `pci_is_express(dev)` assertion failures.
+   - **MSI-X Allocation**: If implementing MSI-X, strictly use `msix_init_exclusive_bar` instead of `msix_init` to prevent "table & pba overlap" memory assertion crashes.

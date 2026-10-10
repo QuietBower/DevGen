@@ -1,59 +1,38 @@
 /*
- * Generic QEMU PCI device template (QEMU 8.2.x)
- *
- * Phase 1: fill register macros, BAR list, BAR sizes, structs, enums.
- * Phase 2: implement MMIO/PIO read/write, DMA init, IRQ init, reset, config hooks
- * Phase 3 (Repair Phase)：correct syntax, types, includes, missing symbols, remove dead code
- * Phase 4 (Debug & Update Phase)：Based on actual kernel logs from QEMU boot, repair the virtual hardware behavior
- *
- * Replace #PLACEHOLDER# blocks with device-specific code/data.
- * NOTE:
- * - Only essential fixes added (TYPE macro, PIO BAR handling, MMIO impl, DMA init, IRQ).
- * - No optional or advanced features added.
- * - Do not directly fill this file with the Linux kernel source code
+ * This template provides a robust skeleton for hardware emulation.
+ * Integrated QEMU PCI device template (QEMU 8.2.10).
+ * Replace #PLACEHOLDER# blocks with driver-specific definitions.
+ * Designed for register-level modeling and PCIe driver probing.
+ * NOTE: Do not directly fill this file with the Linux kernel source code.
  */
 
 #include "qemu/osdep.h"
-#include <inttypes.h>
-#include <string.h>
+#include "qemu/units.h"
 #include "qemu/module.h"
 #include "qemu/timer.h"
 #include "qemu/log.h"
+#include "qemu/host-utils.h"
 #include "qapi/error.h"
 #include "exec/memory.h"
 #include "sysemu/dma.h"
-#include "sysemu/reset.h"
-#include "hw/irq.h"
 #include "hw/pci/pci.h"
 #include "hw/pci/msi.h"
 #include "hw/pci/msix.h"
 #include "hw/pci/pcie.h"
-#include "qom/object.h"
-#include "qapi/visitor.h"
 #include "hw/qdev-properties.h"
+#include "hw/qdev-core.h"
+#include "migration/vmstate.h"
 
-/* ------------------------------------------------------------------ */
-/* Additional include files (Stage1 optional)                          */
-/* ------------------------------------------------------------------ */
+/* Additional include files retrieved from driver context */
 #HeadFile#
 
 #define TYPE_PCIBASE_DEVICE "`DRIVER_NAME`_pci"
 typedef struct PCIBaseState PCIBaseState;
 OBJECT_DECLARE_SIMPLE_TYPE(PCIBaseState, PCIBASE_DEVICE)
 
-/* Related register/macros/constants from driver (Stage1) */
-/* Example:
- *   #define VENDOR_ID 0x8086
- *   #define DEVICE_ID 0x19e3
- *   #define CLASS_ID   PCI_CLASS_OTHERS
- *   #define FACT_IRQ        0x00000001
- *   #define DMA_IRQ         0x00000100
- */
-#Related_Config_Info#
+/* Register Layout and Hardware Identifiers extracted from driver source */
+#Related_Config_Info# /* Define VENDOR_ID, DEVICE_ID, CLASS_ID, and register offsets here */
 
-/* ------------------------------------------------------------------ */
-/* BAR metadata definition                                             */
-/* ------------------------------------------------------------------ */
 typedef enum {
     BAR_TYPE_NONE = 0,
     BAR_TYPE_MMIO,
@@ -62,78 +41,94 @@ typedef enum {
 } BARType;
 
 typedef struct {
-    int index;
+    int     index;    /* BAR index 0-5 */
     BARType type;
-    hwaddr size;
+    hwaddr  size;
     const char *name;
-    bool sparse;
 } BARInfo;
 
-/* ------------------------------------------------------------------ */
-/* Device State                                                        */
-/* ------------------------------------------------------------------ */
 struct PCIBaseState {
     PCIDevice parent_obj;
 
-    /* BAR memory regions (MMIO/PIO unified handling fix) */
+    /* Resource Management */
     MemoryRegion bar_regions[6];
-
-    /* optional linear backing */
-    uint8_t *mmio_backing;
-    size_t mmio_backing_size;
-
-    /* BAR table */
     BARInfo bar_info[6];
     int num_bars;
 
-    /* interrupt state feature flags */
+    /* Capability and Interrupt State */
     bool has_msi;
     bool has_msix;
-    #Interrupt_Stru#
-    
-    /* DMA info placeholder */
-    #DMA_Info_Stru#
+    #Interrupt_Stru# /* Recommended: uint32_t intr_status; uint32_t intr_mask; */
 
-    /* Register shadows */
-    #Reg_Stru#
+    /* Hardware Register Shadows (The 'Identity' of the device) */
+    #Reg_Stru#  /* Struct or array holding values for Version, ID, and Control regs */
 
-    /* Status fields */
-    #Status_Stru#
+    /* DMA Context */
+    #DMA_Info_Stru# /* Pointers for DMA base addresses, count, and status */
 
-    /* reset/probe state */
-    #Probe_Reset_Stru#
-
-    /* power mgmt */
-    #Pow_Man_Stru#
-
-    /* other fields */
+    #Status_Stru#      /* Operational status flags */
+    #Probe_Reset_Stru# /* State used to handle reset sequences */
+    #Pow_Man_Stru#     /* Power management state (D0-D3) */
     #Other_Addition_Info_Stru#
 };
 
 #Other_Addition_Info_Defin#
 
-/* ------------------------------------------------------------------ */
-/* Forward declarations                                                */
-/* ------------------------------------------------------------------ */
-static uint64_t pcibase_mmio_read(void *opaque, hwaddr addr, unsigned size);
-static void pcibase_mmio_write(void *opaque, hwaddr addr, uint64_t val, unsigned size);
-static uint64_t pcibase_pio_read(void *opaque, hwaddr addr, unsigned size);
-static void pcibase_pio_write(void *opaque, hwaddr addr, uint64_t val, unsigned size);
-static uint32_t pcibase_config_read(PCIDevice *pdev, uint32_t addr, int len);
-static void pcibase_config_write(PCIDevice *pdev, uint32_t addr, uint32_t val, int len);
-static void pcibase_reset(DeviceState *dev);
-static void pcibase_realize(PCIDevice *pdev, Error **errp);
-static void pcibase_uninit(PCIDevice *pdev);
+/* Internal helper for status-triggered signaling. G_GNUC_UNUSED prevents compiler warnings if unused. */
+G_GNUC_UNUSED static void pcibase_update_irq(PCIBaseState *s)
+{
+    PCIDevice *pdev = PCI_DEVICE(s);
 
-/* ------------------------------------------------------------------ */
-/* MemoryRegionOps                                                      */
-/* ------------------------------------------------------------------ */
+    #IRQ_Update_Logic#
+}
+
+/* Device-initiated DMA logic based on driver access patterns */
+G_GNUC_UNUSED static void pcibase_do_dma(PCIBaseState *s, bool is_write)
+{
+    PCIDevice *pdev = PCI_DEVICE(s);
+
+    #DMA_Transfer_Logic# 
+}
+
+/* MMIO/PIO Handlers generated during Behavioral Modeling */
+static uint64_t pcibase_mmio_read(void *opaque, hwaddr addr, unsigned size)
+{
+    PCIBaseState *s = opaque;
+    uint64_t val = 0;
+
+    #MMIO_Read_Func# 
+    return val;
+}
+
+static void pcibase_mmio_write(void *opaque, hwaddr addr, uint64_t val, unsigned size)
+{
+    PCIBaseState *s = opaque;
+
+    #MMIO_Write_Func# 
+}
+
+static uint64_t pcibase_pio_read(void *opaque, hwaddr addr, unsigned size)
+{
+    PCIBaseState *s = opaque;
+    uint64_t val = 0;
+
+    #PIO_Read_Func# /* Logic for Port I/O (Legacy support) */
+    return val;
+}
+
+static void pcibase_pio_write(void *opaque, hwaddr addr, uint64_t val, unsigned size)
+{
+    PCIBaseState *s = opaque;
+    
+    #PIO_Write_Func# /* Logic for Port I/O (Legacy support) */
+}
+
 static const MemoryRegionOps pcibase_mmio_ops = {
     .read = pcibase_mmio_read,
     .write = pcibase_mmio_write,
     .endianness = DEVICE_LITTLE_ENDIAN,
     .valid = { .min_access_size = 1, .max_access_size = 8 },
-    .impl  = { .min_access_size = 1, .max_access_size = 4 },
+    .impl  = { .min_access_size = 1, .max_access_size = 8 },
 };
 
 static const MemoryRegionOps pcibase_pio_ops = {
@@ -144,245 +139,107 @@ static const MemoryRegionOps pcibase_pio_ops = {
     .impl  = { .min_access_size = 1, .max_access_size = 4 },
 };
 
-/* ------------------------------------------------------------------ */
-/* Helper: register a BAR (MMIO or PIO)                                 */
-/* ------------------------------------------------------------------ */
-static void pcibase_register_bar(PCIDevice *pdev, PCIBaseState *s, BARInfo *bi, Error **errp)
-{
-    if (!bi || bi->type == BAR_TYPE_NONE)
-        return;
-
-    MemoryRegion *mr = &s->bar_regions[bi->index];
-
-    if (bi->type == BAR_TYPE_MMIO) {
-        memory_region_init_io(mr, OBJECT(s), &pcibase_mmio_ops, s, bi->name, bi->size);
-        pci_register_bar(pdev, bi->index, PCI_BASE_ADDRESS_SPACE_MEMORY, mr);
-    } else if (bi->type == BAR_TYPE_PIO) {
-        memory_region_init_io(mr, OBJECT(s), &pcibase_pio_ops, s, bi->name, bi->size);
-        pci_register_bar(pdev, bi->index, PCI_BASE_ADDRESS_SPACE_IO, mr);
-    }else if (bi->type == BAR_TYPE_RAM) {
-        memory_region_init_ram(mr, OBJECT(s), bi->name, bi->size, errp);
-        pci_register_bar(pdev, bi->index, PCI_BASE_ADDRESS_SPACE_MEMORY, mr);
-    }
-
-}
-
-/* ------------------------------------------------------------------ */
-/* MMIO / PIO handlers (device-specific code goes into placeholders)   */
-/* ------------------------------------------------------------------ */
-
-static uint64_t pcibase_mmio_read(void *opaque, hwaddr addr, unsigned size)
-{
-    PCIBaseState *s = opaque;
-
-    #MMIO_Read_Func#
-    /* Example minimal:
-     *   if (addr == REG_FOO) return s->foo;
-     *   if (s->mmio_backing && addr + size <= s->mmio_backing_size) {
-     *       uint32_t v;
-     *       memcpy(&v, s->mmio_backing + addr, size);
-     *       return v;
-     *   }
-     */
-
-    qemu_log_mask(LOG_UNIMP, "[%s] mmio_read addr=%" PRIx64 " size=%u\n", TYPE_PCIBASE_DEVICE, (uint64_t)addr, size);
-    return 0;
-}
-
-static void pcibase_mmio_write(void *opaque, hwaddr addr, uint64_t val, unsigned size)
-{
-    PCIBaseState *s = opaque;
-
-    #MMIO_Write_Func#
-    /* Example:
-     *   if (addr == REG_CMD) { handle_cmd(val); return; }
-     *   if (s->mmio_backing && addr + size <= s->mmio_backing_size) {
-     *       memcpy(s->mmio_backing + addr, &val, size);
-     *   }
-     */
-
-    qemu_log_mask(LOG_UNIMP, "[%s] mmio_write addr=%" PRIx64 " val=%" PRIx64 " size=%u\n", TYPE_PCIBASE_DEVICE, (uint64_t)addr, (uint64_t)val, size);
-}
-
-static uint64_t pcibase_pio_read(void *opaque, hwaddr addr, unsigned size)
-{
-    PCIBaseState *s = opaque;
-
-    #PIO_Read_Func#
-
-    qemu_log_mask(LOG_UNIMP, "[%s] pio_read addr=%" PRIx64 " size=%u\n", TYPE_PCIBASE_DEVICE, (uint64_t)addr, size);
-    return 0;
-}
-
-static void pcibase_pio_write(void *opaque, hwaddr addr, uint64_t val, unsigned size)
-{
-    PCIBaseState *s = opaque;
-
-    #PIO_Write_Func#
-
-    qemu_log_mask(LOG_UNIMP, "[%s] pio_write addr=%" PRIx64 " val=%" PRIx64 " size=%u\n", TYPE_PCIBASE_DEVICE, (uint64_t)addr, (uint64_t)val, size);
-}
-
-/* ------------------------------------------------------------------ */
-/* Reset       */
-/* ------------------------------------------------------------------ */
 static void pcibase_reset(DeviceState *dev)
 {
     PCIBaseState *s = PCIBASE_DEVICE(dev);
-    PCIDevice *pdev = PCI_DEVICE(dev);
+    pci_device_reset(PCI_DEVICE(dev));
 
-    /* core resets */
-    pci_device_reset(pdev);
-
-    #Reset_Func#
-    /* clear device registers, irq status, dma descriptors, etc.
-     * e.g.
-     *   s->status = 0;
-     *   if (s->mmio_backing) memset(s->mmio_backing, 0, s->mmio_backing_size);
-     */
-
-    if (s->mmio_backing && s->mmio_backing_size)
-        memset(s->mmio_backing, 0, s->mmio_backing_size);
+    #Reset_Func# /* Revert registers to power-on defaults */
 }
 
-/* ------------------------------------------------------------------ */
-/* DMA initialize (called from realize)                                */
-/* ------------------------------------------------------------------ */
-static void pcibase_dma_device_realize(PCIDevice *pdev, Error **errp)
+static void pcibase_register_bar(PCIDevice *pdev, PCIBaseState *s, BARInfo *bi, Error **errp)
 {
-    PCIBaseState *s = PCIBASE_DEVICE(pdev);
-
-    #DMA_Func#
-    (void)s;
-    (void)errp;
-}
-
-/* ------------------------------------------------------------------ */
-/* PCI config space access (class-level hooks)                         */
-/* ------------------------------------------------------------------ */
-static uint32_t pcibase_config_read(PCIDevice *pdev, uint32_t addr, int len)
-{
-    uint32_t val = pci_default_read_config(pdev, addr, len);
-    /* optional: override certain config offsets if needed */
-    #Config_Read_Func#
-
-    switch (len) {
-        case 1: val &= 0xFF; break;
-        case 2: val &= 0xFFFF; break;
-        case 4: break;
-        default: break;
-    }
-    return val;
-}
-
-static void pcibase_config_write(PCIDevice *pdev, uint32_t addr, uint32_t val, int len)
-{
-    if (addr >= PCI_BASE_ADDRESS_0 && addr <= PCI_BASE_ADDRESS_5) {
-        pci_default_write_config(pdev, addr, val, len);
+    if (!bi || bi->type == BAR_TYPE_NONE) {
         return;
     }
+    
+    /* CRITICAL: PCI requires BAR sizes to be a power of 2. Prevent QEMU assert crash. */
+    hwaddr aligned_size = pow2ceil(bi->size);
+    MemoryRegion *mr = &s->bar_regions[bi->index];
+
+    if (bi->type == BAR_TYPE_MMIO) {
+        memory_region_init_io(mr, OBJECT(s), &pcibase_mmio_ops, s, bi->name, aligned_size);
+        pci_register_bar(pdev, bi->index, PCI_BASE_ADDRESS_SPACE_MEMORY, mr);
+    } else if (bi->type == BAR_TYPE_PIO) {
+        memory_region_init_io(mr, OBJECT(s), &pcibase_pio_ops, s, bi->name, aligned_size);
+        pci_register_bar(pdev, bi->index, PCI_BASE_ADDRESS_SPACE_IO, mr);
+    } else if (bi->type == BAR_TYPE_RAM) {
+        memory_region_init_ram(mr, OBJECT(s), bi->name, aligned_size, errp);
+        pci_register_bar(pdev, bi->index, PCI_BASE_ADDRESS_SPACE_MEMORY, mr);
+    }
 }
 
-/* ------------------------------------------------------------------ */
-/* Realize (device init)                                                */
-/* ------------------------------------------------------------------ */
 static void pcibase_realize(PCIDevice *pdev, Error **errp)
 {
     PCIBaseState *s = PCIBASE_DEVICE(pdev);
     uint8_t *pci_conf = pdev->config;
 
+    /* Static PCI configuration */
     pci_set_word(pci_conf + PCI_VENDOR_ID,  #VENDOR_ID# );
     pci_set_word(pci_conf + PCI_DEVICE_ID,  #DEVICE_ID# );
     pci_set_word(pci_conf + PCI_CLASS_DEVICE, #CLASS_ID# );
     pci_set_byte(pci_conf + PCI_REVISION_ID, 0x01);
     pci_config_set_interrupt_pin(pci_conf, 1);
-    
-    #Field_Init_Real#
 
-    /* register BARs */
+    pdev->cap_present |= QEMU_PCI_CAP_EXPRESS;
+    pcie_endpoint_cap_init(pdev, 0x80);
+    int pm_pos = pci_add_capability(pdev, PCI_CAP_ID_PM, 0, PCI_PM_SIZEOF, errp);
+    if (pm_pos > 0) {
+        pci_set_word(pci_conf + pm_pos + PCI_PM_PMC, 0x0003); 
+    }
+
+    /* BAR Initialization */
+    #BAR_CONFIG_INIT#  
     for (int i = 0; i < s->num_bars; i++) {
         pcibase_register_bar(pdev, s, &s->bar_info[i], errp);
     }
 
-    /* Interrupt config (placeholders) */
-    #MSI_OR_MSIX_INIT#
-
-    /* DMA init (called here so device can set DMA masks/etc) */
-    pcibase_dma_device_realize(pdev, errp);
-    if (errp && *errp) return;
-
-    #DMA_Config_Real#
-
-    /* Example MSI:
-     *   if (msi_init(pdev, 0, 1, true, false, errp) == 0) { s->has_msi = true; }
-     * Example MSIX:
-     *   if (msix_init(pdev, nvec, table_mem, table_bar_nr) == 0) { s->has_msix = true; }
-     */
-
-    /* optional: map legacy INTx behavior if driver expects it */
-    #INTX_SETUP#
-
-    #Timer_Config_Real#
-
-    /* Power management / other init */
-    #Power_Manage_Real#
-    /* Example:
-    *   pdev->pm_cap = true;
-    */
-    qemu_log_mask(LOG_UNIMP, "[%s] device realized\n", TYPE_PCIBASE_DEVICE);
+    #MSI_OR_MSIX_INIT#  /* msi_init or msix_init calls */
+    #DMA_Config_Real#   /* Set DMA masks or ring buffer limits */
+    #Timer_Config_Real# /* Initialize internal hardware timers if used */
+    #Field_Init_Real#   /* Final state initialization before the device is 'live' */
 }
 
-/* ------------------------------------------------------------------ */
-/* Uninit/cleanup                                                      */
-/* ------------------------------------------------------------------ */
 static void pcibase_uninit(PCIDevice *pdev)
 {
     PCIBaseState *s = PCIBASE_DEVICE(pdev);
-
-    if (s->has_msix) {
-        msix_uninit(pdev,NULL,0);
-        s->has_msix = false;
+    if (msix_enabled(pdev)) {
+        msix_uninit(pdev, NULL, NULL);
     }
-    if (s->has_msi) {
+    if (msi_enabled(pdev)) {
         msi_uninit(pdev);
-        s->has_msi = false;
     }
 
-    /* free mmio_backing or other allocations */
-    #Uninit_Func#
-
-    if (s->mmio_backing) {
-        g_free(s->mmio_backing);
-        s->mmio_backing = NULL;
-    }
-
-    qemu_log_mask(LOG_UNIMP, "[%s] device uninit\n", TYPE_PCIBASE_DEVICE);
+    #Uninit_Func# /* Free buffers, stop timers, etc. */
 }
 
-/* ------------------------------------------------------------------ */
-/* Class init / type registration                                      */
-/* ------------------------------------------------------------------ */
+/* Minimal VMState to satisfy QEMU migration subsystems */
+static const VMStateDescription vmstate_pcibase = {
+    .name = "`DRIVER_NAME`_pci",
+    .version_id = 1,
+    .minimum_version_id = 1,
+    .fields = (VMStateField[]) {
+        VMSTATE_PCI_DEVICE(parent_obj, PCIBaseState),
+        VMSTATE_END_OF_LIST()
+    }
+};
+
 static void pcibase_class_init(ObjectClass *klass, void *data)
 {
     DeviceClass *dc = DEVICE_CLASS(klass);
     PCIDeviceClass *k = PCI_DEVICE_CLASS(klass);
 
-    k->config_read  = pcibase_config_read;
-    k->config_write = pcibase_config_write;
-
     k->realize = pcibase_realize;
     k->exit    = pcibase_uninit;
     dc->reset  = pcibase_reset;
-
+    dc->vmsd   = &vmstate_pcibase;
     set_bit(DEVICE_CATEGORY_MISC, dc->categories);
-
-    /* optional */
-    #Device_Property_Setup#
 }
 
 static void pcibase_register_types(void)
 {
     static InterfaceInfo interfaces[] = {
+        { INTERFACE_PCIE_DEVICE },
         { INTERFACE_CONVENTIONAL_PCI_DEVICE },
         { },
     };

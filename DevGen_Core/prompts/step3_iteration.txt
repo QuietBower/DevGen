@@ -1,106 +1,97 @@
-#  Repair Phase – Stage 3  
-   You are performing strict syntax-level and compile-level correction for the QEMU virtual PCI device model for `DRIVER_PATH`.
+# Phase 3: Repair - Iteration (Compile-Time Correction Only)
 
-#  Task Description
+You are performing an **incremental refinement** of the syntax-level and compile-level repairs for the QEMU 8.2.10 virtual PCI device model corresponding to the Linux driver at `DRIVER_PATH`.
 
-## Based on:
-   - The QEMU device model code ("QEMU_CODE")
-   - The compiler-reported syntax/semantic error messages ("SYNTAX_ERROR_MESSAGE")
-   - If any other related driver symbols are required during repair, list them in "needed_sources".
-   You must perform a **Minimal Change Code Fix**: fix only syntax/compile errors and do NOT change any runtime logic.
+**OBJECTIVE:** This iteration is **purely corrective**. Your task is to perform a **Minimal-Change Compile Fix** that resolves all compiler errors, utilizing the supplementary driver source code if it provides previously missing definitions. Preserve **exact runtime behavior**. No functional interpretation, behavioral change, or logic redesign is permitted.
 
-## Your responsibilities:
-  1. Fix ONLY:
-       - syntax errors,
-       - missing includes,
-       - missing forward declarations,
-       - type mismatches,
-       - incorrect QEMU API usage,
-       - struct/enum incomplete types,
-       - invalid field access,
-       - undeclared identifiers or constants.
-  2. Ensure the corrected QEMU code is:
-       - fully compilable under **QEMU 8.2.10**,
-       - complete and self-contained,
-       - with no missing symbols or incomplete definitions.
-  3. You must NOT modify or reinterpret functional behavior.
-       - NO logical changes.
-       - NO reordering or rewriting.
-       - NO adding/removing registers, BARs, or states.
-       - NO behavior inference.
-  4. You may ONLY add logic if it is required solely to:
-       - eliminate compile-time errors,
-       - satisfy the compiler type checker,
-       - resolve missing declarations or definitions.
-  5. Remove code only when:
-       - the compiler reports it as unused OR  
-       - its presence causes non-fixable compile errors.
-  6. Missing driver symbols:
-       - If the code references a function/struct/enum/macro not present in the provided driver source,  
-         and its content **cannot be deduced**,  
-         you MUST NOT guess its definition.
-       - Instead add its name (only name) to `"needed_sources"`.
+--------------------------------------------------------------------
+## TASK SCOPE & ALLOWED FIXES
+--------------------------------------------------------------------
+You may fix ONLY issues that the compiler explicitly rejects. Allowed fixes include:
+- Applying definitions from the newly provided "Relevant_Source" to resolve previously missing symbols.
+- Resolving syntax errors and type mismatches.
+- Adding missing or correcting incorrect "#include" directives.
+- Fixing missing forward declarations or incomplete struct/enum types.
+- Correcting invalid struct field accesses.
+- Fixing incorrect or outdated QEMU API usage (ensuring QEMU 8.2.10 compatibility).
+- Resolving undeclared identifiers or constants.
+- Applying successful fix patterns from "REPAIR_CASES" if the compile error matches a known pattern.
 
-#  CRITICAL RESTRICTIONS (MANDATORY)
+--------------------------------------------------------------------
+## HARD FUNCTIONAL GUARANTEES (ZERO TOLERANCE)
+--------------------------------------------------------------------
+You MUST ensure that:
+- Runtime logic, code flow, and register behavior are **100% unchanged**.
+- BAR layout, size, and mapping are **unchanged**.
+- DMA / IRQ / MSI / reset behavior is **unchanged**.
+- No behavioral inference or correction is introduced. 
+- You do NOT design new state machines, generate DMA structures, or implement descriptor logic.
 
-## You MUST NOT:
-   - rewrite or optimize logic,
-   - change code flow,
-   - alter register behavior,
-   - change BAR layout or size,
-   - modify DMA/IRQ/reset/MSI handling behavior,
-   - introduce new logic not required for compilation.
-Fix only what the compiler explicitly rejects.
+This is **NOT** a refactor or improvement phase. Fix **only** what is required to satisfy the compiler type checker and linker.
 
-## DO NOT INFER HARDWARE BEHAVIOR
-You must not:
-   - guess register semantics,
-   - design new state machines,
-   - generate DMA structures,
-   - implement descriptor logic,
-   - add functional behavior not explicitly existing.
-Only fix compile errors.
-      
-#  Output MUST be a complete standalone QEMU C source file
-The `"code"` value must contain:
-   - Full .c file,
-   - Valid includes,
-   - Fully compilable QEMU code,
-   - With all corrections applied,
-   - In a JSON-escaped string.
+--------------------------------------------------------------------
+## STRICT LIMITATIONS & STRUCTURAL INTEGRITY
+--------------------------------------------------------------------
+1. **Structural Integrity**: You MUST preserve the complete QEMU device architecture and lifecycle routines. Modify ONLY the specific lines causing compile errors. Do NOT alter valid, working template logic (e.g., `msix_uninit(pdev, NULL, 0)`).
+2. **No Logic Rewriting**: Do NOT optimize, simplify, or reorganize logic.
+3. **Adding Code**: Add code ONLY to eliminate compile-time errors, satisfy the type checker, or resolve missing definitions required by the compiler.
+4. **Removing Code**: Remove code ONLY if the compiler explicitly reports it as unused, OR its presence causes a non-fixable compile error.
 
-#  Output Format
+--------------------------------------------------------------------
+## MISSING DRIVER SYMBOLS RULE
+--------------------------------------------------------------------
+If the compiler reports an undeclared or missing function, struct, enum, or macro that is STILL NOT present in the provided sources and cannot be safely deduced:
+- DO NOT invent, guess, or approximate its definition.
+- List ONLY its name in "needed_sources" to request the driver source in the next iteration.
+- Allowed formats: "function:XXX", "struct:YYY", "enum:ZZZ", "define:AAA".
+- Do NOT list standard Linux kernel APIs, PCI macros, or common kernel infrastructure symbols.
+
+--------------------------------------------------------------------
+## OUTPUT SCHEMA (STRICT)
+--------------------------------------------------------------------
+Provide your response EXACTLY in the following JSON format. No markdown wrappers outside the JSON, no explanations.
 '''json
 {
-  "code": " /* fully corrected and compilable QEMU C code (JSON-escaped) */ ",
+  "code": "/* FULL corrected and compilable QEMU C source, JSON-escaped */",
   "needed_sources": [
-      "function:missing_xxx",
-      "struct:missing_yyy"
+    "function:missing_xxx",
+    "struct:missing_yyy"
   ]
 }
 '''
-- "needed_sources" only lists missing symbols (without explanations).
-- If nothing missing: `"needed_sources": []`.
-- If you cannot produce a compile-fix without additional driver symbols, return `"code": ""` and list those symbols in `"needed_sources"`.
+- `"code"` MUST be a valid JSON string representing the COMPLETE, self-contained `.c` source. 
+- `"needed_sources"` lists ONLY missing driver-specific symbols. If nothing is missing, output `[]`.
+- If the output truncates, wait for the user to say "continue" and resume exactly from the last character.
 
-#  INPUTS MESSAGE
-## QEMU source code to correct:
+--------------------------------------------------------------------
+## INPUTS
+--------------------------------------------------------------------
+### QEMU Source Code to Correct:
 ```QEMU
 `QEMU_CODE`
 ```
 
-## Compiler error messages:
-```C
+### Compiler Error Messages:
+```c
 `SYNTAX_ERROR_MESSAGE`
 ```
 
-### `DRIVER_PATH` Linux Driver Relevant Source Code:
+### Linux Driver Relevant Source Code (`DRIVER_PATH`):
 ```c
 `Relevant_Source`
-``` 
+```
 
-#  YOUR TASK
+### Relevant Repair Cases (Case Library):
+```c
+`REPAIR_CASES`
+```
 
-## Produce the corrected, fully compilable QEMU C implementation that makes only the minimal required edits to eliminate all compiler errors
+--------------------------------------------------------------------
+## YOUR TASK
+--------------------------------------------------------------------
+1. Produce the minimally modified, fully compilable QEMU C implementation.
+2. Eliminate all compiler errors using the provided source and repair cases.
+3. Preserve exact runtime behavior and structural integrity. No logic changes. No inference. Compile correctness only.
+4. Produce the JSON output exactly as specified.
 
-## Your output
+# Your output:

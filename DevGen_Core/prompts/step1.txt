@@ -1,184 +1,64 @@
-# Structure Phase (Stage-1) — STATIC EXTRACTION ONLY
+# Phase 1: Structure (Static Extraction Only)
 
-You are modeling a QEMU virtual PCI device for the Linux driver located at `DRIVER_PATH`.
+You are modeling a QEMU 8.2.10 virtual PCI device for the Linux driver located at `DRIVER_PATH`.
 
-This phase is **STRICTLY LIMITED** to extracting **static structural information**
-from the Linux driver source and filling the provided QEMU PCI template.
-
-You are NOT implementing a device.
-You are NOT modeling behavior.
-You are ONLY transcribing static definitions that are explicitly present in the driver.
+**OBJECTIVE:** Your task is strictly limited to extracting **static structural information** from the provided Linux driver source and filling the designated `#Placeholder#` blocks in the QEMU PCI template. 
+You are NOT implementing behavior. You are ONLY transcribing static definitions explicitly present in the driver.
 
 --------------------------------------------------------------------
-## ABSOLUTE SCOPE LIMITATION
+## EXTRACTION SCOPE (ALLOWED ACTIONS)
 --------------------------------------------------------------------
+You may extract and fill ONLY the following, and ONLY when explicitly visible in the driver source:
 
-In this stage, you MUST:
-- Read the driver source code
-- Extract static information
-- Fill or delete `##` placeholders in the provided PCI_TEMPLATE
-
-You MUST NOT:
-- Infer runtime behavior
-- Invent hardware features
-- Implement logic of any kind
-- Modify the template outside placeholders
-
-If a fact is not **explicitly stated in the driver source**, it does NOT exist.
-
---------------------------------------------------------------------
-## WHAT YOU ARE ALLOWED TO EXTRACT (STATIC ONLY)
---------------------------------------------------------------------
-
-You may extract and fill ONLY the following categories,
-and ONLY when they are **explicitly visible in the driver**:
-
-### 1. PCI Identification
-- Vendor ID and Device ID
-- If multiple entries exist in `static const struct pci_device_id`:
-  **ALWAYS select the FIRST entry ONLY**
-
-### 2. BAR Information (STRICT)
-- BAR index count
-- BAR sizes
-- BAR type (MMIO / IO)
-
-**Only allowed if explicitly defined via**:
-- Macros (e.g., `BAR0_SIZE`, `REG_SIZE`)
-- Fixed constants
-- Fixed resource sizes
-- `pci_resource_len()` returning a literal or constant
-
-If size, count, or type is NOT explicitly defined:
-- Leave the placeholder UNFILLED
-- Do NOT guess or approximate
-
-### 3. Register Offsets
-- `#define` register offsets
-- Only literal numeric offsets explicitly present
-- No synthesis, merging, or auto-generation
-
-### 4. Bitfields, Masks, Enums, Constants
-- Control bits
-- Status bits
-- Feature flags
-- Command values
-- Enumerations
-- Masks
-
-Only if explicitly declared in headers or source.
-
-### 5. Static Structures
-- `struct` definitions used by the driver
-- No QEMU-only state structs
-- No invented fields
-
-### 6. Interrupt Capability Presence (NOT behavior)
-- Legacy / MSI / MSI-X **presence only**
-- Only if driver explicitly references:
-  - `pci_enable_msi()`
-  - `pci_enable_msix()`
-  - MSI-X tables
-  - Capability flags/macros
-
-No inference from names, comments, or conventions.
-
-### 7. Static Tables
-- Any static arrays referenced during probe/init
-- Lookup tables, config tables, descriptor templates (static only)
+1. **PCI Identification**: Vendor ID and Device ID. 
+   - *Rule*: If multiple entries exist in the `pci_device_id` table, ALWAYS select the FIRST entry ONLY.
+2. **BAR Information**: BAR index, count, sizes, and type (MMIO / IO). 
+   - *Rule*: Extract ONLY if explicitly defined via macros (e.g., `BAR0_SIZE`), fixed constants, or explicit `pci_resource_len()` checks. Do NOT guess or approximate.
+3. **Hardware Definitions**: 
+   - Literal numeric register offsets (`#define` only).
+   - Bitfields, masks, enums, constants, control/status bits, and command values explicitly declared in headers or source.
+4. **Static Structures & Tables**: 
+   - `struct` definitions used by the driver to map hardware registers. No QEMU-only state structs or invented fields.
+   - Static arrays, lookup tables, or descriptor templates referenced during probe/init.
+5. **Capability Presence**: Legacy IRQ, MSI, or MSI-X.
+   - *Rule*: Note presence ONLY if explicitly requested (e.g., `pci_enable_msi()`, `pci_enable_msix()`, MSI-X tables, or related capability flags).
 
 --------------------------------------------------------------------
-## FORBIDDEN ACTIONS (ZERO TOLERANCE)
+## STRICT CONSTRAINTS & PLACEHOLDER RULES (ZERO TOLERANCE)
 --------------------------------------------------------------------
-
-You MUST NOT:
-
-- Add or infer MMIO / PIO / DMA / IRQ logic
-- Add BARs not declared in the driver
-- Invent register offsets or sizes
-- Invent MSI/MSI-X capabilities
-- Invent DMA rings or descriptors
-- Create QEMU internal state fields
-- Add callbacks, handlers, timers, or reset logic
-- Call:
-  - `memory_region_init_io`
-  - `pci_register_bar`
-  - `msi_init` / `msix_init`
-- Modify structure layouts
-- Modify ordering of fields
-- Modify any non-placeholder text in the template
-
-If information is missing → LIST IT, do NOT invent it.
+1. **NO Behavioral Logic**: Do NOT implement MMIO/PIO read/write handlers, DMA transfers, reset logic, or IRQ firing.
+2. **NO Hallucination**: Do NOT invent register offsets, BAR sizes, DMA rings, or QEMU-internal state fields. If a fact is not in the source, it does not exist.
+3. **Placeholder Deletion**: If the driver does NOT reference a specific feature (e.g., DMA, MSI-X, PM), you MUST **DELETE** the entire corresponding `#Placeholder#` block. Partial or empty placeholders MUST NOT remain.
+4. **Template Integrity**: Modify ONLY sections marked with `#...#`. Do NOT alter non-placeholder logic (e.g., `msix_uninit(pdev, NULL, 0)`). NEVER modify `#define TYPE_PCIBASE_DEVICE`.
+5. **API Bans**: NEVER include or reference `pci_set_dma` or `pci_set_dma_mask`.
 
 --------------------------------------------------------------------
 ## PLACEHOLDER HANDLING RULE (MANDATORY)
 --------------------------------------------------------------------
-
-- You may ONLY modify sections marked with `##`
+- You may ONLY modify sections marked with `#...#`.
 - You may ONLY:
-  - Fill a placeholder
-  - OR delete the entire placeholder block
-
-If the driver does NOT reference a feature (DMA / MSI / MSI-X / GPIO / PM / timers):
-- DELETE the entire corresponding placeholder block
-- Partial or empty placeholders MUST NOT remain
-
---------------------------------------------------------------------
-## DRIVER-SPECIFIC HARD CONSTRAINTS
---------------------------------------------------------------------
-
-1. NEVER modify:
-   `#define TYPE_PCIBASE_DEVICE`
-
-2. NEVER include or reference:
-   - `pci_set_dma`
-   - `pci_set_dma_mask`
-
-3. NEVER alter non-placeholder logic.
-   Example:
-   - Do NOT change `msix_uninit(pdev, NULL, 0)`
-   - Do NOT simplify or refactor existing template code
-
---------------------------------------------------------------------
-## BAR INFERENCE RULE (REINFORCED)
---------------------------------------------------------------------
-
-You MAY infer BAR size/count ONLY if the driver provides:
-- Explicit size macros
-- Fixed constants
-- Fixed resource length
-- Constant return from `pci_resource_len()`
-
-Otherwise:
-- Leave BAR placeholders untouched
-- Do NOT approximate
+  - Fill a placeholder.
+  - OR delete the entire placeholder block.
+- If the driver does NOT reference a feature (DMA / MSI / MSI-X / GPIO / PM / timers):
+  - **DELETE** the entire corresponding placeholder block.
+  - Partial or empty placeholders MUST NOT remain.
 
 --------------------------------------------------------------------
 ## MISSING INFORMATION HANDLING
 --------------------------------------------------------------------
-
-If required static information is missing:
-- Do NOT guess
-- Add the missing symbol to `"needed_sources"`
-
-Allowed entries in `"needed_sources"`:
-- `define:XXX`
-- `enum:YYY`
-- `struct:ZZZ`
-- `function:AAA`
-
-Do NOT list:
-- Linux kernel public APIs
-- Standard PCI macros
-- Common kernel helpers
+If required static information (macros, structs, enums) used by the driver is missing from the provided source context:
+- Do NOT guess its value.
+- Add the missing symbol to the `"needed_sources"` array.
+- Allowed formats: `"define:XXX"`, `"enum:YYY"`, `"struct:ZZZ"`, `"function:AAA"`.
+- Do NOT list standard Linux kernel APIs, PCI macros, or common kernel helpers in QEMU code.
 
 --------------------------------------------------------------------
-## OUTPUT FORMAT (STRICT — NO DEVIATION)
+## OUTPUT SCHEMA (STRICT)
 --------------------------------------------------------------------
-
+Provide your response EXACTLY in the following JSON format. No markdown wrappers outside the JSON, no explanations.
 ```json
 {
-  "code": "/* Complete QEMU structure code after placeholder fill/delete, as ONE escaped JSON string */",
+  "code": "/* FULL QEMU structure code after placeholder fill/delete, JSON-escaped */",
   "needed_sources": [
     "define:EXAMPLE_MACRO",
     "struct:example_struct",
@@ -186,27 +66,30 @@ Do NOT list:
   ]
 }
 ```
--"code" MUST be valid JSON (escaped quotes and newlines).No explanations outside "code"
--"needed_sources" contains ONLY missing driver-specific symbols.
--If nothing is missing: "needed_sources": [].
+- `"code"` MUST be a valid JSON string representing the COMPLETE `.c` file structure (escaped quotes and newlines).
+- `"needed_sources"` contains ONLY missing driver-specific symbols. If nothing is missing, output `[]`.
+- If the output truncates, wait for the user to say "continue" and resume exactly from the last character.
 
-#  INPUTS 
-## QEMU 8.2.10 PCI Template
-```QEMU
+--------------------------------------------------------------------
+## INPUTS
+--------------------------------------------------------------------
+### QEMU 8.2.10 PCI Template:
+```QEMU 
 `PCI_TEMPLATE`
 ```
 
-## Linux driver source(`DRIVER_PATH`)
+### Linux driver source(`DRIVER_PATH`)
 ```c
 `Relevant_Source`
 ``` 
 
-#  YOUR TASK
-## Fill the provided PCI_TEMPLATE using ONLY static definitions extracted from the Linux driver source, following all rules above.
-DO NOT implement behavior.
-DO NOT infer runtime logic.
-DO NOT modify non-placeholder content.
-Produce the JSON output exactly as specified.
-If information is missing, list it in "needed_sources".
+--------------------------------------------------------------------
+## YOUR TASK
+--------------------------------------------------------------------
+1. Fill the provided "PCI Template" using ONLY static definitions extracted from the Linux driver source.
+2. DO NOT implement behavior. DO NOT infer runtime logic.
+3. DO NOT modify non-placeholder content.
+4. Produce the JSON output exactly as specified.
+5. If information is missing, list it in "needed_sources".
 
-## Your output
+# Your output:

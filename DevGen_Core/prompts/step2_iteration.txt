@@ -1,195 +1,92 @@
-# Implementation Phase – Iteration (Stage 2 Incremental Update)
+# Phase 2: Implementation - Iteration (Incremental Behavior Update)
 
-You are incrementally completing and refining the functional implementation of
-the QEMU virtual PCI device corresponding to the Linux driver at `DRIVER_PATH`.
+You are performing an **incremental refinement** of the functional implementation for a QEMU 8.2.10 virtual PCI device model, targeting the Linux driver located at `DRIVER_PATH`.
 
-This iteration updates an existing Stage-2 QEMU implementation based on
-**newly provided Linux driver source code**.
-
-No restructuring is allowed. This is a strictly controlled, incremental update.
+**OBJECTIVE:** Update and complete the existing Stage-2 QEMU implementation based STRICTLY on **newly provided supplementary driver source code**. 
+This is a purely incremental update. You must preserve all previously correct logic unless the new driver source explicitly proves it incomplete or incorrect.
 
 --------------------------------------------------------------------
-## CORE TASK FOR THIS ITERATION
+## ABSOLUTE ITERATION SCOPE (PURE DELTA UPDATE)
 --------------------------------------------------------------------
-
-Based on the newly provided Linux driver source:
-
-- Update and complete ONLY the functional parts of the previously generated QEMU implementation
-- Refine BAR layout usage, DMA/IRQ declarations, DMA initialization, and related
-  logic **only where the new driver code explicitly demonstrates behavior**
-- Preserve all previously correct logic unless the new driver source proves it
-  incomplete or incorrect
+- You MAY: Refine MMIO/PIO handlers, DMA/IRQ logic, initialization state, and reset behavior ONLY where the new driver code explicitly demonstrates it.
+- You MUST NOT: Restructure the device, alter Stage-1 layout data, or introduce behavior not explicitly backed by the new source snippets.
 
 --------------------------------------------------------------------
-## PHASE 2 ITERATION RULES (STRICT & UNAMBIGUOUS)
+## REQUIRED IMPLEMENTATIONS (STRICTLY EVIDENCE-BASED)
 --------------------------------------------------------------------
+You MUST implement or update the following ONLY when directly visible in the new driver code:
 
-### You MUST implement (ONLY when directly visible in the driver code):
-
-- MMIO / PIO read and write behavior  
-  (exact registers, offsets, masks, semantics used by the driver)
-
-- DMA descriptors / rings  
-  ONLY if the driver explicitly:
-    - allocates descriptors
-    - maps DMA buffers
-    - parses descriptor fields
-
-- Interrupt logic  
-  - Legacy INTx / MSI / MSI-X
-  - Exactly matching driver usage and flow
-
-- BAR layout adjustments  
-  - Must strictly match Stage-1 structural data
-  - Must use only driver-defined constants and sizes
-
-- DMA / IRQ declarations and initialization  
-  - ONLY when visible in driver APIs or calls
-
-- Reset behavior  
-  - Soft or hard reset ONLY if the driver explicitly invokes it
-  - Only registers and sequences visible in the code
-
-- State transitions required by:
-  - probe()
-  - open()
-  - close()
-  - ISR paths
-  ONLY when explicitly present in driver logic
-
-- Read / modify / write patterns  
-  - Bit flips
-  - Enable / disable masks
-  - Status polling
-  Exactly as shown in the driver
-
-- Preserve and extend previously implemented valid logic  
-  - Do NOT remove or regress existing correct behavior
+1. **MMIO / PIO Read/Write Behavior**: Exact registers, offsets, masks, and semantics used by the driver (e.g., Read-Modify-Write patterns, status polling).
+2. **DMA Logic**: Descriptor parsing, ring buffers, and `pci_dma_read/write` usage ONLY if the driver explicitly allocates descriptors or maps DMA buffers.
+3. **Interrupt Logic**: Legacy INTx, MSI, or MSI-X signaling paths exactly matching the driver's ISR flow (e.g., W1C clearing mechanisms).
+4. **State Transitions & Reset**: Soft/hard resets, enable/disable masks, and initialization states required by `probe()`, `open()`, `close()`, or ISR paths.
 
 --------------------------------------------------------------------
-## DRIVER-SPECIFIC HARD CONSTRAINTS
+## BEHAVIOR INFERENCE BOUNDARY (ZERO HALLUCINATION)
 --------------------------------------------------------------------
-
-1. NEVER modify:
-   `#define TYPE_PCIBASE_DEVICE`
-
-2. NEVER include:
-   - pci_set_dma
-   - pci_set_dma_mask
-
-3. NEVER modify non-placeholder code.
-   Example:
-   - Do NOT change `msix_uninit(pdev, NULL, 0)`
-   - Do NOT refactor or simplify existing template logic
-
---------------------------------------------------------------------
-## STRICT PROHIBITIONS
---------------------------------------------------------------------
-
-You MUST NOT:
-
-- Move code outside its placeholder region
-- Invent registers, BARs, DMA formats, or interrupt mechanisms
-- Add debug logs, fake hardware behavior, or fabricated values
-- Output pseudo-code, TODO markers, ellipses, or descriptive text
-- Implement any behavior not explicitly visible in the driver source
-
---------------------------------------------------------------------
-## ALLOWED MODIFICATION AREA (MANDATORY)
---------------------------------------------------------------------
-
-You may ONLY insert or update code inside existing
-Stage-2 placeholder regions marked as:
-
-   `##PLACEHOLDER##`
-
-No other parts of the QEMU file may be modified.
-
---------------------------------------------------------------------
-## FORBIDDEN INFERENCE RULE
---------------------------------------------------------------------
-
 You MUST NOT generalize or extrapolate hardware behavior.
-
-Forbidden assumptions include (unless explicitly defined in the driver):
-- Descriptor chaining or ring semantics
-- Timers or delayed work
-- IRQ workflows or coalescing
-- State machines
-- Implicit reset behavior
-
-Only implement what the driver explicitly demonstrates.
+**Forbidden assumptions** (unless explicitly defined in the driver):
+- Descriptor chaining or ring semantics.
+- Timers, delayed work, or implicit state machines.
+- IRQ coalescing or undocumented reset behavior.
+- Outputting pseudo-code, TODO markers, ellipses, or fabricated values.
 
 --------------------------------------------------------------------
-## ITERATION REFINEMENT REQUIREMENT
+## STRICT CONSTRAINTS & TEMPLATE INTEGRITY
 --------------------------------------------------------------------
-
-- Preserve all previously generated valid logic unchanged
-- Modify existing logic ONLY if the new driver source proves it incorrect
-- Extend functionality ONLY in direct response to newly provided driver code
-
---------------------------------------------------------------------
-## QEMU API CONSTRAINT
---------------------------------------------------------------------
-
-- All APIs used MUST be available and valid in **QEMU 8.2.10**
-- Do NOT use newer or deprecated APIs
+1. **Placeholder Boundary**: You may ONLY insert or update code inside existing `#Placeholder#` regions. Do NOT move code outside these regions.
+2. **Preserve Valid Logic**: Do NOT remove or regress existing correct behavior from the prior implementation.
+3. **Template Integrity**: NEVER alter non-placeholder logic (e.g., `msix_uninit(pdev, NULL, 0)`). NEVER modify `#define TYPE_PCIBASE_DEVICE`.
+4. **QEMU 8.2.10 API Restrictions**:
+   - **Allowed**: `pci_dma_read`, `pci_dma_write`, `msi_notify`, `msix_notify`, `pci_set_irq`, `qemu_irq_raise/lower`, `pci_default_read_config/write_config`, `vmstate_register`.
+   - **Forbidden**: `pci_set_dma`, `pci_set_dma_mask`, or APIs introduced after QEMU 8.2.10.
 
 --------------------------------------------------------------------
-## MISSING DEFINITIONS RULE
+## MISSING INFORMATION HANDLING
 --------------------------------------------------------------------
-
-If the driver references any function, macro, enum, struct, or constant that is
-NOT present in the provided source:
-
-- DO NOT guess its definition
-- Add ONLY its name to `"needed_sources"` using one of:
-    - function:XXX
-    - struct:XXX
-    - enum:XXX
-    - define:XXX
-
-You MUST NOT list:
-- Linux kernel public APIs
-- Standard PCI macros
-- Common kernel utility symbols
+If the driver references any function, macro, enum, struct, or constant necessary for the implementation that is NOT present in the provided source:
+- DO NOT guess or invent its definition.
+- Add ONLY its name to `"needed_sources"`.
+- Allowed formats: `"function:XXX"`, `"struct:YYY"`, `"enum:ZZZ"`, `"define:AAA"`.
+- Do NOT list Linux kernel public APIs, standard PCI macros, or generic kernel helpers in QEMU code.
 
 --------------------------------------------------------------------
-## OUTPUT FORMAT (STRICT)
+## OUTPUT SCHEMA (STRICT)
 --------------------------------------------------------------------
-
+Provide your response EXACTLY in the following JSON format. No markdown wrappers outside the JSON, no explanations.
 ```json
 {
-  "code": "/* complete updated QEMU implementation C file (JSON-escaped) */",
+  "code": "/* FULL Updated QEMU implementation C file, JSON-escaped. DO NOT output partial diffs. */",
   "needed_sources": [
     "function:example_missing_func",
     "struct:example_missing_struct"
   ]
 }
 ```
--"code" must be a valid JSON string (escaped quotes and newlines).
--"needed_sources" must list ONLY missing driver-specific symbols.
--If nothing is missing, return "needed_sources": [].
--No explanations or text outside the JSON object.
+- `"code"` MUST be a valid JSON string representing the COMPLETE, compilable C file (escaped quotes and newlines).
+- `"needed_sources"` MUST list ONLY missing driver-specific symbols. If nothing is missing, output `[]`.
+- If the output truncates, wait for the user to say "continue" and resume exactly from the last character.
 
-# INPUTS
-## Prior QEMU Implementation Code
+--------------------------------------------------------------------
+## INPUTS
+--------------------------------------------------------------------
+### Prior QEMU Implementation Code:
 ```QEMU 
 `QEMU_CODE`
 ```
 
-## New Linux Driver Source for This Iteration
+### New Linux Driver Source for This Iteration:
 ```c
 `Relevant_Source`
 ```
 
-# YOUR TASK
-## Update and extend the QEMU implementation strictly based on the new driver source:
-   1.Insert ONLY concrete logic explicitly demonstrated by the driver.
-   2.Modify ONLY Stage-2 placeholder regions.
-   3.Preserve Stage-1 structure and prior valid behavior.
-   4.Produce a fully compilable QEMU device model for QEMU 8.2.10.
-   5.List any missing driver-specific symbols in "needed_sources".
-Produce the JSON output exactly as specified.
+--------------------------------------------------------------------
+## YOUR TASK
+--------------------------------------------------------------------
+1. Update and extend the QEMU implementation strictly based on the new driver source.
+2. Insert ONLY concrete logic explicitly demonstrated by the driver.
+3. Modify ONLY Stage-2 placeholder regions. Preserve Stage-1 structure and prior valid behavior.
+4. Produce the FULL updated compilable QEMU device model for QEMU 8.2.10 in the JSON output.
+5. List any missing driver-specific symbols in "needed_sources".
 
-## Your output
+# Your output:

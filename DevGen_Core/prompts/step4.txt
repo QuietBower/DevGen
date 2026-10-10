@@ -1,96 +1,94 @@
-#  Debug & Update Phase – Stage 4
-   You are performing diagnosis and corrective code generation for the QEMU virtual PCI device corresponding to the Linux driver `DRIVER_PATH`.
-   This phase is used only when the device fails to reach "Kernel driver in use", meaning the driver did not successfully bind to the QEMU device.
+# Phase 4: Debug & Update (Runtime Refinement)
 
-## Your task is to:
-    In the case where "Kernel driver in use" does not appear, combined with error logs, and based on the original QEMU code + partial driver source code + two reference examples,
-    make minimal and necessary corrections to the original QEMU code to fix the driver initialization failure and allow the device to reach "Kernel driver in use".
+You are performing **diagnosis and corrective code generation** for the QEMU 8.2.10 virtual PCI device model corresponding to the Linux driver at `DRIVER_PATH`.
 
-#  PHASE 4 RULES (VERY STRICT)
-## You must:
-    1.Identify the exact cause of bind failure:probe() failure,missing config-space field,incorrect BAR layout,unimplemented register read/write behavior,interrupt/DMA mismatch,missing reset or init behavior.
-    2.Produce a corrected QEMU device model by updating ONLY the broken logic.
-    3.All corrective edits MUST:
-      - not add new registers unless proven by driver code
-      - not remove existing behaviors that the driver depends on
-      - keep changes minimal 
-    4.Corrections MUST be made strictly based on:
-      - Linux driver source code
-      - provided QEMU original implementation
-    5.You must output ONLY:
-      - the corrected full QEMU C file
-      - additional missing sources required to complete the fix
-      - an explicit list of what was changed (short phrases)
-    6.Examples can only be used for inferring the repair methods and are not allowed to replicate the architecture or registers.
-    7.If multiple entries exist in `struct pci_device_id`, you MUST always use the first entry.
+**OBJECTIVE:** This phase triggers ONLY when the device fails to reach the "Kernel driver in use" state during dynamic execution (i.e., syntax is correct, but interaction fails). Your task is to analyze the runtime error logs and the original QEMU code , and then apply the minimal necessary corrections to fix the driver initialization or probe failure. 
 
-## Additional specific rules for this driver
-  1. NOTICE:Never modify the value of "#define TYPE_PCIBASE_DEVICE"!!!
-  2.In addition, the "pci_set_dma" and "pci_set_dma_mask" functions are not supported. Please do not include them in your code.
-  3.Do not modify the non-placeholder part of the code at will. For example, do not change the msix_uninit function in pcibase_uninit from msix_uninit(pdev, NULL, 0) to msix_uninit(pdev) or any other content.
+--------------------------------------------------------------------
+## REPAIR SCOPE & DIAGNOSIS
+--------------------------------------------------------------------
+1. **Identify the Root Cause**: Determine exactly why the probe failed from the logs (e.g., missing config-space signature, incorrect BAR layout, unimplemented register read/write behavior, interrupt mismatch, or failed reset sequence).
+2. **Apply Minimal Target Fix**: Update ONLY the specific functions or handlers (e.g., read/write callbacks, reset routines) related to the failure. Do NOT rewrite or reorganize the entire file.
+3. **Utilize Reference Repair Cases**: If the error signature matches the Case Library, relevant historical cases are provided. Use these examples ONLY to deduce repair techniques (e.g., round BAR sizes to a power of two, correct W1C interrupt semantics, or fix signature offsets). DO NOT replicate the specific architecture, registers, or exact values from these examples.
 
+--------------------------------------------------------------------
+## HARD FUNCTIONAL GUARANTEES (ZERO TOLERANCE)
+--------------------------------------------------------------------
+You MUST ensure compliance with the following:
+- Add new registers, states, or behaviors ONLY if explicitly proven by the error logs or previously provided context.
+- Preserve all existing valid behaviors that the driver currently depends on.
+- Focus runtime behaviors strictly on the probe and initialization sequence. Do not implement unrelated hardware features.
 
-## You must NOT:
-    1.create new registers not shown in the driver
-    2.rewrite or reorganize the architecture
-    3.ignore driver-visible behavior
-    4.output explanations, discussions, or commentary not included in the JSON rules
-    5.output pseudocode, TODO markers, or non-C code
-    6.implement runtime behaviors not related to probe/init
+--------------------------------------------------------------------
+## STRICT CONSTRAINTS & STRUCTURAL INTEGRITY
+--------------------------------------------------------------------
+1. **Structural Integrity**: Because placeholders are no longer present, you MUST preserve the overall QEMU device architecture and lifecycle routines. Modify ONLY the specific logic directly related to the probe failure. Do NOT alter valid, working template logic (e.g., do not change `msix_uninit(pdev, NULL, 0)`).
+2. **PCI ID Rule**: Always use the FIRST entry if multiple entries exist in `struct pci_device_id`.
+3. **Device Type Ban**: NEVER modify the `#define TYPE_PCIBASE_DEVICE` macro.
+4. **QOM Registration Ban**: NEVER modify or simplify the `static void pcibase_register_types(void)` function. It MUST strictly retain the `InterfaceInfo` array declaring `{ INTERFACE_PCIE_DEVICE }` and `{ INTERFACE_CONVENTIONAL_PCI_DEVICE }`.
+5. **QEMU 8.2.10 API Restrictions & Mandatory Boilerplate**:
+   - **Allowed**: `pci_dma_read`, `pci_dma_write`, `msi_notify`, `msix_notify`, `pci_set_irq`, `qemu_irq_raise/lower`, `pci_default_read_config/write_config`, `vmstate_register`.
+   - **Forbidden APIs**: Do NOT use `pci_set_dma`, `pci_set_dma_mask`, or any APIs introduced in QEMU 9.0+ (e.g., DO NOT use `device_class_set_legacy_reset`, use the legacy `dc->reset = pcibase_reset;` assignment instead).
+   - **PCIe Topology**: If initializing PCIe capabilities (`pcie_endpoint_cap_init`), it MUST be immediately preceded by `pdev->cap_present |= QEMU_PCI_CAP_EXPRESS;` to prevent `pci_is_express(dev)` assertion failures.
+   - **MSI-X Allocation**: If implementing MSI-X, strictly use `msix_init_exclusive_bar` instead of `msix_init` to prevent "table & pba overlap" memory assertion crashes.
 
-## Output Format
+--------------------------------------------------------------------
+## MISSING INFORMATION HANDLING
+--------------------------------------------------------------------
+If the logs indicate a failure that requires inspecting specific driver source code (e.g., an unknown complex struct, macro, or function behavior) to fix:
+- Do NOT guess or invent its definition.
+- Add ONLY the name of the missing symbol to the "needed_sources" list to request the driver source in the next iteration.
+- Allowed formats: "function:XXX", "struct:YYY", "enum:ZZZ", "define:AAA".
+- Do NOT list standard Linux kernel APIs, PCI macros, or common kernel helpers in QEMU code.
+
+--------------------------------------------------------------------
+## OUTPUT SCHEMA (STRICT)
+--------------------------------------------------------------------
+Provide your response EXACTLY in the following JSON format. No markdown wrappers outside the JSON, no explanations, pseudocode, or TODO markers.
 '''json
 {
-  "code":  " /* corrected full QEMU C file, JSON-escaped */ " ,
+  "code": "/* FULL corrected and compilable QEMU C source, JSON-escaped */",
   "needed_sources": [
-        "function:xxx_missing",
-        "struct:yyy_missing"
+    "function:missing_xxx",
+    "struct:missing_yyy"
   ],
   "changes": [
-        "Fixed BAR0 offset 0x20 read behavior",
-        "Implemented missing DMA completion interrupt",
-        "Corrected reset register write semantics"
+    "Rounded BAR0 size to nearest power of two",
+    "Implemented missing DMA completion interrupt status write",
+    "Corrected signature value returned at offset 0x20"
   ]
 }
 ''' 
-- code MUST be a valid JSON string with escaped quotes and newlines.
-- needed_sources MUST contain only missing symbols.
-- Do NOT list standard kernel APIs or PCI macros.
-- If no extra sources required: "needed_sources": [].
+- `"code"` MUST be a valid JSON string representing the COMPLETE, self-contained `.c` source. 
+- `"needed_sources"` lists ONLY missing driver-specific symbols. If nothing is missing, output `[]`.
+- `"changes"` MUST concisely list the exact logical modifications applied to fix the probe failure.
+- If the output truncates, wait for the user to say "continue" and resume exactly from the last character.
 
-## If missing symbols (functions, structs, macros, enums) appear in the driver but were not provided, you must not guess them; instead place them in "needed_sources".
-
-## You may only infer behavior strictly demonstrated by the Linux driver.
-## QEMU version requirement: All code MUST comply with QEMU 8.2.10 API.
-
-#  INPUT MESSAGE
-## Original (previous) QEMU implementation:
+--------------------------------------------------------------------
+## INPUTS
+--------------------------------------------------------------------
+### Original (previous) QEMU implementation:
 ```QEMU
 `QEMU_CODE`
 ```
 
-## Kernel error logs (probe failure, dmesg, bind failure):
+### Kernel error logs (probe failure, dmesg, bind failure):
 ```c
 `ERR_MSG`
 ```
 
-## Partial driver source code:
+### Relevant Repair Cases:
 ```c
-`Relevant_Source`
-``` 
-
-## Two reference examples:
-```c
-`TWO_EXAM`
+`REPAIR_CASES`
 ```
 
-#  YOUR TASK
-## Generate:
-    1. A fully corrected, compilable QEMU C device model that fixes the probe/bind failure (or an explicit empty code if fix impossible due to missing symbols)
-    2. Incorporating required fixes based strictly on logs + driver + Stage-1 + examples (examples may only inform repair technique)
-    3. Your output MUST follow the JSON specification exactly
-    4. Never modify the value of "#define TYPE_PCIBASE_DEVICE",even if you think this might be wrong
+--------------------------------------------------------------------
+## YOUR TASK
+--------------------------------------------------------------------
+1. Diagnose the exact cause of the probe/bind failure from the logs.
+2. Produce a fully corrected, compilable QEMU C device model by modifying ONLY the broken logic.
+3. Use the reference examples solely to guide the repair technique.
+4. Preserve structural integrity and strictly follow all constraints.
+5. Produce the JSON output exactly as specified.
 
-## If additional source content is required, list symbol names in "needed_sources".
-
-## Your output
+# Your output:

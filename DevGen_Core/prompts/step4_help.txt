@@ -1,47 +1,46 @@
-1、在hw/fake_pci目录下的meson.build中换行并追加内容：
-    system_ss.add(when: 'CONFIG_`DRIVER_NAME（全大写）`_PCI', if_true: files('`DRIVER_NAME`_pci.c'))
+1. In the meson.build under the hw/fake_pci directory, add a new line and append the following:
+    system_ss.add(when: 'CONFIG_`DRIVER_NAME (all uppercase)`_PCI', if_true: files('`DRIVER_NAME`_pci.c'))
 
-2、复制start_qemu_old.sh为start_qemu.sh，将start_qemu.sh内容中的`DRIVER_NAME`进行替换，替换为现在正在处理的程序名
+2. Copy start_qemu_old.sh to start_qemu.sh, and replace `DRIVER_NAME` in the content of start_qemu.sh with the name of the program currently being processed.
 
-## 注意此时的DRIVER_NAME应该全是"-"变成"_"
+## Note: at this point DRIVER_NAME should have all "-" changed to "_"
 
-3、将生成的QEMU的.c结果拷贝（或者覆盖）到hw/fake_pci下
+3. Copy (or overwrite) the generated QEMU .c result into hw/fake_pci.
 
-4、执行build.sh脚本，执行start_qemu.sh
+4. Run the build.sh script and then start_qemu.sh.
 
-5、使用python新创建一个终端并执行命令：
-    ssh -i /home/user/Fuzzer/third_tool/Image-defconfig/bullseye.id_r                                                            sa root@127.0.0.1 -p 10021
+5. Use Python to open a new terminal and execute the command:
+    ssh -i /home/wmy/Fuzzer/third_tool/Image-defconfig/bullseye.id_r                                                            sa root@127.0.0.1 -p 10021
 
-6、在项目中创建一个out/share和out/shares以及out/shares/success和out/shares/fail这四个目录，执行命令：
+6. Create four directories in the project: out/share, out/shares, out/shares/success, and out/shares/fail, and run the command:
     mount -t 9p -o trans=virtio,version=9p2000.L hostshare /mnt
 
-7、分别执行下面命令：
-    1.lspci -k -s 00:04.0> /mnt/load.txt
-    2.tree /dev > /mnt/dev.txt
+7. Run the following commands respectively:
+    1. lspci -k -s 00:04.0 > /mnt/load.txt
+    2. tree /dev > /mnt/dev.txt
 
-8、在load.txt中搜索是否存在"Kernel driver in use"字段，如果存在则跳过此步骤，如果不存在则执行下面命令：
-    1.dmesg -C
-    2.modprobe "驱动名" 
-      modprobe -r "驱动名"
-      modprobe "驱动名" 
-      echo 0000:00:04.0 > /sys/bus/pci/drivers_probe 
-    3.dmesg >> /mnt/err_msg.txt
-    4.init 0
+8. Search load.txt for the field "Kernel driver in use". If it exists, skip this step; if not, run the following commands:
+    1. dmesg -C
+    2. modprobe "driver_name"
+       modprobe -r "driver_name"
+       modprobe "driver_name"
+       echo 0000:00:04.0 > /sys/bus/pci/drivers_probe
+    3. dmesg >> /mnt/err_msg.txt
+    4. init 0
 
-9、如果出现"Kernel driver in use"的话在out/shares/success目录下创建一个以驱动名命名的文件夹并将第7步的所有结果都复制到该文件夹中直接跳到最后一步，
-   如果没有出现则接着执行。
-   将vm复制一份。
+9. If "Kernel driver in use" appears, create a folder named after the driver under out/shares/success, copy all results from step 7 into that folder, and jump directly to the final step.
+   If it does not appear, continue execution.
+   Make a copy of the VM.
 
-## 注释：此阶段内容为没有出现Kernel driver in use的情况，即调用step4流程
-10、开始调用step4步骤内容，其中step4传入的内容分别是step3的QEMU代码、err_msg.txt的内容、probe和pci_id结构体作为第一步的相关信息，
-   遍历Author B统计的所有修复结果信息，找两个例子传入分析。
+## Note: this stage covers the case where "Kernel driver in use" does not appear, i.e., the step4 flow is invoked.
+10. Begin invoking the step4 content. The inputs passed to step4 are the step3 QEMU code, the content of err_msg.txt, and the probe and pci_id structures as the relevant information for the first step.
+    Iterate through all the repair result information compiled by Wang Zhi, and find two examples to pass in for analysis.
 
-11、重新回到第3步去执行
+11. Go back to step 3 and execute it again.
 
-## 上述迭代三次，询问三次就不再询问强制进行下一步
+## The above iteration runs three times; after asking three times, stop asking and force the next step.
 
-12、如果一直没有修复成功则同样的在out/shares/fail目录下创建一个以驱动名命名的文件夹并将第7、8步的所有结果都复制到该文件夹中。
+12. If it has never been repaired successfully, likewise create a folder named after the driver under out/shares/fail and copy all results from steps 7 and 8 into that folder.
 
 
-13、删除out/share下的所有内容,删除start_qemu.sh
-    
+13. Delete all contents under out/share and delete start_qemu.sh
