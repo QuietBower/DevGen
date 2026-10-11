@@ -1,6 +1,6 @@
 # From Driver Code to Virtual Devices: LLM-Guided Modeling for Linux Driver Fuzzing
 
-## Driver Information Collection
+## Static Context Extraction
 
 In the first phase of **DevGen**, the core source code of the target kernel will be extracted, and the main execution will be carried out in the `static_analyze` directory.
 
@@ -8,7 +8,7 @@ In the first phase of **DevGen**, the core source code of the target kernel will
 
 The core stage of **DevGen** mainly involves using LLM to guide the generation of virtual device code. The specific details can be found in the `DevGen_Core` directory.
 
-## Integration and Fuzzing
+## Driver Fuzzing Integration
 
 1. Simplify the static analysis part of the code and generate a JSON file,run `python3 generate_json.py`
 2. Process the target driver code based on the generated JSON file.`python3 simple_code.py`

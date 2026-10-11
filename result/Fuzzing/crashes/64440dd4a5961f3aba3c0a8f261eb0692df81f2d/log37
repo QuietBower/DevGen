@@ -1,0 +1,99 @@
+last executing test programs:
+
+169.812929ms ago: executing program 3 (id=4):
+r0 = openat$dev_watchdog(0xffffffffffffff9c, &(0x7f0000000000), 0x8602, 0x0)
+ioctl$dev_watchdog_5(r0, 0x80045702, 0x5)
+ioctl$dev_watchdog_10(r0, 0x80045705, 0x0)
+ioctl$dev_watchdog_14(r0, 0x80045707, &(0x7f0000000080)=0x9)
+ioctl$dev_watchdog_4(r0, 0x80045701, 0x0)
+r1 = openat$dev_watchdog(0xffffffffffffff9c, 0x0, 0x201, 0x0)
+read$dev_watchdog(r1, &(0x7f0000000140)=""/111, 0x6f)
+ioctl$dev_watchdog_6(r0, 0x80045702, 0x0)
+ioctl$dev_watchdog_8(r0, 0x80045704, &(0x7f0000000200)=0x5)
+
+47.82435ms ago: executing program 3 (id=5):
+poll$dev_watchdog(&(0x7f0000001080), 0x20000000000000b3, 0xf)
+r0 = openat$dev_watchdog(0xffffffffffffff9c, &(0x7f00000000c0), 0x109902, 0x0)
+ioctl$dev_watchdog_6(r0, 0x80045702, &(0x7f0000000140)=0x3)
+r1 = openat$dev_watchdog(0xffffffffffffff9c, 0x0, 0x608402, 0x0)
+write$dev_watchdog(r1, 0x0, 0x0)
+poll$dev_watchdog(&(0x7f0000001080), 0x20000000000000b3, 0xf)
+ioctl$dev_watchdog_1(r1, 0x80285700, 0xfffffffffffffffb)
+write$dev_watchdog(r1, 0x0, 0x3e)
+poll$dev_watchdog(0x0, 0x0, 0xf)
+
+0s ago: executing program 1 (id=2):
+ioctl$dev_watchdog_1(0xffffffffffffffff, 0x80285700, 0xfffffffffffffffb)
+ioctl$dev_watchdog_4(0xffffffffffffffff, 0x80045701, 0x0)
+ioctl$dev_watchdog_9(0xffffffffffffffff, 0x80045705, 0xfffffffffffffffd)
+write$dev_watchdog(0xffffffffffffffff, 0x0, 0x0)
+poll$dev_watchdog(&(0x7f0000001080), 0x20000000000000b3, 0xf)
+
+0s ago: executing program 3 (id=6):
+r0 = openat$dev_watchdog(0xffffffffffffff9c, &(0x7f0000000000), 0x8602, 0x0)
+ioctl$dev_watchdog_5(r0, 0x80045702, 0x5)
+ioctl$dev_watchdog_10(r0, 0x80045705, 0x0)
+ioctl$dev_watchdog_14(r0, 0x80045707, &(0x7f0000000080)=0x9)
+ioctl$dev_watchdog_4(r0, 0x80045701, 0x0)
+r1 = openat$dev_watchdog(0xffffffffffffff9c, 0x0, 0x201, 0x0)
+read$dev_watchdog(r1, &(0x7f0000000140)=""/111, 0x6f)
+ioctl$dev_watchdog_6(r0, 0x80045702, 0x0)
+ioctl$dev_watchdog_8(r0, 0x80045704, &(0x7f0000000200)=0x5) (fail_nth: 1)
+
+kernel console output (not intermixed with test programs):
+
+Warning: Permanently added '[localhost]:27889' (ED25519) to the list of known hosts.
+[   71.264313] cgroup: Unknown subsys name 'net'
+[   71.331835] cgroup: Unknown subsys name 'cpuset'
+[   71.346867] cgroup: Unknown subsys name 'rlimit'
+[   71.349978] cgroup: Unknown subsys name 'memory'
+[   71.391691] kmemleak: Automatic memory scanning thread ended
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=7ba45ca9-ea61-4555-be6e-eee6449b705e
+[   82.082841] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   84.453335] audit: type=1400 audit(1768108838.777:24): avc:  denied  { execmem } for  pid=293 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   84.620479] audit: type=1400 audit(1768108838.943:25): avc:  denied  { read } for  pid=304 comm="modprobe" name="modules.softdep" dev="sda" ino=9714092 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   84.637671] audit: type=1400 audit(1768108838.944:26): avc:  denied  { open } for  pid=304 comm="modprobe" path="/usr/lib/modules/6.18.0/modules.softdep" dev="sda" ino=9714092 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   84.648933] audit: type=1400 audit(1768108838.944:27): avc:  denied  { getattr } for  pid=304 comm="modprobe" path="/usr/lib/modules/6.18.0/modules.softdep" dev="sda" ino=9714092 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   84.665771] audit: type=1400 audit(1768108838.945:28): avc:  denied  { map } for  pid=301 comm="modprobe" path="/usr/lib/modules/6.18.0/modules.dep.bin" dev="sda" ino=9714089 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   84.681858] audit: type=1400 audit(1768108838.952:29): avc:  denied  { map } for  pid=302 comm="modprobe" path="/usr/lib/modules/6.18.0/modules.dep.bin" dev="sda" ino=9714089 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  101.076834] pcwd_pci: Card timer not enabled
+[  101.087922] pcwd_pci: Unexpected close, not stopping watchdog!
+[  101.183934] pcwd_pci: Card timer not enabled
+[  101.218848] pcwd_pci: Unexpected close, not stopping watchdog!
+[  101.264068] pcwd_pci: Card timer not enabled
+[  101.271832] Kernel panic - not syncing: pcwd_pci: Temperature overheat trip!
+[  101.275216] CPU: 0 UID: 0 PID: 2039 Comm: syz.3.6 Not tainted 6.18.0 #9 PREEMPT(voluntary) 
+[  101.279070] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  101.284776] Call Trace:
+[  101.286372]  <TASK>
+[  101.287568]  dump_stack_lvl+0x3d/0x140
+[  101.289710]  vpanic+0x66f/0x6e0
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+[  101.291415]  panic+0xc7/0xd0
+[  101.293830]  ? __pfx_panic+0x10/0x10
+[  101.295522]  ? __pfx_ioctl_has_perm.constprop.0.isra.0+0x10/0x10
+[  101.297813]  ? lock_acquire+0x169/0x300
+[  101.299922]  ? __fget_files+0x3a/0x3b0
+[  101.301929]  ? pcipcwd_get_status.isra.0+0x10e/0x140 [pcwd_pci]
+[  101.304928]  ? pcipcwd_get_status.isra.0+0xef/0x140 [pcwd_pci]
+[  101.308268]  pcipcwd_get_status.isra.0+0x11f/0x140 [pcwd_pci]
+[  101.311444]  pcipcwd_ioctl+0x3e1/0x4f0 [pcwd_pci]
+[  101.313829]  ? __pfx_pcipcwd_ioctl+0x10/0x10 [pcwd_pci]
+[  101.316374]  ? selinux_file_ioctl+0x18c/0x280
+[  101.318673]  ? __pfx_pcipcwd_ioctl+0x10/0x10 [pcwd_pci]
+[  101.321387]  __x64_sys_ioctl+0x194/0x210
+[  101.322911]  do_syscall_64+0xc6/0x390
+[  101.324391]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  101.327230] RIP: 0033:0x7fa02611059d
+[  101.329200] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[  101.339124] RSP: 002b:00007fa024b56f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[  101.344342] RAX: ffffffffffffffda RBX: 00007fa026385fa0 RCX: 00007fa02611059d
+[  101.349450] RDX: 0000000000000000 RSI: 0000000080045701 RDI: 0000000000000003
+[  101.352301] RBP: 00007fa0261ae078 R08: 0000000000000000 R09: 0000000000000000
+[  101.356399] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+[  101.361551] R13: 00007fa026386038 R14: 00007fa026385fa0 R15: 00007fa024b37000
+[  101.365379]  </TASK>
+[  101.369006] Kernel Offset: disabled
+[  101.371040] ---[ end Kernel panic - not syncing: pcwd_pci: Temperature overheat trip! ]---

@@ -1,0 +1,52 @@
+From: Author A <author-a@example.com>
+To: Greg KH <gregkh@linuxfoundation.org>, author-a-alt@example.com
+Cc: arnd@arndb.de, linux-kernel@vger.kernel.org, kees@kernel.org,
+ stable@vger.kernel.org
+Subject:
+ Re: [PATCH] misc: ibmasm: Fix out-of-bounds MMIO access during module load
+Date: Tue, 23 Jun 2026 19:47:42 +0800
+Message-ID: <62e6c81c-a904-450b-8e32-7861e41412bb@anonymous.edu>
+ In-Reply-To:Content-Type; =?utf-8?q?b=3DAnQIjaTachobW4GCBrJMm4EPAKsqKeRMVSV?=
+ =?utf-8?q?XHR+LtgC1t5Jw+Rg5Lvx9bXboQdbC1IqSxnjThm5IbSt4GzwY+MHDBel7XMJsk159?=
+ =?utf-8?q?tp3oVAuU1RGv7wYwohIWQi6gDW0hyd6mOEst70q2zo0kjbBifv4Z7WO1SetyUd58f?=
+ =?utf-8?q?ihHiPU=3D?=
+	In-Reply-To:Content-Type:Content-Transfer-Encoding; bh=riT3aCfBg
+	TqpJw4wns4sVNKZ8p18asVLyO8oYAD4aAE=; b=fvodauGg7nCWuaCTVO3YLh04Z
+	bHSz12BJFERC8lfPrpQ1f1Vs4KaAmFvO03QRTpQqfi8j1oF8c5OqWcQD6iBMjuIO
+	fXplDULp9/J6UIQglT8Z3Tgo1F1jHHOQHJGE6MYk+uvuK1kUa/7VY4NO9F3ttQNW
+	1XeNs3fRUUbFYAGmnU=
+In-Reply-To: <2026062354-crawfish-t-shirt-d45d@gregkh>
+References: <20260623070909.362260-1-author-a-alt@example.com>
+ <2026062354-crawfish-t-shirt-d45d@gregkh>
+List-Id: <stable.vger.kernel.org>
+
+Hi Greg,
+
+> The kernel trusts the hardware to not do foolish things like this 🙂
+>> When evaluating the driver against emulated hardware or during virtual
+>> device fuzzing, a malformed device may expose a significantly undersized
+>> BAR 0 (e.g., 4KB). In this scenario, the readl() in enable_sp_interrupts()
+>> crosses the mapped page boundary into unmapped memory, causing a page fault
+>> during probe.
+> Are you sure this is the only code path for this type of issue for this
+> device/driver?  Why just worry about this one?
+
+You were absolutely right to ask. Prompted by your question, I did a full
+audit of the MMIO access paths in this driver.
+
+I found that the dynamic MFA (Message Frame Address) reads from the 
+hardware
+queues, which are used directly as offsets in `get_i2o_message()`, are also
+highly vulnerable to OOB accesses if the fuzzed hardware returns malicious
+offsets during runtime.
+
+I have just submitted a v2 patch in this thread that comprehensively fixes
+both the static OOB during probe and the dynamic OOB during runtime.
+
+Thank you very much for catching this and pointing me in the right 
+direction!
+
+Best regards,
+Author A
+
+

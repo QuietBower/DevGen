@@ -1,0 +1,885 @@
+last executing test programs:
+
+1.461117553s ago: executing program 1 (id=13080):
+r0 = syz_clone(0x11, 0x0, 0x0, 0x0, 0x0, 0x0)
+ptrace(0x10, r0)
+ptrace(0x4207, r0)
+
+1.457608426s ago: executing program 1 (id=13084):
+timer_create(0x7, 0x0, &(0x7f00000002c0)=<r0=>0x0)
+timer_settime(r0, 0x1, &(0x7f0000000000)={{0x77359400}, {0x0, 0x3938700}}, 0x0)
+timer_settime(r0, 0x1, &(0x7f00000000c0), &(0x7f0000000100))
+
+1.423212873s ago: executing program 1 (id=13086):
+r0 = socket$inet6_tcp(0xa, 0x1, 0x0)
+sendmmsg$inet6(r0, &(0x7f00000036c0)=[{{&(0x7f00000004c0)={0xa, 0x4e24, 0x2, @dev={0xfe, 0x80, '\x00', 0xd}, 0x3}, 0x1c, 0x0}}], 0x1, 0x20000000)
+ioctl$sock_SIOCOUTQ(r0, 0x5411, &(0x7f0000000480))
+
+914.364367ms ago: executing program 2 (id=13124):
+sendmsg$IPSET_CMD_DEL(0xffffffffffffffff, &(0x7f00000001c0)={0x0, 0x0, &(0x7f00000000c0)={&(0x7f00000003c0)=ANY=[@ANYBLOB="f40000000a0601040000000000000000020000058c000880100007800c001b40000000000000000b18000780140017006970366772"], 0xf4}, 0x1, 0x0, 0x0, 0x240488c0}, 0x8015)
+r0 = socket$nl_xfrm(0x10, 0x3, 0x6)
+sendmsg$nl_xfrm(r0, &(0x7f0000000180)={0x0, 0x0, &(0x7f0000000080)={&(0x7f00000002c0)=ANY=[@ANYBLOB="3c01000010002d082abd7000ffdbdf2500000004000000001000000000000000e00000010000000000000000004e2300000a0080200200"/64, @ANYRES32=0x0, @ANYRES32, @ANYBLOB="fe8000000000000000000000000000aa000004d632000000000000000000000000000000000000000700000000000000ffffffffffffffff07000000000000000300000000000000010100000000000006000000000000000800000000000000000000000000000008000000000000000300000000000000020000000000000001040000000000000f00000006000000740e000026bd7000073500000a00000449000000000000004c0014"], 0x13c}, 0x1, 0x0, 0x0, 0x20004011}, 0x90)
+
+914.272227ms ago: executing program 2 (id=13125):
+close_range(0xffffffffffffffff, 0xffffffffffffffff, 0x2)
+r0 = timerfd_create(0x8, 0x800)
+timerfd_settime(r0, 0x1, &(0x7f00000000c0)={{}, {0x77359400}}, 0x0)
+
+914.148693ms ago: executing program 2 (id=13127):
+r0 = socket$netlink(0x10, 0x3, 0x4)
+setsockopt$netlink_NETLINK_ADD_MEMBERSHIP(r0, 0x10e, 0x1, &(0x7f0000001540)=0x6, 0x4)
+close(r0)
+
+869.99933ms ago: executing program 3 (id=13128):
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x3000002, 0x2a032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x9, 0xcc032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x3000002, 0x2a032, 0xffffffffffffffff, 0x0)
+
+869.789434ms ago: executing program 2 (id=13129):
+socketpair$unix(0x1, 0x5, 0x0, &(0x7f0000000000)={<r0=>0xffffffffffffffff, <r1=>0xffffffffffffffff})
+sendmmsg$inet(r1, &(0x7f0000001900)=[{{0x0, 0x0, 0x0}}], 0x59b, 0x4008000)
+ioctl$sock_TIOCINQ(r0, 0x541b, &(0x7f0000000040))
+
+830.16341ms ago: executing program 3 (id=13130):
+close_range(0xffffffffffffffff, 0xffffffffffffffff, 0x2)
+pipe(&(0x7f00000002c0)={<r0=>0xffffffffffffffff})
+mq_timedreceive(r0, 0x0, 0x0, 0x7, 0x0)
+
+808.404029ms ago: executing program 3 (id=13131):
+r0 = socket$inet_tcp(0x2, 0x1, 0x0)
+sendmmsg$inet(r0, &(0x7f0000000140)=[{{&(0x7f00000000c0)={0x2, 0x4e21, @loopback}, 0x10, 0x0, 0x0, &(0x7f0000000100)=ANY=[], 0x10}}], 0x1, 0x2004c155)
+recvfrom(r0, 0x0, 0x0, 0x40000040, 0x0, 0x0)
+
+754.034701ms ago: executing program 3 (id=13132):
+socketpair$unix(0x1, 0x5, 0x0, &(0x7f0000000980)={<r0=>0xffffffffffffffff})
+bind$unix(r0, &(0x7f00000009c0)=@abs={0x1, 0x0, 0x4e21}, 0x6e)
+connect$unix(r0, &(0x7f00000001c0)=@abs={0x1, 0x0, 0x4e21}, 0x6e)
+
+753.659964ms ago: executing program 3 (id=13133):
+openat$sndseq(0xffffffffffffff9c, &(0x7f0000000140), 0x100)
+r0 = syz_io_uring_setup(0x2da0, &(0x7f00000000c0)={0x0, 0x699c, 0x2, 0x3, 0x1a9}, &(0x7f0000000140), &(0x7f0000000180))
+io_uring_register$IORING_UNREGISTER_IOWQ_AFF(r0, 0x12, 0x0, 0x0)
+
+753.543183ms ago: executing program 3 (id=13134):
+r0 = socket$inet6_tcp(0xa, 0x1, 0x0)
+sendmmsg$inet6(r0, &(0x7f00000036c0)=[{{&(0x7f00000004c0)={0xa, 0x4e24, 0x2, @dev={0xfe, 0x80, '\x00', 0xd}, 0x3}, 0x1c, 0x0}}], 0x1, 0x20000000)
+sendmmsg$inet6(r0, &(0x7f00000052c0)=[{{0x0, 0x0, 0x0}}], 0x1, 0x11)
+
+532.104544ms ago: executing program 1 (id=13135):
+r0 = openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, &(0x7f0000000040)={{0x0, 0x2, 0x8000, 0x3}})
+ioctl$SNDRV_TIMER_IOCTL_INFO(r0, 0x80e85411, 0x0)
+
+531.842983ms ago: executing program 1 (id=13136):
+r0 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$inet_mtu(r0, 0x0, 0xa, &(0x7f00000002c0)=0x2, 0x4)
+sendto$inet(r0, 0x0, 0x0, 0x20004000, &(0x7f00000000c0)={0x2, 0x4e24, @local}, 0x10)
+
+531.728275ms ago: executing program 1 (id=13137):
+r0 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+ioctl$SNDRV_SEQ_IOCTL_CREATE_QUEUE(r0, 0xc08c5332, &(0x7f0000000200)={0x9, 0x9, 0x0, 'queue0\x00', 0x73fa})
+write$sndseq(r0, &(0x7f0000000300), 0xffffff6c)
+
+383.33378ms ago: executing program 0 (id=13138):
+ioctl$TCSETAF(0xffffffffffffffff, 0x5408, &(0x7f0000000200)={0xb6b, 0x404, 0xd85, 0x7, 0x17, "b697000400000600"})
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000080)=0x1)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000480)=0x4)
+
+383.128415ms ago: executing program 0 (id=13139):
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x3000002, 0x2a032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x9, 0xcc032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x3000002, 0x2a032, 0xffffffffffffffff, 0x0)
+
+232.429071ms ago: executing program 0 (id=13140):
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x1ff)
+ioctl$FS_IOC_RESVSP(r0, 0x40305828, &(0x7f0000000140)={0x0, 0x1, 0x6, 0x8})
+write$P9_RXATTRWALK(r0, &(0x7f0000000080)={0xf, 0x1f, 0x1, 0x7}, 0xf)
+
+216.671525ms ago: executing program 0 (id=13141):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x1)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000040))
+
+167.387615ms ago: executing program 0 (id=13142):
+io_setup(0x8, &(0x7f0000000400)=<r0=>0x0)
+io_submit(r0, 0x13, &(0x7f00000017c0))
+syz_clone3(&(0x7f0000000280)={0x2200300, 0x0, 0x0, 0x0, {0x16}, 0x0, 0x0, 0x0, &(0x7f0000000200)=[0x0], 0x1}, 0x58)
+
+113.141957ms ago: executing program 0 (id=13143):
+r0 = socket$inet6_tcp(0xa, 0x1, 0x0)
+sendmmsg$inet6(r0, &(0x7f00000036c0)=[{{&(0x7f00000004c0)={0xa, 0x4e24, 0x2, @dev={0xfe, 0x80, '\x00', 0xd}, 0x3}, 0x1c, 0x0}}], 0x1, 0x20000000)
+ioctl$sock_SIOCOUTQ(r0, 0x5411, &(0x7f0000000480))
+
+363.43¬µs ago: executing program 2 (id=13144):
+io_setup(0x8, &(0x7f0000000400)=<r0=>0x0)
+r1 = socket$nl_route(0x10, 0x3, 0x0)
+io_submit(r0, 0x3, &(0x7f0000000280)=[&(0x7f00000000c0)={0x0, 0x0, 0x0, 0x8, 0x7, r1, 0x0, 0x0, 0x7, 0x0, 0x2}, 0x0, 0x0])
+
+0s ago: executing program 2 (id=13145):
+r0 = openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, &(0x7f0000000040)={{0x1, 0x2, 0x401}})
+ioctl$SNDRV_TIMER_IOCTL_STATUS64(r0, 0x80605414, &(0x7f00000002c0))
+
+kernel console output (not intermixed with test programs):
+
+[   43.986487] audit: type=1400 audit(1786188670.467:33): avc:  denied  { rlimitinh } for  pid=283 comm="bash" scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   43.998422] audit: type=1400 audit(1786188670.467:34): avc:  denied  { siginh } for  pid=283 comm="bash" scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+Warning: Permanently added '[localhost]:19354' (ED25519) to the list of known hosts.
+[   46.271140] cgroup: Unknown subsys name 'net'
+[   46.324924] cgroup: Unknown subsys name 'cpuset'
+[   46.333574] cgroup: Unknown subsys name 'rlimit'
+[   46.336369] cgroup: Unknown subsys name 'memory'
+[   46.409900] systemd-udevd (182) used greatest stack depth: 24416 bytes left
+[   46.426703] systemd-udevd (174) used greatest stack depth: 24320 bytes left
+[   46.440521] systemd-udevd (173) used greatest stack depth: 24016 bytes left
+[   46.440647] kmemleak: Automatic memory scanning thread ended
+[   55.997087] kmemleak: 7 new suspected memory leaks (see /sys/kernel/debug/kmemleak)
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=5003d2c0-c5aa-44c8-928e-02a494d11454
+[   56.052315] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   57.255823] audit: type=1400 audit(1786188683.759:35): avc:  denied  { execmem } for  pid=306 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   57.367313] audit: type=1400 audit(1786188683.871:36): avc:  denied  { read } for  pid=315 comm="modprobe" name="modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   57.377086] audit: type=1400 audit(1786188683.871:37): avc:  denied  { open } for  pid=317 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   57.392328] audit: type=1400 audit(1786188683.871:38): avc:  denied  { getattr } for  pid=317 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   57.407796] audit: type=1400 audit(1786188683.871:39): avc:  denied  { map } for  pid=317 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   57.423043] audit: type=1400 audit(1786188683.871:40): avc:  denied  { map } for  pid=316 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   64.405691] netlink: 48 bytes leftover after parsing attributes in process `syz.2.3'.
+[   64.503816] capability: warning: `syz.2.9' uses 32-bit capabilities (legacy support in use)
+[   64.534964] program syz.2.11 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   64.625826] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2578 sclass=netlink_route_socket pid=2085 comm=syz.0.18
+[   64.632156] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2562 sclass=netlink_route_socket pid=2085 comm=syz.0.18
+[   64.640350] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2580 sclass=netlink_route_socket pid=2085 comm=syz.0.18
+[   64.646954] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2580 sclass=netlink_route_socket pid=2085 comm=syz.0.18
+[   64.683010] audit: type=1400 audit(1786188691.186:41): avc:  denied  { audit_read } for  pid=2096 comm="syz.3.24" capability=37  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[   64.717123] program syz.2.29 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   64.794907] ata3.00: invalid multi_count 1 ignored
+[   65.173749] cgroup: Unknown subsys name 'fowner'
+[   65.218358] netlink: 128 bytes leftover after parsing attributes in process `syz.0.103'.
+[   65.233830] syz.3.104 uses obsolete (PF_INET,SOCK_PACKET)
+[   65.237215] SELinux: security_context_str_to_sid (sysadm_u) failed with errno=-22
+[   65.276522] mmap: syz.3.110 (2270) uses deprecated remap_file_pages() syscall. See Documentation/mm/remap_file_pages.rst.
+[   65.301971] tmpfs: Bad value for 'mode'
+[   65.360997] autofs4:pid:2293:check_dev_ioctl_version: ioctl control interface version mismatch: kernel(1.1), user(1.768), cmd(0xc0189375)
+[   65.366312] autofs4:pid:2293:validate_dev_ioctl: invalid device control module version supplied for cmd(0xc0189375)
+[   65.430588] bochs-drm 0000:00:01.0: [drm] Unknown color mode 7; guessing buffer size.
+[   65.465318] netlink: 8 bytes leftover after parsing attributes in process `syz.1.134'.
+[   65.469154] program syz.3.135 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   65.636822] audit: type=1400 audit(1786188692.139:42): avc:  denied  { module_load } for  pid=2355 comm="modprobe" path="/usr/lib/modules/7.1.0+/kernel/net/qrtr/qrtr.ko" dev="sda" ino=14942703 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=system permissive=1
+[   65.654336] netlink: 4 bytes leftover after parsing attributes in process `syz.3.154'.
+[   65.670787] NET: Registered PF_QIPCRTR protocol family
+[   65.673690] audit: type=1400 audit(1786188692.178:43): avc:  denied  { net_admin } for  pid=2355 comm="modprobe" capability=12  scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:system_r:kmod_t:s0 tclass=capability permissive=1
+[   65.830853] program syz.3.176 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   65.845768] netlink: 20 bytes leftover after parsing attributes in process `syz.1.177'.
+[   65.885672] netlink: 4 bytes leftover after parsing attributes in process `syz.1.184'.
+[   66.019621] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(0.0.0), cmd(10)
+[   66.085935] netlink: 8 bytes leftover after parsing attributes in process `syz.1.210'.
+[   66.166620] Restarting kernel threads ...
+[   66.169035] Done restarting kernel threads.
+[   66.247550] SELinux: syz.0.233 (2522) wrote to user. This is no longer supported.
+[   66.283053] netlink: 'syz.3.239': attribute type 8 has an invalid length.
+[   66.361512] netlink: 4 bytes leftover after parsing attributes in process `syz.3.252'.
+[   66.487462] sd 0:0:0:0: ioctl_internal_command: ILLEGAL REQUEST asc=0x24 ascq=0x0
+[   66.503766] netlink: 8 bytes leftover after parsing attributes in process `syz.0.271'.
+[   66.522343] tmpfs: Bad value for 'mpol'
+[   66.692810] netlink: 8 bytes leftover after parsing attributes in process `syz.0.298'.
+[   66.877124] netlink: 'syz.3.328': attribute type 33 has an invalid length.
+[   66.945000] cgroup: release_agent respecified
+[   67.154136] program syz.0.377 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   67.315603] program syz.2.404 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   67.505409] sg_write: data in/out 1977783809/1 bytes for SCSI command 0x23-- guessing data in;
+[   67.505409]    program syz.1.440 not setting count and/or reply_len properly
+[   67.531499] program syz.0.445 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   67.921118] SELinux: unrecognized netlink message: protocol=6 nlmsg_type=2580 sclass=netlink_xfrm_socket pid=3079 comm=syz.1.507
+[   67.933708] capability: warning: `syz.2.510' uses deprecated v2 capabilities in a way that may be insecure
+[   68.294228] audit: type=1400 audit(1786188694.796:44): avc:  denied  { watch_reads } for  pid=3214 comm="syz.0.575" path="/syzcgroup/unified/syz0" dev="cgroup2" ino=1722 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:object_r:cgroup_t:s0 tclass=dir permissive=1
+[   68.392045] tmpfs: Bad value for 'mpol'
+[   68.620292] Option 'ãè' to dns_resolver key: bad/missing value
+[   68.810379] binfmt_misc: register: failed to install interpreter file ./file0/file0
+[   68.829574] watchdog: watchdog0: watchdog did not stop!
+[   68.919641] audit: type=1400 audit(1786188695.424:45): avc:  denied  { open } for  pid=3422 comm="syz.1.677" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=perf_event permissive=1
+[   68.934291] audit: type=1400 audit(1786188695.424:46): avc:  denied  { kernel } for  pid=3422 comm="syz.1.677" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=perf_event permissive=1
+[   68.970008] tmpfs: Bad value for 'mpol'
+[   69.222180] watchdog: watchdog0: watchdog did not stop!
+[   69.566779] 9pnet_fd: p9_fd_create_tcp (3607): problem connecting socket to 127.0.0.1
+[   69.739062] __nla_validate_parse: 6 callbacks suppressed
+[   69.739072] netlink: 3 bytes leftover after parsing attributes in process `syz.1.793'.
+[   69.943772] @@: renamed from bridge0 (while UP)
+[   69.976624] netlink: 12 bytes leftover after parsing attributes in process `syz.1.834'.
+[   70.100101] SELinux: unrecognized netlink message: protocol=4 nlmsg_type=0 sclass=netlink_tcpdiag_socket pid=3783 comm=syz.2.855
+[   70.143619] =======================================================
+[   70.143619] WARNING: The mand mount option has been deprecated and
+[   70.143619]          and is ignored by this kernel. Remove the mand
+[   70.143619]          option from the mount to silence this warning.
+[   70.143619] =======================================================
+[   70.158832] cgroup: Invalid name
+[   70.194061] audit: type=1400 audit(1786188696.695:47): avc:  denied  { setattr } for  pid=3810 comm="syz.0.869" name="exec" dev="proc" ino=8855 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=file permissive=1
+[   70.550986] program syz.1.929 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   71.075118] netlink: 48 bytes leftover after parsing attributes in process `syz.3.1015'.
+[   71.121116] program syz.1.1023 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   71.178825] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2578 sclass=netlink_route_socket pid=4144 comm=syz.2.1034
+[   71.185087] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2562 sclass=netlink_route_socket pid=4144 comm=syz.2.1034
+[   71.190126] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2580 sclass=netlink_route_socket pid=4144 comm=syz.2.1034
+[   71.197364] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2580 sclass=netlink_route_socket pid=4144 comm=syz.2.1034
+[   71.200594] netlink: 48 bytes leftover after parsing attributes in process `syz.0.1031'.
+[   71.268024] netlink: 48 bytes leftover after parsing attributes in process `syz.1.1047'.
+[   71.286491] program syz.1.1044 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   71.406186] ata3.00: invalid multi_count 1 ignored
+[   71.701136] cgroup: Unknown subsys name 'fowner'
+[   71.736677] netlink: 128 bytes leftover after parsing attributes in process `syz.2.1120'.
+[   71.752488] SELinux: security_context_str_to_sid (sysadm_u) failed with errno=-22
+[   71.806666] tmpfs: Bad value for 'mode'
+[   71.858454] autofs4:pid:4361:check_dev_ioctl_version: ioctl control interface version mismatch: kernel(1.1), user(1.768), cmd(0xc0189375)
+[   71.865552] autofs4:pid:4361:validate_dev_ioctl: invalid device control module version supplied for cmd(0xc0189375)
+[   71.916424] program syz.1.1150 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   71.953835] netlink: 8 bytes leftover after parsing attributes in process `syz.0.1149'.
+[   72.099716] netlink: 4 bytes leftover after parsing attributes in process `syz.0.1167'.
+[   72.710497] program syz.0.1192 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   72.738043] netlink: 20 bytes leftover after parsing attributes in process `syz.2.1194'.
+[   72.794522] netlink: 4 bytes leftover after parsing attributes in process `syz.2.1200'.
+[   72.926930] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(0.0.0), cmd(10)
+[   73.067284] Restarting kernel threads ...
+[   73.070354] Done restarting kernel threads.
+[   73.194840] netlink: 'syz.0.1254': attribute type 8 has an invalid length.
+[   73.381936] sd 0:0:0:0: ioctl_internal_command: ILLEGAL REQUEST asc=0x24 ascq=0x0
+[   73.424345] tmpfs: Bad value for 'mpol'
+[   73.903847] program syz.0.1296 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   74.268889] netlink: 'syz.0.1344': attribute type 33 has an invalid length.
+[   74.336653] program syz.3.1353 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   74.768349] cgroup: release_agent respecified
+[   75.001083] program syz.3.1393 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   75.236820] program syz.1.1424 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   75.499947] sg_write: data in/out 1977783809/1 bytes for SCSI command 0x23-- guessing data in;
+[   75.499947]    program syz.3.1458 not setting count and/or reply_len properly
+[   75.539504] program syz.2.1463 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   75.732230] __nla_validate_parse: 6 callbacks suppressed
+[   75.732244] netlink: 16 bytes leftover after parsing attributes in process `syz.2.1481'.
+[   76.070616] SELinux: unrecognized netlink message: protocol=6 nlmsg_type=2580 sclass=netlink_xfrm_socket pid=5156 comm=syz.3.1528
+[   76.329073] netlink: 16 bytes leftover after parsing attributes in process `syz.2.1562'.
+[   76.683546] tmpfs: Bad value for 'mpol'
+[   76.897365] netlink: 8 bytes leftover after parsing attributes in process `syz.0.1637'.
+[   76.946914] 9pnet_virtio: no channels available for device ./file0
+[   77.039530] Option 'ãè' to dns_resolver key: bad/missing value
+[   77.202956] binfmt_misc: register: failed to install interpreter file ./file0/file0
+[   77.243534] netlink: 6 bytes leftover after parsing attributes in process `syz.3.1683'.
+[   77.262125] watchdog: watchdog0: watchdog did not stop!
+[   77.384211] tmpfs: Bad value for 'mpol'
+[   77.722010] watchdog: watchdog0: watchdog did not stop!
+[   78.137047] 9pnet_fd: p9_fd_create_tcp (5684): problem connecting socket to 127.0.0.1
+[   78.239536] netlink: 3 bytes leftover after parsing attributes in process `syz.2.1804'.
+[   78.417709] 9pnet_virtio: no channels available for device ./file0
+[   78.768546] netlink: 12 bytes leftover after parsing attributes in process `syz.3.1857'.
+[   78.890762] @@: renamed from bridge0 (while UP)
+[   78.970797] SELinux: unrecognized netlink message: protocol=4 nlmsg_type=0 sclass=netlink_tcpdiag_socket pid=5859 comm=syz.1.1874
+[   79.024129] cgroup: Invalid name
+[   79.037475] 9pnet_virtio: no channels available for device ./file0
+[   79.606668] program syz.3.1949 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   80.155050] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2578 sclass=netlink_route_socket pid=6132 comm=syz.3.2008
+[   80.161913] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2562 sclass=netlink_route_socket pid=6132 comm=syz.3.2008
+[   80.167140] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2580 sclass=netlink_route_socket pid=6132 comm=syz.3.2008
+[   80.171527] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2580 sclass=netlink_route_socket pid=6132 comm=syz.3.2008
+[   80.259999] program syz.0.2017 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   80.322365] program syz.3.2032 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   80.329582] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2578 sclass=netlink_route_socket pid=6173 comm=syz.1.2023
+[   80.338795] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2562 sclass=netlink_route_socket pid=6173 comm=syz.1.2023
+[   80.344106] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2580 sclass=netlink_route_socket pid=6173 comm=syz.1.2023
+[   80.350462] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2580 sclass=netlink_route_socket pid=6173 comm=syz.1.2023
+[   80.514806] hpet: Lost 1 RTC interrupts
+[   80.643852] ata3.00: invalid multi_count 1 ignored
+[   80.820180] ata3.00: invalid multi_count 1 ignored
+[   80.879822] ata3.00: invalid multi_count 1 ignored
+[   81.035617] ata3.00: invalid multi_count 1 ignored
+[   81.781869] cgroup: Unknown subsys name 'fowner'
+[   81.932322] netlink: 128 bytes leftover after parsing attributes in process `syz.3.2195'.
+[   81.952520] cgroup: Unknown subsys name 'fowner'
+[   82.040267] SELinux: security_context_str_to_sid (sysadm_u) failed with errno=-22
+[   82.040617] netlink: 128 bytes leftover after parsing attributes in process `syz.1.2200'.
+[   82.106337] SELinux: security_context_str_to_sid (sysadm_u) failed with errno=-22
+[   83.103914] tmpfs: Bad value for 'mode'
+[   83.282230] tmpfs: Bad value for 'mode'
+[   83.994774] autofs4:pid:6593:check_dev_ioctl_version: ioctl control interface version mismatch: kernel(1.1), user(1.768), cmd(0xc0189375)
+[   83.998639] autofs4:pid:6593:validate_dev_ioctl: invalid device control module version supplied for cmd(0xc0189375)
+[   84.075490] autofs4:pid:6604:check_dev_ioctl_version: ioctl control interface version mismatch: kernel(1.1), user(1.768), cmd(0xc0189375)
+[   84.082324] autofs4:pid:6604:validate_dev_ioctl: invalid device control module version supplied for cmd(0xc0189375)
+[   84.265965] netlink: 8 bytes leftover after parsing attributes in process `syz.3.2263'.
+[   85.149073] netlink: 8 bytes leftover after parsing attributes in process `syz.2.2270'.
+[   85.165784] program syz.0.2272 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   85.302112] program syz.2.2287 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   85.479596] netlink: 4 bytes leftover after parsing attributes in process `syz.2.2311'.
+[   85.653882] netlink: 4 bytes leftover after parsing attributes in process `syz.1.2319'.
+[   86.185138] program syz.1.2373 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   86.757722] program syz.2.2375 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   87.610189] program syz.1.2382 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   87.709781] netlink: 20 bytes leftover after parsing attributes in process `syz.3.2377'.
+[   87.812082] netlink: 4 bytes leftover after parsing attributes in process `syz.3.2394'.
+[   87.869919] program syz.2.2388 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   87.931566] netlink: 20 bytes leftover after parsing attributes in process `syz.0.2393'.
+[   88.003841] netlink: 4 bytes leftover after parsing attributes in process `syz.0.2398'.
+[   88.266608] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(0.0.0), cmd(10)
+[   88.419842] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(0.0.0), cmd(10)
+[   88.471387] netlink: 8 bytes leftover after parsing attributes in process `syz.3.2451'.
+[   88.625035] netlink: 8 bytes leftover after parsing attributes in process `syz.2.2458'.
+[   89.451751] Restarting kernel threads ...
+[   89.453863] Done restarting kernel threads.
+[   90.363142] Restarting kernel threads ...
+[   90.365781] Done restarting kernel threads.
+[   90.563597] Restarting kernel threads ...
+[   90.567417] Done restarting kernel threads.
+[   90.604501] netlink: 'syz.2.2515': attribute type 8 has an invalid length.
+[   90.638043] Restarting kernel threads ...
+[   90.640863] Done restarting kernel threads.
+[   90.719006] netlink: 'syz.1.2527': attribute type 8 has an invalid length.
+[   90.867353] netlink: 4 bytes leftover after parsing attributes in process `syz.0.2543'.
+[   91.060173] netlink: 4 bytes leftover after parsing attributes in process `syz.1.2552'.
+[   91.334705] netlink: 8 bytes leftover after parsing attributes in process `syz.3.2586'.
+[   91.348720] tmpfs: Bad value for 'mpol'
+[   91.370518] sd 0:0:0:0: ioctl_internal_command: ILLEGAL REQUEST asc=0x24 ascq=0x0
+[   91.510837] netlink: 8 bytes leftover after parsing attributes in process `syz.1.2595'.
+[   91.540625] tmpfs: Bad value for 'mpol'
+[   91.569792] sd 0:0:0:0: ioctl_internal_command: ILLEGAL REQUEST asc=0x24 ascq=0x0
+[   91.776126] hpet: Lost 1 RTC interrupts
+[   93.413753] __nla_validate_parse: 1 callbacks suppressed
+[   93.413770] netlink: 8 bytes leftover after parsing attributes in process `syz.3.2659'.
+[   93.528978] netlink: 8 bytes leftover after parsing attributes in process `syz.2.2673'.
+[   93.799890] netlink: 56 bytes leftover after parsing attributes in process `syz.1.2696'.
+[   93.933614] netlink: 56 bytes leftover after parsing attributes in process `syz.2.2709'.
+[   94.059058] netlink: 'syz.1.2719': attribute type 33 has an invalid length.
+[   94.126358] netlink: 8 bytes leftover after parsing attributes in process `syz.0.2724'.
+[   94.174196] netlink: 'syz.2.2732': attribute type 33 has an invalid length.
+[   94.224224] cgroup: release_agent respecified
+[   94.281122] netlink: 8 bytes leftover after parsing attributes in process `syz.1.2737'.
+[   94.400738] cgroup: release_agent respecified
+[   96.516880] program syz.1.2816 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   97.365123] program syz.2.2832 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   98.384548] program syz.3.2877 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   98.497802] program syz.0.2885 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   98.972213] sg_write: data in/out 1977783809/1 bytes for SCSI command 0x23-- guessing data in;
+[   98.972213]    program syz.2.2946 not setting count and/or reply_len properly
+[   99.029532] program syz.3.2954 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   99.091834] sg_write: data in/out 1977783809/1 bytes for SCSI command 0x23-- guessing data in;
+[   99.091834]    program syz.0.2960 not setting count and/or reply_len properly
+[   99.134513] program syz.1.2966 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   99.386418] netlink: 16 bytes leftover after parsing attributes in process `syz.1.2999'.
+[   99.556933] netlink: 16 bytes leftover after parsing attributes in process `syz.0.3005'.
+[  100.414639] selinux_netlink_send: 8 callbacks suppressed
+[  100.414648] SELinux: unrecognized netlink message: protocol=6 nlmsg_type=2580 sclass=netlink_xfrm_socket pid=8331 comm=syz.2.3095
+[  100.570445] SELinux: unrecognized netlink message: protocol=6 nlmsg_type=2580 sclass=netlink_xfrm_socket pid=8367 comm=syz.0.3107
+[  101.066110] netlink: 16 bytes leftover after parsing attributes in process `syz.1.3172'.
+[  101.262182] netlink: 16 bytes leftover after parsing attributes in process `syz.3.3181'.
+[  102.362823] tmpfs: Bad value for 'mpol'
+[  102.479199] tmpfs: Bad value for 'mpol'
+[  103.003501] netlink: 8 bytes leftover after parsing attributes in process `syz.3.3347'.
+[  103.070570] netlink: 8 bytes leftover after parsing attributes in process `syz.1.3351'.
+[  103.171846] Option 'ãè' to dns_resolver key: bad/missing value
+[  103.463234] Option 'ãè' to dns_resolver key: bad/missing value
+[  103.835030] netlink: 6 bytes leftover after parsing attributes in process `syz.1.3409'.
+[  104.020250] netlink: 6 bytes leftover after parsing attributes in process `syz.0.3420'.
+[  104.088173] watchdog: watchdog0: watchdog did not stop!
+[  104.218462] binfmt_misc: register: failed to install interpreter file ./file0/file0
+[  104.325150] watchdog: watchdog0: watchdog did not stop!
+[  104.376946] binfmt_misc: register: failed to install interpreter file ./file0/file0
+[  104.749810] tmpfs: Bad value for 'mpol'
+[  104.936151] tmpfs: Bad value for 'mpol'
+[  105.422979] watchdog: watchdog0: watchdog did not stop!
+[  105.547125] watchdog: watchdog0: watchdog did not stop!
+[  106.529971] 9pnet_fd: p9_fd_create_tcp (9491): problem connecting socket to 127.0.0.1
+[  107.399458] 9pnet_fd: p9_fd_create_tcp (9530): problem connecting socket to 127.0.0.1
+[  107.488126] 9pnet_fd: p9_fd_create_tcp (9535): problem connecting socket to 127.0.0.1
+[  107.660047] 9pnet_fd: p9_fd_create_tcp (9557): problem connecting socket to 127.0.0.1
+[  108.248101] 9pnet_fd: p9_fd_create_tcp (9564): problem connecting socket to 127.0.0.1
+[  108.472177] netlink: 3 bytes leftover after parsing attributes in process `syz.3.3716'.
+[  108.698720] netlink: 3 bytes leftover after parsing attributes in process `syz.0.3725'.
+[  109.345901] @@: renamed from bridge0 (while UP)
+[  109.394079] netlink: 12 bytes leftover after parsing attributes in process `syz.2.3806'.
+[  109.511303] @@: renamed from bridge0 (while UP)
+[  109.551969] netlink: 12 bytes leftover after parsing attributes in process `syz.0.3810'.
+[  109.698593] netlink: 12 bytes leftover after parsing attributes in process `syz.2.3826'.
+[  110.449127] SELinux: unrecognized netlink message: protocol=4 nlmsg_type=0 sclass=netlink_tcpdiag_socket pid=9887 comm=syz.0.3857
+[  111.291085] SELinux: unrecognized netlink message: protocol=4 nlmsg_type=0 sclass=netlink_tcpdiag_socket pid=9909 comm=syz.3.3864
+[  111.366529] cgroup: Invalid name
+[  111.495855] cgroup: Invalid name
+[  112.644427] program syz.2.4017 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  112.886560] program syz.0.4032 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  114.464346] netlink: 21 bytes leftover after parsing attributes in process `syz.3.4196'.
+[  114.655622] netlink: 21 bytes leftover after parsing attributes in process `syz.2.4211'.
+[  114.867495] netlink: 21 bytes leftover after parsing attributes in process `syz.1.4222'.
+[  114.945996] netlink: 21 bytes leftover after parsing attributes in process `syz.0.4236'.
+[  115.121516] audit: type=1400 audit(1786188741.616:48): avc:  denied  { name_bind } for  pid=10714 comm="syz.1.4251" src=20001 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:port_t:s0 tclass=icmp_socket permissive=1
+[  115.140709] audit: type=1400 audit(1786188741.618:49): avc:  denied  { node_bind } for  pid=10714 comm="syz.1.4251" src=20001 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:node_t:s0 tclass=icmp_socket permissive=1
+[  115.989186] 9pnet_fd: p9_fd_create_unix (10934): problem connecting socket: ./file0: -111
+[  116.081786] 9pnet_fd: p9_fd_create_unix (10958): problem connecting socket: ./file0: -111
+[  116.193848] 9pnet_fd: p9_fd_create_unix (10985): problem connecting socket: ./file0: -111
+[  116.303243] 9pnet_fd: p9_fd_create_unix (11017): problem connecting socket: ./file0: -111
+[  116.455347] netlink: 40 bytes leftover after parsing attributes in process `syz.1.4421'.
+[  116.655701] netlink: 40 bytes leftover after parsing attributes in process `syz.0.4435'.
+[  116.802990] netlink: 40 bytes leftover after parsing attributes in process `syz.2.4448'.
+[  116.923031] netlink: 40 bytes leftover after parsing attributes in process `syz.3.4460'.
+[  117.079348] program syz.2.4483 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  117.226469] program syz.0.4497 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  117.345524] program syz.3.4512 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  117.490418] program syz.1.4524 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  118.042537] syz.3.4586 calls setitimer() with new_value NULL pointer. Misfeature support will be removed
+[  118.570828] program syz.0.4645 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  118.651424] program syz.2.4656 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  118.759984] program syz.1.4666 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  118.864584] program syz.3.4679 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  119.303401] netlink: 16 bytes leftover after parsing attributes in process `syz.1.4732'.
+[  119.487669] netlink: 16 bytes leftover after parsing attributes in process `syz.3.4747'.
+[  119.504152] watchdog: watchdog0: watchdog did not stop!
+[  119.602916] netlink: 16 bytes leftover after parsing attributes in process `syz.2.4765'.
+[  119.651522] watchdog: watchdog0: watchdog did not stop!
+[  119.705031] watchdog: watchdog0: watchdog did not stop!
+[  119.785307] netlink: 16 bytes leftover after parsing attributes in process `syz.0.4780'.
+[  119.814225] watchdog: watchdog0: watchdog did not stop!
+[  120.712953] loop3: detected capacity change from 0 to 1164
+[  120.717868] iso9660: Unknown parameter 'func'
+[  120.827135] loop2: detected capacity change from 0 to 1164
+[  120.832218] iso9660: Unknown parameter 'func'
+[  120.945978] loop0: detected capacity change from 0 to 1164
+[  120.949887] iso9660: Unknown parameter 'func'
+[  121.032125] loop1: detected capacity change from 0 to 1164
+[  121.035892] iso9660: Unknown parameter 'func'
+[  121.922542] ata1.00: invalid transfer count 0
+[  122.043707] ata1.00: invalid transfer count 0
+[  122.189645] ata1.00: invalid transfer count 0
+[  122.285843] "·±87: renamed from lo (while UP)
+[  122.299036] ata1.00: invalid transfer count 0
+[  122.419082] "·±87: renamed from lo (while UP)
+[  122.596031] "·±87: renamed from lo (while UP)
+[  122.737680] "·±87: renamed from lo (while UP)
+[  123.123506] program syz.3.5209 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  123.152026] netlink: 16 bytes leftover after parsing attributes in process `syz.1.5215'.
+[  123.158124] netlink: 16 bytes leftover after parsing attributes in process `syz.1.5215'.
+[  123.213712] program syz.2.5221 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  123.279482] netlink: 16 bytes leftover after parsing attributes in process `syz.2.5228'.
+[  123.284843] netlink: 16 bytes leftover after parsing attributes in process `syz.2.5228'.
+[  123.328908] program syz.1.5234 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  123.401774] netlink: 16 bytes leftover after parsing attributes in process `syz.3.5242'.
+[  123.409385] netlink: 16 bytes leftover after parsing attributes in process `syz.3.5242'.
+[  123.497547] program syz.0.5248 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  123.549738] netlink: 16 bytes leftover after parsing attributes in process `syz.0.5256'.
+[  123.727257] hpet: Lost 1 RTC interrupts
+[  124.468474] audit: type=1400 audit(1786188750.970:50): avc:  denied  { checkpoint_restore } for  pid=12948 comm="syz.2.5351" capability=40  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[  124.471422] tmpfs: Unknown parameter 'm'
+[  124.577131] tmpfs: Unknown parameter 'm'
+[  124.668146] tmpfs: Unknown parameter 'm'
+[  124.708182] tmpfs: Unknown parameter 'm'
+[  124.746457] program syz.1.5393 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  124.823155] netlink: 'syz.3.5410': attribute type 12 has an invalid length.
+[  124.828812] __nla_validate_parse: 1 callbacks suppressed
+[  124.828823] netlink: 8 bytes leftover after parsing attributes in process `syz.3.5410'.
+[  124.832621] program syz.0.5408 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  124.923396] netlink: 'syz.0.5423': attribute type 12 has an invalid length.
+[  124.927333] netlink: 8 bytes leftover after parsing attributes in process `syz.0.5423'.
+[  124.938421] program syz.3.5424 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  125.010462] program syz.2.5438 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  125.030828] netlink: 'syz.1.5439': attribute type 12 has an invalid length.
+[  125.034831] netlink: 8 bytes leftover after parsing attributes in process `syz.1.5439'.
+[  125.130810] netlink: 'syz.2.5455': attribute type 12 has an invalid length.
+[  125.134171] netlink: 8 bytes leftover after parsing attributes in process `syz.2.5455'.
+[  126.459821] program syz.3.5515 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  126.567344] program syz.0.5534 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  127.059850] program syz.2.5547 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  127.079404] netlink: 40 bytes leftover after parsing attributes in process `syz.2.5549'.
+[  127.596747] program syz.1.5559 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  127.619733] netlink: 40 bytes leftover after parsing attributes in process `syz.3.5562'.
+[  127.700095] program syz.1.5576 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  127.720049] netlink: 40 bytes leftover after parsing attributes in process `syz.1.5578'.
+[  127.809624] program syz.1.5588 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  128.469735] netlink: 40 bytes leftover after parsing attributes in process `syz.0.5591'.
+[  130.587609] hpet: Lost 1 RTC interrupts
+[  131.852321] program syz.2.5828 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  131.985248] program syz.0.5841 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  132.868356] loop3: detected capacity change from 0 to 512
+[  132.915970] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[  132.927723] loop0: detected capacity change from 0 to 512
+[  132.937569] ext4 filesystem being mounted at /1483/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[  132.941926] EXT4-fs (loop0): VFS: Found ext4 filesystem with invalid superblock checksum.  Run e2fsck?
+[  132.985330] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  133.385065] audit: type=1400 audit(1786188759.888:51): avc:  denied  { associate } for  pid=14073 comm="syz.1.5909" name="tun" dev="devtmpfs" ino=119 scontext=system_u:object_r:auditd_etc_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=filesystem permissive=1
+[  133.536080] sit0: mtu less than device minimum
+[  133.591185] hpet: Lost 1 RTC interrupts
+[  133.994776] 9pnet_fd: p9_fd_create_tcp (14200): problem connecting socket to 127.0.0.1
+[  134.044213] tmpfs: Bad value for 'mpol'
+[  135.261878] sit0: entered allmulticast mode
+[  135.392844] netlink: 8 bytes leftover after parsing attributes in process `syz.1.6109'.
+[  135.953724] Ä¬: renamed from syz_tun (while UP)
+[  136.487222] SELinux:  Context /usr/sbin/ntpd is not valid (left unmapped).
+[  136.496148] audit: type=1400 audit(1786188763.000:52): avc:  denied  { associate } for  pid=14669 comm="syz.2.6202" name="file1" dev="tmpfs" ino=7837 scontext=system_u:object_r:unlabeled_t:s0 tcontext=system_u:object_r:tmpfs_t:s0 tclass=filesystem permissive=1 srawcon="/usr/sbin/ntpd"
+[  136.569746] process 'syz.3.6211' launched './file2' with NULL argv: empty string added
+[  136.794840] tmpfs: Bad value for 'mpol'
+[  137.038626] i801_smbus 0000:00:1f.3: Illegal SMBus block read size 0
+[  137.074693] netlink: 88 bytes leftover after parsing attributes in process `syz.3.6258'.
+[  137.142375] netlink: 16 bytes leftover after parsing attributes in process `syz.1.6264'.
+[  137.252955] watchdog: watchdog0: watchdog did not stop!
+[  138.492550] netlink: 92 bytes leftover after parsing attributes in process `syz.1.6383'.
+[  138.497726] netlink: 16 bytes leftover after parsing attributes in process `syz.1.6383'.
+[  138.621798] hpet: Lost 1 RTC interrupts
+[  138.682315] netlink: 8 bytes leftover after parsing attributes in process `syz.3.6398'.
+[  138.921189] netlink: 88 bytes leftover after parsing attributes in process `syz.3.6418'.
+[  139.122195] ata1.00: non-matching transfer count (-1803642865/0)
+[  139.210112] netlink: 188 bytes leftover after parsing attributes in process `syz.2.6447'.
+[  139.655709] SELinux:  Context u:object_r:app_data_file:s0:c512,c768 is not valid (left unmapped).
+[  139.666085] audit: type=1400 audit(1786188766.170:53): avc:  denied  { relabelto } for  pid=15257 comm="syz.0.6490" name="NETLINK" dev="sockfs" ino=48557 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=netlink_rdma_socket permissive=1 trawcon="u:object_r:app_data_file:s0:c512,c768"
+[  139.948752] program syz.0.6524 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  140.218302] program syz.1.6554 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  140.220369] SELinux: unrecognized netlink message: protocol=9 nlmsg_type=0 sclass=netlink_audit_socket pid=15384 comm=syz.0.6553
+[  140.694834] syz_tun: entered allmulticast mode
+[  140.729099] program syz.3.6600 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  141.149964] SELinux:  Context ™™™™™ is not valid (left unmapped).
+[  141.417731] audit: type=1400 audit(1786188767.921:54): avc:  denied  { relabelfrom } for  pid=15615 comm="syz.0.6667" name="" dev="pipefs" ino=48824 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=fifo_file permissive=1
+[  141.586151] netlink: 12 bytes leftover after parsing attributes in process `syz.3.6681'.
+[  141.686028] SELinux:  policydb version -229044372 does not match my version range 15-35
+[  141.686445] netlink: 4208 bytes leftover after parsing attributes in process `syz.2.6690'.
+[  141.693053] SELinux: failed to load policy
+[  141.777423] watchdog: watchdog0: watchdog did not stop!
+[  142.302015] netlink: 4 bytes leftover after parsing attributes in process `syz.0.6749'.
+[  142.422270] 8021q: VLANs not supported on sit0
+[  142.742374] program syz.1.6791 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  143.163890] tmpfs: Bad value for 'mpol'
+[  143.303048] SELinux:  policydb string length 0 does not match expected length 8
+[  143.308246] SELinux: failed to load policy
+[  144.582974] loop3: detected capacity change from 0 to 512
+[  144.587202] EXT4-fs (loop3): VFS: Found ext4 filesystem with invalid superblock checksum.  Run e2fsck?
+[  144.602123] hpet: Lost 2 RTC interrupts
+[  144.627240] loop2: detected capacity change from 0 to 512
+[  144.669638] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[  144.677897] ext4 filesystem being mounted at /1715/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[  144.715051] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  145.231185] sit0: mtu less than device minimum
+[  145.752858] 9pnet_fd: p9_fd_create_tcp (16258): problem connecting socket to 127.0.0.1
+[  145.833219] tmpfs: Bad value for 'mpol'
+
+Debian GNU/Linux 11 syzkaller ttyS0
+
+syzkaller login: [  148.682963] netlink: 8 bytes leftover after parsing attributes in process `syz.2.7198'.
+[  148.717802] netlink: 88 bytes leftover after parsing attributes in process `syz.0.7203'.
+[  149.027934] SELinux: unrecognized netlink message: protocol=9 nlmsg_type=0 sclass=netlink_audit_socket pid=16777 comm=syz.1.7239
+[  149.085716] program syz.3.7238 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  149.181649] syz_tun: entered allmulticast mode
+[  149.215659] program syz.0.7250 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  149.456461] watchdog: watchdog0: watchdog did not stop!
+[  149.650992] 8021q: VLANs not supported on sit0
+[  149.693386] program syz.1.7295 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  149.731005] sit0: entered allmulticast mode
+[  149.921751] SELinux:  policydb string length 0 does not match expected length 8
+[  149.927958] SELinux: failed to load policy
+[  149.975893] program syz.3.7324 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  150.849626] tmpfs: Bad value for 'mpol'
+[  150.984150] 9pnet_fd: p9_fd_create_tcp (17150): problem connecting socket to 127.0.0.1
+[  151.397681] sit0: mtu less than device minimum
+[  151.527995] audit: type=1400 audit(1786188778.022:55): avc:  denied  { associate } for  pid=17252 comm="syz.3.7470" name="tun" dev="devtmpfs" ino=119 scontext=system_u:object_r:auditd_etc_t:s0 tcontext=system_u:object_r:device_t:s0 tclass=filesystem permissive=1
+[  151.933263] loop2: detected capacity change from 0 to 512
+[  151.938127] EXT4-fs (loop2): VFS: Found ext4 filesystem with invalid superblock checksum.  Run e2fsck?
+[  152.185701] loop0: detected capacity change from 0 to 512
+[  152.201048] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[  152.207485] ext4 filesystem being mounted at /1863/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[  152.260010] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  152.421286] loop1: detected capacity change from 0 to 512
+[  152.434824] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[  152.447718] ext4 filesystem being mounted at /1876/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[  152.485061] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  152.623709] loop3: detected capacity change from 0 to 512
+[  152.638711] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[  152.644122] ext4 filesystem being mounted at /1921/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[  152.699800] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  152.983851] sit0: entered allmulticast mode
+[  153.112209] netlink: 8 bytes leftover after parsing attributes in process `syz.0.7578'.
+[  153.164701] sit0: entered allmulticast mode
+[  153.286976] netlink: 8 bytes leftover after parsing attributes in process `syz.3.7592'.
+[  153.646096] Ä¬: renamed from syz_tun (while UP)
+[  153.662466] audit: type=1400 audit(1786188780.165:56): avc:  denied  { node_bind } for  pid=17596 comm="syz.0.7635" saddr=100.1.1.1 src=20002 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:node_t:s0 tclass=icmp_socket permissive=1
+[  153.797803] Ä¬: renamed from syz_tun (while UP)
+[  153.955972] Ä¬: renamed from syz_tun (while UP)
+[  154.582942] hpet: Lost 1 RTC interrupts
+[  156.356164] i801_smbus 0000:00:1f.3: Illegal SMBus block read size 0
+[  156.396381] netlink: 16 bytes leftover after parsing attributes in process `syz.3.7783'.
+[  156.511481] i801_smbus 0000:00:1f.3: Illegal SMBus block read size 0
+[  156.587372] netlink: 16 bytes leftover after parsing attributes in process `syz.2.7793'.
+[  156.667598] watchdog: watchdog0: watchdog did not stop!
+[  156.828918] watchdog: watchdog0: watchdog did not stop!
+[  156.954809] netlink: 88 bytes leftover after parsing attributes in process `syz.0.7830'.
+[  159.449692] ata1.00: non-matching transfer count (-1803642865/0)
+[  159.577087] netlink: 188 bytes leftover after parsing attributes in process `syz.1.7937'.
+[  159.606551] ata1.00: non-matching transfer count (-1803642865/0)
+[  159.766254] netlink: 188 bytes leftover after parsing attributes in process `syz.0.7951'.
+[  159.770002] ata1.00: non-matching transfer count (-1803642865/0)
+[  159.889127] ata1.00: non-matching transfer count (-1803642865/0)
+[  159.904244] netlink: 188 bytes leftover after parsing attributes in process `syz.3.7968'.
+[  159.944000] ata1.00: non-matching transfer count (-1803642865/0)
+[  160.008104] netlink: 188 bytes leftover after parsing attributes in process `syz.1.7983'.
+[  161.061678] program syz.1.8073 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  161.307607] SELinux: unrecognized netlink message: protocol=9 nlmsg_type=0 sclass=netlink_audit_socket pid=18533 comm=syz.3.8092
+[  161.339918] program syz.2.8094 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  161.794534] program syz.1.8142 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  161.817029] Ä¬: entered allmulticast mode
+[  162.804894] netlink: 12 bytes leftover after parsing attributes in process `syz.0.8216'.
+[  162.952843] netlink: 4208 bytes leftover after parsing attributes in process `syz.0.8230'.
+[  163.190218] SELinux:  policydb version -229044372 does not match my version range 15-35
+[  163.196897] SELinux: failed to load policy
+[  163.271651] SELinux:  policydb version -229044372 does not match my version range 15-35
+[  163.279465] SELinux: failed to load policy
+[  164.687506] program syz.2.8294 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  165.910121] Unsupported ieee802154 address type: 0
+[  166.114889] watchdog: watchdog0: watchdog did not stop!
+[  166.180225] Ä¬: left allmulticast mode
+[  166.997453] Unsupported ieee802154 address type: 0
+[  167.044753] Ä¬: left allmulticast mode
+[  167.087292] watchdog: watchdog0: watchdog did not stop!
+[  167.413837] netlink: 'syz.2.8424': attribute type 9 has an invalid length.
+[  167.419327] netlink: 8 bytes leftover after parsing attributes in process `syz.2.8424'.
+[  167.799673] netlink: 'syz.0.8443': attribute type 9 has an invalid length.
+[  167.805552] netlink: 8 bytes leftover after parsing attributes in process `syz.0.8443'.
+[  168.225296] netlink: 'syz.3.8454': attribute type 9 has an invalid length.
+[  168.232335] netlink: 8 bytes leftover after parsing attributes in process `syz.3.8454'.
+[  169.388994] tmpfs: Bad value for 'nr_blocks'
+[  170.690666] sr 2:0:0:0: [sr0] tag#27 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+[  170.695144] sr 2:0:0:0: [sr0] tag#27 CDB: Xdread, Read track info
+[  170.702170] sr 2:0:0:0: [sr0] tag#27 CDB[00]: 52 50 9c 4e 8f 45 6c 82 8b 8f 27 ad f2 94 51 10
+[  170.707126] sr 2:0:0:0: [sr0] tag#27 CDB[10]: d2 78
+[  170.873998] tmpfs: Bad value for 'gid'
+[  170.876555] tmpfs: Bad value for 'gid'
+[  170.952545] netlink: 8 bytes leftover after parsing attributes in process `syz.1.8666'.
+[  171.105732] netlink: 'syz.3.8678': attribute type 1 has an invalid length.
+[  171.267805] program syz.3.8689 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  172.272353] tmpfs: Bad value for 'gid'
+[  172.275324] tmpfs: Bad value for 'gid'
+[  172.314959] sr 2:0:0:0: [sr0] tag#30 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+[  172.320562] sr 2:0:0:0: [sr0] tag#30 CDB: Xdread, Read track info
+[  172.325402] sr 2:0:0:0: [sr0] tag#30 CDB[00]: 52 50 9c 4e 8f 45 6c 82 8b 8f 27 ad f2 94 51 10
+[  172.332577] sr 2:0:0:0: [sr0] tag#30 CDB[10]: d2 78
+[  172.376206] netlink: 'syz.1.8725': attribute type 1 has an invalid length.
+[  172.501474] tmpfs: Bad value for 'gid'
+[  172.512844] tmpfs: Bad value for 'gid'
+[  172.883284] watchdog: watchdog0: watchdog did not stop!
+[  173.149629] watchdog: watchdog0: watchdog did not stop!
+[  173.306663] watchdog: watchdog0: watchdog did not stop!
+[  173.337677] loop3: detected capacity change from 0 to 128
+[  173.357145] [EXT4 FS bs=1024, gc=1, bpg=8192, ipg=16, mo=c843c098, mo2=0002]
+[  173.370754] EXT4-fs (loop3): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+[  173.379976] ext4 filesystem being mounted at /2274/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+[  173.408250] EXT4-fs (loop3): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+[  174.418077] netlink: 8 bytes leftover after parsing attributes in process `syz.3.8858'.
+[  174.418087] SELinux:  policydb magic number 0x0 does not match expected magic number 0xf97cff8c
+[  174.418127] SELinux: failed to load policy
+[  174.457087] tmpfs: Bad value for 'size'
+[  174.509961] loop2: detected capacity change from 0 to 128
+[  174.525911] [EXT4 FS bs=1024, gc=1, bpg=8192, ipg=16, mo=c843c098, mo2=0002]
+[  174.532644] EXT4-fs (loop2): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+[  174.541211] ext4 filesystem being mounted at /2199/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+[  174.572364] EXT4-fs (loop2): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+[  174.592389] SELinux:  policydb magic number 0x0 does not match expected magic number 0xf97cff8c
+[  174.598929] tmpfs: Bad value for 'size'
+[  174.602242] SELinux: failed to load policy
+[  174.650709] netlink: 8 bytes leftover after parsing attributes in process `syz.1.8875'.
+[  174.785824] SELinux:  policydb magic number 0x0 does not match expected magic number 0xf97cff8c
+[  174.793483] SELinux: failed to load policy
+[  175.303601] program syz.0.8948 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  175.380916] SELinux:  policydb magic number 0x0 does not match expected magic number 0xf97cff8c
+[  175.396082] SELinux: failed to load policy
+[  176.216522] program syz.3.9036 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  176.608859] program syz.3.9074 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  177.211371] program syz.2.9134 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  178.714796] program syz.2.9204 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  178.822073] watchdog: watchdog0: watchdog did not stop!
+[  178.953965] watchdog: watchdog0: watchdog did not stop!
+[  179.018140] netlink: 120 bytes leftover after parsing attributes in process `syz.1.9234'.
+[  179.041603] tmpfs: Unsupported parameter 'huge'
+[  179.156497] tmpfs: Unsupported parameter 'huge'
+[  179.197895] netlink: 120 bytes leftover after parsing attributes in process `syz.3.9256'.
+[  179.302823] tmpfs: Unsupported parameter 'huge'
+[  179.382187] netlink: 120 bytes leftover after parsing attributes in process `syz.0.9272'.
+[  179.484296] tmpfs: Unsupported parameter 'huge'
+[  179.515545] watchdog: watchdog0: watchdog did not stop!
+[  179.800624] program syz.1.9310 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  180.006894] program syz.3.9324 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  180.499605] sock: sock_timestamping_bind_phc: sock not bind to device
+[  180.633872] netlink: 96 bytes leftover after parsing attributes in process `syz.3.9373'.
+[  181.350564] 9p: Bad value for 'rfdno'
+[  181.499004] netlink: 220 bytes leftover after parsing attributes in process `syz.3.9434'.
+[  181.703629] netlink: 8 bytes leftover after parsing attributes in process `syz.3.9460'.
+[  181.722341] loop0: detected capacity change from 0 to 512
+[  181.747124] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  181.764800] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  182.159096] netlink: 96 bytes leftover after parsing attributes in process `syz.1.9500'.
+[  182.926774] 9p: Bad value for 'rfdno'
+[  183.221640] netlink: 8 bytes leftover after parsing attributes in process `syz.1.9555'.
+[  183.360473] netlink: 8 bytes leftover after parsing attributes in process `syz.0.9568'.
+[  183.590615] loop2: detected capacity change from 0 to 512
+[  183.637909] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  183.679305] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  183.815065] loop1: detected capacity change from 0 to 512
+[  183.856260] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  183.888005] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  184.035652] loop3: detected capacity change from 0 to 512
+[  184.067043] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  184.119786] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  184.271365] loop3: detected capacity change from 0 to 512
+[  184.299777] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  184.330955] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  184.480283] program syz.1.9651 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  185.037352] program syz.2.9688 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  185.738435] program syz.0.9714 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  187.463103] audit: type=1401 audit(1786188813.967:57): op=security_bounded_transition seresult=denied oldcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 newcontext=system_u:object_r:mount_exec_t:s0
+[  187.633991] tmpfs: Bad value for 'mpol'
+[  187.645734] netlink: 40 bytes leftover after parsing attributes in process `syz.0.9859'.
+[  187.774502] audit: type=1401 audit(1786188814.276:58): op=security_bounded_transition seresult=denied oldcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 newcontext=system_u:object_r:mount_exec_t:s0
+[  187.790779] netlink: 16 bytes leftover after parsing attributes in process `syz.1.9872'.
+[  187.954220] audit: type=1401 audit(1786188814.456:59): op=security_bounded_transition seresult=denied oldcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 newcontext=system_u:object_r:mount_exec_t:s0
+[  188.015513] tmpfs: Bad value for 'mpol'
+[  188.018828] netlink: 40 bytes leftover after parsing attributes in process `syz.3.9889'.
+[  188.204312] netlink: 296 bytes leftover after parsing attributes in process `syz.2.9897'.
+[  188.218010] tmpfs: Bad value for 'mpol'
+[  188.234305] netlink: 40 bytes leftover after parsing attributes in process `syz.1.9900'.
+[  188.469450] netlink: 24 bytes leftover after parsing attributes in process `syz.1.9920'.
+[  188.491053] netlink: 12 bytes leftover after parsing attributes in process `syz.2.9922'.
+[  188.503800] netlink: 296 bytes leftover after parsing attributes in process `syz.0.9921'.
+[  188.748089] netlink: 12 bytes leftover after parsing attributes in process `syz.1.9945'.
+[  189.004336] netlink: 24 bytes leftover after parsing attributes in process `syz.3.9955'.
+[  190.218904] audit: type=1326 audit(1786188816.722:60): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=22620 comm="syz.3.10050" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7f8e23c4359d code=0x0
+[  190.547941] program syz.0.10075 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  190.649868] hpet: Lost 1 RTC interrupts
+[  190.952543] program syz.2.10102 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  191.132890] hpet: Lost 1 RTC interrupts
+[  191.537059] syz.0.10142: calling unsupported SCSI_IOCTL_SEND_COMMAND
+[  191.744456] nvme_fabrics: missing parameter 'transport=%s'
+[  191.750447] nvme_fabrics: missing parameter 'nqn=%s'
+[  192.029176] nvme_fabrics: missing parameter 'transport=%s'
+[  192.035156] nvme_fabrics: missing parameter 'nqn=%s'
+[  192.107960] autofs4:pid:22882:check_dev_ioctl_version: ioctl control interface version mismatch: kernel(1.1), user(768.1), cmd(0xc0189375)
+[  192.122827] autofs4:pid:22882:validate_dev_ioctl: invalid device control module version supplied for cmd(0xc0189375)
+[  192.209415] audit: type=1326 audit(1786188818.713:61): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=22897 comm="syz.0.10186" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7fd67c86359d code=0x0
+[  192.283406] autofs4:pid:22910:check_dev_ioctl_version: ioctl control interface version mismatch: kernel(1.1), user(768.1), cmd(0xc0189375)
+[  192.292075] autofs4:pid:22910:validate_dev_ioctl: invalid device control module version supplied for cmd(0xc0189375)
+[  192.431708] autofs4:pid:22937:check_dev_ioctl_version: ioctl control interface version mismatch: kernel(1.1), user(768.1), cmd(0xc0189375)
+[  192.448502] autofs4:pid:22937:validate_dev_ioctl: invalid device control module version supplied for cmd(0xc0189375)
+[  192.658472] __nla_validate_parse: 8 callbacks suppressed
+[  192.661548] netlink: 8 bytes leftover after parsing attributes in process `syz.3.10225'.
+[  192.703956] netlink: 8 bytes leftover after parsing attributes in process `syz.2.10236'.
+[  192.818481] netlink: 120 bytes leftover after parsing attributes in process `syz.2.10238'.
+[  192.844164] hpet: Lost 1 RTC interrupts
+[  193.202225] audit: type=1326 audit(1786188819.703:62): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=23047 comm="syz.2.10262" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7ff46ab4359d code=0x0
+[  193.243587] watchdog: watchdog0: watchdog did not stop!
+[  193.381771] watchdog: watchdog0: watchdog did not stop!
+[  193.413904] netlink: 'syz.0.10280': attribute type 179 has an invalid length.
+[  193.691135] watchdog: watchdog0: watchdog did not stop!
+[  193.852714] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2562 sclass=netlink_route_socket pid=23164 comm=syz.3.10317
+[  193.893575] netlink: 'syz.3.10320': attribute type 179 has an invalid length.
+[  194.106907] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2562 sclass=netlink_route_socket pid=23210 comm=syz.1.10343
+[  194.156275] watchdog: watchdog0: watchdog did not stop!
+[  194.268191] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2562 sclass=netlink_route_socket pid=23239 comm=syz.2.10354
+[  194.336794] watchdog: watchdog0: watchdog did not stop!
+[  195.131601] loop3: detected capacity change from 0 to 512
+[  195.154423] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  195.161649] ext4 filesystem being mounted at /2676/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[  195.193108] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  195.558996] TCP: TCP_TX_DELAY enabled
+[  195.748881] loop0: detected capacity change from 0 to 512
+[  195.766083] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  195.773587] ext4 filesystem being mounted at /2616/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[  195.802141] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  197.375165] program syz.3.10606 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  198.560559] raw_sendmsg: syz.3.10669 forgot to set AF_INET. Fix it!
+[  199.010347] BIDI support in bsg has been removed.
+[  199.058456] ata3.00: invalid multi_count 1 ignored
+[  199.390707] netlink: 12 bytes leftover after parsing attributes in process `syz.1.10743'.
+[  199.394428] netlink: 'syz.1.10743': attribute type 1 has an invalid length.
+[  199.414046] ata3.00: invalid multi_count 1 ignored
+[  199.626897] ata3.00: invalid multi_count 1 ignored
+[  199.679776] netlink: 12 bytes leftover after parsing attributes in process `syz.2.10768'.
+[  199.694674] netlink: 'syz.2.10768': attribute type 1 has an invalid length.
+[  200.376196] audit: type=1400 audit(1786188826.879:63): avc:  denied  { mac_admin } for  pid=24188 comm="syz.3.10826" capability=33  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[  200.489540] program syz.3.10839 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  200.644305] nvme_fabrics: unknown parameter or missing value '' in ctrl creation request
+[  200.926063] program syz.2.10878 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  201.002647] nvme_fabrics: unknown parameter or missing value '' in ctrl creation request
+[  201.118715] SELinux: unrecognized netlink message: protocol=4 nlmsg_type=19 sclass=netlink_tcpdiag_socket pid=24330 comm=syz.1.10896
+[  201.595590] 9p: Could not find request transport: W
+[  202.473508] 9p: Could not find request transport: W
+[  202.556739] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(4.2147483649.2), cmd(9)
+[  202.586690] hpet: Lost 1 RTC interrupts
+[  202.747294] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(4.2147483649.2), cmd(9)
+[  202.928786] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(4.2147483649.2), cmd(9)
+[  204.328708] netlink: 4 bytes leftover after parsing attributes in process `syz.0.11141'.
+[  207.254179] netlink: 4 bytes leftover after parsing attributes in process `syz.2.11318'.
+[  207.265568] netlink: 4 bytes leftover after parsing attributes in process `syz.2.11318'.
+[  207.569313] audit: type=1400 audit(1786188834.072:64): avc:  denied  { block_suspend } for  pid=25262 comm="syz.1.11345" capability=36  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[  207.682269] netlink: 4 bytes leftover after parsing attributes in process `syz.3.11355'.
+[  207.687255] netlink: 4 bytes leftover after parsing attributes in process `syz.3.11355'.
+[  207.991140] netlink: 4 bytes leftover after parsing attributes in process `syz.0.11360'.
+[  207.996082] netlink: 4 bytes leftover after parsing attributes in process `syz.0.11360'.
+[  208.559925] netlink: 4 bytes leftover after parsing attributes in process `syz.1.11377'.
+[  208.564078] netlink: 4 bytes leftover after parsing attributes in process `syz.1.11377'.
+[  208.756030] netlink: 4 bytes leftover after parsing attributes in process `syz.3.11395'.
+[  208.762034] netlink: 4 bytes leftover after parsing attributes in process `syz.3.11395'.
+[  210.708834] loop2: detected capacity change from 0 to 32768
+[  210.995855] serio: Serial port ptm0
+[  213.576970] ALSA: seq fatal error: cannot create timer (-22)
+[  214.054599] serio: Serial port ptm1
+[  214.400967] ALSA: seq fatal error: cannot create timer (-22)
+[  216.204028] audit: type=1400 audit(1786188842.707:65): avc:  denied  { checkpoint_restore } for  pid=26124 comm="syz.1.11762" capability=40  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[  218.801109] program syz.1.11831 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  219.068189] audit: type=1326 audit(1786188845.572:66): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=26335 comm="syz.2.11856" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7ff46ab4359d code=0x0
+[  220.305525] audit: type=1401 audit(1786188846.808:67): op=setxattr invalid_context="u:object_r:app_data_file:s0:c512,c768"
+[  220.355972] netlink: 8 bytes leftover after parsing attributes in process `syz.1.11911'.
+[  220.904868] netlink: 8 bytes leftover after parsing attributes in process `syz.3.11917'.
+[  221.038121] netlink: 8 bytes leftover after parsing attributes in process `syz.2.11930'.
+[  221.094252] audit: type=1326 audit(1786188847.598:68): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=26497 comm="syz.1.11942" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7fd236a1359d code=0x0
+[  222.040776] program syz.0.11978 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  223.809913] netlink: 36 bytes leftover after parsing attributes in process `syz.2.12068'.
+[  224.393818] netlink: 36 bytes leftover after parsing attributes in process `syz.3.12099'.
+[  226.597413] nfs4: Bad value for 'source'
+[  226.612158] 9pnet_fd: Insufficient options for proto=fd
+[  227.074724] loop3: detected capacity change from 0 to 512
+[  227.090632] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  227.116217] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  227.382637] 9pnet_fd: Insufficient options for proto=fd
+[  227.383606] nfs4: Bad value for 'source'
+[  228.166030] hpet: Lost 1 RTC interrupts
+[  228.241100] netlink: 8 bytes leftover after parsing attributes in process `syz.1.12279'.
+[  228.257984] loop3: detected capacity change from 0 to 736
+[  228.399594] netlink: 8 bytes leftover after parsing attributes in process `syz.0.12293'.
+[  228.399690] loop1: detected capacity change from 0 to 512
+[  228.420905] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  228.465398] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  228.469871] loop0: detected capacity change from 0 to 736
+[  228.519625] loop0: detected capacity change from 0 to 512
+[  228.547607] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  228.558658] netlink: 8 bytes leftover after parsing attributes in process `syz.3.12306'.
+[  228.578352] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  228.646611] loop1: detected capacity change from 0 to 736
+[  228.710116] loop2: detected capacity change from 0 to 512
+[  228.733118] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  228.769636] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  228.819117] netlink: 8 bytes leftover after parsing attributes in process `syz.2.12320'.
+[  228.889541] loop0: detected capacity change from 0 to 512
+[  228.892818] loop2: detected capacity change from 0 to 736
+[  228.922360] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  228.979901] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  229.153052] loop1: detected capacity change from 0 to 512
+[  229.194092] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  229.247233] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  229.357114] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  229.396924] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  230.371129] netlink: 8 bytes leftover after parsing attributes in process `syz.0.12371'.
+[  230.612888] audit: type=1401 audit(1786188857.114:69): op=setxattr invalid_context=""
+[  230.992001] audit: type=1401 audit(1786188857.495:70): op=setxattr invalid_context=""
+[  233.458979] watchdog: watchdog0: watchdog did not stop!
+[  233.555433] watchdog: watchdog0: watchdog did not stop!
+[  234.702053] netlink: 40 bytes leftover after parsing attributes in process `syz.0.12566'.
+[  234.829549] netlink: 8 bytes leftover after parsing attributes in process `syz.1.12578'.
+[  235.072960] netlink: 8 bytes leftover after parsing attributes in process `syz.3.12599'.
+[  235.269231] netlink: 40 bytes leftover after parsing attributes in process `syz.1.12621'.
+[  235.349015] netlink: 40 bytes leftover after parsing attributes in process `syz.2.12630'.
+[  237.665469] netlink: 24 bytes leftover after parsing attributes in process `syz.3.12711'.
+[  238.761533] netlink: 24 bytes leftover after parsing attributes in process `syz.0.12774'.
+[  239.440122] netlink: 24 bytes leftover after parsing attributes in process `syz.2.12784'.
+[  243.283269] set_capacity_and_notify: 1 callbacks suppressed
+[  243.283280] loop2: detected capacity change from 0 to 2048
+[  243.330082]  loop2: p2 p3 p7
+[  243.410993] loop3: detected capacity change from 0 to 2048
+[  243.458618]  loop3: p2 p3 p7
+[  243.846101] loop0: detected capacity change from 0 to 2048
+[  243.884178]  loop0: p2 p3 p7
+[  244.304726] audit: type=1400 audit(1786188870.809:71): avc:  denied  { audit_read } for  pid=28841 comm="syz.0.13054" capability=37  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[  244.604415] ucma_write: process 6661 (syz.0.13072) changed security contexts after opening file descriptor, this is not allowed.
+Connection to localhost closed by remote host.

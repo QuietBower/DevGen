@@ -1,0 +1,73 @@
+From: anonymous <author-a-alt@example.com>
+To: airlied@redhat.com
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ x86@kernel.org, linux-pci@vger.kernel.org, Author A <author-a@example.com>
+Subject: Re:[PATCH v2] char: agp: amd64 - fix broken error propagation in
+ agp_amd64_probe()
+Date: Thu, 04 Jun 2026 21:13:16 +0800
+Message-ID: <71742084.a1c9.19e92c4425c.Coremail.author-a-alt@example.com>
+In-Reply-To: <20260504074823.99377-1-author-a-alt@example.com>
+References: <20260504074823.99377-1-author-a-alt@example.com>
+List-Id: <linux-pci.vger.kernel.org>
+
+
+
+Hi Dave and everyone,
+
+Just a gentle ping on this patch. It has been a month since v2 was submitted.
+
+Please let me know if there are any questions, or if any further modifications are needed.
+
+Thanks,
+Author A
+
+At 2026-05-04 15:48:23, author-a-alt@example.com wrote:
+>From: Author A <author-a@example.com>
+>
+>A NULL pointer dereference was observed in the AMD64 AGP driver when
+>running in a virtualized environment (e.g., QEMU/KVM) without a physical
+>AMD Northbridge. The crash occurs in amd64_fetch_size() when attempting
+>to dereference the pointer returned by node_to_amd_nb(0).
+>
+>The root cause of this crash is broken error propagation in
+>agp_amd64_probe(). When no AMD Northbridges are found, cache_nbs()
+>correctly returns -ENODEV. However, the probe function erroneously
+>checked the return value against exactly -1, rather than < 0.
+>
+>As a result, the hardware absence error was masked, allowing the driver
+>to improperly proceed with initialization. It eventually called
+>agp_add_bridge(), which invokes amd64_fetch_size(). Since the hardware
+>does not exist, node_to_amd_nb(0) returns NULL, leading to a General
+>Protection Fault (GPF) when accessing its ->misc member.
+>
+>Fix the issue by correcting the error check in agp_amd64_probe() to
+>abort properly when cache_nbs() returns any negative error code. This
+>prevents the driver from erroneously proceeding without hardware, thereby
+>resolving the subsequent NULL pointer dereference at its source.
+>
+>Signed-off-by: Author A <author-a@example.com>
+>---
+>+ Changes in v2:
+>+ - Dropped redundant NULL pointer checks in various initialization functions.
+>+ - Fixed the actual root cause: broken error propagation in agp_amd64_probe() 
+>+   where it erroneously checked cache_nbs() against exactly -1 instead of < 0.
+>+   (Thanks to Sashiko AI for the review feedback).
+>+
+> drivers/char/agp/amd64-agp.c | 2 +-
+> 1 file changed, 1 insertion(+), 1 deletion(-)
+>
+>diff --git a/drivers/char/agp/amd64-agp.c b/drivers/char/agp/amd64-agp.c
+>index 2505df1f4e69..6741270e0a98 100644
+>--- a/drivers/char/agp/amd64-agp.c
+>+++ b/drivers/char/agp/amd64-agp.c
+>@@ -546,7 +546,7 @@ static int agp_amd64_probe(struct pci_dev *pdev,
+> 	/* Fill in the mode register */
+> 	pci_read_config_dword(pdev, bridge->capndx+PCI_AGP_STATUS, &bridge->mode);
+> 
+>-	if (cache_nbs(pdev, cap_ptr) == -1) {
+>+	if (cache_nbs(pdev, cap_ptr) < 0) {
+> 		agp_put_bridge(bridge);
+> 		return -ENODEV;
+> 	}
+>-- 
+>2.34.1

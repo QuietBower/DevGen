@@ -1,0 +1,50 @@
+From: Author A <author-a@example.com>
+To: Helge Deller <deller@gmx.de>, simona@ffwll.ch
+Cc: tzimmermann@suse.de, sam@ravnborg.org, javierm@redhat.com,
+ linux-fbdev@vger.kernel.org, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject:
+ Re: [PATCH] fbdev: core: Fix pointer desynchronization in fb_io_read()
+Date: Sat, 25 Jul 2026 23:23:35 +0800
+Message-ID: <8b900197-f633-4917-b1f4-5c8cd46f025f@anonymous.edu>
+ In-Reply-To:Content-Type; =?utf-8?q?b=3DcBz+QBybRaH/ivp0/5YGkTPDq8iMkFvK073?=
+ =?utf-8?q?JfZ/mj6IfSaTd66+O+t5Vs8OaqQR8gZwhqkZaj60UA23aOLfNcKXlTJPIgZ6pvTQC?=
+ =?utf-8?q?AiiGpJCQH6vWJyM3oAAQ3jLuormv54KL9o1tY4qBxENjAPQ1bfGvNtGxYTUAjDY8U?=
+ =?utf-8?q?jD4Ko4=3D?=
+	In-Reply-To:Content-Type:Content-Transfer-Encoding; bh=jWYYLigkY
+	acoL3r+VozmhhqscJLLFMITzsgSs3ZOLZo=; b=oPrIcmaHsSkTjeqkfE4O5mwB2
+	uB+dp02RwY9+5NVsf6OxrkTBTRdOJOv/NMeWV7tuFrSbMQ6xEQKLwTdy7kOedqBf
+	yJEMac7Y4hDhPvKQbGRWd+vC5HLdWci6CWchD+lcnCBj0EPzjeAdUMzMcnm/1OUL
+	vBsc0pxYJPVMfgfCoY=
+In-Reply-To: <86a0387c-b704-4ea5-8117-02b30c4faeb3@gmx.de>
+References: <20260721081942.107024-1-author-a@example.com>
+ <86a0387c-b704-4ea5-8117-02b30c4faeb3@gmx.de>
+List-Id: <stable.vger.kernel.org>
+
+
+> Thanks for the patch!
+> It seems correct, and I've added it to the fbdev git tree.
+>
+> Did you actually ran into a problem, or how did you find this 
+> optimization?
+>
+>
+Hi Helge,
+
+Thanks for reviewing and applying the patch!
+
+To answer your question: this wasn't triggered on production hardware.
+It was found while using our DevGen virtual device framework together
+with syzkaller to fuzz legacy fbdev drivers.
+
+DevGen triggered several OOB crashes in fbdev, and during the manual
+code audit to root-cause them, I noticed the src pointer desynchronization
+in fb_io_read(). It was a clear logic bug, so I extracted it as a
+standalone fix.
+
+Thanks again for your time and for maintaining the subsystem!
+
+Best regards,
+Author A
+
+

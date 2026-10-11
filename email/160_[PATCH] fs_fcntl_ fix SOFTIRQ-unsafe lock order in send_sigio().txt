@@ -1,0 +1,81 @@
+From: author-a-alt@example.com
+To: jlayton@kernel.org, chuck.lever@oracle.com, viro@zeniv.linux.org.uk,
+ brauner@kernel.org
+Cc: alex.aring@gmail.com, jack@suse.cz, linux-fsdevel@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Author A <author-a@example.com>
+Subject: [PATCH] fs/fcntl: fix SOFTIRQ-unsafe lock order in send_sigio()
+Date: Sat, 23 May 2026 16:02:55 +0800
+Message-Id: <20260523080255.585201-1-author-a-alt@example.com>
+List-Id: <linux-fsdevel.vger.kernel.org>
+
+From: Author A <author-a@example.com>
+
+A SOFTIRQ-safe to SOFTIRQ-unsafe lock order deadlock can occur in
+send_sigio() when a process group receives a SIGIO.
+
+When FASYNC is configured for a process group (PIDTYPE_PGID),
+send_sigio() uses read_lock(&tasklist_lock) to traverse the task
+list. However, send_sigio() is often called from softirq context
+(e.g., input_inject_event -> kill_fasync), where it already holds
+SOFTIRQ-safe locks like &dev->event_lock and &f_owner->lock.
+
+The deadlock is caused by the rwlock writer fairness mechanism:
+1. CPU 0 (process context) holds read_lock(&tasklist_lock) in do_wait().
+2. CPU 1 (process context) attempts write_lock(&tasklist_lock) in
+   fork() or exit() and spins, which blocks all new readers.
+3. CPU 0 is interrupted by a softirq (e.g., keyboard input event).
+4. The softirq calls send_sigio() and attempts to acquire
+   read_lock(&tasklist_lock), deadlocking because CPU 1 is waiting.
+
+Since PID hashing and do_each_pid_task() traversals are already
+RCU-protected, the read_lock on tasklist_lock is no longer strictly
+required for safe traversal. Fix this by replacing tasklist_lock with
+rcu_read_lock(), aligning the process group signaling path with the
+single-PID path.
+
+Lockdep splat:
+=====================================================
+WARNING: SOFTIRQ-safe -> SOFTIRQ-unsafe lock order detected
+[...]
+Chain exists of:
+  &dev->event_lock --> &f_owner->lock --> tasklist_lock
+
+Possible interrupt unsafe locking scenario:
+       CPU0                    CPU1
+       ----                    ----
+  lock(tasklist_lock);
+                           local_irq_disable();
+                           lock(&dev->event_lock);
+                           lock(&f_owner->lock);
+  <Interrupt>
+    lock(&dev->event_lock);
+
+*** DEADLOCK ***
+
+Signed-off-by: Author A <author-a@example.com>
+---
+ fs/fcntl.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/fs/fcntl.c b/fs/fcntl.c
+index beab8080badf..a6c764ede282 100644
+--- a/fs/fcntl.c
++++ b/fs/fcntl.c
+@@ -929,11 +929,11 @@ void send_sigio(struct fown_struct *fown, int fd, int band)
+ 			send_sigio_to_task(p, fown, fd, band, type);
+ 		rcu_read_unlock();
+ 	} else {
+-		read_lock(&tasklist_lock);
++		rcu_read_lock();
+ 		do_each_pid_task(pid, type, p) {
+ 			send_sigio_to_task(p, fown, fd, band, type);
+ 		} while_each_pid_task(pid, type, p);
+-		read_unlock(&tasklist_lock);
++		rcu_read_unlock();
+ 	}
+  out_unlock_fown:
+ 	read_unlock_irqrestore(&fown->lock, flags);
+-- 
+2.34.1
+
+

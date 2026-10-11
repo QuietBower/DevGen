@@ -1,0 +1,119 @@
+From: Author B <author-b-alt@example.com>
+To: linux-kernel@vger.kernel.org
+Cc: rcu@vger.kernel.org, linux-mm@kvack.org, dri-devel@lists.freedesktop.org,
+ x86@kernel.org, paulmck@kernel.org, tglx@linutronix.de, peterz@infradead.org,
+ akpm@linux-foundation.org, syzkaller-bugs@googlegroups.com
+Subject: [BUG] rcu: stall detected in sys_mmap with PREEMPT(full) involving
+ timer softirq and DRM vblank disable
+Date: Wed, 07 Jan 2026 13:52:11 +0800
+Message-ID: <6b7e2fac.a60e.19b97034116.Coremail.author-b-alt@example.com>
+List-Id: <rcu.vger.kernel.org>
+
+Hello,
+
+I am reporting an RCU stall detected during syzkaller-style fuzz testing.
+The stall is reported while executing sys_mmap(), with the
+rcu_preempt grace-period kthread starved for over 10 seconds. The
+observed stacks involve memory fault handling, timer softirq processing,
+and DRM vblank disable paths. With PREEMPT(full) enabled, the RCU grace
+period fails to complete.
+
+=== Summary ===
+The kernel reports:
+INFO: rcu detected stall in sys_mmap
+rcu_preempt kthread starved for over 10000 jiffies
+RCU reports that all quiescent states have been seen, yet the
+grace-period kthread does not receive sufficient CPU time to advance
+the grace period.
+
+=== Environment ===
+Kernel: 6.18.0 (locally built)
+Config: PREEMPT(full)
+Arch: x86_64
+Hardware: QEMU Standard PC (i440FX + PIIX)
+Workload: syz-executor (syzkaller-style fuzzing)
+
+=== Triggering context ===
+The stall is detected while a syzkaller executor issues sys_mmap()
+calls. The main task context involves page fault handling and memory
+allocation:
+sys_mmap
+vm_mmap_pgoff
+__mm_populate
+populate_vma_page_range
+__get_user_pages
+handle_mm_fault
+do_pte_missing
+get_page_from_freelist
+Concurrently, timer softirq processing executes DRM vblank disable
+logic.
+
+=== Warning details ===
+RCU reports:
+INFO: rcu_preempt detected stalls on CPUs/tasks
+rcu_preempt kthread timer wakeup didn't happen for ~10498 jiffies
+rcu_preempt kthread starved for over ~10498 jiffies
+Possible timer handling issue on cpu=3
+Unless rcu_preempt kthread gets sufficient CPU time,
+OOM is now expected behavior.
+
+=== Call trace ===
+CPU 3 (timer softirq / IRQ context):
+__lock_acquire
+_raw_spin_lock_irqsave
+hrtimer_try_to_cancel
+hrtimer_cancel
+drm_vblank_disable_and_save
+vblank_disable_fn
+call_timer_fn
+run_timer_softirq
+__irq_exit_rcu
+sysvec_apic_timer_interrupt
+CPU 3 (task context):
+lock_release
+__set_page_owner
+post_alloc_hook
+get_page_from_freelist
+do_pte_missing
+handle_mm_fault
+__get_user_pages
+populate_vma_page_range
+__mm_populate
+vm_mmap_pgoff
+__x64_sys_mmap
+RCU GP kthread:
+rcu_gp_fqs_loop
+rcu_gp_kthread
+
+=== Observations ===
+The stall appears to involve an interaction between:
+sys_mmap() page fault and memory allocation paths
+Timer softirq processing
+DRM vblank disable logic acquiring spinlocks
+PREEMPT(full) scheduling and lockdep instrumentation
+The RCU grace-period kthread reports that all quiescent states have been
+observed, but remains starved of CPU time for over 10 seconds, suggesting
+system-wide scheduling or interrupt/softirq interference rather than a
+single blocked CPU.
+
+=== Reproducer ===
+No standalone reproducer is currently available.
+The issue was observed during syzkaller-style fuzz testing.
+
+=== Expected behavior ===
+Memory management operations such as sys_mmap() should not lead to
+prolonged RCU stalls, even under adversarial or malformed userspace
+workloads.
+
+=== Actual behavior ===
+RCU reports prolonged stalls, the rcu_preempt grace-period kthread is
+starved for over 10 seconds, and the kernel warns that OOM behavior may
+occur.
+
+=== Notes ===
+This issue has been observed repeatedly under fuzzing workloads.
+Additional logs, kernel configuration, or further traces can be provided
+upon request.
+
+Reported-by:
+Author B

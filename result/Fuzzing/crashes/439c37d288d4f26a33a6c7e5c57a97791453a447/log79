@@ -1,0 +1,1820 @@
+last executing test programs:
+
+4m44.232324843s ago: executing program 0 (id=11773):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file0\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file1\x00', 0x1c0)
+openat$dir(0xffffffffffffff9c, &(0x7f00000001c0)='./file0\x00', 0x200000, 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file0\x00', 0x200000, 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000300)='./file1\x00', 0x200000, 0x0)
+
+4m44.232140797s ago: executing program 0 (id=11775):
+r0 = syz_open_dev$I2C(&(0x7f0000000000), 0x0, 0x80)
+ioctl$I2C_TENBIT(r0, 0x5421, 0x110e20ffff)
+r1 = syz_open_dev$I2C(&(0x7f0000000000), 0x0, 0x20180)
+ioctl$I2C_SMBUS(r1, 0x720, &(0x7f0000000240)={0x1, 0x8, 0x0, 0x0})
+r2 = syz_open_dev$I2C(&(0x7f00000000c0), 0x0, 0x101400)
+ioctl$I2C_SMBUS(r2, 0x720, &(0x7f0000000100)={0x1, 0x9, 0x1, 0x0})
+
+4m44.174900017s ago: executing program 0 (id=11778):
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000080), 0xffffffffffffffff)
+ioctl$sock_SIOCGIFINDEX_80211(r0, 0x8933, &(0x7f00000000c0)={'wlan1\x00', <r2=>0x0})
+sendmsg$NL80211_CMD_SET_INTERFACE(r0, &(0x7f0000000100)={0x0, 0x0, &(0x7f0000000140)={&(0x7f0000000180)={0x24, r1, 0x5, 0x0, 0x0, {{}, {@val={0x8, 0x3, r2}, @void}}, [@NL80211_ATTR_IFTYPE={0x8, 0x5, 0x2}]}, 0x24}}, 0x0)
+sendmsg$NL80211_CMD_CONNECT(r0, &(0x7f00000001c0)={0x0, 0x0, &(0x7f0000000200)={&(0x7f0000000240)={0x44, r1, 0x5, 0x0, 0x0, {{}, {@val={0x8, 0x3, r2}, @void}}, [@NL80211_ATTR_SSID={0xa, 0x34, @default_ap_ssid}, @NL80211_ATTR_MAC={0xa, 0x6, @from_mac}, @NL80211_ATTR_AUTH_TYPE={0x8}, @chandef_params=[@NL80211_ATTR_WIPHY_FREQ={0x8}]]}, 0x44}}, 0x0)
+nanosleep(&(0x7f0000000340)={0x0, 0x2faf080}, &(0x7f0000000380))
+nanosleep(&(0x7f0000000440)={0x0, 0x2faf080}, &(0x7f0000000480))
+
+4m44.048830367s ago: executing program 0 (id=11791):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+
+4m44.002157567s ago: executing program 0 (id=11793):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000080)='./file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file1/file4\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000180)='./file1/file4\x00', &(0x7f00000001c0), 0x0, 0x0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file1/file4/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000280)='./file1/file4/file7\x00', 0x1c0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000300)='./file1\x00', 0x200000, 0x0)
+linkat(0xffffffffffffff9c, &(0x7f0000000500)='./file1/file4/file5\x00', 0xffffffffffffff9c, &(0x7f0000000540)='./file1/file4/file7/file5\x00', 0x0)
+
+4m43.946736562s ago: executing program 0 (id=11797):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDFONTOP_GET(0xffffffffffffffff, 0x4b72, 0x0)
+ioctl$TCSETAF(0xffffffffffffffff, 0x5408, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TIOCGSID(r0, 0x5429, 0x0)
+ioctl$KDGKBDIACR(r0, 0x4bfb, 0x0)
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+
+4m43.941943218s ago: executing program 32 (id=11797):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDFONTOP_GET(0xffffffffffffffff, 0x4b72, 0x0)
+ioctl$TCSETAF(0xffffffffffffffff, 0x5408, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TIOCGSID(r0, 0x5429, 0x0)
+ioctl$KDGKBDIACR(r0, 0x4bfb, 0x0)
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+
+4m27.39327375s ago: executing program 3 (id=12791):
+r0 = syz_open_dev$usbmon(&(0x7f0000000140), 0x0, 0x101500)
+mmap$usbmon(&(0x7f0000ffc000/0x4000)=nil, 0x4000, 0x1000000, 0x40010, r0, 0x4000)
+
+4m27.332279397s ago: executing program 3 (id=12794):
+r0 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNATTACHFILTER(r0, 0xc0045878, 0x0)
+
+4m27.33224349s ago: executing program 3 (id=12795):
+r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
+syz_genetlink_get_family_id$nfc(&(0x7f0000000100), r0)
+
+4m27.287705088s ago: executing program 3 (id=12799):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+
+4m27.244622983s ago: executing program 3 (id=12802):
+r0 = socket$inet_tcp(0x2, 0x1, 0x0)
+ioctl$sock_inet_SIOCADDRT(r0, 0x890b, &(0x7f00000000c0)={0x0, {0x2, 0x4e24, @remote}, {0x2, 0x4e21, @empty}, {0x2, 0x4e20, @broadcast}, 0x21a, 0x0, 0x0, 0x0, 0x3, 0x0, 0x5, 0x10001, 0x1})
+
+4m27.12692979s ago: executing program 3 (id=12809):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000080)='./file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file1/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file1/file4/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file1/file4/file6\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000280)='./file1/file4/file7\x00', 0x1c0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000300)='./file1\x00', 0x200000, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f0000000580)='./file1/file4/file6\x00', 0xffffffffffffff9c, &(0x7f00000005c0)='./file1/file4/file7/file6\x00', 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f0000000600)='./file1/file4/file5\x00', 0xffffffffffffff9c, &(0x7f0000000640)='./file1/file4/file7/file6\x00', 0x2)
+
+4m27.115374169s ago: executing program 33 (id=12809):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000080)='./file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file1/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file1/file4/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file1/file4/file6\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000280)='./file1/file4/file7\x00', 0x1c0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000300)='./file1\x00', 0x200000, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f0000000580)='./file1/file4/file6\x00', 0xffffffffffffff9c, &(0x7f00000005c0)='./file1/file4/file7/file6\x00', 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f0000000600)='./file1/file4/file5\x00', 0xffffffffffffff9c, &(0x7f0000000640)='./file1/file4/file7/file6\x00', 0x2)
+
+15.331984271s ago: executing program 2 (id=20784):
+setsockopt$inet_udp_int(0xffffffffffffffff, 0x11, 0xa, &(0x7f00000003c0)=0x6, 0x4)
+
+15.281505256s ago: executing program 2 (id=20785):
+unshare(0x20000)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+15.259784869s ago: executing program 2 (id=20789):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000009c0)=0xe)
+ioctl$TCSETSF(0xffffffffffffffff, 0x80047456, &(0x7f00000000c0)={0x5, 0x100, 0x0, 0x7ff, 0x18, "6ca80f7ea5ac2a51b2f16b33e73d0f5f778159"})
+r0 = syz_open_dev$ttys(0xc, 0x2, 0x0)
+r1 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+ioctl$TCXONC(r1, 0x540a, 0x2)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCSETD(r2, 0x5423, &(0x7f0000000600)=0x1)
+ioctl$VT_DISALLOCATE(r2, 0x89f0)
+ioctl$KDSETMODE(r0, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r1, 0x4b4a, &(0x7f0000000140)=""/226)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_DISALLOCATE(r3, 0x5608)
+ioctl$VT_ACTIVATE(r3, 0x5606, 0x2)
+ioctl$KDGETLED(r3, 0x4b31, 0x0)
+ioctl$GIO_CMAP(r3, 0x4b70, 0x0)
+ioctl$TIOCSWINSZ(r1, 0x5414, 0x0)
+ioctl$KDFONTOP_SET(r3, 0x4b72, &(0x7f0000000d40)={0x0, 0x1, 0x8, 0x1e, 0x50, &(0x7f0000000940)="bcf2638fe8db33b577772479eeb4a41ea23c77b52fdc3603e9e4627e47c3f1216b59805eb1c2f460a7f4dd24bcdfcb804b304aca010539855bb1be46db9bac3907e971080165096c3df0326d0cb9e791244b5106ded3bb3206ffae324c6797e09521c83215425c2bb17983a3d2175e0d83bab9c32ed0146b1d40d52cbd73b36ae71dbbf5823a113ba1ab9aee69e5525b7d1ff109515a4fb2c2ad5d3dd820a13f2b7d5b3b458d7edf6dde4bcaf1e3eb9bbe175a12e6e1d2f405ad9fc6d1d4e912e4e23997ab57a30537e4ef65c12f3686fba9b0608f21ac88ae242fdf6c1f57ea802d759dcd769cde9cb916a24f58fce1819e9236e9ef87308424b483d34f177025e72451d61c201c0b06da6f29e4d9d38aee5930f17a262e66fd4bdaacc713bbaeaafa3d4adaf5d2be16fee5b62f20b3d6ebba7707f78c0924948540144955af1085df662489ce3a6c5095518c2e848c887aa6aa54196e502764fa6a95db5b88f2bd3d8ea1eb317f100c7847ae9d24c9a086915093fc0ab49d360bc54a91888098c67b9481a330547cb967423cab235a4f19924c9bdd5fc440f03ac5bd093dd464395ca94f746f8d53b1795a1d6ab240e1691ebcd8a25f3752dfdcbefa4f613e69178c2cd60c150c267ff3ba3119b89dfdbe430292a96772c43a7642d51df85a70fbce52a61bf600505950c81d689fb95805760258f97364e2fab2721eadb1264651bea84c2dc306621bd5d9c58cfe838c2cc7053231281ae416ee97800b6f0396dde9d8576bd2bdf3d954efa2e00ab99c504908c3a7b9c853befffbcbae23f4e8ecea2dac85eecd5373c88dad7d1723fbd78ecd46b9bcdfbeae322e1dc79d417eec098f8688cee6c74cdee91f3afafdc569726c6bd7ef1a63728bc00b9fbe902320e54212875cb2a97b5ac7a41511d4b1e2907c99bb298c053bff42dee9e42a44c12194b1a44a9db5725e477ea49b6120b6403b7c0aa6768c02e3c5c1b54b4762aa9c34fe35cd11b1d582afd6595de5f922dbbbfdeb77334dfcacb12ee583a0bab8b4c53da3e4091e5e28e02727797679610520acf6ceb9aeae9729e9bea7cb37b440bc90d7d8e1432dc4a4550a49703ea064a48a1e22c8b302e1a6aeae9ee266c6c3735dd63760fed37bb0c6b7916aad473e79fa04f380e222b9c10ef9cb8be611ee177e5f86568169614f53c78fa4937b23d31c33b672f108f69cdcc4ee3c0b202864e966d5c8e5981e5c13f69a2830d71dfb0aacb635e413268ab132f6a8a8c0a7bd4760a9ad31615741ef2b53947bdd98ec3a9f9081462ebc6f10fac4225a9049b40667f695dc9a8c8c7163756da5ea6c76ad20f47202afddf422da2d8d1e5d44e126ad8ab782054a9162e67feccef3fa2f3008e96b47bc9acd415fd9f5ab74b65c5f2e3ff4ecb43ee95d523fd3b94d044fa39d6725fa5924e6ea65fcde"})
+ioctl$KDGKBMETA(r3, 0x4b62, &(0x7f0000001000))
+syz_open_dev$tty20(0xc, 0x4, 0x1)
+syz_open_dev$tty1(0xc, 0x4, 0x2)
+syz_open_dev$tty1(0xc, 0x4, 0x2)
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+ioctl$KDFONTOP_SET(r4, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x16, 0x106, 0x139, 0x0})
+ioctl$TIOCSETD(r4, 0x5423, &(0x7f0000000080)=0x5)
+
+15.188032491s ago: executing program 4 (id=20792):
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0xc00, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0xf)
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x2)
+syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x6)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$KDSKBMETA(0xffffffffffffffff, 0x4b63, &(0x7f0000000040)=0x3)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+syz_open_dev$ttys(0xc, 0x2, 0x0)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000240), 0x102, 0x0)
+ioctl$TCXONC(r1, 0x540a, 0x3)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r4 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$VT_DISALLOCATE(r4, 0x89f0)
+ioctl$KDSETMODE(0xffffffffffffffff, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r2, 0x4b4a, &(0x7f0000000140)=""/226)
+ioctl$PIO_UNIMAP(r0, 0x4b67, &(0x7f0000000300)={0x0, 0x0})
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCSWINSZ(r5, 0x5414, &(0x7f0000000080)={0x7241, 0x9, 0x0, 0x3d6d})
+r6 = openat$ptmx(0xffffffffffffff9c, &(0x7f00000008c0), 0x20802, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCL_SETSEL(0xffffffffffffffff, 0x541c, &(0x7f00000000c0)={0x2, {0x2, 0x7f, 0x0, 0x1, 0xfffd, 0x4}})
+ioctl$TIOCGDEV(r6, 0x80045432, &(0x7f0000000940))
+ioctl$TIOCL_PASTESEL(r3, 0x541c, &(0x7f0000000100))
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+openat$ttyS3(0xffffffffffffff9c, 0x0, 0x40000, 0x0)
+
+15.045924367s ago: executing program 4 (id=20797):
+r0 = syz_open_dev$usbmon(&(0x7f0000000000), 0x0, 0x40002)
+syz_open_dev$usbmon(&(0x7f0000001100), 0x0, 0x121600)
+mmap$usbmon(&(0x7f0000ffb000/0x4000)=nil, 0x4000, 0x7, 0x33871, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x2b18809027321a56, 0x4c031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x5, 0x400c031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x12, 0xc8032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000773000/0x1000)=nil, 0x1000, 0x2000009, 0x11, 0xffffffffffffffff, 0x2)
+ioctl$MON_IOCQ_URB_LEN(r0, 0x9201)
+mmap$usbmon(&(0x7f0000a78000/0x1000)=nil, 0x1000, 0x17, 0xc8032, 0xffffffffffffffff, 0x0)
+r1 = syz_open_dev$usbmon(0x0, 0x72a9dc66, 0x200)
+mmap$usbmon(&(0x7f0000400000/0xc00000)=nil, 0xc00000, 0x1000001, 0xc8032, 0xffffffffffffffff, 0x0)
+ioctl$MON_IOCX_MFETCH(r1, 0xc0109207, 0x0)
+mmap$usbmon(&(0x7f00005bc000/0x3000)=nil, 0x3000, 0x6, 0x110, 0xffffffffffffffff, 0x1000000000000004)
+ioctl$MON_IOCX_GET(r1, 0x40189206, 0x0)
+
+15.045703277s ago: executing program 2 (id=20798):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+14.986547915s ago: executing program 2 (id=20801):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+mmap$fb(&(0x7f0000ca4000/0x2000)=nil, 0x2000, 0x1000007, 0x8032, 0xffffffffffffffff, 0x35000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+ioctl$FBIOGET_CON2FBMAP(0xffffffffffffffff, 0x460f, &(0x7f0000000040)={0x15, 0x2})
+r1 = syz_open_dev$I2C(&(0x7f0000000000), 0x875a, 0x20801)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+r2 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$FBIOGET_VSCREENINFO(r2, 0x4600, &(0x7f00000001c0))
+ioctl$I2C_TENBIT(r1, 0x80111500, 0x200000ffefff)
+ioctl$I2C_SMBUS(r1, 0x720, &(0x7f00000000c0)={0x0, 0x3f, 0x1, &(0x7f0000000080)={0x16, "11feecda876c740c8d6deb3ab5197995b09310b39e89067c6060ed2d2f5bf7d42b"}})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+mmap$fb(&(0x7f0000c66000/0x4000)=nil, 0x4000, 0x4, 0x8032, 0xffffffffffffffff, 0xb0000)
+r3 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x100000d, 0x1c011, r3, 0x87000)
+ioctl$I2C_SMBUS(0xffffffffffffffff, 0x80086601, 0x0)
+r4 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r4, 0x70000)
+r5 = syz_open_dev$I2C(&(0x7f00000000c0), 0x0, 0x101400)
+ioctl$I2C_TIMEOUT(r1, 0x702, 0x0)
+ioctl$I2C_SMBUS(r5, 0x720, &(0x7f0000000100)={0x1, 0x3, 0x2, &(0x7f0000000000)={0x5, "86ac5909e67738d864df62139d7b3d17f45e4b161d00"}})
+syz_open_dev$I2C(&(0x7f0000000200), 0x0, 0x280000)
+ioctl$FBIOPAN_DISPLAY(0xffffffffffffffff, 0x4606, &(0x7f0000000080)={0x2300, 0x10, 0x40, 0x258, 0xf8, 0xee, 0x8, 0x2, {0x1, 0x91}, {0x3, 0xffff, 0x1}, {0x2, 0xd3}, {0x3, 0x1}, 0x1, 0x101, 0x6, 0xd, 0x0, 0x9, 0x552, 0x69, 0x800, 0x6, 0x7fffffff, 0x5, 0x11, 0x1, 0x0, 0x4})
+
+14.908800734s ago: executing program 1 (id=20804):
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$GIO_CMAP(r1, 0x4b70, &(0x7f0000000000))
+ioctl$PIO_UNIMAP(r1, 0x4b67, &(0x7f0000000080)={0x0, 0x0})
+ioctl$VT_RESIZE(r1, 0x5609, &(0x7f00000000c0)={0x5, 0x5})
+ioctl$TIOCL_SCROLLCONSOLE(r1, 0x541c, &(0x7f0000000100)={0xd, 0x4})
+syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$KDGKBLED(r1, 0x4b64, &(0x7f00000013c0))
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TIOCSTI(r2, 0x5412, &(0x7f0000000080)=0xe1)
+ioctl$KDMKTONE(r1, 0x4b30, 0x11)
+ioctl$KDSETMODE(r1, 0x4b3a, 0x1)
+r3 = syz_open_pts(r1, 0x400)
+ioctl$TIOCGWINSZ(r1, 0x5413, &(0x7f0000000180))
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$KDSKBENT(r4, 0x4b47, &(0x7f0000000780)={0xe0, 0x5, 0x9})
+ioctl$TIOCPKT(r3, 0x5420, &(0x7f00000001c0)=0x7ff)
+ioctl$KDGKBTYPE(r3, 0x4b33, 0x0)
+ioctl$TIOCL_GETSHIFTSTATE(r1, 0x541c, &(0x7f00000002c0))
+ioctl$TIOCSISO7816(0xffffffffffffffff, 0xc0285443, &(0x7f0000000300)={0x0, 0x2, 0x1, 0x4c2, 0x4})
+ioctl$TIOCGSERIAL(0xffffffffffffffff, 0x541e, 0x0)
+ioctl$TIOCL_UNBLANKSCREEN(r0, 0x541c, &(0x7f0000000140))
+r5 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TIOCL_SETSEL(r5, 0x541c, &(0x7f0000000040)={0x2, {0x2, 0x2c3, 0xff00, 0xb, 0x2}})
+ioctl$VT_RELDISP(r0, 0x5605)
+syz_open_pts(0xffffffffffffffff, 0x101000)
+r6 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r6, 0x5423, &(0x7f00000000c0)=0x14)
+
+14.874077458s ago: executing program 4 (id=20805):
+unshare(0x20000)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+14.824844878s ago: executing program 4 (id=20806):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+14.760653532s ago: executing program 4 (id=20807):
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0xc00, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0xf)
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x2)
+syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x6)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$KDSKBMETA(0xffffffffffffffff, 0x4b63, &(0x7f0000000040)=0x3)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+syz_open_dev$ttys(0xc, 0x2, 0x0)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000240), 0x102, 0x0)
+ioctl$TCXONC(r1, 0x540a, 0x3)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r4 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$VT_DISALLOCATE(r4, 0x89f0)
+ioctl$KDSETMODE(0xffffffffffffffff, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r2, 0x4b4a, &(0x7f0000000140)=""/226)
+ioctl$PIO_UNIMAP(r0, 0x4b67, &(0x7f0000000300)={0x0, &(0x7f0000000280)})
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCSWINSZ(r5, 0x5414, &(0x7f0000000080)={0x7241, 0x9, 0x0, 0x3d6d})
+r6 = openat$ptmx(0xffffffffffffff9c, &(0x7f00000008c0), 0x20802, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCL_SETSEL(0xffffffffffffffff, 0x541c, &(0x7f00000000c0)={0x2, {0x2, 0x7f, 0x0, 0x1, 0xfffd, 0x4}})
+ioctl$TIOCGDEV(r6, 0x80045432, &(0x7f0000000940))
+ioctl$TIOCL_PASTESEL(r3, 0x541c, &(0x7f0000000100))
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+openat$ttyS3(0xffffffffffffff9c, 0x0, 0x40000, 0x0)
+
+14.760136728s ago: executing program 5 (id=20808):
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0xc00, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0xf)
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x2)
+syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x6)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$KDSKBMETA(0xffffffffffffffff, 0x4b63, &(0x7f0000000040)=0x3)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+syz_open_dev$ttys(0xc, 0x2, 0x0)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000240), 0x102, 0x0)
+ioctl$TCXONC(r1, 0x540a, 0x3)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r4 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$VT_DISALLOCATE(r4, 0x89f0)
+ioctl$KDSETMODE(0xffffffffffffffff, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r2, 0x4b4a, &(0x7f0000000140)=""/226)
+ioctl$PIO_UNIMAP(r0, 0x4b67, 0x0)
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCSWINSZ(r5, 0x5414, &(0x7f0000000080)={0x7241, 0x9, 0x0, 0x3d6d})
+r6 = openat$ptmx(0xffffffffffffff9c, &(0x7f00000008c0), 0x20802, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCL_SETSEL(0xffffffffffffffff, 0x541c, &(0x7f00000000c0)={0x2, {0x2, 0x7f, 0x0, 0x1, 0xfffd, 0x4}})
+ioctl$TIOCGDEV(r6, 0x80045432, &(0x7f0000000940))
+ioctl$TIOCL_PASTESEL(r3, 0x541c, &(0x7f0000000100))
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+openat$ttyS3(0xffffffffffffff9c, 0x0, 0x40000, 0x0)
+
+14.734665758s ago: executing program 1 (id=20809):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000009c0)=0xe)
+ioctl$TCSETSF(0xffffffffffffffff, 0x80047456, &(0x7f00000000c0)={0x5, 0x100, 0x0, 0x7ff, 0x18, "6ca80f7ea5ac2a51b2f16b33e73d0f5f778159"})
+r0 = syz_open_dev$ttys(0xc, 0x2, 0x0)
+r1 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+ioctl$TCXONC(r1, 0x540a, 0x2)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCSETD(r2, 0x5423, &(0x7f0000000600)=0x1)
+ioctl$VT_DISALLOCATE(r2, 0x89f0)
+ioctl$KDSETMODE(r0, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r1, 0x4b4a, &(0x7f0000000140)=""/226)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_DISALLOCATE(r3, 0x5608)
+ioctl$VT_ACTIVATE(r3, 0x5606, 0x2)
+ioctl$KDGETLED(r3, 0x4b31, 0x0)
+ioctl$GIO_CMAP(r3, 0x4b70, 0x0)
+ioctl$TIOCSWINSZ(r1, 0x5414, 0x0)
+ioctl$KDFONTOP_SET(r3, 0x4b72, &(0x7f0000000d40)={0x0, 0x1, 0x8, 0x1e, 0x50, &(0x7f0000000940)="bcf2638fe8db33b577772479eeb4a41ea23c77b52fdc3603e9e4627e47c3f1216b59805eb1c2f460a7f4dd24bcdfcb804b304aca010539855bb1be46db9bac3907e971080165096c3df0326d0cb9e791244b5106ded3bb3206ffae324c6797e09521c83215425c2bb17983a3d2175e0d83bab9c32ed0146b1d40d52cbd73b36ae71dbbf5823a113ba1ab9aee69e5525b7d1ff109515a4fb2c2ad5d3dd820a13f2b7d5b3b458d7edf6dde4bcaf1e3eb9bbe175a12e6e1d2f405ad9fc6d1d4e912e4e23997ab57a30537e4ef65c12f3686fba9b0608f21ac88ae242fdf6c1f57ea802d759dcd769cde9cb916a24f58fce1819e9236e9ef87308424b483d34f177025e72451d61c201c0b06da6f29e4d9d38aee5930f17a262e66fd4bdaacc713bbaeaafa3d4adaf5d2be16fee5b62f20b3d6ebba7707f78c0924948540144955af1085df662489ce3a6c5095518c2e848c887aa6aa54196e502764fa6a95db5b88f2bd3d8ea1eb317f100c7847ae9d24c9a086915093fc0ab49d360bc54a91888098c67b9481a330547cb967423cab235a4f19924c9bdd5fc440f03ac5bd093dd464395ca94f746f8d53b1795a1d6ab240e1691ebcd8a25f3752dfdcbefa4f613e69178c2cd60c150c267ff3ba3119b89dfdbe430292a96772c43a7642d51df85a70fbce52a61bf600505950c81d689fb95805760258f97364e2fab2721eadb1264651bea84c2dc306621bd5d9c58cfe838c2cc7053231281ae416ee97800b6f0396dde9d8576bd2bdf3d954efa2e00ab99c504908c3a7b9c853befffbcbae23f4e8ecea2dac85eecd5373c88dad7d1723fbd78ecd46b9bcdfbeae322e1dc79d417eec098f8688cee6c74cdee91f3afafdc569726c6bd7ef1a63728bc00b9fbe902320e54212875cb2a97b5ac7a41511d4b1e2907c99bb298c053bff42dee9e42a44c12194b1a44a9db5725e477ea49b6120b6403b7c0aa6768c02e3c5c1b54b4762aa9c34fe35cd11b1d582afd6595de5f922dbbbfdeb77334dfcacb12ee583a0bab8b4c53da3e4091e5e28e02727797679610520acf6ceb9aeae9729e9bea7cb37b440bc90d7d8e1432dc4a4550a49703ea064a48a1e22c8b302e1a6aeae9ee266c6c3735dd63760fed37bb0c6b7916aad473e79fa04f380e222b9c10ef9cb8be611ee177e5f86568169614f53c78fa4937b23d31c33b672f108f69cdcc4ee3c0b202864e966d5c8e5981e5c13f69a2830d71dfb0aacb635e413268ab132f6a8a8c0a7bd4760a9ad31615741ef2b53947bdd98ec3a9f9081462ebc6f10fac4225a9049b40667f695dc9a8c8c7163756da5ea6c76ad20f47202afddf422da2d8d1e5d44e126ad8ab782054a9162e67feccef3fa2f3008e96b47bc9acd415fd9f5ab74b65c5f2e3ff4ecb43ee95d523fd3b94d044fa39d6725fa5924e6ea65fcde"})
+ioctl$KDGKBMETA(r3, 0x4b62, &(0x7f0000001000))
+syz_open_dev$tty20(0xc, 0x4, 0x1)
+syz_open_dev$tty1(0xc, 0x4, 0x2)
+syz_open_dev$tty1(0xc, 0x4, 0x2)
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+ioctl$KDFONTOP_SET(r4, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x16, 0x106, 0x139, 0x0})
+ioctl$TIOCSETD(r4, 0x5423, &(0x7f0000000080)=0x5)
+
+14.621682197s ago: executing program 5 (id=20810):
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0xc00, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0xf)
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x2)
+syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x6)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$KDSKBMETA(0xffffffffffffffff, 0x4b63, &(0x7f0000000040)=0x3)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+syz_open_dev$ttys(0xc, 0x2, 0x0)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000240), 0x102, 0x0)
+ioctl$TCXONC(r1, 0x540a, 0x3)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r4 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$VT_DISALLOCATE(r4, 0x89f0)
+ioctl$KDSETMODE(0xffffffffffffffff, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r2, 0x4b4a, &(0x7f0000000140)=""/226)
+ioctl$PIO_UNIMAP(r0, 0x4b67, &(0x7f0000000300)={0x1, &(0x7f0000000280)=[{0x3, 0x9}]})
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCSWINSZ(r5, 0x5414, 0x0)
+r6 = openat$ptmx(0xffffffffffffff9c, &(0x7f00000008c0), 0x20802, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCL_SETSEL(0xffffffffffffffff, 0x541c, &(0x7f00000000c0)={0x2, {0x2, 0x7f, 0x0, 0x1, 0xfffd, 0x4}})
+ioctl$TIOCGDEV(r6, 0x80045432, &(0x7f0000000940))
+ioctl$TIOCL_PASTESEL(r3, 0x541c, &(0x7f0000000100))
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+openat$ttyS3(0xffffffffffffff9c, 0x0, 0x40000, 0x0)
+
+14.54803854s ago: executing program 2 (id=20811):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+14.547820453s ago: executing program 34 (id=20811):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+14.54764425s ago: executing program 4 (id=20812):
+r0 = openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r1, 0xc01c64ae, &(0x7f0000000040)={0x0, 0x2000, 0x1, 0x1000, 0x18, 0x18, 0x5})
+r2 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+ioctl$SNDRV_SEQ_IOCTL_CREATE_QUEUE(r2, 0xc08c5332, &(0x7f0000000100)={0x7ff, 0x9, 0x0, 'queue1\x00', 0x73fa})
+ioctl$SNDRV_SEQ_IOCTL_SET_QUEUE_TIMER(r2, 0x40605346, &(0x7f0000000480)={0x0, 0x0, {0x2, 0x3, 0xffffff01, 0x2, 0x2}, 0x7b0d76ee})
+ioctl$SNDRV_SEQ_IOCTL_GET_QUEUE_TIMER(r2, 0xc0605345, &(0x7f00000002c0)={0x7, 0x0, {0x1, 0x3, 0x3, 0x0, 0xa22}, 0x2})
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, &(0x7f00000000c0)={{0x0, 0x1, 0x1, 0x2, 0x10000000}})
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, 0x0)
+openat$sndseq(0xffffffffffffff9c, &(0x7f0000000580), 0x2001)
+openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+r3 = syz_open_dev$dri(&(0x7f0000000300), 0xfffffffffffffffa, 0xe500)
+r4 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r4, 0xc01c64ae, 0x0)
+r5 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_GET_CAP(r1, 0xc010640c, &(0x7f0000000100)={0x7})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r5, 0xc02064b2, &(0x7f0000000080)={0x9, 0x8, 0x2})
+ioctl$DRM_IOCTL_SYNCOBJ_TIMELINE_SIGNAL(0xffffffffffffffff, 0xc01864cd, &(0x7f0000000380)={&(0x7f0000000300), &(0x7f0000000340)})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(0xffffffffffffffff, 0xc01864c2, 0x0)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(0xffffffffffffffff, 0xc01064c5, 0x0)
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(r5, 0xc01864c2, &(0x7f0000000240)={<r6=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_WAIT(r3, 0xc02864c3, &(0x7f0000000340)={&(0x7f0000000280)=[0x0, 0x0, 0x0, 0x0, 0x0, r6], 0xffffffff, 0x6, 0x4})
+
+14.547518559s ago: executing program 35 (id=20812):
+r0 = openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r1, 0xc01c64ae, &(0x7f0000000040)={0x0, 0x2000, 0x1, 0x1000, 0x18, 0x18, 0x5})
+r2 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+ioctl$SNDRV_SEQ_IOCTL_CREATE_QUEUE(r2, 0xc08c5332, &(0x7f0000000100)={0x7ff, 0x9, 0x0, 'queue1\x00', 0x73fa})
+ioctl$SNDRV_SEQ_IOCTL_SET_QUEUE_TIMER(r2, 0x40605346, &(0x7f0000000480)={0x0, 0x0, {0x2, 0x3, 0xffffff01, 0x2, 0x2}, 0x7b0d76ee})
+ioctl$SNDRV_SEQ_IOCTL_GET_QUEUE_TIMER(r2, 0xc0605345, &(0x7f00000002c0)={0x7, 0x0, {0x1, 0x3, 0x3, 0x0, 0xa22}, 0x2})
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, &(0x7f00000000c0)={{0x0, 0x1, 0x1, 0x2, 0x10000000}})
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, 0x0)
+openat$sndseq(0xffffffffffffff9c, &(0x7f0000000580), 0x2001)
+openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+r3 = syz_open_dev$dri(&(0x7f0000000300), 0xfffffffffffffffa, 0xe500)
+r4 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r4, 0xc01c64ae, 0x0)
+r5 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_GET_CAP(r1, 0xc010640c, &(0x7f0000000100)={0x7})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r5, 0xc02064b2, &(0x7f0000000080)={0x9, 0x8, 0x2})
+ioctl$DRM_IOCTL_SYNCOBJ_TIMELINE_SIGNAL(0xffffffffffffffff, 0xc01864cd, &(0x7f0000000380)={&(0x7f0000000300), &(0x7f0000000340)})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(0xffffffffffffffff, 0xc01864c2, 0x0)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(0xffffffffffffffff, 0xc01064c5, 0x0)
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(r5, 0xc01864c2, &(0x7f0000000240)={<r6=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_WAIT(r3, 0xc02864c3, &(0x7f0000000340)={&(0x7f0000000280)=[0x0, 0x0, 0x0, 0x0, 0x0, r6], 0xffffffff, 0x6, 0x4})
+
+14.547346093s ago: executing program 1 (id=20813):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0x1)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x800455c9, 0xd)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0x40000, 0x0)
+ioctl$TCSETS(0xffffffffffffffff, 0x5402, 0x0)
+r2 = openat$ttyS3(0xffffffffffffff9c, 0x0, 0x41, 0x0)
+r3 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r3, 0x5423, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f0000000080)=0x1)
+ioctl$KDENABIO(r0, 0x4b36)
+ioctl$TIOCSETD(r2, 0x5423, &(0x7f00000000c0)=0x1)
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDGKBSENT(r4, 0x4b48, &(0x7f00000012c0)={0x2, "0cd566cbeacbba4f86fef40c98ec383eff25d2724889a99cb73a7b371b383a5a2f63221fc19fa385c55555a851413df674299a59e6b98112f98394c54169eb6909cf22777deb15f097ce9949112034745c1b568afc9ce8a417030f5e16bd22a7c0702e50bb558ebacb4183f5287c9eacba753f356c6bfad493ceffd92e7476af417cc7892f4869fe364baebe6f2a24982c24fc6c91574783dda12be32b24966238006bb35de45793c9b49c026f398f35274d2d4dc4921c4b8b33c1e6452136c43025f8ff4773b28c41fa82d7bb72134bd3c78c9096579b9a9128a359fc451c9f9843a3bde9c479c4d3d5b6d0758bb473eb2194083e11480aec9dbaf2ce644dda1b61977df7213595f38474e607e2aae691e2d272c97630296484a0c1c57edb73280c7b71ca47f3c65535cc7f5457a6fd9037e27f0b52698c5ad4efc6382b33edba9d021b7bb8623fcae963e92a5178eff9dd3ae9e539cedb0f351390bbe09f62b341f3d3a7dafd0e0643f679eacec4d04f9e23a572910c9e6abaf3cebb66f407ac4b817ae3ad92df203cb1ac892b3f8f1a28eb858ef6594ee40ca7766c9a97f25194cb27a4db64fba303e34fc426bbd41e7cdd3de4cadef2c14c9ae3b383460783ae5a74ba17639222f18bc1b746831857897c5b31bed7950e2d1febee07c71dab6fb76eebf50c871f0b0c611c91d579227247f6870d7fa3c1232445fcb5cd26"})
+ioctl$TIOCSIG(0xffffffffffffffff, 0x800455c9, 0xd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000040)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x2)
+ioctl$TCSBRK(0xffffffffffffffff, 0x5409, 0x51ba)
+
+14.546801277s ago: executing program 5 (id=20814):
+r0 = syz_open_dev$usbmon(&(0x7f0000000000), 0x0, 0x40002)
+syz_open_dev$usbmon(&(0x7f0000001100), 0x0, 0x121600)
+mmap$usbmon(&(0x7f0000ffb000/0x4000)=nil, 0x4000, 0x7, 0x33871, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x2b18809027321a56, 0x4c031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x5, 0x400c031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x12, 0xc8032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000773000/0x1000)=nil, 0x1000, 0x2000009, 0x11, 0xffffffffffffffff, 0x2)
+ioctl$MON_IOCQ_URB_LEN(r0, 0x9201)
+mmap$usbmon(&(0x7f0000a78000/0x1000)=nil, 0x1000, 0x17, 0xc8032, 0xffffffffffffffff, 0x0)
+r1 = syz_open_dev$usbmon(0x0, 0x72a9dc66, 0x200)
+mmap$usbmon(&(0x7f0000400000/0xc00000)=nil, 0xc00000, 0x1000001, 0xc8032, 0xffffffffffffffff, 0x0)
+ioctl$MON_IOCX_MFETCH(r1, 0xc0109207, 0x0)
+mmap$usbmon(&(0x7f00005bc000/0x3000)=nil, 0x3000, 0x6, 0x110, 0xffffffffffffffff, 0x1000000000000004)
+ioctl$MON_IOCX_GET(r1, 0x40189206, 0x0)
+
+14.428496099s ago: executing program 1 (id=20815):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+14.419728043s ago: executing program 5 (id=20816):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+14.366720793s ago: executing program 1 (id=20817):
+openat$tun(0xffffffffffffff9c, 0x0, 0x200000, 0x0)
+r0 = syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+ioctl$TUNSETQUEUE(r0, 0x5437, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000001240)={'\x00', 0xf823d74307427757})
+r2 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x840, 0x0)
+ioctl$KGPT_RFKILL_IOC_NOINPUT(0xffffffffffffffff, 0x541b, 0x0)
+r3 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r3, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+r4 = syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+ioctl$TUNSETQUEUE(r4, 0x5437, 0x0)
+r5 = syz_open_dev$KGPT_slcan(&(0x7f0000000140), 0x0, 0x100)
+ioctl$TUNSETQUEUE(r5, 0x5437, 0x0)
+ioctl$TUNSETIFF(0xffffffffffffffff, 0x400454ca, &(0x7f0000001240)={'\x00', 0xf823d74307427757})
+r6 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x2008c1, 0x0)
+ioctl$TUNSETIFF(r6, 0x400454ca, 0x0)
+ioctl$TUNATTACHFILTER(r6, 0x401054d5, &(0x7f0000000180)={0x2000000000000110, &(0x7f0000000040)})
+ioctl$TUNSETIFF(0xffffffffffffffff, 0x400454ca, &(0x7f00000000c0)={'ip6erspan0\x00', 0x1})
+ioctl$TUNATTACHFILTER(r3, 0x401054d5, &(0x7f0000000080)={0x1, &(0x7f0000000040)=[{0x6, 0xa, 0x9, 0x1}]})
+ioctl$TUNSETOFFLOAD(r2, 0x400454d0, 0xa0cf34698c9492e5)
+
+14.352006286s ago: executing program 5 (id=20820):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+14.083631589s ago: executing program 5 (id=20821):
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$GIO_CMAP(r1, 0x4b70, &(0x7f0000000000))
+ioctl$PIO_UNIMAP(r1, 0x4b67, &(0x7f0000000080)={0x1, &(0x7f0000000040)=[{0x3, 0x208d}]})
+ioctl$VT_RESIZE(r1, 0x5609, &(0x7f00000000c0)={0x5, 0x5})
+ioctl$TIOCL_SCROLLCONSOLE(r1, 0x541c, &(0x7f0000000100)={0xd, 0x4})
+syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$KDGKBLED(r1, 0x4b64, &(0x7f00000013c0))
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TIOCSTI(r2, 0x5412, &(0x7f0000000080)=0xe1)
+ioctl$KDMKTONE(r1, 0x4b30, 0x11)
+ioctl$KDSETMODE(r1, 0x4b3a, 0x1)
+r3 = syz_open_pts(r1, 0x400)
+ioctl$TIOCGWINSZ(r1, 0x5413, &(0x7f0000000180))
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$KDSKBENT(r4, 0x4b47, &(0x7f0000000780)={0xe0, 0x5, 0x9})
+ioctl$TIOCPKT(r3, 0x5420, &(0x7f00000001c0)=0x7ff)
+ioctl$KDGKBTYPE(r3, 0x4b33, 0x0)
+ioctl$TIOCL_GETSHIFTSTATE(r1, 0x541c, &(0x7f00000002c0))
+ioctl$TIOCSISO7816(0xffffffffffffffff, 0xc0285443, &(0x7f0000000300)={0x0, 0x2, 0x1, 0x4c2, 0x4})
+ioctl$TIOCGSERIAL(0xffffffffffffffff, 0x541e, 0x0)
+ioctl$TIOCL_UNBLANKSCREEN(r0, 0x541c, &(0x7f0000000140))
+r5 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TIOCL_SETSEL(r5, 0x541c, &(0x7f0000000040)={0x2, {0x2, 0x2c3, 0xff00, 0xb, 0x2}})
+ioctl$VT_RELDISP(r0, 0x5605)
+r6 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r6, 0x5423, &(0x7f00000000c0)=0x14)
+
+14.083365422s ago: executing program 36 (id=20821):
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$GIO_CMAP(r1, 0x4b70, &(0x7f0000000000))
+ioctl$PIO_UNIMAP(r1, 0x4b67, &(0x7f0000000080)={0x1, &(0x7f0000000040)=[{0x3, 0x208d}]})
+ioctl$VT_RESIZE(r1, 0x5609, &(0x7f00000000c0)={0x5, 0x5})
+ioctl$TIOCL_SCROLLCONSOLE(r1, 0x541c, &(0x7f0000000100)={0xd, 0x4})
+syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$KDGKBLED(r1, 0x4b64, &(0x7f00000013c0))
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TIOCSTI(r2, 0x5412, &(0x7f0000000080)=0xe1)
+ioctl$KDMKTONE(r1, 0x4b30, 0x11)
+ioctl$KDSETMODE(r1, 0x4b3a, 0x1)
+r3 = syz_open_pts(r1, 0x400)
+ioctl$TIOCGWINSZ(r1, 0x5413, &(0x7f0000000180))
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$KDSKBENT(r4, 0x4b47, &(0x7f0000000780)={0xe0, 0x5, 0x9})
+ioctl$TIOCPKT(r3, 0x5420, &(0x7f00000001c0)=0x7ff)
+ioctl$KDGKBTYPE(r3, 0x4b33, 0x0)
+ioctl$TIOCL_GETSHIFTSTATE(r1, 0x541c, &(0x7f00000002c0))
+ioctl$TIOCSISO7816(0xffffffffffffffff, 0xc0285443, &(0x7f0000000300)={0x0, 0x2, 0x1, 0x4c2, 0x4})
+ioctl$TIOCGSERIAL(0xffffffffffffffff, 0x541e, 0x0)
+ioctl$TIOCL_UNBLANKSCREEN(r0, 0x541c, &(0x7f0000000140))
+r5 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TIOCL_SETSEL(r5, 0x541c, &(0x7f0000000040)={0x2, {0x2, 0x2c3, 0xff00, 0xb, 0x2}})
+ioctl$VT_RELDISP(r0, 0x5605)
+r6 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r6, 0x5423, &(0x7f00000000c0)=0x14)
+
+14.012800174s ago: executing program 1 (id=20823):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0x1)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x800455c9, 0xd)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0x40000, 0x0)
+ioctl$TCSETS(0xffffffffffffffff, 0x5402, 0x0)
+r2 = openat$ttyS3(0xffffffffffffff9c, 0x0, 0x41, 0x0)
+r3 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r3, 0x5423, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f0000000080)=0x1)
+ioctl$KDENABIO(r0, 0x4b36)
+ioctl$TIOCSETD(r2, 0x5423, &(0x7f00000000c0)=0x1)
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDGKBSENT(r4, 0x4b48, &(0x7f00000012c0)={0x2, "0cd566cbeacbba4f86fef40c98ec383eff25d2724889a99cb73a7b371b383a5a2f63221fc19fa385c55555a851413df674299a59e6b98112f98394c54169eb6909cf22777deb15f097ce9949112034745c1b568afc9ce8a417030f5e16bd22a7c0702e50bb558ebacb4183f5287c9eacba753f356c6bfad493ceffd92e7476af417cc7892f4869fe364baebe6f2a24982c24fc6c91574783dda12be32b24966238006bb35de45793c9b49c026f398f35274d2d4dc4921c4b8b33c1e6452136c43025f8ff4773b28c41fa82d7bb72134bd3c78c9096579b9a9128a359fc451c9f9843a3bde9c479c4d3d5b6d0758bb473eb2194083e11480aec9dbaf2ce644dda1b61977df7213595f38474e607e2aae691e2d272c97630296484a0c1c57edb73280c7b71ca47f3c65535cc7f5457a6fd9037e27f0b52698c5ad4efc6382b33edba9d021b7bb8623fcae963e92a5178eff9dd3ae9e539cedb0f351390bbe09f62b341f3d3a7dafd0e0643f679eacec4d04f9e23a572910c9e6abaf3cebb66f407ac4b817ae3ad92df203cb1ac892b3f8f1a28eb858ef6594ee40ca7766c9a97f25194cb27a4db64fba303e34fc426bbd41e7cdd3de4cadef2c14c9ae3b383460783ae5a74ba17639222f18bc1b746831857897c5b31bed7950e2d1febee07c71dab6fb76eebf50c871f0b0c611c91d579227247f6870d7fa3c1232445fcb5cd26"})
+ioctl$TIOCSIG(0xffffffffffffffff, 0x800455c9, 0xd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000040)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x2)
+ioctl$TCSBRK(0xffffffffffffffff, 0x5409, 0x51ba)
+
+14.012575033s ago: executing program 37 (id=20823):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0x1)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x800455c9, 0xd)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0x40000, 0x0)
+ioctl$TCSETS(0xffffffffffffffff, 0x5402, 0x0)
+r2 = openat$ttyS3(0xffffffffffffff9c, 0x0, 0x41, 0x0)
+r3 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r3, 0x5423, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f0000000080)=0x1)
+ioctl$KDENABIO(r0, 0x4b36)
+ioctl$TIOCSETD(r2, 0x5423, &(0x7f00000000c0)=0x1)
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDGKBSENT(r4, 0x4b48, &(0x7f00000012c0)={0x2, "0cd566cbeacbba4f86fef40c98ec383eff25d2724889a99cb73a7b371b383a5a2f63221fc19fa385c55555a851413df674299a59e6b98112f98394c54169eb6909cf22777deb15f097ce9949112034745c1b568afc9ce8a417030f5e16bd22a7c0702e50bb558ebacb4183f5287c9eacba753f356c6bfad493ceffd92e7476af417cc7892f4869fe364baebe6f2a24982c24fc6c91574783dda12be32b24966238006bb35de45793c9b49c026f398f35274d2d4dc4921c4b8b33c1e6452136c43025f8ff4773b28c41fa82d7bb72134bd3c78c9096579b9a9128a359fc451c9f9843a3bde9c479c4d3d5b6d0758bb473eb2194083e11480aec9dbaf2ce644dda1b61977df7213595f38474e607e2aae691e2d272c97630296484a0c1c57edb73280c7b71ca47f3c65535cc7f5457a6fd9037e27f0b52698c5ad4efc6382b33edba9d021b7bb8623fcae963e92a5178eff9dd3ae9e539cedb0f351390bbe09f62b341f3d3a7dafd0e0643f679eacec4d04f9e23a572910c9e6abaf3cebb66f407ac4b817ae3ad92df203cb1ac892b3f8f1a28eb858ef6594ee40ca7766c9a97f25194cb27a4db64fba303e34fc426bbd41e7cdd3de4cadef2c14c9ae3b383460783ae5a74ba17639222f18bc1b746831857897c5b31bed7950e2d1febee07c71dab6fb76eebf50c871f0b0c611c91d579227247f6870d7fa3c1232445fcb5cd26"})
+ioctl$TIOCSIG(0xffffffffffffffff, 0x800455c9, 0xd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000040)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x2)
+ioctl$TCSBRK(0xffffffffffffffff, 0x5409, 0x51ba)
+
+2.203692447s ago: executing program 6 (id=20818):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000009c0)=0xe)
+ioctl$TCSETSF(0xffffffffffffffff, 0x80047456, &(0x7f00000000c0)={0x5, 0x100, 0x0, 0x7ff, 0x18, "6ca80f7ea5ac2a51b2f16b33e73d0f5f778159"})
+r0 = syz_open_dev$ttys(0xc, 0x2, 0x0)
+r1 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+ioctl$TCXONC(r1, 0x540a, 0x2)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCSETD(r2, 0x5423, &(0x7f0000000600)=0x1)
+ioctl$VT_DISALLOCATE(r2, 0x89f0)
+ioctl$KDSETMODE(r0, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r1, 0x4b4a, &(0x7f0000000140)=""/226)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_DISALLOCATE(r3, 0x5608)
+ioctl$VT_ACTIVATE(r3, 0x5606, 0x2)
+ioctl$KDGETLED(r3, 0x4b31, 0x0)
+ioctl$GIO_CMAP(r3, 0x4b70, 0x0)
+ioctl$TIOCSWINSZ(r1, 0x5414, 0x0)
+ioctl$KDFONTOP_SET(r3, 0x4b72, &(0x7f0000000d40)={0x0, 0x1, 0x8, 0x1e, 0x50, &(0x7f0000000940)="bcf2638fe8db33b577772479eeb4a41ea23c77b52fdc3603e9e4627e47c3f1216b59805eb1c2f460a7f4dd24bcdfcb804b304aca010539855bb1be46db9bac3907e971080165096c3df0326d0cb9e791244b5106ded3bb3206ffae324c6797e09521c83215425c2bb17983a3d2175e0d83bab9c32ed0146b1d40d52cbd73b36ae71dbbf5823a113ba1ab9aee69e5525b7d1ff109515a4fb2c2ad5d3dd820a13f2b7d5b3b458d7edf6dde4bcaf1e3eb9bbe175a12e6e1d2f405ad9fc6d1d4e912e4e23997ab57a30537e4ef65c12f3686fba9b0608f21ac88ae242fdf6c1f57ea802d759dcd769cde9cb916a24f58fce1819e9236e9ef87308424b483d34f177025e72451d61c201c0b06da6f29e4d9d38aee5930f17a262e66fd4bdaacc713bbaeaafa3d4adaf5d2be16fee5b62f20b3d6ebba7707f78c0924948540144955af1085df662489ce3a6c5095518c2e848c887aa6aa54196e502764fa6a95db5b88f2bd3d8ea1eb317f100c7847ae9d24c9a086915093fc0ab49d360bc54a91888098c67b9481a330547cb967423cab235a4f19924c9bdd5fc440f03ac5bd093dd464395ca94f746f8d53b1795a1d6ab240e1691ebcd8a25f3752dfdcbefa4f613e69178c2cd60c150c267ff3ba3119b89dfdbe430292a96772c43a7642d51df85a70fbce52a61bf600505950c81d689fb95805760258f97364e2fab2721eadb1264651bea84c2dc306621bd5d9c58cfe838c2cc7053231281ae416ee97800b6f0396dde9d8576bd2bdf3d954efa2e00ab99c504908c3a7b9c853befffbcbae23f4e8ecea2dac85eecd5373c88dad7d1723fbd78ecd46b9bcdfbeae322e1dc79d417eec098f8688cee6c74cdee91f3afafdc569726c6bd7ef1a63728bc00b9fbe902320e54212875cb2a97b5ac7a41511d4b1e2907c99bb298c053bff42dee9e42a44c12194b1a44a9db5725e477ea49b6120b6403b7c0aa6768c02e3c5c1b54b4762aa9c34fe35cd11b1d582afd6595de5f922dbbbfdeb77334dfcacb12ee583a0bab8b4c53da3e4091e5e28e02727797679610520acf6ceb9aeae9729e9bea7cb37b440bc90d7d8e1432dc4a4550a49703ea064a48a1e22c8b302e1a6aeae9ee266c6c3735dd63760fed37bb0c6b7916aad473e79fa04f380e222b9c10ef9cb8be611ee177e5f86568169614f53c78fa4937b23d31c33b672f108f69cdcc4ee3c0b202864e966d5c8e5981e5c13f69a2830d71dfb0aacb635e413268ab132f6a8a8c0a7bd4760a9ad31615741ef2b53947bdd98ec3a9f9081462ebc6f10fac4225a9049b40667f695dc9a8c8c7163756da5ea6c76ad20f47202afddf422da2d8d1e5d44e126ad8ab782054a9162e67feccef3fa2f3008e96b47bc9acd415fd9f5ab74b65c5f2e3ff4ecb43ee95d523fd3b94d044fa39d6725fa5924e6ea65fcde"})
+ioctl$KDGKBMETA(r3, 0x4b62, &(0x7f0000001000))
+syz_open_dev$tty20(0xc, 0x4, 0x1)
+syz_open_dev$tty1(0xc, 0x4, 0x2)
+syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+ioctl$KDFONTOP_SET(0xffffffffffffffff, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x16, 0x106, 0x139, 0x0})
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000080)=0x5)
+
+2.010714404s ago: executing program 6 (id=20825):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+2.003384347s ago: executing program 6 (id=20826):
+unshare(0x20000)
+mkdirat(0xffffffffffffff9c, 0x0, 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+1.948479268s ago: executing program 6 (id=20829):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000180)=0x5)
+
+1.948428464s ago: executing program 38 (id=20829):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000180)=0x5)
+
+1.764705514s ago: executing program 9 (id=20827):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+1.764299247s ago: executing program 9 (id=20832):
+getsockopt$sock_buf(0xffffffffffffffff, 0x1, 0x1c, 0x0, &(0x7f0000000240))
+
+1.661546349s ago: executing program 9 (id=20837):
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0xc00, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0xf)
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x2)
+syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x6)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$KDSKBMETA(0xffffffffffffffff, 0x4b63, &(0x7f0000000040)=0x3)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+syz_open_dev$ttys(0xc, 0x2, 0x0)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000240), 0x102, 0x0)
+ioctl$TCXONC(r1, 0x540a, 0x3)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r4 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$VT_DISALLOCATE(r4, 0x89f0)
+ioctl$KDSETMODE(0xffffffffffffffff, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r2, 0x4b4a, &(0x7f0000000140)=""/226)
+ioctl$PIO_UNIMAP(r0, 0x4b67, &(0x7f0000000300)={0x1, &(0x7f0000000280)=[{0x3, 0x9}]})
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCSWINSZ(r5, 0x5414, &(0x7f0000000080)={0x7241, 0x9, 0x0, 0x3d6d})
+r6 = openat$ptmx(0xffffffffffffff9c, &(0x7f00000008c0), 0x20802, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCL_SETSEL(0xffffffffffffffff, 0x541c, &(0x7f00000000c0)={0x2, {0x2, 0x7f, 0x0, 0x1, 0xfffd, 0x4}})
+ioctl$TIOCGDEV(r6, 0x80045432, &(0x7f0000000940))
+ioctl$TIOCL_PASTESEL(r3, 0x541c, 0x0)
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+openat$ttyS3(0xffffffffffffff9c, 0x0, 0x40000, 0x0)
+
+1.651732316s ago: executing program 39 (id=20837):
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0xc00, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0xf)
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x2)
+syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x6)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$KDSKBMETA(0xffffffffffffffff, 0x4b63, &(0x7f0000000040)=0x3)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+syz_open_dev$ttys(0xc, 0x2, 0x0)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000240), 0x102, 0x0)
+ioctl$TCXONC(r1, 0x540a, 0x3)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r4 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$VT_DISALLOCATE(r4, 0x89f0)
+ioctl$KDSETMODE(0xffffffffffffffff, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r2, 0x4b4a, &(0x7f0000000140)=""/226)
+ioctl$PIO_UNIMAP(r0, 0x4b67, &(0x7f0000000300)={0x1, &(0x7f0000000280)=[{0x3, 0x9}]})
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCSWINSZ(r5, 0x5414, &(0x7f0000000080)={0x7241, 0x9, 0x0, 0x3d6d})
+r6 = openat$ptmx(0xffffffffffffff9c, &(0x7f00000008c0), 0x20802, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCL_SETSEL(0xffffffffffffffff, 0x541c, &(0x7f00000000c0)={0x2, {0x2, 0x7f, 0x0, 0x1, 0xfffd, 0x4}})
+ioctl$TIOCGDEV(r6, 0x80045432, &(0x7f0000000940))
+ioctl$TIOCL_PASTESEL(r3, 0x541c, 0x0)
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+openat$ttyS3(0xffffffffffffff9c, 0x0, 0x40000, 0x0)
+
+636.888702ms ago: executing program 8 (id=20870):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+mmap$fb(&(0x7f0000ca4000/0x2000)=nil, 0x2000, 0x1000007, 0x8032, 0xffffffffffffffff, 0x35000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+ioctl$FBIOGET_CON2FBMAP(0xffffffffffffffff, 0x460f, &(0x7f0000000040)={0x15, 0x2})
+r1 = syz_open_dev$I2C(&(0x7f0000000000), 0x875a, 0x20801)
+r2 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$FBIOGET_VSCREENINFO(r2, 0x4600, &(0x7f00000001c0))
+ioctl$I2C_TENBIT(r1, 0x80111500, 0x200000ffefff)
+ioctl$I2C_SMBUS(r1, 0x720, &(0x7f00000000c0)={0x0, 0x3f, 0x1, &(0x7f0000000080)={0x16, "11feecda876c740c8d6deb3ab5197995b09310b39e89067c6060ed2d2f5bf7d42b"}})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+mmap$fb(&(0x7f0000c66000/0x4000)=nil, 0x4000, 0x4, 0x8032, 0xffffffffffffffff, 0xb0000)
+r3 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x100000d, 0x1c011, r3, 0x87000)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+ioctl$I2C_SMBUS(0xffffffffffffffff, 0x80086601, 0x0)
+r4 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r4, 0x70000)
+r5 = syz_open_dev$I2C(&(0x7f00000000c0), 0x0, 0x101400)
+ioctl$I2C_TIMEOUT(r1, 0x702, 0x0)
+ioctl$I2C_SMBUS(r5, 0x720, &(0x7f0000000100)={0x1, 0x3, 0x2, &(0x7f0000000000)={0x5, "86ac5909e67738d864df62139d7b3d17f45e4b161d00"}})
+syz_open_dev$I2C(&(0x7f0000000200), 0x0, 0x280000)
+ioctl$FBIOPAN_DISPLAY(0xffffffffffffffff, 0x4606, &(0x7f0000000080)={0x2300, 0x10, 0x40, 0x258, 0xf8, 0xee, 0x8, 0x2, {0x1, 0x91}, {0x3, 0xffff, 0x1}, {0x2, 0xd3}, {0x3, 0x1}, 0x1, 0x101, 0x6, 0xd, 0x0, 0x9, 0x552, 0x69, 0x800, 0x6, 0x7fffffff, 0x5, 0x11, 0x1, 0x0, 0x4})
+
+557.727842ms ago: executing program 8 (id=20875):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000009c0)=0xe)
+ioctl$TCSETSF(0xffffffffffffffff, 0x80047456, &(0x7f00000000c0)={0x5, 0x100, 0x0, 0x7ff, 0x18, "6ca80f7ea5ac2a51b2f16b33e73d0f5f778159"})
+r0 = syz_open_dev$ttys(0xc, 0x2, 0x0)
+r1 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+ioctl$TCXONC(r1, 0x540a, 0x2)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCSETD(r2, 0x5423, &(0x7f0000000600)=0x1)
+ioctl$VT_DISALLOCATE(r2, 0x89f0)
+ioctl$KDSETMODE(r0, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r1, 0x4b4a, &(0x7f0000000140)=""/226)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_DISALLOCATE(r3, 0x5608)
+ioctl$VT_ACTIVATE(r3, 0x5606, 0x2)
+ioctl$GIO_CMAP(r3, 0x4b70, 0x0)
+ioctl$TIOCSWINSZ(r1, 0x5414, 0x0)
+ioctl$KDFONTOP_SET(r3, 0x4b72, &(0x7f0000000d40)={0x0, 0x1, 0x8, 0x1e, 0x50, &(0x7f0000000940)="bcf2638fe8db33b577772479eeb4a41ea23c77b52fdc3603e9e4627e47c3f1216b59805eb1c2f460a7f4dd24bcdfcb804b304aca010539855bb1be46db9bac3907e971080165096c3df0326d0cb9e791244b5106ded3bb3206ffae324c6797e09521c83215425c2bb17983a3d2175e0d83bab9c32ed0146b1d40d52cbd73b36ae71dbbf5823a113ba1ab9aee69e5525b7d1ff109515a4fb2c2ad5d3dd820a13f2b7d5b3b458d7edf6dde4bcaf1e3eb9bbe175a12e6e1d2f405ad9fc6d1d4e912e4e23997ab57a30537e4ef65c12f3686fba9b0608f21ac88ae242fdf6c1f57ea802d759dcd769cde9cb916a24f58fce1819e9236e9ef87308424b483d34f177025e72451d61c201c0b06da6f29e4d9d38aee5930f17a262e66fd4bdaacc713bbaeaafa3d4adaf5d2be16fee5b62f20b3d6ebba7707f78c0924948540144955af1085df662489ce3a6c5095518c2e848c887aa6aa54196e502764fa6a95db5b88f2bd3d8ea1eb317f100c7847ae9d24c9a086915093fc0ab49d360bc54a91888098c67b9481a330547cb967423cab235a4f19924c9bdd5fc440f03ac5bd093dd464395ca94f746f8d53b1795a1d6ab240e1691ebcd8a25f3752dfdcbefa4f613e69178c2cd60c150c267ff3ba3119b89dfdbe430292a96772c43a7642d51df85a70fbce52a61bf600505950c81d689fb95805760258f97364e2fab2721eadb1264651bea84c2dc306621bd5d9c58cfe838c2cc7053231281ae416ee97800b6f0396dde9d8576bd2bdf3d954efa2e00ab99c504908c3a7b9c853befffbcbae23f4e8ecea2dac85eecd5373c88dad7d1723fbd78ecd46b9bcdfbeae322e1dc79d417eec098f8688cee6c74cdee91f3afafdc569726c6bd7ef1a63728bc00b9fbe902320e54212875cb2a97b5ac7a41511d4b1e2907c99bb298c053bff42dee9e42a44c12194b1a44a9db5725e477ea49b6120b6403b7c0aa6768c02e3c5c1b54b4762aa9c34fe35cd11b1d582afd6595de5f922dbbbfdeb77334dfcacb12ee583a0bab8b4c53da3e4091e5e28e02727797679610520acf6ceb9aeae9729e9bea7cb37b440bc90d7d8e1432dc4a4550a49703ea064a48a1e22c8b302e1a6aeae9ee266c6c3735dd63760fed37bb0c6b7916aad473e79fa04f380e222b9c10ef9cb8be611ee177e5f86568169614f53c78fa4937b23d31c33b672f108f69cdcc4ee3c0b202864e966d5c8e5981e5c13f69a2830d71dfb0aacb635e413268ab132f6a8a8c0a7bd4760a9ad31615741ef2b53947bdd98ec3a9f9081462ebc6f10fac4225a9049b40667f695dc9a8c8c7163756da5ea6c76ad20f47202afddf422da2d8d1e5d44e126ad8ab782054a9162e67feccef3fa2f3008e96b47bc9acd415fd9f5ab74b65c5f2e3ff4ecb43ee95d523fd3b94d044fa39d6725fa5924e6ea65fcde"})
+ioctl$KDGKBMETA(r3, 0x4b62, &(0x7f0000001000))
+syz_open_dev$tty20(0xc, 0x4, 0x1)
+syz_open_dev$tty1(0xc, 0x4, 0x2)
+syz_open_dev$tty1(0xc, 0x4, 0x2)
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+ioctl$KDFONTOP_SET(r4, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x16, 0x106, 0x139, 0x0})
+ioctl$TIOCSETD(r4, 0x5423, &(0x7f0000000080)=0x5)
+
+481.589817ms ago: executing program 7 (id=20876):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+mmap$fb(&(0x7f0000ca4000/0x2000)=nil, 0x2000, 0x1000007, 0x8032, 0xffffffffffffffff, 0x35000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+ioctl$FBIOGET_CON2FBMAP(0xffffffffffffffff, 0x460f, &(0x7f0000000040)={0x15, 0x2})
+r1 = syz_open_dev$I2C(&(0x7f0000000000), 0x875a, 0x20801)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+r2 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$FBIOGET_VSCREENINFO(r2, 0x4600, &(0x7f00000001c0))
+ioctl$I2C_TENBIT(r1, 0x80111500, 0x200000ffefff)
+ioctl$I2C_SMBUS(r1, 0x720, &(0x7f00000000c0)={0x0, 0x3f, 0x1, &(0x7f0000000080)={0x16, "11feecda876c740c8d6deb3ab5197995b09310b39e89067c6060ed2d2f5bf7d42b"}})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+mmap$fb(&(0x7f0000c66000/0x4000)=nil, 0x4000, 0x4, 0x8032, 0xffffffffffffffff, 0xb0000)
+mmap$fb(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x100000d, 0x1c011, 0xffffffffffffffff, 0x87000)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+ioctl$I2C_SMBUS(0xffffffffffffffff, 0x80086601, 0x0)
+r3 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r3, 0x70000)
+r4 = syz_open_dev$I2C(&(0x7f00000000c0), 0x0, 0x101400)
+ioctl$I2C_TIMEOUT(r1, 0x702, 0x0)
+ioctl$I2C_SMBUS(r4, 0x720, &(0x7f0000000100)={0x1, 0x3, 0x2, &(0x7f0000000000)={0x5, "86ac5909e67738d864df62139d7b3d17f45e4b161d00"}})
+syz_open_dev$I2C(&(0x7f0000000200), 0x0, 0x280000)
+ioctl$FBIOPAN_DISPLAY(0xffffffffffffffff, 0x4606, &(0x7f0000000080)={0x2300, 0x10, 0x40, 0x258, 0xf8, 0xee, 0x8, 0x2, {0x1, 0x91}, {0x3, 0xffff, 0x1}, {0x2, 0xd3}, {0x3, 0x1}, 0x1, 0x101, 0x6, 0xd, 0x0, 0x9, 0x552, 0x69, 0x800, 0x6, 0x7fffffff, 0x5, 0x11, 0x1, 0x0, 0x4})
+
+291.506218ms ago: executing program 7 (id=20877):
+ioctl$FBIOPUT_VSCREENINFO(0xffffffffffffffff, 0x4601, &(0x7f0000000480)={0x578, 0x0, 0x1e0, 0x4b0, 0x2, 0x510, 0x10, 0x2, {0x0, 0x73, 0xfffffffd}, {0x8, 0xe0}, {0xe0e1, 0x3, 0x1}, {0x4, 0x3, 0x1}, 0x0, 0x10, 0x8, 0x2, 0x0, 0xb, 0xffffffff, 0x8, 0x4, 0x10, 0xf, 0x6, 0x6, 0x2, 0x3, 0x7})
+
+291.179122ms ago: executing program 7 (id=20878):
+getsockopt$inet_udp_int(0xffffffffffffffff, 0x11, 0xb, 0x0, &(0x7f0000000080))
+
+278.344083ms ago: executing program 8 (id=20879):
+openat$tun(0xffffffffffffff9c, 0x0, 0x880, 0x0)
+
+264.68613ms ago: executing program 7 (id=20880):
+ioctl$sock_SIOCOUTQNSD(0xffffffffffffffff, 0x80044942, 0x0)
+
+206.640804ms ago: executing program 8 (id=20881):
+openat$KGPT_rfkill(0xffffffffffffff9c, &(0x7f0000000000), 0x0, 0x0)
+
+206.394083ms ago: executing program 7 (id=20882):
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0xc00, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0xf)
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x2)
+syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x6)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$KDSKBMETA(0xffffffffffffffff, 0x4b63, &(0x7f0000000040)=0x3)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+syz_open_dev$ttys(0xc, 0x2, 0x0)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000240), 0x102, 0x0)
+ioctl$TCXONC(r1, 0x540a, 0x3)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r4 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$VT_DISALLOCATE(r4, 0x89f0)
+ioctl$KDSETMODE(0xffffffffffffffff, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r2, 0x4b4a, &(0x7f0000000140)=""/226)
+ioctl$PIO_UNIMAP(r0, 0x4b67, &(0x7f0000000300)={0x0, &(0x7f0000000280)})
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCSWINSZ(r5, 0x5414, &(0x7f0000000080)={0x7241, 0x9, 0x0, 0x3d6d})
+r6 = openat$ptmx(0xffffffffffffff9c, &(0x7f00000008c0), 0x20802, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCL_SETSEL(0xffffffffffffffff, 0x541c, &(0x7f00000000c0)={0x2, {0x2, 0x7f, 0x0, 0x1, 0xfffd, 0x4}})
+ioctl$TIOCGDEV(r6, 0x80045432, &(0x7f0000000940))
+ioctl$TIOCL_PASTESEL(r3, 0x541c, &(0x7f0000000100))
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+openat$ttyS3(0xffffffffffffff9c, 0x0, 0x40000, 0x0)
+
+198.352861ms ago: executing program 8 (id=20883):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+mmap$fb(&(0x7f0000ca4000/0x2000)=nil, 0x2000, 0x1000007, 0x8032, 0xffffffffffffffff, 0x35000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+ioctl$FBIOGET_CON2FBMAP(0xffffffffffffffff, 0x460f, &(0x7f0000000040)={0x15, 0x2})
+r1 = syz_open_dev$I2C(&(0x7f0000000000), 0x875a, 0x20801)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+r2 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$FBIOGET_VSCREENINFO(r2, 0x4600, &(0x7f00000001c0))
+ioctl$I2C_TENBIT(r1, 0x80111500, 0x200000ffefff)
+ioctl$I2C_SMBUS(r1, 0x720, &(0x7f00000000c0)={0x0, 0x3f, 0x1, &(0x7f0000000080)={0x16, "11feecda876c740c8d6deb3ab5197995b09310b39e89067c6060ed2d2f5bf7d42b"}})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+mmap$fb(&(0x7f0000c66000/0x4000)=nil, 0x4000, 0x4, 0x8032, 0xffffffffffffffff, 0xb0000)
+mmap$fb(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x100000d, 0x1c011, 0xffffffffffffffff, 0x87000)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+ioctl$I2C_SMBUS(0xffffffffffffffff, 0x80086601, 0x0)
+r3 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r3, 0x70000)
+r4 = syz_open_dev$I2C(&(0x7f00000000c0), 0x0, 0x101400)
+ioctl$I2C_TIMEOUT(r1, 0x702, 0x0)
+ioctl$I2C_SMBUS(r4, 0x720, &(0x7f0000000100)={0x1, 0x3, 0x2, &(0x7f0000000000)={0x5, "86ac5909e67738d864df62139d7b3d17f45e4b161d00"}})
+syz_open_dev$I2C(&(0x7f0000000200), 0x0, 0x280000)
+ioctl$FBIOPAN_DISPLAY(0xffffffffffffffff, 0x4606, &(0x7f0000000080)={0x2300, 0x10, 0x40, 0x258, 0xf8, 0xee, 0x8, 0x2, {0x1, 0x91}, {0x3, 0xffff, 0x1}, {0x2, 0xd3}, {0x3, 0x1}, 0x1, 0x101, 0x6, 0xd, 0x0, 0x9, 0x552, 0x69, 0x800, 0x6, 0x7fffffff, 0x5, 0x11, 0x1, 0x0, 0x4})
+
+772.697Âµs ago: executing program 8 (id=20884):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000009c0)=0xe)
+ioctl$TCSETSF(0xffffffffffffffff, 0x80047456, &(0x7f00000000c0)={0x5, 0x100, 0x0, 0x7ff, 0x18, "6ca80f7ea5ac2a51b2f16b33e73d0f5f778159"})
+r0 = syz_open_dev$ttys(0xc, 0x2, 0x0)
+r1 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+ioctl$TCXONC(r1, 0x540a, 0x2)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCSETD(r2, 0x5423, &(0x7f0000000600)=0x1)
+ioctl$VT_DISALLOCATE(r2, 0x89f0)
+ioctl$KDSETMODE(r0, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r1, 0x4b4a, &(0x7f0000000140)=""/226)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_DISALLOCATE(r3, 0x5608)
+ioctl$VT_ACTIVATE(r3, 0x5606, 0x2)
+ioctl$KDGETLED(r3, 0x4b31, 0x0)
+ioctl$GIO_CMAP(r3, 0x4b70, 0x0)
+ioctl$TIOCSWINSZ(r1, 0x5414, 0x0)
+ioctl$KDFONTOP_SET(r3, 0x4b72, &(0x7f0000000d40)={0x0, 0x1, 0x8, 0x1e, 0x50, &(0x7f0000000940)="bcf2638fe8db33b577772479eeb4a41ea23c77b52fdc3603e9e4627e47c3f1216b59805eb1c2f460a7f4dd24bcdfcb804b304aca010539855bb1be46db9bac3907e971080165096c3df0326d0cb9e791244b5106ded3bb3206ffae324c6797e09521c83215425c2bb17983a3d2175e0d83bab9c32ed0146b1d40d52cbd73b36ae71dbbf5823a113ba1ab9aee69e5525b7d1ff109515a4fb2c2ad5d3dd820a13f2b7d5b3b458d7edf6dde4bcaf1e3eb9bbe175a12e6e1d2f405ad9fc6d1d4e912e4e23997ab57a30537e4ef65c12f3686fba9b0608f21ac88ae242fdf6c1f57ea802d759dcd769cde9cb916a24f58fce1819e9236e9ef87308424b483d34f177025e72451d61c201c0b06da6f29e4d9d38aee5930f17a262e66fd4bdaacc713bbaeaafa3d4adaf5d2be16fee5b62f20b3d6ebba7707f78c0924948540144955af1085df662489ce3a6c5095518c2e848c887aa6aa54196e502764fa6a95db5b88f2bd3d8ea1eb317f100c7847ae9d24c9a086915093fc0ab49d360bc54a91888098c67b9481a330547cb967423cab235a4f19924c9bdd5fc440f03ac5bd093dd464395ca94f746f8d53b1795a1d6ab240e1691ebcd8a25f3752dfdcbefa4f613e69178c2cd60c150c267ff3ba3119b89dfdbe430292a96772c43a7642d51df85a70fbce52a61bf600505950c81d689fb95805760258f97364e2fab2721eadb1264651bea84c2dc306621bd5d9c58cfe838c2cc7053231281ae416ee97800b6f0396dde9d8576bd2bdf3d954efa2e00ab99c504908c3a7b9c853befffbcbae23f4e8ecea2dac85eecd5373c88dad7d1723fbd78ecd46b9bcdfbeae322e1dc79d417eec098f8688cee6c74cdee91f3afafdc569726c6bd7ef1a63728bc00b9fbe902320e54212875cb2a97b5ac7a41511d4b1e2907c99bb298c053bff42dee9e42a44c12194b1a44a9db5725e477ea49b6120b6403b7c0aa6768c02e3c5c1b54b4762aa9c34fe35cd11b1d582afd6595de5f922dbbbfdeb77334dfcacb12ee583a0bab8b4c53da3e4091e5e28e02727797679610520acf6ceb9aeae9729e9bea7cb37b440bc90d7d8e1432dc4a4550a49703ea064a48a1e22c8b302e1a6aeae9ee266c6c3735dd63760fed37bb0c6b7916aad473e79fa04f380e222b9c10ef9cb8be611ee177e5f86568169614f53c78fa4937b23d31c33b672f108f69cdcc4ee3c0b202864e966d5c8e5981e5c13f69a2830d71dfb0aacb635e413268ab132f6a8a8c0a7bd4760a9ad31615741ef2b53947bdd98ec3a9f9081462ebc6f10fac4225a9049b40667f695dc9a8c8c7163756da5ea6c76ad20f47202afddf422da2d8d1e5d44e126ad8ab782054a9162e67feccef3fa2f3008e96b47bc9acd415fd9f5ab74b65c5f2e3ff4ecb43ee95d523fd3b94d044fa39d6725fa5924e6ea65fcde"})
+syz_open_dev$tty20(0xc, 0x4, 0x1)
+syz_open_dev$tty1(0xc, 0x4, 0x2)
+syz_open_dev$tty1(0xc, 0x4, 0x2)
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+ioctl$KDFONTOP_SET(r4, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x16, 0x106, 0x139, 0x0})
+ioctl$TIOCSETD(r4, 0x5423, &(0x7f0000000080)=0x5)
+
+0s ago: executing program 7 (id=20885):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000009c0)=0xe)
+ioctl$TCSETSF(0xffffffffffffffff, 0x80047456, &(0x7f00000000c0)={0x5, 0x100, 0x0, 0x7ff, 0x18, "6ca80f7ea5ac2a51b2f16b33e73d0f5f778159"})
+r0 = syz_open_dev$ttys(0xc, 0x2, 0x0)
+r1 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+ioctl$TCXONC(r1, 0x540a, 0x2)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCSETD(r2, 0x5423, &(0x7f0000000600)=0x1)
+ioctl$VT_DISALLOCATE(r2, 0x89f0)
+ioctl$KDSETMODE(r0, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r1, 0x4b4a, &(0x7f0000000140)=""/226)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_DISALLOCATE(r3, 0x5608)
+ioctl$KDGETLED(r3, 0x4b31, 0x0)
+ioctl$GIO_CMAP(r3, 0x4b70, 0x0)
+ioctl$TIOCSWINSZ(r1, 0x5414, 0x0)
+ioctl$KDFONTOP_SET(r3, 0x4b72, &(0x7f0000000d40)={0x0, 0x1, 0x8, 0x1e, 0x50, &(0x7f0000000940)="bcf2638fe8db33b577772479eeb4a41ea23c77b52fdc3603e9e4627e47c3f1216b59805eb1c2f460a7f4dd24bcdfcb804b304aca010539855bb1be46db9bac3907e971080165096c3df0326d0cb9e791244b5106ded3bb3206ffae324c6797e09521c83215425c2bb17983a3d2175e0d83bab9c32ed0146b1d40d52cbd73b36ae71dbbf5823a113ba1ab9aee69e5525b7d1ff109515a4fb2c2ad5d3dd820a13f2b7d5b3b458d7edf6dde4bcaf1e3eb9bbe175a12e6e1d2f405ad9fc6d1d4e912e4e23997ab57a30537e4ef65c12f3686fba9b0608f21ac88ae242fdf6c1f57ea802d759dcd769cde9cb916a24f58fce1819e9236e9ef87308424b483d34f177025e72451d61c201c0b06da6f29e4d9d38aee5930f17a262e66fd4bdaacc713bbaeaafa3d4adaf5d2be16fee5b62f20b3d6ebba7707f78c0924948540144955af1085df662489ce3a6c5095518c2e848c887aa6aa54196e502764fa6a95db5b88f2bd3d8ea1eb317f100c7847ae9d24c9a086915093fc0ab49d360bc54a91888098c67b9481a330547cb967423cab235a4f19924c9bdd5fc440f03ac5bd093dd464395ca94f746f8d53b1795a1d6ab240e1691ebcd8a25f3752dfdcbefa4f613e69178c2cd60c150c267ff3ba3119b89dfdbe430292a96772c43a7642d51df85a70fbce52a61bf600505950c81d689fb95805760258f97364e2fab2721eadb1264651bea84c2dc306621bd5d9c58cfe838c2cc7053231281ae416ee97800b6f0396dde9d8576bd2bdf3d954efa2e00ab99c504908c3a7b9c853befffbcbae23f4e8ecea2dac85eecd5373c88dad7d1723fbd78ecd46b9bcdfbeae322e1dc79d417eec098f8688cee6c74cdee91f3afafdc569726c6bd7ef1a63728bc00b9fbe902320e54212875cb2a97b5ac7a41511d4b1e2907c99bb298c053bff42dee9e42a44c12194b1a44a9db5725e477ea49b6120b6403b7c0aa6768c02e3c5c1b54b4762aa9c34fe35cd11b1d582afd6595de5f922dbbbfdeb77334dfcacb12ee583a0bab8b4c53da3e4091e5e28e02727797679610520acf6ceb9aeae9729e9bea7cb37b440bc90d7d8e1432dc4a4550a49703ea064a48a1e22c8b302e1a6aeae9ee266c6c3735dd63760fed37bb0c6b7916aad473e79fa04f380e222b9c10ef9cb8be611ee177e5f86568169614f53c78fa4937b23d31c33b672f108f69cdcc4ee3c0b202864e966d5c8e5981e5c13f69a2830d71dfb0aacb635e413268ab132f6a8a8c0a7bd4760a9ad31615741ef2b53947bdd98ec3a9f9081462ebc6f10fac4225a9049b40667f695dc9a8c8c7163756da5ea6c76ad20f47202afddf422da2d8d1e5d44e126ad8ab782054a9162e67feccef3fa2f3008e96b47bc9acd415fd9f5ab74b65c5f2e3ff4ecb43ee95d523fd3b94d044fa39d6725fa5924e6ea65fcde"})
+ioctl$KDGKBMETA(r3, 0x4b62, &(0x7f0000001000))
+syz_open_dev$tty20(0xc, 0x4, 0x1)
+syz_open_dev$tty1(0xc, 0x4, 0x2)
+syz_open_dev$tty1(0xc, 0x4, 0x2)
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+ioctl$KDFONTOP_SET(r4, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x16, 0x106, 0x139, 0x0})
+ioctl$TIOCSETD(r4, 0x5423, &(0x7f0000000080)=0x5)
+
+kernel console output (not intermixed with test programs):
+
+[   23.610619] audit: type=1400 audit(1786567703.911:33): avc:  denied  { rlimitinh } for  pid=280 comm="bash" scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   23.621544] audit: type=1400 audit(1786567703.911:34): avc:  denied  { siginh } for  pid=280 comm="bash" scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+Warning: Permanently added '[localhost]:6709' (ED25519) to the list of known hosts.
+[   25.132309] cgroup: Unknown subsys name 'net'
+[   25.177976] cgroup: Unknown subsys name 'cpuset'
+[   25.185911] cgroup: Unknown subsys name 'rlimit'
+[   25.187899] cgroup: Unknown subsys name 'memory'
+[   25.226044] kmemleak: Automatic memory scanning thread ended
+[   34.140497] kmemleak: 7 new suspected memory leaks (see /sys/kernel/debug/kmemleak)
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=d1a27c83-22b2-4c71-b4b2-4c00c08c3398
+[   34.203149] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   35.624049] audit: type=1400 audit(1786567715.944:35): avc:  denied  { execmem } for  pid=302 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   35.769023] audit: type=1400 audit(1786567716.089:36): avc:  denied  { read } for  pid=307 comm="modprobe" name="modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   35.782912] audit: type=1400 audit(1786567716.089:37): avc:  denied  { open } for  pid=307 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   35.793859] audit: type=1400 audit(1786567716.089:38): avc:  denied  { getattr } for  pid=307 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   35.806837] audit: type=1400 audit(1786567716.089:39): avc:  denied  { map } for  pid=307 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   41.990906] systemd-udevd (166) used greatest stack depth: 24712 bytes left
+[   42.091718] systemd-udevd (177) used greatest stack depth: 24552 bytes left
+[   45.666898] modprobe (1676) used greatest stack depth: 24440 bytes left
+[   48.764895] program syz.1.14 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   48.778329] netlink: 4 bytes leftover after parsing attributes in process `syz.2.15'.
+[   48.928777] netlink: 4 bytes leftover after parsing attributes in process `syz.3.26'.
+[   48.936989] netlink: 8 bytes leftover after parsing attributes in process `syz.2.28'.
+[   49.163338] sr 2:0:0:0: [sr0] tag#10 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+[   49.169012] sr 2:0:0:0: [sr0] tag#10 CDB: Rebuild(16) 81 ed 39 00 00 00
+[   49.547512] audit: type=1400 audit(1786567729.866:40): avc:  denied  { kernel } for  pid=2201 comm="syz.0.79" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=perf_event permissive=1
+[   49.564697] audit: type=1400 audit(1786567729.866:41): avc:  denied  { open } for  pid=2201 comm="syz.0.79" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=perf_event permissive=1
+[   49.597905] ata1.00: invalid transfer count 0
+[   49.687303] netlink: 16 bytes leftover after parsing attributes in process `syz.1.92'.
+[   49.694598] netlink: 16 bytes leftover after parsing attributes in process `syz.1.92'.
+[   49.753590] netlink: 40 bytes leftover after parsing attributes in process `syz.2.96'.
+[   49.808668] syz.3.105 uses obsolete (PF_INET,SOCK_PACKET)
+[   49.819376] netlink: 8 bytes leftover after parsing attributes in process `syz.2.103'.
+[   49.880541] SELinux: unrecognized netlink message: protocol=4 nlmsg_type=19 sclass=netlink_tcpdiag_socket pid=2265 comm=syz.0.110
+[   49.937082] =======================================================
+[   49.937082] WARNING: The mand mount option has been deprecated and
+[   49.937082]          and is ignored by this kernel. Remove the mand
+[   49.937082]          option from the mount to silence this warning.
+[   49.937082] =======================================================
+[   49.958699] cgroup: Invalid name
+[   50.342205] netlink: 40 bytes leftover after parsing attributes in process `syz.0.149'.
+[   50.469961] netlink: 40 bytes leftover after parsing attributes in process `syz.1.161'.
+[   50.666608] cgroup: Invalid name
+[   50.784712] netlink: 8 bytes leftover after parsing attributes in process `syz.0.178'.
+[   50.950563] ata1.00: invalid transfer count 0
+[   51.300025] sr 2:0:0:0: [sr0] tag#30 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+[   51.305857] sr 2:0:0:0: [sr0] tag#30 CDB: Rebuild(16) 81 ed 39 00 00 00
+[   51.546769] sr 2:0:0:0: [sr0] tag#11 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+[   51.552964] sr 2:0:0:0: [sr0] tag#11 CDB: Rebuild(16) 81 ed 39 00 00 00
+[   51.903805] ata1.00: invalid transfer count 0
+[   52.011237] cgroup: Invalid name
+[   52.866189] watchdog: watchdog0: watchdog did not stop!
+[   52.949280] sit0: entered allmulticast mode
+[   53.024948] watchdog: watchdog0: watchdog did not stop!
+[   53.166472] watchdog: watchdog0: watchdog did not stop!
+[   53.278669] audit: type=1400 audit(1786567733.587:42): avc:  denied  { module_load } for  pid=2836 comm="modprobe" path="/usr/lib/modules/7.1.0+/kernel/net/qrtr/qrtr.ko" dev="sda" ino=14942703 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=system permissive=1
+[   53.311029] sit0: entered allmulticast mode
+[   53.344596] NET: Registered PF_QIPCRTR protocol family
+[   53.350209] audit: type=1400 audit(1786567733.668:43): avc:  denied  { net_admin } for  pid=2836 comm="modprobe" capability=12  scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:system_r:kmod_t:s0 tclass=capability permissive=1
+[   53.471089] sit0: entered allmulticast mode
+[   53.507264] sr 2:0:0:0: [sr0] tag#12 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+[   53.513099] sr 2:0:0:0: [sr0] tag#12 CDB: Xdread, Read track info
+[   53.518392] sr 2:0:0:0: [sr0] tag#12 CDB[00]: 52 50 9c 4e 8f 45 6c 82 8b 8f 27 ad f2 94 51 10
+[   53.523055] sr 2:0:0:0: [sr0] tag#12 CDB[10]: d2 78
+[   53.784156] sr 2:0:0:0: [sr0] tag#13 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+[   53.789519] sr 2:0:0:0: [sr0] tag#13 CDB: Xdread, Read track info
+[   53.794592] sr 2:0:0:0: [sr0] tag#13 CDB[00]: 52 50 9c 4e 8f 45 6c 82 8b 8f 27 ad f2 94 51 10
+[   53.800998] sr 2:0:0:0: [sr0] tag#13 CDB[10]: d2 78
+[   53.945657] sr 2:0:0:0: [sr0] tag#11 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+[   53.953308] sr 2:0:0:0: [sr0] tag#11 CDB: Xdread, Read track info
+[   53.956916] sr 2:0:0:0: [sr0] tag#11 CDB[00]: 52 50 9c 4e 8f 45 6c 82 8b 8f 27 ad f2 94 51 10
+[   53.961556] sr 2:0:0:0: [sr0] tag#11 CDB[10]: d2 78
+[   55.016534] SELinux:  policydb magic number 0x0 does not match expected magic number 0xf97cff8c
+[   55.023921] SELinux: failed to load policy
+[   56.058597] capability: warning: `syz.1.630' uses deprecated v2 capabilities in a way that may be insecure
+[   56.353948] __nla_validate_parse: 1 callbacks suppressed
+[   56.353964] netlink: 8 bytes leftover after parsing attributes in process `syz.1.655'.
+[   56.665867] netlink: 8 bytes leftover after parsing attributes in process `syz.3.680'.
+[   57.114600] ata1.00: invalid cdb length 6
+[   57.547865] ata1.00: invalid cdb length 6
+[   59.309591] netlink: 20 bytes leftover after parsing attributes in process `syz.0.906'.
+[   59.459113] netlink: 20 bytes leftover after parsing attributes in process `syz.3.913'.
+[   59.608725] netlink: 20 bytes leftover after parsing attributes in process `syz.2.927'.
+[   64.083163] tmpfs: Bad value for 'mode'
+[   64.366403] tmpfs: Bad value for 'mode'
+[   64.427749] sit0: mtu less than device minimum
+[   64.801265] sit0: mtu less than device minimum
+[   64.947368] sit0: mtu less than device minimum
+[   65.541354] audit: type=1400 audit(1786567745.857:44): avc:  denied  { name_bind } for  pid=4953 comm="syz.1.1434" src=20002 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:port_t:s0 tclass=icmp_socket permissive=1
+[   65.562925] audit: type=1400 audit(1786567745.858:45): avc:  denied  { node_bind } for  pid=4953 comm="syz.1.1434" saddr=fe80::aa src=20002 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:node_t:s0 tclass=icmp_socket permissive=1
+[   65.672091] hpet: Lost 2 RTC interrupts
+[   65.686317] program syz.3.1441 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   65.749368] netlink: 'syz.0.1446': attribute type 8 has an invalid length.
+[   65.755135] netlink: 8 bytes leftover after parsing attributes in process `syz.0.1446'.
+[   65.761814] program syz.2.1445 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   65.859624] audit: type=1400 audit(1786567746.177:46): avc:  denied  { open } for  pid=4998 comm="syz.1.1454" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=perf_event permissive=1
+[   66.152163] netlink: 'syz.3.1478': attribute type 8 has an invalid length.
+[   66.159595] netlink: 8 bytes leftover after parsing attributes in process `syz.3.1478'.
+[   66.258471] program syz.3.1487 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   66.376736] program syz.0.1492 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   66.487612] program syz.0.1498 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   66.568301] netlink: 24 bytes leftover after parsing attributes in process `syz.2.1503'.
+[   66.686172] hpet: Lost 1 RTC interrupts
+[   66.946521] audit: type=1400 audit(1786567747.266:47): avc:  denied  { checkpoint_restore } for  pid=5144 comm="syz.2.1527" capability=40  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[   66.962279] hpet: Lost 1 RTC interrupts
+[   68.487891] netlink: 40 bytes leftover after parsing attributes in process `syz.0.1652'.
+[   68.917009] netlink: 'syz.2.1685': attribute type 33 has an invalid length.
+[   69.129325] netlink: 40 bytes leftover after parsing attributes in process `syz.2.1702'.
+[   69.207882] €Â: renamed from syz_tun (while UP)
+[   69.346698] netlink: 'syz.1.1717': attribute type 33 has an invalid length.
+[   69.414332] €Â: renamed from syz_tun (while UP)
+[   69.563380] €Â: renamed from syz_tun (while UP)
+[   72.827984] syz.0.1961: calling unsupported SCSI_IOCTL_SEND_COMMAND
+[   73.117925] netlink: 12 bytes leftover after parsing attributes in process `syz.0.1973'.
+[   73.307184] netlink: 12 bytes leftover after parsing attributes in process `syz.1.1991'.
+[   73.452641] netlink: 12 bytes leftover after parsing attributes in process `syz.2.2002'.
+[   73.543588] audit: type=1401 audit(1786567753.860:48): op=security_bounded_transition seresult=denied oldcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 newcontext=system_u:object_r:mount_exec_t:s0
+[   73.818216] audit: type=1401 audit(1786567754.138:49): op=security_bounded_transition seresult=denied oldcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 newcontext=system_u:object_r:mount_exec_t:s0
+[   73.825834] SELinux:  Context u:object_r:app_data_file:s0:c512,c768 is not valid (left unmapped).
+[   73.841255] audit: type=1400 audit(1786567754.153:50): avc:  denied  { relabelto } for  pid=6192 comm="syz.3.2036" name="NETLINK" dev="sockfs" ino=16051 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=netlink_rdma_socket permissive=1 trawcon="u:object_r:app_data_file:s0:c512,c768"
+[   73.988954] SELinux: unrecognized netlink message: protocol=6 nlmsg_type=2580 sclass=netlink_xfrm_socket pid=6209 comm=syz.1.2050
+[   74.149687] netlink: 220 bytes leftover after parsing attributes in process `syz.3.2057'.
+[   74.253234] netlink: 188 bytes leftover after parsing attributes in process `syz.3.2069'.
+[   74.328821] netlink: 220 bytes leftover after parsing attributes in process `syz.1.2068'.
+[   74.572726] netlink: 220 bytes leftover after parsing attributes in process `syz.2.2082'.
+[   74.589650] audit: type=1400 audit(1786567754.907:51): avc:  denied  { kernel } for  pid=6291 comm="syz.3.2083" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=perf_event permissive=1
+[   75.157925] autofs4:pid:6393:check_dev_ioctl_version: ioctl control interface version mismatch: kernel(1.1), user(768.1), cmd(0xc0189375)
+[   75.164449] autofs4:pid:6393:validate_dev_ioctl: invalid device control module version supplied for cmd(0xc0189375)
+[   75.205557] hpet: Lost 1 RTC interrupts
+[   75.234344] watchdog: watchdog0: watchdog did not stop!
+[   75.257612] process 'syz.0.2136' launched './file2' with NULL argv: empty string added
+[   75.466288] autofs4:pid:6437:check_dev_ioctl_version: ioctl control interface version mismatch: kernel(1.1), user(768.1), cmd(0xc0189375)
+[   75.476559] autofs4:pid:6437:validate_dev_ioctl: invalid device control module version supplied for cmd(0xc0189375)
+[   75.768094] program syz.0.2177 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   76.037927] i801_smbus 0000:00:1f.3: Illegal SMBus block read size 0
+[   76.143912] netlink: 4208 bytes leftover after parsing attributes in process `syz.0.2212'.
+[   76.155990] i801_smbus 0000:00:1f.3: Illegal SMBus block read size 0
+[   76.216708] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(4.2147483649.2), cmd(9)
+[   76.334851] i801_smbus 0000:00:1f.3: Illegal SMBus block read size 0
+[   76.406611] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(4.2147483649.2), cmd(9)
+[   76.469747] i801_smbus 0000:00:1f.3: Illegal SMBus block read size 0
+[   76.475332] netlink: 4208 bytes leftover after parsing attributes in process `syz.2.2244'.
+[   76.569324] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(4.2147483649.2), cmd(9)
+[   76.613020] netlink: 4208 bytes leftover after parsing attributes in process `syz.3.2256'.
+[   77.781310] netlink: 'syz.2.2352': attribute type 1 has an invalid length.
+[   78.072436] netlink: 'syz.3.2382': attribute type 1 has an invalid length.
+[   78.168937] SELinux:  Context ªªªªª is not valid (left unmapped).
+[   78.201921] __nla_validate_parse: 8 callbacks suppressed
+[   78.201932] netlink: 12 bytes leftover after parsing attributes in process `syz.0.2396'.
+[   78.209166] netlink: 'syz.0.2396': attribute type 1 has an invalid length.
+[   78.344448] program syz.3.2412 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   78.641234] watchdog: watchdog0: watchdog did not stop!
+[   78.796495] netlink: 'syz.1.2472': attribute type 179 has an invalid length.
+[   79.377931] program syz.1.2518 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   79.529052] netlink: 16 bytes leftover after parsing attributes in process `syz.2.2528'.
+[   79.640395] program syz.0.2544 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   80.412542] netlink: 'syz.3.2602': attribute type 179 has an invalid length.
+[   80.756068] netlink: 'syz.2.2634': attribute type 179 has an invalid length.
+[   81.343162] program syz.2.2691 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   81.690695] program syz.3.2719 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   81.697447] Restarting kernel threads ...
+[   81.702828] Done restarting kernel threads.
+[   81.787292] program syz.2.2726 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   81.877638] program syz.0.2732 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   81.961004] program syz.1.2740 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   82.120361] Restarting kernel threads ...
+[   82.127389] Done restarting kernel threads.
+[   82.183677] program syz.3.2752 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   82.285135] netlink: 16 bytes leftover after parsing attributes in process `syz.1.2760'.
+[   82.430661] netlink: 16 bytes leftover after parsing attributes in process `syz.0.2774'.
+[   82.493521] capability: warning: `syz.3.2780' uses 32-bit capabilities (legacy support in use)
+[   82.600188] netlink: 16 bytes leftover after parsing attributes in process `syz.2.2788'.
+[   82.613143] netlink: 8 bytes leftover after parsing attributes in process `syz.1.2790'.
+[   82.843783] netlink: 8 bytes leftover after parsing attributes in process `syz.2.2805'.
+[   82.898478] netlink: 'syz.0.2812': attribute type 12 has an invalid length.
+[   82.902418] netlink: 8 bytes leftover after parsing attributes in process `syz.0.2812'.
+[   82.968130] netlink: 8 bytes leftover after parsing attributes in process `syz.1.2819'.
+[   83.090488] netlink: 'syz.1.2828': attribute type 12 has an invalid length.
+[   83.097453] netlink: 8 bytes leftover after parsing attributes in process `syz.1.2828'.
+[   83.185612] netlink: 'syz.2.2839': attribute type 12 has an invalid length.
+[   83.418099] audit: type=1326 audit(1786567763.738:52): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=7869 comm="syz.3.2852" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7f05ebf1359d code=0x0
+[   83.515421] tmpfs: Unsupported parameter 'huge'
+[   83.895867] ata1.00: Read log 0x10 page 0x00 failed, Emask 0x1
+[   83.899010] ata1: failed to read log page 10h (errno=-5)
+[   83.901737] ata1.00: exception Emask 0x1 SAct 0x2000000 SErr 0x0 action 0x0
+[   83.904488] ata1.00: irq_stat 0x40000000
+[   83.907515] ata1.00: failed command: WRITE FPDMA QUEUED
+[   83.910039] ata1.00: cmd 61/28:c8:90:ed:06/00:00:10:00:00/40 tag 25 ncq dma 20480 out
+[   83.910039]          res 50/00:00:00:00:00/00:00:00:00:00/00 Emask 0x1 (device error)
+[   83.917407] ata1.00: status: { DRDY }
+[   83.921317] ata1.00: configured for UDMA/100
+[   83.923924] ata1: EH complete
+[   84.330295] ata3.00: invalid multi_count 1 ignored
+[   84.428143] Unsupported ieee802154 address type: 0
+[   84.580043] SELinux:  policydb string  does not match my string SE Linux
+[   84.586709] SELinux: failed to load policy
+[   84.696047] __nla_validate_parse: 2 callbacks suppressed
+[   84.696062] netlink: 96 bytes leftover after parsing attributes in process `syz.3.2917'.
+[   84.794066] netlink: 96 bytes leftover after parsing attributes in process `syz.1.2929'.
+[   84.919973] netlink: 96 bytes leftover after parsing attributes in process `syz.0.2942'.
+[   85.031001] netlink: 96 bytes leftover after parsing attributes in process `syz.2.2955'.
+[   85.091056] SELinux:  policydb string  does not match my string SE Linux
+[   85.094559] SELinux: failed to load policy
+[   85.236125] SELinux:  policydb string  does not match my string SE Linux
+[   85.243774] SELinux: failed to load policy
+[   85.388132] ata3.00: invalid multi_count 1 ignored
+[   85.428822] SELinux:  policydb string  does not match my string SE Linux
+[   85.434041] SELinux: failed to load policy
+[   85.492484] audit: type=1326 audit(1786567765.811:53): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=8149 comm="syz.0.2993" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7f51f7ab359d code=0x0
+[   85.704672] ata3.00: invalid multi_count 1 ignored
+[   85.743766] Unsupported ieee802154 address type: 0
+[   85.886451] Unsupported ieee802154 address type: 0
+[   86.183994] program syz.3.3041 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   86.493718] program syz.2.3066 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   86.966758] SELinux:  policydb string length 0 does not match expected length 8
+[   86.971253] SELinux: failed to load policy
+[   87.089423] SELinux:  policydb string length 0 does not match expected length 8
+[   87.094827] SELinux: failed to load policy
+[   87.190491] SELinux:  policydb string length 0 does not match expected length 8
+[   87.194608] SELinux: failed to load policy
+[   87.387706] netlink: 6 bytes leftover after parsing attributes in process `syz.2.3140'.
+[   87.434045] tmpfs: Unknown parameter 'm'
+[   88.160868] netlink: 6 bytes leftover after parsing attributes in process `syz.3.3217'.
+[   88.246795] tmpfs: Unknown parameter 'm'
+[   88.360094] tmpfs: Unknown parameter 'm'
+[   89.677845] SELinux: unrecognized netlink message: protocol=4 nlmsg_type=0 sclass=netlink_tcpdiag_socket pid=8768 comm=syz.3.3297
+[   89.713462] tmpfs: Bad value for 'mpol'
+[   90.081297] SELinux: unrecognized netlink message: protocol=4 nlmsg_type=0 sclass=netlink_tcpdiag_socket pid=8846 comm=syz.2.3343
+[   90.325727] sd 0:0:0:0: ioctl_internal_command: ILLEGAL REQUEST asc=0x24 ascq=0x0
+[   91.384533] Invalid option length (627) for dns_resolver key
+[   91.425216] nvme_fabrics: unknown parameter or missing value '' in ctrl creation request
+[   91.468054] netlink: 16 bytes leftover after parsing attributes in process `syz.0.3392'.
+[   91.596288] nvme_fabrics: unknown parameter or missing value '' in ctrl creation request
+[   91.653778] Invalid option length (627) for dns_resolver key
+[   91.667161] netlink: 16 bytes leftover after parsing attributes in process `syz.2.3412'.
+[   91.751847] nvme_fabrics: unknown parameter or missing value '' in ctrl creation request
+[   91.799262] Invalid option length (627) for dns_resolver key
+[   91.945727] tmpfs: Bad value for 'mpol'
+[   92.024988] tmpfs: Bad value for 'mpol'
+[   92.162695] tmpfs: Bad value for 'mpol'
+[   92.907656] Invalid option length (627) for dns_resolver key
+[   93.165878] netlink: 16 bytes leftover after parsing attributes in process `syz.0.3504'.
+[   93.483813] netlink: 16 bytes leftover after parsing attributes in process `syz.2.3525'.
+[   94.096794] tmpfs: Bad value for 'mpol'
+[   94.441872] tmpfs: Bad value for 'mpol'
+[   94.604427] tmpfs: Bad value for 'mpol'
+[   95.835913] audit: type=1400 audit(1786567776.155:54): avc:  denied  { relabelfrom } for  pid=9568 comm="syz.1.3689" name="" dev="pipefs" ino=28237 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=fifo_file permissive=1
+[   95.918376] netlink: 128 bytes leftover after parsing attributes in process `syz.1.3700'.
+[   96.077914] netlink: 128 bytes leftover after parsing attributes in process `syz.2.3715'.
+[   96.213897] netlink: 128 bytes leftover after parsing attributes in process `syz.3.3730'.
+[   96.641859] program syz.0.3751 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   96.794637] program syz.2.3771 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   96.937916] program syz.1.3784 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   98.152639] 9pnet_virtio: no channels available for device ./file0
+[   98.239738] "á±87: renamed from lo (while UP)
+[   98.290605] 9pnet_virtio: no channels available for device ./file0
+[   98.405537] "á±87: renamed from lo (while UP)
+[   98.462835] loop1: detected capacity change from 0 to 512
+[   98.499350] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[   98.506977] ext4 filesystem being mounted at /941/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[   98.563266] "á±87: renamed from lo (while UP)
+[   98.564765] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   98.848407] loop2: detected capacity change from 0 to 512
+[   98.882121] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[   98.892176] ext4 filesystem being mounted at /1039/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[   98.932841] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   99.111973] raw_sendmsg: syz.1.3995 forgot to set AF_INET. Fix it!
+[   99.198923] loop0: detected capacity change from 0 to 512
+[   99.221321] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[   99.228832] ext4 filesystem being mounted at /979/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[   99.264274] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   99.378025] loop3: detected capacity change from 0 to 512
+[   99.399055] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[   99.416079] ext4 filesystem being mounted at /1022/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[   99.460774] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   99.848264] loop1: detected capacity change from 0 to 512
+[   99.870459] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[   99.883354] ext4 filesystem being mounted at /975/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[   99.927950] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  100.200114] program syz.0.4091 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  100.631251] program syz.1.4127 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  101.878523] netlink: 'syz.3.4202': attribute type 8 has an invalid length.
+[  102.936361] program syz.0.4228 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  103.168324] loop0: detected capacity change from 0 to 512
+[  103.226075] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  103.250476] SELinux: syz.2.4252 (10707) wrote to user. This is no longer supported.
+[  103.275764] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  103.605431] loop2: detected capacity change from 0 to 512
+[  103.653328] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  103.691134] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  103.839335] program syz.3.4306 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  103.851586] loop1: detected capacity change from 0 to 512
+[  103.876142] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  103.914867] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  104.034271] loop3: detected capacity change from 0 to 512
+[  104.074294] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  104.107548] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  104.196761] loop1: detected capacity change from 0 to 512
+[  104.230401] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  104.261888] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  104.389368] loop1: detected capacity change from 0 to 512
+[  104.418767] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  104.449965] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  104.599284] loop2: detected capacity change from 0 to 512
+[  104.624560] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  104.662233] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  104.739873] loop2: detected capacity change from 0 to 512
+[  104.772951] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  104.808329] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  105.483456] loop2: detected capacity change from 0 to 512
+[  105.526216] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  105.581202] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  105.586030] program syz.1.4447 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  105.757280] SELinux:  Context /usr/sbin/ntpd is not valid (left unmapped).
+[  105.766553] audit: type=1400 audit(1786567786.085:55): avc:  denied  { associate } for  pid=11141 comm="syz.0.4459" name="file1" dev="tmpfs" ino=5545 scontext=system_u:object_r:unlabeled_t:s0 tcontext=system_u:object_r:tmpfs_t:s0 tclass=filesystem permissive=1 srawcon="/usr/sbin/ntpd"
+[  106.077803] loop2: detected capacity change from 0 to 512
+[  106.102770] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  106.127659] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  106.201952] loop1: detected capacity change from 0 to 512
+[  106.216404] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  106.222587] netlink: 8 bytes leftover after parsing attributes in process `syz.3.4507'.
+[  106.268291] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  106.369044] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  106.395452] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  106.508966] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  106.527004] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  106.647794] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  106.677290] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  106.715862] netlink: 296 bytes leftover after parsing attributes in process `syz.3.4551'.
+[  106.727040] Zero length message leads to an empty skb
+[  106.996185] autofs4:pid:11377:check_dev_ioctl_version: ioctl control interface version mismatch: kernel(1.1), user(1.768), cmd(0xc0189375)
+[  107.001434] autofs4:pid:11377:validate_dev_ioctl: invalid device control module version supplied for cmd(0xc0189375)
+[  107.390983] netlink: 8 bytes leftover after parsing attributes in process `syz.2.4589'.
+[  108.303198] netlink: 296 bytes leftover after parsing attributes in process `syz.1.4599'.
+[  109.685626] mmap: syz.1.4724 (11703) uses deprecated remap_file_pages() syscall. See Documentation/mm/remap_file_pages.rst.
+[  110.212130] program syz.0.4779 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  110.437999] netlink: 8 bytes leftover after parsing attributes in process `syz.2.4802'.
+[  110.639288] tmpfs: Bad value for 'mpol'
+[  110.813088] netlink: 120 bytes leftover after parsing attributes in process `syz.2.4827'.
+[  111.011493] tmpfs: Bad value for 'mpol'
+[  111.035070] netlink: 120 bytes leftover after parsing attributes in process `syz.1.4838'.
+[  111.201463] netlink: 120 bytes leftover after parsing attributes in process `syz.0.4853'.
+[  112.582765] nvme_fabrics: missing parameter 'transport=%s'
+[  112.587285] nvme_fabrics: missing parameter 'nqn=%s'
+[  112.765353] nvme_fabrics: missing parameter 'transport=%s'
+[  112.771014] nvme_fabrics: missing parameter 'nqn=%s'
+[  113.378001] @@: renamed from bridge0 (while UP)
+[  113.695884] binfmt_misc: register: failed to install interpreter file ./file0/file0
+[  113.715215] @@: renamed from bridge0 (while UP)
+[  113.801085] @@: renamed from bridge0 (while UP)
+[  113.971837] @@: renamed from bridge0 (while UP)
+[  113.984931] watchdog: watchdog0: watchdog did not stop!
+[  114.240219] watchdog: watchdog0: watchdog did not stop!
+[  115.606100] sock: sock_timestamping_bind_phc: sock not bind to device
+[  116.234200] sock: sock_timestamping_bind_phc: sock not bind to device
+[  116.922282] BIDI support in bsg has been removed.
+[  118.129295] syz.2.5418 calls setitimer() with new_value NULL pointer. Misfeature support will be removed
+[  118.808326] 9pnet_fd: p9_fd_create_tcp (13185): problem connecting socket to 127.0.0.1
+[  119.147389] 9pnet_fd: p9_fd_create_tcp (13253): problem connecting socket to 127.0.0.1
+[  119.296392] 9pnet_fd: p9_fd_create_tcp (13278): problem connecting socket to 127.0.0.1
+[  120.089407] cgroup: release_agent respecified
+[  120.362207] cgroup: release_agent respecified
+[  120.707713] netlink: 16 bytes leftover after parsing attributes in process `syz.1.5647'.
+[  121.589413] tmpfs: Bad value for 'gid'
+[  121.600070] tmpfs: Bad value for 'gid'
+[  121.814930] program syz.1.5772 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  121.973466] program syz.3.5788 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  122.744049] netlink: 4 bytes leftover after parsing attributes in process `syz.3.5868'.
+[  123.494870] netlink: 8 bytes leftover after parsing attributes in process `syz.2.5946'.
+[  123.819217] netlink: 3 bytes leftover after parsing attributes in process `syz.0.5985'.
+[  124.027593] netlink: 4 bytes leftover after parsing attributes in process `syz.1.6004'.
+[  124.063444] pimreg: entered allmulticast mode
+[  124.219737] tmpfs: Bad value for 'mpol'
+[  124.257120] watchdog: watchdog0: watchdog did not stop!
+[  124.314197] program syz.0.6036 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  124.358108] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2562 sclass=netlink_route_socket pid=14363 comm=syz.0.6043
+[  124.464172] program syz.3.6056 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  125.273493] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(0.0.0), cmd(10)
+[  125.508616] program syz.2.6152 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  126.000586] bochs-drm 0000:00:01.0: [drm] Unknown color mode 3; guessing buffer size.
+[  126.381715] ucma_write: process 3152 (syz.0.6235) changed security contexts after opening file descriptor, this is not allowed.
+[  126.545097] ALSA: seq fatal error: cannot create timer (-22)
+[  126.572326] sr 2:0:0:0: [sr0] tag#8 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+[  126.577309] sr 2:0:0:0: [sr0] tag#8 CDB: opcode=0x94 94 00 00 00 00 00 00 00 00 00 00 00
+[  126.827176] program syz.2.6272 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  127.002487] serio: Serial port ptm0
+[  128.612579] syz.1.6313 (14917) used greatest stack depth: 23824 bytes left
+[  128.860182] netlink: 4 bytes leftover after parsing attributes in process `syz.1.6359'.
+[  128.864797] netlink: 4 bytes leftover after parsing attributes in process `syz.1.6359'.
+[  129.015826] watchdog: watchdog0: watchdog did not stop!
+[  129.170105] netlink: 8 bytes leftover after parsing attributes in process `syz.3.6379'.
+[  129.431079] netlink: 8 bytes leftover after parsing attributes in process `syz.3.6399'.
+[  129.471827] audit: type=1401 audit(1786567809.791:56): op=setxattr invalid_context="u:object_r:app_data_file:s0:c512,c768"
+[  129.528141] pimreg: entered allmulticast mode
+[  129.532709] pimreg: left allmulticast mode
+[  129.840658] netlink: 8 bytes leftover after parsing attributes in process `syz.2.6439'.
+[  129.841133] nfs4: Bad value for 'source'
+[  130.093296] netlink: 4 bytes leftover after parsing attributes in process `syz.0.6464'.
+[  131.060731] syz.2.6538 (15383) used greatest stack depth: 23632 bytes left
+[  132.105202] set_capacity_and_notify: 3 callbacks suppressed
+[  132.105224] loop3: detected capacity change from 0 to 512
+[  132.138696] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  132.163045] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  132.491007] audit: type=1400 audit(1786567812.808:57): avc:  denied  { block_suspend } for  pid=15601 comm="syz.1.6640" capability=36  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[  134.000219] tmpfs: Bad value for 'gid'
+[  134.002796] tmpfs: Bad value for 'gid'
+[  134.175926] program syz.3.6787 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  134.409933] program syz.1.6806 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  135.113852] netlink: 4 bytes leftover after parsing attributes in process `syz.0.6883'.
+[  135.912180] netlink: 8 bytes leftover after parsing attributes in process `syz.3.6964'.
+[  136.281268] netlink: 3 bytes leftover after parsing attributes in process `syz.1.7000'.
+[  136.576315] netlink: 4 bytes leftover after parsing attributes in process `syz.0.7020'.
+[  136.639438] pimreg: entered allmulticast mode
+[  136.798799] tmpfs: Bad value for 'mpol'
+[  136.851799] watchdog: watchdog0: watchdog did not stop!
+[  136.923231] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2562 sclass=netlink_route_socket pid=16441 comm=syz.2.7057
+[  138.002178] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(0.0.0), cmd(10)
+[  138.433572] audit: type=1400 audit(1786567818.752:58): avc:  denied  { node_bind } for  pid=16695 comm="syz.3.7181" saddr=224.0.0.1 src=20004 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:node_t:s0 tclass=icmp_socket permissive=1
+[  140.589825] ALSA: seq fatal error: cannot create timer (-22)
+[  140.594504] sr 2:0:0:0: [sr0] tag#5 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+[  140.601901] sr 2:0:0:0: [sr0] tag#5 CDB: opcode=0x94 94 00 00 00 00 00 00 00 00 00 00 00
+[  140.929071] program syz.0.7287 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  141.522944] serio: Serial port ptm0
+[  143.944689] netlink: 4 bytes leftover after parsing attributes in process `syz.3.7375'.
+[  143.950530] netlink: 4 bytes leftover after parsing attributes in process `syz.3.7375'.
+[  144.026345] netlink: 8 bytes leftover after parsing attributes in process `syz.2.7389'.
+[  144.033077] watchdog: watchdog0: watchdog did not stop!
+[  144.800394] netlink: 8 bytes leftover after parsing attributes in process `syz.2.7416'.
+[  145.005748] audit: type=1401 audit(1786567825.326:59): op=setxattr invalid_context="u:object_r:app_data_file:s0:c512,c768"
+[  145.073257] pimreg: entered allmulticast mode
+[  145.084332] pimreg: left allmulticast mode
+[  145.434855] nfs4: Bad value for 'source'
+[  145.561144] netlink: 8 bytes leftover after parsing attributes in process `syz.0.7453'.
+[  145.942939] netlink: 4 bytes leftover after parsing attributes in process `syz.3.7481'.
+[  148.505167] loop0: detected capacity change from 0 to 512
+[  148.547023] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  148.670385] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  150.835026] tmpfs: Bad value for 'gid'
+[  150.839852] tmpfs: Bad value for 'gid'
+[  150.991695] tmpfs: Bad value for 'gid'
+[  150.996005] tmpfs: Bad value for 'gid'
+[  151.359396] program syz.0.7817 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  151.557102] program syz.2.7829 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  151.963863] program syz.2.7858 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  152.109354] program syz.0.7872 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  153.958441] program syz.3.8000 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  154.126649] audit: type=1326 audit(1786567834.445:60): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=18410 comm="syz.3.8013" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7f05ebf1359d code=0x0
+[  155.412526] loop2: detected capacity change from 0 to 512
+[  155.446185] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  155.482242] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  155.834865] loop1: detected capacity change from 0 to 512
+[  155.860309] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  155.902347] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  158.078729] netlink: 4 bytes leftover after parsing attributes in process `syz.1.8240'.
+[  158.183805] netlink: 8 bytes leftover after parsing attributes in process `syz.1.8253'.
+[  158.576230] pimreg: left allmulticast mode
+[  158.641658] audit: type=1401 audit(1786567838.962:61): op=setxattr invalid_context="u:object_r:app_data_file:s0:c512,c768"
+[  158.790416] audit: type=1401 audit(1786567839.110:62): op=setxattr invalid_context="u:object_r:app_data_file:s0:c512,c768"
+[  158.855328] netlink: 8 bytes leftover after parsing attributes in process `syz.0.8301'.
+[  159.044653] pimreg: left allmulticast mode
+[  159.107731] netlink: 8 bytes leftover after parsing attributes in process `syz.1.8316'.
+[  159.177226] watchdog: watchdog0: watchdog did not stop!
+[  159.421356] netlink: 4 bytes leftover after parsing attributes in process `syz.2.8342'.
+[  159.443813] netlink: 4 bytes leftover after parsing attributes in process `syz.2.8342'.
+[  159.664979] netlink: 8 bytes leftover after parsing attributes in process `syz.1.8346'.
+[  159.805913] netlink: 4 bytes leftover after parsing attributes in process `syz.0.8353'.
+[  159.810949] netlink: 4 bytes leftover after parsing attributes in process `syz.0.8353'.
+[  160.729861] netlink: 4 bytes leftover after parsing attributes in process `syz.3.8404'.
+[  161.474469] program syz.3.8441 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  162.059283] ALSA: seq fatal error: cannot create timer (-22)
+[  162.148900] sr 2:0:0:0: [sr0] tag#22 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+[  162.154745] sr 2:0:0:0: [sr0] tag#22 CDB: opcode=0x94 94 00 00 00 00 00 00 00 00 00 00 00
+[  163.123091] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(0.0.0), cmd(10)
+[  163.705094] SELinux: unrecognized netlink message: protocol=0 nlmsg_type=2562 sclass=netlink_route_socket pid=19606 comm=syz.1.8583
+[  163.746162] watchdog: watchdog0: watchdog did not stop!
+[  163.780473] tmpfs: Bad value for 'mpol'
+[  163.846562] pimreg: entered allmulticast mode
+[  164.201856] __nla_validate_parse: 1 callbacks suppressed
+[  164.201874] netlink: 8 bytes leftover after parsing attributes in process `syz.1.8627'.
+[  164.618074] netlink: 4 bytes leftover after parsing attributes in process `syz.1.8666'.
+[  164.961529] netlink: 4 bytes leftover after parsing attributes in process `syz.2.8679'.
+[  165.544323] netlink: 3 bytes leftover after parsing attributes in process `syz.3.8737'.
+[  165.760647] netlink: 3 bytes leftover after parsing attributes in process `syz.2.8740'.
+[  165.908216] netlink: 4 bytes leftover after parsing attributes in process `syz.2.8756'.
+[  166.224353] tmpfs: Bad value for 'mpol'
+[  170.408629] netlink: 8 bytes leftover after parsing attributes in process `syz.1.8912'.
+[  170.458350] pimreg: entered allmulticast mode
+[  170.466111] pimreg: left allmulticast mode
+[  170.778184] pimreg: entered allmulticast mode
+[  170.796355] pimreg: left allmulticast mode
+[  170.864513] nfs4: Bad value for 'source'
+[  170.891791] netlink: 8 bytes leftover after parsing attributes in process `syz.3.8928'.
+[  171.286625] pimreg: entered allmulticast mode
+[  171.309241] pimreg: left allmulticast mode
+[  171.358650] netlink: 8 bytes leftover after parsing attributes in process `syz.0.8941'.
+[  172.446771] serio: Serial port ptm0
+[  178.472842] audit: type=1326 audit(1786567858.793:63): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=20597 comm="syz.2.9049" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7f9f7928359d code=0x0
+[  179.434930] audit: type=1326 audit(1786567859.754:64): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=20666 comm="syz.0.9082" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7f51f7ab359d code=0x0
+[  192.759467] netlink: 8 bytes leftover after parsing attributes in process `syz.1.9492'.
+[  194.036980] netlink: 4 bytes leftover after parsing attributes in process `syz.3.9575'.
+[  194.046031] netlink: 4 bytes leftover after parsing attributes in process `syz.3.9575'.
+[  194.237022] netlink: 4 bytes leftover after parsing attributes in process `syz.0.9593'.
+[  194.247764] netlink: 4 bytes leftover after parsing attributes in process `syz.0.9593'.
+[  194.382039] netlink: 4 bytes leftover after parsing attributes in process `syz.1.9609'.
+[  194.389015] netlink: 4 bytes leftover after parsing attributes in process `syz.1.9609'.
+[  194.613948] netlink: 4 bytes leftover after parsing attributes in process `syz.2.9622'.
+[  194.621107] netlink: 4 bytes leftover after parsing attributes in process `syz.2.9622'.
+[  194.830498] netlink: 4 bytes leftover after parsing attributes in process `syz.2.9639'.
+[  200.174943] loop2: detected capacity change from 0 to 2048
+[  200.223714]  loop2: p2 p3 p7
+[  200.316957]  loop2: p2 p3 p7
+[  200.813870] loop3: detected capacity change from 0 to 2048
+[  200.853610]  loop3: p2 p3 p7
+[  200.893032]  loop3: p2 p3 p7
+[  201.191484] loop1: detected capacity change from 0 to 2048
+[  201.223375]  loop1: p2 p3 p7
+[  201.281549]  loop1: p2 p3 p7
+[  202.335934] loop0: detected capacity change from 0 to 2048
+[  202.404841]  loop0: p2 p3 p7
+[  202.662999] loop0: detected capacity change from 0 to 2048
+[  202.708533]  loop0: p2 p3 p7
+[  202.753839] __nla_validate_parse: 2 callbacks suppressed
+[  202.753850] netlink: 36 bytes leftover after parsing attributes in process `syz.2.9954'.
+[  202.790551]  loop0: p2 p3 p7
+[  202.939982] loop0: detected capacity change from 0 to 2048
+[  202.965439]  loop0: p2 p3 p7
+[  203.062333]  loop0: p2 p3 p7
+[  203.117799] program syz.3.9975 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  203.166480] loop3: detected capacity change from 0 to 2048
+[  203.234929]  loop3: p2 p3 p7
+[  203.279731]  loop3: p2 p3 p7
+[  203.351748] netlink: 36 bytes leftover after parsing attributes in process `syz.0.9992'.
+[  203.427326] loop2: detected capacity change from 0 to 2048
+[  203.483493]  loop2: p2 p3 p7
+[  203.736988] loop0: detected capacity change from 0 to 2048
+[  203.769512]  loop0: p2 p3 p7
+[  203.846582]  loop0: p2 p3 p7
+[  204.065590] loop2: detected capacity change from 0 to 2048
+[  204.093537]  loop2: p2 p3 p7
+[  204.187326]  loop2: p2 p3 p7
+[  204.269171]  loop1: p2 p3 p7
+[  204.529770] program syz.0.10055 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  204.574598]  loop1: p2 p3 p7
+[  204.867470]  loop1: p2 p3 p7
+[  205.030100]  loop1: p2 p3 p7
+[  205.471848] set_capacity_and_notify: 4 callbacks suppressed
+[  205.471862] loop2: detected capacity change from 0 to 2048
+[  205.514767]  loop2: p2 p3 p7
+[  205.763465] loop3: detected capacity change from 0 to 512
+[  205.792561] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[  205.823590] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  205.958901] audit: type=1400 audit(1786567886.279:65): avc:  denied  { audit_read } for  pid=22891 comm="syz.2.10128" capability=37  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[  206.173308] netlink: 8 bytes leftover after parsing attributes in process `syz.1.10143'.
+[  206.446975] 9pnet_fd: Insufficient options for proto=fd
+[  206.552887] audit: type=1401 audit(1786567886.870:66): op=setxattr invalid_context=""
+[  207.772294] netlink: 40 bytes leftover after parsing attributes in process `syz.3.10244'.
+[  211.653564] 9pnet_fd: Insufficient options for proto=fd
+[  214.027973] loop0: detected capacity change from 0 to 736
+[  216.744896] loop2: detected capacity change from 0 to 736
+[  216.963181] watchdog: watchdog0: watchdog did not stop!
+[  217.398705] loop1: detected capacity change from 0 to 32768
+[  218.037834] loop2: detected capacity change from 0 to 32768
+[  218.310255] loop3: detected capacity change from 0 to 32768
+[  219.130318] watchdog: watchdog0: watchdog did not stop!
+[  219.337560] watchdog: watchdog0: watchdog did not stop!
+[  219.970313] netlink: 24 bytes leftover after parsing attributes in process `syz.2.10685'.
+[  220.655195] SELinux: unrecognized netlink message: protocol=4 nlmsg_type=16 sclass=netlink_tcpdiag_socket pid=24081 comm=syz.1.10704
+[  222.775331] pimreg: left allmulticast mode
+[  222.797245] tmpfs: Invalid gid '0x00000000ffffffff'
+[  226.033886] tmpfs: Invalid gid '0x00000000ffffffff'
+[  226.535708] pimreg: entered allmulticast mode
+[  226.554088] pimreg: left allmulticast mode
+[  226.845717] pimreg: entered allmulticast mode
+[  226.868665] pimreg: left allmulticast mode
+[  227.752631] pimreg: entered allmulticast mode
+[  227.760723] pimreg: left allmulticast mode
+[  227.873533] pimreg: entered allmulticast mode
+[  227.880193] pimreg: left allmulticast mode
+[  227.992817] ip6erspan0: entered promiscuous mode
+[  227.998872] ip6erspan0: entered allmulticast mode
+
+Debian GNU/Linux 11 syzkaller ttyS0
+
+syzkaller login: [  229.257111] ip6erspan0: entered promiscuous mode
+[  229.262054] ip6erspan0: entered allmulticast mode
+[  231.085720] ip6erspan0: entered promiscuous mode
+[  231.089237] ip6erspan0: entered allmulticast mode
+[  231.261473] SELinux: syz.2.10980 (24670) wrote to checkreqprot. This is no longer supported.
+[  231.309660] TCP: TCP_TX_DELAY enabled
+[  232.275724] audit: type=1400 audit(1786567912.595:67): avc:  denied  { block_suspend } for  pid=24808 comm="syz.0.11050" capability=36  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[  232.751604] watchdog: watchdog0: watchdog did not stop!
+[  234.150797] audit: type=1400 audit(1786567914.469:68): avc:  denied  { watch_reads } for  pid=24995 comm="syz.1.11135" path="/2742/file0" dev="tmpfs" ino=13863 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:object_r:user_tmpfs_t:s0 tclass=dir permissive=1
+[  238.043021] loop2: detected capacity change from 0 to 1764
+[  238.047221] iso9660: Bad value for 'dmode'
+[  238.703424] watchdog: watchdog0: watchdog did not stop!
+[  238.823999] loop0: detected capacity change from 0 to 1764
+[  238.827387] iso9660: Bad value for 'dmode'
+[  239.629909] loop3: detected capacity change from 0 to 1764
+[  239.634319] iso9660: Bad value for 'dmode'
+[  240.736595] loop1: detected capacity change from 0 to 1764
+[  240.742881] iso9660: Bad value for 'dmode'
+[  242.810186] netlink: 8 bytes leftover after parsing attributes in process `syz.0.11417'.
+[  242.813285] Vý: renamed from sit0
+[  242.936046] loop3: detected capacity change from 0 to 512
+[  242.963907] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  242.998698] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  243.556060] pimreg: entered allmulticast mode
+[  243.574449] loop2: detected capacity change from 0 to 512
+[  243.592262] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  243.618835] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+
+Debian GNU/Linux 11 syzkaller ttyS0
+
+syzkaller login: [  244.087293] loop0: detected capacity change from 0 to 512
+[  244.117767] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  244.178782] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  244.355607] loop1: detected capacity change from 0 to 512
+[  244.398371] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  244.449941] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  247.634952] netlink: 4 bytes leftover after parsing attributes in process `syz.2.11643'.
+[  247.638359] netlink: 4 bytes leftover after parsing attributes in process `syz.2.11643'.
+[  248.913321] watchdog: watchdog0: watchdog did not stop!
+[  249.432347] watchdog: watchdog0: watchdog did not stop!
+[  250.084214] loop3: detected capacity change from 0 to 128
+[  250.100804] EXT4-fs (loop3): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+[  250.106742] ext4 filesystem being mounted at /2963/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+[  250.147254] EXT4-fs (loop3): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+[  250.728635] audit: type=1400 audit(1786567931.049:69): avc:  denied  { checkpoint_restore } for  pid=26532 comm="syz.3.11837" capability=40  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[  251.425898] watchdog: watchdog0: watchdog did not stop!
+[  253.293766] ALSA: seq fatal error: cannot create timer (-19)
+[  254.936978] ALSA: seq fatal error: cannot create timer (-19)
+[  254.956710] ALSA: seq fatal error: cannot create timer (-19)
+[  255.122014] ALSA: seq fatal error: cannot create timer (-19)
+[  255.146238] ALSA: seq fatal error: cannot create timer (-19)
+[  255.189670] program syz.1.11964 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  255.903331] netlink: 296 bytes leftover after parsing attributes in process `syz.3.11985'.
+[  256.273752] loop2: detected capacity change from 0 to 512
+[  256.282982] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 ro without journal. Quota mode: none.
+[  257.273287] program syz.1.12017 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  261.953966] watchdog: watchdog0: watchdog did not stop!
+[  262.585876] watchdog: watchdog0: watchdog did not stop!
+[  262.761305] watchdog: watchdog0: watchdog did not stop!
+[  263.206718] loop3: detected capacity change from 0 to 2048
+[  263.237884]  loop3: p2 p3 p7
+[  264.976845] netlink: 4 bytes leftover after parsing attributes in process `syz.3.12653'.
+[  264.977267] netlink: 4 bytes leftover after parsing attributes in process `syz.3.12653'.
+[  265.599613] watchdog: watchdog0: watchdog did not stop!
+[  266.215092] watchdog: watchdog0: watchdog did not stop!
+[  266.722868] loop4: detected capacity change from 0 to 128
+[  266.737951] EXT4-fs (loop4): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+[  266.752427] ext4 filesystem being mounted at /240/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+[  266.803316] EXT4-fs (loop4): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+[  266.832072] watchdog: watchdog0: watchdog did not stop!
+[  269.055596] program syz.2.12888 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  269.122974] program syz.2.12891 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  269.591516] watchdog: watchdog0: watchdog did not stop!
+[  269.756063] program syz.2.12907 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  271.638545] blktrace: Concurrent blktraces are not allowed on loop2
+[  273.413963] ALSA: seq fatal error: cannot create timer (-19)
+[  277.863657] netlink: 4 bytes leftover after parsing attributes in process `syz.1.12987'.
+[  277.870276] netlink: 4 bytes leftover after parsing attributes in process `syz.1.12987'.
+[  278.173771] netlink: 4 bytes leftover after parsing attributes in process `syz.4.13002'.
+[  278.183360] netlink: 4 bytes leftover after parsing attributes in process `syz.4.13002'.
+[  278.584306] netlink: 4 bytes leftover after parsing attributes in process `syz.5.13020'.
+[  278.591801] netlink: 4 bytes leftover after parsing attributes in process `syz.5.13020'.
+[  279.614851] watchdog: watchdog0: watchdog did not stop!
+[  297.216027] watchdog: watchdog0: watchdog did not stop!
+[  301.928368] watchdog: watchdog0: watchdog did not stop!
+[  303.974317] watchdog: watchdog0: watchdog did not stop!
+[  309.332377] blktrace: Concurrent blktraces are not allowed on loop2
+[  317.442182] ALSA: seq fatal error: cannot create timer (-19)
+[  318.006135] ALSA: seq fatal error: cannot create timer (-19)
+[  320.719443] ALSA: seq fatal error: cannot create timer (-19)
+[  321.124964] ALSA: seq fatal error: cannot create timer (-19)
+[  321.972968] program syz.4.13912 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  323.566893] ALSA: seq fatal error: cannot create timer (-19)
+[  324.019101] ALSA: seq fatal error: cannot create timer (-19)
+[  326.536689] ALSA: seq fatal error: cannot create timer (-19)
+[  327.194901] ALSA: seq fatal error: cannot create timer (-19)
+[  327.227432] ALSA: seq fatal error: cannot create timer (-19)
+[  327.333010] loop1: detected capacity change from 0 to 512
+[  327.352745] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 ro without journal. Quota mode: none.
+[  327.635241] ALSA: seq fatal error: cannot create timer (-19)
+[  327.800590] loop4: detected capacity change from 0 to 512
+[  327.823054] EXT4-fs (loop4): mounted filesystem 00000000-0000-0000-0000-000000000000 ro without journal. Quota mode: none.
+[  328.097367] ALSA: seq fatal error: cannot create timer (-19)
+[  328.497198] ALSA: seq fatal error: cannot create timer (-19)
+[  329.014447] loop5: detected capacity change from 0 to 512
+[  329.030299] EXT4-fs (loop5): mounted filesystem 00000000-0000-0000-0000-000000000000 ro without journal. Quota mode: none.
+[  329.044058] ALSA: seq fatal error: cannot create timer (-19)
+[  329.866656] ALSA: seq fatal error: cannot create timer (-19)
+[  330.102898] netlink: 296 bytes leftover after parsing attributes in process `syz.1.14109'.
+[  331.536188] ALSA: seq fatal error: cannot create timer (-19)
+[  331.639378] ALSA: seq fatal error: cannot create timer (-19)
+[  332.382405] ALSA: seq fatal error: cannot create timer (-19)
+[  333.169453] netlink: 296 bytes leftover after parsing attributes in process `syz.2.14153'.
+[  333.935710] ALSA: seq fatal error: cannot create timer (-19)
+[  336.239255] netlink: 296 bytes leftover after parsing attributes in process `syz.5.14219'.
+[  337.614014] netlink: 296 bytes leftover after parsing attributes in process `syz.4.14244'.
+[  339.116381] netlink: 296 bytes leftover after parsing attributes in process `syz.5.14266'.
+[  340.135680] ALSA: seq fatal error: cannot create timer (-19)
+[  340.495957] ALSA: seq fatal error: cannot create timer (-19)
+[  342.492324] ALSA: seq fatal error: cannot create timer (-19)
+[  343.960210] ALSA: seq fatal error: cannot create timer (-19)
+[  344.221200] netlink: 296 bytes leftover after parsing attributes in process `syz.2.14383'.
+[  344.423245] ALSA: seq fatal error: cannot create timer (-19)
+[  345.346628] ALSA: seq fatal error: cannot create timer (-19)
+[  345.751325] ALSA: seq fatal error: cannot create timer (-19)
+[  346.566151] ALSA: seq fatal error: cannot create timer (-19)
+[  346.603235] ALSA: seq fatal error: cannot create timer (-19)
+[  346.885280] ALSA: seq fatal error: cannot create timer (-19)
+[  346.940996] ALSA: seq fatal error: cannot create timer (-19)
+[  347.381149] ALSA: seq fatal error: cannot create timer (-19)
+[  348.133595] ALSA: seq fatal error: cannot create timer (-19)
+[  348.427154] ALSA: seq fatal error: cannot create timer (-19)
+[  349.502745] ALSA: seq fatal error: cannot create timer (-19)
+[  349.927219] ALSA: seq fatal error: cannot create timer (-19)
+[  350.888344] ALSA: seq fatal error: cannot create timer (-19)
+[  351.283691] ALSA: seq fatal error: cannot create timer (-19)
+[  351.935873] ALSA: seq fatal error: cannot create timer (-19)
+[  352.024046] ALSA: seq fatal error: cannot create timer (-19)
+[  370.931738] cgroup: fork rejected by pids controller in /syz2
+[  382.900827] cgroup: fork rejected by pids controller in /syz1
+[  473.842484] watchdog: watchdog0: watchdog did not stop!
+[  491.655158] program syz.5.19683 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  501.080955] cgroup: fork rejected by pids controller in /syz5
+[  519.045372] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  519.139441] EXT4-fs (loop4): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  519.624403] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  519.646260] EXT4-fs (loop5): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+Connection to localhost closed by remote host.

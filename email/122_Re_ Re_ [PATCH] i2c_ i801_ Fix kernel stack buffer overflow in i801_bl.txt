@@ -1,0 +1,78 @@
+From: Author A <author-a@example.com>
+To: Jean Delvare <jdelvare@suse.de>
+Cc: author-a-alt@example.com, andi.shyti@kernel.org, linux-i2c@vger.kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: Re: [PATCH] i2c: i801: Fix kernel stack buffer overflow in
+ i801_block_transaction_byte_by_byte
+Date: Tue, 12 May 2026 17:13:03 +0800
+Message-ID: <1085ba21.f489.19e1b761265.Coremail.author-a@example.com>
+	In-Reply-To:References:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-ID; bh=r1LhsHJn6+rpmX0/aTDRxAgoL+ciVbQfvxL5	bz/f7gY=;
+ b=IuNz6ANo2W8Ew/IBbdZQGHGNRoMq0i6kZiiMblZD88k9SLPpLEoQ
+	tGhdZEI9sTA7Kr4GeW+Dm2/OYTlqoXQO/foa4fiMomKbj4foMhR8ZLc2eqLCDcOy
+	2EYqt6M6bOa715UjP+QETSCB98tGCpeKOhw0F0oZGoqpNbsVPkXwtvo=
+In-Reply-To: <20260512092822.6b403fd5@endymion>
+References: <20260511150005.305818-1-author-a-alt@example.com>
+ <20260512092822.6b403fd5@endymion>
+List-Id: <linux-i2c.vger.kernel.org>
+
+Hi Jean,
+
+Thank you very much for your detailed and sharp review. You are absolutely right.
+
+I must apologize for this false positive. After reviewing the call chain again based on your feedback, I clearly see that `i801_i2c_block_transaction()` already validates `data->block[0]` before calling `i801_block_transaction_byte_by_byte()`. The stack buffer overflow I described is indeed impossible in a normal execution flow.
+
+To answer your curiosity: Yes, this "bug" and the initial draft of the patch were discovered and generated with the heavy assistance of an automated framework using Large Language Models (LLMs) we are developing. 
+
+Our tool attempts to synthesize QEMU virtual device models directly from kernel driver source code to fuzz legacy or obscure drivers that lack physical hardware. In this specific case, the LLM hallucinated a direct call path or bypassed the intermediate validation in `i801_i2c_block_transaction()` when generating the virtual device logic. This caused the synthesized hardware model to inject out-of-bounds data directly into the lower-level function, triggering a crash in our isolated QEMU environment that looked exactly like a kernel stack overflow.
+
+Your review has perfectly exposed a critical limitation in our current methodology: the lack of strict software-path semantic validation when modeling hardware behaviors.
+
+I will drop this patch immediately. Thank you for taking the time to point this out; it is a very valuable lesson for our research.
+
+Best regards,
+Author A
+
+
+> -----原始邮件-----
+> 发件人: "Jean Delvare" <jdelvare@suse.de>
+> 发送时间:2026-05-12 15:33:15 (星期二)
+> 收件人: author-a-alt@example.com
+> 抄送: andi.shyti@kernel.org, linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org, "Author A" <author-a@example.com>
+> 主题: Re: [PATCH] i2c: i801: Fix kernel stack buffer overflow in i801_block_transaction_byte_by_byte
+> 
+> Hi Wang,
+> 
+> On Mon, 11 May 2026 23:00:05 +0800, author-a-alt@example.com wrote:
+> > A kernel stack buffer overflow exists in the
+> > i801_block_transaction_byte_by_byte() function due to a missing bounds
+> > check on the user-provided block length.
+> > 
+> > When userspace executes an ioctl(I2C_SMBUS) with the
+> > I2C_SMBUS_I2C_BLOCK_DATA command, the user data is copied into a local
+> > stack variable `union i2c_smbus_data temp` (which is approximately 34
+> > bytes) in i2cdev_ioctl_smbus(). This data is then passed unmodified
+> 
+> Approximately, really?
+> 
+> > through i2c_smbus_xfer() and i801_access() directly into
+> > i801_block_transaction_byte_by_byte().
+> 
+> This is incorrect. i801_block_transaction_byte_by_byte() is not called
+> directly by i801_access(). i2c_access() calls either
+> i801_smbus_block_transaction() or i801_i2c_block_transaction(), which
+> in turn call i801_block_transaction_byte_by_byte().
+> 
+> This is important because both i801_smbus_block_transaction() and
+> i801_i2c_block_transaction() already check the value of data->block[0]
+> and reject invalid values.
+> 
+> Therefore the stack buffer overflow you intend to fix, can't happen in
+> the first place.
+> 
+> Out of curiosity, what amount of AI was involved in the discovery of
+> this "bug" and in the creation of this patch?
+> 
+> -- 
+> Jean Delvare
+> SUSE L3 Support

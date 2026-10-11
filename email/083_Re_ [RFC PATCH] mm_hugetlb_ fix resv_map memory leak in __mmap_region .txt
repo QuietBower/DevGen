@@ -1,0 +1,160 @@
+From: Lorenzo Stoakes <ljs@kernel.org>
+To: Muchun Song <muchun.song@linux.dev>
+Cc: Author A <author-a@example.com>, Liam.Howlett@oracle.com,
+ akpm@linux-foundation.org, linux-mm@kvack.org, linux-kernel@vger.kernel.org,
+ vbabka@kernel.org, jannh@google.com, pfalcato@suse.de, osalvador@suse.de,
+ david@kernel.org
+Subject: Re: [RFC PATCH] mm/hugetlb: fix resv_map memory leak in __mmap_region
+ error path
+Date: Mon, 27 Apr 2026 15:18:34 +0100
+Message-ID: <ae9tVZbNFtBBet8f@lucifer>
+In-Reply-To: <BCFCF1D6-8F39-4E60-AD86-0ECF799FFD9D@linux.dev>
+References: <20260425070700.562229-1-author-a@example.com>
+ <BCFCF1D6-8F39-4E60-AD86-0ECF799FFD9D@linux.dev>
+List-Id: <linux-kernel.vger.kernel.org>
+
+
+On Mon, Apr 27, 2026 at 03:55:00PM +0800, Muchun Song wrote:
+>
+> > On Apr 25, 2026, at 15:07, Author A <author-a@example.com> wrote:
+> >
+> > While fuzzing with Syzkaller and fault injection (failslab) enabled,
+> > I observed a persistent resv_map memory leak in the hugetlb mmap error path.
+> >
+> > BUG: memory leak
+> > unreferenced object 0xffff888110b92400 (size 512):
+> >  comm "syz.0.5386", pid 20390, jiffies 4298157188
+> >  backtrace:
+> >    __kmalloc_cache_noprof+0x509/0x6e0
+> >    resv_map_alloc+0x47/0x3a0
+> >    hugetlb_reserve_pages+0x758/0x1220
+> >    hugetlbfs_file_mmap_prepare+0x492/0x790
+> >    __mmap_region+0x1ae6/0x29f0
+> >
+> > This is a regression introduced by the recent VMA iterator and mmap region
+> > refactoring, which decoupled mmap preparation from VMA completion.
+> >
+> > In `__mmap_region()`, `call_mmap_prepare()` triggers `hugetlbfs_file_mmap_prepare()`,
+> > which successfully allocates the `resv_map` and registers a `success_hook`
+> > in `desc->action`.
+> >
+> > If `__mmap_new_vma()` subsequently fails (e.g., `vma_iter_prealloc()`
+> > returns -ENOMEM due to failslab), the code jumps to `abort_munmap`.
+> > However, the `desc` structure is completely discarded without invoking
+> > any cleanup. The newly allocated empty VMA is freed, but since
+> > `set_vma_user_defined_fields()` was never reached, `vm_area_free()`
+> > doesn't call `hugetlb_vm_close()`. Thus, the `resv_map` is permanently leaked.
+> >
+> > This RFC proposes adding an `abort_hook` to `struct mmap_action`
+> > so that subsystems can properly clean up resources allocated during the
+> > `mmap_prepare` phase if VMA creation fails.
+
+Yeah sorry, this is a general problem that I addressed already with the
+vm_ops->mapped callback.
+
+I'll come up with a patch to fix this up for hugetlb, thanks for highlighting
+this.
+
+I plan to get rid of the success hook in any case, it's only because hugetlb is
+doing something really... not great with the 'VMA lock' (really hugetlb VMA lock
+I suppose) that we need a VMA pointer at the point.
+
+> >
+> > Any feedback on whether this architectural approach is correct, or how to
+> > properly implement the hugetlb unreserve rollback, would be highly appreciated.
+>
+> Please use ./scripts/get_maintainer.pl to get full mail list for Cc/To since
+> it is not only related to HugeTLB subsystem. It will also consider the author
+> of commit introducing the problem.
+
+Please do do that, I wrote this whole thing, so y'know :)
+
+Especially at the moment I am very very busy with LSF coming up so you need to
+make sure you include me in the mail.
+
+>
+> >
+> > Signed-off-by: Author A <author-a@example.com>
+> > ---
+> > fs/hugetlbfs/inode.c     | 9 +++++++++
+> > include/linux/mm_types.h | 2 ++
+> > mm/vma.c                 | 4 ++++
+> > 3 files changed, 15 insertions(+)
+> >
+> > diff --git a/fs/hugetlbfs/inode.c b/fs/hugetlbfs/inode.c
+> > index 8b05bec08e04..002bb6d9ca23 100644
+> > --- a/fs/hugetlbfs/inode.c
+> > +++ b/fs/hugetlbfs/inode.c
+> > @@ -102,6 +102,14 @@ static int hugetlb_file_mmap_prepare_success(const struct vm_area_struct *vma)
+> > return hugetlb_vma_lock_alloc((struct vm_area_struct *)vma);
+> > }
+> >
+> > +static void hugetlb_file_mmap_prepare_abort(struct vm_area_desc *desc)
+> > +{
+> > + 	/*
+> > +	 * TODO: Implement the proper rollback for hugetlb_reserve_pages()
+> > +	 * and drop the resv_map reference held in the desc here.
+> > +	 */
+> > +}
+> > +
+> > static int hugetlbfs_file_mmap_prepare(struct vm_area_desc *desc)
+> > {
+> > struct file *file = desc->file;
+> > @@ -172,6 +180,7 @@ static int hugetlbfs_file_mmap_prepare(struct vm_area_desc *desc)
+> > 	if (!ret) {
+> > 	/* Allocate the VMA lock after we set it up. */
+> > 	desc->action.success_hook = hugetlb_file_mmap_prepare_success;
+> > + 	desc->action.abort_hook = hugetlb_file_mmap_prepare_abort;
+> > 	/*
+> > 	 * We cannot permit the rmap finding this VMA in the time
+> > 	 * between the VMA being inserted into the VMA tree and the
+> > diff --git a/include/linux/mm_types.h b/include/linux/mm_types.h
+> > index a308e2c23b82..9320f6699fa9 100644
+> > --- a/include/linux/mm_types.h
+> > +++ b/include/linux/mm_types.h
+> > @@ -861,6 +861,8 @@ struct mmap_action {
+> > * it is not valid to clear the error here.
+> > */
+> > 	int (*error_hook)(int err);
+> > +
+> > + 	void (*abort_hook)(struct vm_area_desc *desc);
+>
+> At least for me, it is not good name to distinguish it from error_hook.
+> abort_mmap_prepare? I am not sure if it is a good solution, Cc other
+> MM maintainers as well.
+
+Yeah no we definitely don't want this, I plan to eliminate these hooks
+eventually.
+
+Really intend on adding no others, these were to work around effectively legacy
+issues in mmap callbacks.
+
+>
+> Muchun,
+> Thanks.
+>
+> >
+> > /*
+> > * This should be set in rare instances where the operation required
+> > diff --git a/mm/vma.c b/mm/vma.c
+> > index 377321b48734..d64cea5b4335 100644
+> > --- a/mm/vma.c
+> > +++ b/mm/vma.c
+> > @@ -2799,6 +2799,10 @@ static unsigned long __mmap_region(struct file *file, unsigned long addr,
+> > */
+> > 	if (map.file_doesnt_need_get)
+> > 		fput(map.file);
+> > +
+> > + 	if (have_mmap_prepare && desc.action.abort_hook)
+> > + 		desc.action.abort_hook(&desc);
+> > +
+> > 	vms_abort_munmap_vmas(&map.vms, &map.mas_detach);
+> > 	return error;
+> > }
+> > --
+> > 2.34.1
+> >
+>
+
+Thanks, Lorenzo
+

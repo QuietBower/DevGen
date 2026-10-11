@@ -1,0 +1,57 @@
+From: anonymous <author-a-alt@example.com>
+To: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+Cc: Greg KH <gregkh@linuxfoundation.org>, louis.chauvet@bootlin.com,
+ hamohammed.sa@gmail.com, simona@ffwll.ch, melissa.srw@gmail.com,
+ mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, Author A <author-a@example.com>
+Subject: Re:Re: [PATCH 6.18.y] drm/vkms: Fix ABBA deadlock in vblank disable
+ and timer callback
+Date: Tue, 26 May 2026 19:16:23 +0800
+Message-ID: <63508f34.98ff.19e640005c5.Coremail.author-a-alt@example.com>
+In-Reply-To: <9c4a68c4-43a3-4a9b-a131-9570174c8df3@linux.intel.com>
+References: <20260515131826.388154-1-author-a-alt@example.com>
+ <2026051557-thermal-petite-7da0@gregkh>
+ <581657f0.ba8.19e2eaaf003.Coremail.author-a-alt@example.com>
+ <2026051633-skyward-parrot-cdd3@gregkh>
+ <397754a7.224c.19e38e42006.Coremail.author-a-alt@example.com>
+ <9c4a68c4-43a3-4a9b-a131-9570174c8df3@linux.intel.com>
+List-Id: <stable.vger.kernel.org>
+
+
+Hi Maarten,
+
+>As far as I can tell, if it's just a bug affecting vkms, all you need to do
+>is only a few commits:
+>
+>74afeb812850 ("drm/vblank: Add vblank timer")
+>d54dbb5963bd ("drm/vblank: Add CRTC helpers for simple use cases")
+>02e2681ffe1a ("drm/vkms: Convert to DRM's vblank timer")
+>79ae8510b5b8 ("drm/atomic: Increase timeout in drm_atomic_helper_wait_for_vblanks()")
+>3946d3ba9934 ("drm/vblank: Fix kernel docs for vblank timer")
+>
+>There's no need to convert all other drivers if it's only vkms that you're fixing.
+
+Thank you very much for pointing out this precise dependency chain. It completely saved the backport effort. I have cherry-picked these 5 commits onto the 6.18.y branch, and they apply cleanly without pulling in the massive DRM core refactoring. 
+
+This series completely resolves the Syzkaller RCU stall (soft lockup) I was observing in my local fuzzing environment. I have just submitted this 5-patch series to the list.
+
+>But since you found this bug in one driver, it might be wise to check if others
+>have the same bug and ask for backports for those too.
+
+Following your suggestion, I conducted a static lock dependency audit across the drivers/gpu/drm/ subsystem in the 6.18.y tree, specifically looking for similar abuses of hrtimer_cancel paired with custom vblank/polling timers.
+
+I audited the highly suspicious candidates, including:
+
+1. i915/gvt (virtual display emulation: vblank_timer_fn vs intel_vgpu_clean_display)
+2. xe (OA buffer polling: xe_oa_poll_check_timer_cb vs xe_oa_stream_disable)
+3. msm (fence deadlines & devfreq: deadline_timer vs msm_update_fence)
+
+Fortunately, these drivers are structurally safe from this specific ABBA deadlock pattern. They successfully avoid it either by heavily decoupling the timer callback from the lock context via workqueues (msm_fence and i915/gvt only use the timer to safely wake_up or queue work without holding mutexes/spinlocks), or by utilizing fine-grained locking where the cancel path and the timer callback do not contest the same lock (xe stream polling).
+
+Therefore, it seems vkms was a unique legacy outlier in this regard. No further backports are needed for other DRM drivers for this specific vulnerability.
+
+Thanks again for the roadmap and the thorough review.
+
+Best regards,
+Author A

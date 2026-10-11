@@ -1,0 +1,89 @@
+From: anonymous <author-a-alt@example.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: wim@linux-watchdog.org, linux-watchdog@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Author A <author-a@example.com>
+Subject: Re:Re: [PATCH] watchdog: wdt_pci: Fix shared IRQ storm and complete
+ system lockup
+Date: Mon, 11 May 2026 11:08:27 +0800
+Message-ID: <15f8c180.3519.19e1501ebbc.Coremail.author-a-alt@example.com>
+In-Reply-To: <5acea672-0550-478e-8f49-e5e43c72d7e2@roeck-us.net>
+References: <20260509121655.275311-1-author-a-alt@example.com>
+ <f182256d-0623-4c9b-a18a-acca8457bb08@roeck-us.net>
+ <1fc8bb5a.1346.19e14a548fb.Coremail.author-a-alt@example.com>
+ <5acea672-0550-478e-8f49-e5e43c72d7e2@roeck-us.net>
+List-Id: <linux-watchdog.vger.kernel.org>
+
+
+
+From: Author A <author-a@example.com>
+
+Hi Guenter,
+
+You are correct; standard QEMU does not support the WDT500/501.
+
+We observed this issue using DevGen, an automated framework we are developing. It synthesizes QEMU virtual device models directly from Linux driver source code using LLM guidance, allowing us to fuzz legacy or obscure drivers that lack physical hardware or official emulators.
+
+Because the synthesized device is an imperfect model, it generated unexpected interrupt loads on a heavily shared PCI IRQ line (shared with the i2c-i801 controller in our setup). However, this successfully exposed a real logic flaw: the `wdt_pci` driver registers an `IRQF_SHARED` handler but fails to verify the `WDC_SR_IRQ` bit. It erroneously claimed the interrupts, bypassed the kernel's spurious IRQ defenses, and caused a livelock.
+
+I understand this hardware is essentially obsolete. The patch provides a purely defensive fix for a legitimate API violation (unverified shared IRQ). 
+
+If applying this adds unnecessary churn, please feel free to drop it, or perhaps consider marking the driver as BROKEN. I leave it entirely to your judgment.
+
+Thanks,
+Author A
+
+
+
+
+
+
+
+
+
+
+
+
+At 2026-05-11 11:00:47, "Guenter Roeck" <linux@roeck-us.net> wrote:
+>Hi,
+>
+>On 5/10/26 18:27, anonymous wrote:
+>> 
+>> 
+>> 
+>> From: Author A <author-a@example.com>
+>> 
+>> Hi Guenter,
+>> 
+>> Thank you for your prompt response and review.
+>> 
+>> To answer your questions directly and transparently:
+>> 
+>> 1. Is this an actual observed problem?
+>> Yes, it is a real, observed problem. However, it was observed in a virtualized fuzzing environment (QEMU + Syzkaller) rather than on physical legacy hardware.
+>> 
+>> 2. How was it triggered?
+>> In our QEMU setup, PCI IRQ lines are heavily shared. The fuzzer loaded the `wdt_pci` driver while simultaneously fuzzing other devices on the same shared IRQ line (e.g., the i2c-i801 controller). When the other device triggered a heavy interrupt load, `wdtpci_interrupt()` caught them. Since it bypassed the IRQ ownership check, it blindly claimed the interrupts and caused a massive printk storm (spamming "wdt_pci: Reset in 5ms" and "status 114").
+>> 
+>> This overwhelmed the CPU in hard IRQ context, defeated the spurious IRQ detector, and resulted in a 145-second Hung Task panic. Here is a brief snippet of the observed log:
+>> 
+>> [  375.485491] wdt_pci: Reset in 5ms
+>> [  375.487467] wdt_pci: status 114
+>> [  375.489171] wdt_pci: Reset in 5ms
+>> ...
+>> [  375.484244] systemd-journald[4771]: /dev/kmsg buffer overrun, some messages lost.
+>> [  519.189528] INFO: task syz.2.507 blocked for more than 145 seconds.
+>> 
+>> 3. Did I confirm the register bit?
+>> Yes, the assertion that `WDC_SR_IRQ` is active low relies directly on the hardware definition documented in the driver's own source code at line 66:
+>> `#define WDC_SR_IRQ      128 /* Active low */ /* X   X   X  */`
+>> 
+>> I completely understand your perspective. This is legacy hardware from the 1990s, and it is extremely unlikely to be used in production today. My intention was solely to report a reproducible Local DoS vector found by the fuzzer, as `IRQF_SHARED` handlers are strictly required to verify their interrupt source.
+>> 
+>> If you feel that patching this outdated driver adds unnecessary churn and consumes maintainers' time, please feel free to drop this patch. Alternatively, if the hardware is truly obsolete, perhaps the driver should be marked as BROKEN or removed entirely. I leave that entirely to your expert judgment.
+>> 
+>
+>I don't see that watchdog supported in qemu. Is this a downstream version
+>of qemu, or am I missing something ?
+>
+>Thanks,
+>Guenter

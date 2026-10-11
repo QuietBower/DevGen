@@ -1,0 +1,74 @@
+last executing test programs:
+
+kernel console output (not intermixed with test programs):
+
+[   45.122913] audit: type=1400 audit(1780669314.411:38): avc:  denied  { siginh } for  pid=283 comm="bash" scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+Warning: Permanently added '[localhost]:13260' (ED25519) to the list of known hosts.
+[   46.827933] cgroup: Unknown subsys name 'net'
+[   46.877532] cgroup: Unknown subsys name 'cpuset'
+[   46.887896] cgroup: Unknown subsys name 'rlimit'
+[   46.890249] cgroup: Unknown subsys name 'memory'
+[   46.936381] kmemleak: Automatic memory scanning thread ended
+[   50.442128] systemd-udevd (174) used greatest stack depth: 21928 bytes left
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=f077e010-6e0e-4ecb-b57d-91eb530a3b29
+[   57.316367] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   59.584930] audit: type=1400 audit(1780669328.886:39): avc:  denied  { execmem } for  pid=301 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   59.715922] audit: type=1400 audit(1780669329.017:40): avc:  denied  { read } for  pid=308 comm="modprobe" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   59.728806] audit: type=1400 audit(1780669329.018:41): avc:  denied  { open } for  pid=308 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   59.747580] audit: type=1400 audit(1780669329.018:42): avc:  denied  { getattr } for  pid=308 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   59.760655] audit: type=1400 audit(1780669329.018:43): avc:  denied  { map } for  pid=308 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   69.160496] ------------[ cut here ]------------
+[   69.163220] bochs-drm 0000:00:01.0: [drm] vblank wait timed out on crtc 0
+[   69.166063] WARNING: drivers/gpu/drm/drm_vblank.c:1320 at drm_crtc_wait_one_vblank+0x316/0x4c0, CPU#1: kworker/1:2/159
+[   69.170613] Modules linked in: bochs iTCO_wdt drm_shmem_helper intel_pmc_bxt drm_client_lib watchdog snd_maestro3 i2c_i801 drm_kms_helper snd_ac97_codec lpc_ich i2c_smbus ac97_bus
+[   69.179020] CPU: 1 UID: 0 PID: 159 Comm: kworker/1:2 Tainted: G        W        N  7.0.0 #7 PREEMPT(full) 
+[   69.183888] Tainted: [W]=WARN, [N]=TEST
+[   69.185846] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[   69.191153] Workqueue: events drm_fb_helper_damage_work [drm_kms_helper]
+[   69.194630] RIP: 0010:drm_crtc_wait_one_vblank+0x31c/0x4c0
+[   69.197424] Code: 8b 74 24 50 4d 85 f6 0f 84 07 01 00 00 e8 ac d7 89 fe 4c 89 e7 e8 64 51 04 00 48 89 c6 48 8d 3d 3a 95 5d 05 44 89 e9 4c 89 f2 <67> 48 0f b9 3a 44 89 ee 48 89 ef 41 be 92 ff ff ff e8 fe f7 ff ff
+[   69.206095] RSP: 0018:ffff888113cbfaa0 EFLAGS: 00010293
+[   69.208704] RAX: ffffffffa03703c0 RBX: 0000000000000c2e RCX: 0000000000000000
+[   69.212178] RDX: ffff888100e827a0 RSI: ffffffffa03703c0 RDI: ffffffff884c1cc0
+[   69.215620] RBP: ffff88811863c000 R08: 0000000000000001 R09: 0000000000000001
+[   69.219082] R10: ffffffff88486997 R11: 0000000000000000 R12: ffff888101f360c8
+[   69.222370] R13: 0000000000000000 R14: ffff888100e827a0 R15: ffff888113cbfae8
+[   69.225893] FS:  0000000000000000(0000) GS:ffff8881d0879000(0000) knlGS:0000000000000000
+[   69.229802] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   69.232455] CR2: 00007f0aa8923260 CR3: 000000011f366000 CR4: 00000000000006f0
+[   69.235965] Call Trace:
+[   69.237297]  <TASK>
+[   69.238469]  ? __pfx_drm_crtc_wait_one_vblank+0x10/0x10
+[   69.241928]  ? __pfx_autoremove_wake_function+0x10/0x10
+[   69.244479]  ? _raw_spin_unlock_irqrestore+0x31/0x60
+[   69.246888]  ? drm_vblank_get+0x155/0x2a0
+[   69.248889]  drm_client_modeset_wait_for_vblank+0xf6/0x130
+[   69.251532]  drm_fb_helper_damage_work+0x154/0x630 [drm_kms_helper]
+[   69.254788]  ? lock_acquire+0x197/0x310
+[   69.257009]  ? __pfx_drm_fb_helper_damage_work+0x10/0x10 [drm_kms_helper]
+[   69.260807]  ? lock_release+0xd4/0x2b0
+[   69.262987]  process_one_work+0x920/0x1ac0
+[   69.265315]  ? __pfx_process_one_work+0x10/0x10
+[   69.267900]  ? __pfx_drm_fb_helper_damage_work+0x10/0x10 [drm_kms_helper]
+[   69.271470]  worker_thread+0x698/0xeb0
+[   69.273337]  ? __pfx_worker_thread+0x10/0x10
+[   69.275462]  kthread+0x38a/0x4a0
+[   69.277148]  ? trace_irq_enable.constprop.0+0x116/0x150
+[   69.279669]  ? __pfx_kthread+0x10/0x10
+[   69.281564]  ret_from_fork+0x690/0xaa0
+[   69.283465]  ? __pfx_ret_from_fork+0x10/0x10
+[   69.285469]  ? native_load_tls+0x10/0x40
+[   69.287219]  ? __switch_to+0x5e6/0xe90
+[   69.288868]  ? __pfx_kthread+0x10/0x10
+[   69.290526]  ret_from_fork_asm+0x1a/0x30
+[   69.292165]  </TASK>
+[   69.293031] irq event stamp: 65597
+[   69.294423] hardirqs last  enabled at (65607): [<ffffffff81572ad9>] __up_console_sem+0x89/0xa0
+[   69.297647] hardirqs last disabled at (65616): [<ffffffff81572abe>] __up_console_sem+0x6e/0xa0
+[   69.300943] softirqs last  enabled at (65556): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100
+[   69.304209] softirqs last disabled at (65551): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100
+[   69.307468] ---[ end trace 0000000000000000 ]---
+[   69.855428] clocksource: Long readout interval, skipping watchdog check: cs_nsec: 2753528431 wd_nsec: 2753527632
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)

@@ -1,0 +1,62 @@
+From: Muchun Song <muchun.song@linux.dev>
+To: Lorenzo Stoakes <ljs@kernel.org>
+Cc: Andrew Morton <akpm@linux-foundation.org>,
+ Oscar Salvador <osalvador@suse.de>, David Hildenbrand <david@kernel.org>,
+ Pedro Falcato <pfalcato@suse.de>, "Liam R . Howlett" <liam@infradead.org>,
+ linux-mm@kvack.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH] Revert "mm/hugetlbfs: update hugetlbfs to use mmap_prepare"
+Date: Wed, 13 May 2026 09:23:51 +0800
+ Message-Id:References:To; =?utf-8?q?b=3DZRJXHFTeFegZDFrwV1TN+mhxh+a9F91TWHi?=
+ =?utf-8?q?ah+yNq5BCl5pK8XWViui5pezQogLuAiRvJYJs+s/6Y6izLqDCfqUYmDDlnNHi9m/c?=
+ =?utf-8?q?qEl88aEvKPjwn160zhkZVKzqW8+A6t93eyQDaoZM/JmzenJEd2MiNQLtp6By4DRJT?=
+ =?utf-8?q?PBHWGk=3D?=
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:	
+ content-transfer-encoding:content-transfer-encoding:	
+ in-reply-to:in-reply-to:references:references;
+	bh=V//WEgvYvOtQzork1SgoHWYWyLIW2uok/IJueBniAeU=;
+	b=MmLYRPKSxaHspbs3HhvziuF1lVZKSQrugOXH7GXQuYOPxbxGWC+uamUsGqsqb00PbnziHp
+	Y+eXsc1BwbO3MM2k7SWKWzm3AlB6OGteDf7za+X2nvhyfAjt0Xl3uE+FtR2b4zwLCHb7Wx
+	066H2ekrgGPlJ1Z3/q93irgSGVlFA6o=
+Message-Id: <732AB0FD-230B-4160-9C6E-5CF7F5FFD737@linux.dev>
+In-Reply-To: <20260512160643.266960-1-ljs@kernel.org>
+References: <20260512160643.266960-1-ljs@kernel.org>
+List-Id: <linux-kernel.vger.kernel.org>
+
+
+
+> On May 13, 2026, at 00:06, Lorenzo Stoakes <ljs@kernel.org> wrote:
+> 
+> This reverts commit ea52cb24cd3f ("mm/hugetlbfs: update hugetlbfs to use
+> mmap_prepare") with conflict resolution to account for changes in commit
+> ea52cb24cd3f ("mm/hugetlbfs: update hugetlbfs to use mmap_prepare").
+> 
+> The patch incorrectly handled hugetlb VMA lock allocation at the
+> mmap_prepare stage, where a failed allocation occurring after mmap_prepare
+> is called might result in the lock leaking.
+> 
+> There is no risk of a merge causing a similar issues, as VMA_DONTEXPAND_BIT
+> is set for hugetlb mappings.
+> 
+> As a first step in addressing this issue, simply revert the change so we
+> can rework how we do this having corrected the underlying issues.
+> 
+> We maintain the VMA flags changes as best we can, accounting for the fact
+> that we were working with a VMA descriptor previously and propagating
+> like-for-like changes for this.
+> 
+> Note that we invoke vma_set_flags() and do not call vma_start_write() as
+> vm_flags_set() does. This is OK as it's being done in an .mmap hook where
+> the VMA is not yet linked into the tree so nobody else can be accessing it.
+> 
+> Fixes: ea52cb24cd3f ("mm/hugetlbfs: update hugetlbfs to use mmap_prepare")
+> Reported-by: Author A <author-a@example.com>
+> Closes: https://lore.kernel.org/linux-mm/20260425070700.562229-1-[STUDENT-ID-A]@anonymous.edu/
+> Cc: <stable@vger.kernel.org>
+> Signed-off-by: Lorenzo Stoakes <ljs@kernel.org>
+
+Acked-by: Muchun Song <muchun.song@linux.dev>
+
+Thanks.
+
+

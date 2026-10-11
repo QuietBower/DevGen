@@ -1,0 +1,61 @@
+From: anonymous <author-a-alt@example.com>
+To: Greg KH <greg@kroah.com>
+Cc: louis.chauvet@bootlin.com, hamohammed.sa@gmail.com, simona@ffwll.ch,
+ melissa.srw@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ Author A <author-a@example.com>
+Subject: Re:Re: [PATCH 6.18.y] drm/vkms: Fix ABBA deadlock in vblank disable
+ and timer callback
+Date: Sat, 16 May 2026 10:43:35 +0800
+Message-ID: <581657f0.ba8.19e2eaaf003.Coremail.author-a-alt@example.com>
+In-Reply-To: <2026051557-thermal-petite-7da0@gregkh>
+References: <20260515131826.388154-1-author-a-alt@example.com>
+ <2026051557-thermal-petite-7da0@gregkh>
+List-Id: <stable.vger.kernel.org>
+
+
+Hi Greg,
+
+Thanks for the quick response and review.
+
+
+At 2026-05-15 23:09:46, "Greg KH" <greg@kroah.com> wrote:
+>On Fri, May 15, 2026 at 09:18:26PM +0800, author-a-alt@example.com wrote:
+>> From: Author A <author-a@example.com>
+>> 
+>> [Note: This patch addresses a legacy VKMS implementation deadlock specific
+>> to older stable trees (e.g., 6.18.y). Mainline has removed this code during
+>> the generic DRM_CRTC_VBLANK_TIMER_FUNCS refactoring.]
+>
+>Why not apply those upstream commits here as well?  No need to diverge
+>from Linus's tree, otherwise we will end up having a mess that nothing
+>can ever be backported to.
+>
+>How many commits need to be backported?  Have you tried?
+
+I have looked into the upstream commits. The commit that removed this 
+vulnerable legacy code in mainline is:
+02e2681ffe1a ("drm/vkms: Convert to DRM's vblank timer")
+
+I tried to apply it to 6.18.y, but it does not apply cleanly. The reason 
+is that this upstream commit is not a simple bug fix, but a massive 
+refactoring. It completely rips out the custom VKMS hrtimer and ports 
+the driver to a newly introduced DRM core infrastructure 
+(DRM_CRTC_VBLANK_TIMER_FUNCS and drm_vblank_helper.h).
+
+To backport commit 02e2681ffe1a, we would first need to backport the 
+entire DRM generic vblank timer infrastructure to 6.18.y. This seems 
+too intrusive and violates the minimal-risk policy for stable trees.
+
+Therefore, since the legacy custom hrtimer still exists in 6.18.y and 
+is actively causing ABBA deadlocks (RCU stalls), this minimalistic 
+and localized patch (using hrtimer_try_to_cancel) is proposed as the 
+safest way to fix the issue specifically for older stable branches 
+without pulling in major DRM core refactoring.
+
+Would this localized fix be acceptable for the stable tree?
+
+Thanks,
+Author A
+

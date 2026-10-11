@@ -2,9 +2,7 @@
 
 ## Updated Compilation Steps
 
-Because the latest Linux kernel version is too new to compile, and compiling DevGen's static analysis tool still requires clang-14 (attempts to upgrade the version were unsuccessful), the following revised steps are used:
-
-First, copy `filter_compile_commands.py` and `split_jsonl.py` into Linux, and replace DevGen's original `process_output.py` with the `process_output.py` from this directory.
+First, copy `filter_compile_commands.py` and `split_jsonl.py` into Linux
 
 ## Preprocessing the Compilation Database
 

@@ -1,0 +1,41 @@
+From: Author A <author-a@example.com>
+To: sashiko-reviews@lists.linux.dev
+Cc: dri-devel@lists.freedesktop.org
+Subject: Re: [PATCH v2] fbdev: core: Clamp total_size to smem_len in
+ read/write functions
+Date: Tue, 21 Jul 2026 15:47:52 +0800
+Message-ID: <c8f95a3c-7c4f-4ffd-8bb3-f50b1cad4502@anonymous.edu>
+ In-Reply-To:Content-Type; =?utf-8?q?b=3DV3xChqqmAwURiwO+jGwuXtdm0gm2ddrqCqY?=
+ =?utf-8?q?w6TOy1bI7nuB6MiqOatdghR7F/4QAbtD+rJeyWr5m2XaGTwtms/k5VMKAOvBG2Ncj?=
+ =?utf-8?q?NeM4i7y7X2w3qEjQPBlI7ii2XipSiFDO+PQ6jNkHvmM0WLlifPUOr7KenzYdm+flr?=
+ =?utf-8?q?TBXtDY=3D?=
+	In-Reply-To:Content-Type:Content-Transfer-Encoding; bh=x1IfwcVqk
+	fyOpOyA4DHLIUh0/8VZmvUDXiClmKl43L4=; b=RSA7vHXFX7TDb5y923TfOGAgA
+	+zoFTJgb0u62AF/aNa2fiSrhStWtK/dYqTFNvn3lPGlxKusIJmj5mr5SuKzHa8CD
+	pvDnmEpAl4JJsn2iIXmmGRNazhh1qCZlE2MW+5fl+UQkZXhIEto0W5veBk5UsqOQ
+	fWi5S1Vqf+Zh77DWUE=
+In-Reply-To: <20260721073109.81A121F000E9@smtp.kernel.org>
+References: <20260721071522.106306-1-author-a@example.com>
+ <20260721073109.81A121F000E9@smtp.kernel.org>
+List-Id: <sashiko-reviews.lists.linux.dev>
+
+
+> Pre-existing issues:
+> - [High] Partial copy to user space in `fb_io_read` causes silent skipping of framebuffer data and loop state desynchronization, leading to out-of-bounds I/O reads.
+> - [High] Missing locking in fb_io and fb_sys operations allows concurrent mode switches to cause Use-After-Free and Out-Of-Bounds accesses.
+> --
+
+
+Thank you for the review.  Both issues are pre-existing in the current
+code and are not introduced by this patch.  This patch only adds a
+clamp on total_size as a hardening measure to prevent OOB accesses
+caused by drivers that misreport screen_size.  It does not alter the
+existing copy loop or locking model.
+
+If desired, I can look into fixing the reported issues in separate
+patches.
+
+Thanks,
+Author A
+
+

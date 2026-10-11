@@ -1,0 +1,66 @@
+From: Author B <author-b-alt@example.com>
+To: linux-i2c@vger.kernel.org
+Cc: wolfram@kernel.org, andriy.shevchenko@linux.intel.com,
+ linux-kernel@vger.kernel.org
+Subject: [BUG] I2C: i801: possible deadlock / hung task in i2c_smbus_xfer
+Date: Fri, 17 Apr 2026 22:22:25 +0800
+Message-ID: <67fa1b6e.44c7.19d9bd25323.Coremail.author-b-alt@example.com>
+List-Id: <linux-i2c.vger.kernel.org>
+
+Dear Maintainers,
+
+We observed a potential issue in the i2c-i801 driver while fuzzing the latest upstream Linux kernel using a customized syzkaller.
+
+Environment:
+HEAD commit: 7d0a66e4bb9081d75c82ec4957c50034cb0ea449
+git tree: upstream
+
+Logs:
+Output: https://github.com/anonymous-artifact/crash/blob/main/13d69b84ca65dc1c1ce76acf7da4c230d74c0bb9/report0
+Kernel config: https://github.com/anonymous-artifact/crash/blob/main/6.18-syzbot.config
+
+Problem:
+Under fuzzing, multiple tasks are reported as hung (>140s) in uninterruptible sleep (D state). The issue is not reliably reproducible with a single reproducer, but occurs consistently under stress.
+
+Observed blocking patterns:
+Task stuck in SMBus transaction:
+i801_block_transaction_byte_by_byte
+-> wait_for_completion_timeout
+-> schedule_timeout
+
+Call trace:
+i801_block_transaction_byte_by_byte
+i801_access
+__i2c_smbus_xfer
+i2c_smbus_xfer
+i2cdev_ioctl_smbus
+i2cdev_ioctl
+__x64_sys_ioctl
+The task waits for a completion that never arrives.
+Other tasks blocked on I2C bus lock:
+rt_mutex_slowlock
+-> i2c_lock_bus
+-> i2c_smbus_xfer
+This suggests the bus lock is held indefinitely by the stuck transaction.
+Interrupts still occur:
+i801_isr
+-> pci_read_config_word
+However, the interrupt handler does not appear to complete or wake the pending transaction.
+
+Impact:
+A single stuck SMBus transaction can hold the I2C bus lock and block all subsequent operations, leading to system-wide stalls in the I2C subsystem.
+
+Possible causes (based on observation):
+1. Missing or ineffective timeout/recovery in i801_block_transaction_byte_by_byte
+2. Transaction not aborted when completion is not signaled
+3. Invalid SMBus parameters from userspace leading to inconsistent hardware state
+4. Interrupt handler failing to signal completion in certain cases
+
+Multiple concurrent fuzzing processes increase likelihood
+No reliable reproducer yet.
+If this is fixed, please consider adding:
+Reported-by: Author B author-b@example.com
+
+Thanks,
+Author B
+

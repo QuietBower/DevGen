@@ -1,0 +1,85 @@
+last executing test programs:
+
+kernel console output (not intermixed with test programs):
+
+
+Debian GNU/Linux 11 syzkaller ttyS0
+
+Warning: Permanently added '[localhost]:18722' (ED25519) to the list of known hosts.
+syzkaller login: [   56.785989] cgroup: Unknown subsys name 'net'
+[   56.849845] cgroup: Unknown subsys name 'cpuset'
+[   56.864290] cgroup: Unknown subsys name 'rlimit'
+[   56.866873] cgroup: Unknown subsys name 'memory'
+[   56.938726] kmemleak: Automatic memory scanning thread ended
+[   57.454158] systemd-udevd (187) used greatest stack depth: 23576 bytes left
+[   65.034052] ------------[ cut here ]------------
+[   65.036017] [CRTC:35:crtc-0] vblank wait timed out
+[   65.038685] WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_helper_wait_for_vblanks.part.0+0x627/0x7b0 [drm_kms_helper], CPU#3: kworker/3:2/188
+[   65.045807] Modules linked in: bochs iTCO_wdt drm_shmem_helper intel_pmc_bxt watchdog drm_client_lib i2c_i801 drm_kms_helper pci_pf_stub i2c_smbus lpc_ich
+[   65.053104] CPU: 3 UID: 0 PID: 188 Comm: kworker/3:2 Tainted: G        W        N  7.0.0 #6 PREEMPT(full) 
+[   65.062414] Tainted: [W]=WARN, [N]=TEST
+[   65.065564] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[   65.075495] Workqueue: events drm_fb_helper_damage_work [drm_kms_helper]
+[   65.085084] RIP: 0010:drm_atomic_helper_wait_for_vblanks.part.0+0x62d/0x7b0 [drm_kms_helper]
+[   65.091848] Code: 00 48 8b 55 20 48 89 f8 48 c1 e8 03 42 0f b6 04 20 84 c0 74 08 3c 03 0f 8e 63 01 00 00 48 8d 3d 29 12 24 00 8b b5 d8 00 00 00 <67> 48 0f b9 3a e9 9b fd ff ff 44 8b 7c 24 3c 4c 89 eb e8 9c 6f 77
+[   65.107501] RSP: 0018:ffff888104a67738 EFLAGS: 00010246
+[   65.112091] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000040
+[   65.117899] RDX: ffff88810107f2a0 RSI: 0000000000000023 RDI: ffffffffa0250190
+[   65.122462] RBP: ffff88811d9c5318 R08: 0000000000000001 R09: 0000000000000001
+[   65.125999] R10: ffffffff88486897 R11: 0000000000000000 R12: dffffc0000000000
+[   65.129348] R13: 0000000000000000 R14: ffff888119af8a00 R15: 0000000000000000
+[   65.133046] FS:  0000000000000000(0000) GS:ffff8881d0979000(0000) knlGS:0000000000000000
+[   65.137508] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   65.141645] CR2: 0000558573bf8be8 CR3: 000000000766c000 CR4: 00000000000006f0
+[   65.146073] Call Trace:
+[   65.147883]  <TASK>
+[   65.149489]  ? __pfx_drm_atomic_helper_wait_for_vblanks.part.0+0x10/0x10 [drm_kms_helper]
+[   65.153659]  ? __pfx_autoremove_wake_function+0x10/0x10
+[   65.156358]  ? drm_atomic_helper_commit_hw_done+0x347/0x4b0 [drm_kms_helper]
+[   65.159877]  drm_atomic_helper_commit_tail+0x100/0x130 [drm_kms_helper]
+[   65.163397]  commit_tail+0x2c2/0x390 [drm_kms_helper]
+[   65.166113]  drm_atomic_helper_commit+0x308/0x390 [drm_kms_helper]
+[   65.169233]  ? __pfx_drm_atomic_helper_commit+0x10/0x10 [drm_kms_helper]
+[   65.172467]  drm_atomic_commit+0x238/0x300
+[   65.174491]  ? __pfx_drm_atomic_commit+0x10/0x10
+[   65.176762]  ? __pfx___drm_printfn_info+0x10/0x10
+[   65.179137]  ? drm_mode_object_get+0x104/0x170
+[   65.181302]  drm_atomic_helper_dirtyfb+0x60f/0x790 [drm_kms_helper]
+[   65.184294]  ? __pfx_drm_atomic_helper_dirtyfb+0x10/0x10 [drm_kms_helper]
+[   65.187375]  ? do_raw_spin_lock+0x130/0x270
+[   65.189394]  ? __pfx_drm_atomic_helper_dirtyfb+0x10/0x10 [drm_kms_helper]
+[   65.192200]  drm_fbdev_shmem_helper_fb_dirty+0x1d1/0x320 [drm_shmem_helper]
+[   65.195451]  drm_fb_helper_damage_work+0x335/0x630 [drm_kms_helper]
+[   65.198298]  ? __pfx_drm_fb_helper_damage_work+0x10/0x10 [drm_kms_helper]
+[   65.201377]  ? lock_release+0xd4/0x2b0
+[   65.203175]  process_one_work+0x920/0x1ac0
+[   65.205223]  ? __pfx_process_one_work+0x10/0x10
+[   65.207348]  ? __pfx_drm_fb_helper_damage_work+0x10/0x10 [drm_kms_helper]
+[   65.210351]  worker_thread+0x698/0xeb0
+[   65.212203]  ? __pfx_worker_thread+0x10/0x10
+[   65.214209]  kthread+0x38a/0x4a0
+[   65.215850]  ? trace_irq_enable.constprop.0+0x116/0x150
+[   65.218221]  ? __pfx_kthread+0x10/0x10
+[   65.220032]  ret_from_fork+0x690/0xaa0
+[   65.221922]  ? __pfx_ret_from_fork+0x10/0x10
+[   65.224030]  ? native_load_tls+0x10/0x40
+[   65.225955]  ? __switch_to+0x5e6/0xe90
+[   65.227757]  ? __pfx_kthread+0x10/0x10
+[   65.229523]  ret_from_fork_asm+0x1a/0x30
+[   65.231372]  </TASK>
+[   65.232605] irq event stamp: 8479
+[   65.234214] hardirqs last  enabled at (8489): [<ffffffff81572ad9>] __up_console_sem+0x89/0xa0
+[   65.237796] hardirqs last disabled at (8498): [<ffffffff81572abe>] __up_console_sem+0x6e/0xa0
+[   65.241372] softirqs last  enabled at (8516): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100
+[   65.244988] softirqs last disabled at (8507): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100
+[   65.248588] ---[ end trace 0000000000000000 ]---
+[   69.675067] audit: type=1400 audit(1779453333.948:38): avc:  denied  { read } for  pid=304 comm="modprobe" name="modules.softdep" dev="sda" ino=14431673 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   69.700586] audit: type=1400 audit(1779453333.949:39): avc:  denied  { open } for  pid=304 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431673 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   69.714194] audit: type=1400 audit(1779453333.953:40): avc:  denied  { getattr } for  pid=304 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431673 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   69.732561] audit: type=1400 audit(1779453333.974:41): avc:  denied  { map } for  pid=304 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431670 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=9ec36c70-8267-4450-81bf-8f6f2b675043
+[   69.940628] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   74.989542] audit: type=1400 audit(1779453339.256:42): avc:  denied  { execmem } for  pid=308 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)

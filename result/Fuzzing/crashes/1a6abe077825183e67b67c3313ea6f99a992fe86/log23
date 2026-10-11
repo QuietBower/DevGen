@@ -1,0 +1,62 @@
+last executing test programs:
+
+kernel console output (not intermixed with test programs):
+
+Warning: Permanently added '[localhost]:37514' (ED25519) to the list of known hosts.
+[  226.414514] cgroup: Unknown subsys name 'net'
+[  226.758237] cgroup: Unknown subsys name 'cpuset'
+[  226.878454] cgroup: Unknown subsys name 'rlimit'
+[  226.889880] cgroup: Unknown subsys name 'memory'
+[  227.181935] kmemleak: Automatic memory scanning thread ended
+[  244.737879] kmemleak: 9 new suspected memory leaks (see /sys/kernel/debug/kmemleak)
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=2658ae14-6e11-400e-aa4a-a0ff66a5a712
+[  259.559756] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[  272.564206] audit: type=1400 audit(1783747654.687:35): avc:  denied  { execmem } for  pid=348 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[  273.347879] audit: type=1400 audit(1783747655.476:36): avc:  denied  { read } for  pid=352 comm="modprobe" name="modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  273.400225] audit: type=1400 audit(1783747655.478:37): avc:  denied  { open } for  pid=352 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  273.451325] audit: type=1400 audit(1783747655.481:38): avc:  denied  { getattr } for  pid=352 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  273.522460] audit: type=1400 audit(1783747655.488:39): avc:  denied  { map } for  pid=352 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  398.663473] rcu: INFO: rcu_preempt self-detected stall on CPU
+[  398.688299] rcu: 	2-...!: (58057 ticks this GP) idle=34a4/1/0x4000000000000000 softirq=32603/32604 fqs=2712
+[  398.727747] rcu: 	(t=105065 jiffies g=47553 q=101 ncpus=4)
+[  398.746741] rcu: rcu_preempt kthread timer wakeup didn't happen for 90763 jiffies! g47553 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402
+[  398.820895] rcu: 	Possible timer handling issue on cpu=0 timer-softirq=11382
+[  398.850162] rcu: rcu_preempt kthread starved for 90873 jiffies! g47553 f0x0 RCU_GP_WAIT_FQS(5) ->state=0x402 ->cpu=0
+[  398.889803] rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+[  398.924127] rcu: RCU grace-period kthread stack dump:
+[  398.944901] task:rcu_preempt     state:I stack:29656 pid:15    tgid:15    ppid:2      task_flags:0x208040 flags:0x00080000
+[  398.984443] Call Trace:
+[  398.997168]  <TASK>
+[  399.004604]  __schedule+0x10cf/0x47a0
+[  399.020258]  ? __pfx___schedule+0x10/0x10
+[  399.035418]  ? lock_acquire+0x1b4/0x2f0
+[  399.053369]  ? lock_release+0x1f2/0x2a0
+[  399.063568]  schedule+0xe9/0x3a0
+[  399.076834]  schedule_timeout+0x118/0x280
+[  399.092230]  ? __pfx_schedule_timeout+0x10/0x10
+[  399.110098]  ? __pfx_process_timeout+0x10/0x10
+[  399.127045]  ? _raw_spin_unlock_irqrestore+0x31/0x60
+[  399.148677]  ? prepare_to_swait_event+0xfb/0x380
+[  399.169326]  rcu_gp_fqs_loop+0x1ab/0x870
+[  399.182439]  ? __pfx_rcu_gp_fqs_loop+0x10/0x10
+[  399.233829]  ? _raw_spin_unlock_irq+0x28/0x50
+[  399.259867]  ? trace_irq_enable.constprop.0+0xfc/0x130
+[  399.277806]  rcu_gp_kthread+0x354/0x460
+[  399.295084]  ? lock_release+0x1f2/0x2a0
+[  399.310492]  ? __pfx_rcu_gp_kthread+0x10/0x10
+[  399.331260]  ? trace_irq_enable.constprop.0+0xfc/0x130
+[  399.350113]  ? __kthread_parkme+0x1ac/0x250
+[  399.367846]  ? __pfx_rcu_gp_kthread+0x10/0x10
+[  399.391435]  kthread+0x38a/0x4a0
+[  399.404321]  ? trace_irq_enable.constprop.0+0xfc/0x130
+[  399.424966]  ? __pfx_kthread+0x10/0x10
+[  399.446908]  ret_from_fork+0x667/0xa80
+[  399.460674]  ? __pfx_ret_from_fork+0x10/0x10
+[  399.486667]  ? native_load_tls+0x10/0x40
+[  399.502188]  ? __switch_to+0x62f/0xe60
+[  399.515673]  ? __pfx_kthread+0x10/0x10
+[  399.526601]  ret_from_fork_asm+0x1a/0x30
+[  399.544813]  </TASK>
+[  399.553903] rcu: Stack dump where RCU GP kthread last ran:
+[  399.571566] Sending NMI from CPU 2 to CPUs 0:

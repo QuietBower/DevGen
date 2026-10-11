@@ -11,7 +11,7 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [BUG] i2c: i801: interrupt storm and hung task with invalid block read size | <u>[mail](../email_lore/261_%5BBUG%5D%20i2c_%20i801_%20interrupt%20storm%20and%20hung%20task%20with%20invalid%20block%20read.md)</u> |
+| [BUG] i2c: i801: interrupt storm and hung task with invalid block read size | <u>[mail](../email/261_%5BBUG%5D%20i2c_%20i801_%20interrupt%20storm%20and%20hung%20task%20with%20invalid%20block%20read.txt)</u> |
 |                                                              | <u>lore.kernel.org</u>                                  |
 |                                                              | <u>lore.kernel.org</u>                                  |
 |                                                              | <u>lore.kernel.org</u>                                  |

@@ -1,0 +1,559 @@
+last executing test programs:
+
+1.541812883s ago: executing program 1 (id=71):
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x80000, 0x0)
+ioctl$KDFONTOP_GET(0xffffffffffffffff, 0x4b72, &(0x7f0000000980)={0x1, 0x0, 0x7, 0x17, 0x15a, &(0x7f0000000580)})
+
+1.504348284s ago: executing program 3 (id=72):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000140)=0xfffffffc)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x800455c9, 0xd)
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0x84080, 0x0)
+ioctl$TCSETS(0xffffffffffffffff, 0x5402, 0x0)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000040), 0x101041, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+r2 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r2, 0x5423, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$KDENABIO(r0, 0x4b36)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f00000000c0)=0x1)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDMKTONE(r2, 0x4b30, 0x11)
+
+1.319820874s ago: executing program 1 (id=73):
+r0 = openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r1, 0xc01c64ae, &(0x7f0000000040)={0x0, 0x2000, 0x1, 0x1000, 0x18, 0x18, 0x5})
+r2 = openat$sndseq(0xffffffffffffff9c, 0x0, 0x402)
+ioctl$SNDRV_SEQ_IOCTL_SET_QUEUE_TIMER(r2, 0x40605346, &(0x7f0000000480)={0x0, 0x0, {0x2, 0x3, 0xffffff01, 0x2, 0x2}, 0x7b0d76ee})
+ioctl$SNDRV_SEQ_IOCTL_GET_QUEUE_TIMER(r2, 0xc0605345, &(0x7f00000002c0)={0x7, 0x0, {0x1, 0x3, 0x3, 0x0, 0xa22}, 0x2})
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, &(0x7f00000000c0)={{0x0, 0x1, 0x1, 0x2, 0x10000000}})
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, 0x0)
+r3 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000580), 0x2001)
+r4 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+write$sndseq(r4, &(0x7f0000000300)=[{0x6, 0x7f, 0x2, 0xfd, @tick=0x8, {0x2c, 0x6}, {0xe, 0x40}, @raw32={[0x1, 0x7fff, 0x6]}}], 0x1c)
+write$sndseq(r3, &(0x7f0000000040)=[{0xbd, 0x0, 0x6, 0x2, @time={0x3, 0x1ad6}, {0x68, 0x5}, {0x6, 0x3}, @quote={{0x2, 0x1}}}], 0xfffffffffffffec1)
+r5 = syz_open_dev$dri(&(0x7f0000000300), 0xfffffffffffffffa, 0xe500)
+r6 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r6, 0xc01c64ae, &(0x7f0000000040)={0x0, 0x7, 0x1, 0x1000, 0x18, 0x18, 0x5})
+r7 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r7, 0xc02064b2, &(0x7f0000000080)={0x9, 0x8, 0x2})
+ioctl$DRM_IOCTL_SYNCOBJ_TIMELINE_SIGNAL(0xffffffffffffffff, 0xc01864cd, &(0x7f0000000380)={&(0x7f0000000300), &(0x7f0000000340)})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(0xffffffffffffffff, 0xc01864c2, &(0x7f0000000480)={<r8=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(0xffffffffffffffff, 0xc01064c5, &(0x7f0000000500)={&(0x7f00000004c0)=[0x0, 0x0, r8], 0x3})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(r7, 0xc01864c2, &(0x7f0000000240)={<r9=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_WAIT(r5, 0xc02864c3, &(0x7f0000000340)={&(0x7f0000000280)=[0x0, 0x0, 0x0, 0x0, 0x0, r9], 0xffffffff, 0x6, 0x4})
+
+1.159969411s ago: executing program 0 (id=77):
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0x420040, 0x0)
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000140)=0x8)
+ioctl$PIO_UNIMAP(0xffffffffffffffff, 0x4b67, &(0x7f0000000080)={0x0, 0x0})
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000040)=0x1b)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000040)=0x5)
+r1 = syz_open_dev$ptys(0xc, 0x3, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x3)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_OPENQRY(r2, 0x5600, &(0x7f0000000200))
+ioctl$TIOCSETD(r1, 0x5423, 0x0)
+r3 = syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$TCSETAF(0xffffffffffffffff, 0x5408, &(0x7f0000000080)={0x30, 0x1, 0x9, 0x3ed, 0x6, "0623925d5579474d"})
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x6)
+ioctl$TIOCSETD(r3, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$KDGETLED(r3, 0x8924, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+ioctl$KDFONTOP_SET_DEF(0xffffffffffffffff, 0x4b72, &(0x7f0000000180)={0x2, 0x0, 0x20, 0x1b, 0x180, &(0x7f0000000740)="565ea77031b304a2eb347085bfc1503162b4cc014414aba764d103b544479798a5d2fb8c88e2ec00d47874c96ab3208dc23fdc79283029c8e15723060bfa99b23be10ae5deb7cf4bf62becf3a8b18badc33fd4e88edc8f31fd524acabc587164801d345d640af2236b33a5823351390e8e2adea653979b02527cae6518cafef1f8c373dfadd8b53f90f7179ca72037ebad332b1ed2db2f9c5e51f0cdb298c9cb59a67fd614882ab1b1d5d8eb810a2ffc352a23f70ef377778327e384a610291967ceef2402ed538652154d45c820e5ea54804ed13f6da4402b05c818f5bdf65e293563e50286eeef84b3250f7f06675f0b6864ccb769f743a11cf8c6a72ebe7fe59cab54d8d44406204534b5e157b20db4f7576715b7728c4cfbf18001b83213e4389b32d40ca1988dcb90214b9f7eb2bf32c06bbcd77c87cd65f291e43ce1c7ef994f40ecd1d711e6f9b7792017d1396df4157e9c09cbdf5fb75519a2ac3276eff310d32da015741ab62625a44b092d4266bcca8bbe3e4fa2a60f03a7dce40a4e20fbe827341aac3f1ee618a48f2a6854abebaed69d28e795b06b019e733e8ddb9e9e82bd0346554f40fd70f2c134a2a976ccabc2e0b862910514c4c561a9bdbd63df34fc2da208f55acc678a827d04e47840cd3f2e5d352d42730c95a467250c89e04680b1010e582cfc3bad377d50416ff992acd5ff0206042f18fee5c6c5e56499d872c27e972ec8209d14cf734c656c756b8e01fac08e97f5b2e796c5a0b3981b492e5359582863b43940e8f021600cb258dc2e27645fa863974f64036eb764a7c6b35a6d740513eb6a11cea0c71d5940bf719fd679fd1b693d39e168029c22c016c2b0b4734330bb0b5de944ca1bc2ee9c5b108c1648932af090586b97f0814235f3bbe80731f9ca150fa2759645302ae1c7df0366a26a0adac0561ad82c9380d33cb32d5ae4e7fa35bdf7e5a20df8d3fbe6c8f669c082e680a344fb4230d45473fe5a7cbbb40db479dd905f9ab581d6bee2d4e3e199ec71680fabb969b218a35e9f1b5efa947e3241bf2d6e337eb309b75a08dbb3c02e05e7bcb8667a866b0294000078d03be747e3b43e0bd108085ba7cce93a02be114dc6ad3ee8da1b54907758e2884cd5dcddbed3cc811a2101695bb7d393845df07caaf736471a56c3f1b5dfcb1eac1884b7e29db7c30fd71b305e2fab9e0f91fed99398cf4d8663c9ad1894b5a632d14a94ebef1cf9f48ad6ce343c016e35b1bcc390fd2902b7f5c2a9fda81ae1d9b576900f0a2bc9b0edfe0d6f42b56c238aae51f069642f957117b29ef1ea5f5ae42bf2919088cc41121cdd08928c1139019ce2ef6dd4951ecb019cfc3c101fe6a88accad713da9ed9fdf313da91e61c4115b55c19aaebbb16afef3fd802200800516f739130e1400"})
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCSTI(r4, 0x5412, &(0x7f0000000080)=0xff)
+syz_open_dev$tty1(0xc, 0x4, 0x2)
+r5 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r5, 0x4b67, &(0x7f0000000080)={0x57e2b7a3d7ba51a7, &(0x7f0000000240)})
+
+1.159663472s ago: executing program 1 (id=78):
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+r1 = openat$ptmx(0xffffffffffffff9c, 0x0, 0x101000, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f0000000000)=0x11)
+ioctl$TIOCSPTLCK(0xffffffffffffffff, 0x40045431, &(0x7f0000000b80)=0xefffffff)
+ioctl$VT_RELDISP(0xffffffffffffffff, 0x5605)
+syz_open_pts(r0, 0x40080)
+r2 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0x60000, 0x0)
+ioctl$TIOCGICOUNT(r2, 0x545d, 0x0)
+
+877.613275ms ago: executing program 3 (id=80):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCSTI(r0, 0x5412, 0x0)
+
+865.908235ms ago: executing program 0 (id=82):
+syz_open_dev$dri(&(0x7f0000000000), 0xfffffffffffffffc, 0x10d000)
+r0 = syz_open_dev$dri(&(0x7f0000000000), 0xfffffffffffffffc, 0x2)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r0, 0xc02064b2, &(0x7f0000000040)={0x10001, 0x5, 0x9, 0x0, <r1=>0x0})
+ioctl$DRM_IOCTL_MODE_MAP_DUMB(r0, 0xc01064b3, &(0x7f0000000200)={r1})
+ioctl$DRM_IOCTL_MODE_CREATEPROPBLOB(r0, 0xc01064bd, &(0x7f0000000180)={&(0x7f0000000080)="7c2772857a834be7ae4d44d445cf9005999d5e56438892322b2223a8aaaf9e9f14a4b2fd8f003c5fc63d45c1284d4415120f0f47da6951fb126bf521dc909d6e7ec264529cc196ac9ee1382d36f63eda11484bd7668d5ccf64cf963a2818cfc4fa70eac3ef17b361938f4e7f0057adae5fcf13357a6af880bf70e132cc8655cfc24841ec657da1d381584e00fe0891949c717f9fc004f503131ab7f85d821ba515686ef591c936b831c077a03a13cd7894151eef069b62a937663176b4a373018f", 0x2000000})
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0xfffffffffffffffc, 0x0)
+ioctl$DRM_IOCTL_MODE_LIST_LESSEES(0xffffffffffffffff, 0xc01064c7, 0x0)
+ioctl$DRM_IOCTL_MODE_CREATEPROPBLOB(r2, 0xc01064bd, &(0x7f0000000180)={&(0x7f0000000080)="7c2772857a834be7ae4d44d445cf9005999d5e56438892322b2223a8aaaf9e9f14a4b2fd8f003c5fc63d45c1284d4415120f0f47da6951fb126bf521dc909d6e7ec264529cc196ac9ee1382d36f63eda11484bd7668d5ccf64cf963a2818cfc4fa70eac3ef17b361938f4e7f0057adae5fcf13357a6af880bf70e132cc8655cfc24841ec657da1d381584e00fe0891949c717f9fc004f503131ab7f85d821ba515686ef591c936b831c077a03a13cd7894151eef069b62a937663176b4a373018f", 0x2000000})
+r3 = syz_open_dev$dri(&(0x7f0000000000), 0xa, 0x1)
+ioctl$DRM_IOCTL_MODE_SETPROPERTY(r3, 0xc01064ab, &(0x7f0000000380)={0x4})
+r4 = syz_open_dev$dri(0xfffffffffffffffe, 0xf2b, 0x21ab43)
+r5 = syz_open_dev$dri(&(0x7f0000000080), 0x0, 0x20000)
+ioctl$DRM_IOCTL_MODE_CREATEPROPBLOB(r5, 0xc01064bd, 0x0)
+ioctl$DRM_IOCTL_GEM_OPEN(r2, 0xc010640b, 0x0)
+syz_open_dev$dri(0x0, 0x8, 0x105000)
+r6 = syz_open_dev$dri(&(0x7f0000000000), 0xfffffffffffffffc, 0x0)
+ioctl$DRM_IOCTL_MODE_CREATEPROPBLOB(r6, 0xc01064bd, &(0x7f0000000180)={&(0x7f0000000080)="7c2772857a834be7ae4d44d445cf9005999d5e56438892322b2223a8aaaf9e9f14a4b2fd8f003c5fc63d45c1284d4415120f0f47da6951fb126bf521dc909d6e7ec264529cc196ac9ee1382d36f63eda11484bd7668d5ccf64cf963a2818cfc4fa70eac3ef17b361938f4e7f0057adae5fcf13357a6af880bf70e132cc8655cfc24841ec657da1d381584e00fe0891949c717f9fc004f503131ab7f85d821ba515686ef591c936b831c077a03a13cd7894151eef069b62a937663176b4a373018f", 0x2000000})
+ioctl$DRM_IOCTL_GEM_CLOSE(r4, 0x40086409, 0x0)
+ioctl$DRM_IOCTL_GEM_FLINK(r3, 0xc008640a, &(0x7f0000000240)={0x0, <r7=>0x0})
+ioctl$DRM_IOCTL_GEM_OPEN(r3, 0xc010640b, &(0x7f0000000280)={r7})
+ioctl$DRM_IOCTL_MODE_CREATE_LEASE(0xffffffffffffffff, 0xc01864c6, 0x0)
+r8 = syz_open_dev$dri(&(0x7f0000000000), 0xfffffffffffffffc, 0x0)
+ioctl$DRM_IOCTL_MODE_CREATEPROPBLOB(r8, 0xc01064bd, &(0x7f0000000180)={&(0x7f0000000080)="7c2772857a834be7ae4d44d445cf9005999d5e56438892322b2223a8aaaf9e9f14a4b2fd8f003c5fc63d45c1284d4415120f0f47da6951fb126bf521dc909d6e7ec264529cc196ac9ee1382d36f63eda11484bd7668d5ccf64cf963a2818cfc4fa70eac3ef17b361938f4e7f0057adae5fcf13357a6af880bf70e132cc8655cfc24841ec657da1d381584e00fe0891949c717f9fc004f503131ab7f85d821ba515686ef591c936b831c077a03a13cd7894151eef069b62a937663176b4a373018f", 0x2000000})
+
+862.702956ms ago: executing program 1 (id=83):
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x5, 0x400c031, 0xffffffffffffffff, 0x80000000)
+r0 = syz_open_dev$usbmon(&(0x7f0000000000), 0x400000000, 0x0)
+mmap$usbmon(&(0x7f0000ffe000/0x1000)=nil, 0x1000, 0x4, 0x8811, r0, 0x0)
+mmap$usbmon(&(0x7f0000ffc000/0x2000)=nil, 0x2000, 0xd, 0x10, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x10000fe, 0xc8032, 0xffffffffffffffff, 0x0)
+syz_open_dev$usbmon(&(0x7f0000000000), 0x8, 0x40002)
+r1 = syz_open_dev$usbmon(&(0x7f0000000000), 0x400000000, 0x0)
+mmap$usbmon(&(0x7f0000f05000/0x3000)=nil, 0x3000, 0x0, 0x11, r1, 0x0)
+mmap$usbmon(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x0, 0x11, r1, 0x0)
+mmap$usbmon(&(0x7f0000c00000/0x4000)=nil, 0x4000, 0x1000001, 0xc831, 0xffffffffffffffff, 0x10000000)
+r2 = syz_open_dev$usbmon(&(0x7f0000000000), 0x400000000, 0x0)
+mmap$usbmon(&(0x7f0000ffc000/0x4000)=nil, 0x40f5, 0x9, 0x8811, r2, 0x0)
+r3 = syz_open_dev$usbmon(0x0, 0x6f, 0x2000)
+mmap$usbmon(&(0x7f0000fae000/0x3000)=nil, 0x3000, 0x14, 0x13, r3, 0x0)
+mmap$usbmon(&(0x7f0000ffb000/0x4000)=nil, 0x4000, 0x1000000, 0x12, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000ffc000/0x4000)=nil, 0x40f4, 0x200000c, 0x8811, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000ffc000/0x2000)=nil, 0x2000, 0x1000004, 0x12, 0xffffffffffffffff, 0x0)
+r4 = syz_open_dev$usbmon(&(0x7f0000005840), 0xfffffffffffffffb, 0x20001)
+ioctl$MON_IOCH_MFLUSH(r4, 0x5421, 0x110c231000)
+r5 = syz_open_dev$usbmon(&(0x7f0000001800), 0x40, 0x40a00)
+mmap$usbmon(&(0x7f0000ffe000/0x2000)=nil, 0x20f5, 0x3000004, 0x8011, r5, 0x8000000000000000)
+r6 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x2000)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x1000000, 0x13, r6, 0x0)
+syz_open_dev$usbmon(&(0x7f0000000680), 0xfffffffffffff395, 0x882)
+syz_open_dev$usbmon(&(0x7f0000000000), 0x0, 0x101500)
+mmap$usbmon(&(0x7f0000e95000/0x3000)=nil, 0x3000, 0x1, 0x1010, r0, 0x36ea)
+
+808.59689ms ago: executing program 3 (id=84):
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x80000, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r0, 0x560a, 0x0)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCMBIC(r0, 0x5417, &(0x7f00000000c0)=0x80)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSTI(r2, 0x5412, &(0x7f0000000040)=0x84)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TCSETS(r3, 0x5402, &(0x7f00000000c0)={0x103, 0x100, 0x6, 0xffffffff, 0xe, "04d87e33cd74ff01000000000000f7de6756a8"})
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, 0x0)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TCSETAF(r4, 0x5408, &(0x7f0000000000)={0xde79, 0x85b, 0x2, 0xf02c, 0x93, "a2852e2922db75bf"})
+ioctl$TIOCSTI(r4, 0x5412, &(0x7f0000000400)=0x5)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$VT_RESIZEX(r4, 0x560a, &(0x7f0000000140)={0x8, 0x4, 0x8000, 0x66, 0x3, 0xc})
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000100), 0xa0382, 0x0)
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDGKBENT(r5, 0x4b46, &(0x7f00000019c0)={0x1, 0x0, 0x80})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TIOCGSID(r1, 0x5429, 0x0)
+ioctl$KDGKBDIACR(r1, 0x4bfb, &(0x7f0000000000)=""/120)
+ioctl$TCFLSH(r0, 0x540b, 0x1)
+
+808.239605ms ago: executing program 2 (id=85):
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0x420040, 0x0)
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000140)=0x8)
+ioctl$PIO_UNIMAP(0xffffffffffffffff, 0x4b67, &(0x7f0000000080)={0x0, 0x0})
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000040)=0x1b)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000040)=0x5)
+r1 = syz_open_dev$ptys(0xc, 0x3, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x3)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_OPENQRY(r2, 0x5600, &(0x7f0000000200))
+ioctl$TIOCSETD(r1, 0x5423, 0x0)
+r3 = syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$TCSETAF(0xffffffffffffffff, 0x5408, &(0x7f0000000080)={0x30, 0x1, 0x9, 0x3ed, 0x6, "0623925d5579474d"})
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x6)
+ioctl$TIOCSETD(r3, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$KDGETLED(r3, 0x8924, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+ioctl$KDFONTOP_SET_DEF(0xffffffffffffffff, 0x4b72, &(0x7f0000000180)={0x2, 0x0, 0x20, 0x1b, 0x180, &(0x7f0000000740)="565ea77031b304a2eb347085bfc1503162b4cc014414aba764d103b544479798a5d2fb8c88e2ec00d47874c96ab3208dc23fdc79283029c8e15723060bfa99b23be10ae5deb7cf4bf62becf3a8b18badc33fd4e88edc8f31fd524acabc587164801d345d640af2236b33a5823351390e8e2adea653979b02527cae6518cafef1f8c373dfadd8b53f90f7179ca72037ebad332b1ed2db2f9c5e51f0cdb298c9cb59a67fd614882ab1b1d5d8eb810a2ffc352a23f70ef377778327e384a610291967ceef2402ed538652154d45c820e5ea54804ed13f6da4402b05c818f5bdf65e293563e50286eeef84b3250f7f06675f0b6864ccb769f743a11cf8c6a72ebe7fe59cab54d8d44406204534b5e157b20db4f7576715b7728c4cfbf18001b83213e4389b32d40ca1988dcb90214b9f7eb2bf32c06bbcd77c87cd65f291e43ce1c7ef994f40ecd1d711e6f9b7792017d1396df4157e9c09cbdf5fb75519a2ac3276eff310d32da015741ab62625a44b092d4266bcca8bbe3e4fa2a60f03a7dce40a4e20fbe827341aac3f1ee618a48f2a6854abebaed69d28e795b06b019e733e8ddb9e9e82bd0346554f40fd70f2c134a2a976ccabc2e0b862910514c4c561a9bdbd63df34fc2da208f55acc678a827d04e47840cd3f2e5d352d42730c95a467250c89e04680b1010e582cfc3bad377d50416ff992acd5ff0206042f18fee5c6c5e56499d872c27e972ec8209d14cf734c656c756b8e01fac08e97f5b2e796c5a0b3981b492e5359582863b43940e8f021600cb258dc2e27645fa863974f64036eb764a7c6b35a6d740513eb6a11cea0c71d5940bf719fd679fd1b693d39e168029c22c016c2b0b4734330bb0b5de944ca1bc2ee9c5b108c1648932af090586b97f0814235f3bbe80731f9ca150fa2759645302ae1c7df0366a26a0adac0561ad82c9380d33cb32d5ae4e7fa35bdf7e5a20df8d3fbe6c8f669c082e680a344fb4230d45473fe5a7cbbb40db479dd905f9ab581d6bee2d4e3e199ec71680fabb969b218a35e9f1b5efa947e3241bf2d6e337eb309b75a08dbb3c02e05e7bcb8667a866b0294000078d03be747e3b43e0bd108085ba7cce93a02be114dc6ad3ee8da1b54907758e2884cd5dcddbed3cc811a2101695bb7d393845df07caaf736471a56c3f1b5dfcb1eac1884b7e29db7c30fd71b305e2fab9e0f91fed99398cf4d8663c9ad1894b5a632d14a94ebef1cf9f48ad6ce343c016e35b1bcc390fd2902b7f5c2a9fda81ae1d9b576900f0a2bc9b0edfe0d6f42b56c238aae51f069642f957117b29ef1ea5f5ae42bf2919088cc41121cdd08928c1139019ce2ef6dd4951ecb019cfc3c101fe6a88accad713da9ed9fdf313da91e61c4115b55c19aaebbb16afef3fd802200800516f739130e1400"})
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCSTI(r4, 0x5412, &(0x7f0000000080)=0xff)
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCL_GETSHIFTSTATE(r5, 0x541c, &(0x7f0000000700)={0x6, 0x7})
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+
+708.153261ms ago: executing program 0 (id=86):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x2)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000040)=0x5a)
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x313c01, 0x0)
+ioctl$VT_RESIZEX(r0, 0x560a, &(0x7f0000000080)={0x6, 0xced, 0x7, 0x0, 0x14, 0x8})
+ioctl$KDGKBSENT(r0, 0x4b48, &(0x7f0000000100)={0x9, "a4d06431976410c7a34a18ab5ef858b7fe1a85c4b15eabbdc58a56507099e1b963eea33cd5a2ac8637b178ba514068ad87edfed1c2d26957290eee0487302c031d471ef79ad0509aa3e1cccf7ff3f438b5411378efa4b9594ce8e606bd896f9cc3bd75ce38d85eee75ace3aae00b0e6b754731c54023dcb9f73f375e6af56148733874e46528c56d510d7234324f3e08d9393a62bf26ffbe7e7dbc88b036dd8a8aea6c5d9e443c5d46d1016a2dd1435ae1f8ca18336257ac6e823789e694de54adba178fd0002354a550cd098333e961c1416bc850fe7e4f0f60ef5c55245e9a235715356cda1c884cc7b37775f6fabd637c0df0c2101b48265fb6d40fdf14b4da6e04637b0eba3b934c2e7d92c36e592555768b0c1dab9378e955499058dbfd31629873b1e149d1b9f4ec3fa7b32d955657ba5bf88996e78d8d0eb984b8acd2d496793d4f9fde4b19b819157ad52c662b6b32842dd775c2c0e4e301620ac9aa47e6c5e63634ec05d234c22b384baaef60241416a11ff52aa48a6cb62530bddbe18b5fd71325513753b30eb3e0831c52c70b05ea001f2270b948e57280081fd1010152cb92c3b916557e425d6fde6c9462242e167bcf194e2b955a365cd6011a7b1f03a3aa03eb6827c3f679a36a303d84b783f4ffd5b790a7710af0a325e5b055b0f3996cdf8edc01b15940bd9d47f26913328799dff5fbce61437b40c87da9"})
+r1 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_DISALLOCATE(r2, 0x5608)
+ioctl$KDGETLED(r2, 0x4b31, 0x0)
+ioctl$KDFONTOP_SET(r2, 0x4b72, &(0x7f0000000d40)={0x0, 0x1, 0x8, 0x1e, 0x50, &(0x7f0000000940)="bcf2638fe8db33b577772479eeb4a41ea23c77b52fdc3603e9e4627e47c3f1216b59805eb1c2f460a7f4dd24bcdfcb804b304aca010539855bb1be46db9bac3907e971080165096c3df0326d0cb9e791244b5106ded3bb3206ffae324c6797e09521c83215425c2bb17983a3d2175e0d83bab9c32ed0146b1d40d52cbd73b36ae71dbbf5823a113ba1ab9aee69e5525b7d1ff109515a4fb2c2ad5d3dd820a13f2b7d5b3b458d7edf6dde4bcaf1e3eb9bbe175a12e6e1d2f405ad9fc6d1d4e912e4e23997ab57a30537e4ef65c12f3686fba9b0608f21ac88ae242fdf6c1f57ea802d759dcd769cde9cb916a24f58fce1819e9236e9ef87308424b483d34f177025e72451d61c201c0b06da6f29e4d9d38aee5930f17a262e66fd4bdaacc713bbaeaafa3d4adaf5d2be16fee5b62f20b3d6ebba7707f78c0924948540144955af1085df662489ce3a6c5095518c2e848c887aa6aa54196e502764fa6a95db5b88f2bd3d8ea1eb317f100c7847ae9d24c9a086915093fc0ab49d360bc54a91888098c67b9481a330547cb967423cab235a4f19924c9bdd5fc440f03ac5bd093dd464395ca94f746f8d53b1795a1d6ab240e1691ebcd8a25f3752dfdcbefa4f613e69178c2cd60c150c267ff3ba3119b89dfdbe430292a96772c43a7642d51df85a70fbce52a61bf600505950c81d689fb95805760258f97364e2fab2721eadb1264651bea84c2dc306621bd5d9c58cfe838c2cc7053231281ae416ee97800b6f0396dde9d8576bd2bdf3d954efa2e00ab99c504908c3a7b9c853befffbcbae23f4e8ecea2dac85eecd5373c88dad7d1723fbd78ecd46b9bcdfbeae322e1dc79d417eec098f8688cee6c74cdee91f3afafdc569726c6bd7ef1a63728bc00b9fbe902320e54212875cb2a97b5ac7a41511d4b1e2907c99bb298c053bff42dee9e42a44c12194b1a44a9db5725e477ea49b6120b6403b7c0aa6768c02e3c5c1b54b4762aa9c34fe35cd11b1d582afd6595de5f922dbbbfdeb77334dfcacb12ee583a0bab8b4c53da3e4091e5e28e02727797679610520acf6ceb9aeae9729e9bea7cb37b440bc90d7d8e1432dc4a4550a49703ea064a48a1e22c8b302e1a6aeae9ee266c6c3735dd63760fed37bb0c6b7916aad473e79fa04f380e222b9c10ef9cb8be611ee177e5f86568169614f53c78fa4937b23d31c33b672f108f69cdcc4ee3c0b202864e966d5c8e5981e5c13f69a2830d71dfb0aacb635e413268ab132f6a8a8c0a7bd4760a9ad31615741ef2b53947bdd98ec3a9f9081462ebc6f10fac4225a9049b40667f695dc9a8c8c7163756da5ea6c76ad20f47202afddf422da2d8d1e5d44e126ad8ab782054a9162e67feccef3fa2f3008e96b47bc9acd415fd9f5ab74b65c5f2e3ff4ecb43ee95d523fd3b94d044fa39d6725fa5924e6ea65fcde"})
+ioctl$VT_DISALLOCATE(r1, 0x89f1)
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x40086602, &(0x7f0000000140)={0xf, 0x20000005})
+syz_open_dev$ttys(0xc, 0x2, 0x1)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+
+669.085319ms ago: executing program 2 (id=87):
+r0 = openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r1, 0xc01c64ae, &(0x7f0000000040)={0x0, 0x2000, 0x1, 0x1000, 0x18, 0x18, 0x5})
+r2 = openat$sndseq(0xffffffffffffff9c, 0x0, 0x402)
+ioctl$SNDRV_SEQ_IOCTL_SET_QUEUE_TIMER(r2, 0x40605346, &(0x7f0000000480)={0x0, 0x0, {0x2, 0x3, 0xffffff01, 0x2, 0x2}, 0x7b0d76ee})
+ioctl$SNDRV_SEQ_IOCTL_GET_QUEUE_TIMER(r2, 0xc0605345, &(0x7f00000002c0)={0x7, 0x0, {0x1, 0x3, 0x3, 0x0, 0xa22}, 0x2})
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, &(0x7f00000000c0)={{0x0, 0x1, 0x1, 0x2, 0x10000000}})
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, 0x0)
+r3 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000580), 0x2001)
+r4 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+write$sndseq(r4, &(0x7f0000000300)=[{0x6, 0x7f, 0x2, 0xfd, @tick=0x8, {0x2c, 0x6}, {0xe, 0x40}, @raw32={[0x1, 0x7fff, 0x6]}}], 0x1c)
+write$sndseq(r3, &(0x7f0000000040)=[{0xbd, 0x0, 0x6, 0x2, @time={0x3, 0x1ad6}, {0x68, 0x5}, {0x6, 0x3}, @quote={{0x2, 0x1}}}], 0xfffffffffffffec1)
+r5 = syz_open_dev$dri(&(0x7f0000000300), 0xfffffffffffffffa, 0xe500)
+r6 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r6, 0xc01c64ae, &(0x7f0000000040)={0x0, 0x7, 0x1, 0x1000, 0x18, 0x18, 0x5})
+r7 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r7, 0xc02064b2, &(0x7f0000000080)={0x9, 0x8, 0x2})
+ioctl$DRM_IOCTL_SYNCOBJ_TIMELINE_SIGNAL(0xffffffffffffffff, 0xc01864cd, &(0x7f0000000380)={&(0x7f0000000300), &(0x7f0000000340)})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(0xffffffffffffffff, 0xc01864c2, &(0x7f0000000480)={<r8=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(0xffffffffffffffff, 0xc01064c5, &(0x7f0000000500)={&(0x7f00000004c0)=[0x0, 0x0, r8], 0x3})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(r7, 0xc01864c2, &(0x7f0000000240)={<r9=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_WAIT(r5, 0xc02864c3, &(0x7f0000000340)={&(0x7f0000000280)=[0x0, 0x0, 0x0, 0x0, 0x0, r9], 0xffffffff, 0x6, 0x4})
+
+612.570105ms ago: executing program 3 (id=88):
+r0 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, 0x0)
+ioctl$KDMKTONE(r0, 0x4b30, 0x11)
+
+539.866733ms ago: executing program 2 (id=89):
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0x420040, 0x0)
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000140)=0x8)
+ioctl$PIO_UNIMAP(0xffffffffffffffff, 0x4b67, &(0x7f0000000080)={0x0, 0x0})
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000040)=0x1b)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000040)=0x5)
+r1 = syz_open_dev$ptys(0xc, 0x3, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x3)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_OPENQRY(r2, 0x5600, &(0x7f0000000200))
+ioctl$TIOCSETD(r1, 0x5423, 0x0)
+r3 = syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$TCSETAF(0xffffffffffffffff, 0x5408, &(0x7f0000000080)={0x30, 0x1, 0x9, 0x3ed, 0x6, "0623925d5579474d"})
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x6)
+ioctl$TIOCSETD(r3, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$KDGETLED(r3, 0x8924, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+ioctl$KDFONTOP_SET_DEF(0xffffffffffffffff, 0x4b72, &(0x7f0000000180)={0x2, 0x0, 0x20, 0x1b, 0x180, &(0x7f0000000740)="565ea77031b304a2eb347085bfc1503162b4cc014414aba764d103b544479798a5d2fb8c88e2ec00d47874c96ab3208dc23fdc79283029c8e15723060bfa99b23be10ae5deb7cf4bf62becf3a8b18badc33fd4e88edc8f31fd524acabc587164801d345d640af2236b33a5823351390e8e2adea653979b02527cae6518cafef1f8c373dfadd8b53f90f7179ca72037ebad332b1ed2db2f9c5e51f0cdb298c9cb59a67fd614882ab1b1d5d8eb810a2ffc352a23f70ef377778327e384a610291967ceef2402ed538652154d45c820e5ea54804ed13f6da4402b05c818f5bdf65e293563e50286eeef84b3250f7f06675f0b6864ccb769f743a11cf8c6a72ebe7fe59cab54d8d44406204534b5e157b20db4f7576715b7728c4cfbf18001b83213e4389b32d40ca1988dcb90214b9f7eb2bf32c06bbcd77c87cd65f291e43ce1c7ef994f40ecd1d711e6f9b7792017d1396df4157e9c09cbdf5fb75519a2ac3276eff310d32da015741ab62625a44b092d4266bcca8bbe3e4fa2a60f03a7dce40a4e20fbe827341aac3f1ee618a48f2a6854abebaed69d28e795b06b019e733e8ddb9e9e82bd0346554f40fd70f2c134a2a976ccabc2e0b862910514c4c561a9bdbd63df34fc2da208f55acc678a827d04e47840cd3f2e5d352d42730c95a467250c89e04680b1010e582cfc3bad377d50416ff992acd5ff0206042f18fee5c6c5e56499d872c27e972ec8209d14cf734c656c756b8e01fac08e97f5b2e796c5a0b3981b492e5359582863b43940e8f021600cb258dc2e27645fa863974f64036eb764a7c6b35a6d740513eb6a11cea0c71d5940bf719fd679fd1b693d39e168029c22c016c2b0b4734330bb0b5de944ca1bc2ee9c5b108c1648932af090586b97f0814235f3bbe80731f9ca150fa2759645302ae1c7df0366a26a0adac0561ad82c9380d33cb32d5ae4e7fa35bdf7e5a20df8d3fbe6c8f669c082e680a344fb4230d45473fe5a7cbbb40db479dd905f9ab581d6bee2d4e3e199ec71680fabb969b218a35e9f1b5efa947e3241bf2d6e337eb309b75a08dbb3c02e05e7bcb8667a866b0294000078d03be747e3b43e0bd108085ba7cce93a02be114dc6ad3ee8da1b54907758e2884cd5dcddbed3cc811a2101695bb7d393845df07caaf736471a56c3f1b5dfcb1eac1884b7e29db7c30fd71b305e2fab9e0f91fed99398cf4d8663c9ad1894b5a632d14a94ebef1cf9f48ad6ce343c016e35b1bcc390fd2902b7f5c2a9fda81ae1d9b576900f0a2bc9b0edfe0d6f42b56c238aae51f069642f957117b29ef1ea5f5ae42bf2919088cc41121cdd08928c1139019ce2ef6dd4951ecb019cfc3c101fe6a88accad713da9ed9fdf313da91e61c4115b55c19aaebbb16afef3fd802200800516f739130e1400"})
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCSTI(r4, 0x5412, &(0x7f0000000080)=0xff)
+syz_open_dev$tty1(0xc, 0x4, 0x2)
+r5 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r5, 0x4b67, &(0x7f0000000080)={0x57e2b7a3d7ba51a7, &(0x7f0000000240)})
+
+433.816307ms ago: executing program 0 (id=90):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000040)=0x5)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x3)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f0000000040)=0x84)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000280), 0x141480, 0x0)
+ioctl$TIOCMGET(r1, 0x5415, &(0x7f0000000300))
+syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$PIO_CMAP(0xffffffffffffffff, 0x4b71, &(0x7f0000000b00)={0x200, 0x9, 0xfff, 0x9e0, 0x2, 0xad})
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x4)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000140)=0x4)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000180)=0x13)
+ioctl$KDMKTONE(r3, 0x4b30, 0x4)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+ioctl$VT_OPENQRY(r2, 0x5600, &(0x7f0000000200))
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000180)=0x91)
+
+320.214865ms ago: executing program 2 (id=91):
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0x420040, 0x0)
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000140)=0x8)
+ioctl$PIO_UNIMAP(0xffffffffffffffff, 0x4b67, &(0x7f0000000080)={0x0, 0x0})
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000040)=0x1b)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000040)=0x5)
+r1 = syz_open_dev$ptys(0xc, 0x3, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x3)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_OPENQRY(r2, 0x5600, &(0x7f0000000200))
+ioctl$TIOCSETD(r1, 0x5423, 0x0)
+r3 = syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$TCSETAF(0xffffffffffffffff, 0x5408, &(0x7f0000000080)={0x30, 0x1, 0x9, 0x3ed, 0x6, "0623925d5579474d"})
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x6)
+ioctl$TIOCSETD(r3, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$KDGETLED(r3, 0x8924, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+ioctl$KDFONTOP_SET_DEF(0xffffffffffffffff, 0x4b72, &(0x7f0000000180)={0x2, 0x0, 0x20, 0x1b, 0x180, &(0x7f0000000740)="565ea77031b304a2eb347085bfc1503162b4cc014414aba764d103b544479798a5d2fb8c88e2ec00d47874c96ab3208dc23fdc79283029c8e15723060bfa99b23be10ae5deb7cf4bf62becf3a8b18badc33fd4e88edc8f31fd524acabc587164801d345d640af2236b33a5823351390e8e2adea653979b02527cae6518cafef1f8c373dfadd8b53f90f7179ca72037ebad332b1ed2db2f9c5e51f0cdb298c9cb59a67fd614882ab1b1d5d8eb810a2ffc352a23f70ef377778327e384a610291967ceef2402ed538652154d45c820e5ea54804ed13f6da4402b05c818f5bdf65e293563e50286eeef84b3250f7f06675f0b6864ccb769f743a11cf8c6a72ebe7fe59cab54d8d44406204534b5e157b20db4f7576715b7728c4cfbf18001b83213e4389b32d40ca1988dcb90214b9f7eb2bf32c06bbcd77c87cd65f291e43ce1c7ef994f40ecd1d711e6f9b7792017d1396df4157e9c09cbdf5fb75519a2ac3276eff310d32da015741ab62625a44b092d4266bcca8bbe3e4fa2a60f03a7dce40a4e20fbe827341aac3f1ee618a48f2a6854abebaed69d28e795b06b019e733e8ddb9e9e82bd0346554f40fd70f2c134a2a976ccabc2e0b862910514c4c561a9bdbd63df34fc2da208f55acc678a827d04e47840cd3f2e5d352d42730c95a467250c89e04680b1010e582cfc3bad377d50416ff992acd5ff0206042f18fee5c6c5e56499d872c27e972ec8209d14cf734c656c756b8e01fac08e97f5b2e796c5a0b3981b492e5359582863b43940e8f021600cb258dc2e27645fa863974f64036eb764a7c6b35a6d740513eb6a11cea0c71d5940bf719fd679fd1b693d39e168029c22c016c2b0b4734330bb0b5de944ca1bc2ee9c5b108c1648932af090586b97f0814235f3bbe80731f9ca150fa2759645302ae1c7df0366a26a0adac0561ad82c9380d33cb32d5ae4e7fa35bdf7e5a20df8d3fbe6c8f669c082e680a344fb4230d45473fe5a7cbbb40db479dd905f9ab581d6bee2d4e3e199ec71680fabb969b218a35e9f1b5efa947e3241bf2d6e337eb309b75a08dbb3c02e05e7bcb8667a866b0294000078d03be747e3b43e0bd108085ba7cce93a02be114dc6ad3ee8da1b54907758e2884cd5dcddbed3cc811a2101695bb7d393845df07caaf736471a56c3f1b5dfcb1eac1884b7e29db7c30fd71b305e2fab9e0f91fed99398cf4d8663c9ad1894b5a632d14a94ebef1cf9f48ad6ce343c016e35b1bcc390fd2902b7f5c2a9fda81ae1d9b576900f0a2bc9b0edfe0d6f42b56c238aae51f069642f957117b29ef1ea5f5ae42bf2919088cc41121cdd08928c1139019ce2ef6dd4951ecb019cfc3c101fe6a88accad713da9ed9fdf313da91e61c4115b55c19aaebbb16afef3fd802200800516f739130e1400"})
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCSTI(r4, 0x5412, &(0x7f0000000080)=0xff)
+ioctl$TIOCL_GETSHIFTSTATE(0xffffffffffffffff, 0x541c, &(0x7f0000000700)={0x6, 0x7})
+r5 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r5, 0x4b67, &(0x7f0000000080)={0x57e2b7a3d7ba51a7, &(0x7f0000000240)})
+
+319.832234ms ago: executing program 1 (id=92):
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0x420040, 0x0)
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000140)=0x8)
+ioctl$PIO_UNIMAP(0xffffffffffffffff, 0x4b67, &(0x7f0000000080)={0x0, 0x0})
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000040)=0x1b)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000040)=0x5)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_OPENQRY(r1, 0x5600, &(0x7f0000000200))
+
+258.11358ms ago: executing program 3 (id=93):
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+r1 = openat$ptmx(0xffffffffffffff9c, 0x0, 0x101000, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f0000000000)=0x11)
+ioctl$TIOCSPTLCK(0xffffffffffffffff, 0x40045431, &(0x7f0000000b80)=0xefffffff)
+ioctl$VT_RELDISP(0xffffffffffffffff, 0x5605)
+syz_open_pts(r0, 0x40080)
+r2 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0x60000, 0x0)
+ioctl$TIOCGICOUNT(r2, 0x545d, 0x0)
+
+257.417274ms ago: executing program 2 (id=94):
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0x420040, 0x0)
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000140)=0x8)
+ioctl$PIO_UNIMAP(0xffffffffffffffff, 0x4b67, &(0x7f0000000080)={0x0, 0x0})
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000040)=0x1b)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000040)=0x5)
+r1 = syz_open_dev$ptys(0xc, 0x3, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x3)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_OPENQRY(r2, 0x5600, &(0x7f0000000200))
+ioctl$TIOCSETD(r1, 0x5423, 0x0)
+r3 = syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$TCSETAF(0xffffffffffffffff, 0x5408, &(0x7f0000000080)={0x30, 0x1, 0x9, 0x3ed, 0x6, "0623925d5579474d"})
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x6)
+ioctl$TIOCSETD(r3, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$KDGETLED(r3, 0x8924, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+ioctl$KDFONTOP_SET_DEF(0xffffffffffffffff, 0x4b72, &(0x7f0000000180)={0x2, 0x0, 0x20, 0x1b, 0x180, &(0x7f0000000740)="565ea77031b304a2eb347085bfc1503162b4cc014414aba764d103b544479798a5d2fb8c88e2ec00d47874c96ab3208dc23fdc79283029c8e15723060bfa99b23be10ae5deb7cf4bf62becf3a8b18badc33fd4e88edc8f31fd524acabc587164801d345d640af2236b33a5823351390e8e2adea653979b02527cae6518cafef1f8c373dfadd8b53f90f7179ca72037ebad332b1ed2db2f9c5e51f0cdb298c9cb59a67fd614882ab1b1d5d8eb810a2ffc352a23f70ef377778327e384a610291967ceef2402ed538652154d45c820e5ea54804ed13f6da4402b05c818f5bdf65e293563e50286eeef84b3250f7f06675f0b6864ccb769f743a11cf8c6a72ebe7fe59cab54d8d44406204534b5e157b20db4f7576715b7728c4cfbf18001b83213e4389b32d40ca1988dcb90214b9f7eb2bf32c06bbcd77c87cd65f291e43ce1c7ef994f40ecd1d711e6f9b7792017d1396df4157e9c09cbdf5fb75519a2ac3276eff310d32da015741ab62625a44b092d4266bcca8bbe3e4fa2a60f03a7dce40a4e20fbe827341aac3f1ee618a48f2a6854abebaed69d28e795b06b019e733e8ddb9e9e82bd0346554f40fd70f2c134a2a976ccabc2e0b862910514c4c561a9bdbd63df34fc2da208f55acc678a827d04e47840cd3f2e5d352d42730c95a467250c89e04680b1010e582cfc3bad377d50416ff992acd5ff0206042f18fee5c6c5e56499d872c27e972ec8209d14cf734c656c756b8e01fac08e97f5b2e796c5a0b3981b492e5359582863b43940e8f021600cb258dc2e27645fa863974f64036eb764a7c6b35a6d740513eb6a11cea0c71d5940bf719fd679fd1b693d39e168029c22c016c2b0b4734330bb0b5de944ca1bc2ee9c5b108c1648932af090586b97f0814235f3bbe80731f9ca150fa2759645302ae1c7df0366a26a0adac0561ad82c9380d33cb32d5ae4e7fa35bdf7e5a20df8d3fbe6c8f669c082e680a344fb4230d45473fe5a7cbbb40db479dd905f9ab581d6bee2d4e3e199ec71680fabb969b218a35e9f1b5efa947e3241bf2d6e337eb309b75a08dbb3c02e05e7bcb8667a866b0294000078d03be747e3b43e0bd108085ba7cce93a02be114dc6ad3ee8da1b54907758e2884cd5dcddbed3cc811a2101695bb7d393845df07caaf736471a56c3f1b5dfcb1eac1884b7e29db7c30fd71b305e2fab9e0f91fed99398cf4d8663c9ad1894b5a632d14a94ebef1cf9f48ad6ce343c016e35b1bcc390fd2902b7f5c2a9fda81ae1d9b576900f0a2bc9b0edfe0d6f42b56c238aae51f069642f957117b29ef1ea5f5ae42bf2919088cc41121cdd08928c1139019ce2ef6dd4951ecb019cfc3c101fe6a88accad713da9ed9fdf313da91e61c4115b55c19aaebbb16afef3fd802200800516f739130e1400"})
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCSTI(r4, 0x5412, &(0x7f0000000080)=0xff)
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCL_GETSHIFTSTATE(r5, 0x541c, &(0x7f0000000700)={0x6, 0x7})
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+
+177.29094ms ago: executing program 0 (id=95):
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0x420040, 0x0)
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000140)=0x8)
+ioctl$PIO_UNIMAP(0xffffffffffffffff, 0x4b67, &(0x7f0000000080)={0x0, 0x0})
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000040)=0x1b)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000040)=0x5)
+r1 = syz_open_dev$ptys(0xc, 0x3, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x3)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_OPENQRY(r2, 0x5600, &(0x7f0000000200))
+ioctl$TIOCSETD(r1, 0x5423, 0x0)
+r3 = syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$TCSETAF(0xffffffffffffffff, 0x5408, &(0x7f0000000080)={0x30, 0x1, 0x9, 0x3ed, 0x6, "0623925d5579474d"})
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x6)
+ioctl$TIOCSETD(r3, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$KDGETLED(r3, 0x8924, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+ioctl$KDFONTOP_SET_DEF(0xffffffffffffffff, 0x4b72, &(0x7f0000000180)={0x2, 0x0, 0x20, 0x1b, 0x180, &(0x7f0000000740)="565ea77031b304a2eb347085bfc1503162b4cc014414aba764d103b544479798a5d2fb8c88e2ec00d47874c96ab3208dc23fdc79283029c8e15723060bfa99b23be10ae5deb7cf4bf62becf3a8b18badc33fd4e88edc8f31fd524acabc587164801d345d640af2236b33a5823351390e8e2adea653979b02527cae6518cafef1f8c373dfadd8b53f90f7179ca72037ebad332b1ed2db2f9c5e51f0cdb298c9cb59a67fd614882ab1b1d5d8eb810a2ffc352a23f70ef377778327e384a610291967ceef2402ed538652154d45c820e5ea54804ed13f6da4402b05c818f5bdf65e293563e50286eeef84b3250f7f06675f0b6864ccb769f743a11cf8c6a72ebe7fe59cab54d8d44406204534b5e157b20db4f7576715b7728c4cfbf18001b83213e4389b32d40ca1988dcb90214b9f7eb2bf32c06bbcd77c87cd65f291e43ce1c7ef994f40ecd1d711e6f9b7792017d1396df4157e9c09cbdf5fb75519a2ac3276eff310d32da015741ab62625a44b092d4266bcca8bbe3e4fa2a60f03a7dce40a4e20fbe827341aac3f1ee618a48f2a6854abebaed69d28e795b06b019e733e8ddb9e9e82bd0346554f40fd70f2c134a2a976ccabc2e0b862910514c4c561a9bdbd63df34fc2da208f55acc678a827d04e47840cd3f2e5d352d42730c95a467250c89e04680b1010e582cfc3bad377d50416ff992acd5ff0206042f18fee5c6c5e56499d872c27e972ec8209d14cf734c656c756b8e01fac08e97f5b2e796c5a0b3981b492e5359582863b43940e8f021600cb258dc2e27645fa863974f64036eb764a7c6b35a6d740513eb6a11cea0c71d5940bf719fd679fd1b693d39e168029c22c016c2b0b4734330bb0b5de944ca1bc2ee9c5b108c1648932af090586b97f0814235f3bbe80731f9ca150fa2759645302ae1c7df0366a26a0adac0561ad82c9380d33cb32d5ae4e7fa35bdf7e5a20df8d3fbe6c8f669c082e680a344fb4230d45473fe5a7cbbb40db479dd905f9ab581d6bee2d4e3e199ec71680fabb969b218a35e9f1b5efa947e3241bf2d6e337eb309b75a08dbb3c02e05e7bcb8667a866b0294000078d03be747e3b43e0bd108085ba7cce93a02be114dc6ad3ee8da1b54907758e2884cd5dcddbed3cc811a2101695bb7d393845df07caaf736471a56c3f1b5dfcb1eac1884b7e29db7c30fd71b305e2fab9e0f91fed99398cf4d8663c9ad1894b5a632d14a94ebef1cf9f48ad6ce343c016e35b1bcc390fd2902b7f5c2a9fda81ae1d9b576900f0a2bc9b0edfe0d6f42b56c238aae51f069642f957117b29ef1ea5f5ae42bf2919088cc41121cdd08928c1139019ce2ef6dd4951ecb019cfc3c101fe6a88accad713da9ed9fdf313da91e61c4115b55c19aaebbb16afef3fd802200800516f739130e1400"})
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCSTI(r4, 0x5412, &(0x7f0000000080)=0xff)
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCL_GETSHIFTSTATE(r5, 0x541c, &(0x7f0000000700)={0x6, 0x7})
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+
+173.82687ms ago: executing program 1 (id=96):
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x80000, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r0, 0x560a, 0x0)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCMBIC(r0, 0x5417, &(0x7f00000000c0)=0x80)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSTI(r2, 0x5412, &(0x7f0000000040)=0x84)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TCSETS(r3, 0x5402, &(0x7f00000000c0)={0x103, 0x100, 0x6, 0xffffffff, 0xe, "04d87e33cd74ff01000000000000f7de6756a8"})
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, 0x0)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TCSETAF(r4, 0x5408, &(0x7f0000000000)={0xde79, 0x85b, 0x2, 0xf02c, 0x93, "a2852e2922db75bf"})
+ioctl$TIOCSTI(r4, 0x5412, &(0x7f0000000400)=0x5)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$VT_RESIZEX(r4, 0x560a, &(0x7f0000000140)={0x8, 0x4, 0x8000, 0x66, 0x3, 0xc})
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000100), 0xa0382, 0x0)
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDGKBENT(r5, 0x4b46, &(0x7f00000019c0)={0x1, 0x0, 0x80})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TIOCGSID(r1, 0x5429, 0x0)
+ioctl$KDGKBDIACR(r1, 0x4bfb, &(0x7f0000000000)=""/120)
+ioctl$TCFLSH(r0, 0x540b, 0x1)
+
+95.942693ms ago: executing program 2 (id=97):
+r0 = openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r1, 0xc01c64ae, &(0x7f0000000040)={0x0, 0x2000, 0x1, 0x1000, 0x18, 0x18, 0x5})
+r2 = openat$sndseq(0xffffffffffffff9c, 0x0, 0x402)
+ioctl$SNDRV_SEQ_IOCTL_SET_QUEUE_TIMER(r2, 0x40605346, &(0x7f0000000480)={0x0, 0x0, {0x2, 0x3, 0xffffff01, 0x2, 0x2}, 0x7b0d76ee})
+ioctl$SNDRV_SEQ_IOCTL_GET_QUEUE_TIMER(r2, 0xc0605345, &(0x7f00000002c0)={0x7, 0x0, {0x1, 0x3, 0x3, 0x0, 0xa22}, 0x2})
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, &(0x7f00000000c0)={{0x0, 0x1, 0x1, 0x2, 0x10000000}})
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, 0x0)
+r3 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000580), 0x2001)
+r4 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+write$sndseq(r4, &(0x7f0000000300)=[{0x6, 0x7f, 0x2, 0xfd, @tick=0x8, {0x2c, 0x6}, {0xe, 0x40}, @raw32={[0x1, 0x7fff, 0x6]}}], 0x1c)
+write$sndseq(r3, &(0x7f0000000040)=[{0xbd, 0x0, 0x6, 0x2, @time={0x3, 0x1ad6}, {0x68, 0x5}, {0x6, 0x3}, @quote={{0x2, 0x1}}}], 0xfffffffffffffec1)
+r5 = syz_open_dev$dri(&(0x7f0000000300), 0xfffffffffffffffa, 0xe500)
+r6 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r6, 0xc01c64ae, &(0x7f0000000040)={0x0, 0x7, 0x1, 0x1000, 0x18, 0x18, 0x5})
+r7 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r7, 0xc02064b2, &(0x7f0000000080)={0x9, 0x8, 0x2})
+ioctl$DRM_IOCTL_SYNCOBJ_TIMELINE_SIGNAL(0xffffffffffffffff, 0xc01864cd, &(0x7f0000000380)={&(0x7f0000000300), &(0x7f0000000340)})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(0xffffffffffffffff, 0xc01864c2, &(0x7f0000000480)={<r8=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(0xffffffffffffffff, 0xc01064c5, &(0x7f0000000500)={&(0x7f00000004c0)=[0x0, 0x0, 0x0, r8], 0x4})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(r7, 0xc01864c2, 0x0)
+ioctl$DRM_IOCTL_SYNCOBJ_WAIT(r5, 0xc02864c3, &(0x7f0000000340)={&(0x7f0000000280)=[0x0, 0x0, 0x0, 0x0, 0x0, 0x0], 0xffffffff, 0x6, 0x4})
+
+81.585493ms ago: executing program 3 (id=98):
+r0 = openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r1, 0xc01c64ae, &(0x7f0000000040)={0x0, 0x2000, 0x1, 0x1000, 0x18, 0x18, 0x5})
+r2 = openat$sndseq(0xffffffffffffff9c, 0x0, 0x402)
+ioctl$SNDRV_SEQ_IOCTL_SET_QUEUE_TIMER(r2, 0x40605346, &(0x7f0000000480)={0x0, 0x0, {0x2, 0x3, 0xffffff01, 0x2, 0x2}, 0x7b0d76ee})
+ioctl$SNDRV_SEQ_IOCTL_GET_QUEUE_TIMER(r2, 0xc0605345, &(0x7f00000002c0)={0x7, 0x0, {0x1, 0x3, 0x3, 0x0, 0xa22}, 0x2})
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, &(0x7f00000000c0)={{0x0, 0x1, 0x1, 0x2, 0x10000000}})
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, 0x0)
+r3 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000580), 0x2001)
+r4 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+write$sndseq(r4, &(0x7f0000000300)=[{0x6, 0x7f, 0x2, 0xfd, @tick=0x8, {0x2c, 0x6}, {0xe, 0x40}, @raw32={[0x1, 0x7fff, 0x6]}}], 0x1c)
+write$sndseq(r3, &(0x7f0000000040)=[{0xbd, 0x0, 0x6, 0x2, @time={0x3, 0x1ad6}, {0x68, 0x5}, {0x6, 0x3}, @quote={{0x2, 0x1}}}], 0xfffffffffffffec1)
+r5 = syz_open_dev$dri(&(0x7f0000000300), 0xfffffffffffffffa, 0xe500)
+r6 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r6, 0xc01c64ae, &(0x7f0000000040)={0x0, 0x7, 0x1, 0x1000, 0x18, 0x18, 0x5})
+r7 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r7, 0xc02064b2, &(0x7f0000000080)={0x9, 0x8, 0x2})
+ioctl$DRM_IOCTL_SYNCOBJ_TIMELINE_SIGNAL(0xffffffffffffffff, 0xc01864cd, &(0x7f0000000380)={&(0x7f0000000300), &(0x7f0000000340)})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(0xffffffffffffffff, 0xc01864c2, &(0x7f0000000480)={<r8=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(0xffffffffffffffff, 0xc01064c5, &(0x7f0000000500)={&(0x7f00000004c0)=[0x0, 0x0, r8], 0x3})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(r7, 0xc01864c2, &(0x7f0000000240)={<r9=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_WAIT(r5, 0xc02864c3, &(0x7f0000000340)={&(0x7f0000000280)=[0x0, 0x0, 0x0, 0x0, 0x0, r9], 0xffffffff, 0x6, 0x4})
+
+0s ago: executing program 0 (id=99):
+r0 = openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+ioctl$DRM_IOCTL_MODE_ADDFB(0xffffffffffffffff, 0xc01c64ae, &(0x7f0000000040)={0x0, 0x2000, 0x1, 0x1000, 0x18, 0x18, 0x5})
+r1 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+ioctl$SNDRV_SEQ_IOCTL_CREATE_QUEUE(r1, 0xc08c5332, &(0x7f0000000100)={0x7ff, 0x9, 0x0, 'queue1\x00', 0x73fa})
+ioctl$SNDRV_SEQ_IOCTL_SET_QUEUE_TIMER(r1, 0x40605346, &(0x7f0000000480)={0x0, 0x0, {0x2, 0x3, 0xffffff01, 0x2, 0x2}, 0x7b0d76ee})
+ioctl$SNDRV_SEQ_IOCTL_GET_QUEUE_TIMER(r1, 0xc0605345, &(0x7f00000002c0)={0x7, 0x0, {0x1, 0x3, 0x3, 0x0, 0xa22}, 0x2})
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, 0x0)
+openat$sndseq(0xffffffffffffff9c, &(0x7f0000000580), 0x2001)
+openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+r2 = syz_open_dev$dri(&(0x7f0000000300), 0xfffffffffffffffa, 0xe500)
+r3 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r3, 0xc01c64ae, &(0x7f0000000040)={0x0, 0x7, 0x1, 0x1000, 0x18, 0x18, 0x5})
+r4 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r4, 0xc02064b2, &(0x7f0000000080)={0x9, 0x8, 0x2})
+ioctl$DRM_IOCTL_SYNCOBJ_TIMELINE_SIGNAL(0xffffffffffffffff, 0xc01864cd, &(0x7f0000000380)={&(0x7f0000000300), &(0x7f0000000340)})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(0xffffffffffffffff, 0xc01864c2, 0x0)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(0xffffffffffffffff, 0xc01064c5, 0x0)
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(r4, 0xc01864c2, &(0x7f0000000240)={<r5=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_WAIT(r2, 0xc02864c3, &(0x7f0000000340)={&(0x7f0000000280)=[0x0, 0x0, 0x0, 0x0, 0x0, r5], 0xffffffff, 0x6, 0x4})
+
+kernel console output (not intermixed with test programs):
+
+Warning: Permanently added '[localhost]:41338' (ED25519) to the list of known hosts.
+[   54.286670] systemd-udevd (166) used greatest stack depth: 23336 bytes left
+[   56.021656] cgroup: Unknown subsys name 'net'
+[   56.101137] cgroup: Unknown subsys name 'cpuset'
+[   56.134516] cgroup: Unknown subsys name 'rlimit'
+[   56.138096] cgroup: Unknown subsys name 'memory'
+[   56.198535] kmemleak: Automatic memory scanning thread ended
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=4a05fe07-3e48-4fa5-9bb5-d6ebe7c8b3e2
+[   70.152183] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   74.031055] audit: type=1400 audit(1780695781.397:38): avc:  denied  { execmem } for  pid=307 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   74.342931] audit: type=1400 audit(1780695781.705:39): avc:  denied  { read } for  pid=314 comm="modprobe" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   74.385887] audit: type=1400 audit(1780695781.705:40): avc:  denied  { open } for  pid=314 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   74.411554] audit: type=1400 audit(1780695781.709:41): avc:  denied  { getattr } for  pid=314 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   74.426518] audit: type=1400 audit(1780695781.709:42): avc:  denied  { map } for  pid=314 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   74.445795] audit: type=1400 audit(1780695781.715:43): avc:  denied  { map } for  pid=313 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   74.798439] audit: type=1400 audit(1780695782.163:44): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  106.544690] ------------[ cut here ]------------
+[  106.548181] [CRTC:35:crtc-0] vblank wait timed out
+[  106.551143] WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_helper_wait_for_vblanks.part.0+0x627/0x7b0 [drm_kms_helper], CPU#1: syz.2.97/2329
+[  106.563782] Modules linked in: snd_via82xx_modem snd_ac97_codec ac97_bus bochs iTCO_wdt drm_shmem_helper intel_pmc_bxt drm_client_lib watchdog i2c_i801 drm_kms_helper 8250_pci i2c_smbus lpc_ich
+[  106.572903] CPU: 1 UID: 0 PID: 2329 Comm: syz.2.97 Tainted: G        W        N  7.0.0 #7 PREEMPT(full) 
+[  106.579849] Tainted: [W]=WARN, [N]=TEST
+[  106.582885] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  106.590025] RIP: 0010:drm_atomic_helper_wait_for_vblanks.part.0+0x62d/0x7b0 [drm_kms_helper]
+[  106.596337] Code: 00 48 8b 55 20 48 89 f8 48 c1 e8 03 42 0f b6 04 20 84 c0 74 08 3c 03 0f 8e 63 01 00 00 48 8d 3d 29 52 24 00 8b b5 d8 00 00 00 <67> 48 0f b9 3a e9 9b fd ff ff 44 8b 7c 24 3c 4c 89 eb e8 9c af 76
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+[  106.607687] RSP: 0018:ffff888111fdf7c8 EFLAGS: 00010246
+[  106.611581] RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffc90003803000
+[  106.617249] RDX: ffff88810156f8c0 RSI: 0000000000000023 RDI: ffffffffa0260190
+[  106.621625] RBP: ffff88811d8c1318 R08: 0000000000000001 R09: 0000000000000001
+[  106.625979] R10: ffffffff88486997 R11: 0000000000000000 R12: dffffc0000000000
+[  106.631138] R13: 0000000000000000 R14: ffff88810136e000 R15: 0000000000000000
+[  106.635966] FS:  00007feb61447640(0000) GS:ffff8881d0879000(0000) knlGS:0000000000000000
+[  106.636007] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  106.636020] CR2: 00007feb61426658 CR3: 000000011fb9e000 CR4: 00000000000006f0
+[  106.636272] Call Trace:
+[  106.636287]  <TASK>
+[  106.636303]  ? __pfx_drm_atomic_helper_wait_for_vblanks.part.0+0x10/0x10 [drm_kms_helper]
+[  106.636504]  ? __pfx_autoremove_wake_function+0x10/0x10
+[  106.636521]  ? drm_atomic_helper_commit_hw_done+0x347/0x4b0 [drm_kms_helper]
+[  106.636640]  drm_atomic_helper_commit_tail+0x100/0x130 [drm_kms_helper]
+[  106.636756]  commit_tail+0x2c2/0x390 [drm_kms_helper]
+[  106.636980]  drm_atomic_helper_commit+0x308/0x390 [drm_kms_helper]
+[  106.680077]  ? __pfx_drm_atomic_helper_commit+0x10/0x10 [drm_kms_helper]
+[  106.684941]  drm_atomic_commit+0x238/0x300
+[  106.687843]  ? __pfx_drm_atomic_commit+0x10/0x10
+[  106.691416]  ? __pfx___drm_printfn_info+0x10/0x10
+[  106.695935]  ? drm_client_rotation+0x43c/0x5e0
+[  106.698362]  drm_client_modeset_commit_atomic+0x684/0x7c0
+[  106.701757]  ? __pfx_drm_client_modeset_commit_atomic+0x10/0x10
+[  106.705728]  ? drm_master_internal_acquire+0x26/0x80
+[  106.709170]  drm_client_modeset_commit_locked+0x14e/0x590
+[  106.712719]  drm_client_modeset_commit+0x56/0x90
+[  106.716019]  __drm_fb_helper_restore_fbdev_mode_unlocked.part.0+0x137/0x160 [drm_kms_helper]
+[  106.720683]  drm_fb_helper_restore_fbdev_mode_unlocked+0x97/0xc0 [drm_kms_helper]
+[  106.725932]  drm_fbdev_client_restore+0x20/0x30 [drm_client_lib]
+[  106.729641]  ? __pfx_drm_fbdev_client_restore+0x10/0x10 [drm_client_lib]
+[  106.733852]  drm_client_dev_restore+0x205/0x2a0
+[  106.737089]  drm_release+0x2cb/0x370
+[  106.739163]  ? __pfx_drm_release+0x10/0x10
+[  106.741792]  __fput+0x407/0xb50
+[  106.743966]  task_work_run+0x170/0x260
+[  106.746550]  ? __pfx_task_work_run+0x10/0x10
+[  106.749022]  ? __pfx___x64_sys_openat+0x10/0x10
+[  106.752324]  ? ksys_write+0x1a8/0x240
+[  106.754409]  exit_to_user_mode_loop+0x123/0x4f0
+[  106.756880]  do_syscall_64+0x572/0x690
+[  106.759562]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  106.763043] RIP: 0033:0x7feb62a01d94
+[  106.765787] Code: 24 20 eb 8f 66 90 44 89 54 24 0c e8 e6 0f 03 00 44 8b 54 24 0c 44 89 e2 48 89 ee 41 89 c0 bf 9c ff ff ff b8 01 01 00 00 0f 05 <48> 3d 00 f0 ff ff 77 34 44 89 c7 89 44 24 0c e8 28 10 03 00 8b 44
+[  106.777494] RSP: 002b:00007feb61446ac0 EFLAGS: 00000293 ORIG_RAX: 0000000000000101
+[  106.782665] RAX: ffffffffffffffea RBX: 1999999999999999 RCX: 00007feb62a01d94
+[  106.787587] RDX: 000000000000e500 RSI: 00007feb61446b60 RDI: 00000000ffffff9c
+[  106.791589] RBP: 00007feb61446b60 R08: 0000000000000000 R09: 0000000000000000
+[  106.796129] R10: 0000000000000000 R11: 0000000000000293 R12: 000000000000e500
+[  106.801599] R13: 00007feb62c96038 R14: 00007feb62c95fa0 R15: 00007feb61427000
+[  106.806417]  </TASK>
+[  106.808300] irq event stamp: 1865
+[  106.810911] hardirqs last  enabled at (1875): [<ffffffff81572ad9>] __up_console_sem+0x89/0xa0
+[  106.815506] hardirqs last disabled at (1884): [<ffffffff81572abe>] __up_console_sem+0x6e/0xa0
+[  106.821119] softirqs last  enabled at (1766): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100
+[  106.826593] softirqs last disabled at (1749): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100
+[  106.831730] ---[ end trace 0000000000000000 ]---

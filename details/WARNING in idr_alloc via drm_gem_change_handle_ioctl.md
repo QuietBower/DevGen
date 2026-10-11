@@ -11,8 +11,8 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [BUG] WARNING in idr_alloc during drm_gem_change_handle_ioctl | <u>[mail](../email_lore/031_%5BBUG%5D%20WARNING%20in%20idr_alloc%20during%20drm_gem_change_handle_ioctl.md)</u> |
-| Re: [BUG] WARNING in idr_alloc during drm_gem_change_handle_ioctl | <u>[mail](../email_lore/036_Re_%20%5BBUG%5D%20WARNING%20in%20idr_alloc%20during%20drm_gem_change_handle_ioctl.md)</u> |
+| [BUG] WARNING in idr_alloc during drm_gem_change_handle_ioctl | <u>[mail](../email/031_%5BBUG%5D%20WARNING%20in%20idr_alloc%20during%20drm_gem_change_handle_ioctl.txt)</u> |
+| Re: [BUG] WARNING in idr_alloc during drm_gem_change_handle_ioctl | <u>[mail](../email/036_Re_%20%5BBUG%5D%20WARNING%20in%20idr_alloc%20during%20drm_gem_change_handle_ioctl.txt)</u> |
 | 1_drm: Do not allow userspace to trigger kernel warnings in drm_gem_change_handle_ioctl() | <u>lore.kernel.org</u> |
 | 2_drm: Do not allow userspace to trigger kernel warnings in drm_gem_change_handle_ioctl() | <u>lore.kernel.org</u> |
 

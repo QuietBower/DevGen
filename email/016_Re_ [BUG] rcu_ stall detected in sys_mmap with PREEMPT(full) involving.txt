@@ -1,0 +1,27 @@
+From: Matthew Wilcox <willy@infradead.org>
+To: Author B <author-b-alt@example.com>
+Cc: linux-kernel@vger.kernel.org, rcu@vger.kernel.org, linux-mm@kvack.org,
+ dri-devel@lists.freedesktop.org, x86@kernel.org, paulmck@kernel.org,
+ tglx@linutronix.de, peterz@infradead.org, akpm@linux-foundation.org,
+ syzkaller-bugs@googlegroups.com
+Subject: Re: [BUG] rcu: stall detected in sys_mmap with PREEMPT(full)
+ involving timer softirq and DRM vblank disable
+Date: Wed, 07 Jan 2026 14:49:39 +0000
+Message-ID: <aV5ygyPM7J7VdmgL@casper.infradead.org>
+In-Reply-To: <6b7e2fac.a60e.19b97034116.Coremail.author-b-alt@example.com>
+References: <6b7e2fac.a60e.19b97034116.Coremail.author-b-alt@example.com>
+List-Id: <rcu.vger.kernel.org>
+
+On Wed, Jan 07, 2026 at 01:52:11PM +0800, Author B wrote:
+> Hello,
+> 
+> I am reporting an RCU stall detected during syzkaller-style fuzz testing.
+> The stall is reported while executing sys_mmap(), with the
+> rcu_preempt grace-period kthread starved for over 10 seconds. The
+> observed stacks involve memory fault handling, timer softirq processing,
+> and DRM vblank disable paths. With PREEMPT(full) enabled, the RCU grace
+> period fails to complete.
+
+Get your changes into syzkaller upstream, don't spam us with "i'm doing
+syzbot's job".
+

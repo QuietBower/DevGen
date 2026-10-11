@@ -1,0 +1,76 @@
+From: Author A <author-a@example.com>
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: arnd@arndb.de, kees@kernel.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+Subject: Re: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access
+ during probe
+Date: Fri, 31 Jul 2026 21:57:15 +0800
+Message-ID: <ce868846-52a6-47d7-96d5-1f14f1e9b5f9@anonymous.edu>
+ In-Reply-To:Content-Type; =?utf-8?q?b=3DZ8A3CKsXfOwGYZYKSxhRbQpke51+8af9ML9?=
+ =?utf-8?q?A4pghZpq69MT15SyduLAbTsOPv1VscIDn3vnxJmLkoN4fEiLMtofuAjItDIIs6rQW?=
+ =?utf-8?q?ceK+pxSMczPw2C1PGvt/e1L6ditR66/Dgn2aiwV+HtJdrzItZDcVq7Ac4fg5yqlCm?=
+ =?utf-8?q?2areh0=3D?=
+	In-Reply-To:Content-Type:Content-Transfer-Encoding; bh=Xyyi2kubx
+	ElrW2y0Rie66jPa9SfugC/hlsmExibnon4=; b=p1XIxtBYByt2p2fmLthuxcGyq
+	z9Yf85HYrFRe51AJZ4WY6SE6JmdPP2QXtPLezi9FTlF/pb9VkI3fCa2ApuY/IARS
+	Jqvl7IiomfLcfDCAv+F6Mg1ZRFGp2AnBgPg2pHoYMiKJJmw0euq1KqTXiw5sOTvx
+	aUjjUAEpDtVaF3CQOM=
+In-Reply-To: <2026073120-deplete-bronzing-481c@gregkh>
+References: <20260718073253.96741-1-author-a@example.com>
+ <20260718073253.96741-2-author-a@example.com>
+ <2026073120-deplete-bronzing-481c@gregkh>
+List-Id: <stable.vger.kernel.org>
+
+Hi Greg,
+
+Thanks for the review.
+
+> In thinking about this some more, isn't that what the "authenticated
+> PCI" spec is for?  We trust this hardware, right?  If it gives us an
+> invalid BAR, bad things can and will happen.
+>
+> So does this ever happen in a real device?  And where are these real
+> devices?  What types of systems are they and are they even still being
+> used?
+>
+You are right, a physical IBM RSA device would likely never expose an
+undersized BAR. We found this crash using an automated QEMU device
+fuzzer. In a traditional bare-metal environment, the kernel's trust
+in PCI hardware is well understood.
+> Where did this value come from?
+
+It comes from the `display_depth()` macro used during ibmasmfs
+initialization (`drivers/misc/ibmasm/ibmasmfs.c`). It calls
+`remote_display_depth(sp)`, which reads from:
+`sp->base_address + SCOUT_COM_C_BASE + 0x1fc`
+
+Since `SCOUT_COM_C_BASE` is defined as `0xAC000` (in lowlevel.h),
+the highest fixed offset accessed statically is `0xAC1FC`.
+
+> I feel like if we start taking this type of patch, you will need to do
+> it for EVERY PCI driver in the kernel, right?
+>
+> Again, Linux trusts PCI devices, so is this even needed?
+>
+You make a very fair point. We definitely do not intend to patch
+every PCI driver in the kernel.
+
+We targeted this specific case because of the severity of the crash
+during `probe()`. Since the driver unconditionally accesses offset
+`0xAC1FC` (approx 705KB) without checking the BAR length, an
+undersized BAR provided by the fuzzer causes a page fault while
+holding the `idempotent_init_module()` lock, leading to a global
+soft lockup.
+
+However, I completely agree with your core argument: adding defensive
+checks against untrusted/fake hardware into obsolete drivers is not
+a scalable strategy for the kernel.
+
+If this hardware is truly dead, maintaining these edge-case patches
+is unnecessary. Would you prefer I drop this patch series and submit
+a single patch to remove the `ibmasm` driver entirely?
+
+Best regards,
+Author A
+
+

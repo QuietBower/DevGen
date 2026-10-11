@@ -1,0 +1,99 @@
+From: Author A <author-a@example.com>
+To: Sabrina Dubroca <sd@queasysnail.net>
+Cc: willemdebruijn.kernel@gmail.com, davem@davemloft.net, dsahern@kernel.org,
+ edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, horms@kernel.org,
+ netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: Re: [PATCH] ipv6: udp: fix memory leak in udpv6_sendmsg error path
+Date: Thu, 23 Apr 2026 15:36:49 +0800
+Message-ID: <213735e5.6f4b.19db945239c.Coremail.author-a@example.com>
+	In-Reply-To:References:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-ID; bh=vQgYiYTqlgCkoXhxKT0KFWsQ75g5UsoURGZ8	S3S6t8o=;
+ b=Av7o4px4FUN8QzcAN4vLFmQKvh31EcERq9k7lkzfM/xlSMVSzdcF
+	Ke8zdFRFYpnNPtuD+I1pKqb2KDqYDcGc8+lyGwkjw3NKl8p6ECUVkiSPkIMcMmLD
+	1INu5H2XLfJQHEev+HcnLXfXwXZlKMvZWsdyBev16GHHR54BspJFSQU=
+In-Reply-To: <aei3QDpiToAcYfR1@krikkit>
+References:
+ <20260422105802.486216-1-author-a@example.com> <aei3QDpiToAcYfR1@krikkit>
+List-Id: <netdev.vger.kernel.org>
+
+Hi Sabrina and Jakub,
+
+Thank you for the detailed review and pointing out the crash risk in v1. 
+
+You are absolutely correct. My previous patch would lead to a Double Free/UAF because functions like ip6_setup_cork() and __ip6_flush_pending_frames() already handle the dst release in their error paths.
+
+After a deeper investigation, I found the actual source of the memory leak reported by the fuzzer. It occurs inside `__ip6_make_skb()` in `net/ipv6/ip6_output.c`.
+
+In specific cases (such as fault injection during packet construction), `__ip6_append_data()` can succeed while leaving the queue empty. When `__ip6_make_skb()` is then called, `__skb_dequeue(queue)` returns NULL. 
+
+Currently, the code handles a NULL skb with a `goto out;`, which completely bypasses the call to `ip6_cork_release(cork);`. Since the `cork` structure still holds the `dst_entry` reference at this point, skipping the release causes the memory leak.
+
+I am abandoning the v1 approach and will submit a v2 patch that fixes the logic in `__ip6_make_skb()` to ensure `ip6_cork_release()` is always called.
+
+Best regards,
+Author A
+
+
+> -----原始邮件-----
+> 发件人: "Sabrina Dubroca" <sd@queasysnail.net>
+> 发送时间:2026-04-22 19:55:44 (星期三)
+> 收件人: "Author A" <author-a@example.com>
+> 抄送: willemdebruijn.kernel@gmail.com, davem@davemloft.net, dsahern@kernel.org, edumazet@google.com, kuba@kernel.org, pabeni@redhat.com, horms@kernel.org, netdev@vger.kernel.org, linux-kernel@vger.kernel.org
+> 主题: Re: [PATCH] ipv6: udp: fix memory leak in udpv6_sendmsg error path
+> 
+> 2026-04-22, 18:58:02 +0800, Author A wrote:
+> > During fuzzing with failslab enabled, a memory leak was observed in the
+> > IPv6 UDP send path.
+> > 
+> > When sending via the lockless fast path (!corkreq), udpv6_sendmsg()
+> > calls ip6_make_skb() and assumes that the routing entry (dst_entry)
+> > reference has been stolen by the callee. However, if ip6_make_skb()
+> > fails early (e.g., due to an ENOMEM from memory allocation failure),
+> > it returns an error pointer without consuming the dst reference.
+> 
+> Not in all cases? If ip6_setup_cork() fails, we call
+> ip6_cork_release() which will release the dst. The MSG_PROBE path also
+> releases the dst. __ip6_flush_pending_frames() also looks like it does
+> that.
+> 
+> > Since udpv6_sendmsg() unconditionally jumps to the 'out_no_dst' label,
+> > the unconsumed dst_entry is never released, resulting in a memory leak.
+> > 
+> > Fix this by explicitly calling dst_release(dst) when ip6_make_skb()
+> > returns an error.
+> > 
+> > Signed-off-by: Author A <author-a@example.com>
+> 
+> And this is missing a Fixes tag.
+> 
+> >  net/ipv6/udp.c | 5 ++++-
+> >  1 file changed, 4 insertions(+), 1 deletion(-)
+> > 
+> > diff --git a/net/ipv6/udp.c b/net/ipv6/udp.c
+> > index 15e032194ecc..b83ecfd729af 100644
+> > --- a/net/ipv6/udp.c
+> > +++ b/net/ipv6/udp.c
+> > @@ -1706,8 +1706,11 @@ int udpv6_sendmsg(struct sock *sk, struct msghdr *msg, size_t len)
+> >  				   dst_rt6_info(dst),
+> >  				   msg->msg_flags, &cork);
+> >  		err = PTR_ERR(skb);
+> > -		if (!IS_ERR_OR_NULL(skb))
+> > +		if (!IS_ERR_OR_NULL(skb)) {
+> >  			err = udp_v6_send_skb(skb, fl6, &cork.base);
+> > +		} else {
+> > +			dst_release(dst);
+> > +		}
+> >  		/* ip6_make_skb steals dst reference */
+> 
+> This comment becomes really confusing after your patch.
+> 
+> >  		goto out_no_dst;
+> >  	}
+> > -- 
+> > 2.34.1
+> > 
+> > 
+> 
+> -- 
+> Sabrina

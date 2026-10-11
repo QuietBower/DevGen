@@ -1,0 +1,37 @@
+From: Author A <author-a@example.com>
+To: jdelvare@suse.com, andi.shyti@kernel.org
+Cc: wsa@kernel.org, hkallweit1@gmail.com, djkurtz@chromium.org,
+ linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+Subject: Re: [PATCH v3] i2c: i801: Fix hardware state machine corruption and
+ stack-out-of-bounds
+Date: Tue, 04 Aug 2026 14:27:02 +0800
+Message-ID: <461151f7-9474-4856-bf5c-d5145d9bb9dc@anonymous.edu>
+ In-Reply-To:Content-Type; =?utf-8?q?b=3DXr9BGmEdMrGaqLjs1+VFCTzDOvgNnk/YYWu?=
+ =?utf-8?q?1yhYhHNiJQ+bfJkeg3ge1ZucvRg01bT937/xeGYw7pDHIt+ht48RAMBgbezJEe5q4?=
+ =?utf-8?q?uLolyhEX4og5acK44pfQyWS2ERtzej+Avcv9KanAX4Q022ezEDfvZ7WuegjhxXgld?=
+ =?utf-8?q?pqcads=3D?=
+	In-Reply-To:Content-Type:Content-Transfer-Encoding; bh=GZw+V1zr6
+	GJ+fFmlwMN9cGDcnrj9DC3erOpXhpi1qdA=; b=bzLrhpraoh59nOUwD/6K6ofme
+	IBgkMlABKu/dc9gRaEPrQtu1DWLXiKLEabbMfc4ilx/Tp77cpugcypB9IlK8UlpY
+	0wj6uOLcngxIqHft43MCKe5ruNko26RiPCM+KOWCo9GLg+UWvV2Kojoqo9rXGnnB
+	5EEqpDujOvNBlgCAFA=
+In-Reply-To: <20260627111749.482415-1-author-a@example.com>
+References: <20260627111749.482415-1-author-a@example.com>
+List-Id: <linux-i2c.vger.kernel.org>
+
+Hi Jean and Andi,
+
+Just a gentle ping on this patch.
+
+It addresses a critical KASAN stack-out-of-bounds issue that occurs
+when a transaction times out or aborts, and the hardware fires a
+delayed or spurious interrupt after the stack frame is destroyed.
+
+Please let me know if there are any further comments, or if it
+looks good to be queued up.
+
+Thanks,
+Author A
+
+

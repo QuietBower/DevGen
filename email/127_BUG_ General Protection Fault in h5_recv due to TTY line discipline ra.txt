@@ -1,0 +1,57 @@
+From: Author A <author-a@example.com>
+To: Marcel Holtmann <marcel@holtmann.org>,
+ Luiz Augusto von Dentz <luiz.dentz@gmail.com>
+Cc: linux-bluetooth@vger.kernel.org, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org
+Subject: BUG: General Protection Fault in h5_recv due to TTY line discipline
+ race condition (TIOCSTI)
+Date: Wed, 13 May 2026 10:54:41 +0800
+Message-ID: <6f2b8e36.f987.19e1f420686.Coremail.author-a@example.com>
+List-Id: <linux-serial.vger.kernel.org>
+
+
+Hi all,
+
+We have discovered a severe NULL pointer dereference and subsequent General Protection Fault in `h5_recv()` within `drivers/bluetooth/hci_h5.c`. This crash is triggered by a race condition between the initialization of the HCI UART line discipline and concurrent data injection via the `TIOCSTI` ioctl.
+
+This issue was found during fuzzing with a custom LLM-assisted device modeling framework.
+
+### Crash Trace (KASAN)
+
+Oops: general protection fault, probably for non-canonical address 0xdffffc000000005f: 0000 [#1] SMP KASAN PTI
+KASAN: null-ptr-deref in range [0x00000000000002f8-0x00000000000002ff]
+CPU: 3 UID: 0 PID: 75833 Comm: syz.0.5605 Not tainted 6.18.0 #1 PREEMPT(full) 
+RIP: 0010:h5_recv+0xfc/0x8f0 drivers/bluetooth/hci_h5.c:572
+...
+Call Trace:
+ <TASK>
+ hci_uart_tty_receive+0x25b/0x800 drivers/bluetooth/hci_ldisc.c:627
+ tiocsti drivers/tty/tty_io.c:2290 [inline]
+ tty_ioctl+0x502/0x1690 drivers/tty/tty_io.c:2706
+ __x64_sys_ioctl+0x18f/0x210 fs/ioctl.c:583
+ do_syscall_64+0xcb/0xfa0 arch/x86/entry/syscall_64.c:94
+...
+
+### Vulnerability Analysis
+
+The crash occurs due to an architectural race window during the line discipline setup:
+
+1. Thread A executes `ioctl(HCIUARTSETPROTO)` to set the line discipline to HCI_UART_H5. The kernel sets the `HCI_UART_PROTO_INIT` bit in `hu->flags` and proceeds to call `hci_uart_register_dev()`, which eventually invokes `h5_open()`.
+2. Before `h5_open()` finishes executing and allocates memory for `hu->priv` (i.e., before `hu->priv = h5;` is executed), Thread B concurrently executes `ioctl(TIOCSTI)`.
+3. The `TIOCSTI` command forces data into the TTY receive path, calling `hci_uart_tty_receive()`.
+4. Inside `hci_uart_tty_receive()`, the condition `!test_bit(HCI_UART_PROTO_INIT, &hu->flags)` evaluates to FALSE (because Thread A set it), allowing the execution to proceed without dropping the data.
+5. The execution flows into `hu->proto->recv()` -> `h5_recv()`.
+6. `h5_recv()` blindly dereferences `hu->priv` (which is still NULL), leading to the GPF when accessing `h5->rx_pending` on line 572: `BT_DBG("... %zu ...", ..., h5->rx_pending, ...);`.
+
+### Proposed Fix Direction
+
+While adding a simple `if (!h5) return 0;` at the beginning of `h5_recv()` prevents the crash, it seems the root cause lies in the permissiveness of the `HCI_UART_PROTO_INIT` state in `hci_uart_tty_receive()`, or the lack of proper synchronization between the `open` callback and the `recv` path during initialization.
+
+Since we are not entirely familiar with the specific handshake requirements of the H5 protocol during the `PROTO_INIT` phase, we are reporting this vulnerability here rather than submitting a potentially flawed patch.
+
+Please let us know if you need more information or the full reproducer.
+
+Reported-by: Author A <author-a@example.com>
+
+Best regards,
+Author A

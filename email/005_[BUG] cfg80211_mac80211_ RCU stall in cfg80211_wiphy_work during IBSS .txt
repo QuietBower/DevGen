@@ -1,0 +1,49 @@
+From: Author B <author-b-alt@example.com>
+To: linux-wireless@vger.kernel.org
+Cc: linux-kernel@vger.kernel.org, johannes@sipsolutions.net
+Subject: [BUG] cfg80211/mac80211: RCU stall in cfg80211_wiphy_work during IBSS
+ scan handling
+Date: Sun, 04 Jan 2026 11:16:48 +0800
+Message-ID: <532d062e.9287.19b8701eb6b.Coremail.author-b-alt@example.com>
+List-Id: <linux-wireless.vger.kernel.org>
+
+Hello wireless maintainers,
+
+I am reporting an RCU stall issue found by syzkaller on Linux v6.18. The problem manifests as an RCU preempt stall involving the cfg80211_wiphy_work workqueue. A worker thread processing wireless scan / IBSS management frames becomes stuck, eventually triggering an RCU stall warning.
+
+Kernel:
+Linux 6.18.0 (based on v6.18)
+Not tainted
+CONFIG_PREEMPT_FULL=y
+Tested under QEMU (i440FX)
+
+Observed behavior:
+RCU preempt stall detected cfg80211_wiphy_work blocked for ~10k jiffies
+Workqueue: events_unbound cfg80211_wiphy_work
+RCU stall report excerpt:
+INFO: rcu detected stall in cfg80211_wiphy_work
+rcu: rcu_preempt detected stalls on CPUs/tasks
+Workqueue: events_unbound cfg80211_wiphy_work
+The blocked worker shows the following call trace:
+cfg80211_wiphy_work
+cfg80211_inform_bss_frame_data
+cfg80211_inform_bss_data
+ieee80211_rx_bss_info
+ieee80211_ibss_rx_queued_mgmt
+ieee80211_iface_work
+process_one_work
+worker_thread
+
+At the same time, another CPU is spinning in an IRQ context inside drm/vkms vblank handling, holding a raw spinlock:
+native_queued_spin_lock_slowpath
+drm_handle_vblank
+vkms_vblank_simulate
+hrtimer_interrupt
+
+This suggests a possible lock contention or unbounded processing path in the cfg80211/mac80211 scan or IBSS management frame handling, which prevents the worker from reaching an RCU quiescent state. A full kernel log is available upon request.
+
+Please let me know if you would like me to provide additional logs, test a patch, or narrow this down further.
+Thank you for your time.
+
+Best regards,
+Author B

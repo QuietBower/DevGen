@@ -1,0 +1,80 @@
+From: author-a-alt@example.com
+To: louis.chauvet@bootlin.com, hamohammed.sa@gmail.com, simona@ffwll.ch,
+ melissa.srw@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org, Author A <author-a@example.com>
+Subject: [PATCH 6.18.y] drm/vkms: Fix ABBA deadlock in vblank disable and
+ timer callback
+Date: Fri, 15 May 2026 21:18:26 +0800
+Message-Id: <20260515131826.388154-1-author-a-alt@example.com>
+List-Id: <stable.vger.kernel.org>
+
+From: Author A <author-a@example.com>
+
+[Note: This patch addresses a legacy VKMS implementation deadlock specific
+to older stable trees (e.g., 6.18.y). Mainline has removed this code during
+the generic DRM_CRTC_VBLANK_TIMER_FUNCS refactoring.]
+
+During local fuzzing with Syzkaller, an RCU preempt stall (soft lockup)
+was observed. This is caused by an ABBA deadlock between the
+drm_vblank_disable_and_save() function and the vkms_vblank_simulate()
+hrtimer callback.
+
+The race condition occurs as follows:
+
+Thread A (CPU 3 - DRM_IOCTL_MODE_SETCRTC):
+  - drm_vblank_disable_and_save() acquires `&dev->vblank_time_lock`.
+  - Calls __disable_vblank() -> vkms_disable_vblank().
+  - Calls hrtimer_cancel() to synchronously stop the vblank timer.
+  - BLOCK: hrtimer_cancel() spins indefinitely waiting for the timer
+    callback to finish executing on CPU 0.
+
+Thread B (CPU 0 - hrtimer interrupt):
+  - Executes the hrtimer callback vkms_vblank_simulate().
+  - Calls drm_crtc_handle_vblank() -> drm_handle_vblank().
+  - BLOCK: drm_handle_vblank() tries to acquire `&dev->vblank_time_lock`
+    and spins forever because Thread A is holding it.
+
+This patch fixes the deadlock by replacing hrtimer_cancel() with
+hrtimer_try_to_cancel(). If the timer callback is running, try_to_cancel()
+will safely return -1 and allow Thread A to proceed and release the lock.
+
+Additionally, vkms_vblank_simulate() is modified to conditionally return
+HRTIMER_NORESTART if drm_crtc_handle_vblank() fails (which it will,
+because Thread A sets `vblank->enabled = false` immediately after
+try_to_cancel). This acts as a self-destruct mechanism, preventing the
+timer from blindly re-arming itself and causing an infinite loop of
+DRM_ERROR messages.
+
+Signed-off-by: Author A <author-a@example.com>
+---
+ drivers/gpu/drm/vkms/vkms_crtc.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/gpu/drm/vkms/vkms_crtc.c b/drivers/gpu/drm/vkms/vkms_crtc.c
+index e60573e0f3e9..a62153b73548 100644
+--- a/drivers/gpu/drm/vkms/vkms_crtc.c
++++ b/drivers/gpu/drm/vkms/vkms_crtc.c
+@@ -57,7 +57,7 @@ static enum hrtimer_restart vkms_vblank_simulate(struct hrtimer *timer)
+ 
+ 	dma_fence_end_signalling(fence_cookie);
+ 
+-	return HRTIMER_RESTART;
++	return ret ? HRTIMER_RESTART : HRTIMER_NORESTART;
+ }
+ 
+ static int vkms_enable_vblank(struct drm_crtc *crtc)
+@@ -77,7 +77,7 @@ static void vkms_disable_vblank(struct drm_crtc *crtc)
+ {
+ 	struct vkms_output *out = drm_crtc_to_vkms_output(crtc);
+ 
+-	hrtimer_cancel(&out->vblank_hrtimer);
++	hrtimer_try_to_cancel(&out->vblank_hrtimer);
+ }
+ 
+ static bool vkms_get_vblank_timestamp(struct drm_crtc *crtc,
+-- 
+2.34.1
+
+

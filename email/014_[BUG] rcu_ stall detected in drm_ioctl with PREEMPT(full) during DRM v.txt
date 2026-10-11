@@ -1,0 +1,114 @@
+From: Author B <author-b@example.com>
+To: linux-kernel@vger.kernel.org
+Cc: rcu@vger.kernel.org, dri-devel@lists.freedesktop.org, linux-mm@kvack.org,
+ x86@kernel.org, paulmck@kernel.org, tglx@linutronix.de, peterz@infradead.org,
+ akpm@linux-foundation.org, syzkaller-bugs@googlegroups.com
+Subject: [BUG] rcu: stall detected in drm_ioctl with PREEMPT(full) during DRM
+ vblank and printk
+Date: Wed, 07 Jan 2026 13:48:01 +0800
+Message-ID: <277e7e8c.a60a.19b96ff6f72.Coremail.author-b@example.com>
+List-Id: <rcu.vger.kernel.org>
+
+Hello,
+
+I am reporting an RCU stall detected during syzkaller-style fuzz testing.
+The stall is reported while executing drm_ioctl(), with CPUs spinning in
+native_queued_spin_lock_slowpath() in DRM vblank handling and DRM file
+cleanup paths. With PREEMPT(full) enabled, the rcu_preempt grace-period
+kthread is starved for over 10 seconds.
+
+=== Summary ===
+The kernel reports:
+INFO: rcu detected stall in drm_ioctl
+rcu_preempt kthread starved for over 10000 jiffies
+Multiple CPUs are observed spinning in native_queued_spin_lock_slowpath()
+inside DRM-related code paths, while the RCU grace period fails to
+complete.
+
+=== Environment ===
+Kernel: 6.18.0 (locally built)
+Config: PREEMPT(full)
+Arch: x86_64
+Hardware: QEMU Standard PC (i440FX + PIIX)
+Workload: syz-executor (syzkaller-style fuzzing)
+
+=== Triggering context ===
+The stall is detected while a userspace syzkaller executor issues DRM
+ioctls. The main task context is:
+drm_ioctl
+drm_ioctl_kernel
+drm_mode_createblob_ioctl
+drm_property_create_blob
+__kvmalloc_node_noprof
+At the same time, other CPUs are executing DRM vblank simulation in
+interrupt context and DRM file teardown paths.
+
+=== Warning details ===
+RCU reports:
+INFO: rcu_preempt detected stalls on CPUs/tasks
+rcu_preempt kthread timer wakeup didn't happen for ~10450 jiffies
+rcu_preempt kthread starved for over 10450 jiffies
+Unless rcu_preempt kthread gets sufficient CPU time,
+OOM is now expected behavior.
+
+=== Call trace ===
+CPU 2 (IRQ context):
+native_queued_spin_lock_slowpath
+drm_handle_vblank
+vkms_vblank_simulate
+hrtimer_interrupt
+sysvec_apic_timer_interrupt
+CPU 2 (task context):
+console_flush_all
+console_unlock
+vprintk_emit
+show_free_areas
+warn_alloc
+__vmalloc_node_range_noprof
+drm_property_create_blob
+drm_mode_createblob_ioctl
+drm_ioctl
+__x64_sys_ioctl
+CPU 1 (task context):
+native_queued_spin_lock_slowpath
+drm_file_free
+drm_close_helper
+drm_release
+__fput
+task_work_run
+exit_to_user_mode_loop
+RCU GP kthread:
+rcu_gp_fqs_loop
+rcu_gp_kthread
+
+=== Observations ===
+The stall appears to involve contention between:
+DRM vblank handling acquiring spinlocks in interrupt context
+DRM ioctl paths performing memory allocation and emitting printk
+DRM file cleanup paths holding DRM-related spinlocks
+PREEMPT(full) scheduling, which amplifies lock contention and delays
+the rcu_preempt grace-period kthread
+Multiple CPUs spin in native_queued_spin_lock_slowpath(), preventing the
+RCU GP kthread from running and completing the grace period.
+
+=== Reproducer ===
+No standalone reproducer is currently available.
+The issue was observed during syzkaller-style fuzz testing.
+
+=== Expected behavior ===
+DRM ioctls, vblank handling, and file cleanup should not lead to
+prolonged RCU stalls, even under adversarial or malformed userspace
+workloads.
+
+=== Actual behavior ===
+RCU reports prolonged stalls, CPUs spin in
+native_queued_spin_lock_slowpath(), and the rcu_preempt grace-period
+kthread is starved for more than 10 seconds.
+
+=== Notes ===
+This issue has been observed multiple times under fuzzing workloads.
+Additional logs, kernel configuration, or further traces can be
+provided if needed.
+
+Reported-by:
+Author B

@@ -1,0 +1,60 @@
+From: Author A <author-a@example.com>
+To:
+ Andi Kleen <ak@linux.intel.com>, Alexander Martyniuk <alexevgmart@gmail.com>
+Cc: stable@vger.kernel.org, Greg Kroah-Hartman <gregkh@linuxfoundation.org>,
+ David Airlie <airlied@redhat.com>, Sasha Levin <sashal@kernel.org>,
+ dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Lukas Wunner <lukas@wunner.de>
+Subject: Re: [PATCH 5.10/5.15/6.1/6.6/6.12] agp/amd64: Fix broken error
+ propagation in agp_amd64_probe()
+Date: Tue, 30 Jun 2026 09:23:50 +0800
+Message-ID: <5fbd827c-4c4d-4364-882c-41d2fe666fde@anonymous.edu>
+ In-Reply-To:Content-Type; =?utf-8?q?b=3Dmb0Wlr4FkSXWQZQ3WKxeSHlK3eta6Xd7sRZ?=
+ =?utf-8?q?fYch6FzXYzaDkcyEAz9JlrIqE3SvZN2Lf2XJD4wIuqMe1raxcAdiwUdHpFRcQr77y?=
+ =?utf-8?q?/fIg6wlEdao3DtsJ55JzNn78104Wzvs6VId0jP+a6dkua6xmKH31qRFDSVvg7QPiB?=
+ =?utf-8?q?HJTNIE=3D?=
+	In-Reply-To:Content-Type:Content-Transfer-Encoding; bh=0CbvUhC3E
+	PNJxYiDQGqrWEQJYeX+UOm9+WLe7dn3Edk=; b=YM9pWR9FVC9K5rmbuBrXStSej
+	iSJ53gUcEpjgtuJsX6JWbnUpb5O/gCiSEEB4HL/BhVUL8WAXlcuKsfEMYN9lGt6f
+	gZeWJ68BO8am4seoZg8BLV1hGMdhYJ2uuv8GMqEvTUBO7ijJGiTmQwyMej/FJPuh
+	rMXCwWHCArrG+fg8BE=
+In-Reply-To: <akKR2bNYFokN43Sk@tassilo>
+References:
+ <20260629102124.252403-1-alexevgmart@gmail.com> <akKR2bNYFokN43Sk@tassilo>
+List-Id: <stable.vger.kernel.org>
+
+
+> What is special about this virtual environment? Nobody else
+> seems to have seen that in 20+ years.
+>
+> Or maybe the Fixes tag is not quite correct and something else more
+> recent has caused it.
+
+Hi Andi,
+
+
+You are right that normal users will not see this crash in the wild.
+
+The environment is a QEMU-based driver fuzzing framework. Rather than 
+functionally emulating specific hardware, the framework extracts device 
+matching information from the driver and synthesizes a mock PCI device 
+just to trigger the driver's binding and initialization paths.
+
+In this case, the synthesized PCI device matched the AGP bridge's IDs, 
+forcing `agp_amd64_probe()` to run. However, because this is a synthetic 
+fuzzing environment, there was no physical or emulated AMD Northbridge 
+present in the system.
+
+In a real-world system, the AGP bridge and the Northbridge exist 
+together. Because the fuzzing framework provided the mock PCI device but 
+did not provide the Northbridge, `cache_nbs()` returned -ENODEV, 
+exposing the flawed `== -1` error handling path.
+
+The `Fixes` tag is correct. The logic flaw was introduced in that 
+commit, but it remained dormant because standard hardware configurations 
+do not produce this specific missing-hardware scenario.
+
+Best regards,
+Author A
+
+

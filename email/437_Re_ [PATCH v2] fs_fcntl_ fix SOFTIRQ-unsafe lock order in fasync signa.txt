@@ -1,0 +1,80 @@
+From: Oleg Nesterov <oleg@redhat.com>
+ to:to:cc:cc:mime-version:mime-version:content-type:content-type:	
+ in-reply-to:in-reply-to:references:references;
+	bh=mkxXo9AfDcNdhvbdcD3GjIhYv53nYGA82heubJlRsjg=;
+	b=OTHSDmWbjzfTQA/MuHnkBerK1HAAjnkaQkarMjU+4Hy7ElS5Rs7aKCiwGP9yA2FSO3Kp7a
+	R11LDvraacSy2Edpur2lln2ymKqPJZnek0MWIdvKO9xUXSEtx+vRMr6pguGgYNOOZ6PJvR
+	f5vdg6b1jyqlOnKxFz/GuCMgr0Bn3Yw=
+To: author-a-alt@example.com, David Laight <david.laight.linux@gmail.com>
+Cc: jlayton@kernel.org, chuck.lever@oracle.com, viro@zeniv.linux.org.uk,
+ brauner@kernel.org, alex.aring@gmail.com, jack@suse.cz,
+ linux-fsdevel@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Author A <author-a@example.com>
+Subject:
+ Re: [PATCH v2] fs/fcntl: fix SOFTIRQ-unsafe lock order in fasync signaling
+Date: Sun, 04 Oct 2026 13:31:34 +0200
+Message-ID: <asI5Fn87_SoEd4G5@redhat.com>
+In-Reply-To: <20260523135210.590928-1-author-a-alt@example.com>
+References: <d15a25fe784b5d4449c7ce4e56f1428d7ff28885.camel@kernel.org>
+ <20260523135210.590928-1-author-a-alt@example.com>
+List-Id: <linux-fsdevel.vger.kernel.org>
+
+Hi,
+
+On 05/23, author-a-alt@example.com wrote:
+>
+> Since PID hashing and do_each_pid_task() traversals are already
+> RCU-protected, the read_lock on tasklist_lock is no longer strictly
+> required for safe traversal. Fix this by replacing tasklist_lock with
+> rcu_read_lock(),
+
+I don't think we can simply avoid tasklist_lock. Let me quote my old email,
+
+	do_each_pid_task(PIDTYPE_PGID) can race with change_pid(PIDTYPE_PGID)
+	which moves the task from one hlist to another. Yes, it is safe in
+	that task_struct can't go away. But still this is not right because
+	do_each_pid_task() can scan the wrong (2nd) hlist.
+
+And... I need to recheck, but perhaps signal_struct->multiprocess logic
+is another reason why the lockless do_each_pid_task() is wrong...
+
+See also the recent discussion
+https://lore.kernel.org/all/20261003182224.2171b574@pumpkin/
+
+Oleg.
+
+> --- a/fs/fcntl.c
+> +++ b/fs/fcntl.c
+> @@ -929,11 +929,11 @@ void send_sigio(struct fown_struct *fown, int fd, int band)
+>  			send_sigio_to_task(p, fown, fd, band, type);
+>  		rcu_read_unlock();
+>  	} else {
+> -		read_lock(&tasklist_lock);
+> +		rcu_read_lock();
+>  		do_each_pid_task(pid, type, p) {
+>  			send_sigio_to_task(p, fown, fd, band, type);
+>  		} while_each_pid_task(pid, type, p);
+> -		read_unlock(&tasklist_lock);
+> +		rcu_read_unlock();
+>  	}
+>   out_unlock_fown:
+>  	read_unlock_irqrestore(&fown->lock, flags);
+> @@ -975,11 +975,11 @@ int send_sigurg(struct file *file)
+>  			send_sigurg_to_task(p, fown, type);
+>  		rcu_read_unlock();
+>  	} else {
+> -		read_lock(&tasklist_lock);
+> +		rcu_read_lock();
+>  		do_each_pid_task(pid, type, p) {
+>  			send_sigurg_to_task(p, fown, type);
+>  		} while_each_pid_task(pid, type, p);
+> -		read_unlock(&tasklist_lock);
+> +		rcu_read_unlock();
+>  	}
+>   out_unlock_fown:
+>  	read_unlock_irqrestore(&fown->lock, flags);
+> -- 
+> 2.34.1
+> 
+
+

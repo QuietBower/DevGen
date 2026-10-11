@@ -1,0 +1,83 @@
+From: anonymous <author-a-alt@example.com>
+To: Guenter Roeck <linux@roeck-us.net>
+Cc: wim@linux-watchdog.org, linux-watchdog@vger.kernel.org,
+ linux-kernel@vger.kernel.org, Author A <author-a@example.com>
+Subject: Re:Re: [PATCH] watchdog: wdt_pci: Fix shared IRQ storm and complete
+ system lockup
+Date: Mon, 11 May 2026 12:52:35 +0800
+Message-ID: <403be50f.4887.19e15613e85.Coremail.author-a-alt@example.com>
+In-Reply-To: <a32f5c51-1e72-4208-92db-c5a000f3d43d@roeck-us.net>
+References: <20260509121655.275311-1-author-a-alt@example.com>
+ <f182256d-0623-4c9b-a18a-acca8457bb08@roeck-us.net>
+ <1fc8bb5a.1346.19e14a548fb.Coremail.author-a-alt@example.com>
+ <5acea672-0550-478e-8f49-e5e43c72d7e2@roeck-us.net>
+ <15f8c180.3519.19e1501ebbc.Coremail.author-a-alt@example.com>
+ <a32f5c51-1e72-4208-92db-c5a000f3d43d@roeck-us.net>
+List-Id: <linux-watchdog.vger.kernel.org>
+
+
+
+
+
+From: Author A <author-a@example.com>
+
+Hi Guenter,
+
+Point taken. You are absolutely right that relying on an unverified macro to synthesize hardware behavior is flawed. I apologize for not making the virtualized and synthesized nature of this test setup clear in the initial patch description. 
+
+Since the true physical hardware behavior cannot be verified, and the driver does not actively evaluate that bit, we agree that applying a patch based on this assumption is inappropriate. 
+
+I will drop this patch. Thank you for the rigorous review and for pointing out this limitation in our testing methodology.
+
+Best regards,
+Author A
+
+
+
+
+
+
+
+
+
+
+At 2026-05-11 12:39:26, "Guenter Roeck" <linux@roeck-us.net> wrote:
+>Hi,
+>
+>On 5/10/26 20:08, anonymous wrote:
+>> 
+>> 
+>> From: Author A <author-a@example.com>
+>> 
+>> Hi Guenter,
+>> 
+>> You are correct; standard QEMU does not support the WDT500/501.
+>> 
+>> We observed this issue using DevGen, an automated framework we are developing. It synthesizes QEMU virtual device models directly from Linux driver source code using LLM guidance, allowing us to fuzz legacy or obscure drivers that lack physical hardware or official emulators.
+>> 
+>> Because the synthesized device is an imperfect model, it generated unexpected interrupt loads on a heavily shared PCI IRQ line (shared with the i2c-i801 controller in our setup). However, this successfully exposed a real logic flaw: the `wdt_pci` driver registers an `IRQF_SHARED` handler but fails to verify the `WDC_SR_IRQ` bit. It erroneously claimed the interrupts, bypassed the kernel's spurious IRQ defenses, and caused a livelock.
+>> 
+>> I understand this hardware is essentially obsolete. The patch provides a purely defensive fix for a legitimate API violation (unverified shared IRQ).
+>> 
+>> If applying this adds unnecessary churn, please feel free to drop it, or perhaps consider marking the driver as BROKEN. I leave it entirely to your judgment.
+>> 
+>
+>That is entirely not the problem. The problem is that your AI implemented
+>a QEMU emulation without really knowing what the hardware is doing while
+>guessing what status bits unused by the driver mean for the real hardware.
+>We (and the AI) actually don't know what the WDC_SR_IRQ does, or if it
+>is indeed low active. That is just a guess. I can not accept a patch
+>based on a guess, much less one making unconfirmed claims.
+>
+>If the driver is indeed unused or obsolete is a completely different
+>question. Marking it as BROKEN without real evidence that it is indeed
+>broken, just because some AI believes that it is broken, would be
+>inappropriate.
+>
+>Please note that I also find the patch description inappropriate and
+>misleading. It suggests that the problem was observed on real hardware,
+>while it was actually observed with a qemu implementation implemented by AI
+>based on the driver itself, including guesswork about status bits unused
+>by the driver.
+>
+>Guenter

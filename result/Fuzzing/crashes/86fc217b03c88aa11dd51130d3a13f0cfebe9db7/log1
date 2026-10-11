@@ -1,0 +1,308 @@
+last executing test programs:
+
+kernel console output (not intermixed with test programs):
+
+Warning: Permanently added '[localhost]:41194' (ED25519) to the list of known hosts.
+syzkaller login: [  158.958630][ T9848] cgroup: Unknown subsys name 'net'
+[  159.179662][ T9848] cgroup: Unknown subsys name 'cpuset'
+[  159.232424][ T9848] cgroup: Unknown subsys name 'rlimit'
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=338e318f-8e2e-4ab2-88db-4fa135cd4cc1
+[  168.977884][ T9848] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[  172.389224][ T1359] ieee802154 phy0 wpan0: encryption failed: -22
+[  172.399229][ T1359] ieee802154 phy1 wpan1: encryption failed: -22
+[  190.783493][    C0] clocksource: Long readout[  190.783493][    C0] clocksource: Long readout interval, skipping watchdog check: cs_nsec: 10820482796 wd_nsec: 10820479477
+[  237.456221][ T1359] ieee802154 phy0 wpan0: encryption failed: -22
+[  314.640264][    C3] watchdog: BUG: soft lockup - CPU#3 stuck for 116s! [kworker/u18:0:37]
+[  314.640385][    C3] Modules linked in:
+[  314.640417][    C3] irq event stamp: 153278
+[  314.640421][    C3] hardirqs last  enabled at (153277): [<ffffffff8b41324b>] irqentry_exit+0x3b/0x90
+[  314.641472][    C3] hardirqs last disabled at (153278): [<ffffffff8b4119df>] sysvec_apic_timer_interrupt+0xf/0xc0
+[  314.641493][    C3] softirqs last  enabled at (153270): [<ffffffff817bddf6>] handle_softirqs+0x576/0x870
+[  314.644291][    C3] softirqs last disabled at (153265): [<ffffffff817be289>] __irq_exit_rcu+0x109/0x170
+[  314.644750][    C3] CPU: 3 UID: 0 PID: 37 Comm: kworker/u18:0 Not tainted 6.18.0 #1 PREEMPT(full) 
+[  314.644810][    C3] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  314.645934][    C3] Workqueue: events_unbound toggle_allocation_gate
+[  314.646103][    C3] RIP: 0010:smp_call_function_many_cond+0x81a/0x15e0
+[  314.648731][    C3] Code: df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 21 07 0c 00 f3 90 41 0f b6 06 41 38 c4 7c 08 <84> c0 0f 85 6d 0b 00 00 44 8b 7b 08 31 ff 41 83 e7 01 44 89 fe e8
+[  314.648819][    C3] RSP: 0018:ffffc900006cf880 EFLAGS: 00000206
+[  314.648863][    C3] RAX: 0000000000000000 RBX: ffff8880628426c0 RCX: ffffffff81ae5104
+[  314.648871][    C3] RDX: ffff888100ac0000 RSI: ffffffff81ae50df RDI: 0000000000000005
+[  314.648881][    C3] RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000001
+[  314.648889][    C3] R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000003
+[  314.648897][    C3] R13: ffff888135f3b740 R14: ffffed100c5084d9 R15: 0000000000000001
+[  314.648906][    C3] FS:  0000000000000000(0000) GS:ffff8881a2701000(0000) knlGS:0000000000000000
+[  314.649005][    C3] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  314.649015][    C3] CR2: 00007f4186e54000 CR3: 000000000df84000 CR4: 00000000000006f0
+[  314.649049][    C3] Call Trace:
+[  314.649059][    C3]  <TASK>
+[  314.649250][    C3]  ? __pfx_do_sync_core+0x10/0x10
+[  314.649364][    C3]  ? __pfx_smp_call_function_many_cond+0x10/0x10
+[  314.649375][    C3]  ? perf_event_text_poke+0x119/0x170
+[  314.649417][    C3]  ? __kmalloc_node_track_caller_noprof+0xf5/0x8e0
+[  314.649484][    C3]  ? __pfx_perf_event_text_poke+0x10/0x10
+[  314.649496][    C3]  ? __pfx___text_poke+0x10/0x10
+[  314.649506][    C3]  ? __pfx_do_sync_core+0x10/0x10
+[  314.649515][    C3]  on_each_cpu_cond_mask+0x40/0x90
+[  314.649526][    C3]  smp_text_poke_batch_finish+0x698/0xd50
+[  314.649538][    C3]  ? __kmalloc_node_track_caller_noprof+0xf5/0x8e0
+[  314.649549][    C3]  ? __pfx_smp_text_poke_batch_finish+0x10/0x10
+[  314.649561][    C3]  ? arch_jump_label_transform_queue+0xbe/0x120
+[  314.649603][    C3]  arch_jump_label_transform_apply+0x1c/0x30
+[  314.649619][    C3]  jump_label_update+0x369/0x540
+[  314.649642][    C3]  static_key_disable_cpuslocked+0x15a/0x1c0
+[  314.649668][    C3]  static_key_disable+0x1a/0x20
+[  314.649680][    C3]  toggle_allocation_gate+0x145/0x250
+[  314.649694][    C3]  ? __pfx_toggle_allocation_gate+0x10/0x10
+[  314.649708][    C3]  ? _raw_spin_unlock_irq+0x23/0x50
+[  314.649778][    C3]  process_one_work+0x992/0x1b60
+[  314.649813][    C3]  ? __pfx_process_one_work+0x10/0x10
+[  314.649827][    C3]  ? assign_work+0x196/0x240
+[  314.649878][    C3]  worker_thread+0x67e/0xe90
+[  314.649891][    C3]  ? __pfx_worker_thread+0x10/0x10
+[  314.649902][    C3]  kthread+0x3d0/0x780
+[  314.649953][    C3]  ? __pfx_kthread+0x10/0x10
+[  314.649967][    C3]  ? _raw_spin_unlock_irq+0x23/0x50
+[  314.649978][    C3]  ? __pfx_kthread+0x10/0x10
+[  314.649991][    C3]  ret_from_fork+0x676/0x7d0
+[  314.650011][    C3]  ? __pfx_kthread+0x10/0x10
+[  314.650024][    C3]  ret_from_fork_asm+0x1a/0x30
+[  314.650167][    C3]  </TASK>
+[  314.650248][    C3] Sending NMI from CPU 3 to CPUs 0-2:
+[  314.658758][    C2] NMI backtrace for cpu 2
+[  314.658827][    C2] CPU: 2 UID: 0 PID: 1359 Comm: aoe_tx0 Not tainted 6.18.0 #1 PREEMPT(full) 
+[  314.658845][    C2] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  314.658855][    C2] RIP: 0010:__sanitizer_cov_trace_const_cmp1+0x8/0x20
+[  314.658906][    C2] Code: bf 06 00 00 00 e9 a8 fe ff ff 0f 1f 84 00 00 00 00 00 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 90 f3 0f 1e fa 48 8b 0c 24 <40> 0f b6 d6 40 0f b6 f7 bf 01 00 00 00 e9 76 fe ff ff 66 0f 1f 44
+[  314.658914][    C2] RSP: 0018:ffffc90006abf5f8 EFLAGS: 00000046
+[  314.658921][    C2] RAX: 0000000000000000 RBX: 1ffff92000d57ec1 RCX: ffffffff8199bed5
+[  314.658927][    C2] RDX: ffff888109900000 RSI: 0000000000000001 RDI: 0000000000000000
+[  314.658932][    C2] RBP: 0000000000000001 R08: ffffffff958ec640 R09: 0000000000000001
+[  314.658939][    C2] R10: 0000000000000001 R11: 0000000000000000 R12: 000000000000002d
+[  314.658983][    C2] R13: 0000000000000200 R14: ffff888022498000 R15: ffffc90006abf6c0
+[  314.658989][    C2] FS:  0000000000000000(0000) GS:ffff8880cf101000(0000) knlGS:0000000000000000
+[  314.659037][    C2] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  314.659047][    C2] CR2: 00007f41873aa000 CR3: 000000002ea40000 CR4: 00000000000006f0
+[  314.659066][    C2] Call Trace:
+[  314.659121][    C2]  <TASK>
+[  314.659127][    C2]  vprintk_emit+0x4e5/0x670
+[  314.659231][    C2]  ? __pfx_vprintk_emit+0x10/0x10
+[  314.659245][    C2]  ? kasan_save_track+0x14/0x30
+[  314.659277][    C2]  dev_printk_emit+0xe1/0x120
+[  314.659748][    C2]  ? __pfx_dev_printk_emit+0x10/0x10
+[  314.659766][    C2]  ? _raw_spin_unlock_irqrestore+0x58/0x70
+[  314.659781][    C2]  ? skb_network_protocol+0x131/0x6c0
+[  314.659865][    C2]  ? __asan_memcpy+0x3d/0x60
+[  314.659874][    C2]  ? ieee802154_hdr_get_addr.part.0+0x83/0xb0
+[  314.659941][    C2]  __netdev_printk+0x219/0x500
+[  314.659962][    C2]  netdev_warn+0xdb/0x120
+[  314.660000][    C2]  ? __pfx_netdev_warn+0x10/0x10
+[  314.660019][    C2]  ? __lock_acquire+0xb62/0x1be0
+[  314.660101][    C2]  ? __pfx_mac802154_llsec_encrypt+0x10/0x10
+[  314.660146][    C2]  ? ieee802154_subif_start_xmit+0x2f/0x140
+[  314.660175][    C2]  ieee802154_subif_start_xmit+0xff/0x140
+[  314.660245][    C2]  dev_hard_start_xmit+0x17a/0x780
+[  314.660262][    C2]  sch_direct_xmit+0x1b0/0xcf0
+[  314.660325][    C2]  ? __pfx_sch_direct_xmit+0x10/0x10
+[  314.660363][    C2]  ? do_raw_spin_lock+0x200/0x2b0
+[  314.660379][    C2]  __dev_queue_xmit+0x13f7/0x4160
+[  314.660396][    C2]  ? lockdep_hardirqs_on+0x7c/0x110
+[  314.660417][    C2]  ? __pfx___dev_queue_xmit+0x10/0x10
+[  314.660438][    C2]  ? do_raw_spin_lock+0x12b/0x2b0
+[  314.660451][    C2]  ? find_held_lock+0x2b/0x80
+[  314.660465][    C2]  ? skb_dequeue+0x129/0x180
+[  314.660567][    C2]  ? find_held_lock+0x2b/0x80
+[  314.660582][    C2]  ? _raw_spin_unlock_irq+0x23/0x50
+[  314.660601][    C2]  tx+0xcc/0x170
+[  314.660692][    C2]  ? __pfx_tx+0x10/0x10
+[  314.660705][    C2]  kthread+0x1e9/0x3e0
+[  314.734579][    C2]  ? __pfx_kthread+0x10/0x10
+[  314.734613][    C2]  ? _raw_spin_unlock_irqrestore+0x58/0x70
+[  314.734671][    C2]  ? __pfx_default_wake_function+0x10/0x10
+[  314.782092][    C2]  ? __kthread_parkme+0x1b1/0x250
+[  314.782113][    C2]  ? __pfx_kthread+0x10/0x10
+[  314.782135][    C2]  kthread+0x3d0/0x780
+[  314.782155][    C2]  ? __pfx_kthread+0x10/0x10
+[  314.782173][    C2]  ? _raw_spin_unlock_irq+0x23/0x50
+[  314.782191][    C2]  ? __pfx_kthread+0x10/0x10
+[  314.782222][    C2]  ret_from_fork+0x676/0x7d0
+[  314.782241][    C2]  ? __pfx_kthread+0x10/0x10
+[  314.782260][    C2]  ret_from_fork_asm+0x1a/0x30
+[  314.782284][    C2]  </TASK>
+[  316.040253][    C0] NMI backtrace for cpu 0
+[  316.040496][    C0] CPU: 0 UID: 0 PID: 9153 Comm: cron Not tainted 6.18.0 #1 PREEMPT(full) 
+[  316.040516][    C0] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  316.040526][    C0] RIP: 0010:io_serial_out+0x8f/0xb0
+[  316.040671][    C0] Code: 48 8d 7d 40 44 89 e1 48 b8 00 00 00 00 00 fc ff df 48 89 fa d3 e3 48 c1 ea 03 80 3c 02 00 75 1c 66 03 5d 40 44 89 e8 89 da ee <5b> 5d 41 5c 41 5d e9 86 83 2a 06 e8 41 ff 06 fd eb a0 e8 ca ff 06
+[  316.040683][    C0] RSP: 0000:ffffc90012c57750 EFLAGS: 00000002
+[  316.040720][    C0] RAX: 0000000000000061 RBX: 00000000000003f8 RCX: 0000000000000000
+[  316.040728][    C0] RDX: 00000000000003f8 RSI: ffffffff8519b0e5 RDI: ffffffff9abd1e20
+[  316.040736][    C0] RBP: ffffffff9abd1de0 R08: 0000000000000000 R09: ffffed100454b046
+[  316.040744][    C0] R10: 0000000000000000 R11: 0000000000000001 R12: 0000000000000000
+[  316.041883][    C0] R13: 0000000000000061 R14: ffffffff9abd1de0 R15: ffffffff8519b080
+[  316.041893][    C0] FS:  00007efddbc92840(0000) GS:ffff8880cf001000(0000) knlGS:0000000000000000
+[  316.041999][    C0] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  316.042010][    C0] CR2: 00007f4186fd4000 CR3: 0000000026e60000 CR4: 00000000000006f0
+[  316.042047][    C0] Call Trace:
+[  316.042120][    C0]  <TASK>
+[  316.042144][    C0]  serial8250_console_write+0x100f/0x1890
+[  316.042199][    C0]  ? __pfx_serial8250_console_write+0x10/0x10
+[  316.043338][    C0]  console_flush_all+0x751/0xbe0
+[  316.043371][    C0]  ? __pfx_console_flush_all+0x10/0x10
+[  316.043381][    C0]  ? is_printk_cpu_sync_owner+0x32/0x40
+[  316.043395][    C0]  console_unlock+0xc2/0x1f0
+[  316.043408][    C0]  ? __pfx_console_unlock+0x10/0x10
+[  316.043423][    C0]  ? _printk+0xbe/0xf0
+[  316.043461][    C0]  ? __down_trylock_console_sem+0xd4/0x130
+[  316.043482][    C0]  vprintk_emit+0x3e7/0x670
+[  316.043493][    C0]  ? __pfx_vprintk_emit+0x10/0x10
+[  316.043503][    C0]  _printk+0xbe/0xf0
+[  316.043532][    C0]  ? __pfx__printk+0x10/0x10
+[  316.043559][    C0]  ? __pfx_do_raw_spin_lock+0x10/0x10
+[  316.043569][    C0]  ? clocksource_watchdog+0xce7/0x1000
+[  316.043599][    C0]  clocksource_watchdog+0xdde/0x1000
+[  316.043634][    C0]  ? __pfx_clocksource_watchdog+0x10/0x10
+[  316.043645][    C0]  call_timer_fn+0x1a5/0x630
+[  316.043674][    C0]  ? __pfx_call_timer_fn+0x10/0x10
+[  316.043686][    C0]  ? _raw_spin_unlock_irq+0x23/0x50
+[  316.043700][    C0]  ? __pfx_clocksource_watchdog+0x10/0x10
+[  316.043708][    C0]  __run_timers+0x666/0x920
+[  316.043743][    C0]  ? __pfx___run_timers+0x10/0x10
+[  316.043758][    C0]  ? do_raw_spin_lock+0x12b/0x2b0
+[  316.043766][    C0]  ? __pfx_do_raw_spin_lock+0x10/0x10
+[  316.043781][    C0]  run_timer_base+0xc5/0x120
+[  316.043794][    C0]  run_timer_softirq+0x10/0x40
+[  316.043805][    C0]  handle_softirqs+0x1d4/0x870
+[  316.043818][    C0]  __irq_exit_rcu+0x109/0x170
+[  316.043831][    C0]  irq_exit_rcu+0x9/0x30
+[  316.043904][    C0]  sysvec_apic_timer_interrupt+0x59/0xc0
+[  316.043920][    C0]  asm_sysvec_apic_timer_interrupt+0x1a/0x20
+[  316.043951][    C0] RIP: 0033:0x7efddbe521ec
+[  316.044275][    C0] Code: 03 74 3b 48 83 ec 28 b8 fa ff ff ff 83 ff 02 49 89 ca 0f 44 f8 64 8b 04 25 18 00 00 00 85 c0 75 2d b8 e6 00 00 00 0f 05 89 c2 <f7> da 3d 00 f0 ff ff b8 00 00 00 00 0f 47 c2 48 83 c4 28 c3 b8 16
+[  316.044291][    C0] RSP: 002b:00007ffe940380c0 EFLAGS: 00000246
+[  316.046690][    C0] RAX: 0000000000000000 RBX: fffffffffffffe98 RCX: 00007efddbe521ea
+[  316.046701][    C0] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+[  316.046709][    C0] RBP: 0000000000000002 R08: 0000000000000004 R09: 0000000000000040
+[  316.046730][    C0] R10: 00007ffe94038100 R11: 0000000000000246 R12: 0000000000000000
+[  316.046738][    C0] R13: 0000000000000000 R14: 0000000000000000 R15: 0000000000000000
+[  316.046754][    C0]  </TASK>
+[  316.206181][    C1] NMI backtrace for cpu 1
+[  316.206254][    C1] CPU: 1 UID: 0 PID: 25 Comm: kworker/1:0H Not tainted 6.18.0 #1 PREEMPT(full) 
+[  316.206272][    C1] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  316.206283][    C1] Workqueue: kblockd blk_mq_run_work_fn
+[  316.206423][    C1] RIP: 0010:iowrite8+0x5e/0x90
+[  316.206489][    C1] Code: 08 e4 1c fd e8 03 e4 1c fd 4c 89 e6 bf 00 00 01 00 e8 46 df 1c fd 49 81 fc 00 00 01 00 76 13 e8 e8 e3 1c fd 89 d8 44 89 e2 ee <5b> 41 5c e9 da e3 1c fd e8 d5 e3 1c fd 4c 89 e7 48 c7 c6 60 c2 d2
+[  316.206501][    C1] RSP: 0018:ffffc900001ef760 EFLAGS: 00000093
+[  316.206511][    C1] RAX: 00000000000000a0 RBX: 00000000000000a0 RCX: ffffffff849d740a
+[  316.206520][    C1] RDX: 00000000000101f6 RSI: ffffffff849d7418 RDI: 0000000000000007
+[  316.206528][    C1] RBP: ffff8880241c8000 R08: 0000000000000000 R09: fffffbfff20ca1fa
+[  316.206536][    C1] R10: 00000000000101f6 R11: 0000000000000000 R12: 00000000000101f6
+[  316.206543][    C1] R13: ffff8880241c8180 R14: 0000000000000000 R15: dffffc0000000000
+[  316.206551][    C1] FS:  0000000000000000(0000) GS:ffff8881a2601000(0000) knlGS:0000000000000000
+[  316.206675][    C1] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  316.206689][    C1] CR2: 00007f41873aa000 CR3: 000000002ea40000 CR4: 00000000000006f0
+[  316.206716][    C1] Call Trace:
+[  316.207899][    C1]  <TASK>
+[  316.207912][    C1]  ata_sff_dev_select+0x5e/0x130
+[  316.208103][    C1]  ata_bmdma_qc_issue+0x21f/0x980
+[  316.208139][    C1]  ata_qc_issue+0x744/0x1010
+[  316.208212][    C1]  ? __pfx_do_raw_spin_lock+0x10/0x10
+[  316.208227][    C1]  ? __pfx_ata_scsi_rw_xlat+0x10/0x10
+[  316.208251][    C1]  __ata_scsi_queuecmd+0x9f9/0x13f0
+[  316.208273][    C1]  ata_scsi_queuecmd+0x14c/0x220
+[  316.208311][    C1]  scsi_queue_rq+0xf74/0x3700
+[  316.208369][    C1]  blk_mq_dispatch_rq_list+0x3dd/0x1bc0
+[  316.208391][    C1]  ? sbitmap_get+0x1d6/0x370
+[  316.208454][    C1]  ? __pfx_blk_mq_dispatch_rq_list+0x10/0x10
+[  316.208471][    C1]  ? __blk_mq_alloc_driver_tag+0x28e/0x7c0
+[  316.208488][    C1]  __blk_mq_sched_dispatch_requests+0xc6e/0x1460
+[  316.208535][    C1]  ? __lock_acquire+0x550/0x1be0
+[  316.208554][    C1]  ? __pfx___blk_mq_sched_dispatch_requests+0x10/0x10
+[  316.208574][    C1]  blk_mq_sched_dispatch_requests+0xd7/0x1b0
+[  316.208590][    C1]  blk_mq_run_work_fn+0x1f9/0x380
+[  316.208664][    C1]  process_one_work+0x992/0x1b60
+[  316.208681][    C1]  ? __pfx_blk_mq_timeout_work+0x10/0x10
+[  316.208696][    C1]  ? __pfx_process_one_work+0x10/0x10
+[  316.208711][    C1]  ? assign_work+0x196/0x240
+[  316.208732][    C1]  worker_thread+0x67e/0xe90
+[  316.208747][    C1]  ? __pfx_worker_thread+0x10/0x10
+[  316.208759][    C1]  kthread+0x3d0/0x780
+[  316.208779][    C1]  ? __pfx_kthread+0x10/0x10
+[  316.208798][    C1]  ? _raw_spin_unlock_irq+0x23/0x50
+[  316.210115][    C1]  ? __pfx_kthread+0x10/0x10
+[  316.210170][    C1]  ret_from_fork+0x676/0x7d0
+[  316.210190][    C1]  ? __pfx_kthread+0x10/0x10
+[  316.210202][    C1]  ret_from_fork_asm+0x1a/0x30
+[  316.210221][    C1]  </TASK>
+[  316.216470][    C3] Kernel panic - not syncing: softlockup: hung tasks
+[  316.216492][    C3] CPU: 3 UID: 0 PID: 37 Comm: kworker/u18:0 Tainted: G             L      6.18.0 #1 PREEMPT(full) 
+[  316.216525][    C3] Tainted: [L]=SOFTLOCKUP
+[  316.216530][    C3] Hardware name: QEMU Standard PC (i440FX + PIIX, 1996), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  316.216556][    C3] Workqueue: events_unbound toggle_allocation_gate
+[  316.216583][    C3] Call Trace:
+[  316.216610][    C3]  <IRQ>
+[  316.216616][    C3]  dump_stack_lvl+0x3d/0x1b0
+[  316.216786][    C3]  vpanic+0x679/0x710
+[  316.216858][    C3]  panic+0xc2/0xd0
+[  316.216878][    C3]  ? __pfx_panic+0x10/0x10
+[  316.216896][    C3]  ? nmi_backtrace_stall_check+0x77/0x540
+[  316.216913][    C3]  ? irq_work_queue+0xce/0x100
+[  316.216997][    C3]  ? __pfx_nmi_raise_cpu_backtrace+0x10/0x10
+[  316.217092][    C3]  ? __wake_up_klogd.part.0+0x99/0xf0
+[  316.217106][    C3]  ? watchdog_timer_fn+0x611/0x760
+[  316.217132][    C3]  ? watchdog_timer_fn+0x604/0x760
+[  316.217161][    C3]  watchdog_timer_fn+0x622/0x760
+[  316.217177][    C3]  ? __pfx_watchdog_timer_fn+0x10/0x10
+[  316.217191][    C3]  __hrtimer_run_queues+0x607/0xb30
+[  316.217213][    C3]  ? __pfx___hrtimer_run_queues+0x10/0x10
+[  316.224914][    C3]  ? ktime_get_update_offsets_now+0x2ac/0x450
+[  316.224941][    C3]  hrtimer_interrupt+0x39a/0x880
+[  316.224964][    C3]  __sysvec_apic_timer_interrupt+0x10d/0x400
+[  316.224981][    C3]  sysvec_apic_timer_interrupt+0xa3/0xc0
+[  316.225002][    C3]  </IRQ>
+[  316.225006][    C3]  <TASK>
+[  316.225012][    C3]  asm_sysvec_apic_timer_interrupt+0x1a/0x20
+[  316.225038][    C3] RIP: 0010:smp_call_function_many_cond+0x81a/0x15e0
+[  316.225056][    C3] Code: df 48 8b 44 24 10 49 89 c6 83 e0 07 49 c1 ee 03 49 89 c4 49 01 ce 41 83 c4 03 e8 21 07 0c 00 f3 90 41 0f b6 06 41 38 c4 7c 08 <84> c0 0f 85 6d 0b 00 00 44 8b 7b 08 31 ff 41 83 e7 01 44 89 fe e8
+[  316.225068][    C3] RSP: 0018:ffffc900006cf880 EFLAGS: 00000206
+[  316.225081][    C3] RAX: 0000000000000000 RBX: ffff8880628426c0 RCX: ffffffff81ae5104
+[  316.225089][    C3] RDX: ffff888100ac0000 RSI: ffffffff81ae50df RDI: 0000000000000005
+[  316.225109][    C3] RBP: 0000000000000000 R08: 0000000000000001 R09: 0000000000000001
+[  316.225117][    C3] R10: 0000000000000001 R11: 0000000000000000 R12: 0000000000000003
+[  316.225124][    C3] R13: ffff888135f3b740 R14: ffffed100c5084d9 R15: 0000000000000001
+[  316.225137][    C3]  ? smp_call_function_many_cond+0x834/0x15e0
+[  316.225152][    C3]  ? smp_call_function_many_cond+0x80f/0x15e0
+[  316.225172][    C3]  ? __pfx_do_sync_core+0x10/0x10
+[  316.225193][    C3]  ? __pfx_smp_call_function_many_cond+0x10/0x10
+[  316.225208][    C3]  ? perf_event_text_poke+0x119/0x170
+[  316.225224][    C3]  ? __kmalloc_node_track_caller_noprof+0xf5/0x8e0
+[  316.225242][    C3]  ? __pfx_perf_event_text_poke+0x10/0x10
+[  316.225260][    C3]  ? __pfx___text_poke+0x10/0x10
+[  316.225274][    C3]  ? __pfx_do_sync_core+0x10/0x10
+[  316.225287][    C3]  on_each_cpu_cond_mask+0x40/0x90
+[  316.225304][    C3]  smp_text_poke_batch_finish+0x698/0xd50
+[  316.225321][    C3]  ? __kmalloc_node_track_caller_noprof+0xf5/0x8e0
+[  316.225338][    C3]  ? __pfx_smp_text_poke_batch_finish+0x10/0x10
+[  316.225356][    C3]  ? arch_jump_label_transform_queue+0xbe/0x120
+[  316.225429][    C3]  arch_jump_label_transform_apply+0x1c/0x30
+[  316.225446][    C3]  jump_label_update+0x369/0x540
+[  316.225467][    C3]  static_key_disable_cpuslocked+0x15a/0x1c0
+[  316.225487][    C3]  static_key_disable+0x1a/0x20
+[  316.225505][    C3]  toggle_allocation_gate+0x145/0x250
+[  316.225560][    C3]  ? __pfx_toggle_allocation_gate+0x10/0x10
+[  316.225580][    C3]  ? _raw_spin_unlock_irq+0x23/0x50
+[  316.225600][    C3]  process_one_work+0x992/0x1b60
+[  316.225653][    C3]  ? __pfx_process_one_work+0x10/0x10
+[  316.225671][    C3]  ? assign_work+0x196/0x240
+[  316.225692][    C3]  worker_thread+0x67e/0xe90
+[  316.225710][    C3]  ? __pfx_worker_thread+0x10/0x10
+[  316.225724][    C3]  kthread+0x3d0/0x780
+[  316.225743][    C3]  ? __pfx_kthread+0x10/0x10
+[  316.225763][    C3]  ? _raw_spin_unlock_irq+0x23/0x50
+[  316.225779][    C3]  ? __pfx_kthread+0x10/0x10
+[  316.225799][    C3]  ret_from_fork+0x676/0x7d0
+[  316.225816][    C3]  ? __pfx_kthread+0x10/0x10
+[  316.225835][    C3]  ret_from_fork_asm+0x1a/0x30
+[  316.225863][    C3]  </TASK>
+[  318.908499][    C3] Shutting down cpus with NMI
+[  318.931992][    C3] Kernel Offset: disabled

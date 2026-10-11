@@ -1,0 +1,225 @@
+last executing test programs:
+
+2.845241841s ago: executing program 3 (id=2208):
+r0 = openat$binfmt_register(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+io_setup(0x1000, &(0x7f0000000140)=<r1=>0x0)
+io_submit(r1, 0x1, &(0x7f0000000440)=[&(0x7f0000000400)={0x0, 0x0, 0x0, 0x1, 0x4, r0, 0x0, 0x0, 0x10000}])
+
+2.744135229s ago: executing program 3 (id=2211):
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TCSETS(r0, 0x5402, &(0x7f00000000c0)={0x103, 0x100, 0x6, 0xffffffff, 0xe, "04d87e33cd74ff01000000000000f7de6756a8"})
+ioctl$TCXONC(r0, 0x540a, 0x2)
+
+2.740507779s ago: executing program 3 (id=2213):
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f0000000000)=0x16)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f0000000040)=0x1)
+
+2.67871251s ago: executing program 3 (id=2216):
+r0 = socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$nl80211(&(0x7f0000003280), 0xffffffffffffffff)
+sendmsg$NL80211_CMD_REQ_SET_REG(r0, &(0x7f0000003440)={0x0, 0x0, &(0x7f0000003400)={&(0x7f00000032c0)={0x1c, r1, 0x1, 0x70bd29, 0x25dfdbfc, {}, [@NL80211_ATTR_REG_ALPHA2={0x7, 0x21, 'bb\x00'}]}, 0x1c}, 0x1, 0x0, 0x0, 0x20040815}, 0x40)
+
+2.663785607s ago: executing program 3 (id=2219):
+r0 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+ioctl$SNDRV_SEQ_IOCTL_CREATE_QUEUE(r0, 0xc08c5332, &(0x7f0000000200)={0x9, 0x9, 0x0, 'queue0\x00', 0x73fa})
+write$sndseq(r0, &(0x7f0000000300), 0xffffff6c)
+
+2.602983193s ago: executing program 2 (id=2221):
+r0 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+setsockopt$inet6_IPV6_HOPOPTS(r0, 0x29, 0x36, &(0x7f00000004c0)={0x67}, 0x8)
+setsockopt$inet6_opts(r0, 0x29, 0x36, 0x0, 0x0)
+
+2.567362852s ago: executing program 2 (id=2224):
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x3000002, 0x2a032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x9, 0xcc032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x3000002, 0x2a032, 0xffffffffffffffff, 0x0)
+
+2.340766653s ago: executing program 2 (id=2227):
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f00000002c0)=0x2)
+ioctl$TIOCVHANGUP(r0, 0x5437, 0x0)
+
+2.260245232s ago: executing program 2 (id=2229):
+setuid(0xee01)
+r0 = syz_open_procfs(0xffffffffffffffff, &(0x7f0000000000)='comm\x00')
+futimesat(r0, 0x0, 0x0)
+
+479.526339ms ago: executing program 3 (id=2230):
+r0 = eventfd(0x80)
+read$usbmon(r0, &(0x7f0000000300)=""/76, 0x4c)
+readv(r0, &(0x7f0000001800)=[{&(0x7f0000001780)=""/73, 0x49}], 0x1)
+
+476.659279ms ago: executing program 2 (id=2231):
+capset(&(0x7f0000000040)={0x20080522}, &(0x7f0000000080))
+r0 = syz_open_dev$sg(&(0x7f0000000000), 0x1, 0x101002)
+ioctl$SG_IO(r0, 0x31f, 0x0)
+
+435.160958ms ago: executing program 2 (id=2234):
+r0 = socket$inet6_tcp(0xa, 0x1, 0x0)
+bind$inet6(r0, &(0x7f0000000000)={0xa, 0x4e20, 0x8, @empty, 0xfffffffb}, 0x1c)
+sendmmsg$inet6(r0, &(0x7f00000036c0)=[{{&(0x7f00000004c0)={0xa, 0x4e24, 0x2, @dev={0xfe, 0x80, '\x00', 0xd}, 0x3}, 0x1c, 0x0}}], 0x1, 0x20000000)
+
+267.665882ms ago: executing program 0 (id=2248):
+prctl$PR_SET_SYSCALL_USER_DISPATCH_ON(0x3b, 0x1, 0x5, 0x5, &(0x7f00000002c0))
+syz_emit_ethernet(0x2e, 0x0, 0x0)
+remap_file_pages(&(0x7f0000ffc000/0x2000)=nil, 0x2000, 0x1, 0x6, 0x1)
+
+267.318834ms ago: executing program 0 (id=2249):
+socketpair$nbd(0x1, 0x1, 0x0, &(0x7f00000002c0)={<r0=>0xffffffffffffffff, <r1=>0xffffffffffffffff})
+sendmsg$inet(r1, &(0x7f0000001400)={0x0, 0x0, &(0x7f0000001380)=[{&(0x7f0000000300)="898d", 0x2}], 0x1}, 0x40400c1)
+recvmsg(r0, &(0x7f0000001340)={0x0, 0x0, 0x0}, 0x2003)
+
+209.964302ms ago: executing program 0 (id=2250):
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000040)='./file1\x00', 0x42, 0x1ff)
+ioctl$FS_IOC_RESVSP(r0, 0x40305828, &(0x7f0000000140)={0x0, 0x1, 0x6, 0x8})
+write$P9_RXATTRWALK(r0, &(0x7f0000000080)={0xf, 0x1f, 0x1, 0x7}, 0xf)
+
+206.291328ms ago: executing program 0 (id=2251):
+r0 = socket$igmp6(0xa, 0x3, 0x2)
+connect$inet6(r0, &(0x7f0000000c00)={0xa, 0x4e25, 0x52dd, @ipv4={'\x00', '\xff\xff', @local}}, 0x1c)
+connect$inet6(r0, &(0x7f0000000000)={0xa, 0x4e24, 0x20c, @empty}, 0x1c)
+
+204.656064ms ago: executing program 0 (id=2252):
+r0 = socket$igmp(0x2, 0x3, 0x2)
+sendto$inet(r0, 0x0, 0x0, 0x840, &(0x7f0000000180)={0x2, 0x4f1f, @dev={0xac, 0x14, 0x14, 0x36}}, 0x10)
+recvfrom(r0, 0x0, 0x14, 0x0, 0x0, 0x0)
+
+139.471482ms ago: executing program 0 (id=2253):
+r0 = signalfd(0xffffffffffffffff, &(0x7f0000000240)={[0x8000]}, 0x8)
+readv(r0, &(0x7f00000002c0)=[{&(0x7f0000000000)=""/209, 0xd1}], 0x1)
+syz_open_dev$usbmon(0x0, 0x9, 0x1)
+
+133.630697ms ago: executing program 1 (id=2254):
+r0 = socket$packet(0x11, 0x2, 0x300)
+socket$packet(0x11, 0x2, 0x300)
+setsockopt$packet_fanout(r0, 0x107, 0x12, &(0x7f0000000080)={0x3, 0x8000}, 0x4)
+
+78.088082ms ago: executing program 1 (id=2255):
+mknodat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x81c0, 0x0)
+truncate(&(0x7f0000000240)='./file0\x00', 0x1)
+execve(&(0x7f0000000080)='./file0\x00', 0x0, 0x0)
+
+65.128561ms ago: executing program 1 (id=2256):
+mkdirat(0xffffffffffffff9c, &(0x7f0000002040)='./file0\x00', 0x0)
+r0 = inotify_init1(0x80000)
+inotify_add_watch(r0, &(0x7f0000000000)='./file0\x00', 0x91000220)
+
+58.730507ms ago: executing program 1 (id=2257):
+r0 = add_key$user(&(0x7f0000000000), &(0x7f0000000040)={'syz', 0x0}, &(0x7f00000001c0)="fde632", 0x3, 0xfffffffffffffffc)
+r1 = add_key$keyring(&(0x7f0000000100), &(0x7f0000000240)={'syz', 0x2}, 0x0, 0x0, 0xfffffffffffffffc)
+keyctl$KEYCTL_MOVE(0x1e, r0, r1, r0, 0x1)
+
+4.216981ms ago: executing program 1 (id=2258):
+r0 = syz_genetlink_get_family_id$nl80211(&(0x7f0000000400), 0xffffffffffffffff)
+r1 = socket$nl_generic(0x10, 0x3, 0x10)
+sendmsg$NL80211_CMD_GET_COALESCE(r1, &(0x7f00000019c0)={0x0, 0x0, &(0x7f0000001980)={&(0x7f0000001940)={0x28, r0, 0x1, 0x70bd28, 0x25dfdbfd, {{}, {@void, @val={0x8}, @val={0xc, 0x99, {0x7, 0x6a}}}}}, 0x28}, 0x1, 0x0, 0x0, 0x1}, 0x4000040)
+
+0s ago: executing program 1 (id=2259):
+r0 = socket$inet6_udp(0xa, 0x2, 0x0)
+setsockopt$inet6_group_source_req(r0, 0x29, 0x2e, &(0x7f00000000c0)={0x3, {{0xa, 0x4e23, 0x5, @mcast1, 0x5}}, {{0xa, 0x4e21, 0x7, @ipv4={'\x00', '\xff\xff', @local}, 0x3}}}, 0x108)
+setsockopt$inet6_group_source_req(r0, 0x29, 0x2e, &(0x7f00000000c0)={0x3, {{0xa, 0x4e20, 0x5, @mcast1, 0x5}}, {{0xa, 0x4e21, 0x7, @private2, 0x3}}}, 0x108)
+
+kernel console output (not intermixed with test programs):
+
+[   23.632186] audit: type=1400 audit(1786116256.124:33): avc:  denied  { rlimitinh } for  pid=281 comm="bash" scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   23.641934] audit: type=1400 audit(1786116256.124:34): avc:  denied  { siginh } for  pid=281 comm="bash" scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   24.149485] sshd (282) used greatest stack depth: 24704 bytes left
+Warning: Permanently added '[localhost]:27776' (ED25519) to the list of known hosts.
+[   25.120844] cgroup: Unknown subsys name 'net'
+[   25.154774] cgroup: Unknown subsys name 'cpuset'
+[   25.162162] cgroup: Unknown subsys name 'rlimit'
+[   25.164263] cgroup: Unknown subsys name 'memory'
+[   25.203958] kmemleak: Automatic memory scanning thread ended
+[   33.943722] kmemleak: 8 new suspected memory leaks (see /sys/kernel/debug/kmemleak)
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=6dbef169-4da9-4d29-a624-18562642750b
+[   34.008946] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   35.747304] audit: type=1400 audit(1786116268.251:35): avc:  denied  { execmem } for  pid=303 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   35.939163] audit: type=1400 audit(1786116268.444:36): avc:  denied  { read } for  pid=306 comm="modprobe" name="modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   35.959705] audit: type=1400 audit(1786116268.445:37): avc:  denied  { open } for  pid=306 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   35.991356] audit: type=1400 audit(1786116268.445:38): avc:  denied  { getattr } for  pid=306 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   36.014728] audit: type=1400 audit(1786116268.446:39): avc:  denied  { map } for  pid=306 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   46.444582] systemd-udevd (181) used greatest stack depth: 24416 bytes left
+[   52.509453] netlink: 8 bytes leftover after parsing attributes in process `syz.2.3'.
+[   52.712284] netlink: 4 bytes leftover after parsing attributes in process `syz.2.19'.
+[   52.944708] tmpfs: Bad value for 'mpol'
+[   53.338640] capability: warning: `syz.1.63' uses 32-bit capabilities (legacy support in use)
+[   53.761716] netlink: 'syz.0.89': attribute type 33 has an invalid length.
+[   55.177369] netlink: 'syz.3.174': attribute type 33 has an invalid length.
+[   55.946629] tmpfs: Bad value for 'mpol'
+[   56.208291] tmpfs: Bad value for 'mpol'
+[   56.829150] netlink: 4 bytes leftover after parsing attributes in process `syz.3.256'.
+[   59.191518] netlink: 40 bytes leftover after parsing attributes in process `syz.3.408'.
+[   62.312682] netlink: 4 bytes leftover after parsing attributes in process `syz.1.570'.
+[   63.539906] netlink: 4 bytes leftover after parsing attributes in process `syz.2.621'.
+[   64.164652] loop0: detected capacity change from 0 to 512
+[   64.217030] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[   64.282014] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   64.357279] loop3: detected capacity change from 0 to 512
+[   64.398822] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[   64.450480] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   64.826656] syz.2.654 (3410) used greatest stack depth: 24096 bytes left
+[   66.017515] bochs-drm 0000:00:01.0: [drm] Unknown color mode 65536; guessing buffer size.
+[   66.928956] audit: type=1401 audit(1786116299.430:40): op=setxattr invalid_context="u:object_r:app_data_file:s0:c512,c768"
+[   67.117335] audit: type=1401 audit(1786116299.623:41): op=setxattr invalid_context="u:object_r:app_data_file:s0:c512,c768"
+[   67.431938] audit: type=1400 audit(1786116299.938:42): avc:  denied  { audit_read } for  pid=3678 comm="syz.1.785" capability=37  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[   67.831506] audit: type=1400 audit(1786116300.338:43): avc:  denied  { module_load } for  pid=3701 comm="modprobe" path="/usr/lib/modules/7.1.0+/kernel/net/qrtr/qrtr.ko" dev="sda" ino=14942703 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=system permissive=1
+[   67.899397] NET: Registered PF_QIPCRTR protocol family
+[   67.907336] audit: type=1400 audit(1786116300.414:44): avc:  denied  { net_admin } for  pid=3701 comm="modprobe" capability=12  scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:system_r:kmod_t:s0 tclass=capability permissive=1
+[   68.068846] capability: warning: `syz.2.805' uses deprecated v2 capabilities in a way that may be insecure
+[   68.459700] nfs4: Bad value for 'source'
+[   68.532154] nfs4: Bad value for 'source'
+[   69.470992] process 'syz.3.855' launched './file2' with NULL argv: empty string added
+[   69.577743] netlink: 4 bytes leftover after parsing attributes in process `syz.0.849'.
+[   69.584934] netlink: 4 bytes leftover after parsing attributes in process `syz.0.849'.
+[   70.985804] SELinux: unrecognized netlink message: protocol=4 nlmsg_type=16 sclass=netlink_tcpdiag_socket pid=3929 comm=syz.1.894
+[   71.192705] SELinux: unrecognized netlink message: protocol=4 nlmsg_type=16 sclass=netlink_tcpdiag_socket pid=3946 comm=syz.2.910
+[   71.458896] SELinux: unrecognized netlink message: protocol=4 nlmsg_type=16 sclass=netlink_tcpdiag_socket pid=3973 comm=syz.0.917
+[   73.892783] netlink: 24 bytes leftover after parsing attributes in process `syz.3.969'.
+[   74.216991] netlink: 24 bytes leftover after parsing attributes in process `syz.0.992'.
+[   76.724667] loop3: detected capacity change from 0 to 512
+[   76.764098] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[   76.805754] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   77.096701] loop0: detected capacity change from 0 to 512
+[   77.127655] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[   77.199635] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   77.457333] loop1: detected capacity change from 0 to 512
+[   77.481675] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[   77.511735] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   77.721856] loop1: detected capacity change from 0 to 164
+[   78.467074] netlink: 8 bytes leftover after parsing attributes in process `syz.3.1190'.
+[   78.471128] loop2: detected capacity change from 0 to 512
+[   78.492450] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[   78.533020] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   78.892312] loop1: detected capacity change from 0 to 512
+[   78.928044] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[   78.977094] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   79.150519] loop2: detected capacity change from 0 to 512
+[   79.171750] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[   79.202133] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   80.108501] loop0: detected capacity change from 0 to 512
+[   80.126786] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[   80.182961] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   83.528611] audit: type=1400 audit(1786116316.034:45): avc:  denied  { checkpoint_restore } for  pid=4951 comm="syz.2.1378" capability=40  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[   86.539308] audit: type=1326 audit(1786116319.038:46): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=5131 comm="syz.0.1464" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7f156791359d code=0x0
+[   86.706412] ucma_write: process 798 (syz.2.1471) changed security contexts after opening file descriptor, this is not allowed.
+[   87.519784] audit: type=1326 audit(1786116320.026:47): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=5233 comm="syz.2.1516" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7f604018359d code=0x0
+[   88.215607] netlink: 8 bytes leftover after parsing attributes in process `syz.0.1547'.
+[   88.459943] netlink: 8 bytes leftover after parsing attributes in process `syz.1.1558'.
+[   88.555344] audit: type=1326 audit(1786116321.061:48): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=5340 comm="syz.1.1565" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7f3a67cf359d code=0x0
+[   88.807813] netlink: 8 bytes leftover after parsing attributes in process `syz.3.1574'.
+[   92.406566] loop3: detected capacity change from 0 to 736
+[   92.903857] loop0: detected capacity change from 0 to 736
+[   92.959370] audit: type=1401 audit(1786116325.466:49): op=setxattr invalid_context=""
+[   93.103692] loop2: detected capacity change from 0 to 736
+[   94.169845] watchdog: watchdog0: watchdog did not stop!
+[   96.863163] audit: type=1400 audit(1786116329.359:50): avc:  denied  { block_suspend } for  pid=6147 comm="syz.3.1950" capability=36  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[   97.679307] program syz.3.1999 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  100.863884] 9pnet_fd: Insufficient options for proto=fd
+[  101.351754] netlink: 8 bytes leftover after parsing attributes in process `syz.1.2108'.
+[  104.048950] 9pnet_fd: Insufficient options for proto=fd
+[  104.254074] 9pnet_fd: Insufficient options for proto=fd
+[  104.636832] loop1: detected capacity change from 0 to 32768
+[  106.647773] mmap: syz.0.2248 (6751) uses deprecated remap_file_pages() syscall. See Documentation/mm/remap_file_pages.rst.
+Connection to localhost closed by remote host.

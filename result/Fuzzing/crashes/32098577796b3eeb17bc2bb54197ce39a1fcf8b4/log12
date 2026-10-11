@@ -1,0 +1,334 @@
+last executing test programs:
+
+0s ago: executing program 1 (id=2):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000040)=0x5)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x3)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f0000000040)=0x84)
+r2 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000280), 0x141480, 0x0)
+ioctl$TIOCMGET(r2, 0x5415, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$PIO_CMAP(0xffffffffffffffff, 0x4b71, &(0x7f0000000b00)={0x200, 0x9, 0xfff, 0x9e0, 0x2, 0xad})
+ioctl$TIOCSTI(r1, 0x5412, &(0x7f0000000400)=0x7f)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x4)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000140)=0x4)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000180)=0x13)
+ioctl$KDMKTONE(r4, 0x4b30, 0x4)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+ioctl$VT_OPENQRY(r3, 0x5600, &(0x7f0000000200))
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000180)=0x91)
+
+0s ago: executing program 0 (id=1):
+r0 = openat$rssd_pm(0xffffffffffffff9c, &(0x7f0000000400), 0x1, 0x0)
+write$rssd_pm_on(r0, &(0x7f00000005c0), 0x3)
+
+kernel console output (not intermixed with test programs):
+
+[   15.411933] audit: type=1400 audit(1791444189.765:35): avc:  denied  { siginh } for  pid=286 comm="bash" scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+
+Debian GNU/Linux 11 syzkaller ttyS0
+
+Warning: Permanently added '[localhost]:59134' (ED25519) to the list of known hosts.
+syzkaller login: [   16.722466] cgroup: Unknown subsys name 'net'
+[   16.764623] cgroup: Unknown subsys name 'cpuset'
+[   16.770587] cgroup: Unknown subsys name 'rlimit'
+[   16.772129] cgroup: Unknown subsys name 'memory'
+[   16.808384] kmemleak: Automatic memory scanning thread ended
+[   25.323496] kmemleak: 9 new suspected memory leaks (see /sys/kernel/debug/kmemleak)
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=f08fd8fa-e89f-48f3-8b87-f00ce763dbf3
+[   25.381003] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   26.570507] audit: type=1400 audit(1791444200.937:36): avc:  denied  { execmem } for  pid=304 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   26.683693] audit: type=1400 audit(1791444201.051:37): avc:  denied  { read } for  pid=312 comm="modprobe" name="modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   26.693424] audit: type=1400 audit(1791444201.051:38): avc:  denied  { open } for  pid=313 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   26.700684] audit: type=1400 audit(1791444201.051:39): avc:  denied  { getattr } for  pid=314 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   26.707531] audit: type=1400 audit(1791444201.051:40): avc:  denied  { map } for  pid=314 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   26.716830] audit: type=1400 audit(1791444201.051:41): avc:  denied  { map } for  pid=313 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   31.728049] ==================================================================
+[   31.729714] BUG: KASAN: slab-use-after-free in __mutex_lock+0x1eb5/0x1ee0
+[   31.731140] Read of size 1 at addr ffff888106078034 by task syz.0.1/2051
+[   31.734685] 
+[   31.735436] CPU: 1 UID: 0 PID: 2051 Comm: syz.0.1 Tainted: G      D W        N  7.1.0+ #1 PREEMPT(full) 
+[   31.735477] Tainted: [D]=DIE, [W]=WARN, [N]=TEST
+[   31.735480] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[   31.735485] Call Trace:
+[   31.735488]  <TASK>
+[   31.735492]  dump_stack_lvl+0xdb/0x140
+[   31.735514]  print_report+0xcb/0x5e0
+[   31.735527]  ? __virt_addr_valid+0x222/0x400
+[   31.735536]  ? __mutex_lock+0x1eb5/0x1ee0
+[   31.735543]  ? __mutex_lock+0x1eb5/0x1ee0
+[   31.735550]  kasan_report+0xca/0x100
+[   31.735561]  ? __mutex_lock+0x1eb5/0x1ee0
+[   31.735569]  __mutex_lock+0x1eb5/0x1ee0
+[   31.735576]  ? control_store+0x30/0xc0
+[   31.735587]  ? lock_acquire+0x1b4/0x2f0
+[   31.735598]  ? __pfx___mutex_lock+0x10/0x10
+[   31.735605]  ? __mutex_lock+0x272/0x1ee0
+[   31.735613]  ? __pfx___mutex_lock+0x10/0x10
+[   31.735620]  ? lock_acquire+0x1b4/0x2f0
+[   31.735629]  ? __pfx_control_store+0x10/0x10
+[   31.735640]  ? control_store+0x30/0xc0
+[   31.735650]  control_store+0x30/0xc0
+[   31.735661]  ? __pfx_control_store+0x10/0x10
+[   31.735671]  dev_attr_store+0x5c/0x90
+[   31.735682]  ? __pfx_dev_attr_store+0x10/0x10
+[   31.735693]  sysfs_kf_write+0xf4/0x150
+[   31.735701]  ? __pfx_sysfs_kf_write+0x10/0x10
+[   31.735708]  kernfs_fop_write_iter+0x3ab/0x580
+[   31.735721]  vfs_write+0xc0c/0x1140
+[   31.735730]  ? __pfx_kernfs_fop_write_iter+0x10/0x10
+[   31.735741]  ? __pfx_vfs_write+0x10/0x10
+[   31.735754]  ksys_write+0x126/0x240
+[   31.735762]  ? __pfx_ksys_write+0x10/0x10
+[   31.735770]  ? fput+0x97/0xd0
+[   31.735781]  do_syscall_64+0x11a/0x6a0
+[   31.735794]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[   31.735803] RIP: 0033:0x7f8c79e9559d
+[   31.735810] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[   31.735818] RSP: 002b:00007f8c788d6f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+[   31.735825] RAX: ffffffffffffffda RBX: 00007f8c7a135fa0 RCX: 00007f8c79e9559d
+[   31.735830] RDX: 0000000000000003 RSI: 00002000000005c0 RDI: 0000000000000003
+[   31.735835] RBP: 00007f8c79f354c0 R08: 0000000000000000 R09: 0000000000000000
+[   31.735840] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+[   31.735844] R13: 00007f8c7a136038 R14: 00007f8c7a135fa0 R15: 00007f8c788b7000
+[   31.735852]  </TASK>
+[   31.735855] 
+[   31.783810] Allocated by task 96:
+[   31.784559]  kasan_save_stack+0x24/0x50
+[   31.785362]  kasan_save_track+0x14/0x30
+[   31.786248]  __kasan_slab_alloc+0x59/0x70
+[   31.787108]  kmem_cache_alloc_node_noprof+0x227/0x710
+[   31.788111]  copy_process+0x699/0x7a00
+[   31.788890]  kernel_clone+0x202/0x860
+[   31.789715]  user_mode_thread+0xcd/0x110
+[   31.790576]  call_usermodehelper_exec_work+0x72/0x190
+[   31.791644]  process_one_work+0x920/0x1a80
+[   31.792621]  worker_thread+0x698/0xeb0
+[   31.793399]  kthread+0x38a/0x4a0
+[   31.794185]  ret_from_fork+0x667/0xa80
+[   31.794932]  ret_from_fork_asm+0x1a/0x30
+[   31.795802] 
+[   31.796185] Freed by task 33:
+[   31.796838]  kasan_save_stack+0x24/0x50
+[   31.797782]  kasan_save_track+0x14/0x30
+[   31.798714]  kasan_save_free_info+0x3b/0x60
+[   31.799709]  __kasan_slab_free+0x43/0x70
+[   31.800791]  kmem_cache_free+0x28f/0x5f0
+[   31.801695]  rcu_core+0x570/0x1550
+[   31.802598]  handle_softirqs+0x1bb/0x860
+[   31.803516]  run_ksoftirqd+0x35/0x60
+[   31.804331]  smpboot_thread_fn+0x424/0x9e0
+[   31.805281]  kthread+0x38a/0x4a0
+[   31.806108]  ret_from_fork+0x667/0xa80
+[   31.807076]  ret_from_fork_asm+0x1a/0x30
+[   31.808008] 
+[   31.808368] Last potentially related work creation:
+[   31.809411]  kasan_save_stack+0x24/0x50
+[   31.810440]  kasan_record_aux_stack+0x8c/0xa0
+[   31.811414]  __call_rcu_common.constprop.0+0x75/0x9d0
+[   31.812515]  delayed_put_task_struct+0xe7/0x270
+[   31.813525]  rcu_core+0x570/0x1550
+[   31.814364]  handle_softirqs+0x1bb/0x860
+[   31.815298]  run_ksoftirqd+0x35/0x60
+[   31.816112]  smpboot_thread_fn+0x424/0x9e0
+[   31.817030]  kthread+0x38a/0x4a0
+[   31.817788]  ret_from_fork+0x667/0xa80
+[   31.818694]  ret_from_fork_asm+0x1a/0x30
+[   31.819764] 
+[   31.820121] Second to last potentially related work creation:
+[   31.821425]  kasan_save_stack+0x24/0x50
+[   31.822206]  kasan_record_aux_stack+0x8c/0xa0
+[   31.823225]  __call_rcu_common.constprop.0+0x75/0x9d0
+[   31.824333]  put_task_struct_rcu_user+0x7a/0xc0
+[   31.825379]  __schedule+0x10d7/0x47a0
+[   31.826324]  preempt_schedule+0x58/0x80
+[   31.827249]  preempt_schedule_thunk+0x16/0x40
+[   31.828249]  _raw_read_unlock+0x37/0x40
+[   31.829210]  selinux_bprm_committed_creds+0x16e/0x3a0
+[   31.830451]  security_bprm_committed_creds+0x2e/0x50
+[   31.831566]  begin_new_exec+0x18d5/0x33c0
+[   31.832445]  load_elf_binary+0x85b/0x4ea0
+[   31.833421]  bprm_execve+0x8d5/0x1650
+[   31.834337]  kernel_execve+0x2e3/0x3a0
+[   31.835168]  call_usermodehelper_exec_async+0x264/0x4e0
+[   31.836332]  ret_from_fork+0x667/0xa80
+[   31.837288]  ret_from_fork_asm+0x1a/0x30
+[   31.838199] 
+[   31.838515] The buggy address belongs to the object at ffff888106078000
+[   31.838515]  which belongs to the cache task_struct of size 6784
+[   31.841300] The buggy address is located 52 bytes inside of
+[   31.841300]  freed 6784-byte region [ffff888106078000, ffff888106079a80)
+[   31.844224] 
+[   31.844657] The buggy address belongs to the physical page:
+[   31.845933] page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x106078
+[   31.847883] head: order:3 mapcount:0 entire_mapcount:0 nr_pages_mapped:0 pincount:0
+[   31.849789] memcg:ffff88810607ee01
+[   31.850540] flags: 0x200000000000040(head|node=0|zone=2)
+[   31.851689] page_type: f5(slab)
+[   31.852464] raw: 0200000000000040 ffff888100aa2280 dead000000000100 dead000000000122
+[   31.854273] raw: 0000000000000000 0000000800040004 00000000f5000000 ffff88810607ee01
+[   31.856218] head: 0200000000000040 ffff888100aa2280 dead000000000100 dead000000000122
+[   31.858186] head: 0000000000000000 0000000800040004 00000000f5000000 ffff88810607ee01
+[   31.859930] head: 0200000000000003 fffffffffffffe01 00000000ffffffff 00000000ffffffff
+[   31.861700] head: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000008
+[   31.863608] page dumped because: kasan: bad access detected
+[   31.864943] 
+[   31.865293] Memory state around the buggy address:
+[   31.866377]  ffff888106077f00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[   31.868039]  ffff888106077f80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+[   31.869653] >ffff888106078000: fa fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   31.871470]                                      ^
+[   31.872595]  ffff888106078080: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   31.874271]  ffff888106078100: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   31.875869] ==================================================================
+
+VM DIAGNOSIS:
+15:23:26  Registers:
+info registers vcpu 0
+
+CPU#0
+RAX=0000000000000000 RBX=ffffea0004c280c0 RCX=000000000000003f RDX=0000000000001000
+RSI=0000000000000000 RDI=ffff888130a03000 RBP=0000000000001000 RSP=ffff88811ad277b0
+R8 =0000000000000001 R9 =0000000000000000 R10=ffff888130a03000 R11=0000000000000000
+R12=0000000000000000 R13=0000000000001000 R14=0000000000000000 R15=0000000000001000
+RIP=ffffffff8612fdf6 RFL=00000216 [----AP-] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0000 0000000000000000 ffffffff 00c00100
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 0000555576862500 ffffffff 00c00100
+GS =0000 ffff8881d07ac000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe0000003000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000001000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=0000001b2fe24000 CR3=00000001072f2000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=ff00000000000000 00000000000000ff XMM01=2525252525252525 2525252525252525
+XMM02=0000000000000000 00007fffa8a141d0 XMM03=0000000000000000 0000000000000000
+XMM04=ff00000000000000 00000000000000ff XMM05=0000000000000000 0000000000000000
+XMM06=0000000000000000 0000000000000000 XMM07=0000000000000000 0000000000000000
+XMM08=0000000000000000 0000000000000000 XMM09=0000000000000000 0000000000000000
+XMM10=0000000000000000 0000000000000000 XMM11=0000000000000000 0000000000000000
+XMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000
+XMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000
+info registers vcpu 1
+
+CPU#1
+RAX=0000000000000031 RBX=00000000000003f8 RCX=0000000000000000 RDX=00000000000003f8
+RSI=ffffffff82d62c0a RDI=ffffffff8af6a660 RBP=ffffffff8af6a620 RSP=ffff888121a1f530
+R8 =0000000000000000 R9 =ffffed1020840046 R10=0000000000000031 R11=20666f2064616552
+R12=0000000000000031 R13=0000000000000010 R14=ffffffff8af6a620 R15=ffffffff82d62bf0
+RIP=ffffffff82d62c62 RFL=00000002 [-------] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 00007f8c788d7640 ffffffff 00c00100
+GS =0000 ffff8881d082c000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe000004a000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000048000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=000000110c27448b CR3=000000011eada000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000
+XMM02=00007f8c79e98ea5 00007f8c7a0fade8 XMM03=00007fff69a58ee8 0000003000000030
+XMM04=01accf07126e4d00 000000000000fec0 XMM05=0000000000000000 00007f8c79f355ca
+XMM06=0000000000000000 00007fff69a59060 XMM07=00007fff69a591b0 00007fff69a59170
+XMM08=0000000000000000 0000000000000000 XMM09=0000000000000000 0000000000000000
+XMM10=0000000000000000 0000000000000000 XMM11=0000000000000000 0000000000000000
+XMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000
+XMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000
+info registers vcpu 2
+
+CPU#2
+RAX=0000000000000000 RBX=ffffea0004c45140 RCX=000000000000003f RDX=0000000000001000
+RSI=0000000000000000 RDI=ffff888131145000 RBP=0000000000001000 RSP=ffff8881054a77b0
+R8 =0000000000000001 R9 =0000000000000000 R10=ffff888131145000 R11=0000000000000000
+R12=0000000000000000 R13=0000000000001000 R14=0000000000000000 R15=0000000000001000
+RIP=ffffffff8612fdf6 RFL=00000216 [----AP-] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 000055559368a500 ffffffff 00c00100
+GS =0000 ffff8881d08ac000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe0000091000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe000008f000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=0000555577ca7518 CR3=0000000124010000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=0000000000000000 0000000000000000 XMM01=2525252525252525 2525252525252525
+XMM02=0000000000000000 00007ffdbd5cfe40 XMM03=0000000000000000 0000000000000000
+XMM04=0000000000000000 00000000000000ff XMM05=0000000000000000 0000000000000000
+XMM06=0000000000000000 0000000000000000 XMM07=0000000000000000 0000000000000000
+XMM08=0000000000000000 0000000000000000 XMM09=0000000000000000 0000000000000000
+XMM10=0000000000000000 0000000000000000 XMM11=0000000000000000 0000000000000000
+XMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000
+XMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000
+info registers vcpu 3
+
+CPU#3
+RAX=0000000080010002 RBX=0000000000000001 RCX=000000075ada0928 RDX=0000000000000001
+RSI=0000000000000000 RDI=ffff88811e13c000 RBP=ffff88811e13c000 RSP=ffff88815a988c60
+R8 =0000000000000000 R9 =0000000000000598 R10=0000000000000001 R11=0000000000000000
+R12=0000000000000001 R13=0000000000000000 R14=000000075ada0928 R15=0000000000000598
+RIP=ffffffff82f419f0 RFL=00000046 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 00007f76531508c0 ffffffff 00c00100
+GS =0000 ffff8881d092c000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe00000d8000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe00000d6000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007f8c7a137dac CR3=000000011870a000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000
+XMM02=ffffffffffffffff 0000000000000000 XMM03=ffffffffffffff00 ffff000000000000
+XMM04=0000000000000000 0000000000000000 XMM05=00000000ffffffff ffffff00ffff0000
+XMM06=ffffffff00000002 00005581460535f0 XMM07=0000558146008a50 000055814600a310
+XMM08=00000000000000f0 6e2f65ff02010000 XMM09=ffff000000000000 000000ffff00ffff
+XMM10=0000000020000000 0000000020000000 XMM11=ffff0000ff00ffff ffff0000ff00ffff
+XMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000
+XMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000

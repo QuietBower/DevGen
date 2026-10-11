@@ -1,0 +1,68 @@
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Author A <author-a@example.com>
+Cc: jirislaby@kernel.org, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v2] tty: vt: fix memory leak in vc_allocate()
+Date: Mon, 03 Aug 2026 16:23:43 +0200
+Message-ID: <2026080339-proofing-catsup-bee9@gregkh>
+In-Reply-To: <20260731024550.158801-1-author-a@example.com>
+References: <20260731024550.158801-1-author-a@example.com>
+List-Id: <stable.vger.kernel.org>
+
+On Fri, Jul 31, 2026 at 10:45:50AM +0800, Author A wrote:
+> If the screen buffer allocation fails in vc_allocate(), the error handling
+> path jumps to `err_free`. However, this path fails to release the unicode
+> screen map attached to `vc->uni_pagedict_loc`.
+> 
+> During the early stages of vc_allocate(), the unicode screen map is either
+> newly allocated via con_set_default_unimap() or shares the default unicode
+> map from a previously initialized console (which increments its refcount).
+> If the subsequent kzalloc() for the screen buffer fails, the err_free path
+> frees the vc structure but leaves the attached uni_pagedict with an
+> elevated refcount. This results in an unreferenced object memory leak, as
+> the reference to the dictionary is lost and its refcount can never reach
+> zero.
+> 
+> This issue was discovered by DevGen (an automated virtual device modeling
+> fuzzer based on Syzkaller). During fuzzing with kernel fault injection
+> (failslab) enabled, the fuzzer forcefully failed the kzalloc() for the
+> screen buffer, exposing this error-handling path leak.
+> 
+> Fix this by calling con_free_unimap(vc) in the err_free path before
+> kfree(vc). This safely decrements the refcount and releases the dictionary
+> memory if this was the last reference.
+> 
+> Fixes: 34902b7f2754 ("tty: vt, get rid of weird source code flow")
+> Cc: stable@vger.kernel.org
+> Signed-off-by: Author A <author-a@example.com>
+> ---
+> Changes in v2:
+> - Added documentation in the commit message detailing the fuzzing
+>   environment (DevGen/Syzkaller) and the fault injection (failslab)
+>   mechanism used to discover the bug, as requested by Greg KH.
+> 
+>  drivers/tty/vt/vt.c | 1 +
+>  1 file changed, 1 insertion(+)
+> 
+> diff --git a/drivers/tty/vt/vt.c b/drivers/tty/vt/vt.c
+> index 8f467b22b799..4bac89ea968a 100644
+> --- a/drivers/tty/vt/vt.c
+> +++ b/drivers/tty/vt/vt.c
+> @@ -1134,6 +1134,7 @@ int vc_allocate(unsigned int currcons)	/* return 0 on success */
+>  	return 0;
+>  err_free:
+>  	visual_deinit(vc);
+> +	con_free_unimap(vc);
+
+Shouldn't you be checking vc->uni_pagedict_loc before calling this
+function?
+
+Right now we have callers sometimes checking this, and sometimes not,
+while the function doesn't seem to care, but we should be consistant,
+right?  This will only need to be cleaned up if the previous check in
+this function was correct.
+
+thanks,
+
+greg k-h
+

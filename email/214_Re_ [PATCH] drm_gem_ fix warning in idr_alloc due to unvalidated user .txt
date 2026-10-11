@@ -1,0 +1,67 @@
+From: Author A <author-a@example.com>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject:
+ Re: [PATCH] drm/gem: fix warning in idr_alloc due to unvalidated user handle
+Date: Fri, 05 Jun 2026 11:06:21 +0800
+Message-ID: <388db131.142.19e95bef999.Coremail.author-a@example.com>
+	In-Reply-To:References:Content-Transfer-Encoding:Content-Type:
+	MIME-Version:Message-ID; bh=pRN446I1KB8ZMXCtHVDS1WYMOTHitjBP5FC6	WoVIUfA=;
+ b=J0X5AAawOfiL8kZLHJL31zZUjftyu6gJJkAzX6U1bm75AzjI5679
+	kPn5yY4xN/TH0mMZ+qdAF2tCJEgJTTsmPIdkCnW975e008En/CdVFXEfWK4VZ7o6
+	JtvxLcU0KNYeaGRDyWfCOuS0xa2m9NYSi3Yj2DcUjeukY71c5zQJ1jI=
+In-Reply-To: <20260422114247.486581-1-author-a@example.com>
+References: <20260422114247.486581-1-author-a@example.com>
+List-Id: <linux-kernel.vger.kernel.org>
+
+Hi maintainers,
+
+Just a gentle ping on this patch. It fixes a WARN triggered during fuzzing when negative user handles are passed.
+
+Please let me know if it needs any revisions or if there is anything else I can do to help move it forward.
+
+Thanks,
+Author A
+
+
+> -----原始邮件-----
+> 发件人: "Author A" <author-a@example.com>
+> 发送时间:2026-04-22 19:42:47 (星期三)
+> 收件人: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch
+> 抄送: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org, "Author A" <author-a@example.com>
+> 主题: [PATCH] drm/gem: fix warning in idr_alloc due to unvalidated user handle
+> 
+> During fuzzing, a warning was triggered in idr_alloc() when handling
+> the DRM_IOCTL_GEM_CHANGE_HANDLE (or similar) ioctl.
+> 
+> The function drm_gem_change_handle_ioctl() currently only checks if
+> args->new_handle is strictly greater than INT_MAX. However, it fails
+> to check for negative values. If a userpace application passes a
+> negative handle, it bypasses the upper-bound check and is passed
+> directly to idr_alloc() as the 'start' parameter, triggering the
+> WARN_ON_ONCE(start < 0) inside idr_alloc().
+> 
+> Fix this by explicitly validating that the user-provided handle is
+> strictly positive and within the valid IDR range.
+> 
+> Signed-off-by: Author A <author-a@example.com>
+> ---
+>  drivers/gpu/drm/drm_gem.c | 2 +-
+>  1 file changed, 1 insertion(+), 1 deletion(-)
+> 
+> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+> index d6424267260b..3d84d4f1c3e0 100644
+> --- a/drivers/gpu/drm/drm_gem.c
+> +++ b/drivers/gpu/drm/drm_gem.c
+> @@ -1026,7 +1026,7 @@ int drm_gem_change_handle_ioctl(struct drm_device *dev, void *data,
+>  		return -EOPNOTSUPP;
+>  
+>  	/* idr_alloc() limitation. */
+> -	if (args->new_handle > INT_MAX)
+> +	if (args->new_handle <= 0 || args->new_handle > INT_MAX)
+>  		return -EINVAL;
+>  	handle = args->new_handle;
+>  
+> -- 
+> 2.34.1

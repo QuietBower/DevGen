@@ -1,0 +1,48 @@
+From: Author A <author-a@example.com>
+To: Petr Pavlu <petr.pavlu@suse.com>
+Cc: Luis Chamberlain <mcgrof@kernel.org>, Daniel Gomez <da.gomez@kernel.org>,
+ Sami Tolvanen <samitolvanen@google.com>, Aaron Tomlin <atomlin@atomlin.com>,
+ Johan Hovold <johan@kernel.org>, linux-modules@vger.kernel.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH] module: fix UAF and GPF in idempotent_init_module via
+ heap allocation
+Date: Thu, 06 Aug 2026 09:30:38 +0800
+Message-ID: <cb04f43b-c86f-44f2-ba13-d172d7e03783@anonymous.edu>
+ In-Reply-To:Content-Type; =?utf-8?q?b=3DM7BYRWkYsCuDe/G1wu3LSEkta+WQlPqrwer?=
+ =?utf-8?q?nH7omB1tzBtsOpzFzNNQvsBjKelP44lkRzkdM1vthUZ0LVXCHVLfFZFzhqmkJPgBc?=
+ =?utf-8?q?BhmbcgKvroZ6zxqdqojyQ1uNTVMmDDNrsZFYOscrOgJdeHaaHIoJk9SQ7/ZfmMlKZ?=
+ =?utf-8?q?ZYSK1g=3D?=
+	In-Reply-To:Content-Type:Content-Transfer-Encoding; bh=Gm133SdNS
+	U5loWI6t0dGujNfsaLWX6SzhkSafhy/m2U=; b=7F8WrUdF6bA8aLKbfX98fHgjh
+	LHg18AmHuZKEFRyyJCTlAFY46hWCp+GDaO8N6LYzleDqRefDbOzzPNWnqod17Xuo
+	Wx9qe7MpSSjBSnXtug1L0pY73XLjOYHh6xaDAlkMXzR8Wlu+dRoWYI/cY+j14qpi
+	FSfVa/zRFEiHdjNzL8=
+In-Reply-To: <1951733c-0d8f-4d1d-9da1-fd71d23781de@suse.com>
+References: <20260717082601.81704-1-author-a@example.com>
+ <8d507b50-b5a2-48a8-a4bb-f196ac28b5e4@suse.com>
+ <f79bc014-a606-4ab5-adfd-1b56dbdc30ba@anonymous.edu>
+ <1951733c-0d8f-4d1d-9da1-fd71d23781de@suse.com>
+List-Id: <linux-modules.vger.kernel.org>
+
+> An oopsed task can leave behind various kernel structures in an
+> inconsistent state, such as unreleased locks, incorrect reference counts
+> and leaked objects. It is expected that the kernel may behave strangely
+> afterward and this can result in subsequent problems, such as deadlocks
+> or crashes.
+>
+> Loading a module is a heavyweight operation that injects new code and
+> data into the kernel. If it ends in an oops, I think it is fair that no
+> additional modules can be inserted. I don't see that the module loader
+> is doing anything wrong or behaving differently from other kernel
+> components in this regard.
+
+Makes sense. Hardening the module loader against a post-oops state is
+
+indeed unnecessary. I'll drop this and go after the driver bugs instead.
+
+Thanks for the review.
+
+Cheers,
+Author A
+
+

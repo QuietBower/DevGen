@@ -1,0 +1,1812 @@
+last executing test programs:
+
+19m52.794225224s ago: executing program 32 (id=1487):
+r0 = socket$nl_sock_diag(0x10, 0x3, 0x4)
+sendmsg$SOCK_DESTROY(r0, &(0x7f00000014c0)={0x0, 0x0, 0x0, 0x1, 0x0, 0x0, 0x881}, 0x4000)
+r1 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$inet_buf(r1, 0x0, 0x2a, 0x0, 0x0)
+sendmsg$sock(0xffffffffffffffff, &(0x7f00000001c0)={0x0, 0x0, 0x0}, 0x20000000)
+r2 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r2, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNATTACHFILTER(r2, 0x401054d5, &(0x7f0000000080)={0x1, &(0x7f0000000040)=[{0x6, 0xa, 0x9, 0x1}]})
+socketpair$unix(0x1, 0x2, 0x0, &(0x7f0000000140)={<r3=>0xffffffffffffffff, <r4=>0xffffffffffffffff})
+sendmmsg$inet(r4, &(0x7f0000001900)=[{{0x0, 0x0, 0x0}}], 0x59b, 0x4008000)
+r5 = socket$inet6_icmp_raw(0xa, 0x3, 0x3a)
+setsockopt$inet6_int(r5, 0x29, 0x4e, 0x0, 0x0)
+connect$unix(r3, &(0x7f00000000c0)=@abs={0x0, 0x0, 0x4e23}, 0x6e)
+
+19m34.793372376s ago: executing program 33 (id=1751):
+capset(&(0x7f0000000040)={0x20080522}, &(0x7f0000000080))
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+r0 = syz_clone(0x11, 0x0, 0x0, 0x0, 0x0, 0x0)
+ptrace(0x10, r0)
+ptrace(0x11, r0)
+r1 = syz_clone(0x11, 0x0, 0x0, 0x0, 0x0, 0x0)
+ptrace(0x10, r0)
+ptrace(0x11, r0)
+ptrace(0x10, r1)
+ptrace(0x11, r1)
+ptrace(0x11, r0)
+ptrace(0x10, r1)
+ptrace(0x11, r1)
+ptrace(0xffffffffffffffff, 0x0)
+
+19m22.703077622s ago: executing program 34 (id=1782):
+syz_open_dev$ttys(0xc, 0x2, 0x0)
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+ioctl$TCXONC(r0, 0x540a, 0x2)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCSETD(r2, 0x5423, &(0x7f0000000600)=0x1)
+ioctl$VT_DISALLOCATE(r2, 0x89f0)
+ioctl$KDSETMODE(0xffffffffffffffff, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r0, 0x4b4a, &(0x7f0000000140)=""/226)
+r3 = openat$ptmx(0xffffffffffffff9c, &(0x7f00000008c0), 0x20802, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCL_SETSEL(0xffffffffffffffff, 0x541c, &(0x7f00000000c0)={0x2, {0x2, 0x7f, 0x0, 0x1, 0xfffd, 0x4}})
+ioctl$TIOCGDEV(r3, 0x80045432, &(0x7f0000000940))
+ioctl$TIOCL_PASTESEL(r1, 0x541c, 0x0)
+
+19m21.70098724s ago: executing program 35 (id=1813):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+
+19m12.105384034s ago: executing program 36 (id=1839):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$I2C_SMBUS(0xffffffffffffffff, 0x720, &(0x7f00000000c0)={0x0, 0x3f, 0x1, &(0x7f0000000080)={0x16, "11feecda876c740c8d6deb3ab5197995b09310b39e89067c6060ed2d2f5bf7d42b"}})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+mmap$fb(&(0x7f0000c66000/0x4000)=nil, 0x4000, 0x4, 0x8032, 0xffffffffffffffff, 0xb0000)
+openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r1 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r1, 0x70000)
+ioctl$I2C_TIMEOUT(0xffffffffffffffff, 0x702, 0x0)
+ioctl$I2C_SMBUS(0xffffffffffffffff, 0x720, &(0x7f0000000100)={0x1, 0x3, 0x2, &(0x7f0000000000)={0x5, "86ac5909e67738d864df62139d7b3d17f45e4b161d00"}})
+ioctl$FBIOPAN_DISPLAY(0xffffffffffffffff, 0x4606, &(0x7f0000000080)={0x2300, 0x10, 0x40, 0x258, 0xf8, 0xee, 0x8, 0x2, {0x1, 0x91}, {0x3, 0xffff, 0x1}, {0x2, 0xd3}, {0x3, 0x1}, 0x1, 0x101, 0x6, 0xd, 0x0, 0x9, 0x552, 0x69, 0x800, 0x6, 0x7fffffff, 0x5, 0x11, 0x1, 0x0, 0x4})
+
+19m1.015494195s ago: executing program 37 (id=1851):
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x40086602, &(0x7f0000000a00)={0x2, 0x8})
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$TIOCL_PASTESEL(r1, 0x541c, &(0x7f00000000c0))
+ioctl$KDSKBLED(r0, 0x4b65, 0x9)
+ioctl$KDGKBMODE(0xffffffffffffffff, 0x4b44, 0x0)
+ioctl$KDSIGACCEPT(r0, 0x4b4e, 0x4000000039)
+syz_open_dev$tty1(0xc, 0x4, 0x4)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TCSETSF(r2, 0x5404, &(0x7f0000000700)={0x70c2, 0x9, 0xca0, 0xfffffff7, 0x3, "00ff045726084ce359c1c4833599c37369c490"})
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000080)=0x12)
+ioctl$TIOCSBRK(r0, 0x5427)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000400)={0x1, 0x0, 0x14, 0xb, 0x1df})
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000840)={0x1, 0x0, 0x5, 0x13, 0x9, &(0x7f0000000440)})
+
+18m52.615618349s ago: executing program 38 (id=1886):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0x1)
+r0 = openat$ttyS3(0xffffffffffffff9c, 0x0, 0x40000, 0x0)
+ioctl$TCSETS(0xffffffffffffffff, 0x5402, 0x0)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000040), 0x41, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, 0x0)
+ioctl$TIOCVHANGUP(r1, 0x5437, 0x0)
+ioctl$KDENABIO(0xffffffffffffffff, 0x4b36)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r2, 0x4b67, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000040)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$KDFONTOP_SET(r3, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x21, 0x13, 0x100, &(0x7f0000000040)="d2096cbf528a7dd4ef1d5916518632bfd1ba54dce1790ebf65e13a3cee93b05ea1c9cc500d7408ca3fa56d5c467f4a44e1e0f8ae3fa72285f5f8fb4e14aa34c9dd673d1aa63c44750a6e315239a1f17b5c6697d9d6b229e73d683f89c2e5bfe14dbe79daefa28869d563ffb93ef7c2d2aade1400608fd597b61901bf79cca9ac17621eba319b32476e6d42df4368d4caf7cbf9d9b584d1a8387d61253fba99c336f935f1b117c2a97369b7057010aa85fc5c0f5b895c14f1508fd7474f4444cf8513b2b0577d71a2f4ef1d4bf98bd6c03b5a63867da747879524d0e8852366808cedfc66d0ea36530590cc6c02eb85e2dba0e4dd7440969d16f5e83e3d5d4836b6dcdddb552ef36fc9bd57a9edf9483d8b083eda9119948b970729a8630e1f49353c1aa17b7f95068c0b5c3264580bc28ccac3b83fa3d3e66c902df344c8919dac5169b8f0f489ec938520004e11ce84269ae6e7696a8b7100604a0e242a76d60fb7ae7cc922c0c1b36c0ef7cccf35b7a5891e1759f8a1f7bb299cea990f9cc1aa2a5594dd33cc46cdec766f418157a227f76478fd484498b9370e856b25974e2a233924de5a7eec7000ae0ebe01c5c796c4df92755653acd677a9c48c03d83e1986272a54572bb7c820eb2e8396cbea1cafba6792a4fe299fd15d6875713f494aeaf201f85df8f983f775b9b3bf55628fa682613518cf61574f3924d4631209484728384b2c70fe058379b6bef6b9579a99e32898bbb6a3c1817304fef512f8ab4cf6a46f33f5b50299a753fc3f10b037a0d54ab1ac9f5b4f5aa155163dc6f79bfe643724c3df87447e8e624318913376b095f0fe17a643b77399c8b643e8a08d92593972e73e7b8f59769c9457ea4890649490f6d7e225a3eda9fd8b7d2dd78171d92b8c62c2e19c2985e269e3547da2a2d9943b00b9c23fc93b8a19754a350965110ab541bd4f07ea8a47265da0f3b4c2fd10d60742bc54af8970f37ee313860f9ecf35fec02810d630e8bc4fd5821c2e8687b92aeee2d1cae065fb2c43e34d3a6aeb02c4eb6c97e2b0a0d0493c371543c4a885c9053176e41db5744d828b5cc5973479f7c243cb0e55a9347ee80f6658a2b2955f1ec08edccbc9fb03c53f6b4d493aa6095daa93decd6d90d5b54e520fd3744bb6ba8bdad3822d7662bf9d9d349b5052dcffa4eb1bc6a3419b20a19780dcd977ba61f67d2dbdcbc08c4f470f548beb1ef1866f010e1c87c1ff8073a9cb6dea530673d583b802daaab4a01f84aa060f0f8bde6e30ff200e56963fb9a1442919ce60482f71c91dc9abfb8001cf0b5bc989c5ec4d475fc98a9ce7f971cff04c7b7441b3beaf51f9ae729d33b0ab633fc63397c9f52963a7563f2936889ca427f8c7d6f57c51acc0c9f858107fad71c264bb8671bccf473922e752cf6adbb1b36733465da4a3a5671cc5689867"})
+
+18m52.441141835s ago: executing program 39 (id=1896):
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x40086602, &(0x7f0000000a00)={0x2, 0x8})
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r1, 0x5452, &(0x7f0000000000)={0x0, 0x5, 0xc4e, 0x6, 0x2, 0x8})
+ioctl$TIOCL_PASTESEL(r1, 0x541c, &(0x7f00000000c0))
+ioctl$KDSKBLED(r0, 0x4b65, 0x9)
+ioctl$KDGKBMODE(0xffffffffffffffff, 0x4b44, 0x0)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TCSETSF(r3, 0x5404, &(0x7f0000000700)={0x70c2, 0x9, 0xca0, 0xfffffff7, 0x3, "00ff045726084ce359c1c4833599c37369c490"})
+ioctl$KDGKBDIACR(r2, 0x4b4a, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000080)=0x12)
+ioctl$TIOCSBRK(r0, 0x5427)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000400)={0x1, 0x0, 0x14, 0xb, 0x1df})
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000840)={0x1, 0x0, 0x5, 0x13, 0x9, &(0x7f0000000440)})
+
+18m52.097019274s ago: executing program 40 (id=1905):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r1, 0x4b67, &(0x7f0000000080)={0x57e2b7a3d7ba51a7, &(0x7f0000000240)})
+ioctl$PIO_UNISCRNMAP(r0, 0x4b6a, &(0x7f0000000000))
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$KDSETKEYCODE(r2, 0x4b4d, 0x0)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCL_SETSEL(r3, 0x541c, &(0x7f0000000000)={0x2, {0x2, 0x0, 0xff, 0x0, 0x200}})
+
+18m51.533469441s ago: executing program 41 (id=1912):
+r0 = syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$KDGETLED(r0, 0x8924, 0x0)
+
+18m38.376575241s ago: executing program 42 (id=1919):
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_RESIZE(r0, 0x5609, 0x0)
+ioctl$TIOCL_SCROLLCONSOLE(r0, 0x541c, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$KDGKBLED(r0, 0x4b64, &(0x7f00000013c0))
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TIOCSTI(r1, 0x5412, &(0x7f0000000080)=0xe1)
+ioctl$KDMKTONE(r0, 0x4b30, 0x11)
+ioctl$KDSETMODE(r0, 0x4b3a, 0x1)
+r2 = syz_open_pts(r0, 0x400)
+ioctl$TIOCGWINSZ(r0, 0x5413, 0x0)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$KDSKBENT(r3, 0x4b47, &(0x7f0000000780)={0xe0, 0x5, 0x9})
+ioctl$KDGKBTYPE(r2, 0x4b33, 0x0)
+ioctl$TIOCL_GETSHIFTSTATE(r0, 0x541c, &(0x7f00000002c0))
+ioctl$TIOCGSERIAL(0xffffffffffffffff, 0x541e, 0x0)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TIOCL_SETSEL(r4, 0x541c, &(0x7f0000000040)={0x2, {0x2, 0x2c3, 0xff00, 0xb, 0x2}})
+
+18m37.767797571s ago: executing program 43 (id=1932):
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_RESIZE(r0, 0x5609, 0x0)
+ioctl$TIOCL_SCROLLCONSOLE(r0, 0x541c, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$KDGKBLED(r0, 0x4b64, &(0x7f00000013c0))
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TIOCSTI(r1, 0x5412, &(0x7f0000000080)=0xe1)
+ioctl$KDMKTONE(r0, 0x4b30, 0x11)
+ioctl$KDSETMODE(r0, 0x4b3a, 0x1)
+r2 = syz_open_pts(r0, 0x400)
+ioctl$TIOCGWINSZ(r0, 0x5413, 0x0)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$KDSKBENT(r3, 0x4b47, &(0x7f0000000780)={0xe0, 0x5, 0x9})
+ioctl$KDGKBTYPE(r2, 0x4b33, 0x0)
+ioctl$TIOCL_GETSHIFTSTATE(r0, 0x541c, &(0x7f00000002c0))
+ioctl$TIOCGSERIAL(0xffffffffffffffff, 0x541e, 0x0)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TIOCL_SETSEL(r4, 0x541c, &(0x7f0000000040)={0x2, {0x2, 0x2c3, 0xff00, 0xb, 0x2}})
+
+18m37.136380665s ago: executing program 44 (id=1939):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$PIO_UNISCRNMAP(r0, 0x4b6a, &(0x7f0000000000))
+ioctl$TCSBRK(r0, 0x5409, 0xffffffffffffffff)
+ioctl$KDSKBMODE(r0, 0x4b45, &(0x7f0000000280)=0x3)
+ioctl$KIOCSOUND(r0, 0x4b2f, 0x2)
+
+18m36.705606009s ago: executing program 45 (id=1945):
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x40086602, &(0x7f0000000a00)={0x2, 0x8})
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r1, 0x5452, &(0x7f0000000000)={0x0, 0x5, 0xc4e, 0x6, 0x2, 0x8})
+ioctl$TIOCL_PASTESEL(r1, 0x541c, &(0x7f00000000c0))
+ioctl$KDSKBLED(r0, 0x4b65, 0x9)
+ioctl$KDSIGACCEPT(r0, 0x4b4e, 0x4000000039)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TCSETSF(r3, 0x5404, &(0x7f0000000700)={0x70c2, 0x9, 0xca0, 0xfffffff7, 0x3, "00ff045726084ce359c1c4833599c37369c490"})
+ioctl$KDGKBDIACR(r2, 0x4b4a, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000080)=0x12)
+ioctl$TIOCSBRK(r0, 0x5427)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000400)={0x1, 0x0, 0x14, 0xb, 0x1df})
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000840)={0x1, 0x0, 0x5, 0x13, 0x9, &(0x7f0000000440)})
+
+18m23.860996663s ago: executing program 46 (id=1951):
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+ioctl$TIOCSRS485(0xffffffffffffffff, 0x542f, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$KDMKTONE(r1, 0x4b30, 0xfffffffffffffffd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x7)
+ioctl$TIOCGPGRP(0xffffffffffffffff, 0x540f, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000001c0)=0x83)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$VT_GETMODE(r2, 0x5601, 0x0)
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000180), 0x20281, 0x0)
+ioctl$TCSETS(r0, 0x5402, &(0x7f0000000480)={0x40, 0x1ff, 0x4, 0x8, 0xa, "da4ec0a5f7fb64b46ea2e3063208faa6f98386"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$VT_RESIZEX(0xffffffffffffffff, 0x560a, &(0x7f0000000000)={0x3, 0xb, 0x2, 0x0, 0xfffc})
+ioctl$KDFONTOP_SET(0xffffffffffffffff, 0x4b72, &(0x7f0000001000)={0x0, 0x0, 0x3, 0x13, 0x200, 0x0})
+
+18m22.006744312s ago: executing program 47 (id=1991):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r1, 0x4b67, &(0x7f0000000080)={0x57e2b7a3d7ba51a7, &(0x7f0000000240)})
+ioctl$PIO_UNISCRNMAP(r0, 0x4b6a, &(0x7f0000000000))
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$KDSETKEYCODE(r2, 0x4b4d, 0x0)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCL_SETSEL(r3, 0x541c, &(0x7f0000000000)={0x2, {0x2, 0x0, 0xff, 0x0, 0x200}})
+ioctl$TCSBRK(r0, 0x5409, 0xffffffffffffffff)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_GET(r3, 0x4b72, &(0x7f0000000140)={0x1, 0x0, 0x1, 0x6, 0x1eb, &(0x7f00000008c0)})
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$KDSKBMODE(r0, 0x4b45, &(0x7f0000000280)=0x3)
+ioctl$VT_DISALLOCATE(0xffffffffffffffff, 0x5608)
+ioctl$VT_ACTIVATE(0xffffffffffffffff, 0x5606, 0x2)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KIOCSOUND(r0, 0x4b2f, 0x2)
+ioctl$TIOCSPTLCK(0xffffffffffffffff, 0x40045431, 0x0)
+
+18m21.36234047s ago: executing program 48 (id=2001):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r1, 0x4b67, &(0x7f0000000080)={0x57e2b7a3d7ba51a7, &(0x7f0000000240)})
+ioctl$PIO_UNISCRNMAP(r0, 0x4b6a, &(0x7f0000000000))
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$KDSETKEYCODE(r2, 0x4b4d, 0x0)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCL_SETSEL(r3, 0x541c, &(0x7f0000000000)={0x2, {0x2, 0x0, 0xff, 0x0, 0x200}})
+ioctl$TCSBRK(r0, 0x5409, 0xffffffffffffffff)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_GET(r3, 0x4b72, &(0x7f0000000140)={0x1, 0x0, 0x1, 0x6, 0x1eb, &(0x7f00000008c0)})
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$KDSKBMODE(r0, 0x4b45, &(0x7f0000000280)=0x3)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_ACTIVATE(r4, 0x5606, 0x2)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KIOCSOUND(r0, 0x4b2f, 0x2)
+ioctl$TIOCSPTLCK(0xffffffffffffffff, 0x40045431, 0x0)
+
+18m20.749796173s ago: executing program 49 (id=2010):
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_RESIZE(r0, 0x5609, 0x0)
+ioctl$TIOCL_SCROLLCONSOLE(r0, 0x541c, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$KDGKBLED(r0, 0x4b64, &(0x7f00000013c0))
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TIOCSTI(r1, 0x5412, &(0x7f0000000080)=0xe1)
+ioctl$KDMKTONE(r0, 0x4b30, 0x11)
+ioctl$KDSETMODE(r0, 0x4b3a, 0x1)
+r2 = syz_open_pts(r0, 0x400)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$KDSKBENT(r3, 0x4b47, &(0x7f0000000780)={0xe0, 0x5, 0x9})
+ioctl$KDGKBTYPE(r2, 0x4b33, 0x0)
+ioctl$TIOCL_GETSHIFTSTATE(r0, 0x541c, &(0x7f00000002c0))
+ioctl$TIOCSISO7816(0xffffffffffffffff, 0xc0285443, 0x0)
+ioctl$TIOCGSERIAL(0xffffffffffffffff, 0x541e, 0x0)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TIOCL_SETSEL(r4, 0x541c, &(0x7f0000000040)={0x2, {0x2, 0x2c3, 0xff00, 0xb, 0x2}})
+
+17m33.735559619s ago: executing program 50 (id=2997):
+r0 = syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+ioctl$TUNSETQUEUE(r0, 0x5437, 0x0)
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000001240)={'\x00', 0xf823d74307427757})
+openat$KGPT_rfkill(0xffffffffffffff9c, &(0x7f0000000000), 0x2000, 0x0)
+r2 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+r3 = syz_open_dev$KGPT_slcan(0x0, 0x0, 0x100)
+ioctl$TUNSETQUEUE(r3, 0x5437, 0x0)
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+r4 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x840, 0x0)
+r5 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x2008c1, 0x0)
+ioctl$TUNSETIFF(r5, 0x400454ca, 0x0)
+ioctl$TUNATTACHFILTER(r5, 0x401054d5, &(0x7f0000000180)={0x2000000000000110, &(0x7f0000000040)})
+ioctl$TUNSETOFFLOAD(r4, 0x400454d0, 0xa0cf34698c9492e5)
+ioctl$TUNSETIFF(0xffffffffffffffff, 0x400454ca, &(0x7f00000000c0)={'ip6erspan0\x00', 0x1})
+openat$KGPT_rfkill(0xffffffffffffff9c, 0x0, 0x177481, 0x0)
+ioctl$TUNATTACHFILTER(r2, 0x401054d5, &(0x7f0000000080)={0x1, &(0x7f0000000040)=[{0x6, 0xa, 0x9, 0x1}]})
+openat$tun(0xffffffffffffff9c, 0x0, 0x20282, 0x0)
+
+17m18.691177807s ago: executing program 51 (id=3120):
+openat$tun(0xffffffffffffff9c, &(0x7f0000000080), 0x200000, 0x0)
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+r0 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+ioctl$TUNSETIFF(r0, 0x400454ca, &(0x7f0000001240)={'\x00', 0xf823d74307427757})
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x840, 0x0)
+r1 = openat$KGPT_rfkill(0xffffffffffffff9c, &(0x7f0000000000), 0x2000, 0x0)
+ioctl$KGPT_RFKILL_IOC_NOINPUT(r1, 0x541b, 0x0)
+r2 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r2, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TUNSETIFF(0xffffffffffffffff, 0x400454ca, &(0x7f0000001240)={'\x00', 0xf823d74307427757})
+r3 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x2008c1, 0x0)
+ioctl$TUNSETIFF(r3, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNATTACHFILTER(r3, 0x401054d5, &(0x7f0000000180)={0x0, 0x0})
+r4 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x20282, 0x0)
+ioctl$TUNSETIFF(r4, 0x400454ca, &(0x7f00000000c0)={'ip6erspan0\x00', 0x1})
+openat$KGPT_rfkill(0xffffffffffffff9c, 0x0, 0x177481, 0x0)
+ioctl$TUNATTACHFILTER(r2, 0x401054d5, &(0x7f0000000080)={0x1, &(0x7f0000000040)=[{0x6, 0xa, 0x9, 0x1}]})
+
+17m18.585879549s ago: executing program 52 (id=3124):
+r0 = openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r1, 0xc01c64ae, &(0x7f0000000040)={0x0, 0x2000, 0x1, 0x1000, 0x18, 0x18, 0x5})
+r2 = openat$sndseq(0xffffffffffffff9c, 0x0, 0x402)
+ioctl$SNDRV_SEQ_IOCTL_SET_QUEUE_TIMER(r2, 0x40605346, &(0x7f0000000480)={0x0, 0x0, {0x2, 0x3, 0xffffff01, 0x2, 0x2}, 0x7b0d76ee})
+ioctl$SNDRV_SEQ_IOCTL_GET_QUEUE_TIMER(r2, 0xc0605345, &(0x7f00000002c0)={0x7, 0x0, {0x1, 0x3, 0x3, 0x0, 0xa22}, 0x2})
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, &(0x7f00000000c0)={{0x0, 0x1, 0x1, 0x2, 0x10000000}})
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, 0x0)
+r3 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000580), 0x2001)
+r4 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+write$sndseq(r4, &(0x7f0000000300)=[{0x6, 0x7f, 0x2, 0xfd, @tick=0x8, {0x2c, 0x6}, {0xe, 0x40}, @raw32={[0x1, 0x7fff, 0x6]}}], 0x1c)
+write$sndseq(r3, &(0x7f0000000040)=[{0xbd, 0x0, 0x6, 0x2, @time={0x3, 0x1ad6}, {0x68, 0x5}, {0x6, 0x3}, @quote={{0x2, 0x1}}}], 0xfffffffffffffec1)
+r5 = syz_open_dev$dri(&(0x7f0000000300), 0xfffffffffffffffa, 0xe500)
+r6 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r6, 0xc01c64ae, &(0x7f0000000040)={0x0, 0x7, 0x1, 0x1000, 0x18, 0x18, 0x5})
+r7 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r7, 0xc02064b2, &(0x7f0000000080)={0x9, 0x8, 0x2})
+ioctl$DRM_IOCTL_SYNCOBJ_TIMELINE_SIGNAL(0xffffffffffffffff, 0xc01864cd, &(0x7f0000000380)={&(0x7f0000000300), &(0x7f0000000340)})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(0xffffffffffffffff, 0xc01864c2, &(0x7f0000000480))
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(r7, 0xc01864c2, &(0x7f0000000240)={<r8=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_WAIT(r5, 0xc02864c3, &(0x7f0000000340)={&(0x7f0000000280)=[0x0, 0x0, 0x0, 0x0, 0x0, r8], 0xffffffff, 0x6, 0x4})
+
+17m2.981879498s ago: executing program 4 (id=3200):
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+ioctl$TIOCSRS485(0xffffffffffffffff, 0x542f, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$KDMKTONE(r1, 0x4b30, 0xfffffffffffffffd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x7)
+ioctl$TIOCGPGRP(0xffffffffffffffff, 0x540f, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000001c0)=0x83)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$VT_GETMODE(r2, 0x5601, 0x0)
+ioctl$KDFONTOP_SET(r0, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x22, 0x1a, 0x100, 0x0})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000180), 0x20281, 0x0)
+ioctl$TCSETS(r0, 0x5402, &(0x7f0000000480)={0x40, 0x1ff, 0x4, 0x8, 0xa, "da4ec0a5f7fb64b46ea2e3063208faa6f98386"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+
+17m2.780842527s ago: executing program 4 (id=3203):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+mmap$fb(&(0x7f0000ca4000/0x2000)=nil, 0x2000, 0x1000007, 0x8032, 0xffffffffffffffff, 0x35000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+ioctl$FBIOGET_CON2FBMAP(0xffffffffffffffff, 0x460f, &(0x7f0000000040)={0x15, 0x2})
+r1 = syz_open_dev$I2C(&(0x7f0000000000), 0x875a, 0x20801)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$I2C_TENBIT(r1, 0x80111500, 0x200000ffefff)
+ioctl$I2C_SMBUS(r1, 0x720, &(0x7f00000000c0)={0x0, 0x3f, 0x1, &(0x7f0000000080)={0x16, "11feecda876c740c8d6deb3ab5197995b09310b39e89067c6060ed2d2f5bf7d42b"}})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+mmap$fb(&(0x7f0000c66000/0x4000)=nil, 0x4000, 0x4, 0x8032, 0xffffffffffffffff, 0xb0000)
+r2 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x100000d, 0x1c011, r2, 0x87000)
+syz_open_dev$I2C(0x0, 0x0, 0xc8140)
+r3 = openat$fb0(0xffffffffffffff9c, 0x0, 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r3, 0x70000)
+r4 = syz_open_dev$I2C(0x0, 0x0, 0x101400)
+ioctl$I2C_TIMEOUT(r1, 0x702, 0x0)
+ioctl$I2C_SMBUS(r4, 0x720, 0x0)
+syz_open_dev$I2C(&(0x7f0000000200), 0x0, 0x280000)
+ioctl$FBIOPAN_DISPLAY(0xffffffffffffffff, 0x4606, &(0x7f0000000080)={0x2300, 0x10, 0x40, 0x258, 0xf8, 0xee, 0x8, 0x2, {0x1, 0x91}, {0x3, 0xffff, 0x1}, {0x2, 0xd3}, {0x3, 0x1}, 0x1, 0x101, 0x6, 0xd, 0x0, 0x9, 0x552, 0x69, 0x800, 0x6, 0x7fffffff, 0x5, 0x11, 0x1, 0x0, 0x4})
+
+17m2.522623872s ago: executing program 4 (id=3209):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r1, 0x4b67, &(0x7f0000000080)={0x57e2b7a3d7ba51a7, &(0x7f0000000240)})
+ioctl$PIO_UNISCRNMAP(r0, 0x4b6a, &(0x7f0000000000))
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$KDSETKEYCODE(r2, 0x4b4d, 0x0)
+ioctl$TCSETA(r0, 0x5406, 0x0)
+ioctl$TIOCL_SETSEL(0xffffffffffffffff, 0x541c, &(0x7f0000000000)={0x2, {0x2, 0x0, 0xff, 0x0, 0x200}})
+ioctl$TCSBRK(r0, 0x5409, 0xffffffffffffffff)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455cb, 0x3b)
+ioctl$KDFONTOP_GET(0xffffffffffffffff, 0x4b72, &(0x7f0000000140)={0x1, 0x0, 0x1, 0x6, 0x1eb, &(0x7f00000008c0)})
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$KDSKBMODE(r0, 0x4b45, &(0x7f0000000280)=0x3)
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_CMAP(r2, 0x4b71, &(0x7f00000000c0)={0x1, 0x7, 0x1845, 0xffffffffffffffff, 0x10001, 0xc13})
+ioctl$VT_DISALLOCATE(r3, 0x5608)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSPTLCK(0xffffffffffffffff, 0x40045431, 0x0)
+
+17m2.394818659s ago: executing program 4 (id=3222):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, 0x0, 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+17m2.342129813s ago: executing program 4 (id=3218):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000140)=0xfffffffc)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x800455c9, 0xd)
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0x84080, 0x0)
+ioctl$TCSETS(0xffffffffffffffff, 0x5402, 0x0)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000040), 0x101041, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+r2 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r2, 0x5423, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$KDENABIO(r0, 0x4b36)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f00000000c0)=0x1)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDMKTONE(r2, 0x4b30, 0x11)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x800455c9, 0xd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000040)=0x14)
+r3 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0xc0000, 0x0)
+r4 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000b80), 0x40000, 0x0)
+ioctl$TIOCPKT(0xffffffffffffffff, 0x5420, &(0x7f0000000100))
+ioctl$TIOCL_GETSHIFTSTATE(r4, 0x541c, &(0x7f0000000200)={0x6, 0xf8})
+ioctl$TCXONC(r3, 0x540a, 0x1)
+ioctl$TCSBRK(r1, 0x5409, 0x51bc)
+
+17m2.235475373s ago: executing program 4 (id=3219):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r1, 0x4b67, &(0x7f0000000080)={0x57e2b7a3d7ba51a7, &(0x7f0000000240)})
+ioctl$PIO_UNISCRNMAP(r0, 0x4b6a, &(0x7f0000000000))
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$KDSETKEYCODE(r2, 0x4b4d, 0x0)
+ioctl$TCSETA(r0, 0x5406, 0x0)
+ioctl$TIOCL_SETSEL(0xffffffffffffffff, 0x541c, &(0x7f0000000000)={0x2, {0x2, 0x0, 0xff, 0x0, 0x200}})
+ioctl$TCSBRK(r0, 0x5409, 0xffffffffffffffff)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455cb, 0x3b)
+ioctl$KDFONTOP_GET(0xffffffffffffffff, 0x4b72, &(0x7f0000000140)={0x1, 0x0, 0x1, 0x6, 0x1eb, &(0x7f00000008c0)})
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$KDSKBMODE(r0, 0x4b45, &(0x7f0000000280)=0x3)
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+ioctl$PIO_CMAP(r2, 0x4b71, &(0x7f00000000c0)={0x1, 0x7, 0x1845, 0xffffffffffffffff, 0x10001, 0xc13})
+ioctl$VT_DISALLOCATE(0xffffffffffffffff, 0x5608)
+ioctl$VT_ACTIVATE(0xffffffffffffffff, 0x5606, 0x2)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSPTLCK(0xffffffffffffffff, 0x40045431, 0x0)
+
+17m2.228887795s ago: executing program 53 (id=3219):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r1, 0x4b67, &(0x7f0000000080)={0x57e2b7a3d7ba51a7, &(0x7f0000000240)})
+ioctl$PIO_UNISCRNMAP(r0, 0x4b6a, &(0x7f0000000000))
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$KDSETKEYCODE(r2, 0x4b4d, 0x0)
+ioctl$TCSETA(r0, 0x5406, 0x0)
+ioctl$TIOCL_SETSEL(0xffffffffffffffff, 0x541c, &(0x7f0000000000)={0x2, {0x2, 0x0, 0xff, 0x0, 0x200}})
+ioctl$TCSBRK(r0, 0x5409, 0xffffffffffffffff)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455cb, 0x3b)
+ioctl$KDFONTOP_GET(0xffffffffffffffff, 0x4b72, &(0x7f0000000140)={0x1, 0x0, 0x1, 0x6, 0x1eb, &(0x7f00000008c0)})
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$KDSKBMODE(r0, 0x4b45, &(0x7f0000000280)=0x3)
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+ioctl$PIO_CMAP(r2, 0x4b71, &(0x7f00000000c0)={0x1, 0x7, 0x1845, 0xffffffffffffffff, 0x10001, 0xc13})
+ioctl$VT_DISALLOCATE(0xffffffffffffffff, 0x5608)
+ioctl$VT_ACTIVATE(0xffffffffffffffff, 0x5606, 0x2)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSPTLCK(0xffffffffffffffff, 0x40045431, 0x0)
+
+16m38.15753325s ago: executing program 9 (id=3304):
+r0 = syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+ioctl$TUNSETQUEUE(r0, 0x5437, 0x0)
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000001240)={'\x00', 0xf823d74307427757})
+r2 = openat$KGPT_rfkill(0xffffffffffffff9c, &(0x7f0000000000), 0x2000, 0x0)
+ioctl$KGPT_RFKILL_IOC_NOINPUT(r2, 0x541b, 0x0)
+r3 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r3, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+r4 = syz_open_dev$KGPT_slcan(&(0x7f0000000140), 0x0, 0x100)
+ioctl$TUNSETQUEUE(r4, 0x5437, 0x0)
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x840, 0x0)
+r5 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x2008c1, 0x0)
+ioctl$TUNSETIFF(r5, 0x400454ca, 0x0)
+ioctl$TUNATTACHFILTER(r5, 0x401054d5, &(0x7f0000000180)={0x2000000000000110, &(0x7f0000000040)})
+r6 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x20282, 0x0)
+ioctl$TUNSETIFF(r6, 0x400454ca, &(0x7f00000000c0)={'ip6erspan0\x00', 0x1})
+openat$KGPT_rfkill(0xffffffffffffff9c, 0x0, 0x177481, 0x0)
+ioctl$TUNATTACHFILTER(r3, 0x401054d5, &(0x7f0000000080)={0x1, &(0x7f0000000040)=[{0x6, 0xa, 0x9, 0x1}]})
+
+16m37.800277161s ago: executing program 9 (id=3318):
+r0 = syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+ioctl$TUNSETQUEUE(r0, 0x5437, 0x0)
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000001240)={'\x00', 0xf823d74307427757})
+r2 = openat$KGPT_rfkill(0xffffffffffffff9c, &(0x7f0000000000), 0x2000, 0x0)
+ioctl$KGPT_RFKILL_IOC_NOINPUT(r2, 0x541b, 0x0)
+r3 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r3, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+r4 = syz_open_dev$KGPT_slcan(&(0x7f0000000140), 0x0, 0x100)
+ioctl$TUNSETQUEUE(r4, 0x5437, 0x0)
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x840, 0x0)
+r5 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x2008c1, 0x0)
+ioctl$TUNSETIFF(r5, 0x400454ca, 0x0)
+ioctl$TUNATTACHFILTER(r5, 0x401054d5, &(0x7f0000000180)={0x2000000000000110, &(0x7f0000000040)})
+r6 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x20282, 0x0)
+ioctl$TUNSETIFF(r6, 0x400454ca, &(0x7f00000000c0)={'ip6erspan0\x00', 0x1})
+openat$KGPT_rfkill(0xffffffffffffff9c, 0x0, 0x177481, 0x0)
+ioctl$TUNATTACHFILTER(r3, 0x401054d5, &(0x7f0000000080)={0x1, &(0x7f0000000040)=[{0x6, 0xa, 0x9, 0x1}]})
+
+16m37.605685214s ago: executing program 9 (id=3312):
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+ioctl$TIOCSRS485(0xffffffffffffffff, 0x542f, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$KDMKTONE(r1, 0x4b30, 0xfffffffffffffffd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x7)
+ioctl$TIOCGPGRP(0xffffffffffffffff, 0x540f, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000001c0)=0x83)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$VT_GETMODE(r2, 0x5601, 0x0)
+ioctl$KDFONTOP_SET(r0, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x22, 0x1a, 0x100, &(0x7f0000000040)="d2096cbf528a7dd4ef1d5916518632bfd1ba54dce1790ebf65e13a3cee93b05ea1c9cc500d7408ca3fa56d5c467f4a44e1e0f8ae3fa72285f5f8fb4e14aa34c9dd673d1aa63c44750a6e315239a1f17b5c6697d9d6b229e73d683f89c2e5bfe14dbe79daefa28869d563ffb93ef7c2d2aade1400608fd597b61901bf79cca9ac17621eba319b32476e6d42df4368d4caf7cbf9d9b584d1a8387d61253fba99c336f935f1b117c2a97369b7057010aa85fc5c0f5b895c14f1508fd7474f4444cf8513b2b0577d71a2f4ef1d4bf98bd6c03b5a63867da747879524d0e8852366808cedfc66d0ea36530590cc6c02eb85e2dba0e4dd7440969d16f5e83e3d5d4836b6dcdddb552ef36fc9bd57a9edf9483d8b083eda9119948b970729a8630e1f49353c1aa17b7f95068c0b5c3264580bc28ccac3b83fa3d3e66c902df344c8919dac5169b8f0f489ec938520004e11ce84269ae6e7696a8b7100604a0e242a76d60fb7ae7cc922c0c1b36c0ef7cccf35b7a5891e1759f8a1f7bb299cea990f9cc1aa2a5594dd33cc46cdec766f418157a227f76478fd484498b9370e856b25974e2a233924de5a7eec7000ae0ebe01c5c796c4df92755653acd677a9c48c03d83e1986272a54572bb7c820eb2e8396cbea1cafba6792a4fe299fd15d6875713f494aeaf201f85df8f983f775b9b3bf55628fa682613518cf61574f3924d4631209484728384b2c70fe058379b6bef6b9579a99e32898bbb6a3c1817304fef512f8ab4cf6a46f33f5b50299a753fc3f10b037a0d54ab1ac9f5b4f5aa155163dc6f79bfe643724c3df87447e8e624318913376b095f0fe17a643b77399c8b643e8a08d92593972e73e7b8f59769c9457ea4890649490f6d7e225a3eda9fd8b7d2dd78171d92b8c62c2e19c2985e269e3547da2a2d9943b00b9c23fc93b8a19754a350965110ab541bd4f07ea8a47265da0f3b4c2fd10d60742bc54af8970f37ee313860f9ecf35fec02810d630e8bc4fd5821c2e8687b92aeee2d1cae065fb2c43e34d3a6aeb02c4eb6c97e2b0a0d0493c371543c4a885c9053176e41db5744d828b5cc5973479f7c243cb0e55a9347ee80f6658a2b2955f1ec08edccbc9fb03c53f6b4d493aa6095daa93decd6d90d5b54e520fd3744bb6ba8bdad3822d7662bf9d9d349b5052dcffa4eb1bc6a3419b20a19780dcd977ba61f67d2dbdcbc08c4f470f548beb1ef1866f010e1c87c1ff8073a9cb6dea530673d583b802daaab4a01f84aa060f0f8bde6e30ff200e56963fb9a1442919ce60482f71c91dc9abfb8001cf0b5bc989c5ec4d475fc98a9ce7f971cff04c7b7441b3beaf51f9ae729d33b0ab633fc63397c9f52963a7563f2936889ca427f8c7d6f57c51acc0c9f858107fad71c264bb8671bccf473922e752cf6adbb1b36733465da4a3a5671cc5689867"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000180), 0x20281, 0x0)
+
+16m37.410456861s ago: executing program 9 (id=3316):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, 0x0, 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+16m37.346175513s ago: executing program 9 (id=3319):
+r0 = syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+ioctl$TUNSETQUEUE(r0, 0x5437, 0x0)
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000001240)={'\x00', 0xf823d74307427757})
+r2 = openat$KGPT_rfkill(0xffffffffffffff9c, &(0x7f0000000000), 0x2000, 0x0)
+ioctl$KGPT_RFKILL_IOC_NOINPUT(r2, 0x541b, 0x0)
+r3 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r3, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+r4 = syz_open_dev$KGPT_slcan(&(0x7f0000000140), 0x0, 0x100)
+ioctl$TUNSETQUEUE(r4, 0x5437, 0x0)
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x840, 0x0)
+r5 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x2008c1, 0x0)
+ioctl$TUNSETIFF(r5, 0x400454ca, 0x0)
+ioctl$TUNATTACHFILTER(r5, 0x401054d5, &(0x7f0000000180)={0x2000000000000110, &(0x7f0000000040)})
+r6 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x20282, 0x0)
+ioctl$TUNSETIFF(r6, 0x400454ca, &(0x7f00000000c0)={'ip6erspan0\x00', 0x1})
+openat$KGPT_rfkill(0xffffffffffffff9c, 0x0, 0x177481, 0x0)
+ioctl$TUNATTACHFILTER(r3, 0x401054d5, &(0x7f0000000080)={0x1, &(0x7f0000000040)=[{0x6, 0xa, 0x9, 0x1}]})
+
+16m37.263295962s ago: executing program 9 (id=3323):
+openat$tun(0xffffffffffffff9c, &(0x7f0000000080), 0x200000, 0x0)
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+r0 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+ioctl$TUNSETIFF(r0, 0x400454ca, &(0x7f0000001240)={'\x00', 0xf823d74307427757})
+openat$KGPT_rfkill(0xffffffffffffff9c, &(0x7f0000000000), 0x2000, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+openat$tun(0xffffffffffffff9c, 0x0, 0x1, 0x0)
+r2 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x840, 0x0)
+r3 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x2008c1, 0x0)
+ioctl$TUNSETIFF(r3, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNSETOFFLOAD(r2, 0x400454d0, 0xa0cf34698c9492e5)
+r4 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x20282, 0x0)
+ioctl$TUNSETIFF(r4, 0x400454ca, &(0x7f00000000c0)={'ip6erspan0\x00', 0x1})
+openat$KGPT_rfkill(0xffffffffffffff9c, 0x0, 0x177481, 0x0)
+ioctl$TUNATTACHFILTER(r1, 0x401054d5, &(0x7f0000000080)={0x1, &(0x7f0000000040)=[{0x6, 0xa, 0x9, 0x1}]})
+ioctl$TUNSETOFFLOAD(0xffffffffffffffff, 0x400454d0, 0xa0cf34698c9492e5)
+openat$tun(0xffffffffffffff9c, 0x0, 0x20282, 0x0)
+
+16m37.255186436s ago: executing program 54 (id=3323):
+openat$tun(0xffffffffffffff9c, &(0x7f0000000080), 0x200000, 0x0)
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+r0 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+ioctl$TUNSETIFF(r0, 0x400454ca, &(0x7f0000001240)={'\x00', 0xf823d74307427757})
+openat$KGPT_rfkill(0xffffffffffffff9c, &(0x7f0000000000), 0x2000, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+openat$tun(0xffffffffffffff9c, 0x0, 0x1, 0x0)
+r2 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x840, 0x0)
+r3 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x2008c1, 0x0)
+ioctl$TUNSETIFF(r3, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNSETOFFLOAD(r2, 0x400454d0, 0xa0cf34698c9492e5)
+r4 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x20282, 0x0)
+ioctl$TUNSETIFF(r4, 0x400454ca, &(0x7f00000000c0)={'ip6erspan0\x00', 0x1})
+openat$KGPT_rfkill(0xffffffffffffff9c, 0x0, 0x177481, 0x0)
+ioctl$TUNATTACHFILTER(r1, 0x401054d5, &(0x7f0000000080)={0x1, &(0x7f0000000040)=[{0x6, 0xa, 0x9, 0x1}]})
+ioctl$TUNSETOFFLOAD(0xffffffffffffffff, 0x400454d0, 0xa0cf34698c9492e5)
+openat$tun(0xffffffffffffff9c, 0x0, 0x20282, 0x0)
+
+16m36.892058893s ago: executing program 6 (id=3332):
+r0 = syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+ioctl$TUNSETQUEUE(r0, 0x5437, 0x0)
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000001240)={'\x00', 0xf823d74307427757})
+r2 = openat$KGPT_rfkill(0xffffffffffffff9c, &(0x7f0000000000), 0x2000, 0x0)
+ioctl$KGPT_RFKILL_IOC_NOINPUT(r2, 0x541b, 0x0)
+r3 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r3, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+r4 = syz_open_dev$KGPT_slcan(&(0x7f0000000140), 0x0, 0x100)
+ioctl$TUNSETQUEUE(r4, 0x5437, 0x0)
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x840, 0x0)
+r5 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x2008c1, 0x0)
+ioctl$TUNSETIFF(r5, 0x400454ca, 0x0)
+ioctl$TUNATTACHFILTER(r5, 0x401054d5, &(0x7f0000000180)={0x2000000000000110, &(0x7f0000000040)})
+r6 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x20282, 0x0)
+ioctl$TUNSETIFF(r6, 0x400454ca, &(0x7f00000000c0)={'ip6erspan0\x00', 0x1})
+openat$KGPT_rfkill(0xffffffffffffff9c, 0x0, 0x177481, 0x0)
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x20282, 0x0)
+
+16m36.727315538s ago: executing program 6 (id=3326):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, 0x0, 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+16m36.688156684s ago: executing program 6 (id=3329):
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+ioctl$TIOCSRS485(0xffffffffffffffff, 0x542f, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$KDMKTONE(r1, 0x4b30, 0xfffffffffffffffd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x7)
+ioctl$TIOCGPGRP(0xffffffffffffffff, 0x540f, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000001c0)=0x83)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$VT_GETMODE(r2, 0x5601, 0x0)
+ioctl$KDFONTOP_SET(r0, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x22, 0x1a, 0x100, 0x0})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000180), 0x20281, 0x0)
+ioctl$TCSETS(r0, 0x5402, &(0x7f0000000480)={0x40, 0x1ff, 0x4, 0x8, 0xa, "da4ec0a5f7fb64b46ea2e3063208faa6f98386"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r3, 0x560a, &(0x7f0000000000)={0x3, 0xb, 0x2, 0x0, 0xfffc})
+ioctl$KDFONTOP_SET(0xffffffffffffffff, 0x4b72, &(0x7f0000001000)={0x0, 0x0, 0x3, 0x13, 0x200, &(0x7f0000000c00)="af93c6d702a0bc6f86b3178caeb1bbd2b18d0a0e1e49f66e23f9f95b683db0325498a784bac97953b1349849ba942d847e7fc2425446e910526cce03de76af827bb5aaa62c2e199587a24875c6e47748bb2291d43d594c3787c69cd9552a5a87639499a980ee3bfb752ab3dd17f11c7f1b5f90be1823f4720fea68e294d666255e3343822be78c4a1392015e7d60990bf62d2f107df9c265792868d6b094616a3974f719a4202811b218d0254ac73bb6a9f8cd493e50ec8bc04c910534ebccf9b7187741c2256489a8d8a7105cf63531bc0bc7a3d89492fd1cc653053a4a3401a597bbab5961fac180f49f360dd0917dd5778aee64bd7cbc1848765484c712275c2db63490d5392984590964a9e156d7f8464b1b67f175f964b100eadbade0e8197d9ea301f41bdc75a5263a188e888235bc70511cb93d149cfa268a73f8e8fd288f445744617b7267dff68e0ecbfae54ff2f87f7ed4a4d5d4e250110a77f2628dda1c80463cb7e9f2615da2e1106f72afb735cd91d654186ad6f088d83ff85ef5e1f8d1151d041969a695b52b82a14b95f92179f190a9651dbbe510856c51e213e6806f1c5609730cbcd8ead95d5a8cb797e8df43ed3b90e660bf56c44191cd1a33bbeb75f9024b9a1f1a30359a2620b97c29f9ed10db5e5c692b63e6ab9ca6a98c223ef721d1fd227ab2568d60a5ecd4a61fcab5ca859eea2f10e3ae45cb83be994d806b01b83b64f3be0c8e5abec8ed8ff715bf0911bf2a455e3934db7243ee604a816a1caac624b9b1396f9f6d520eebc98b749d13b7889643cc95b6be322a62c9c183d183db2b08d190683d29b07eb801c91d089e5d439ac36dd90f52a97916c9fb203a432a88ec6fffc2c54aa3f098e83bca3cabdae2ecbdc6df9242c40b563bf0970b29054d021fab1d05c477ddb8244c17fe2e568537a9742cda051d00409f4da70a2631086630abf4fdb50d05a5babdc8688e943aa8952e1533e4be20514069cd7fe9b0bb9a3ed748e1c1ac2ca3f2d40e696c12350302ae069cc08454fdfe54e17a5aeff15ec7a9c37fb793d3d99d9f37ba874a258a5163ebeecbde61ccbfc3eadedc37b6bb555aaaeafb747b8be28cd1588c7987f6f9f2f75a5475e165d1b93b2492ba98d256ba306a0c2f4fb6042216fd1ac68c77bfeb83a4a113e9c99622ed6f5e94ab27cc509d273493a9b5502e7e008e9b23a25d56577a6585dd34ec919e573122b64cfe6d4e30e74af0c53130ec9534a8dc89d74aada3ae64218f3bea2fe51820800826d554671478817ba857a9d51fc600748d93a30602ed07211069ae927095367cc5b73f26c0540ff9bf1e224bdffa1359773b23e66043e8222500fa805281f6984a763e84a69476561fd24021975387ab221617413fb78e257407f21383d5b8cbb92d31a8e7567d7577efe58ae078aad66e4d151562ca"})
+
+16m22.403394334s ago: executing program 6 (id=3337):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, 0x0, 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+16m22.304919842s ago: executing program 6 (id=3347):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r0, 0x560a, &(0x7f0000000000)={0x3, 0xb, 0x2, 0x0, 0xfffc})
+
+16m22.236368309s ago: executing program 6 (id=3349):
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x3)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f0000000040)=0x84)
+r2 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000280), 0x141480, 0x0)
+ioctl$TIOCMGET(r2, 0x5415, &(0x7f0000000300))
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$PIO_CMAP(r3, 0x4b71, &(0x7f0000000b00)={0x200, 0x9, 0xfff, 0x9e0, 0x2, 0xad})
+ioctl$TIOCSTI(r1, 0x5412, &(0x7f0000000400)=0x7f)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x4)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000140)=0x4)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000180)=0x13)
+ioctl$KDMKTONE(r4, 0x4b30, 0x80000000)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+ioctl$VT_OPENQRY(0xffffffffffffffff, 0x5600, &(0x7f0000000200))
+
+16m22.175072111s ago: executing program 55 (id=3349):
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x3)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f0000000040)=0x84)
+r2 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000280), 0x141480, 0x0)
+ioctl$TIOCMGET(r2, 0x5415, &(0x7f0000000300))
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$PIO_CMAP(r3, 0x4b71, &(0x7f0000000b00)={0x200, 0x9, 0xfff, 0x9e0, 0x2, 0xad})
+ioctl$TIOCSTI(r1, 0x5412, &(0x7f0000000400)=0x7f)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x4)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000140)=0x4)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000180)=0x13)
+ioctl$KDMKTONE(r4, 0x4b30, 0x80000000)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+ioctl$VT_OPENQRY(0xffffffffffffffff, 0x5600, &(0x7f0000000200))
+
+16m7.717558923s ago: executing program 5 (id=3419):
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x80000, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r0, 0x560a, &(0x7f0000000000)={0x3, 0xb, 0x2, 0x0, 0xfffc})
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000980)={0x1, 0x0, 0x7, 0x17, 0x15a, &(0x7f0000000580)})
+ioctl$TIOCMBIC(r0, 0x5417, &(0x7f00000000c0)=0x80)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSTI(r2, 0x5412, &(0x7f0000000040)=0x84)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TCSETS(r3, 0x5402, &(0x7f00000000c0)={0x103, 0x100, 0x6, 0xffffffff, 0xe, "04d87e33cd74ff01000000000000f7de6756a8"})
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, 0x0)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TCSETAF(r4, 0x5408, &(0x7f0000000000)={0xde79, 0x85b, 0x2, 0xf02c, 0x93, "a2852e2922db75bf"})
+ioctl$TIOCSTI(r4, 0x5412, &(0x7f0000000400)=0x5)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$VT_RESIZEX(r4, 0x560a, &(0x7f0000000140)={0x8, 0x4, 0x8000, 0x66, 0x3, 0xc})
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000100), 0xa0382, 0x0)
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDGKBENT(r5, 0x4b46, &(0x7f00000019c0)={0x1, 0x0, 0x80})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TIOCGSID(r1, 0x5429, 0x0)
+ioctl$KDGKBDIACR(r1, 0x4bfb, &(0x7f0000000000)=""/120)
+
+16m7.384348055s ago: executing program 5 (id=3423):
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+
+16m7.351168163s ago: executing program 5 (id=3425):
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+ioctl$TIOCSRS485(0xffffffffffffffff, 0x542f, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$KDMKTONE(r1, 0x4b30, 0xfffffffffffffffd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x7)
+ioctl$TIOCGPGRP(0xffffffffffffffff, 0x540f, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000001c0)=0x83)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$VT_GETMODE(r2, 0x5601, 0x0)
+ioctl$KDFONTOP_SET(r0, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x22, 0x1a, 0x100, &(0x7f0000000040)="d2096cbf528a7dd4ef1d5916518632bfd1ba54dce1790ebf65e13a3cee93b05ea1c9cc500d7408ca3fa56d5c467f4a44e1e0f8ae3fa72285f5f8fb4e14aa34c9dd673d1aa63c44750a6e315239a1f17b5c6697d9d6b229e73d683f89c2e5bfe14dbe79daefa28869d563ffb93ef7c2d2aade1400608fd597b61901bf79cca9ac17621eba319b32476e6d42df4368d4caf7cbf9d9b584d1a8387d61253fba99c336f935f1b117c2a97369b7057010aa85fc5c0f5b895c14f1508fd7474f4444cf8513b2b0577d71a2f4ef1d4bf98bd6c03b5a63867da747879524d0e8852366808cedfc66d0ea36530590cc6c02eb85e2dba0e4dd7440969d16f5e83e3d5d4836b6dcdddb552ef36fc9bd57a9edf9483d8b083eda9119948b970729a8630e1f49353c1aa17b7f95068c0b5c3264580bc28ccac3b83fa3d3e66c902df344c8919dac5169b8f0f489ec938520004e11ce84269ae6e7696a8b7100604a0e242a76d60fb7ae7cc922c0c1b36c0ef7cccf35b7a5891e1759f8a1f7bb299cea990f9cc1aa2a5594dd33cc46cdec766f418157a227f76478fd484498b9370e856b25974e2a233924de5a7eec7000ae0ebe01c5c796c4df92755653acd677a9c48c03d83e1986272a54572bb7c820eb2e8396cbea1cafba6792a4fe299fd15d6875713f494aeaf201f85df8f983f775b9b3bf55628fa682613518cf61574f3924d4631209484728384b2c70fe058379b6bef6b9579a99e32898bbb6a3c1817304fef512f8ab4cf6a46f33f5b50299a753fc3f10b037a0d54ab1ac9f5b4f5aa155163dc6f79bfe643724c3df87447e8e624318913376b095f0fe17a643b77399c8b643e8a08d92593972e73e7b8f59769c9457ea4890649490f6d7e225a3eda9fd8b7d2dd78171d92b8c62c2e19c2985e269e3547da2a2d9943b00b9c23fc93b8a19754a350965110ab541bd4f07ea8a47265da0f3b4c2fd10d60742bc54af8970f37ee313860f9ecf35fec02810d630e8bc4fd5821c2e8687b92aeee2d1cae065fb2c43e34d3a6aeb02c4eb6c97e2b0a0d0493c371543c4a885c9053176e41db5744d828b5cc5973479f7c243cb0e55a9347ee80f6658a2b2955f1ec08edccbc9fb03c53f6b4d493aa6095daa93decd6d90d5b54e520fd3744bb6ba8bdad3822d7662bf9d9d349b5052dcffa4eb1bc6a3419b20a19780dcd977ba61f67d2dbdcbc08c4f470f548beb1ef1866f010e1c87c1ff8073a9cb6dea530673d583b802daaab4a01f84aa060f0f8bde6e30ff200e56963fb9a1442919ce60482f71c91dc9abfb8001cf0b5bc989c5ec4d475fc98a9ce7f971cff04c7b7441b3beaf51f9ae729d33b0ab633fc63397c9f52963a7563f2936889ca427f8c7d6f57c51acc0c9f858107fad71c264bb8671bccf473922e752cf6adbb1b36733465da4a3a5671cc5689867"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+r3 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000180), 0x20281, 0x0)
+ioctl$TCSETS(r0, 0x5402, &(0x7f0000000480)={0x40, 0x1ff, 0x4, 0x8, 0xa, "da4ec0a5f7fb64b46ea2e3063208faa6f98386"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TCXONC(r3, 0x540a, 0x2)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r4, 0x560a, &(0x7f0000000000)={0x3, 0xb, 0x2, 0x0, 0xfffc})
+ioctl$KDFONTOP_SET(0xffffffffffffffff, 0x4b72, &(0x7f0000001000)={0x0, 0x0, 0x3, 0x13, 0x200, &(0x7f0000000c00)="af93c6d702a0bc6f86b3178caeb1bbd2b18d0a0e1e49f66e23f9f95b683db0325498a784bac97953b1349849ba942d847e7fc2425446e910526cce03de76af827bb5aaa62c2e199587a24875c6e47748bb2291d43d594c3787c69cd9552a5a87639499a980ee3bfb752ab3dd17f11c7f1b5f90be1823f4720fea68e294d666255e3343822be78c4a1392015e7d60990bf62d2f107df9c265792868d6b094616a3974f719a4202811b218d0254ac73bb6a9f8cd493e50ec8bc04c910534ebccf9b7187741c2256489a8d8a7105cf63531bc0bc7a3d89492fd1cc653053a4a3401a597bbab5961fac180f49f360dd0917dd5778aee64bd7cbc1848765484c712275c2db63490d5392984590964a9e156d7f8464b1b67f175f964b100eadbade0e8197d9ea301f41bdc75a5263a188e888235bc70511cb93d149cfa268a73f8e8fd288f445744617b7267dff68e0ecbfae54ff2f87f7ed4a4d5d4e250110a77f2628dda1c80463cb7e9f2615da2e1106f72afb735cd91d654186ad6f088d83ff85ef5e1f8d1151d041969a695b52b82a14b95f92179f190a9651dbbe510856c51e213e6806f1c5609730cbcd8ead95d5a8cb797e8df43ed3b90e660bf56c44191cd1a33bbeb75f9024b9a1f1a30359a2620b97c29f9ed10db5e5c692b63e6ab9ca6a98c223ef721d1fd227ab2568d60a5ecd4a61fcab5ca859eea2f10e3ae45cb83be994d806b01b83b64f3be0c8e5abec8ed8ff715bf0911bf2a455e3934db7243ee604a816a1caac624b9b1396f9f6d520eebc98b749d13b7889643cc95b6be322a62c9c183d183db2b08d190683d29b07eb801c91d089e5d439ac36dd90f52a97916c9fb203a432a88ec6fffc2c54aa3f098e83bca3cabdae2ecbdc6df9242c40b563bf0970b29054d021fab1d05c477ddb8244c17fe2e568537a9742cda051d00409f4da70a2631086630abf4fdb50d05a5babdc8688e943aa8952e1533e4be20514069cd7fe9b0bb9a3ed748e1c1ac2ca3f2d40e696c12350302ae069cc08454fdfe54e17a5aeff15ec7a9c37fb793d3d99d9f37ba874a258a5163ebeecbde61ccbfc3eadedc37b6bb555aaaeafb747b8be28cd1588c7987f6f9f2f75a5475e165d1b93b2492ba98d256ba306a0c2f4fb6042216fd1ac68c77bfeb83a4a113e9c99622ed6f5e94ab27cc509d273493a9b5502e7e008e9b23a25d56577a6585dd34ec919e573122b64cfe6d4e30e74af0c53130ec9534a8dc89d74aada3ae64218f3bea2fe51820800826d554671478817ba857a9d51fc600748d93a30602ed07211069ae927095367cc5b73f26c0540ff9bf1e224bdffa1359773b23e66043e8222500fa805281f6984a763e84a69476561fd24021975387ab221617413fb78e257407f21383d5b8cbb92d31a8e7567d7577efe58ae078aad66e4d151562ca"})
+
+16m7.272228017s ago: executing program 3 (id=3428):
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+ioctl$TIOCSRS485(0xffffffffffffffff, 0x542f, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$KDMKTONE(r1, 0x4b30, 0xfffffffffffffffd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x7)
+ioctl$TIOCGPGRP(0xffffffffffffffff, 0x540f, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000001c0)=0x83)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$VT_GETMODE(r2, 0x5601, 0x0)
+ioctl$KDFONTOP_SET(r0, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x22, 0x1a, 0x100, &(0x7f0000000040)="d2096cbf528a7dd4ef1d5916518632bfd1ba54dce1790ebf65e13a3cee93b05ea1c9cc500d7408ca3fa56d5c467f4a44e1e0f8ae3fa72285f5f8fb4e14aa34c9dd673d1aa63c44750a6e315239a1f17b5c6697d9d6b229e73d683f89c2e5bfe14dbe79daefa28869d563ffb93ef7c2d2aade1400608fd597b61901bf79cca9ac17621eba319b32476e6d42df4368d4caf7cbf9d9b584d1a8387d61253fba99c336f935f1b117c2a97369b7057010aa85fc5c0f5b895c14f1508fd7474f4444cf8513b2b0577d71a2f4ef1d4bf98bd6c03b5a63867da747879524d0e8852366808cedfc66d0ea36530590cc6c02eb85e2dba0e4dd7440969d16f5e83e3d5d4836b6dcdddb552ef36fc9bd57a9edf9483d8b083eda9119948b970729a8630e1f49353c1aa17b7f95068c0b5c3264580bc28ccac3b83fa3d3e66c902df344c8919dac5169b8f0f489ec938520004e11ce84269ae6e7696a8b7100604a0e242a76d60fb7ae7cc922c0c1b36c0ef7cccf35b7a5891e1759f8a1f7bb299cea990f9cc1aa2a5594dd33cc46cdec766f418157a227f76478fd484498b9370e856b25974e2a233924de5a7eec7000ae0ebe01c5c796c4df92755653acd677a9c48c03d83e1986272a54572bb7c820eb2e8396cbea1cafba6792a4fe299fd15d6875713f494aeaf201f85df8f983f775b9b3bf55628fa682613518cf61574f3924d4631209484728384b2c70fe058379b6bef6b9579a99e32898bbb6a3c1817304fef512f8ab4cf6a46f33f5b50299a753fc3f10b037a0d54ab1ac9f5b4f5aa155163dc6f79bfe643724c3df87447e8e624318913376b095f0fe17a643b77399c8b643e8a08d92593972e73e7b8f59769c9457ea4890649490f6d7e225a3eda9fd8b7d2dd78171d92b8c62c2e19c2985e269e3547da2a2d9943b00b9c23fc93b8a19754a350965110ab541bd4f07ea8a47265da0f3b4c2fd10d60742bc54af8970f37ee313860f9ecf35fec02810d630e8bc4fd5821c2e8687b92aeee2d1cae065fb2c43e34d3a6aeb02c4eb6c97e2b0a0d0493c371543c4a885c9053176e41db5744d828b5cc5973479f7c243cb0e55a9347ee80f6658a2b2955f1ec08edccbc9fb03c53f6b4d493aa6095daa93decd6d90d5b54e520fd3744bb6ba8bdad3822d7662bf9d9d349b5052dcffa4eb1bc6a3419b20a19780dcd977ba61f67d2dbdcbc08c4f470f548beb1ef1866f010e1c87c1ff8073a9cb6dea530673d583b802daaab4a01f84aa060f0f8bde6e30ff200e56963fb9a1442919ce60482f71c91dc9abfb8001cf0b5bc989c5ec4d475fc98a9ce7f971cff04c7b7441b3beaf51f9ae729d33b0ab633fc63397c9f52963a7563f2936889ca427f8c7d6f57c51acc0c9f858107fad71c264bb8671bccf473922e752cf6adbb1b36733465da4a3a5671cc5689867"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+r3 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000180), 0x20281, 0x0)
+ioctl$TCSETS(r0, 0x5402, &(0x7f0000000480)={0x40, 0x1ff, 0x4, 0x8, 0xa, "da4ec0a5f7fb64b46ea2e3063208faa6f98386"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TCXONC(r3, 0x540a, 0x2)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_SET(r4, 0x4b72, &(0x7f00000014c0)={0x0, 0x1, 0x1b, 0xf, 0x800013a, &(0x7f00000010c0)="c70b01b6fbc2d3eeea8ba2cbe01bfa773e50da53b730f64b800fd7514d1690889330748f497585e391551ef1b9084eeb91e192076aae2d9413d39a6c06eba531e787ddd3b860e52bf8f68d350996792250bac10d51e82074d6ec37f7345de44ee09a95ea8f85185ca3d30019acb4324d5de653f9e03e10d5739bd0bc7acf89625438ec70acaed649fcd6883ecee3e2d80ab32809d50405d4c8bdc3f174ebffb779e106b75640c9a38366161b7014d009410f50851042052171119f35b9356da5fe9347b6d02cfbc54c82d53095e1d41151e89ef60ac9d93947644df8c76a1713b501fa46ffacb9b52f646a1580b316841852562384586d1d3e9e26ac0d70ae806728aa1ad0ea5bfc9280f2dd0e06d0f4b5e984e1f92ac4c4beb1ec635bf76bc0cb76da65b398e940a3b7019e901a1bd739a79407e731735db02c7b7eb36c7e74d41f54fdca524a7c9dd1b9da575ed1b230e7ac43d2aa103d770d232182fdd3410532c8deb19b6907e11d68625e8a5962c1a37c3000965f2cfc27995b5e56500b902d177440fddbc2661d90b2f95cc9cc392317816d98cebab6cb0837c6226aeed537b7b53d0527e9b97792bfced73340fc6c6ad1c7a0cc95daef9ab368f661cc448d08e4490208f046f6c40a98029a406b7c526629de5312f2be28a6a348ee0e4c0ba190704f25b609f13264d62fbe2556af93face5069aff0a541c2f35b93c0c0394259ca0b13ef59a578d522588c0249717e805d432e3397b7b64408545b5d9e6bdefadefc60a3e6e240d935f067767bc7832ffed065abca234579e607dacff6bf74722e45a93071a67d9c2e99c2deccffbfdb922893f35ba2366142049699be329ea806a598fbc919d8033d7d741191df86800fa7e6ea16b86eb579ee12ec923532c6a6867af0821b195363ad42e2ed233581226e92ef95018a979d9e8db15417f6cfe152c3c6b1440111ce3f44bba89745099e5d7afed5f16ec61cb22614da9256fa57e0fd6f68db0947689b43beb39786e82259d77c8c16b23fda2165ee7858ecfe14ff284fe87afcf7898620f8c2751476947523ed73cde3a74fd6e638065c66e93b97f4ec1507c1b2d6c465d4d011bf529bcf2d8401f9da320b90fe8a9591284fad59097bb56de74b26dd66ad463d61e8c4b736a70733db08434d031d78760d83dbb786940f3538c62dfc8cf3224de2f8cb9b62e8ce97528b0cdc19290776198fc6ee2425734d80456713f94c82431497d2cb6957acb57d33fba93e40876c453918f8e88aa11857ffd094c64b94273c1af819e32b1cfd99cdbfe12116014221ffd36dea2fc14fdbe1f56f51be98015bc97af28f3ad4d466830fa18149ee7175f6a407645b1c3d53cc517615e7b757c25790b60df9970136689eb8a7d4ecca0bc7e6fd1b3e9a1cc8ac9ba3ee9e118fd95997e2bade1bf0b2c319f474f6"})
+syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$KDFONTOP_SET(0xffffffffffffffff, 0x4b72, &(0x7f0000001000)={0x0, 0x0, 0x3, 0x13, 0x200, &(0x7f0000000c00)="af93c6d702a0bc6f86b3178caeb1bbd2b18d0a0e1e49f66e23f9f95b683db0325498a784bac97953b1349849ba942d847e7fc2425446e910526cce03de76af827bb5aaa62c2e199587a24875c6e47748bb2291d43d594c3787c69cd9552a5a87639499a980ee3bfb752ab3dd17f11c7f1b5f90be1823f4720fea68e294d666255e3343822be78c4a1392015e7d60990bf62d2f107df9c265792868d6b094616a3974f719a4202811b218d0254ac73bb6a9f8cd493e50ec8bc04c910534ebccf9b7187741c2256489a8d8a7105cf63531bc0bc7a3d89492fd1cc653053a4a3401a597bbab5961fac180f49f360dd0917dd5778aee64bd7cbc1848765484c712275c2db63490d5392984590964a9e156d7f8464b1b67f175f964b100eadbade0e8197d9ea301f41bdc75a5263a188e888235bc70511cb93d149cfa268a73f8e8fd288f445744617b7267dff68e0ecbfae54ff2f87f7ed4a4d5d4e250110a77f2628dda1c80463cb7e9f2615da2e1106f72afb735cd91d654186ad6f088d83ff85ef5e1f8d1151d041969a695b52b82a14b95f92179f190a9651dbbe510856c51e213e6806f1c5609730cbcd8ead95d5a8cb797e8df43ed3b90e660bf56c44191cd1a33bbeb75f9024b9a1f1a30359a2620b97c29f9ed10db5e5c692b63e6ab9ca6a98c223ef721d1fd227ab2568d60a5ecd4a61fcab5ca859eea2f10e3ae45cb83be994d806b01b83b64f3be0c8e5abec8ed8ff715bf0911bf2a455e3934db7243ee604a816a1caac624b9b1396f9f6d520eebc98b749d13b7889643cc95b6be322a62c9c183d183db2b08d190683d29b07eb801c91d089e5d439ac36dd90f52a97916c9fb203a432a88ec6fffc2c54aa3f098e83bca3cabdae2ecbdc6df9242c40b563bf0970b29054d021fab1d05c477ddb8244c17fe2e568537a9742cda051d00409f4da70a2631086630abf4fdb50d05a5babdc8688e943aa8952e1533e4be20514069cd7fe9b0bb9a3ed748e1c1ac2ca3f2d40e696c12350302ae069cc08454fdfe54e17a5aeff15ec7a9c37fb793d3d99d9f37ba874a258a5163ebeecbde61ccbfc3eadedc37b6bb555aaaeafb747b8be28cd1588c7987f6f9f2f75a5475e165d1b93b2492ba98d256ba306a0c2f4fb6042216fd1ac68c77bfeb83a4a113e9c99622ed6f5e94ab27cc509d273493a9b5502e7e008e9b23a25d56577a6585dd34ec919e573122b64cfe6d4e30e74af0c53130ec9534a8dc89d74aada3ae64218f3bea2fe51820800826d554671478817ba857a9d51fc600748d93a30602ed07211069ae927095367cc5b73f26c0540ff9bf1e224bdffa1359773b23e66043e8222500fa805281f6984a763e84a69476561fd24021975387ab221617413fb78e257407f21383d5b8cbb92d31a8e7567d7577efe58ae078aad66e4d151562ca"})
+
+16m7.068377658s ago: executing program 5 (id=3432):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, 0x0, 0x0)
+
+16m7.045104888s ago: executing program 5 (id=3435):
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+ioctl$TIOCSRS485(0xffffffffffffffff, 0x542f, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$KDMKTONE(r1, 0x4b30, 0xfffffffffffffffd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x7)
+ioctl$TIOCGPGRP(0xffffffffffffffff, 0x540f, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000001c0)=0x83)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$VT_GETMODE(r2, 0x5601, 0x0)
+ioctl$KDFONTOP_SET(r0, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x22, 0x1a, 0x100, 0x0})
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000180), 0x20281, 0x0)
+ioctl$TCSETS(r0, 0x5402, &(0x7f0000000480)={0x40, 0x1ff, 0x4, 0x8, 0xa, "da4ec0a5f7fb64b46ea2e3063208faa6f98386"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_SET(r3, 0x4b72, &(0x7f00000014c0)={0x0, 0x1, 0x1b, 0xf, 0x800013a, &(0x7f00000010c0)="c70b01b6fbc2d3eeea8ba2cbe01bfa773e50da53b730f64b800fd7514d1690889330748f497585e391551ef1b9084eeb91e192076aae2d9413d39a6c06eba531e787ddd3b860e52bf8f68d350996792250bac10d51e82074d6ec37f7345de44ee09a95ea8f85185ca3d30019acb4324d5de653f9e03e10d5739bd0bc7acf89625438ec70acaed649fcd6883ecee3e2d80ab32809d50405d4c8bdc3f174ebffb779e106b75640c9a38366161b7014d009410f50851042052171119f35b9356da5fe9347b6d02cfbc54c82d53095e1d41151e89ef60ac9d93947644df8c76a1713b501fa46ffacb9b52f646a1580b316841852562384586d1d3e9e26ac0d70ae806728aa1ad0ea5bfc9280f2dd0e06d0f4b5e984e1f92ac4c4beb1ec635bf76bc0cb76da65b398e940a3b7019e901a1bd739a79407e731735db02c7b7eb36c7e74d41f54fdca524a7c9dd1b9da575ed1b230e7ac43d2aa103d770d232182fdd3410532c8deb19b6907e11d68625e8a5962c1a37c3000965f2cfc27995b5e56500b902d177440fddbc2661d90b2f95cc9cc392317816d98cebab6cb0837c6226aeed537b7b53d0527e9b97792bfced73340fc6c6ad1c7a0cc95daef9ab368f661cc448d08e4490208f046f6c40a98029a406b7c526629de5312f2be28a6a348ee0e4c0ba190704f25b609f13264d62fbe2556af93face5069aff0a541c2f35b93c0c0394259ca0b13ef59a578d522588c0249717e805d432e3397b7b64408545b5d9e6bdefadefc60a3e6e240d935f067767bc7832ffed065abca234579e607dacff6bf74722e45a93071a67d9c2e99c2deccffbfdb922893f35ba2366142049699be329ea806a598fbc919d8033d7d741191df86800fa7e6ea16b86eb579ee12ec923532c6a6867af0821b195363ad42e2ed233581226e92ef95018a979d9e8db15417f6cfe152c3c6b1440111ce3f44bba89745099e5d7afed5f16ec61cb22614da9256fa57e0fd6f68db0947689b43beb39786e82259d77c8c16b23fda2165ee7858ecfe14ff284fe87afcf7898620f8c2751476947523ed73cde3a74fd6e638065c66e93b97f4ec1507c1b2d6c465d4d011bf529bcf2d8401f9da320b90fe8a9591284fad59097bb56de74b26dd66ad463d61e8c4b736a70733db08434d031d78760d83dbb786940f3538c62dfc8cf3224de2f8cb9b62e8ce97528b0cdc19290776198fc6ee2425734d80456713f94c82431497d2cb6957acb57d33fba93e40876c453918f8e88aa11857ffd094c64b94273c1af819e32b1cfd99cdbfe12116014221ffd36dea2fc14fdbe1f56f51be98015bc97af28f3ad4d466830fa18149ee7175f6a407645b1c3d53cc517615e7b757c25790b60df9970136689eb8a7d4ecca0bc7e6fd1b3e9a1cc8ac9ba3ee9e118fd95997e2bade1bf0b2c319f474f6"})
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r4, 0x560a, &(0x7f0000000000)={0x3, 0xb, 0x2, 0x0, 0xfffc})
+ioctl$KDFONTOP_SET(0xffffffffffffffff, 0x4b72, &(0x7f0000001000)={0x0, 0x0, 0x3, 0x13, 0x200, &(0x7f0000000c00)="af93c6d702a0bc6f86b3178caeb1bbd2b18d0a0e1e49f66e23f9f95b683db0325498a784bac97953b1349849ba942d847e7fc2425446e910526cce03de76af827bb5aaa62c2e199587a24875c6e47748bb2291d43d594c3787c69cd9552a5a87639499a980ee3bfb752ab3dd17f11c7f1b5f90be1823f4720fea68e294d666255e3343822be78c4a1392015e7d60990bf62d2f107df9c265792868d6b094616a3974f719a4202811b218d0254ac73bb6a9f8cd493e50ec8bc04c910534ebccf9b7187741c2256489a8d8a7105cf63531bc0bc7a3d89492fd1cc653053a4a3401a597bbab5961fac180f49f360dd0917dd5778aee64bd7cbc1848765484c712275c2db63490d5392984590964a9e156d7f8464b1b67f175f964b100eadbade0e8197d9ea301f41bdc75a5263a188e888235bc70511cb93d149cfa268a73f8e8fd288f445744617b7267dff68e0ecbfae54ff2f87f7ed4a4d5d4e250110a77f2628dda1c80463cb7e9f2615da2e1106f72afb735cd91d654186ad6f088d83ff85ef5e1f8d1151d041969a695b52b82a14b95f92179f190a9651dbbe510856c51e213e6806f1c5609730cbcd8ead95d5a8cb797e8df43ed3b90e660bf56c44191cd1a33bbeb75f9024b9a1f1a30359a2620b97c29f9ed10db5e5c692b63e6ab9ca6a98c223ef721d1fd227ab2568d60a5ecd4a61fcab5ca859eea2f10e3ae45cb83be994d806b01b83b64f3be0c8e5abec8ed8ff715bf0911bf2a455e3934db7243ee604a816a1caac624b9b1396f9f6d520eebc98b749d13b7889643cc95b6be322a62c9c183d183db2b08d190683d29b07eb801c91d089e5d439ac36dd90f52a97916c9fb203a432a88ec6fffc2c54aa3f098e83bca3cabdae2ecbdc6df9242c40b563bf0970b29054d021fab1d05c477ddb8244c17fe2e568537a9742cda051d00409f4da70a2631086630abf4fdb50d05a5babdc8688e943aa8952e1533e4be20514069cd7fe9b0bb9a3ed748e1c1ac2ca3f2d40e696c12350302ae069cc08454fdfe54e17a5aeff15ec7a9c37fb793d3d99d9f37ba874a258a5163ebeecbde61ccbfc3eadedc37b6bb555aaaeafb747b8be28cd1588c7987f6f9f2f75a5475e165d1b93b2492ba98d256ba306a0c2f4fb6042216fd1ac68c77bfeb83a4a113e9c99622ed6f5e94ab27cc509d273493a9b5502e7e008e9b23a25d56577a6585dd34ec919e573122b64cfe6d4e30e74af0c53130ec9534a8dc89d74aada3ae64218f3bea2fe51820800826d554671478817ba857a9d51fc600748d93a30602ed07211069ae927095367cc5b73f26c0540ff9bf1e224bdffa1359773b23e66043e8222500fa805281f6984a763e84a69476561fd24021975387ab221617413fb78e257407f21383d5b8cbb92d31a8e7567d7577efe58ae078aad66e4d151562ca"})
+
+16m7.039029143s ago: executing program 3 (id=3436):
+r0 = syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+ioctl$TUNSETQUEUE(r0, 0x5437, 0x0)
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000001240)={'\x00', 0xf823d74307427757})
+r2 = openat$KGPT_rfkill(0xffffffffffffff9c, &(0x7f0000000000), 0x2000, 0x0)
+ioctl$KGPT_RFKILL_IOC_NOINPUT(r2, 0x541b, 0x0)
+r3 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r3, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+r4 = syz_open_dev$KGPT_slcan(&(0x7f0000000140), 0x0, 0x100)
+ioctl$TUNSETQUEUE(r4, 0x5437, 0x0)
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x840, 0x0)
+r5 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x2008c1, 0x0)
+ioctl$TUNSETIFF(r5, 0x400454ca, 0x0)
+ioctl$TUNATTACHFILTER(r5, 0x401054d5, &(0x7f0000000180)={0x2000000000000110, &(0x7f0000000040)})
+ioctl$TUNSETIFF(0xffffffffffffffff, 0x400454ca, &(0x7f00000000c0)={'ip6erspan0\x00', 0x1})
+openat$KGPT_rfkill(0xffffffffffffff9c, 0x0, 0x177481, 0x0)
+ioctl$TUNATTACHFILTER(r3, 0x401054d5, &(0x7f0000000080)={0x1, &(0x7f0000000040)=[{0x6, 0xa, 0x9, 0x1}]})
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x20282, 0x0)
+
+16m6.950788213s ago: executing program 8 (id=3438):
+r0 = syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+ioctl$TUNSETQUEUE(r0, 0x5437, 0x0)
+ioctl$TUNSETQUEUE(0xffffffffffffffff, 0x5437, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000001240)={'\x00', 0xf823d74307427757})
+r2 = openat$KGPT_rfkill(0xffffffffffffff9c, &(0x7f0000000000), 0x2000, 0x0)
+ioctl$KGPT_RFKILL_IOC_NOINPUT(r2, 0x541b, 0x0)
+r3 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r3, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+r4 = syz_open_dev$KGPT_slcan(&(0x7f0000000140), 0x0, 0x100)
+ioctl$TUNSETQUEUE(r4, 0x5437, 0x0)
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x840, 0x0)
+r5 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x2008c1, 0x0)
+ioctl$TUNSETIFF(r5, 0x400454ca, 0x0)
+r6 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x20282, 0x0)
+ioctl$TUNSETIFF(r6, 0x400454ca, &(0x7f00000000c0)={'ip6erspan0\x00', 0x1})
+openat$KGPT_rfkill(0xffffffffffffff9c, 0x0, 0x177481, 0x0)
+ioctl$TUNATTACHFILTER(r3, 0x401054d5, &(0x7f0000000080)={0x1, &(0x7f0000000040)=[{0x6, 0xa, 0x9, 0x1}]})
+openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x20282, 0x0)
+
+16m6.950502798s ago: executing program 5 (id=3439):
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+
+16m6.920026276s ago: executing program 56 (id=3439):
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+
+16m6.81131728s ago: executing program 3 (id=3442):
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000180), 0x20281, 0x0)
+ioctl$TCXONC(r0, 0x540a, 0x2)
+
+16m6.741961054s ago: executing program 3 (id=3444):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, 0x0, 0x0)
+
+16m6.729432988s ago: executing program 8 (id=3446):
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+ioctl$TIOCSRS485(0xffffffffffffffff, 0x542f, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$KDMKTONE(r1, 0x4b30, 0xfffffffffffffffd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x7)
+ioctl$TIOCGPGRP(0xffffffffffffffff, 0x540f, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000001c0)=0x83)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$VT_GETMODE(r2, 0x5601, 0x0)
+ioctl$KDFONTOP_SET(r0, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x22, 0x1a, 0x100, &(0x7f0000000040)="d2096cbf528a7dd4ef1d5916518632bfd1ba54dce1790ebf65e13a3cee93b05ea1c9cc500d7408ca3fa56d5c467f4a44e1e0f8ae3fa72285f5f8fb4e14aa34c9dd673d1aa63c44750a6e315239a1f17b5c6697d9d6b229e73d683f89c2e5bfe14dbe79daefa28869d563ffb93ef7c2d2aade1400608fd597b61901bf79cca9ac17621eba319b32476e6d42df4368d4caf7cbf9d9b584d1a8387d61253fba99c336f935f1b117c2a97369b7057010aa85fc5c0f5b895c14f1508fd7474f4444cf8513b2b0577d71a2f4ef1d4bf98bd6c03b5a63867da747879524d0e8852366808cedfc66d0ea36530590cc6c02eb85e2dba0e4dd7440969d16f5e83e3d5d4836b6dcdddb552ef36fc9bd57a9edf9483d8b083eda9119948b970729a8630e1f49353c1aa17b7f95068c0b5c3264580bc28ccac3b83fa3d3e66c902df344c8919dac5169b8f0f489ec938520004e11ce84269ae6e7696a8b7100604a0e242a76d60fb7ae7cc922c0c1b36c0ef7cccf35b7a5891e1759f8a1f7bb299cea990f9cc1aa2a5594dd33cc46cdec766f418157a227f76478fd484498b9370e856b25974e2a233924de5a7eec7000ae0ebe01c5c796c4df92755653acd677a9c48c03d83e1986272a54572bb7c820eb2e8396cbea1cafba6792a4fe299fd15d6875713f494aeaf201f85df8f983f775b9b3bf55628fa682613518cf61574f3924d4631209484728384b2c70fe058379b6bef6b9579a99e32898bbb6a3c1817304fef512f8ab4cf6a46f33f5b50299a753fc3f10b037a0d54ab1ac9f5b4f5aa155163dc6f79bfe643724c3df87447e8e624318913376b095f0fe17a643b77399c8b643e8a08d92593972e73e7b8f59769c9457ea4890649490f6d7e225a3eda9fd8b7d2dd78171d92b8c62c2e19c2985e269e3547da2a2d9943b00b9c23fc93b8a19754a350965110ab541bd4f07ea8a47265da0f3b4c2fd10d60742bc54af8970f37ee313860f9ecf35fec02810d630e8bc4fd5821c2e8687b92aeee2d1cae065fb2c43e34d3a6aeb02c4eb6c97e2b0a0d0493c371543c4a885c9053176e41db5744d828b5cc5973479f7c243cb0e55a9347ee80f6658a2b2955f1ec08edccbc9fb03c53f6b4d493aa6095daa93decd6d90d5b54e520fd3744bb6ba8bdad3822d7662bf9d9d349b5052dcffa4eb1bc6a3419b20a19780dcd977ba61f67d2dbdcbc08c4f470f548beb1ef1866f010e1c87c1ff8073a9cb6dea530673d583b802daaab4a01f84aa060f0f8bde6e30ff200e56963fb9a1442919ce60482f71c91dc9abfb8001cf0b5bc989c5ec4d475fc98a9ce7f971cff04c7b7441b3beaf51f9ae729d33b0ab633fc63397c9f52963a7563f2936889ca427f8c7d6f57c51acc0c9f858107fad71c264bb8671bccf473922e752cf6adbb1b36733465da4a3a5671cc5689867"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+r3 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000180), 0x20281, 0x0)
+ioctl$TCSETS(r0, 0x5402, &(0x7f0000000480)={0x40, 0x1ff, 0x4, 0x8, 0xa, "da4ec0a5f7fb64b46ea2e3063208faa6f98386"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TCXONC(r3, 0x540a, 0x2)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_SET(r4, 0x4b72, &(0x7f00000014c0)={0x0, 0x1, 0x1b, 0xf, 0x800013a, &(0x7f00000010c0)="c70b01b6fbc2d3eeea8ba2cbe01bfa773e50da53b730f64b800fd7514d1690889330748f497585e391551ef1b9084eeb91e192076aae2d9413d39a6c06eba531e787ddd3b860e52bf8f68d350996792250bac10d51e82074d6ec37f7345de44ee09a95ea8f85185ca3d30019acb4324d5de653f9e03e10d5739bd0bc7acf89625438ec70acaed649fcd6883ecee3e2d80ab32809d50405d4c8bdc3f174ebffb779e106b75640c9a38366161b7014d009410f50851042052171119f35b9356da5fe9347b6d02cfbc54c82d53095e1d41151e89ef60ac9d93947644df8c76a1713b501fa46ffacb9b52f646a1580b316841852562384586d1d3e9e26ac0d70ae806728aa1ad0ea5bfc9280f2dd0e06d0f4b5e984e1f92ac4c4beb1ec635bf76bc0cb76da65b398e940a3b7019e901a1bd739a79407e731735db02c7b7eb36c7e74d41f54fdca524a7c9dd1b9da575ed1b230e7ac43d2aa103d770d232182fdd3410532c8deb19b6907e11d68625e8a5962c1a37c3000965f2cfc27995b5e56500b902d177440fddbc2661d90b2f95cc9cc392317816d98cebab6cb0837c6226aeed537b7b53d0527e9b97792bfced73340fc6c6ad1c7a0cc95daef9ab368f661cc448d08e4490208f046f6c40a98029a406b7c526629de5312f2be28a6a348ee0e4c0ba190704f25b609f13264d62fbe2556af93face5069aff0a541c2f35b93c0c0394259ca0b13ef59a578d522588c0249717e805d432e3397b7b64408545b5d9e6bdefadefc60a3e6e240d935f067767bc7832ffed065abca234579e607dacff6bf74722e45a93071a67d9c2e99c2deccffbfdb922893f35ba2366142049699be329ea806a598fbc919d8033d7d741191df86800fa7e6ea16b86eb579ee12ec923532c6a6867af0821b195363ad42e2ed233581226e92ef95018a979d9e8db15417f6cfe152c3c6b1440111ce3f44bba89745099e5d7afed5f16ec61cb22614da9256fa57e0fd6f68db0947689b43beb39786e82259d77c8c16b23fda2165ee7858ecfe14ff284fe87afcf7898620f8c2751476947523ed73cde3a74fd6e638065c66e93b97f4ec1507c1b2d6c465d4d011bf529bcf2d8401f9da320b90fe8a9591284fad59097bb56de74b26dd66ad463d61e8c4b736a70733db08434d031d78760d83dbb786940f3538c62dfc8cf3224de2f8cb9b62e8ce97528b0cdc19290776198fc6ee2425734d80456713f94c82431497d2cb6957acb57d33fba93e40876c453918f8e88aa11857ffd094c64b94273c1af819e32b1cfd99cdbfe12116014221ffd36dea2fc14fdbe1f56f51be98015bc97af28f3ad4d466830fa18149ee7175f6a407645b1c3d53cc517615e7b757c25790b60df9970136689eb8a7d4ecca0bc7e6fd1b3e9a1cc8ac9ba3ee9e118fd95997e2bade1bf0b2c319f474f6"})
+ioctl$VT_RESIZEX(0xffffffffffffffff, 0x560a, &(0x7f0000000000)={0x3, 0xb, 0x2, 0x0, 0xfffc})
+ioctl$KDFONTOP_SET(0xffffffffffffffff, 0x4b72, &(0x7f0000001000)={0x0, 0x0, 0x3, 0x13, 0x200, &(0x7f0000000c00)="af93c6d702a0bc6f86b3178caeb1bbd2b18d0a0e1e49f66e23f9f95b683db0325498a784bac97953b1349849ba942d847e7fc2425446e910526cce03de76af827bb5aaa62c2e199587a24875c6e47748bb2291d43d594c3787c69cd9552a5a87639499a980ee3bfb752ab3dd17f11c7f1b5f90be1823f4720fea68e294d666255e3343822be78c4a1392015e7d60990bf62d2f107df9c265792868d6b094616a3974f719a4202811b218d0254ac73bb6a9f8cd493e50ec8bc04c910534ebccf9b7187741c2256489a8d8a7105cf63531bc0bc7a3d89492fd1cc653053a4a3401a597bbab5961fac180f49f360dd0917dd5778aee64bd7cbc1848765484c712275c2db63490d5392984590964a9e156d7f8464b1b67f175f964b100eadbade0e8197d9ea301f41bdc75a5263a188e888235bc70511cb93d149cfa268a73f8e8fd288f445744617b7267dff68e0ecbfae54ff2f87f7ed4a4d5d4e250110a77f2628dda1c80463cb7e9f2615da2e1106f72afb735cd91d654186ad6f088d83ff85ef5e1f8d1151d041969a695b52b82a14b95f92179f190a9651dbbe510856c51e213e6806f1c5609730cbcd8ead95d5a8cb797e8df43ed3b90e660bf56c44191cd1a33bbeb75f9024b9a1f1a30359a2620b97c29f9ed10db5e5c692b63e6ab9ca6a98c223ef721d1fd227ab2568d60a5ecd4a61fcab5ca859eea2f10e3ae45cb83be994d806b01b83b64f3be0c8e5abec8ed8ff715bf0911bf2a455e3934db7243ee604a816a1caac624b9b1396f9f6d520eebc98b749d13b7889643cc95b6be322a62c9c183d183db2b08d190683d29b07eb801c91d089e5d439ac36dd90f52a97916c9fb203a432a88ec6fffc2c54aa3f098e83bca3cabdae2ecbdc6df9242c40b563bf0970b29054d021fab1d05c477ddb8244c17fe2e568537a9742cda051d00409f4da70a2631086630abf4fdb50d05a5babdc8688e943aa8952e1533e4be20514069cd7fe9b0bb9a3ed748e1c1ac2ca3f2d40e696c12350302ae069cc08454fdfe54e17a5aeff15ec7a9c37fb793d3d99d9f37ba874a258a5163ebeecbde61ccbfc3eadedc37b6bb555aaaeafb747b8be28cd1588c7987f6f9f2f75a5475e165d1b93b2492ba98d256ba306a0c2f4fb6042216fd1ac68c77bfeb83a4a113e9c99622ed6f5e94ab27cc509d273493a9b5502e7e008e9b23a25d56577a6585dd34ec919e573122b64cfe6d4e30e74af0c53130ec9534a8dc89d74aada3ae64218f3bea2fe51820800826d554671478817ba857a9d51fc600748d93a30602ed07211069ae927095367cc5b73f26c0540ff9bf1e224bdffa1359773b23e66043e8222500fa805281f6984a763e84a69476561fd24021975387ab221617413fb78e257407f21383d5b8cbb92d31a8e7567d7577efe58ae078aad66e4d151562ca"})
+
+16m6.659836219s ago: executing program 3 (id=3447):
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x80000, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r0, 0x560a, &(0x7f0000000000)={0x3, 0xb, 0x2, 0x0, 0xfffc})
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000980)={0x1, 0x0, 0x7, 0x17, 0x15a, &(0x7f0000000580)})
+ioctl$TIOCMBIC(r0, 0x5417, &(0x7f00000000c0)=0x80)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSTI(r2, 0x5412, &(0x7f0000000040)=0x84)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TCSETS(r3, 0x5402, &(0x7f00000000c0)={0x103, 0x100, 0x6, 0xffffffff, 0xe, "04d87e33cd74ff01000000000000f7de6756a8"})
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, 0x0)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TCSETAF(r4, 0x5408, &(0x7f0000000000)={0xde79, 0x85b, 0x2, 0xf02c, 0x93, "a2852e2922db75bf"})
+ioctl$TIOCSTI(r4, 0x5412, &(0x7f0000000400)=0x5)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$VT_RESIZEX(r4, 0x560a, &(0x7f0000000140)={0x8, 0x4, 0x8000, 0x66, 0x3, 0xc})
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000100), 0xa0382, 0x0)
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDGKBENT(r5, 0x4b46, &(0x7f00000019c0)={0x1, 0x0, 0x80})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TIOCGSID(r1, 0x5429, 0x0)
+ioctl$TCFLSH(r0, 0x540b, 0x1)
+
+16m6.581565583s ago: executing program 3 (id=3448):
+syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+
+16m6.581388667s ago: executing program 57 (id=3448):
+syz_open_dev$KGPT_slcan(&(0x7f0000000100), 0x0, 0x40100)
+
+16m6.5420712s ago: executing program 8 (id=3451):
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+ioctl$TIOCSRS485(0xffffffffffffffff, 0x542f, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$KDMKTONE(r1, 0x4b30, 0xfffffffffffffffd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x7)
+ioctl$TIOCGPGRP(0xffffffffffffffff, 0x540f, 0x0)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000001c0)=0x83)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$VT_GETMODE(r2, 0x5601, 0x0)
+ioctl$KDFONTOP_SET(r0, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x22, 0x1a, 0x100, &(0x7f0000000040)="d2096cbf528a7dd4ef1d5916518632bfd1ba54dce1790ebf65e13a3cee93b05ea1c9cc500d7408ca3fa56d5c467f4a44e1e0f8ae3fa72285f5f8fb4e14aa34c9dd673d1aa63c44750a6e315239a1f17b5c6697d9d6b229e73d683f89c2e5bfe14dbe79daefa28869d563ffb93ef7c2d2aade1400608fd597b61901bf79cca9ac17621eba319b32476e6d42df4368d4caf7cbf9d9b584d1a8387d61253fba99c336f935f1b117c2a97369b7057010aa85fc5c0f5b895c14f1508fd7474f4444cf8513b2b0577d71a2f4ef1d4bf98bd6c03b5a63867da747879524d0e8852366808cedfc66d0ea36530590cc6c02eb85e2dba0e4dd7440969d16f5e83e3d5d4836b6dcdddb552ef36fc9bd57a9edf9483d8b083eda9119948b970729a8630e1f49353c1aa17b7f95068c0b5c3264580bc28ccac3b83fa3d3e66c902df344c8919dac5169b8f0f489ec938520004e11ce84269ae6e7696a8b7100604a0e242a76d60fb7ae7cc922c0c1b36c0ef7cccf35b7a5891e1759f8a1f7bb299cea990f9cc1aa2a5594dd33cc46cdec766f418157a227f76478fd484498b9370e856b25974e2a233924de5a7eec7000ae0ebe01c5c796c4df92755653acd677a9c48c03d83e1986272a54572bb7c820eb2e8396cbea1cafba6792a4fe299fd15d6875713f494aeaf201f85df8f983f775b9b3bf55628fa682613518cf61574f3924d4631209484728384b2c70fe058379b6bef6b9579a99e32898bbb6a3c1817304fef512f8ab4cf6a46f33f5b50299a753fc3f10b037a0d54ab1ac9f5b4f5aa155163dc6f79bfe643724c3df87447e8e624318913376b095f0fe17a643b77399c8b643e8a08d92593972e73e7b8f59769c9457ea4890649490f6d7e225a3eda9fd8b7d2dd78171d92b8c62c2e19c2985e269e3547da2a2d9943b00b9c23fc93b8a19754a350965110ab541bd4f07ea8a47265da0f3b4c2fd10d60742bc54af8970f37ee313860f9ecf35fec02810d630e8bc4fd5821c2e8687b92aeee2d1cae065fb2c43e34d3a6aeb02c4eb6c97e2b0a0d0493c371543c4a885c9053176e41db5744d828b5cc5973479f7c243cb0e55a9347ee80f6658a2b2955f1ec08edccbc9fb03c53f6b4d493aa6095daa93decd6d90d5b54e520fd3744bb6ba8bdad3822d7662bf9d9d349b5052dcffa4eb1bc6a3419b20a19780dcd977ba61f67d2dbdcbc08c4f470f548beb1ef1866f010e1c87c1ff8073a9cb6dea530673d583b802daaab4a01f84aa060f0f8bde6e30ff200e56963fb9a1442919ce60482f71c91dc9abfb8001cf0b5bc989c5ec4d475fc98a9ce7f971cff04c7b7441b3beaf51f9ae729d33b0ab633fc63397c9f52963a7563f2936889ca427f8c7d6f57c51acc0c9f858107fad71c264bb8671bccf473922e752cf6adbb1b36733465da4a3a5671cc5689867"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+r3 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000180), 0x20281, 0x0)
+ioctl$TCSETS(r0, 0x5402, &(0x7f0000000480)={0x40, 0x1ff, 0x4, 0x8, 0xa, "da4ec0a5f7fb64b46ea2e3063208faa6f98386"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TCXONC(r3, 0x540a, 0x2)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_SET(r4, 0x4b72, &(0x7f00000014c0)={0x0, 0x1, 0x1b, 0xf, 0x800013a, &(0x7f00000010c0)="c70b01b6fbc2d3eeea8ba2cbe01bfa773e50da53b730f64b800fd7514d1690889330748f497585e391551ef1b9084eeb91e192076aae2d9413d39a6c06eba531e787ddd3b860e52bf8f68d350996792250bac10d51e82074d6ec37f7345de44ee09a95ea8f85185ca3d30019acb4324d5de653f9e03e10d5739bd0bc7acf89625438ec70acaed649fcd6883ecee3e2d80ab32809d50405d4c8bdc3f174ebffb779e106b75640c9a38366161b7014d009410f50851042052171119f35b9356da5fe9347b6d02cfbc54c82d53095e1d41151e89ef60ac9d93947644df8c76a1713b501fa46ffacb9b52f646a1580b316841852562384586d1d3e9e26ac0d70ae806728aa1ad0ea5bfc9280f2dd0e06d0f4b5e984e1f92ac4c4beb1ec635bf76bc0cb76da65b398e940a3b7019e901a1bd739a79407e731735db02c7b7eb36c7e74d41f54fdca524a7c9dd1b9da575ed1b230e7ac43d2aa103d770d232182fdd3410532c8deb19b6907e11d68625e8a5962c1a37c3000965f2cfc27995b5e56500b902d177440fddbc2661d90b2f95cc9cc392317816d98cebab6cb0837c6226aeed537b7b53d0527e9b97792bfced73340fc6c6ad1c7a0cc95daef9ab368f661cc448d08e4490208f046f6c40a98029a406b7c526629de5312f2be28a6a348ee0e4c0ba190704f25b609f13264d62fbe2556af93face5069aff0a541c2f35b93c0c0394259ca0b13ef59a578d522588c0249717e805d432e3397b7b64408545b5d9e6bdefadefc60a3e6e240d935f067767bc7832ffed065abca234579e607dacff6bf74722e45a93071a67d9c2e99c2deccffbfdb922893f35ba2366142049699be329ea806a598fbc919d8033d7d741191df86800fa7e6ea16b86eb579ee12ec923532c6a6867af0821b195363ad42e2ed233581226e92ef95018a979d9e8db15417f6cfe152c3c6b1440111ce3f44bba89745099e5d7afed5f16ec61cb22614da9256fa57e0fd6f68db0947689b43beb39786e82259d77c8c16b23fda2165ee7858ecfe14ff284fe87afcf7898620f8c2751476947523ed73cde3a74fd6e638065c66e93b97f4ec1507c1b2d6c465d4d011bf529bcf2d8401f9da320b90fe8a9591284fad59097bb56de74b26dd66ad463d61e8c4b736a70733db08434d031d78760d83dbb786940f3538c62dfc8cf3224de2f8cb9b62e8ce97528b0cdc19290776198fc6ee2425734d80456713f94c82431497d2cb6957acb57d33fba93e40876c453918f8e88aa11857ffd094c64b94273c1af819e32b1cfd99cdbfe12116014221ffd36dea2fc14fdbe1f56f51be98015bc97af28f3ad4d466830fa18149ee7175f6a407645b1c3d53cc517615e7b757c25790b60df9970136689eb8a7d4ecca0bc7e6fd1b3e9a1cc8ac9ba3ee9e118fd95997e2bade1bf0b2c319f474f6"})
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r5, 0x560a, &(0x7f0000000000)={0x3, 0xb, 0x2, 0x0, 0xfffc})
+
+16m6.320349925s ago: executing program 8 (id=3454):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, 0x0, 0x0)
+
+16m6.306809056s ago: executing program 8 (id=3456):
+r0 = syz_open_dev$I2C(&(0x7f0000000000), 0x875a, 0x20801)
+ioctl$I2C_TENBIT(r0, 0x80111500, 0x200000ffefff)
+ioctl$I2C_SMBUS(r0, 0x720, &(0x7f00000000c0)={0x0, 0x3f, 0x1, &(0x7f0000000080)={0x16, "11feecda876c740c8d6deb3ab5197995b09310b39e89067c6060ed2d2f5bf7d42b"}})
+ioctl$I2C_TIMEOUT(r0, 0x702, 0x0)
+
+16m6.211769665s ago: executing program 8 (id=3457):
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+ioctl$TIOCSRS485(0xffffffffffffffff, 0x542f, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$KDMKTONE(r1, 0x4b30, 0xfffffffffffffffd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x7)
+ioctl$TIOCGPGRP(0xffffffffffffffff, 0x540f, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000001c0)=0x83)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$VT_GETMODE(r2, 0x5601, 0x0)
+ioctl$KDFONTOP_SET(r0, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x22, 0x1a, 0x100, &(0x7f0000000040)="d2096cbf528a7dd4ef1d5916518632bfd1ba54dce1790ebf65e13a3cee93b05ea1c9cc500d7408ca3fa56d5c467f4a44e1e0f8ae3fa72285f5f8fb4e14aa34c9dd673d1aa63c44750a6e315239a1f17b5c6697d9d6b229e73d683f89c2e5bfe14dbe79daefa28869d563ffb93ef7c2d2aade1400608fd597b61901bf79cca9ac17621eba319b32476e6d42df4368d4caf7cbf9d9b584d1a8387d61253fba99c336f935f1b117c2a97369b7057010aa85fc5c0f5b895c14f1508fd7474f4444cf8513b2b0577d71a2f4ef1d4bf98bd6c03b5a63867da747879524d0e8852366808cedfc66d0ea36530590cc6c02eb85e2dba0e4dd7440969d16f5e83e3d5d4836b6dcdddb552ef36fc9bd57a9edf9483d8b083eda9119948b970729a8630e1f49353c1aa17b7f95068c0b5c3264580bc28ccac3b83fa3d3e66c902df344c8919dac5169b8f0f489ec938520004e11ce84269ae6e7696a8b7100604a0e242a76d60fb7ae7cc922c0c1b36c0ef7cccf35b7a5891e1759f8a1f7bb299cea990f9cc1aa2a5594dd33cc46cdec766f418157a227f76478fd484498b9370e856b25974e2a233924de5a7eec7000ae0ebe01c5c796c4df92755653acd677a9c48c03d83e1986272a54572bb7c820eb2e8396cbea1cafba6792a4fe299fd15d6875713f494aeaf201f85df8f983f775b9b3bf55628fa682613518cf61574f3924d4631209484728384b2c70fe058379b6bef6b9579a99e32898bbb6a3c1817304fef512f8ab4cf6a46f33f5b50299a753fc3f10b037a0d54ab1ac9f5b4f5aa155163dc6f79bfe643724c3df87447e8e624318913376b095f0fe17a643b77399c8b643e8a08d92593972e73e7b8f59769c9457ea4890649490f6d7e225a3eda9fd8b7d2dd78171d92b8c62c2e19c2985e269e3547da2a2d9943b00b9c23fc93b8a19754a350965110ab541bd4f07ea8a47265da0f3b4c2fd10d60742bc54af8970f37ee313860f9ecf35fec02810d630e8bc4fd5821c2e8687b92aeee2d1cae065fb2c43e34d3a6aeb02c4eb6c97e2b0a0d0493c371543c4a885c9053176e41db5744d828b5cc5973479f7c243cb0e55a9347ee80f6658a2b2955f1ec08edccbc9fb03c53f6b4d493aa6095daa93decd6d90d5b54e520fd3744bb6ba8bdad3822d7662bf9d9d349b5052dcffa4eb1bc6a3419b20a19780dcd977ba61f67d2dbdcbc08c4f470f548beb1ef1866f010e1c87c1ff8073a9cb6dea530673d583b802daaab4a01f84aa060f0f8bde6e30ff200e56963fb9a1442919ce60482f71c91dc9abfb8001cf0b5bc989c5ec4d475fc98a9ce7f971cff04c7b7441b3beaf51f9ae729d33b0ab633fc63397c9f52963a7563f2936889ca427f8c7d6f57c51acc0c9f858107fad71c264bb8671bccf473922e752cf6adbb1b36733465da4a3a5671cc5689867"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+r3 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000180), 0x20281, 0x0)
+ioctl$TCSETS(r0, 0x5402, &(0x7f0000000480)={0x40, 0x1ff, 0x4, 0x8, 0xa, "da4ec0a5f7fb64b46ea2e3063208faa6f98386"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TCXONC(r3, 0x540a, 0x2)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_SET(r4, 0x4b72, &(0x7f00000014c0)={0x0, 0x1, 0x1b, 0xf, 0x800013a, &(0x7f00000010c0)="c70b01b6fbc2d3eeea8ba2cbe01bfa773e50da53b730f64b800fd7514d1690889330748f497585e391551ef1b9084eeb91e192076aae2d9413d39a6c06eba531e787ddd3b860e52bf8f68d350996792250bac10d51e82074d6ec37f7345de44ee09a95ea8f85185ca3d30019acb4324d5de653f9e03e10d5739bd0bc7acf89625438ec70acaed649fcd6883ecee3e2d80ab32809d50405d4c8bdc3f174ebffb779e106b75640c9a38366161b7014d009410f50851042052171119f35b9356da5fe9347b6d02cfbc54c82d53095e1d41151e89ef60ac9d93947644df8c76a1713b501fa46ffacb9b52f646a1580b316841852562384586d1d3e9e26ac0d70ae806728aa1ad0ea5bfc9280f2dd0e06d0f4b5e984e1f92ac4c4beb1ec635bf76bc0cb76da65b398e940a3b7019e901a1bd739a79407e731735db02c7b7eb36c7e74d41f54fdca524a7c9dd1b9da575ed1b230e7ac43d2aa103d770d232182fdd3410532c8deb19b6907e11d68625e8a5962c1a37c3000965f2cfc27995b5e56500b902d177440fddbc2661d90b2f95cc9cc392317816d98cebab6cb0837c6226aeed537b7b53d0527e9b97792bfced73340fc6c6ad1c7a0cc95daef9ab368f661cc448d08e4490208f046f6c40a98029a406b7c526629de5312f2be28a6a348ee0e4c0ba190704f25b609f13264d62fbe2556af93face5069aff0a541c2f35b93c0c0394259ca0b13ef59a578d522588c0249717e805d432e3397b7b64408545b5d9e6bdefadefc60a3e6e240d935f067767bc7832ffed065abca234579e607dacff6bf74722e45a93071a67d9c2e99c2deccffbfdb922893f35ba2366142049699be329ea806a598fbc919d8033d7d741191df86800fa7e6ea16b86eb579ee12ec923532c6a6867af0821b195363ad42e2ed233581226e92ef95018a979d9e8db15417f6cfe152c3c6b1440111ce3f44bba89745099e5d7afed5f16ec61cb22614da9256fa57e0fd6f68db0947689b43beb39786e82259d77c8c16b23fda2165ee7858ecfe14ff284fe87afcf7898620f8c2751476947523ed73cde3a74fd6e638065c66e93b97f4ec1507c1b2d6c465d4d011bf529bcf2d8401f9da320b90fe8a9591284fad59097bb56de74b26dd66ad463d61e8c4b736a70733db08434d031d78760d83dbb786940f3538c62dfc8cf3224de2f8cb9b62e8ce97528b0cdc19290776198fc6ee2425734d80456713f94c82431497d2cb6957acb57d33fba93e40876c453918f8e88aa11857ffd094c64b94273c1af819e32b1cfd99cdbfe12116014221ffd36dea2fc14fdbe1f56f51be98015bc97af28f3ad4d466830fa18149ee7175f6a407645b1c3d53cc517615e7b757c25790b60df9970136689eb8a7d4ecca0bc7e6fd1b3e9a1cc8ac9ba3ee9e118fd95997e2bade1bf0b2c319f474f6"})
+ioctl$VT_RESIZEX(0xffffffffffffffff, 0x560a, &(0x7f0000000000)={0x3, 0xb, 0x2, 0x0, 0xfffc})
+ioctl$KDFONTOP_SET(0xffffffffffffffff, 0x4b72, &(0x7f0000001000)={0x0, 0x0, 0x3, 0x13, 0x200, &(0x7f0000000c00)="af93c6d702a0bc6f86b3178caeb1bbd2b18d0a0e1e49f66e23f9f95b683db0325498a784bac97953b1349849ba942d847e7fc2425446e910526cce03de76af827bb5aaa62c2e199587a24875c6e47748bb2291d43d594c3787c69cd9552a5a87639499a980ee3bfb752ab3dd17f11c7f1b5f90be1823f4720fea68e294d666255e3343822be78c4a1392015e7d60990bf62d2f107df9c265792868d6b094616a3974f719a4202811b218d0254ac73bb6a9f8cd493e50ec8bc04c910534ebccf9b7187741c2256489a8d8a7105cf63531bc0bc7a3d89492fd1cc653053a4a3401a597bbab5961fac180f49f360dd0917dd5778aee64bd7cbc1848765484c712275c2db63490d5392984590964a9e156d7f8464b1b67f175f964b100eadbade0e8197d9ea301f41bdc75a5263a188e888235bc70511cb93d149cfa268a73f8e8fd288f445744617b7267dff68e0ecbfae54ff2f87f7ed4a4d5d4e250110a77f2628dda1c80463cb7e9f2615da2e1106f72afb735cd91d654186ad6f088d83ff85ef5e1f8d1151d041969a695b52b82a14b95f92179f190a9651dbbe510856c51e213e6806f1c5609730cbcd8ead95d5a8cb797e8df43ed3b90e660bf56c44191cd1a33bbeb75f9024b9a1f1a30359a2620b97c29f9ed10db5e5c692b63e6ab9ca6a98c223ef721d1fd227ab2568d60a5ecd4a61fcab5ca859eea2f10e3ae45cb83be994d806b01b83b64f3be0c8e5abec8ed8ff715bf0911bf2a455e3934db7243ee604a816a1caac624b9b1396f9f6d520eebc98b749d13b7889643cc95b6be322a62c9c183d183db2b08d190683d29b07eb801c91d089e5d439ac36dd90f52a97916c9fb203a432a88ec6fffc2c54aa3f098e83bca3cabdae2ecbdc6df9242c40b563bf0970b29054d021fab1d05c477ddb8244c17fe2e568537a9742cda051d00409f4da70a2631086630abf4fdb50d05a5babdc8688e943aa8952e1533e4be20514069cd7fe9b0bb9a3ed748e1c1ac2ca3f2d40e696c12350302ae069cc08454fdfe54e17a5aeff15ec7a9c37fb793d3d99d9f37ba874a258a5163ebeecbde61ccbfc3eadedc37b6bb555aaaeafb747b8be28cd1588c7987f6f9f2f75a5475e165d1b93b2492ba98d256ba306a0c2f4fb6042216fd1ac68c77bfeb83a4a113e9c99622ed6f5e94ab27cc509d273493a9b5502e7e008e9b23a25d56577a6585dd34ec919e573122b64cfe6d4e30e74af0c53130ec9534a8dc89d74aada3ae64218f3bea2fe51820800826d554671478817ba857a9d51fc600748d93a30602ed07211069ae927095367cc5b73f26c0540ff9bf1e224bdffa1359773b23e66043e8222500fa805281f6984a763e84a69476561fd24021975387ab221617413fb78e257407f21383d5b8cbb92d31a8e7567d7577efe58ae078aad66e4d151562ca"})
+
+16m6.211470656s ago: executing program 58 (id=3457):
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x1)
+ioctl$TIOCSRS485(0xffffffffffffffff, 0x542f, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$KDMKTONE(r1, 0x4b30, 0xfffffffffffffffd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000000c0)=0x7)
+ioctl$TIOCGPGRP(0xffffffffffffffff, 0x540f, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000001c0)=0x83)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$VT_GETMODE(r2, 0x5601, 0x0)
+ioctl$KDFONTOP_SET(r0, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x22, 0x1a, 0x100, &(0x7f0000000040)="d2096cbf528a7dd4ef1d5916518632bfd1ba54dce1790ebf65e13a3cee93b05ea1c9cc500d7408ca3fa56d5c467f4a44e1e0f8ae3fa72285f5f8fb4e14aa34c9dd673d1aa63c44750a6e315239a1f17b5c6697d9d6b229e73d683f89c2e5bfe14dbe79daefa28869d563ffb93ef7c2d2aade1400608fd597b61901bf79cca9ac17621eba319b32476e6d42df4368d4caf7cbf9d9b584d1a8387d61253fba99c336f935f1b117c2a97369b7057010aa85fc5c0f5b895c14f1508fd7474f4444cf8513b2b0577d71a2f4ef1d4bf98bd6c03b5a63867da747879524d0e8852366808cedfc66d0ea36530590cc6c02eb85e2dba0e4dd7440969d16f5e83e3d5d4836b6dcdddb552ef36fc9bd57a9edf9483d8b083eda9119948b970729a8630e1f49353c1aa17b7f95068c0b5c3264580bc28ccac3b83fa3d3e66c902df344c8919dac5169b8f0f489ec938520004e11ce84269ae6e7696a8b7100604a0e242a76d60fb7ae7cc922c0c1b36c0ef7cccf35b7a5891e1759f8a1f7bb299cea990f9cc1aa2a5594dd33cc46cdec766f418157a227f76478fd484498b9370e856b25974e2a233924de5a7eec7000ae0ebe01c5c796c4df92755653acd677a9c48c03d83e1986272a54572bb7c820eb2e8396cbea1cafba6792a4fe299fd15d6875713f494aeaf201f85df8f983f775b9b3bf55628fa682613518cf61574f3924d4631209484728384b2c70fe058379b6bef6b9579a99e32898bbb6a3c1817304fef512f8ab4cf6a46f33f5b50299a753fc3f10b037a0d54ab1ac9f5b4f5aa155163dc6f79bfe643724c3df87447e8e624318913376b095f0fe17a643b77399c8b643e8a08d92593972e73e7b8f59769c9457ea4890649490f6d7e225a3eda9fd8b7d2dd78171d92b8c62c2e19c2985e269e3547da2a2d9943b00b9c23fc93b8a19754a350965110ab541bd4f07ea8a47265da0f3b4c2fd10d60742bc54af8970f37ee313860f9ecf35fec02810d630e8bc4fd5821c2e8687b92aeee2d1cae065fb2c43e34d3a6aeb02c4eb6c97e2b0a0d0493c371543c4a885c9053176e41db5744d828b5cc5973479f7c243cb0e55a9347ee80f6658a2b2955f1ec08edccbc9fb03c53f6b4d493aa6095daa93decd6d90d5b54e520fd3744bb6ba8bdad3822d7662bf9d9d349b5052dcffa4eb1bc6a3419b20a19780dcd977ba61f67d2dbdcbc08c4f470f548beb1ef1866f010e1c87c1ff8073a9cb6dea530673d583b802daaab4a01f84aa060f0f8bde6e30ff200e56963fb9a1442919ce60482f71c91dc9abfb8001cf0b5bc989c5ec4d475fc98a9ce7f971cff04c7b7441b3beaf51f9ae729d33b0ab633fc63397c9f52963a7563f2936889ca427f8c7d6f57c51acc0c9f858107fad71c264bb8671bccf473922e752cf6adbb1b36733465da4a3a5671cc5689867"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+r3 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000180), 0x20281, 0x0)
+ioctl$TCSETS(r0, 0x5402, &(0x7f0000000480)={0x40, 0x1ff, 0x4, 0x8, 0xa, "da4ec0a5f7fb64b46ea2e3063208faa6f98386"})
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TCXONC(r3, 0x540a, 0x2)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_SET(r4, 0x4b72, &(0x7f00000014c0)={0x0, 0x1, 0x1b, 0xf, 0x800013a, &(0x7f00000010c0)="c70b01b6fbc2d3eeea8ba2cbe01bfa773e50da53b730f64b800fd7514d1690889330748f497585e391551ef1b9084eeb91e192076aae2d9413d39a6c06eba531e787ddd3b860e52bf8f68d350996792250bac10d51e82074d6ec37f7345de44ee09a95ea8f85185ca3d30019acb4324d5de653f9e03e10d5739bd0bc7acf89625438ec70acaed649fcd6883ecee3e2d80ab32809d50405d4c8bdc3f174ebffb779e106b75640c9a38366161b7014d009410f50851042052171119f35b9356da5fe9347b6d02cfbc54c82d53095e1d41151e89ef60ac9d93947644df8c76a1713b501fa46ffacb9b52f646a1580b316841852562384586d1d3e9e26ac0d70ae806728aa1ad0ea5bfc9280f2dd0e06d0f4b5e984e1f92ac4c4beb1ec635bf76bc0cb76da65b398e940a3b7019e901a1bd739a79407e731735db02c7b7eb36c7e74d41f54fdca524a7c9dd1b9da575ed1b230e7ac43d2aa103d770d232182fdd3410532c8deb19b6907e11d68625e8a5962c1a37c3000965f2cfc27995b5e56500b902d177440fddbc2661d90b2f95cc9cc392317816d98cebab6cb0837c6226aeed537b7b53d0527e9b97792bfced73340fc6c6ad1c7a0cc95daef9ab368f661cc448d08e4490208f046f6c40a98029a406b7c526629de5312f2be28a6a348ee0e4c0ba190704f25b609f13264d62fbe2556af93face5069aff0a541c2f35b93c0c0394259ca0b13ef59a578d522588c0249717e805d432e3397b7b64408545b5d9e6bdefadefc60a3e6e240d935f067767bc7832ffed065abca234579e607dacff6bf74722e45a93071a67d9c2e99c2deccffbfdb922893f35ba2366142049699be329ea806a598fbc919d8033d7d741191df86800fa7e6ea16b86eb579ee12ec923532c6a6867af0821b195363ad42e2ed233581226e92ef95018a979d9e8db15417f6cfe152c3c6b1440111ce3f44bba89745099e5d7afed5f16ec61cb22614da9256fa57e0fd6f68db0947689b43beb39786e82259d77c8c16b23fda2165ee7858ecfe14ff284fe87afcf7898620f8c2751476947523ed73cde3a74fd6e638065c66e93b97f4ec1507c1b2d6c465d4d011bf529bcf2d8401f9da320b90fe8a9591284fad59097bb56de74b26dd66ad463d61e8c4b736a70733db08434d031d78760d83dbb786940f3538c62dfc8cf3224de2f8cb9b62e8ce97528b0cdc19290776198fc6ee2425734d80456713f94c82431497d2cb6957acb57d33fba93e40876c453918f8e88aa11857ffd094c64b94273c1af819e32b1cfd99cdbfe12116014221ffd36dea2fc14fdbe1f56f51be98015bc97af28f3ad4d466830fa18149ee7175f6a407645b1c3d53cc517615e7b757c25790b60df9970136689eb8a7d4ecca0bc7e6fd1b3e9a1cc8ac9ba3ee9e118fd95997e2bade1bf0b2c319f474f6"})
+ioctl$VT_RESIZEX(0xffffffffffffffff, 0x560a, &(0x7f0000000000)={0x3, 0xb, 0x2, 0x0, 0xfffc})
+ioctl$KDFONTOP_SET(0xffffffffffffffff, 0x4b72, &(0x7f0000001000)={0x0, 0x0, 0x3, 0x13, 0x200, &(0x7f0000000c00)="af93c6d702a0bc6f86b3178caeb1bbd2b18d0a0e1e49f66e23f9f95b683db0325498a784bac97953b1349849ba942d847e7fc2425446e910526cce03de76af827bb5aaa62c2e199587a24875c6e47748bb2291d43d594c3787c69cd9552a5a87639499a980ee3bfb752ab3dd17f11c7f1b5f90be1823f4720fea68e294d666255e3343822be78c4a1392015e7d60990bf62d2f107df9c265792868d6b094616a3974f719a4202811b218d0254ac73bb6a9f8cd493e50ec8bc04c910534ebccf9b7187741c2256489a8d8a7105cf63531bc0bc7a3d89492fd1cc653053a4a3401a597bbab5961fac180f49f360dd0917dd5778aee64bd7cbc1848765484c712275c2db63490d5392984590964a9e156d7f8464b1b67f175f964b100eadbade0e8197d9ea301f41bdc75a5263a188e888235bc70511cb93d149cfa268a73f8e8fd288f445744617b7267dff68e0ecbfae54ff2f87f7ed4a4d5d4e250110a77f2628dda1c80463cb7e9f2615da2e1106f72afb735cd91d654186ad6f088d83ff85ef5e1f8d1151d041969a695b52b82a14b95f92179f190a9651dbbe510856c51e213e6806f1c5609730cbcd8ead95d5a8cb797e8df43ed3b90e660bf56c44191cd1a33bbeb75f9024b9a1f1a30359a2620b97c29f9ed10db5e5c692b63e6ab9ca6a98c223ef721d1fd227ab2568d60a5ecd4a61fcab5ca859eea2f10e3ae45cb83be994d806b01b83b64f3be0c8e5abec8ed8ff715bf0911bf2a455e3934db7243ee604a816a1caac624b9b1396f9f6d520eebc98b749d13b7889643cc95b6be322a62c9c183d183db2b08d190683d29b07eb801c91d089e5d439ac36dd90f52a97916c9fb203a432a88ec6fffc2c54aa3f098e83bca3cabdae2ecbdc6df9242c40b563bf0970b29054d021fab1d05c477ddb8244c17fe2e568537a9742cda051d00409f4da70a2631086630abf4fdb50d05a5babdc8688e943aa8952e1533e4be20514069cd7fe9b0bb9a3ed748e1c1ac2ca3f2d40e696c12350302ae069cc08454fdfe54e17a5aeff15ec7a9c37fb793d3d99d9f37ba874a258a5163ebeecbde61ccbfc3eadedc37b6bb555aaaeafb747b8be28cd1588c7987f6f9f2f75a5475e165d1b93b2492ba98d256ba306a0c2f4fb6042216fd1ac68c77bfeb83a4a113e9c99622ed6f5e94ab27cc509d273493a9b5502e7e008e9b23a25d56577a6585dd34ec919e573122b64cfe6d4e30e74af0c53130ec9534a8dc89d74aada3ae64218f3bea2fe51820800826d554671478817ba857a9d51fc600748d93a30602ed07211069ae927095367cc5b73f26c0540ff9bf1e224bdffa1359773b23e66043e8222500fa805281f6984a763e84a69476561fd24021975387ab221617413fb78e257407f21383d5b8cbb92d31a8e7567d7577efe58ae078aad66e4d151562ca"})
+
+14.865055958s ago: executing program 0 (id=12962):
+syz_open_dev$ttys(0xc, 0x2, 0x0)
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+ioctl$TCXONC(r0, 0x540a, 0x2)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCSETD(r2, 0x5423, &(0x7f0000000600)=0x1)
+ioctl$VT_DISALLOCATE(r2, 0x89f0)
+ioctl$KDSETMODE(0xffffffffffffffff, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r0, 0x4b4a, &(0x7f0000000140)=""/226)
+r3 = openat$ptmx(0xffffffffffffff9c, &(0x7f00000008c0), 0x20802, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCL_SETSEL(0xffffffffffffffff, 0x541c, 0x0)
+ioctl$TIOCGDEV(r3, 0x80045432, &(0x7f0000000940))
+ioctl$TIOCL_PASTESEL(r1, 0x541c, &(0x7f0000000100))
+
+14.859932047s ago: executing program 2 (id=12963):
+capset(&(0x7f0000000040)={0x20080522}, &(0x7f0000000080))
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+r0 = syz_clone(0x11, 0x0, 0x0, 0x0, 0x0, 0x0)
+ptrace(0x10, r0)
+ptrace(0x11, r0)
+r1 = syz_clone(0x11, 0x0, 0x0, 0x0, 0x0, 0x0)
+ptrace(0x10, r0)
+ptrace(0x11, r0)
+ptrace(0x10, r1)
+ptrace(0x11, r1)
+ptrace(0x10, r0)
+ptrace(0x10, r1)
+ptrace(0x11, r1)
+ptrace(0xffffffffffffffff, 0x0)
+
+14.859762403s ago: executing program 1 (id=12965):
+capset(&(0x7f0000000040)={0x20080522}, &(0x7f0000000080))
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+r0 = syz_clone(0x11, 0x0, 0x0, 0x0, 0x0, 0x0)
+ptrace(0x10, r0)
+ptrace(0x11, r0)
+r1 = syz_clone(0x11, 0x0, 0x0, 0x0, 0x0, 0x0)
+ptrace(0x10, r0)
+ptrace(0x11, r0)
+ptrace(0x11, r1)
+ptrace(0x10, r0)
+ptrace(0x11, r0)
+ptrace(0x10, r1)
+ptrace(0x11, r1)
+ptrace(0xffffffffffffffff, 0x0)
+
+14.812583614s ago: executing program 1 (id=12967):
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+
+14.809530031s ago: executing program 2 (id=12975):
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+
+14.555488944s ago: executing program 7 (id=12969):
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+mmap$fb(&(0x7f0000c66000/0x4000)=nil, 0x4000, 0x4, 0x8032, 0xffffffffffffffff, 0xb0000)
+mmap$fb(&(0x7f0000e39000/0x2000)=nil, 0x2000, 0xe, 0x8032, 0xffffffffffffffff, 0xb0000)
+mmap$fb(&(0x7f0000cce000/0x3000)=nil, 0x3000, 0xe, 0x8032, 0xffffffffffffffff, 0xb1000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x100000d, 0x1c011, r0, 0x87000)
+r1 = openat$fb0(0xffffffffffffff9c, 0x0, 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r1, 0x70000)
+mmap$fb(&(0x7f0000ca4000/0x2000)=nil, 0x2000, 0x1000004, 0x11, 0xffffffffffffffff, 0x35000)
+r2 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f00003ff000/0xc00000)=nil, 0xc00000, 0x200000d, 0x12, r2, 0x59000)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x300000c, 0x50031, 0xffffffffffffffff, 0x19000)
+
+14.555370182s ago: executing program 0 (id=12970):
+syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x840)
+r0 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x840)
+mmap$usbmon(&(0x7f0000ff9000/0x4000)=nil, 0x4000, 0x1000006, 0x12, r0, 0x0)
+r1 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x2000)
+mmap$usbmon(&(0x7f0000fae000/0x3000)=nil, 0x3000, 0x14, 0x13, r1, 0x0)
+mmap$usbmon(&(0x7f0000dd2000/0x1000)=nil, 0x1000, 0x7, 0x12, r0, 0x0)
+r2 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x840)
+mmap$usbmon(&(0x7f0000ffb000/0x4000)=nil, 0x4000, 0x1000000, 0x13, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000ffb000/0x4000)=nil, 0x4021, 0x1000000, 0x12, r2, 0x0)
+syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x840)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x3000002, 0x2a032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x9, 0xcc032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x3000002, 0x2a032, 0xffffffffffffffff, 0x0)
+syz_open_dev$usbmon(0x0, 0x6f, 0x840)
+
+7.965859046s ago: executing program 0 (id=12971):
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_SET(r0, 0x4b72, &(0x7f0000001000)={0x0, 0x0, 0x3, 0x10, 0x200, &(0x7f0000000c00)="af93c6d702a0bc6f86b3178caeb1bbd2b18d0a0e1e49f66e23f9f95b683db0325498a784bac97953b1349849ba942d847e7fc2425446e910526cce03de76af827bb5aaa62c2e199587a24875c6e47748bb2291d43d594c3787c69cd9552a5a87639499a980ee3bfb752ab3dd17f11c7f1b5f90be1823f4720fea68e294d666255e3343822be78c4a1392015e7d60990bf62d2f107df9c265792868d6b094616a3974f719a4202811b218d0254ac73bb6a9f8cd493e50ec8bc04c910534ebccf9b7187741c2256489a8d8a7105cf63531bc0bc7a3d89492fd1cc653053a4a3401a597bbab5961fac180f49f360dd0917dd5778aee64bd7cbc1848765484c712275c2db63490d5392984590964a9e156d7f8464b1b67f175f964b100eadbade0e8197d9ea301f41bdc75a5263a188e888235bc70511cb93d149cfa268a73f8e8fd288f445744617b7267dff68e0ecbfae54ff2f87f7ed4a4d5d4e250110a77f2628dda1c80463cb7e9f2615da2e1106f72afb735cd91d654186ad6f088d83ff85ef5e1f8d1151d041969a695b52b82a14b95f92179f190a9651dbbe510856c51e213e6806f1c560d730cbcd8ead95d5a8cb797e8df43ed3b90e660bf56c44191cd1233bbeb75f9024b9a1f1a30359a2620b97c29f9ed10db5e5c692b63e6ab9ca6a98c223ef721d1fd227ab2568d60a5ecd4a61fcab5ca859eea2f10e3ae45cb83be994d806b01b83b64f3be0c8e5abec8ed8ff715bf0911bf2a455e3934db7243ee604a816a1caac624b9b1396f9f6d520eebc98b749d13b7889643cc95b6be322a62c9c183d183db2b08d190683d29b07eb801c91d089e5d439ac36dd90f52a97916c9fb203a432a88ec6fffc2c54aa3f098e83bca3cabdae2ecbdc6df9242c40b563bf0970b29054d021fab1d05c477ddb8244c17fe2e568537a9742cda051d00409f4da70a2631086630abf4fdb50d05a5babdc8688e943aa8952e1533e4be20514069cd7fe9b0bb9a3ed748e1c1ac2ca3f2d40e696c12350302ae069cc08454fdfe54e17a5aeff15ec7a9c37fb793d3d99d9f37ba874a258a5163ebeecbde61ccbfc3eadedc37b6bb555aaaeafb747b8be28cd1588c7987f6f9f2f75a5475e165d1b93b2492ba98d256ba306a0c2f4fb6042216fd1ac68c77bfeb83a4a113e9c99622ed6f5e94ab27cc509d273493a9b5502e7e008e9b23a25d56577a6585dd34ec919e573122b64cfe6d4e30e74af0c53130ec9534a8dc89d74aada3ae64218f3bea2fe51820800826d554671478817ba857a9d51fc600748d93a30602ed07211069ae927095367cc5b73f26c0540ff9bf1e224bdffa1359773b23e66043e8222500fa805281f6984a763e84a69476561fd24021975387ab221617413fb78e257407f21383d5b8cbb92d31a8e7567d7577efe58ae078aad66e4d151562ca"})
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$KDFONTOP_COPY(r1, 0x4b72, &(0x7f0000001000)={0x3, 0x1, 0x14, 0x8, 0x185, 0x0})
+ioctl$KDGETLED(r1, 0x4b31, &(0x7f0000001040))
+syz_open_dev$ttys(0xc, 0x2, 0x0)
+ioctl$PIO_UNIMAPCLR(r1, 0x4b68, &(0x7f0000000000)={0xe, 0x0, 0x1})
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCEXCL(r0, 0x540c)
+ioctl$KDMKTONE(r3, 0x4b30, 0x7fffffff)
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDSETLED(r4, 0x4b32, 0xfffffffffffff128)
+ioctl$KDMKTONE(r2, 0x4b30, 0x7fffffff)
+
+7.961907477s ago: executing program 2 (id=12972):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$I2C_SMBUS(0xffffffffffffffff, 0x720, &(0x7f00000000c0)={0x0, 0x3f, 0x1, &(0x7f0000000080)={0x16, "11feecda876c740c8d6deb3ab5197995b09310b39e89067c6060ed2d2f5bf7d42b"}})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+mmap$fb(&(0x7f0000c66000/0x4000)=nil, 0x4000, 0x4, 0x8032, 0xffffffffffffffff, 0xb0000)
+openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r1 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r1, 0x70000)
+ioctl$I2C_TIMEOUT(0xffffffffffffffff, 0x702, 0x0)
+ioctl$I2C_SMBUS(0xffffffffffffffff, 0x720, &(0x7f0000000100)={0x1, 0x3, 0x2, &(0x7f0000000000)={0x5, "86ac5909e67738d864df62139d7b3d17f45e4b161d00"}})
+
+7.961681135s ago: executing program 7 (id=12973):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$I2C_SMBUS(0xffffffffffffffff, 0x720, &(0x7f00000000c0)={0x0, 0x3f, 0x1, &(0x7f0000000080)={0x16, "11feecda876c740c8d6deb3ab5197995b09310b39e89067c6060ed2d2f5bf7d42b"}})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+mmap$fb(&(0x7f0000c66000/0x4000)=nil, 0x4000, 0x4, 0x8032, 0xffffffffffffffff, 0xb0000)
+openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r1 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r1, 0x70000)
+ioctl$I2C_TIMEOUT(0xffffffffffffffff, 0x702, 0x0)
+ioctl$I2C_SMBUS(0xffffffffffffffff, 0x720, &(0x7f0000000100)={0x1, 0x3, 0x2, &(0x7f0000000000)={0x5, "86ac5909e67738d864df62139d7b3d17f45e4b161d00"}})
+
+7.961559073s ago: executing program 1 (id=12974):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0x1)
+r0 = openat$ttyS3(0xffffffffffffff9c, 0x0, 0x40000, 0x0)
+ioctl$TCSETS(0xffffffffffffffff, 0x5402, 0x0)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000040), 0x41, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, 0x0)
+ioctl$TIOCVHANGUP(r1, 0x5437, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r2, 0x4b67, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000040)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$KDFONTOP_SET(r3, 0x4b72, 0x0)
+
+7.853097079s ago: executing program 1 (id=12976):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0x1)
+r0 = openat$ttyS3(0xffffffffffffff9c, 0x0, 0x40000, 0x0)
+ioctl$TCSETS(0xffffffffffffffff, 0x5402, 0x0)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000040), 0x41, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, 0x0)
+ioctl$TIOCVHANGUP(r1, 0x5437, 0x0)
+ioctl$KDENABIO(0xffffffffffffffff, 0x4b36)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000040)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$KDFONTOP_SET(r2, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x21, 0x13, 0x100, &(0x7f0000000040)="d2096cbf528a7dd4ef1d5916518632bfd1ba54dce1790ebf65e13a3cee93b05ea1c9cc500d7408ca3fa56d5c467f4a44e1e0f8ae3fa72285f5f8fb4e14aa34c9dd673d1aa63c44750a6e315239a1f17b5c6697d9d6b229e73d683f89c2e5bfe14dbe79daefa28869d563ffb93ef7c2d2aade1400608fd597b61901bf79cca9ac17621eba319b32476e6d42df4368d4caf7cbf9d9b584d1a8387d61253fba99c336f935f1b117c2a97369b7057010aa85fc5c0f5b895c14f1508fd7474f4444cf8513b2b0577d71a2f4ef1d4bf98bd6c03b5a63867da747879524d0e8852366808cedfc66d0ea36530590cc6c02eb85e2dba0e4dd7440969d16f5e83e3d5d4836b6dcdddb552ef36fc9bd57a9edf9483d8b083eda9119948b970729a8630e1f49353c1aa17b7f95068c0b5c3264580bc28ccac3b83fa3d3e66c902df344c8919dac5169b8f0f489ec938520004e11ce84269ae6e7696a8b7100604a0e242a76d60fb7ae7cc922c0c1b36c0ef7cccf35b7a5891e1759f8a1f7bb299cea990f9cc1aa2a5594dd33cc46cdec766f418157a227f76478fd484498b9370e856b25974e2a233924de5a7eec7000ae0ebe01c5c796c4df92755653acd677a9c48c03d83e1986272a54572bb7c820eb2e8396cbea1cafba6792a4fe299fd15d6875713f494aeaf201f85df8f983f775b9b3bf55628fa682613518cf61574f3924d4631209484728384b2c70fe058379b6bef6b9579a99e32898bbb6a3c1817304fef512f8ab4cf6a46f33f5b50299a753fc3f10b037a0d54ab1ac9f5b4f5aa155163dc6f79bfe643724c3df87447e8e624318913376b095f0fe17a643b77399c8b643e8a08d92593972e73e7b8f59769c9457ea4890649490f6d7e225a3eda9fd8b7d2dd78171d92b8c62c2e19c2985e269e3547da2a2d9943b00b9c23fc93b8a19754a350965110ab541bd4f07ea8a47265da0f3b4c2fd10d60742bc54af8970f37ee313860f9ecf35fec02810d630e8bc4fd5821c2e8687b92aeee2d1cae065fb2c43e34d3a6aeb02c4eb6c97e2b0a0d0493c371543c4a885c9053176e41db5744d828b5cc5973479f7c243cb0e55a9347ee80f6658a2b2955f1ec08edccbc9fb03c53f6b4d493aa6095daa93decd6d90d5b54e520fd3744bb6ba8bdad3822d7662bf9d9d349b5052dcffa4eb1bc6a3419b20a19780dcd977ba61f67d2dbdcbc08c4f470f548beb1ef1866f010e1c87c1ff8073a9cb6dea530673d583b802daaab4a01f84aa060f0f8bde6e30ff200e56963fb9a1442919ce60482f71c91dc9abfb8001cf0b5bc989c5ec4d475fc98a9ce7f971cff04c7b7441b3beaf51f9ae729d33b0ab633fc63397c9f52963a7563f2936889ca427f8c7d6f57c51acc0c9f858107fad71c264bb8671bccf473922e752cf6adbb1b36733465da4a3a5671cc5689867"})
+
+7.846008137s ago: executing program 0 (id=12977):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$I2C_SMBUS(0xffffffffffffffff, 0x720, &(0x7f00000000c0)={0x0, 0x3f, 0x1, &(0x7f0000000080)={0x16, "11feecda876c740c8d6deb3ab5197995b09310b39e89067c6060ed2d2f5bf7d42b"}})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+mmap$fb(&(0x7f0000c66000/0x4000)=nil, 0x4000, 0x4, 0x8032, 0xffffffffffffffff, 0xb0000)
+openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r1 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r1, 0x70000)
+ioctl$I2C_TIMEOUT(0xffffffffffffffff, 0x702, 0x0)
+ioctl$I2C_SMBUS(0xffffffffffffffff, 0x720, &(0x7f0000000100)={0x1, 0x3, 0x2, &(0x7f0000000000)={0x5, "86ac5909e67738d864df62139d7b3d17f45e4b161d00"}})
+
+7.838672578s ago: executing program 7 (id=12978):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0x1)
+r0 = openat$ttyS3(0xffffffffffffff9c, 0x0, 0x40000, 0x0)
+ioctl$TCSETS(0xffffffffffffffff, 0x5402, 0x0)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000040), 0x41, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, 0x0)
+ioctl$TIOCVHANGUP(r1, 0x5437, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r2, 0x4b67, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000040)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$KDFONTOP_SET(r3, 0x4b72, 0x0)
+
+7.706362853s ago: executing program 7 (id=12979):
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+
+121.725515ms ago: executing program 0 (id=12980):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0x1)
+r0 = openat$ttyS3(0xffffffffffffff9c, 0x0, 0x40000, 0x0)
+ioctl$TCSETS(0xffffffffffffffff, 0x5402, 0x0)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000040), 0x41, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, 0x0)
+ioctl$TIOCVHANGUP(r1, 0x5437, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r2, 0x4b67, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$KDFONTOP_SET(r3, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x21, 0x13, 0x100, &(0x7f0000000040)="d2096cbf528a7dd4ef1d5916518632bfd1ba54dce1790ebf65e13a3cee93b05ea1c9cc500d7408ca3fa56d5c467f4a44e1e0f8ae3fa72285f5f8fb4e14aa34c9dd673d1aa63c44750a6e315239a1f17b5c6697d9d6b229e73d683f89c2e5bfe14dbe79daefa28869d563ffb93ef7c2d2aade1400608fd597b61901bf79cca9ac17621eba319b32476e6d42df4368d4caf7cbf9d9b584d1a8387d61253fba99c336f935f1b117c2a97369b7057010aa85fc5c0f5b895c14f1508fd7474f4444cf8513b2b0577d71a2f4ef1d4bf98bd6c03b5a63867da747879524d0e8852366808cedfc66d0ea36530590cc6c02eb85e2dba0e4dd7440969d16f5e83e3d5d4836b6dcdddb552ef36fc9bd57a9edf9483d8b083eda9119948b970729a8630e1f49353c1aa17b7f95068c0b5c3264580bc28ccac3b83fa3d3e66c902df344c8919dac5169b8f0f489ec938520004e11ce84269ae6e7696a8b7100604a0e242a76d60fb7ae7cc922c0c1b36c0ef7cccf35b7a5891e1759f8a1f7bb299cea990f9cc1aa2a5594dd33cc46cdec766f418157a227f76478fd484498b9370e856b25974e2a233924de5a7eec7000ae0ebe01c5c796c4df92755653acd677a9c48c03d83e1986272a54572bb7c820eb2e8396cbea1cafba6792a4fe299fd15d6875713f494aeaf201f85df8f983f775b9b3bf55628fa682613518cf61574f3924d4631209484728384b2c70fe058379b6bef6b9579a99e32898bbb6a3c1817304fef512f8ab4cf6a46f33f5b50299a753fc3f10b037a0d54ab1ac9f5b4f5aa155163dc6f79bfe643724c3df87447e8e624318913376b095f0fe17a643b77399c8b643e8a08d92593972e73e7b8f59769c9457ea4890649490f6d7e225a3eda9fd8b7d2dd78171d92b8c62c2e19c2985e269e3547da2a2d9943b00b9c23fc93b8a19754a350965110ab541bd4f07ea8a47265da0f3b4c2fd10d60742bc54af8970f37ee313860f9ecf35fec02810d630e8bc4fd5821c2e8687b92aeee2d1cae065fb2c43e34d3a6aeb02c4eb6c97e2b0a0d0493c371543c4a885c9053176e41db5744d828b5cc5973479f7c243cb0e55a9347ee80f6658a2b2955f1ec08edccbc9fb03c53f6b4d493aa6095daa93decd6d90d5b54e520fd3744bb6ba8bdad3822d7662bf9d9d349b5052dcffa4eb1bc6a3419b20a19780dcd977ba61f67d2dbdcbc08c4f470f548beb1ef1866f010e1c87c1ff8073a9cb6dea530673d583b802daaab4a01f84aa060f0f8bde6e30ff200e56963fb9a1442919ce60482f71c91dc9abfb8001cf0b5bc989c5ec4d475fc98a9ce7f971cff04c7b7441b3beaf51f9ae729d33b0ab633fc63397c9f52963a7563f2936889ca427f8c7d6f57c51acc0c9f858107fad71c264bb8671bccf473922e752cf6adbb1b36733465da4a3a5671cc5689867"})
+
+121.490817ms ago: executing program 7 (id=12981):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+
+121.383362ms ago: executing program 1 (id=12982):
+syz_open_dev$usbmon(0x0, 0x6f, 0x840)
+r0 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x840)
+mmap$usbmon(&(0x7f0000ff9000/0x4000)=nil, 0x4000, 0x1000006, 0x12, r0, 0x0)
+r1 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x2000)
+mmap$usbmon(&(0x7f0000fae000/0x3000)=nil, 0x3000, 0x14, 0x13, r1, 0x0)
+mmap$usbmon(&(0x7f0000dd2000/0x1000)=nil, 0x1000, 0x7, 0x12, r0, 0x0)
+r2 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x840)
+mmap$usbmon(&(0x7f0000ffb000/0x4000)=nil, 0x4000, 0x1000000, 0x13, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000ffb000/0x4000)=nil, 0x4021, 0x1000000, 0x12, r2, 0x0)
+r3 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x840)
+mmap$usbmon(&(0x7f0000ffc000/0x2000)=nil, 0x2000, 0xd, 0x28012, r3, 0x0)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x3000002, 0x2a032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x9, 0xcc032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x3000002, 0x2a032, 0xffffffffffffffff, 0x0)
+syz_open_dev$usbmon(0x0, 0x6f, 0x840)
+
+117.394997ms ago: executing program 2 (id=12988):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0x1)
+r0 = openat$ttyS3(0xffffffffffffff9c, 0x0, 0x40000, 0x0)
+ioctl$TCSETS(0xffffffffffffffff, 0x5402, 0x0)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000040), 0x41, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, 0x0)
+ioctl$TIOCVHANGUP(r1, 0x5437, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r2, 0x4b67, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000040)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$KDFONTOP_SET(r3, 0x4b72, 0x0)
+
+92.651292ms ago: executing program 7 (id=12983):
+syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x840)
+r0 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x840)
+mmap$usbmon(&(0x7f0000ff9000/0x4000)=nil, 0x4000, 0x1000006, 0x12, r0, 0x0)
+r1 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x2000)
+mmap$usbmon(&(0x7f0000fae000/0x3000)=nil, 0x3000, 0x14, 0x13, r1, 0x0)
+mmap$usbmon(&(0x7f0000dd2000/0x1000)=nil, 0x1000, 0x7, 0x12, r0, 0x0)
+r2 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x840)
+mmap$usbmon(&(0x7f0000ffb000/0x4000)=nil, 0x4000, 0x1000000, 0x13, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000ffb000/0x4000)=nil, 0x4021, 0x1000000, 0x12, r2, 0x0)
+mmap$usbmon(&(0x7f0000ffc000/0x2000)=nil, 0x2000, 0xd, 0x28012, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x3000002, 0x2a032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x9, 0xcc032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x3000002, 0x2a032, 0xffffffffffffffff, 0x0)
+syz_open_dev$usbmon(0x0, 0x6f, 0x840)
+
+45.609198ms ago: executing program 2 (id=12984):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0x1)
+r0 = openat$ttyS3(0xffffffffffffff9c, 0x0, 0x40000, 0x0)
+ioctl$TCSETS(0xffffffffffffffff, 0x5402, 0x0)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000040), 0x41, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, 0x0)
+ioctl$TIOCVHANGUP(r1, 0x5437, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r2, 0x4b67, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000040)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$KDFONTOP_SET(r3, 0x4b72, 0x0)
+
+34.749842ms ago: executing program 0 (id=12985):
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0x1)
+r0 = openat$ttyS3(0xffffffffffffff9c, 0x0, 0x40000, 0x0)
+ioctl$TCSETS(0xffffffffffffffff, 0x5402, 0x0)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000040), 0x41, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, 0x0)
+ioctl$TIOCVHANGUP(r1, 0x5437, 0x0)
+ioctl$KDENABIO(0xffffffffffffffff, 0x4b36)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000040)=0x14)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x0)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$KDFONTOP_SET(r2, 0x4b72, &(0x7f0000000000)={0x0, 0x1, 0x21, 0x13, 0x100, &(0x7f0000000040)="d2096cbf528a7dd4ef1d5916518632bfd1ba54dce1790ebf65e13a3cee93b05ea1c9cc500d7408ca3fa56d5c467f4a44e1e0f8ae3fa72285f5f8fb4e14aa34c9dd673d1aa63c44750a6e315239a1f17b5c6697d9d6b229e73d683f89c2e5bfe14dbe79daefa28869d563ffb93ef7c2d2aade1400608fd597b61901bf79cca9ac17621eba319b32476e6d42df4368d4caf7cbf9d9b584d1a8387d61253fba99c336f935f1b117c2a97369b7057010aa85fc5c0f5b895c14f1508fd7474f4444cf8513b2b0577d71a2f4ef1d4bf98bd6c03b5a63867da747879524d0e8852366808cedfc66d0ea36530590cc6c02eb85e2dba0e4dd7440969d16f5e83e3d5d4836b6dcdddb552ef36fc9bd57a9edf9483d8b083eda9119948b970729a8630e1f49353c1aa17b7f95068c0b5c3264580bc28ccac3b83fa3d3e66c902df344c8919dac5169b8f0f489ec938520004e11ce84269ae6e7696a8b7100604a0e242a76d60fb7ae7cc922c0c1b36c0ef7cccf35b7a5891e1759f8a1f7bb299cea990f9cc1aa2a5594dd33cc46cdec766f418157a227f76478fd484498b9370e856b25974e2a233924de5a7eec7000ae0ebe01c5c796c4df92755653acd677a9c48c03d83e1986272a54572bb7c820eb2e8396cbea1cafba6792a4fe299fd15d6875713f494aeaf201f85df8f983f775b9b3bf55628fa682613518cf61574f3924d4631209484728384b2c70fe058379b6bef6b9579a99e32898bbb6a3c1817304fef512f8ab4cf6a46f33f5b50299a753fc3f10b037a0d54ab1ac9f5b4f5aa155163dc6f79bfe643724c3df87447e8e624318913376b095f0fe17a643b77399c8b643e8a08d92593972e73e7b8f59769c9457ea4890649490f6d7e225a3eda9fd8b7d2dd78171d92b8c62c2e19c2985e269e3547da2a2d9943b00b9c23fc93b8a19754a350965110ab541bd4f07ea8a47265da0f3b4c2fd10d60742bc54af8970f37ee313860f9ecf35fec02810d630e8bc4fd5821c2e8687b92aeee2d1cae065fb2c43e34d3a6aeb02c4eb6c97e2b0a0d0493c371543c4a885c9053176e41db5744d828b5cc5973479f7c243cb0e55a9347ee80f6658a2b2955f1ec08edccbc9fb03c53f6b4d493aa6095daa93decd6d90d5b54e520fd3744bb6ba8bdad3822d7662bf9d9d349b5052dcffa4eb1bc6a3419b20a19780dcd977ba61f67d2dbdcbc08c4f470f548beb1ef1866f010e1c87c1ff8073a9cb6dea530673d583b802daaab4a01f84aa060f0f8bde6e30ff200e56963fb9a1442919ce60482f71c91dc9abfb8001cf0b5bc989c5ec4d475fc98a9ce7f971cff04c7b7441b3beaf51f9ae729d33b0ab633fc63397c9f52963a7563f2936889ca427f8c7d6f57c51acc0c9f858107fad71c264bb8671bccf473922e752cf6adbb1b36733465da4a3a5671cc5689867"})
+
+14.712578ms ago: executing program 1 (id=12986):
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_SET(r0, 0x4b72, &(0x7f0000001000)={0x0, 0x0, 0x3, 0x10, 0x200, &(0x7f0000000c00)="af93c6d702a0bc6f86b3178caeb1bbd2b18d0a0e1e49f66e23f9f95b683db0325498a784bac97953b1349849ba942d847e7fc2425446e910526cce03de76af827bb5aaa62c2e199587a24875c6e47748bb2291d43d594c3787c69cd9552a5a87639499a980ee3bfb752ab3dd17f11c7f1b5f90be1823f4720fea68e294d666255e3343822be78c4a1392015e7d60990bf62d2f107df9c265792868d6b094616a3974f719a4202811b218d0254ac73bb6a9f8cd493e50ec8bc04c910534ebccf9b7187741c2256489a8d8a7105cf63531bc0bc7a3d89492fd1cc653053a4a3401a597bbab5961fac180f49f360dd0917dd5778aee64bd7cbc1848765484c712275c2db63490d5392984590964a9e156d7f8464b1b67f175f964b100eadbade0e8197d9ea301f41bdc75a5263a188e888235bc70511cb93d149cfa268a73f8e8fd288f445744617b7267dff68e0ecbfae54ff2f87f7ed4a4d5d4e250110a77f2628dda1c80463cb7e9f2615da2e1106f72afb735cd91d654186ad6f088d83ff85ef5e1f8d1151d041969a695b52b82a14b95f92179f190a9651dbbe510856c51e213e6806f1c560d730cbcd8ead95d5a8cb797e8df43ed3b90e660bf56c44191cd1233bbeb75f9024b9a1f1a30359a2620b97c29f9ed10db5e5c692b63e6ab9ca6a98c223ef721d1fd227ab2568d60a5ecd4a61fcab5ca859eea2f10e3ae45cb83be994d806b01b83b64f3be0c8e5abec8ed8ff715bf0911bf2a455e3934db7243ee604a816a1caac624b9b1396f9f6d520eebc98b749d13b7889643cc95b6be322a62c9c183d183db2b08d190683d29b07eb801c91d089e5d439ac36dd90f52a97916c9fb203a432a88ec6fffc2c54aa3f098e83bca3cabdae2ecbdc6df9242c40b563bf0970b29054d021fab1d05c477ddb8244c17fe2e568537a9742cda051d00409f4da70a2631086630abf4fdb50d05a5babdc8688e943aa8952e1533e4be20514069cd7fe9b0bb9a3ed748e1c1ac2ca3f2d40e696c12350302ae069cc08454fdfe54e17a5aeff15ec7a9c37fb793d3d99d9f37ba874a258a5163ebeecbde61ccbfc3eadedc37b6bb555aaaeafb747b8be28cd1588c7987f6f9f2f75a5475e165d1b93b2492ba98d256ba306a0c2f4fb6042216fd1ac68c77bfeb83a4a113e9c99622ed6f5e94ab27cc509d273493a9b5502e7e008e9b23a25d56577a6585dd34ec919e573122b64cfe6d4e30e74af0c53130ec9534a8dc89d74aada3ae64218f3bea2fe51820800826d554671478817ba857a9d51fc600748d93a30602ed07211069ae927095367cc5b73f26c0540ff9bf1e224bdffa1359773b23e66043e8222500fa805281f6984a763e84a69476561fd24021975387ab221617413fb78e257407f21383d5b8cbb92d31a8e7567d7577efe58ae078aad66e4d151562ca"})
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$KDFONTOP_COPY(r1, 0x4b72, &(0x7f0000001000)={0x3, 0x1, 0x14, 0x8, 0x185, 0x0})
+ioctl$KDGETLED(r1, 0x4b31, &(0x7f0000001040))
+syz_open_dev$ttys(0xc, 0x2, 0x0)
+ioctl$PIO_UNIMAPCLR(r1, 0x4b68, &(0x7f0000000000)={0xe, 0x0, 0x1})
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCEXCL(r0, 0x540c)
+ioctl$KDMKTONE(r3, 0x4b30, 0x7fffffff)
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDSETLED(r4, 0x4b32, 0xfffffffffffff128)
+ioctl$KDMKTONE(r2, 0x4b30, 0x7fffffff)
+
+0s ago: executing program 2 (id=12987):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$I2C_SMBUS(0xffffffffffffffff, 0x720, &(0x7f00000000c0)={0x0, 0x3f, 0x1, &(0x7f0000000080)={0x16, "11feecda876c740c8d6deb3ab5197995b09310b39e89067c6060ed2d2f5bf7d42b"}})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+mmap$fb(&(0x7f0000c66000/0x4000)=nil, 0x4000, 0x4, 0x8032, 0xffffffffffffffff, 0xb0000)
+openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r1 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r1, 0x70000)
+ioctl$I2C_TIMEOUT(0xffffffffffffffff, 0x702, 0x0)
+ioctl$I2C_SMBUS(0xffffffffffffffff, 0x720, &(0x7f0000000100)={0x1, 0x3, 0x2, &(0x7f0000000000)={0x5, "86ac5909e67738d864df62139d7b3d17f45e4b161d00"}})
+
+kernel console output (not intermixed with test programs):
+
+Warning: Permanently added '[localhost]:65068' (ED25519) to the list of known hosts.
+[   31.033731] cgroup: Unknown subsys name 'net'
+[   31.097795] cgroup: Unknown subsys name 'cpuset'
+[   31.118514] cgroup: Unknown subsys name 'rlimit'
+[   31.123100] cgroup: Unknown subsys name 'memory'
+[   31.180542] kmemleak: Automatic memory scanning thread ended
+[   44.306719] kmemleak: 7 new suspected memory leaks (see /sys/kernel/debug/kmemleak)
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=dd883e59-0d05-4898-aa23-09baac419bbc
+[   44.440450] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   47.845748] audit: type=1400 audit(1783796177.606:35): avc:  denied  { execmem } for  pid=298 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   48.262148] audit: type=1400 audit(1783796178.030:38): avc:  denied  { read } for  pid=308 comm="modprobe" name="modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   48.284890] audit: type=1400 audit(1783796178.030:37): avc:  denied  { read } for  pid=307 comm="modprobe" name="modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   48.297658] audit: type=1400 audit(1783796178.030:36): avc:  denied  { read } for  pid=309 comm="modprobe" name="modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   48.317593] audit: type=1400 audit(1783796178.030:39): avc:  denied  { open } for  pid=309 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   48.337638] audit: type=1400 audit(1783796178.030:41): avc:  denied  { open } for  pid=308 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   48.354853] audit: type=1400 audit(1783796178.030:40): avc:  denied  { open } for  pid=307 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   48.374311] audit: type=1400 audit(1783796178.031:42): avc:  denied  { getattr } for  pid=309 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   48.391779] audit: type=1400 audit(1783796178.032:43): avc:  denied  { map } for  pid=309 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   64.731044] audit: type=1400 audit(1783796194.498:44): avc:  denied  { checkpoint_restore } for  pid=2040 comm="syz.2.5" capability=40  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[   66.826801] watchdog: watchdog0: watchdog did not stop!
+[   69.219569] watchdog: watchdog0: watchdog did not stop!
+[   91.348359] bochs-drm 0000:00:01.0: [drm] Unknown color mode 7; guessing buffer size.
+[   98.404631] program syz.3.485 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   99.292990] program syz.2.496 is using a deprecated SCSI ioctl, please convert it to SG_IO
+
+Debian GNU/Linux 11 syzkaller ttyS0
+
+syzkaller login: [  120.230711] loop1: detected capacity change from 0 to 512
+[  120.262825] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 ro without journal. Quota mode: none.
+[  120.990325] loop3: detected capacity change from 0 to 512
+[  121.018473] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 ro without journal. Quota mode: none.
+[  142.543130] audit: type=1400 audit(1783796272.310:45): avc:  denied  { name_bind } for  pid=5264 comm="syz.2.1159" src=20004 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:port_t:s0 tclass=icmp_socket permissive=1
+[  142.546026] netlink: 296 bytes leftover after parsing attributes in process `syz.2.1159'.
+[  142.569953] audit: type=1400 audit(1783796272.312:46): avc:  denied  { node_bind } for  pid=5264 comm="syz.2.1159" saddr=fc00:: src=20004 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:node_t:s0 tclass=icmp_socket permissive=1
+[  143.999994] netlink: 296 bytes leftover after parsing attributes in process `syz.1.1184'.
+
+Debian GNU/Linux 11 syzkaller ttyS0
+
+syzkaller login: [  145.515644] netlink: 296 bytes leftover after parsing attributes in process `syz.0.1200'.
+[  148.385166] netlink: 296 bytes leftover after parsing attributes in process `syz.1.1250'.
+[  149.989406] netlink: 296 bytes leftover after parsing attributes in process `syz.3.1267'.
+[  151.563698] netlink: 296 bytes leftover after parsing attributes in process `syz.1.1293'.
+[  152.927337] netlink: 296 bytes leftover after parsing attributes in process `syz.0.1311'.
+[  154.313906] netlink: 296 bytes leftover after parsing attributes in process `syz.3.1334'.
+[  155.345658] process 'syz.0.1353' launched './file1' with NULL argv: empty string added
+[  155.831248] netlink: 296 bytes leftover after parsing attributes in process `syz.0.1360'.
+[  158.009102] loop2: detected capacity change from 0 to 2048
+[  158.113400]  loop2: p2 p3 p7
+[  159.227252] netlink: 296 bytes leftover after parsing attributes in process `syz.1.1406'.
+[  160.089357] loop2: detected capacity change from 0 to 2048
+[  160.131654]  loop2: p2 p3 p7
+[  160.565995] netlink: 296 bytes leftover after parsing attributes in process `syz.0.1425'.
+[  162.467816] loop0: detected capacity change from 0 to 2048
+[  162.502560]  loop0: p2 p3 p7
+[  163.837815] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  215.738425] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+
+Debian GNU/Linux 11 syzkaller ttyS0
+
+syzkaller login: 
+Debian GNU/Linux 11 syzkaller ttyS0
+
+syzkaller login: 
+Debian GNU/Linux 11 syzkaller ttyS0
+
+syzkaller login: [  454.007907] audit: type=1400 audit(1783796583.776:47): avc:  denied  { checkpoint_restore } for  pid=27052 comm="syz.1.4662" capability=40  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[  510.511043] loop2: detected capacity change from 0 to 8192
+[  511.604663] loop7: detected capacity change from 0 to 8192
+[  513.409736] loop0: detected capacity change from 0 to 8192
+[  522.008788] loop7: detected capacity change from 0 to 32768
+[  522.699548] loop1: detected capacity change from 0 to 32768
+[  525.114711] loop2: detected capacity change from 0 to 32768
+[  554.267544] ALSA: seq fatal error: cannot create timer (-19)
+[  554.522667] ALSA: seq fatal error: cannot create timer (-19)
+[  554.682525] ALSA: seq fatal error: cannot create timer (-19)
+[  555.245570] ALSA: seq fatal error: cannot create timer (-19)
+[  555.702602] ALSA: seq fatal error: cannot create timer (-19)
+[  555.934299] ALSA: seq fatal error: cannot create timer (-19)
+[  556.040004] ALSA: seq fatal error: cannot create timer (-19)
+[  557.385381] Zero length message leads to an empty skb
+[  557.405169] ALSA: seq fatal error: cannot create timer (-19)
+[  558.149815] ALSA: seq fatal error: cannot create timer (-19)
+[  558.414616] ALSA: seq fatal error: cannot create timer (-19)
+[  558.624266] ALSA: seq fatal error: cannot create timer (-19)
+[  558.890878] ALSA: seq fatal error: cannot create timer (-19)
+[  559.013106] ALSA: seq fatal error: cannot create timer (-19)
+[  559.189689] ALSA: seq fatal error: cannot create timer (-19)
+[  559.246694] ALSA: seq fatal error: cannot create timer (-19)
+[  559.310442] ALSA: seq fatal error: cannot create timer (-19)
+[  559.666701] ALSA: seq fatal error: cannot create timer (-19)
+[  559.804951] ALSA: seq fatal error: cannot create timer (-19)
+[  559.999668] ALSA: seq fatal error: cannot create timer (-19)
+[  560.029278] ALSA: seq fatal error: cannot create timer (-19)
+[  560.266789] ALSA: seq fatal error: cannot create timer (-19)
+[  560.527887] ALSA: seq fatal error: cannot create timer (-19)
+[  560.658886] ALSA: seq fatal error: cannot create timer (-19)
+[  560.720852] ALSA: seq fatal error: cannot create timer (-19)
+[  560.915378] ALSA: seq fatal error: cannot create timer (-19)
+[  560.965405] ALSA: seq fatal error: cannot create timer (-19)
+[  561.334968] ALSA: seq fatal error: cannot create timer (-19)
+[  562.009229] ALSA: seq fatal error: cannot create timer (-19)
+[  562.237378] ALSA: seq fatal error: cannot create timer (-19)
+[  562.275492] ALSA: seq fatal error: cannot create timer (-19)
+[  562.498236] ALSA: seq fatal error: cannot create timer (-19)
+[  562.547663] ALSA: seq fatal error: cannot create timer (-19)
+[  562.772494] ALSA: seq fatal error: cannot create timer (-19)
+[  563.200377] ALSA: seq fatal error: cannot create timer (-19)
+[  563.431927] ALSA: seq fatal error: cannot create timer (-19)
+[  563.722890] ALSA: seq fatal error: cannot create timer (-19)
+[  563.908284] ALSA: seq fatal error: cannot create timer (-19)
+[  565.050236] ALSA: seq fatal error: cannot create timer (-19)
+[  565.616261] ALSA: seq fatal error: cannot create timer (-19)
+[  568.047165] ALSA: seq fatal error: cannot create timer (-19)
+[  568.320606] ALSA: seq fatal error: cannot create timer (-19)
+[  568.551599] ALSA: seq fatal error: cannot create timer (-19)
+[  568.757661] ALSA: seq fatal error: cannot create timer (-19)
+[  568.787806] ALSA: seq fatal error: cannot create timer (-19)
+[  568.992548] ALSA: seq fatal error: cannot create timer (-19)
+[  569.226946] ALSA: seq fatal error: cannot create timer (-19)
+[  569.444456] ALSA: seq fatal error: cannot create timer (-19)
+[  570.041161] ALSA: seq fatal error: cannot create timer (-19)
+[  570.671133] ALSA: seq fatal error: cannot create timer (-19)
+[  570.727939] ALSA: seq fatal error: cannot create timer (-19)
+[  570.821829] ALSA: seq fatal error: cannot create timer (-19)
+[  570.893286] ALSA: seq fatal error: cannot create timer (-19)
+[  571.024011] ALSA: seq fatal error: cannot create timer (-19)
+[  571.072478] ALSA: seq fatal error: cannot create timer (-19)
+[  571.199998] ALSA: seq fatal error: cannot create timer (-19)
+[  571.364605] loop0: detected capacity change from 0 to 65536
+[  571.370129] ALSA: seq fatal error: cannot create timer (-19)
+[  571.569456] ALSA: seq fatal error: cannot create timer (-19)
+[  571.869290] ALSA: seq fatal error: cannot create timer (-19)
+[  572.077350] ALSA: seq fatal error: cannot create timer (-19)
+[  572.328705] ALSA: seq fatal error: cannot create timer (-19)
+[  572.531290] ALSA: seq fatal error: cannot create timer (-19)
+[  572.680631] ALSA: seq fatal error: cannot create timer (-19)
+[  572.746955] ALSA: seq fatal error: cannot create timer (-19)
+[  572.977450] ALSA: seq fatal error: cannot create timer (-19)
+[  573.073527] loop1: detected capacity change from 0 to 65536
+[  573.175542] ALSA: seq fatal error: cannot create timer (-19)
+[  573.394705] ALSA: seq fatal error: cannot create timer (-19)
+[  573.450589] ALSA: seq fatal error: cannot create timer (-19)
+[  573.635447] ALSA: seq fatal error: cannot create timer (-19)
+[  573.902641] ALSA: seq fatal error: cannot create timer (-19)
+[  573.935539] ALSA: seq fatal error: cannot create timer (-19)
+[  574.130480] ALSA: seq fatal error: cannot create timer (-19)
+[  574.335280] ALSA: seq fatal error: cannot create timer (-19)
+[  574.364673] ALSA: seq fatal error: cannot create timer (-19)
+[  574.536593] capability: warning: `syz.7.7922' uses 32-bit capabilities (legacy support in use)
+[  574.824509] ALSA: seq fatal error: cannot create timer (-19)
+[  575.460425] ALSA: seq fatal error: cannot create timer (-19)
+[  575.788118] ALSA: seq fatal error: cannot create timer (-19)
+[  575.884848] ALSA: seq fatal error: cannot create timer (-19)
+[  575.982463] ALSA: seq fatal error: cannot create timer (-19)
+[  576.247884] ALSA: seq fatal error: cannot create timer (-19)
+[  577.049604] ALSA: seq fatal error: cannot create timer (-19)
+[  577.250914] ALSA: seq fatal error: cannot create timer (-19)
+[  578.070383] ALSA: seq fatal error: cannot create timer (-19)
+[  578.214288] ALSA: seq fatal error: cannot create timer (-19)
+[  578.426416] ALSA: seq fatal error: cannot create timer (-19)
+[  578.549628] ALSA: seq fatal error: cannot create timer (-19)
+[  579.752150] ALSA: seq fatal error: cannot create timer (-19)
+[  599.406282] ALSA: seq fatal error: cannot create timer (-19)
+[  599.660046] ALSA: seq fatal error: cannot create timer (-19)
+[  602.776047] ALSA: seq fatal error: cannot create timer (-19)
+[ 1228.538054] kworker/u16:2 (44) used greatest stack depth: 23464 bytes left
+[ 1357.005171] audit: type=1400 audit(1783797486.773:48): avc:  denied  { getattr } for  pid=160 comm="systemd-udevd" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+
+VM DIAGNOSIS:
+09:17:47  Registers:
+info registers vcpu 0
+
+CPU#0
+RAX=ffff8881d07ac000 RBX=ffffffff8762a9c0 RCX=ffffffff8612ee24 RDX=ffffed102b50662b
+RSI=0000000000000004 RDI=ffffffff814fcf63 RBP=fffffbfff0ec5538 RSP=ffffffff87607e20
+R8 =0000000000000000 R9 =ffffed102b50662a R10=ffff88815a833153 R11=0000000000000000
+R12=dffffc0000000000 R13=1ffffffff0ec0fc8 R14=0000000000000000 R15=0000000000000000
+RIP=ffffffff8612d49e RFL=00000246 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=1
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 0000000000000000 ffffffff 00c00100
+GS =0000 ffff8881d07ac000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe0000003000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000001000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=0000555f2fbaf020 CR3=000000000766c000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=ffffffffffffffff ffffffffffffffff XMM01=000000000000006e 0000555f2fbaafd0
+XMM02=0000000000000000 0000000000000000 XMM03=0000000000000000 0000000000000000
+XMM04=0000000000000000 0000000000000000 XMM05=0000000000000000 0000000000000000
+XMM06=0000000000000000 0000000000000000 XMM07=0000000000000000 0000000000000000
+XMM08=0000555f2fbcfba0 0000555f2fbf3080 XMM09=ffff000000000000 000000ffff00ffff
+XMM10=0000000020000000 0000000020000000 XMM11=ffff00ffffffffff ffff00ffffffffff
+XMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000
+XMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000
+info registers vcpu 1
+
+CPU#1
+RAX=0000000000000001 RBX=00000000000000f0 RCX=1ffff11020e39026 RDX=0000000000000000
+RSI=ffffffff8246252b RDI=ffff88811524f846 RBP=dffffc0000000000 RSP=ffff88811524f710
+R8 =0000000000000001 R9 =0000000000000000 R10=0000000000008000 R11=0000000000000001
+R12=ffff88810a1a2cf8 R13=0000000000000554 R14=00000000000000f0 R15=000000000000000d
+RIP=ffffffff82462550 RFL=00000246 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 000055556000c500 ffffffff 00c00100
+GS =0000 ffff8881d082c000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe000004a000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000048000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007ffdd850c710 CR3=000000011ee22000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=00007fa383310463 00007fa383310463 XMM01=0000000000000000 00007fa383310464
+XMM02=00000000000000ff 0000000000000000 XMM03=0000000000000000 0000000000000000
+XMM04=0000000000000000 000000000000ff00 XMM05=1ceacb96832eeb20 c8b72b57542a2786
+XMM06=193ed8038cc4a977 d6ac535600000017 XMM07=96c7c50100000000 70ec7e5ade243923
+XMM08=2a4e97256b850e37 b998444800000016 XMM09=0000000000000000 0000000000000000
+XMM10=0000000000000000 0000000000000000 XMM11=0000000000000000 0000000000000000
+XMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000
+XMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000
+info registers vcpu 2
+
+CPU#2
+RAX=ffff8881d08ac000 RBX=ffff888100d85280 RCX=ffffffff8612ee24 RDX=ffffed102b52662b
+RSI=0000000000000004 RDI=ffffffff814fcf63 RBP=ffffed10201b0a50 RSP=ffff888100d8fe70
+R8 =0000000000000000 R9 =ffffed102b52662a R10=ffff88815a933153 R11=0000000000000000
+R12=dffffc0000000000 R13=1ffff110201b1fd2 R14=0000000000000000 R15=0000000000000000
+RIP=ffffffff8612d49e RFL=00000246 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=1
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 0000000000000000 ffffffff 00c00100
+GS =0000 ffff8881d08ac000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe0000091000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe000008f000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=0000001b2e4feff8 CR3=000000011eb28000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=0000000000000000 0000000000000000 XMM01=0005800406007fcc 00236e6f6d627375
+XMM02=0ffcc080040c014a c62180100001de10 XMM03=0806241000108080 8c10000280801000
+XMM04=000a000800000000 000000100000003c XMM05=80100001de100005 800406027fcc0023
+XMM06=6e6f6d6273752f76 65642f01ffffffff XMM07=ffffffffe5080580 0300100001000000
+XMM08=0806241000108080 8c10000280801000 XMM09=ffffffffff000000 0000000000000000
+XMM10=2020202000000000 0000000000000000 XMM11=ffffffffffffffff ffffffffffffffff
+XMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000
+XMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000
+info registers vcpu 3
+
+CPU#3
+RAX=ffff8881d092c000 RBX=ffff888100d83700 RCX=ffffffff8612ee24 RDX=ffffed102b53662b
+RSI=0000000000000004 RDI=ffffffff814fcf63 RBP=ffffed10201b06e0 RSP=ffff888100d97e70
+R8 =0000000000000000 R9 =ffffed102b53662a R10=ffff88815a9b3153 R11=0000000000000000
+R12=dffffc0000000000 R13=1ffff110201b2fd2 R14=0000000000000000 R15=0000000000000000
+RIP=ffffffff8612d49e RFL=00000246 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=1
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 0000000000000000 ffffffff 00c00100
+GS =0000 ffff8881d092c000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe00000d8000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe00000d6000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007fa29dc08010 CR3=0000000106db2000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=0000000000000000 0000000000000000 XMM01=007465677261742e 79636e656772656d
+XMM02=0000000000000000 0000000000000000 XMM03=00000000000000ff 0000000000000000
+XMM04=0000000000000000 0000000000000000 XMM05=616e696d72657420 3f3d72646461203f
+XMM06=3d656d616e74736f 682022646d657473 XMM07=79732f646d657473 79732f62696c2f72
+XMM08=3533343920353136 3135353930373337 XMM09=0000000000ffff00 ffffff000000ffff
+XMM10=0000000000000000 0000200000000000 XMM11=ffffffffffffffff ffffffffff00ffff
+XMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000
+XMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000

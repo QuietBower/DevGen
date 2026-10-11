@@ -1,0 +1,72 @@
+last executing test programs:
+
+kernel console output (not intermixed with test programs):
+
+[   64.147045] sshd (282) used greatest stack depth: 23864 bytes left
+Warning: Permanently added '[localhost]:63441' (ED25519) to the list of known hosts.
+[   66.157684] cgroup: Unknown subsys name 'net'
+[   66.222520] cgroup: Unknown subsys name 'cpuset'
+[   66.246193] cgroup: Unknown subsys name 'rlimit'
+[   66.249352] cgroup: Unknown subsys name 'memory'
+[   66.352500] kmemleak: Automatic memory scanning thread ended
+[   68.371156] ------------[ cut here ]------------
+[   68.375174] [CRTC:35:crtc-0] vblank wait timed out
+[   68.377436] WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_helper_wait_for_vblanks.part.0+0x627/0x7b0 [drm_kms_helper], CPU#0: kworker/0:1/10
+[   68.383813] Modules linked in: bochs iTCO_wdt drm_shmem_helper intel_pmc_bxt drm_client_lib watchdog i2c_i801 drm_kms_helper i2c_smbus lpc_ich
+[   68.390476] CPU: 0 UID: 0 PID: 10 Comm: kworker/0:1 Tainted: G        W        N  7.0.0 #7 PREEMPT(full) 
+[   68.395192] Tainted: [W]=WARN, [N]=TEST
+[   68.397632] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[   68.403477] Workqueue: events drm_fb_helper_damage_work [drm_kms_helper]
+[   68.406752] RIP: 0010:drm_atomic_helper_wait_for_vblanks.part.0+0x62d/0x7b0 [drm_kms_helper]
+[   68.410426] Code: 00 48 8b 55 20 48 89 f8 48 c1 e8 03 42 0f b6 04 20 84 c0 74 08 3c 03 0f 8e 63 01 00 00 48 8d 3d 29 52 24 00 8b b5 d8 00 00 00 <67> 48 0f b9 3a e9 9b fd ff ff 44 8b 7c 24 3c 4c 89 eb e8 9c 2f 77
+[   68.419501] RSP: 0018:ffff888100cb7738 EFLAGS: 00010246
+[   68.422220] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000040
+[   68.426324] RDX: ffff888102524bc0 RSI: 0000000000000023 RDI: ffffffffa0258190
+[   68.430058] RBP: ffff88811d085318 R08: 0000000000000001 R09: 0000000000000001
+[   68.434292] R10: ffffffff88486997 R11: 0000000000000000 R12: dffffc0000000000
+[   68.437987] R13: 0000000000000000 R14: ffff888111760d00 R15: 0000000000000000
+[   68.441489] FS:  0000000000000000(0000) GS:ffff8881d07f9000(0000) knlGS:0000000000000000
+[   68.446750] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[   68.451127] CR2: 00007f9c03fe56f8 CR3: 000000011d43c000 CR4: 00000000000006f0
+[   68.455352] Call Trace:
+[   68.457151]  <TASK>
+[   68.458575]  ? __pfx_drm_atomic_helper_wait_for_vblanks.part.0+0x10/0x10 [drm_kms_helper]
+[   68.462982]  ? __pfx_autoremove_wake_function+0x10/0x10
+[   68.466488]  ? drm_atomic_helper_commit_hw_done+0x347/0x4b0 [drm_kms_helper]
+[   68.470069]  drm_atomic_helper_commit_tail+0x100/0x130 [drm_kms_helper]
+[   68.473979]  commit_tail+0x2c2/0x390 [drm_kms_helper]
+[   68.477183]  drm_atomic_helper_commit+0x308/0x390 [drm_kms_helper]
+[   68.481437]  ? __pfx_drm_atomic_helper_commit+0x10/0x10 [drm_kms_helper]
+[   68.484720]  drm_atomic_commit+0x238/0x300
+[   68.487418]  ? __pfx_drm_atomic_commit+0x10/0x10
+[   68.490090]  ? __pfx___drm_printfn_info+0x10/0x10
+[   68.492751]  ? drm_mode_object_get+0x104/0x170
+[   68.495543]  drm_atomic_helper_dirtyfb+0x60f/0x790 [drm_kms_helper]
+[   68.502748]  ? __pfx_drm_atomic_helper_dirtyfb+0x10/0x10 [drm_kms_helper]
+[   68.507738]  ? do_raw_spin_lock+0x130/0x270
+[   68.511232]  ? __pfx_drm_atomic_helper_dirtyfb+0x10/0x10 [drm_kms_helper]
+[   68.515088]  drm_fbdev_shmem_helper_fb_dirty+0x1d1/0x320 [drm_shmem_helper]
+[   68.518275]  drm_fb_helper_damage_work+0x335/0x630 [drm_kms_helper]
+[   68.522660]  ? __pfx_drm_fb_helper_damage_work+0x10/0x10 [drm_kms_helper]
+[   68.527710]  ? lock_release+0xd4/0x2b0
+[   68.530368]  process_one_work+0x920/0x1ac0
+[   68.532748]  ? __pfx_process_one_work+0x10/0x10
+[   68.535667]  ? __pfx_drm_fb_helper_damage_work+0x10/0x10 [drm_kms_helper]
+[   68.539238]  worker_thread+0x698/0xeb0
+[   68.542593]  ? __pfx_worker_thread+0x10/0x10
+[   68.546407]  kthread+0x38a/0x4a0
+[   68.548986]  ? trace_irq_enable.constprop.0+0x116/0x150
+[   68.552121]  ? __pfx_kthread+0x10/0x10
+[   68.553494]  ret_from_fork+0x690/0xaa0
+[   68.556263]  ? __pfx_ret_from_fork+0x10/0x10
+[   68.558710]  ? native_load_tls+0x10/0x40
+[   68.560801]  ? __switch_to+0x5e6/0xe90
+[   68.563581]  ? __pfx_kthread+0x10/0x10
+[   68.566320]  ret_from_fork_asm+0x1a/0x30
+[   68.568897]  </TASK>
+[   68.569969] irq event stamp: 25151
+[   68.573762] hardirqs last  enabled at (25161): [<ffffffff81572ad9>] __up_console_sem+0x89/0xa0
+[   68.585425] hardirqs last disabled at (25338): [<ffffffff81572abe>] __up_console_sem+0x6e/0xa0
+[   68.608509] softirqs last  enabled at (26562): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100
+[   68.613924] softirqs last disabled at (25347): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100
+[   68.618090] ---[ end trace 0000000000000000 ]---

@@ -1,0 +1,348 @@
+last executing test programs:
+
+13.754142ms ago: executing program 1 (id=2):
+ioctl$FBIOPUT_CON2FBMAP(0xffffffffffffffff, 0x4610, &(0x7f0000000140)={0x37})
+
+5.675801ms ago: executing program 0 (id=1):
+r0 = openat$rssd_remove(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+write$rssd_remove(r0, &(0x7f0000001000), 0x2)
+r1 = openat$rssd_rescan(0xffffffffffffff9c, &(0x7f0000002000), 0x1, 0x0)
+write$rssd_rescan(r1, &(0x7f0000003000), 0x2)
+
+0s ago: executing program 3 (id=4):
+r0 = openat$ptmx(0xffffffffffffff9c, 0x0, 0xc00, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0xf)
+ioctl$TCFLSH(0xffffffffffffffff, 0x540b, 0x2)
+syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f00000000c0)=0x6)
+r1 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000000), 0xa00, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f00000000c0)=0x14)
+ioctl$KDSKBMETA(0xffffffffffffffff, 0x4b63, &(0x7f0000000040)=0x3)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+syz_open_dev$ttys(0xc, 0x2, 0x0)
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000240), 0x102, 0x0)
+ioctl$TCXONC(r1, 0x540a, 0x3)
+r3 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+r4 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCSETD(r4, 0x5423, &(0x7f0000000600)=0x1)
+ioctl$VT_DISALLOCATE(r4, 0x89f0)
+ioctl$KDSETMODE(0xffffffffffffffff, 0x4b3a, 0x1)
+ioctl$KDGKBDIACR(r2, 0x4b4a, &(0x7f0000000140)=""/226)
+ioctl$PIO_UNIMAP(r0, 0x4b67, &(0x7f0000000300)={0x1, &(0x7f0000000280)=[{0x3, 0x9}]})
+r5 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCSWINSZ(r5, 0x5414, &(0x7f0000000080)={0x7241, 0x9, 0x0, 0x3d6d})
+r6 = openat$ptmx(0xffffffffffffff9c, &(0x7f00000008c0), 0x20802, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000540), 0x101000, 0x0)
+ioctl$TIOCL_SETSEL(0xffffffffffffffff, 0x541c, &(0x7f00000000c0)={0x2, {0x2, 0x7f, 0x0, 0x1, 0xfffd, 0x4}})
+ioctl$TIOCGDEV(r6, 0x80045432, &(0x7f0000000940))
+ioctl$TIOCL_PASTESEL(r3, 0x541c, &(0x7f0000000100))
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000540), 0x40000, 0x0)
+
+kernel console output (not intermixed with test programs):
+
+[   15.472129] audit: type=1400 audit(1791444035.031:34): avc:  denied  { siginh } for  pid=290 comm="bash" scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+
+Debian GNU/Linux 11 syzkaller ttyS0
+
+Warning: Permanently added '[localhost]:33366' (ED25519) to the list of known hosts.
+syzkaller login: [   16.791482] cgroup: Unknown subsys name 'net'
+[   16.828969] cgroup: Unknown subsys name 'cpuset'
+[   16.835764] cgroup: Unknown subsys name 'rlimit'
+[   16.837713] cgroup: Unknown subsys name 'memory'
+[   16.883493] kmemleak: Automatic memory scanning thread ended
+[   25.444002] kmemleak: 9 new suspected memory leaks (see /sys/kernel/debug/kmemleak)
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=29549569-15d8-4e38-ae60-4acb4e80d815
+[   25.499203] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   26.805608] audit: type=1400 audit(1791444046.379:35): avc:  denied  { execmem } for  pid=308 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   26.921311] audit: type=1400 audit(1791444046.494:36): avc:  denied  { read } for  pid=318 comm="modprobe" name="modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   26.926346] audit: type=1400 audit(1791444046.496:37): avc:  denied  { open } for  pid=318 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   26.932510] audit: type=1400 audit(1791444046.496:38): avc:  denied  { getattr } for  pid=318 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   26.938146] audit: type=1400 audit(1791444046.496:39): avc:  denied  { map } for  pid=318 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   31.922726] ==================================================================
+[   31.924354] BUG: KASAN: slab-use-after-free in __mutex_lock+0x1eb5/0x1ee0
+[   31.925837] Read of size 1 at addr ffff888106011bb4 by task syz.0.1/2054
+[   31.927807] 
+[   31.928445] CPU: 0 UID: 0 PID: 2054 Comm: syz.0.1 Tainted: G      D W        N  7.1.0+ #1 PREEMPT(full) 
+[   31.928471] Tainted: [D]=DIE, [W]=WARN, [N]=TEST
+[   31.928475] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[   31.928480] Call Trace:
+[   31.928484]  <TASK>
+[   31.928487]  dump_stack_lvl+0xdb/0x140
+[   31.928514]  print_report+0xcb/0x5e0
+[   31.928526]  ? __virt_addr_valid+0x222/0x400
+[   31.928536]  ? __mutex_lock+0x1eb5/0x1ee0
+[   31.928544]  ? __mutex_lock+0x1eb5/0x1ee0
+[   31.928551]  kasan_report+0xca/0x100
+[   31.928561]  ? __mutex_lock+0x1eb5/0x1ee0
+[   31.928570]  __mutex_lock+0x1eb5/0x1ee0
+[   31.928577]  ? device_release_driver_internal+0xb1/0x640
+[   31.928590]  ? __up_read+0x2c4/0x980
+[   31.928601]  ? __pfx___mutex_lock+0x10/0x10
+[   31.928609]  ? __mutex_lock+0x272/0x1ee0
+[   31.928615]  ? pci_stop_and_remove_bus_device_locked+0x17/0x30
+[   31.928631]  ? __pfx___mutex_lock+0x10/0x10
+[   31.928638]  ? __pfx_kernfs_remove_self+0x10/0x10
+[   31.928652]  ? device_release_driver_internal+0xb1/0x640
+[   31.928662]  device_release_driver_internal+0xb1/0x640
+[   31.928674]  ? pci_pme_active+0x81/0x420
+[   31.928683]  pci_stop_bus_device+0x123/0x170
+[   31.928696]  pci_stop_and_remove_bus_device+0x5d/0xb0
+[   31.928709]  pci_stop_and_remove_bus_device_locked+0x1f/0x30
+[   31.928722]  remove_store+0x122/0x140
+[   31.928733]  ? __pfx_remove_store+0x10/0x10
+[   31.928743]  ? __pfx__copy_from_iter+0x10/0x10
+[   31.928752]  ? lock_release+0x1f2/0x2a0
+[   31.928761]  ? __pfx_remove_store+0x10/0x10
+[   31.928771]  dev_attr_store+0x5c/0x90
+[   31.928783]  ? __pfx_dev_attr_store+0x10/0x10
+[   31.928794]  sysfs_kf_write+0xf4/0x150
+[   31.928802]  ? __pfx_sysfs_kf_write+0x10/0x10
+[   31.928809]  kernfs_fop_write_iter+0x3ab/0x580
+[   31.928822]  vfs_write+0xc0c/0x1140
+[   31.928832]  ? __pfx_kernfs_fop_write_iter+0x10/0x10
+[   31.928844]  ? __pfx_vfs_write+0x10/0x10
+[   31.928857]  ksys_write+0x126/0x240
+[   31.928865]  ? __pfx_ksys_write+0x10/0x10
+[   31.928874]  ? fput+0x97/0xd0
+[   31.928885]  do_syscall_64+0x11a/0x6a0
+[   31.928898]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[   31.928907] RIP: 0033:0x7f8c9af1559d
+[   31.928915] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[   31.928922] RSP: 002b:00007f8c99956f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000001
+[   31.928930] RAX: ffffffffffffffda RBX: 00007f8c9b1b5fa0 RCX: 00007f8c9af1559d
+[   31.928936] RDX: 0000000000000002 RSI: 0000200000001000 RDI: 0000000000000003
+[   31.928941] RBP: 00007f8c9afb54c0 R08: 0000000000000000 R09: 0000000000000000
+[   31.928945] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+[   31.928950] R13: 00007f8c9b1b6038 R14: 00007f8c9b1b5fa0 R15: 00007f8c99937000
+[   31.928958]  </TASK>
+[   31.928961] 
+[   31.984019] Allocated by task 12:
+[   31.984026]  kasan_save_stack+0x24/0x50
+[   31.984039]  kasan_save_track+0x14/0x30
+[   31.984047]  __kasan_slab_alloc+0x59/0x70
+[   31.984056]  kmem_cache_alloc_node_noprof+0x227/0x710
+[   31.984068]  copy_process+0x699/0x7a00
+[   31.984089]  kernel_clone+0x202/0x860
+[   31.984098]  user_mode_thread+0xcd/0x110
+[   31.984107]  call_usermodehelper_exec_work+0x72/0x190
+[   31.984115]  process_one_work+0x920/0x1a80
+[   31.984126]  worker_thread+0x698/0xeb0
+[   31.984136]  kthread+0x38a/0x4a0
+[   31.984146]  ret_from_fork+0x667/0xa80
+[   31.984156]  ret_from_fork_asm+0x1a/0x30
+[   31.984165] 
+[   31.984167] Freed by task 1961:
+[   31.984171]  kasan_save_stack+0x24/0x50
+[   31.984179]  kasan_save_track+0x14/0x30
+[   31.984188]  kasan_save_free_info+0x3b/0x60
+[   31.984194]  __kasan_slab_free+0x43/0x70
+[   31.984203]  kmem_cache_free+0x28f/0x5f0
+[   31.984213]  rcu_core+0x570/0x1550
+[   31.984224]  handle_softirqs+0x1bb/0x860
+[   31.984232]  __irq_exit_rcu+0x143/0x1c0
+[   32.005407]  irq_exit_rcu+0xe/0x20
+[   32.005421]  sysvec_apic_timer_interrupt+0x39/0x80
+[   32.005433]  asm_sysvec_apic_timer_interrupt+0x1a/0x20
+[   32.005442] 
+[   32.005444] Last potentially related work creation:
+[   32.008598]  kasan_save_stack+0x24/0x50
+[   32.009092]  kasan_record_aux_stack+0x8c/0xa0
+[   32.009879]  __call_rcu_common.constprop.0+0x75/0x9d0
+[   32.010844]  delayed_put_task_struct+0xe7/0x270
+[   32.011472]  rcu_core+0x570/0x1550
+[   32.011924]  handle_softirqs+0x1bb/0x860
+[   32.012436]  run_ksoftirqd+0x35/0x60
+[   32.012906]  smpboot_thread_fn+0x424/0x9e0
+[   32.013499]  kthread+0x38a/0x4a0
+[   32.014248]  ret_from_fork+0x667/0xa80
+[   32.014914]  ret_from_fork_asm+0x1a/0x30
+[   32.015493] 
+[   32.015715] Second to last potentially related work creation:
+[   32.016431]  kasan_save_stack+0x24/0x50
+[   32.016936]  kasan_record_aux_stack+0x8c/0xa0
+[   32.017594]  __call_rcu_common.constprop.0+0x75/0x9d0
+[   32.018361]  put_task_struct_rcu_user+0x7a/0xc0
+[   32.018954]  __schedule+0x10d7/0x47a0
+[   32.019477]  preempt_schedule+0x58/0x80
+[   32.019982]  preempt_schedule_thunk+0x16/0x40
+[   32.020553]  _raw_write_unlock_irq+0x42/0x50
+[   32.021211]  do_exit+0x12f4/0x2960
+[   32.022050]  do_group_exit+0xd8/0x2b0
+[   32.022948]  __x64_sys_exit_group+0x43/0x50
+[   32.023954]  x64_sys_call+0x18d3/0x18e0
+[   32.024812]  do_syscall_64+0x11a/0x6a0
+[   32.025664]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[   32.026721] 
+[   32.027095] The buggy address belongs to the object at ffff888106011b80
+[   32.027095]  which belongs to the cache task_struct of size 6784
+[   32.029782] The buggy address is located 52 bytes inside of
+[   32.029782]  freed 6784-byte region [ffff888106011b80, ffff888106013600)
+[   32.031970] 
+[   32.032192] The buggy address belongs to the physical page:
+[   32.032987] page: refcount:0 mapcount:0 mapping:0000000000000000 index:0x0 pfn:0x106010
+[   32.034039] head: order:3 mapcount:0 entire_mapcount:0 nr_pages_mapped:0 pincount:0
+[   32.034978] memcg:ffff888106016e01
+[   32.035453] flags: 0x200000000000040(head|node=0|zone=2)
+[   32.036136] page_type: f5(slab)
+[   32.036553] raw: 0200000000000040 ffff888100aa2280 dead000000000100 dead000000000122
+[   32.038041] raw: 0000000000000000 0000000800040004 00000000f5000000 ffff888106016e01
+[   32.039408] head: 0200000000000040 ffff888100aa2280 dead000000000100 dead000000000122
+[   32.041180] head: 0000000000000000 0000000800040004 00000000f5000000 ffff888106016e01
+[   32.042880] head: 0200000000000003 fffffffffffffe01 00000000ffffffff 00000000ffffffff
+[   32.044217] head: 0000000000000000 0000000000000000 00000000ffffffff 0000000000000008
+[   32.045181] page dumped because: kasan: bad access detected
+[   32.045986] 
+[   32.046214] Memory state around the buggy address:
+[   32.046828]  ffff888106011a80: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+[   32.047771]  ffff888106011b00: fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc fc
+[   32.048682] >ffff888106011b80: fa fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   32.049585]                                      ^
+[   32.050863]  ffff888106011c00: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   32.052620]  ffff888106011c80: fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb fb
+[   32.054039] ==================================================================
+
+VM DIAGNOSIS:
+15:20:52  Registers:
+info registers vcpu 0
+
+CPU#0
+RAX=0000000000000073 RBX=00000000000003f8 RCX=0000000000000000 RDX=00000000000003f8
+RSI=ffffffff82d62c0a RDI=ffffffff8af6a660 RBP=ffffffff8af6a620 RSP=ffff888102a7f430
+R8 =0000000000000000 R9 =ffffed1020868046 R10=0000000000000073 R11=20666f2064616552
+R12=0000000000000073 R13=0000000000000010 R14=ffffffff8af6a620 R15=ffffffff82d62bf0
+RIP=ffffffff82d62c62 RFL=00000002 [-------] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 00007f8c99957640 ffffffff 00c00100
+GS =0000 ffff8881d07ac000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe0000003000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000001000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007f8c99956ff0 CR3=000000010617c000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000
+XMM02=00007f8c9af18ea5 00007f8c9b17ade8 XMM03=00007ffdcd11b728 0000003000000030
+XMM04=b3a7b79a0875f800 000000000000fec0 XMM05=0000000000000000 00007f8c9afb55ca
+XMM06=0000000000000000 00007ffdcd11b8a0 XMM07=00007ffdcd11b9f0 00007ffdcd11b9b0
+XMM08=0000000000000000 0000000000000000 XMM09=0000000000000000 0000000000000000
+XMM10=0000000000000000 0000000000000000 XMM11=0000000000000000 0000000000000000
+XMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000
+XMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000
+info registers vcpu 1
+
+CPU#1
+RAX=0000000000000000 RBX=ffffea0004c2fc40 RCX=000000000000003f RDX=0000000000001000
+RSI=0000000000000000 RDI=ffff888130bf1000 RBP=0000000000001000 RSP=ffff888126e3f7b0
+R8 =0000000000000001 R9 =0000000000000000 R10=ffff888130bf1000 R11=0000000000000000
+R12=0000000000000000 R13=0000000000001000 R14=0000000000000000 R15=0000000000001000
+RIP=ffffffff8612fdf6 RFL=00000216 [----AP-] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 0000555575cc6500 ffffffff 00c00100
+GS =0000 ffff8881d082c000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe000004a000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000048000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=0000200000001000 CR3=00000001188d2000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000
+XMM02=00007f8c9af18ea5 00007f8c9b17ade8 XMM03=00007ffdcd11b728 0000003000000030
+XMM04=b3a7b79a0875f800 000000000000fec0 XMM05=0000000000000000 00007f8c9afb55ca
+XMM06=0000000000000000 00007ffdcd11b8a0 XMM07=00007ffdcd11b9f0 00007ffdcd11b9b0
+XMM08=0000000000000000 0000000000000000 XMM09=0000000000000000 0000000000000000
+XMM10=0000000000000000 0000000000000000 XMM11=0000000000000000 0000000000000000
+XMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000
+XMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000
+info registers vcpu 2
+
+CPU#2
+RAX=ffff888110c2d600 RBX=ffff8881132cead0 RCX=ffff888110c2dd60 RDX=ffff88810eefb798
+RSI=0000000000000000 RDI=ffff8881141b73a8 RBP=ffff8881141b73a8 RSP=ffff8881106bf9c0
+R8 =0000000000000000 R9 =ffffed10220d7f2a R10=0000000000000003 R11=0000000000000000
+R12=ffff888110c2dc00 R13=0000000000000160 R14=0000000000000001 R15=0000000000000282
+RIP=ffffffff81bfeb86 RFL=00000082 [--S----] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 00007f229f9c38c0 ffffffff 00c00100
+GS =0000 ffff8881d08ac000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe0000091000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe000008f000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=0000001b30024008 CR3=0000000117682000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=0000000000000000 0000000000000000 XMM01=0000000000000000 0000000000000000
+XMM02=ffffffffffff00ff 0000000000000000 XMM03=ffffffffffffff00 ffffffffffffff00
+XMM04=0000000000000000 0000000000000000 XMM05=00000000ffffffff ffffff0000000000
+XMM06=00000000ffffffff 0000558dd81a4cf0 XMM07=0000558dd81a4cd0 ffffffff00000001
+XMM08=0000558dd81a4a30 0000558dd8111d80 XMM09=ffff000000000000 000000ffff00ffff
+XMM10=0000000000000000 0000000000000000 XMM11=ffff00ffffffffff ffff00ffffffffff
+XMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000
+XMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000
+info registers vcpu 3
+
+CPU#3
+RAX=0000000000000001 RBX=0000000000000000 RCX=000000000000004d RDX=00000000002c307d
+RSI=00007ffe2e364318 RDI=00000000000000bc RBP=00000000000000bc RSP=00007ffe2e3641f0
+R8 =0000000000000000 R9 =0000000000000000 R10=00007f99146e7570 R11=00007f99146e1d70
+R12=00007ffe2e364207 R13=00007ffe2e364206 R14=0000000000000001 R15=0000000000000000
+RIP=00007f99142702aa RFL=00000206 [-----P-] CPL=3 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0033 0000000000000000 ffffffff 00a0fb00 DPL=3 CS64 [-RA]
+SS =002b 0000000000000000 ffffffff 00c0f300 DPL=3 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 00007f99141a3540 ffffffff 00c00100
+GS =0000 0000000000000000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe00000d8000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe00000d6000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007f9914265740 CR3=000000011a7c9000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=0000000000000000 0000ff00000000ff XMM01=2f2f2f2f2f2f2f2f 2f2f2f2f2f2f2f2f
+XMM02=0000000000000000 0000000000000000 XMM03=00ff000000000000 0000000000000000
+XMM04=0000000000000000 0000000000000000 XMM05=0000000000000000 0000000000000000
+XMM06=0000000000000000 0000000000000000 XMM07=0000000000000000 0000000000000000
+XMM08=0000000000000000 0000000000000000 XMM09=0000000000000000 0000000000000000
+XMM10=0000000000000000 0000000000000000 XMM11=0000000000000000 0000000000000000
+XMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000
+XMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000

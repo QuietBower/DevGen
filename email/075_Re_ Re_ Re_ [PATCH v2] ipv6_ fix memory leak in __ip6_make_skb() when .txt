@@ -1,0 +1,103 @@
+From: "Bezdeka, Florian" <florian.bezdeka@siemens.com>
+To: "willemdebruijn.kernel@gmail.com" <willemdebruijn.kernel@gmail.com>,
+ "author-a@example.com" <author-a@example.com>
+CC: "syzbot+e5d6936b9f4545fd88ab@syzkaller.appspotmail.com"
+ <syzbot+e5d6936b9f4545fd88ab@syzkaller.appspotmail.com>,
+ "davem@davemloft.net" <davem@davemloft.net>,
+ "dsahern@kernel.org" <dsahern@kernel.org>,
+ "sd@queasysnail.net" <sd@queasysnail.net>,
+ "linux-kernel@vger.kernel.org" <linux-kernel@vger.kernel.org>,
+ "netdev@vger.kernel.org" <netdev@vger.kernel.org>,
+ "horms@kernel.org" <horms@kernel.org>,
+ "edumazet@google.com" <edumazet@google.com>,
+ "kuba@kernel.org" <kuba@kernel.org>, "pabeni@redhat.com" <pabeni@redhat.com>
+Subject: Re: Re: Re: [PATCH v2] ipv6: fix memory leak in __ip6_make_skb() when
+ queue is empty
+Date: Fri, 24 Apr 2026 06:56:35 +0000
+Message-ID: <68628d54304821fe8410e756ce3f92c60da10e1d.camel@siemens.com>
+In-Reply-To: <5eabb1a1.7642.19dbd869da3.Coremail.author-a@example.com>
+References: <20260423082233.514056-1-author-a@example.com>	
+ <willemdebruijn.kernel.28284ffff84dc@gmail.com>	
+ <2ebe2714.7628.19dbd7d2b62.Coremail.author-a@example.com>	
+ <5eabb1a1.7642.19dbd869da3.Coremail.author-a@example.com>
+List-Id: <netdev.vger.kernel.org>
+
+On Fri, 2026-04-24 at 11:26 +0800, Author A wrote:
+> Hi Sabrina and Jakub,
+> 
+> Before sending out the v3 patch, I synced my tree to the latest mainline and checked the current state of `ip6_make_skb()`. 
+> 
+> It turns out that the missing `ip6_cork_release(cork)` in the error path was already naturally resolved by Eric Dumazet's recent refactoring commit:
+> b409a7f7176b ("ipv6: colocate inet6_cork in inet_cork_full")
+> 
+> With Eric's changes, the error handling now correctly calls `ip6_cork_release(cork)` if `ip6_setup_cork()` fails, meaning the memory leak is no longer present in the latest tree.
+
+Fine, so mainline is correct now. What about the stable trees? Did you
+check them already?
+
+Florian
+
+> 
+> Please disregard my v1 and v2 patches. I am also telling syzbot to close this report based on Eric's commit.
+> 
+> Thank you all again for your time, the deep code review, and for guiding me to find the true root cause. I learned a huge amount from this discussion!
+> 
+> #syz fix: ipv6: colocate inet6_cork in inet_cork_full
+> 
+> Best regards,
+> Author A
+> 
+> 2026-04-24 11:16:30 "Author A��LNL�M�M��K�YX[��YK�ۏ�9a�z`d��&�B���KB���B���[��[�H��]X��܈H�]�Y]�[��܈�[�[��YH�H�ܜ�X��^\�Y�CB���B���[�H]H�Z[ۈHXY�Y�\�[����\
+��\[��]J
+X�Y�\��KY]�[X][��H��H]�\�Yۈ[�\�]Y\�[ۋH�X[^�H^H\��[\[ۈ[����\�[��ܜ�X����\
+��\[��]J
+X�\�[�YY�X\�[�YH][��؈\�]Y]YY\ۈ�X��\��XZ�[��H�؈OH�S]XY��H[�\��۝^�B���B���H�X�YH�Z[�X�Y[[ܞHXZ��X���]��YHܚY�[��H���\���\�]ܘ\\�\
+��XZ�W��؊
+X�B���B����X��[�H�]�[�\�H��Y]\
+���]\��ܚ�
+X�Z[\�\��ܜ�X�H�[X\�HH��]\�X���][H�YH�܈H���]�\�HYݍ�ٛ\��[�[��ٜ�[Y\�
+X]�[�X[H[�\�H�X[�\�B���B�����]�\�[�H�\�]\
+��XZ�W��؊
+X�[�\
+���]\��ܚ�
+X�[��YH\
+���]\��ܚ�
+X�ܚ�O��\�K��\�\��YۙYX\�K�Y�H�X��\]Y[�Y[[ܞH[��][ۈ�Z[�
+K�ˋ����ܚ�O��Hޘ[�����X�Z[[��YH��Z[�X�K]�]\���[�\��܋�\
+��XZ�W��؊
+X[�\�X�H�]\���T����\��X�U�U�[[��\
+���ܚ�ܙ[X\�J�ܚ�X�B���B����[��HY����[�\��
+X\��[Y\�H��Y�\�[��H\���[��H\
+��XZ�W��؊
+X[�[��ۙ][ۘ[H�[\���]ۛ���H�\���\][HXZ�Y�B���B���H�^\��[\H�Y\
+���ܚ�ܙ[X\�J�ܚ�X[�H\
+���]\��ܚ�
+X\��܈][��YH\
+��XZ�W��؊
+X�B���B���H�[�X�Z]H��]��ܝHY�\��[��\��YH����]\�H[�\�[��[�\��Y��\�Y�^\�Yˈ[��[�HY�Z[��܈�Y\�[��YH[�H^X��Y�\�X�[ۈCB���B����\��Y�\��B���Z[��]H�[��B���B���B����KKKKyc��i��`��.�KKKKCB����9c�y.��.�����[[HH��ZZ����[[YX��ZZ����\��[�XZ[���O�B����9c�z` y���e�����L
+L�����NN�
+H
+9�'��'�f��CB����9�-�.��.����Z[��]H�[�Ȉ�LNL�M�M��K�YX[��YK�ۏ��[[YX��ZZ����\��[�XZ[���K]�[P]�[[ٝ��]�Z\���\��[�ܙ�Y[X^�]����K���K�X�P�\��[�ܙ�X�[�P�Y]���CB����9��:` N��]YX\�\ۘZ[��]ܛ\��\��[�ܙ��]]���\���\��[�ܙ�[�^Z�\��[��\���\��[�ܙ��Z[��]H�[�Ȉ�LNL�M�M��K�YX[��YK�ۏ��^���
+�MY
+�L͘�Y�
+M
+Y�X��^��[\��\��XZ[���CB����9..�h���N��U���H\����^Y[[ܞHXZ�[���\
+��XZ�W��؊
+H�[�]Y]YH\�[\CB����B����Z[��]H�[��ܛ�N�B�����\�[���^��[���]�Z[�X�[�X�YHY[[ܞHXZ��\�؜�\��Y[�CB�����T��Q�[�]�B�����B�����H����]\�H�\�Y\�[���\
+��XZ�W��؊
+K�[�^�[Y[H�\�H�\�\�B�����
+�X�\��][[��X�[ۈ܈�X�Y�X�[\H^[�Y�ۙ][ۜ�KB����B�����[�[�H[X�ܘ]Hۈ\���X��][[��X�[ۈ]�B������\
+��\[��]H�X��YY�]�]ܚ][��]O�B����B�������\
+��\[��]J
+HX^H�X��YY�]X]�HH����]	��ܚ]H]Y]YCB�����[\K�B�����B������[���\
+��XZ�W��؊
+H\��X��\]Y[�H�[Y���ؗ�\]Y]YJ]Y]YJCB������]\����S�H�]�[�\���X�[�Y\��H^X�][��H	�����]��B������X���\][H�\\��YH�[�\
+���ܚ�ܙ[X\�J�ܚ�K�B�����B������[��HH	��ܚ����X�\�HX�]�[H��H�Y�\�[��H�H��][��B�����[��H
+��[��JH[��[�X[H�\�[��]Y�[ۜ���\[��B�����H�[X\�H�X[�HXZ��\�H�\��\��\˃B�����B������^\��H[���X�[��[�	��]��ܚ�ܙ[X\�I�X�[[��[\[���]B������[��؈\��S[��\�[��H�ܚ��]H\�[�^\���\�H�X[�Y\�B�����H���][�\�Y	��]	�X�[\�[���[[ݙY��]�[���\[\��\��[��˃B�����B������^\ΈYLM��M�ٍ
+�[�^L����L�\�̈�CB����B����H[��\�\�B����B�����^\Έ
+����N̘X�
+�\���[���X�H\���XZ�W��؈�CB����B������\ܝYX�N��^���
+�MY
+�L͘�Y�
+M
+Y�X��^��[\��\��XZ[���CB������YۙY[ٙ�X�N�Z[��]H�[���LNL�M�M��K�YX[��YK�ۏ�B

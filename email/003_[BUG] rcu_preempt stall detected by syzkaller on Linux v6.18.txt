@@ -1,0 +1,44 @@
+From: Author B <author-b-alt@example.com>
+To: paulmck@kernel.org
+Cc: linux-rcu@vger.kernel.org, linux-kernel@vger.kernel.org,
+ syzkaller@googlegroups.com
+Subject: [BUG] rcu_preempt stall detected by syzkaller on Linux v6.18
+Date: Sun, 04 Jan 2026 10:56:07 +0800
+Message-ID: <6ee827b.9258.19b86eefb7e.Coremail.author-b-alt@example.com>
+List-Id: <linux-kernel.vger.kernel.org>
+
+Hello RCU maintainers,
+
+This is a kernel bug found by syzkaller while fuzzing the upstream Linux kernel v6.18.
+
+The kernel reports an RCU preempt stall, where the RCU grace-period kthread appears to be starved for a long time. After the stall, the system becomes largely unresponsive and may eventually hit OOM.
+
+Kernel version:
+  Linux v6.18
+  Source: https://github.com/torvalds/linux/tree/v6.18
+The issue was triggered by syz-executor. The relevant kernel log is shown below.
+============================================================
+
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu:     (detected by 3, t=105004 jiffies, g=328445, q=426 ncpus=4)
+rcu: rcu_preempt kthread starved for 105017 jiffies!
+rcu: Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+RCU grace-period kthread stack dump:
+Call Trace:
+ rcu_gp_fqs_loop+0x195/0x780 kernel/rcu/tree.c:2083
+ rcu_gp_kthread+0x1da/0x270 kernel/rcu/tree.c:2285
+ kthread+0x27c/0x430 kernel/kthread.c:463
+ ret_from_fork+0x2a5/0x370 arch/x86/kernel/process.c:158
+
+============================================================
+
+Unfortunately, I do not yet have a minimal reproducer, but I can provide additional logs or testing if needed.
+
+Please let me know if more information is required.
+
+Best regards,
+Author B
+
+
+
+

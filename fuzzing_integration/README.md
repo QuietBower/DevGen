@@ -1,78 +1,73 @@
 # DevGen
 
-## 编译新步骤
+## Updated Compilation Steps
 
-由于编译最新版的Linux内核版本过高，而编译DevGen的静态分析工具还需要clang-14（尝试更新版本未成功），因此使用以下新的步骤：
+First, copy `filter_compile_commands.py` and `split_jsonl.py` into Linux
 
-DevGen的github仓库：<https://github.com/ise-uiuc/DevGen.git>
-
-首先将filter\_compile\_commands.py、split\_jsonl.py复制到Linux中，用这里的process\_output.py替换DevGen原来的process\_output.py。
-
-## 预处理编译数据库
+## Preprocessing the Compilation Database
 
 ```bash
 python filter_compile_commands.py compile_commands.json -o new_compile_commands.json
 ```
 
-这会预处理 `compile_commands.json`，得到新的json文件。
+This preprocesses `compile_commands.json` and produces a new JSON file.
 
-## 编译静态分析工具
+## Building the Static Analysis Tool
 
 ```bash
 make all
 ```
 
-这会生成 `analyze` 和 `usage` 两个可执行文件。
+This generates two executables: `analyze` and `usage`.
 
-## 静态分析
+## Static Analysis
 
-### 步骤1
+### Step 1
 
-在Linux路径下执行：
+Run under the Linux path:
 
 ```bash
 ./path/to/analyze -p new_compile_commands.json
 ```
 
-由于得到的func.jsonl太大，需要分割才可以加载成功。\
-执行split\_jsonl.py:
+Because the resulting `func.jsonl` is too large, it must be split before it can be loaded successfully.\
+Run `split_jsonl.py`:
 
 ```bash
 python path/to/split_jsonl.py
 ```
 
-正常会将func.jsonl分割为两个文件。
+Normally this splits `func.jsonl` into two files.
 
-### 步骤2
+### Step 2
 
-在analyze所在的目录下执行：
+Run in the directory where `analyze` resides:
 
 ```bash
 process_output.py --linux-path /path/to/linux --fnum 3
-#                                             这个是分割后的文件数量+1
+#                                             this is the number of split files + 1
 ```
 
-### 步骤3
+### Step 3
 
-在Linux路径下执行：
+Run under the Linux path:
 
 ```bash
 ./path/to/usage -p new_compile_commands.json
 ```
 
-### 步骤4
+### Step 4
 
-在analyze所在的目录下执行：
+Run in the directory where `analyze` resides:
 
 ```bash
 python process_output.py --linux-path /path/to/linux --usage
 ```
 
-至此，静态分析完毕，得到所有的json文件。
+At this point the static analysis is complete and all JSON files have been produced.
 
-## 生成系统调用
+## Generating System Calls
 
 ```bash
 python gen_spec.py -d analyzer/processed_handlers.json -o spec-output -n 1
 ```
-

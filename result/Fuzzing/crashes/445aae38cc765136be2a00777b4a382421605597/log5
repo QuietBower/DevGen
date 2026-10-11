@@ -1,0 +1,2145 @@
+last executing test programs:
+
+10.853726324s ago: executing program 3 (id=8075):
+syz_open_dev$usbfs(&(0x7f0000000080), 0x4bf, 0x80002)
+r0 = syz_open_dev$usbfs(&(0x7f0000000040), 0xfffffffffffffc00, 0x410000)
+ioctl$USBDEVFS_REAPURBNDELAY(r0, 0x4008550d, &(0x7f00000000c0))
+ioctl$USBDEVFS_RESETEP(r0, 0x80045503, &(0x7f0000000000)={0x1, 0x1})
+
+10.852699287s ago: executing program 3 (id=8076):
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x9, 0xc8031, 0xffffffffffffffff, 0x2000000000)
+mmap$usbmon(&(0x7f0000400000/0xc00000)=nil, 0xc00000, 0x1000001, 0xc8032, 0xffffffffffffffff, 0x700000000000000)
+
+10.753317996s ago: executing program 3 (id=8077):
+r0 = syz_open_dev$usbmon(&(0x7f0000000140), 0x0, 0x101500)
+r1 = syz_open_dev$hiddev(&(0x7f00000000c0), 0x0, 0x0)
+r2 = syz_usb_connect$hid(0x0, 0x36, &(0x7f00000000c0)={{0x12, 0x1, 0x0, 0x0, 0x0, 0x0, 0x40, 0x9da, 0x1a, 0x0, 0x0, 0x0, 0x0, 0x1, [{{0x9, 0x2, 0x24, 0x1, 0x0, 0x0, 0x0, 0x0, [{{0x9, 0x4, 0x0, 0x0, 0x5, 0x3, 0x0, 0x0, 0x0, {0x9, 0x21, 0x0, 0x1, 0x1, {0x22, 0x29}}, {{{0x9, 0x5, 0x81, 0x3, 0x0, 0xfc}}}}}]}}]}}, 0x0)
+syz_usb_control_io$hid(r2, 0x0, 0x0)
+r3 = syz_usb_connect$cdc_ncm(0x1, 0xa8, &(0x7f0000000200)={{0x12, 0x1, 0x201, 0x2, 0x0, 0x0, 0x20, 0x525, 0xa4a1, 0x40, 0x1, 0x2, 0x3, 0x1, [{{0x9, 0x2, 0x96, 0x2, 0x1, 0x8, 0x40, 0x8, {{0x9, 0x4, 0x0, 0x0, 0x1, 0x2, 0xd, 0x0, 0x0, {{0xb, 0x24, 0x6, 0x0, 0x1, "70c6c5d1f564"}, {0x5, 0x24, 0x0, 0x81}, {0xd, 0x24, 0xf, 0x1, 0xfffffff9, 0x3, 0x8, 0x5}, {0x6, 0x24, 0x1a, 0x2, 0x22}, [@mbim={0xc, 0x24, 0x1b, 0x1, 0x6, 0x8, 0x7, 0x6, 0x5}, @network_terminal={0x7, 0x24, 0xa, 0xd, 0x2, 0x6, 0x2}, @mdlm={0x15, 0x24, 0x12, 0x81}, @mbim={0xc, 0x24, 0x1b, 0x6, 0x1ff, 0x10, 0x8, 0x2, 0x2}]}, {{0x9, 0x5, 0x81, 0x3, 0x40, 0x40, 0x4, 0x6}}}, {}, {0x9, 0x4, 0x1, 0x1, 0x2, 0x2, 0xd, 0x0, 0x0, "", {{{0x9, 0x5, 0x82, 0x2, 0x400, 0x3, 0xf, 0x40}}, {{0x9, 0x5, 0x3, 0x2, 0x40, 0x2, 0x10, 0x2}}}}}}}]}}, &(0x7f00000004c0)={0xa, &(0x7f0000000180)={0xa, 0x6, 0x310, 0x0, 0xc0, 0x8, 0x8, 0xec}, 0xc, &(0x7f00000002c0)={0x5, 0xf, 0xc, 0x1, [@ext_cap={0x7, 0x10, 0x2, 0xa, 0x3, 0xa, 0x4}]}, 0x7, [{0x4, &(0x7f0000000300)=@lang_id={0x8, 0x3, 0x4001}}, {0x4, &(0x7f0000000340)=@lang_id={0x4, 0x3, 0x44c}}, {0x4, &(0x7f0000000380)=@lang_id={0x4}}, {0x24, &(0x7f0000000740)=@string={0x24, 0x3, "2a80409981c924d8f886b225872ba477fdd0399d5a16d105220fd1801b7dad8f11c5"}}, {0x4, &(0x7f0000000400)=@lang_id={0x4, 0x3, 0x421}}, {0x4b, &(0x7f00000009c0)=ANY=[@ANYBLOB="4b033309b2d4ecb6ffd36890cbb10d20124af92f5a8c2fffe52adad0c1b81df2ded8bd3c460807ca2665c14baf6bd1cd56454eb55ecd547ac8cc9896b4fda1d2261fffc08bfc8d52b271e5b5fdd4aa9c90f231e276737c2dbfbeb5c914b4551d804cf30f2b0dd68e709273acf0eb09a738800dfb0848be0c4dd3ecb47f1deeea165ee993e2f8ce2d92101622eba6d0b0bf2706286b931302b31e8f62709cc412263f7cd786067d657f5c9b474c5167c1d0f2f019dadc9c9fdaf1986e394745f2fbd686349e55766eb48d22938d70984f6aae258a17df9b1603e99ef7d4dedea4f9dab6e7b922b7"]}, {0xe7, &(0x7f0000000600)=@string={0xe7, 0x3, "3fce74a82ab0903d6cf68c23bb3b2494f6527f8a58f70a077ba28146c29c63487f9445babc60b821e537fff6c9d922f9bf274814ddf515599e362753d5a581b05d9074a06a7ef7f69d8c7e4337d56f4dbfcfd0e61f67e40e1cd9b58c2eea19be8d0b6a2747ccd3bef18581c3a9bb58f90c4987c45ac6f5ea878ae6d706bd17a5d7def34590ea227284a45bcf298f41f484e479124426286d33d6969e925153b39e30b7520560efae193ec0bdb9bcd1e82f7754fef2413b4ab6f42a579a463f048a0692ba099ce0bcd7ccf1a4e3de37e3f44c9a54b8a7948798bf76aeb71ec9282250b32cbc"}}]})
+syz_usb_control_io$cdc_ncm(r3, 0x0, &(0x7f0000000580)={0x44, &(0x7f0000000800)={0x40, 0xe, 0xf9, "c54fb76f0000005db92228c9da7a83998633b475af3e5b779f1aa712c0ea4504692a1d2d638337f347a4001e1c22b6d1e9ee221277f7caececae29dd3a6aa6b9ab965e1b15a48f765d517e9f3c02000c008ee978fa25ce46d8e4b617426ab41175e05168ee454f62c3a069878b743a3d243cfc9eb07e420321c2f5c1f30e000081ffffffffffffff04f81593c347113874a38efc95d55001af345d2c0f168134b5bbe75551beef58070a93a43bedcfb0aa6af457c2eea91d6615e6dbdc3c9875d9b4f6cf3a0d9a07c2b744c0791d6e8c86a64aec6f2ef512191d788db88a66ce3b4b8f023b64a3745f000000000000000000007d9fa6bc60d8"}, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x0})
+syz_usb_control_io$hid(r2, &(0x7f0000000040)={0x24, 0x0, 0x0, 0x0, &(0x7f00000001c0)={0x0, 0x22, 0x371, {0x9, 0x21, 0x2, 0x0, 0x1, {0x22, 0xd72}}}}, &(0x7f0000000080)={0xffffff8c, 0x0, 0x0, 0x0, 0x0, 0x0})
+ioctl$HIDIOCGUCODE(r1, 0xc018480d, &(0x7f0000000040)={0x3, 0x3, 0xfffffff7, 0xffffffff, 0x9, 0x7f})
+r4 = openat$KGPT_raw_gadget(0xffffffffffffff9c, &(0x7f0000000540), 0x2, 0x0)
+ioctl$KGPT_USB_RAW_IOCTL_EP0_STALL(r4, 0x550c, &(0x7f0000000700)="c7042e6a05aaa75df76f74")
+ioctl$HIDIOCGCOLLECTIONINDEX(r1, 0x40184810, 0x0)
+r5 = syz_usb_connect$hid(0x0, 0x36, &(0x7f0000000040)=ANY=[@ANYBLOB="12010000000018105e04da0700000000000109022400010000000009040000090300000009210000000122220009058103"], 0x0)
+syz_usb_control_io$hid(r5, 0x0, 0x0)
+syz_usb_control_io(r5, &(0x7f0000000980)={0x2c, &(0x7f0000000780)={0x0, 0x24, 0x45, {0x45, 0x4, "e61c37d21fe5f5ce02d4191394e7daf352b0e09108cf8853a11ae7339d2f1a7e0d2e4eabc666069d2938e002f2f2155a2fa12f12c4c298f4e7a3623fd22d9a8a8d2ca3"}}, 0x0, 0x0, 0x0, 0x0}, 0x0)
+ioctl$HIDIOCGREPORT(r1, 0x400c4807, &(0x7f00000000c0)={0x3, 0x3, 0x6})
+mmap$usbmon(&(0x7f0000f31000/0x2000)=nil, 0x2000, 0x3000004, 0x8011, r0, 0x8000000000000000)
+r6 = syz_open_dev$usbfs(&(0x7f0000000080), 0x4bf, 0x80002)
+mmap$usbmon(&(0x7f0000000000/0xb000)=nil, 0xb000, 0x2000000, 0x32, 0xffffffffffffffff, 0x0)
+ioctl$USBDEVFS_CLEAR_HALT(r6, 0x80045515, 0x0)
+ioctl$HIDIOCGVERSION(0xffffffffffffffff, 0x80044801, &(0x7f0000000100))
+read$usbmon(r0, &(0x7f0000000000)=""/186, 0xba)
+mmap$usbmon(&(0x7f0000ffd000/0x2000)=nil, 0x2000, 0xc, 0x110, 0xffffffffffffffff, 0x4)
+mmap$usbmon(&(0x7f0000ffc000/0x3000)=nil, 0x3000, 0x562f198965ab4097, 0x32, 0xffffffffffffffff, 0x40000)
+
+7.713839382s ago: executing program 3 (id=8086):
+r0 = syz_usb_connect$sierra_net(0x3, 0x3f, &(0x7f0000000080)={{0x12, 0x1, 0x200, 0xff, 0xff, 0xff, 0x40, 0x1199, 0x68a3, 0x0, 0x1, 0x2, 0x3, 0x1, [{{0x9, 0x2, 0x2d, 0x1, 0x1, 0x0, 0x80, 0xfa, {{0x9, 0x4, 0x7, 0x0, 0x3, 0xff, 0x0, 0x0, 0x0, "", {{0x9, 0x5, 0x7, 0x2, 0x10, 0xc, 0x4, 0x70}, {0x9, 0x5, 0x7, 0x2, 0x3ff, 0x4, 0x9}, {0x9, 0x5, 0x9, 0x3, 0x0, 0x7f, 0xa, 0x9}}}}}}]}}, 0x0)
+syz_usb_connect(0x5, 0x24, &(0x7f0000000040)=ANY=[@ANYRES8=r0, @ANYRES32=r0, @ANYRES8=r0, @ANYRES8=r0], 0x0) (async)
+syz_usb_disconnect(r0) (async)
+syz_usb_disconnect(r0) (async, rerun: 32)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x12, 0xc8032, 0xffffffffffffffff, 0x0) (async, rerun: 32)
+mmap$usbmon(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x5, 0x400c031, 0xffffffffffffffff, 0x0)
+
+6.470706099s ago: executing program 2 (id=8088):
+r0 = syz_open_dev$usbfs(&(0x7f0000000300), 0xfffffffffffffffe, 0x2)
+mmap$usbmon(&(0x7f0000400000/0xc00000)=nil, 0xc00000, 0x100000e, 0x11, r0, 0x0)
+mmap$usbmon(&(0x7f0000c9e000/0x1000)=nil, 0x1000, 0xb, 0x4110032, 0xffffffffffffffff, 0x0)
+syz_open_dev$usbfs(&(0x7f0000000080), 0x8, 0x100)
+
+6.47042917s ago: executing program 1 (id=8089):
+r0 = syz_open_dev$usbmon(&(0x7f0000000140), 0x806f, 0x840)
+mmap$usbmon(&(0x7f0000ff9000/0x4000)=nil, 0x4000, 0x1000006, 0x12, r0, 0x0)
+r1 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x840)
+mmap$usbmon(&(0x7f0000ffb000/0x4000)=nil, 0x4021, 0x7, 0x12, r1, 0xffffff0000200000)
+
+6.421084418s ago: executing program 2 (id=8090):
+r0 = syz_usbip_server_init(0x2)
+write$usbip_server(r0, 0x0, 0x0)
+r1 = syz_open_dev$usbfs(&(0x7f0000000040), 0x8001, 0x200)
+ioctl$USBDEVFS_RELEASE_PORT(r1, 0x80045519, &(0x7f0000000080)=0x2)
+ioctl$USBDEVFS_FREE_STREAMS(r1, 0x8008551d, &(0x7f0000000280)={0x9605, 0xc, [{}, {0xc, 0x1}, {0x9, 0x1}, {0x2}, {0x0, 0x1}, {0x9}, {0xa, 0x1}, {0xe, 0x1}, {0xa}, {0xb, 0x1}, {0x7}, {}]})
+syz_usb_connect(0x0, 0x7aa, &(0x7f0000000380)={{0x12, 0x1, 0x201, 0xc3, 0xe8, 0x83, 0xff, 0x1b3d, 0x16f, 0x67a0, 0x1, 0x2, 0x3, 0x1, [{{0x9, 0x2, 0x798, 0x4, 0x20, 0xf, 0x40, 0x6, [{{0x9, 0x4, 0x9e, 0xff, 0xa, 0x1c, 0x19, 0xff, 0x0, [], [{{0x9, 0x5, 0x0, 0x10, 0x200, 0x1, 0x2, 0x7}}, {{0x9, 0x5, 0xa, 0x0, 0x8, 0x0, 0xa2, 0x80}}, {{0x9, 0x5, 0x3, 0x1, 0x20, 0x2, 0x0, 0xb9}}, {{0x9, 0x5, 0x5, 0x0, 0x200, 0x6, 0x98, 0x8, [@generic={0xe5, 0x3, "7af6576db3878f24f0ae5741154e3440f796a256b6c7673d1231d2ba6c3a887f8812c06196629e3f2dd8790ba6f2771de8b8fc929a98ecf98d74bf63d301b2e4f1d30aece103865bbe948767c08b85c11d31cc6d8e5609ff8a845f8ed11d270a1cfa719429cdd64e5c7f944767caedc0546dab435c8c1641cf82867d2df64ec92aca464813824540898009659bff8547da12eec9772450ea42e23752769074ce489e5fa30bb08c9e43620ac27fe72805ad16879cb84dfaa8272b96a597bf1b8bfac7a1a1d5fbabe409cd3843bb0fbd7f8047385d5f818b083bc81ff043f8561bc84e4e"}]}}, {{0x9, 0x5, 0x0, 0x3, 0x40, 0x6, 0xe, 0x80, [@generic={0xda, 0x24, "401a2481b75ab775e638e19636f22ffbd59bb314105a9989c019896f137008054cc5a1821e2c7c066b40bb7888588ced187b74f1682081fb4fa40af030ceb4eb473d7fa7bb2cdf4522e48ee265d87b3b89e63161955763e1d0de887770df47f44b1c53c6f77282d14f947b9cbb5827dae0f58619f18ddd5e0f702fbc8b2106fe0150daa87c96f7d0794e009bffac9c665590fd5a7d55f57a14a86f4867147a62ffd7b77b26db38de0f8a1b1f56d9b66f2e5a5d13ddfde96cf2a5f58f1b0b78297644a60019d9b47e46bac1d89008855ee564a56cbf35fa54"}]}}, {{0x9, 0x5, 0x4, 0x3, 0x40, 0x7a, 0x7, 0x79, [@uac_iso={0x7, 0x25, 0x1, 0x83, 0x1, 0x101}, @uac_iso={0x7, 0x25, 0x1, 0x1, 0x2, 0x80}]}}, {{0x9, 0x5, 0x9, 0x10, 0x10, 0x7f, 0x4, 0x1, [@uac_iso={0x7, 0x25, 0x1, 0x0, 0x3, 0x9070}, @uac_iso={0x7, 0x25, 0x1, 0x3, 0x8, 0x6}]}}, {{0x9, 0x5, 0x0, 0x8, 0x200, 0x7f, 0x5, 0x6, [@uac_iso={0x7, 0x25, 0x1, 0x0, 0x2, 0xfffc}, @uac_iso={0x7, 0x25, 0x1, 0x81, 0x8, 0x2}]}}, {{0x9, 0x5, 0xe, 0x3, 0x200, 0x4, 0x15, 0x9, [@generic={0x2d, 0x8, "6fd2ecdde535436fbe57294559633588ac56c05ed7e3974caedcc9bda977dc8c6af4a2d296b2708106bbd2"}, @generic={0x61, 0x5, "eea51ea4150a69894a4130fece031f2996b14c45970c2432dd905fe9987620608fc52cb0c393d03c3d37a11cc5cba322ce3f895b3ec133d1b8a5e25dad3f5d680d92dcca4ba5ff464ba47d9c3584185b529b139191f06d8f7d784ea18ca98b"}]}}, {{0x9, 0x5, 0x7, 0x0, 0x8, 0xb, 0x6, 0xd6}}]}}, {{0x9, 0x4, 0xdb, 0x0, 0x1, 0xd0, 0xe1, 0xb2, 0x80, [], [{{0x9, 0x5, 0x2, 0x10, 0x8, 0x0, 0x8, 0x7b, [@uac_iso={0x7, 0x25, 0x1, 0x83, 0x1, 0x5}, @uac_iso={0x7, 0x25, 0x1, 0x1, 0x0, 0xffff}]}}]}}, {{0x9, 0x4, 0x61, 0x3, 0xd, 0x33, 0x2d, 0xd7, 0x3, [], [{{0x9, 0x5, 0xe, 0x8, 0x8, 0x0, 0x3, 0x4, [@generic={0xf, 0xa, "c4933a350fdac2893e0c3d0c92"}]}}, {{0x9, 0x5, 0x0, 0x2, 0x10, 0x2, 0x1, 0xf1}}, {{0x9, 0x5, 0xa, 0x4, 0x200, 0x7f, 0x5, 0x3}}, {{0x9, 0x5, 0x5, 0x0, 0x28, 0x9, 0x3, 0x9, [@generic={0x77, 0xa, "214f122f42a184240530b5fb40d9995d73fc85d0d9ca2597d1cb76591b485308d655cad023392848cf9e100990cbcd269cbbda6ac4da1a35aeda33515cee87155d113ba42419dbd4111b2a44ddbf2e982e91e2875b08857f13c981a9c1929391599b5020529bcd21beeb25c42796ac15c881be9315"}]}}, {{0x9, 0x5, 0xc, 0x10, 0x3ff, 0x3, 0x9, 0x9, [@generic={0xc0, 0x2, "c82fbeb65c4667539fa09176b0711f6a524a81e168529770c79652fa1bad884dac71bff132bd39e91518228d7bfc013d11e3f2c7332125c4329f0cc6e6f4a1f7403554e51140da7e1dabdf43c895eff815298b04fafea9458371f7263f0b97f9a1fab5cbbb579db0d159fc0711c55d7a387478af32aa4e8007cf8e6f984f3460ef50d6b5418c7d17f9a9809e2b2b65382862bbe4e899c1a1aa62ff55f2aae412d1940646b2f2ba2429623ad49a9421bddc5b6b28feaf50e43f0c4e350357"}]}}, {{0x9, 0x5, 0xe, 0x0, 0x200, 0x0, 0x6, 0x2, [@generic={0xe0, 0x3, "297cd574bab230a4ca8c386881077a0313897bd422fb493635b0856047eaf5da336554f29f40b7a79e6cb306f616c1555326e2d14a5fd24de5307bc3bdd3be5502a2e593e9b5288fc14d4c1f9a5188a7c686d4bbc84b52705d749b14d5e9324af9ef591d73aae0cfcb6eab3d2211d098b6433fa8712c977389a1c06f727efea5cabb9f6898420791b8ec27cb46d7a820bc0ab663b55b2d8f29696b3126729c66bf6744d5230c5bef6b97d9a5946c71ea54ab6ad7cc4e90ab5af31d487fdcd7fbf7b6082addfdce329a22b0407b27bf9b1b33cc141fabc1a74d558d5131f2"}, @generic={0x52, 0x24, "9b587233523b90d6887b27013e2bb333af1e14672899717f70b87b1750c8302ef50af0cfc61fe6edbe9a8ec78cde04868057408667a32d5c22b0b1edbccd3011825e9347ec2a8461c5caec4e8f99d05f"}]}}, {{0x9, 0x5, 0x2, 0x0, 0x20, 0x81, 0x2, 0xf}}, {{0x9, 0x5, 0x5, 0x1, 0x400, 0x80, 0x4, 0x1e, [@uac_iso={0x7, 0x25, 0x1, 0x81, 0x9, 0x1}]}}, {{0x9, 0x5, 0xa, 0x0, 0x0, 0x6b, 0x7, 0x5}}, {{0x9, 0x5, 0xb, 0x10, 0x200, 0x4a, 0x5, 0xff}}, {{0x9, 0x5, 0x3, 0xc, 0x7b6, 0x2, 0x0, 0x80, [@generic={0xe4, 0x5, "c2d3df0ae96b77d7f46d3fb1c718bde8c7c49de5a9e0ddd334b1c9f096b553cf1c1190d2d06c22cdd391f740a481a2c03c3dc17ddf8c0d59e4cbdf61669d9f95212ddb8396541cc0eaaf9100daf39ec9038682a8e81bd9328e2d95f86c5ff54334316818ca5ce963825ceb232cca90ac8de7af057c47eb0ca616a26c580323bcea8593d2ea8162b7d4e394eea131e9ea662b8299c60f44b74c54d705781c8eedf00add39a00bdca82635f97a9ac5a56fd8736f9a277ca2e992f4e8e3f38b405661e2df6c6ec9d1c0cdb6e813fd8ecd47c6b15c21c5ab6a32717c807fb2b0897445de"}]}}, {{0x9, 0x5, 0x6, 0x21, 0x200, 0x6, 0x8, 0x4}}, {{0x9, 0x5, 0x4, 0x8, 0x40, 0x61, 0x7, 0x6, [@generic={0xab, 0x1, "fc8bb966944a44d12cee043836ed7e539f8efa0ef4f12eca33d553e5cab7b46738d49af0db26f7b657ab979348741e5faf15421b373a83f73b23ff6ba262bd22a0e93c26152922f003a692e9c76809dd4264b23234d9e9095fb76a04b83cb7990000a0ef4d404c4a5ebe3811fb873352e4c3d280244c65c6c402e3b8d04b29473bacf99d2a034aacbd4c8fd28763a59737d2ddd084a3dadc2d0a5e00be42c9173b814f2edaf35999fa"}]}}]}}, {{0x9, 0x4, 0xdb, 0xc, 0x0, 0xd, 0xaf, 0xdf, 0x2}}]}}]}}, &(0x7f0000000000)={0x0, 0x0, 0x0, 0x0})
+syz_usbip_server_init(0x5)
+syz_open_dev$usbfs(&(0x7f00000002c0), 0x8, 0x102)
+syz_usb_connect$printer(0x0, 0x2d, &(0x7f00000000c0)={{0x12, 0x1, 0x300, 0x0, 0x0, 0x0, 0x40, 0x525, 0xa4a8, 0x40, 0x1, 0x2, 0x3, 0x1, [{{0x9, 0x2, 0x1b, 0x1, 0x1, 0x80, 0x70, 0x6, [{{0x9, 0x4, 0x0, 0x4, 0x1, 0x7, 0x1, 0x2, 0x7, "", {{{0x9, 0x5, 0x1, 0x2, 0x8, 0x1, 0xf9}}}}}]}}]}}, &(0x7f0000000240)={0xa, &(0x7f0000000100)={0xa, 0x6, 0x250, 0x7, 0x5, 0x3, 0x40, 0x3}, 0x2d, &(0x7f00000001c0)=ANY=[@ANYBLOB="050f2d00030a1003024a2c070386001410040a096d728542d784ac17175397da613902fe5b5ec1912d773397634775b2960a100307000000000000"], 0x3, [{0x2e, &(0x7f0000000180)=@string={0x2e, 0x3, "4fa5d00d97ae23fc49dc82254bcc1e762eafac5616b895fe8911a139efc2f14e5bf7969cd6d5e9a73576cbcd"}}, {0x12, &(0x7f0000000e40)=ANY=[@ANYBLOB="1203821ea21a12aa6b41b125f9c9e427b01392c61a8c82294234d4fb56585c4d0bb64010bd5ef1f050dff57e7590cdac2e8b70cc6798484be592f6018106387e72104b487bd48f09"]}, {0x4, &(0x7f0000000200)=@lang_id={0x4, 0x3, 0x40c}}]})
+syz_usb_connect(0x2, 0x16c, &(0x7f0000000cc0)={{0x12, 0x1, 0xe0caa658001ced23, 0xee, 0xf0, 0x52, 0x20, 0x4e2, 0x1414, 0x5f68, 0x1, 0x2, 0x3, 0x1, [{{0x9, 0x2, 0x15a, 0x1, 0x1, 0x5, 0xc0, 0x0, [{{0x9, 0x4, 0x4f, 0x0, 0x6, 0x2, 0xca, 0x77, 0x2, [], [{{0x9, 0x5, 0xa, 0x10, 0x20, 0x0, 0x4, 0xff, [@uac_iso={0x7, 0x25, 0x1, 0x0, 0x0, 0xf0}]}}, {{0x9, 0x5, 0x9, 0x0, 0x400, 0x4, 0x82, 0xff, [@uac_iso={0x7, 0x25, 0x1, 0x3, 0x7e, 0x9}, @uac_iso={0x7, 0x25, 0x1, 0x1, 0xe, 0x4d}]}}, {{0x9, 0x5, 0x9, 0x10, 0x20, 0x6, 0x1, 0x0, [@generic={0x28, 0x9, "978ec1c5128df42e5e2d1db4442a3c07bfa3ceeb4a9217548ad808cbd285d1b7fb03b881bf27"}, @uac_iso={0x7, 0x25, 0x1, 0x0, 0x6, 0x7}]}}, {{0x9, 0x5, 0x0, 0x0, 0x40, 0xd, 0x8, 0x10, [@generic={0x28, 0x21, "4ae3fa0abc988c3abf0b8edfd0c7686a4a9ba9a319a05527a10c234cd268399968377d7b1c5c"}]}}, {{0x9, 0x5, 0x3, 0x10, 0x3ff, 0x6b, 0xe6, 0x6}}, {{0x9, 0x5, 0x3, 0x0, 0x20, 0xfb, 0x10, 0x9, [@generic={0xa6, 0x5, "e4b9fc1289b34d1b908d42fab635b5c1fea961aa91d0d2caf86f00e47d9235aaa3f6da8522352b18efafef48dda9f0533d0e6e0ebfc3bd326b6e3a40c0fab8cc8ebabbcc4e15b38321e440573237f7e724741a6c09aabd908cfc7d145b58b284fcd86afe74d08f889d849c5c5378c9192e343b6f8c0869fd547d055170154fedabc6458bbde59ee3b9564b5aeb173db466ce040a8ce7969fa91747d501865a60093bb5b3"}]}}]}}]}}]}}, &(0x7f0000000c40)={0x0, 0x0, 0x0, 0x0, 0x15555570, [{0x0, &(0x7f00000002c0)=@string={0xfffffffffffffc79, 0x3, "78e1acf78a59cdd7884e034632236b6af17940d2314b3aee4b0ff3a9e4a0a7c559219c83b95fe00159185b4e3795118f5918a209d9b0be75ef2672d3f6d679aef334f050dce2d9f9fddbb3f9cb741a7499f3a52b806c4dd93923e88aa6595ab367a8efb58e789e2b7c8adea2abcc60ba1f1f99ee1eac20caa727c72afb8a5831aac106620728540214fd0a731e201f2b0419c236e3883c86e4ac16be2f2d099fefeae5f2822d3c31c96aa6769c"}}, {0x0, &(0x7f0000000b40)=@string={0x0, 0x3, "5a79cbd4aef2aceb88828e387e0f26196b3364ddeb7292465f373c2d5e5853ebe2116069eeb1232b60b7c433f1a3b8cb719a244ad9572f496034ee0713891949a91461d4f4767aa1ee586ed4308fb6c4e27a6b9983b869686c679c67dfb1f204e00cef3042a125cac1960c0bc4a12099d1b3c652427fbde09975a99b1aa78e4984dfe6087687895b3f74e15d0318da7ffc468b2c4072359850335490ff3bb088fce12fbb04d89501a75f6de637b50a24b1c00ef2a96b680c99f826cd0c6c0a589bb255d6a80f9dbc06be679fd35b06070cd6f9f22cf8540142f1fa6434d8e0b75c337741721aa30fa31b04529477516fb69f071766efd692"}}]})
+
+6.420795572s ago: executing program 1 (id=8091):
+syz_usb_connect(0x1, 0x24, &(0x7f0000000000)=ANY=[@ANYBLOB="29cf120150028534990830080300e16f010203010902120001a26a10810904d908003aee7f09"], &(0x7f0000000100)={0x0, 0x0, 0x0, 0x0, 0x1, [{0x0, 0x0}]})
+syz_usb_connect(0x0, 0x24, &(0x7f0000000000)={{0x12, 0x1, 0x0, 0x97, 0xff, 0x82, 0x8, 0x2058, 0x1005, 0xc19b, 0x0, 0x0, 0x0, 0x1, [{{0x9, 0x2, 0x12, 0x1, 0x0, 0x0, 0x0, 0x0, [{{0x9, 0x4, 0x8f, 0x0, 0x0, 0xbf, 0x57, 0x5a}}]}}]}}, 0x0)
+syz_usb_connect$cdc_ncm(0x4, 0x72, &(0x7f0000000040)={{0x12, 0x1, 0x310, 0x2, 0x0, 0x0, 0x10, 0x525, 0xa4a1, 0x40, 0x1, 0x2, 0x3, 0x1, [{{0x9, 0x2, 0x60, 0x2, 0x1, 0xe0, 0x40, 0x9, {{0x9, 0x4, 0x0, 0x0, 0x1, 0x2, 0xd, 0x0, 0x0, {{0x9, 0x24, 0x6, 0x0, 0x1, "6d534a13"}, {0x5, 0x24, 0x0, 0x8}, {0xd, 0x24, 0xf, 0x1, 0x1, 0x81, 0x1, 0x1}, {0x6, 0x24, 0x1a, 0x7}}, {{0x9, 0x5, 0x81, 0x3, 0x40, 0x1, 0x6, 0xd}}}, {}, {0x9, 0x4, 0x1, 0x1, 0x2, 0x2, 0xd, 0x0, 0x0, "", {{{0x9, 0x5, 0x82, 0x2, 0x40, 0x28, 0x5, 0x10}}, {{0x9, 0x5, 0x3, 0x2, 0x200, 0x9, 0x4}}}}}}}]}}, &(0x7f00000004c0)={0xa, &(0x7f00000000c0)={0xa, 0x6, 0x310, 0xe4, 0x6, 0xff, 0x20, 0x3}, 0xf4, &(0x7f0000000140)={0x5, 0xf, 0xf4, 0x4, [@ss_cap={0xa, 0x10, 0x3, 0x2, 0x2, 0x18, 0x20, 0x5}, @ssp_cap={0x1c, 0x10, 0xa, 0x6, 0x4, 0x77f, 0xf000, 0x210, [0xf, 0xc00f, 0xc000, 0x0]}, @wireless={0xb, 0x10, 0x1, 0x4, 0x8, 0x6, 0xfe, 0x7, 0x40}, @generic={0xbe, 0x10, 0x1, "94baafa8658bd23d0f56e4e258a1ec8a44775bb01271288a8d574968e22ba0218588c296933e69cd7a836b8f1bec036c61cbc271e5506808fa9f70f69de1d6168ca254dc2e6fdff92f6016aac43675b6b6f9daba685c03978f61af0f769968b04ba040e5b6b0720f658b50339a9c338cf804a6cbd599a1672e381fd7eabd1664592a2d5499450e134f9f976697aa22709698f05cf5a01f56d03adfd106c8f7c0a8825a518975aba244e9af1651cd55384d2409ae9a8df13f34045f"}]}, 0x6, [{0x4, &(0x7f0000000240)=@lang_id={0x4, 0x3, 0x455}}, {0x78, &(0x7f0000000280)=@string={0x78, 0x3, "eeca62f6da7590091487912c2bfc0287b0f413612603ca8abedd9b3489ee796c659650028be4a11f2e046a31a68db3f6281c0befcc77ef77ce119311c0cf27f16455fbed737a403f1a44e26656ed551365b5125aef010effcecadc48c8035c84cebc7fdf848cdfe99ee63adabd8383221867c6d4b4ab"}}, {0x4, &(0x7f0000000300)=@lang_id={0x4, 0x3, 0x40a}}, {0x100, &(0x7f0000000340)=@string={0x100, 0x3, "adef85da217ed63923468c46e4dc05b522fac2848d5ff2e4d720f6d9702f27f00b77f4186d5df89258ecc5773e4c39d5bccea5e40256e61f16c8e2397fb767f9f6faf77b786de10d444f4128f1ecdd4c06febbecf7e074276b20f0aab8ba4bb8d4d2e8d2c658ed5a5be10779406afa030acce901fb7451436fd24ba5559d1211baaa5ff1f009106847417be5c8d3172e7589204649226f7d7982e4050819528d940621e3432b7bfa126fdf86ac2a69bc4e8980d74bbe10c0a9e0d1ccc4989db7c6fed382c63b8226925f95462cb0bd151fb5af2df915c639878a4f919d3de8a1a5ee60fe29be623f65fdb870736c1e9451c7a3962550a0b40d80e0526bef"}}, {0x4, &(0x7f0000000440)=@lang_id={0x4, 0x3, 0x2801}}, {0x4, &(0x7f0000000480)=@lang_id={0x4, 0x3, 0x810}}]})
+ioctl$USBDEVFS_RESET(0xffffffffffffffff, 0x80811501)
+
+4.74312614s ago: executing program 0 (id=8093):
+r0 = syz_open_dev$usbfs(&(0x7f00000011c0), 0xf, 0x1)
+ioctl$USBDEVFS_RESET(r0, 0xc0045878)
+r1 = syz_usb_connect$hid(0x0, 0x36, &(0x7f0000000000)={{0x12, 0x1, 0x0, 0x0, 0x0, 0x0, 0x40, 0x50d, 0x3201, 0x0, 0x0, 0x0, 0x0, 0x1, [{{0x9, 0x2, 0x24, 0x1, 0x0, 0x0, 0x0, 0x4, [{{0x9, 0x4, 0x0, 0x0, 0xd, 0x3, 0x0, 0x2, 0x0, {0x9, 0x21, 0x7, 0x1, 0x1, {0x22, 0x29}}, {{{0x9, 0x5, 0x81, 0x3, 0x0, 0xfc, 0x28, 0xfe}}}}}]}}]}}, 0x0)
+syz_usb_control_io$hid(r1, 0x0, 0x0)
+syz_usb_control_io$hid(r1, &(0x7f0000000040)={0x24, 0x0, 0x0, 0x0, &(0x7f00000001c0)={0x0, 0x22, 0x371, {0x9, 0x21, 0x2, 0x0, 0x1, {0x22, 0xd72}}}}, &(0x7f0000000080)={0xffffff8c, 0x0, 0x0, 0x0, 0x0, 0x0})
+syz_usb_connect$cdc_ncm(0x2, 0x6e, &(0x7f00000000c0)=ANY=[@ANYRESDEC=r0, @ANYRES16=r1], 0x0)
+
+4.693392533s ago: executing program 3 (id=8094):
+syz_usb_connect(0x0, 0x24, &(0x7f00000000c0)={{0x12, 0x1, 0x310, 0x4b, 0x8d, 0x9d, 0x10, 0x545, 0x8080, 0x1, 0x1, 0x2, 0x3, 0x1, [{{0x9, 0x2, 0x12, 0x1, 0x5, 0x3, 0x20, 0xf1, [{{0x9, 0x4, 0xc6, 0x37, 0x0, 0xd3, 0x98, 0xd6, 0x10}}]}}]}}, &(0x7f0000000040)={0x0, 0x0, 0x0, 0x0})
+r0 = syz_open_dev$usbfs(&(0x7f0000000080), 0x4bf, 0x80002)
+r1 = syz_open_dev$usbmon(&(0x7f0000000c00), 0xff, 0x80080)
+mmap$usbmon(&(0x7f0000c9e000/0x1000)=nil, 0x1000, 0x1, 0x100010, r1, 0xeba7)
+r2 = syz_open_dev$char_usb(0xc, 0xb4, 0x7)
+read$char_usb(r2, &(0x7f0000000140)=""/173, 0xad)
+r3 = syz_usb_connect$hid(0x3, 0x3f, &(0x7f0000000000)=ANY=[@ANYBLOB="12011001000000107e05172000000000000109022daed78c1b676a4654d6840f00017b8ee6e7c49a04000002030000000900000000000000000000e7000000"], 0x0)
+syz_usb_control_io$hid(r3, 0x0, 0x0)
+syz_usb_control_io(r3, &(0x7f0000000b00)={0x2c, &(0x7f0000000700)=ANY=[@ANYBLOB='\x00#)'], 0x0, 0x0, 0x0, 0x0}, 0x0)
+r4 = syz_usb_connect$cdc_ecm(0x0, 0x4d, &(0x7f0000000140)={{0x12, 0x1, 0x0, 0x2, 0x0, 0x0, 0x40, 0x525, 0xa4a1, 0x40, 0x0, 0x0, 0xffffffffffff8001, 0x1, [{{0x9, 0x2, 0x3b, 0x1, 0x1, 0x0, 0x0, 0x0, [{{0x9, 0x4, 0x0, 0x0, 0x3, 0x2, 0x6, 0x0, 0xfc, {{0x5}, {0x5, 0x24, 0x0, 0x2}, {0xd}}, {[], {{0x9, 0x5, 0x82, 0x2, 0x200, 0x9}}, {{0x9, 0x5, 0x3, 0x2, 0x200}}}}}]}}]}}, 0x0)
+syz_usb_control_io$cdc_ecm(r4, &(0x7f0000000080)={0x14, 0x0, &(0x7f0000000040)={0x0, 0x3, 0x1a, {0x1a}}}, 0x0)
+syz_usb_connect$cdc_ncm(0x0, 0x6e, &(0x7f00000000c0)=ANY=[], 0x0)
+syz_usb_connect$uac1(0x2, 0x0, 0x0, 0x0)
+mmap$usbmon(&(0x7f0000c9e000/0x1000)=nil, 0x1000, 0xb, 0x4110032, 0xffffffffffffffff, 0x0)
+r5 = syz_open_dev$usbfs(&(0x7f00000011c0), 0xf, 0x1)
+ioctl$USBDEVFS_CONTROL(r5, 0xc0185500, &(0x7f0000000100)={0x20, 0x3, 0x1ff, 0x7, 0x0, 0x2, 0x0})
+mmap$usbmon(&(0x7f0000a78000/0x1000)=nil, 0x1000, 0x17, 0xc8032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x5, 0x400c031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x5, 0x400c031, 0xffffffffffffffff, 0x0)
+r6 = syz_usbip_server_init(0x1)
+r7 = syz_open_dev$hiddev(&(0x7f00000000c0), 0x0, 0x0)
+ioctl$HIDIOCSUSAGE(r7, 0x4018480c, &(0x7f0000000000)={0x2, 0xfffffeff, 0x3, 0x90cb, 0x3ff, 0x9470})
+ioctl$HIDIOCSUSAGE(r7, 0x4018480c, &(0x7f0000000100)={0x2, 0x2, 0x23b607cd, 0x5, 0x0, 0xfffffbff})
+ioctl$KGPT_USB_RAW_IOCTL_EP_DISABLE(r6, 0x8982, 0x32b5)
+ioctl$USBDEVFS_CONTROL(r0, 0xc0185500, &(0x7f0000000200)={0xa0, 0x6, 0xece, 0x6ae4, 0x1f, 0x5, 0x0})
+
+3.372993855s ago: executing program 1 (id=8095):
+r0 = openat$KGPT_raw_gadget(0xffffffffffffff9c, &(0x7f0000000500), 0x2, 0x0)
+syz_usb_connect$uac1(0x5, 0x9c, &(0x7f00000000c0)=ANY=[@ANYBLOB="12010003000000406b1d010140000102030109028a0003010520040904000000010100000a2401b3000702ba"], &(0x7f0000000500)={0x0, 0x0, 0x0, 0x0})
+ioctl$KGPT_USB_RAW_IOCTL_EP_DISABLE(r0, 0x40045506, 0x8)
+r1 = openat$KGPT_raw_gadget(0xffffffffffffff9c, &(0x7f0000000140), 0x2, 0x0)
+ioctl$KGPT_USB_RAW_IOCTL_EP_ENABLE(r1, 0x40095505, &(0x7f0000000540)={{0x9, 0x5, 0xc, 0xc, 0x1963c168aeb483e5, 0xc, 0x10, 0x5, [@generic={0x18, 0x31, "455966cd577786235b30064ab03602dfae8b60c25934"}, @generic={0xd2, 0x6, "19669c2a0a7af274aec7014596c946c23576103ddae4d18b1a14eeee1f48081df016c2e51bf0a60a29ef68f41554cc254ad6face31540b53d9ffaada1cf3192b07d70e293376754846d86db7d00e1c5d0b2dcff43bdb4d5eb2cdfbbf6cf7c21ee329b3dd474a67ea27666b590e77f9f866ecc2af364485e4e27ad246dc69ddaa3b90d40cf175112008792282cce44c332fadc7e4908ebd086aabae691c74a3ef32d6c80c35c78d5e6cb4da9e70eda61f211195024a2b290cfa3101e9bad8b1f10a5661d4bc906db53766a437e2dcab04"}]}})
+r2 = syz_usb_connect$hid(0x0, 0x36, &(0x7f0000000000)={{0x12, 0x1, 0x0, 0x0, 0x0, 0x0, 0x40, 0x403, 0x97c1, 0x0, 0x0, 0x0, 0x0, 0x1, [{{0x9, 0x2, 0x24, 0x1, 0x0, 0x0, 0x0, 0x0, [{{0x9, 0x4, 0x0, 0x0, 0x9, 0x3, 0x0, 0x0, 0x0, {0x9, 0x21, 0x0, 0x1, 0x1, {0x22, 0x29}}, {{{0x9, 0x5, 0x81, 0x3, 0x0, 0xfc}}}}}]}}]}}, 0x0)
+mmap$usbmon(&(0x7f0000ffc000/0x4000)=nil, 0x4000, 0x1000000, 0x69e697fa30f75bb7, 0xffffffffffffffff, 0x0)
+syz_usb_control_io$hid(r2, &(0x7f0000000200)={0x24, &(0x7f00000000c0)={0x0, 0x23, 0x1f, {0x1f, 0xd, "b3a9a796a87d7e10eaed4513771713c016ee6695dc0c69b8c78801116e"}}, &(0x7f0000000100)={0x0, 0x3, 0x4, @lang_id={0x4, 0x3, 0x42d}}, &(0x7f0000000140)={0x0, 0x22, 0x10, {[@main=@item_012={0x1, 0x0, 0xa, "d7"}, @global=@item_012={0x0, 0x1, 0xa}, @local=@item_012={0x2, 0x2, 0xa, 'HD'}, @main=@item_4={0x3, 0x0, 0xa, "18dbc78f"}, @main=@item_4={0x3, 0x0, 0xc, "94854dba"}]}}, &(0x7f0000000180)={0x0, 0x21, 0x9, {0x9, 0x21, 0xd, 0x0, 0x1, {0x22, 0xb4a}}}}, &(0x7f00000004c0)={0x2c, &(0x7f0000000240)={0x20, 0x1, 0xd7, "1005419994125a8ae89e56056c55c53e9ec37910cd21f4a2270cca185b51a9086dd70e778c9456f7a27a1458cacd95be254638344c4e564e0a34f9a3d8d6e9dbf76951c66b823975145fc81dd687eaf4048ffde7b870453850120088ca9b38bff2a3c838335be387bcee9606c585abe3258b87de273abe9442b712ad6c03c5263e8a59882845aff29a97a09e65781eda5775f9c4de37ed75e1545986fc54ba95f47aa488f10022c632bceadc2e2e388505762cf134340c3f70e75abba5355bac7be1c9552de5d55aa7950701431de1727e4571a0371e2f"}, &(0x7f0000000340)={0x0, 0xa, 0x1}, &(0x7f0000000380)={0x0, 0x8, 0x1, 0x2}, &(0x7f00000003c0)={0x20, 0x1, 0x86, "bbb908b846d728178c719bdd1b9bed1a115b57bd015d9dd7054274671bb7e749eee9287f156e1cce9dc0d386ab90979b0180ba8c2a93dd767dddf46863e09f08581caaa93746cbe4d748a1bd93de1f4d48c848fe3ec35e9dac3a70f1b36e884b483eec11f8656914d509191907937fc3a0e0024fbfa93bcad04ff903f814467ca6f881219f23"}, &(0x7f0000000480)={0x20, 0x3, 0x1, 0x1}})
+syz_usb_control_io$hid(r2, 0x0, 0x0)
+syz_usb_connect$hid(0x5, 0x36, &(0x7f0000000440)=ANY=[@ANYBLOB="12015002000000081c1b231c400001020301090224000101f8d0040904000f010301031c0921080051068b84aa0905810320"], &(0x7f0000000700)={0x0, 0x0, 0x0, 0x0})
+syz_usb_control_io$hid(r2, &(0x7f0000000040)={0x24, 0x0, 0x0, 0x0, &(0x7f00000001c0)={0x0, 0x22, 0x371, {0x9, 0x21, 0x2, 0x0, 0x1, {0x22, 0xd72}}}}, &(0x7f0000000080)={0xffffff8c, 0x0, 0x0, 0x0, 0x0, 0x0})
+
+3.372876281s ago: executing program 2 (id=8096):
+syz_usb_connect(0x5, 0x24, &(0x7f0000000040)=ANY=[@ANYBLOB="1201000362170b170103e9a72d0e18739b7888d266758a1b5b2b6893b785a202c691ee96dd0f63a79fb0f808d112e567226d6d41680e070e18595010135401d6ae189e99264a78d2ad0146d0409f102bbef1d6bc09d1829d521f3ddd892d44704629f8a709a5dae38a95dbcc3145f7979f5eaa52f894b0640b12519b85a3ff934fd978bd5aef8b05f3cae1791b689d0206884420affdccc54f016919e3f4b8c37ac1c90d51bef6c4a93e41068219810015d4e4c525313fc1c09ac0ddcd3ebe276dc02c8e3b2e75", @ANYRESOCT], &(0x7f0000000000)={0x0, 0x0, 0x0, 0x0})
+
+3.143798732s ago: executing program 0 (id=8097):
+r0 = syz_usb_connect$cdc_ncm(0x0, 0x6e, &(0x7f0000000180)=ANY=[@ANYBLOB="12010000020000402505a1a44000010203f609025c0002010000000904000001020d"], 0x0)
+syz_usb_control_io$cdc_ncm(r0, 0x0, 0x0)
+syz_open_dev$usbmon(0x0, 0x8, 0x40002)
+syz_usb_control_io$cdc_ncm(r0, &(0x7f0000000080)={0x14, &(0x7f0000000000)={0x20, 0x21, 0x28, {0x28, 0x21, "9d58309aa29c099867b05d28d9f47ca0eac7ec3d72aec095e865da92df3c22f8b53b7d95e3fb"}}, &(0x7f0000000040)={0x0, 0x3, 0x1a, {0x1a}}}, &(0x7f0000000400)={0x44, &(0x7f00000001c0)={0x0, 0x14, 0xfc, "41bfa1c74258a56d92af0e9d0c891a97f7b16bcdaf3b0075829a5ae19a23688825684f5d7f273aa519a2cf3fbbf3cd2a869042595c53d286939a470e2fc27560e2eb7616a3c3a86bee6aa7de0c1db43681737b0a18437f8edaacee01fdb9811be806daace166c34229f52d5e5329fd963b374ee2cba785c124743857582855ef10ebe59b3e5c3d11379e841589fdf2b9e9f373f34bc1282b8714630505925c3fda88d5de054cfb5db63b06478ec07f84dfc8fc0187f425c3bd0cd50d0e78a4da643ece95478cac74a1303fb06d08701e1b4132786ec363f99a9a0f6c2dc258ac8fdf4351921943fb1ed1f81e65854a355dac6421f925aaf488a73b04"}, &(0x7f00000000c0)={0x0, 0xa, 0x1, 0xa}, &(0x7f0000000100)={0x0, 0x8, 0x1, 0x1e}, &(0x7f0000000140)={0x20, 0x80, 0x1c, {0x5, 0x3, 0x9, 0x6, 0x2, 0x787, 0x0, 0x7, 0xc4, 0xd, 0x3, 0x9}}, &(0x7f0000000300)={0x20, 0x85, 0x4, 0xfffffffb}, &(0x7f0000000340)={0x20, 0x83, 0x2, 0x1}, &(0x7f0000000380)={0x20, 0x87, 0x2, 0x50c0}, &(0x7f00000003c0)={0x20, 0x89, 0x2}})
+syz_usb_connect$cdc_ncm(0x0, 0x6e, &(0x7f0000000180)=ANY=[@ANYBLOB="12010000020000402505a1a44000010203f609025c0002010000000904000001020d"], 0x0) (async)
+syz_usb_control_io$cdc_ncm(r0, 0x0, 0x0) (async)
+syz_open_dev$usbmon(0x0, 0x8, 0x40002) (async)
+syz_usb_control_io$cdc_ncm(r0, &(0x7f0000000080)={0x14, &(0x7f0000000000)={0x20, 0x21, 0x28, {0x28, 0x21, "9d58309aa29c099867b05d28d9f47ca0eac7ec3d72aec095e865da92df3c22f8b53b7d95e3fb"}}, &(0x7f0000000040)={0x0, 0x3, 0x1a, {0x1a}}}, &(0x7f0000000400)={0x44, &(0x7f00000001c0)={0x0, 0x14, 0xfc, "41bfa1c74258a56d92af0e9d0c891a97f7b16bcdaf3b0075829a5ae19a23688825684f5d7f273aa519a2cf3fbbf3cd2a869042595c53d286939a470e2fc27560e2eb7616a3c3a86bee6aa7de0c1db43681737b0a18437f8edaacee01fdb9811be806daace166c34229f52d5e5329fd963b374ee2cba785c124743857582855ef10ebe59b3e5c3d11379e841589fdf2b9e9f373f34bc1282b8714630505925c3fda88d5de054cfb5db63b06478ec07f84dfc8fc0187f425c3bd0cd50d0e78a4da643ece95478cac74a1303fb06d08701e1b4132786ec363f99a9a0f6c2dc258ac8fdf4351921943fb1ed1f81e65854a355dac6421f925aaf488a73b04"}, &(0x7f00000000c0)={0x0, 0xa, 0x1, 0xa}, &(0x7f0000000100)={0x0, 0x8, 0x1, 0x1e}, &(0x7f0000000140)={0x20, 0x80, 0x1c, {0x5, 0x3, 0x9, 0x6, 0x2, 0x787, 0x0, 0x7, 0xc4, 0xd, 0x3, 0x9}}, &(0x7f0000000300)={0x20, 0x85, 0x4, 0xfffffffb}, &(0x7f0000000340)={0x20, 0x83, 0x2, 0x1}, &(0x7f0000000380)={0x20, 0x87, 0x2, 0x50c0}, &(0x7f00000003c0)={0x20, 0x89, 0x2}}) (async)
+
+1.984682031s ago: executing program 1 (id=8098):
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x1000000, 0xc8032, 0xffffffffffffffff, 0x4000)
+ioctl$USBDEVFS_GETDRIVER(0xffffffffffffffff, 0x41045508, 0x0)
+r0 = syz_open_dev$usbmon(&(0x7f0000000000), 0x400000000000008, 0x40002)
+mmap$usbmon(&(0x7f0000ffd000/0x3000)=nil, 0x3000, 0x2000007, 0x11, r0, 0x0)
+
+1.923152959s ago: executing program 1 (id=8099):
+r0 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x840)
+mmap$usbmon(&(0x7f0000990000/0x4000)=nil, 0x4000, 0x1000004, 0x12, r0, 0x8000000000)
+ioctl$MON_IOCT_RING_SIZE(r0, 0x9204, 0x3be1d) (fail_nth: 20)
+
+1.741556357s ago: executing program 1 (id=8100):
+r0 = syz_usb_connect$cdc_ecm(0x2, 0x56, &(0x7f0000000180)=ANY=[@ANYBLOB="12013100020000102505a1a4400000000101090244000101000000090400021202060000052406000005240000000d240f0100000000000000000009058103ff030510c5090582024000000000090503020002"], 0x0)
+syz_usb_control_io$cdc_ecm(r0, 0x0, 0x0)
+r1 = syz_open_dev$usbmon(&(0x7f0000003680), 0xfffffffffffffff8, 0x0)
+syz_usb_connect(0x5, 0x24, &(0x7f0000000040)={{0x12, 0x1, 0x250, 0x88, 0x11, 0xd4, 0x8, 0xfe9, 0xdb51, 0x9d7d, 0x1, 0x2, 0x3, 0x1, [{{0x9, 0x2, 0x12, 0x1, 0x4, 0x10, 0xa0, 0xd, [{{0x9, 0x4, 0x9e, 0xb, 0x0, 0xd, 0xe9, 0x7f, 0xff}}]}}]}}, &(0x7f0000000080)={0x0, 0x0, 0x46, 0x0, 0x1, [{0x0, 0x0}]})
+r2 = syz_open_dev$usbfs(&(0x7f0000000080), 0xfffffffffffffffd, 0x2)
+r3 = syz_open_dev$usbmon(&(0x7f0000003680), 0xfffffffffffffff8, 0x0)
+mmap$usbmon(&(0x7f0000000000/0xb000)=nil, 0xb000, 0x2000001, 0x13, r3, 0x0)
+ioctl$USBDEVFS_CLAIMINTERFACE(r2, 0x8004550f, &(0x7f0000000140)=0xe)
+ioctl$USBDEVFS_IOCTL(r2, 0xc0105512, &(0x7f0000000040)=@usbdevfs_disconnect={0x14})
+mmap$usbmon(&(0x7f0000000000/0xb000)=nil, 0xb000, 0x2000001, 0x13, r1, 0x0)
+r4 = syz_open_dev$usbmon(0x0, 0x0, 0x40002)
+ioctl$MON_IOCH_MFLUSH(r4, 0x9208, 0x0)
+syz_usb_control_io$cdc_ecm(r0, 0x0, 0x0)
+syz_usb_control_io$cdc_ecm(r0, &(0x7f0000000080)={0x14, 0x0, &(0x7f0000000040)={0x0, 0x3, 0x1a, {0x1a}}}, 0x0)
+syz_usb_connect(0x3, 0x24, &(0x7f0000000380)={{0x12, 0x1, 0xe0caa658001ced23, 0x7a, 0x99, 0xad, 0x20, 0x19d2, 0xffc4, 0x57ab, 0x1, 0x2, 0x3, 0x1, [{{0x9, 0x2, 0x12, 0x1, 0x1, 0x5, 0xc0, 0x0, [{{0x9, 0x4, 0xab, 0x0, 0x0, 0xff, 0xff, 0xff, 0x2}}]}}]}}, 0xfffffffffffffffe)
+syz_usb_connect(0x2, 0x46, &(0x7f00000001c0)={{0x12, 0x1, 0x201, 0x55, 0xeb, 0xec, 0x10, 0x1a61, 0x3410, 0x7aaa, 0x1, 0x2, 0x3, 0x1, [{{0x9, 0x2, 0x34, 0x1, 0x20, 0xf, 0x40, 0x4, [{{0x9, 0x4, 0x67, 0x6, 0x3, 0xff, 0xff, 0xff, 0xd, [], [{{0x9, 0x5, 0x80, 0x10, 0xce560e2a63f9f20a, 0x3, 0xe, 0x5}}, {{0x9, 0x5, 0x6, 0x2, 0x3ff, 0x3, 0x0, 0x7}}, {{0x9, 0x5, 0x1, 0x13, 0x8, 0x0, 0x8, 0x9, [@generic={0x7, 0x5, "c2a2fa3977"}]}}]}}]}}]}}, &(0x7f0000000900)={0x0, 0x0, 0x0, 0x0})
+ioctl$USBDEVFS_SUBMITURB(0xffffffffffffffff, 0x8038550a, 0x0)
+mmap$usbmon(&(0x7f0000a78000/0x1000)=nil, 0x1000, 0x17, 0xc8032, 0xffffffffffffffff, 0x0)
+syz_usb_connect$printer(0x0, 0x36, 0x0, 0x0)
+syz_usb_connect$cdc_ncm(0x6, 0x6e, &(0x7f0000000740)=ANY=[], 0x0)
+
+1.643116908s ago: executing program 3 (id=8101):
+r0 = syz_usb_connect$sierra_net(0x3, 0x3f, &(0x7f0000000080)={{0x12, 0x1, 0x200, 0xff, 0xff, 0xff, 0x40, 0x1199, 0x68a3, 0x0, 0x1, 0x2, 0x3, 0x1, [{{0x9, 0x2, 0x2d, 0x1, 0x1, 0x0, 0x80, 0xfa, {{0x9, 0x4, 0x7, 0x0, 0x3, 0xff, 0x0, 0x0, 0x0, "", {{0x9, 0x5, 0x7, 0x2, 0x10, 0xc, 0x4, 0x70}, {0x9, 0x5, 0x1, 0x2, 0x3ff, 0x4, 0x9}, {0x9, 0x5, 0x9, 0x3, 0x10, 0x7f, 0x3, 0x9}}}}}}]}}, 0x0)
+syz_usb_control_io$sierra_net(r0, 0x0, 0x0) (async)
+r1 = syz_open_dev$usbmon(&(0x7f0000001100), 0x0, 0x121600)
+mmap$usbmon(&(0x7f0000003000/0x1000)=nil, 0x1000, 0x1000000, 0x12, r1, 0x0) (async)
+mmap$usbmon(&(0x7f0000000000/0xb000)=nil, 0xb000, 0x1000000, 0xc8032, 0xffffffffffffffff, 0x0) (async)
+syz_usb_disconnect(r0)
+
+1.640419735s ago: executing program 0 (id=8102):
+r0 = syz_open_dev$usbfs(&(0x7f00000000c0), 0x200, 0x41)
+ioctl$USBDEVFS_WAIT_FOR_RESUME(r0, 0x5523)
+syz_open_dev$usbfs(&(0x7f0000000200), 0xc, 0x2)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x5, 0x400c031, 0xffffffffffffffff, 0x80000000)
+r1 = syz_open_dev$usbfs(&(0x7f0000000200), 0xc, 0x301)
+ioctl$USBDEVFS_GETDRIVER(r1, 0x41045508, &(0x7f0000000240)={0x0, "014d2dd0c837b2a56040c8706cafcfa9903862ccc02cbf78f431f032792c5dc949b427a51af63e9d73b33f8211d15a0f9ec3d877643e948d4cd1b96521b3752c74d970e753579bcd34c0f836d7c385be548bee5015c69e7293f2d428df6e0fcc6d4dbdfd9bf4b916fbefbc49228b9d913f284dfef69f2119c45f8b56138a60c67127f2c9ec4b896b4ff03dcaf8eda2dda4643384588f7474d250a50893317e43aed0fd8b6f3d04f02aec869e79959bfb199772d71b9990e94fee46ba022edf60603e7ff49a7d0ef254beea8b9622cfed992ff80160c37e7be37a47082348d48013ccb993a5db9af0351d972320eb8afa5b6e3790d9e2c1a470167932b8c1fbe5"})
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x2b18809027321a56, 0x4c031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x5, 0x400c031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x12, 0xc8032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x5, 0x400c031, 0xffffffffffffffff, 0x0)
+r2 = syz_open_dev$usbmon(&(0x7f0000000040), 0xfffffffffffffffb, 0x0)
+ioctl$MON_IOCH_MFLUSH(r2, 0x5421, 0x200000ffffff)
+mmap$usbmon(&(0x7f0000773000/0x1000)=nil, 0x1000, 0x2000009, 0x11, r2, 0x2)
+syz_open_dev$usbfs(&(0x7f00000011c0), 0x40000f, 0x1)
+mmap$usbmon(&(0x7f0000a78000/0x1000)=nil, 0x1000, 0x17, 0xc8032, 0xffffffffffffffff, 0x0)
+syz_open_dev$usbmon(&(0x7f0000000000), 0x72a9dc66, 0x200)
+mmap$usbmon(&(0x7f0000400000/0xc00000)=nil, 0xc00000, 0x1000001, 0xc8032, 0xffffffffffffffff, 0x0)
+r3 = syz_open_dev$usbmon(&(0x7f0000000140), 0x0, 0x101500)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x5, 0x400c031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000c9e000/0x1000)=nil, 0x1000, 0x7, 0x12, r3, 0x0)
+mmap$usbmon(&(0x7f0000f31000/0x2000)=nil, 0x2000, 0x3000004, 0x8011, r3, 0x8000000000000000)
+mmap$usbmon(&(0x7f0000ffb000/0x4000)=nil, 0x4000, 0x7, 0x32, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000ffd000/0x3000)=nil, 0x3000, 0x2000009, 0x2a132, 0xffffffffffffffff, 0x0)
+
+341.784556ms ago: executing program 2 (id=8103):
+r0 = syz_open_dev$usbmon(&(0x7f0000000140), 0x0, 0x101500)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x5, 0x400c031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000c9e000/0x1000)=nil, 0x1000, 0x7, 0x12, r0, 0x0)
+mmap$usbmon(&(0x7f0000f31000/0x2000)=nil, 0x2000, 0x3000004, 0x8011, r0, 0x8000000000000000)
+mmap$usbmon(&(0x7f0000ffb000/0x4000)=nil, 0x4000, 0x7, 0x32, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000ffd000/0x3000)=nil, 0x3000, 0x2000009, 0x2a132, 0xffffffffffffffff, 0x2000800)
+
+182.915505ms ago: executing program 0 (id=8104):
+r0 = syz_open_dev$usbfs(&(0x7f00000011c0), 0xf, 0x1)
+syz_usbip_server_init(0x5)
+syz_open_dev$usbfs(&(0x7f00000011c0), 0xf, 0x1)
+ioctl$USBDEVFS_DROP_PRIVILEGES(r0, 0x4020940d, &(0x7f0000000000)=0x4)
+ioctl$USBDEVFS_DISCONNECT_CLAIM(r0, 0x8108551b, &(0x7f0000000040)={0x5, 0x2, "86fae00b9ca57ce97bd8009182637390e6d5fe695a9c0542456deb97b7bd639def53ead7e34d840d7ca7a802cae3ad49c761fb629f75f03832f63dce9de18a522d71c5f22f3c8aef2e07c3b0f5a5bd7a8da0a3465c3f73f18f46d373d6504b3e16257b2a76a128aeec6efd6bd87af380d77f967a47bac37bdf39edfc4b442e6b73dea2bd7932f925985affd2b0a23b8772913f57b3d876df733c79c5f154103d2d5416a3014f676a6b4570f8f82dddd84715c22c2d9734e1a101e1eb82ddb2223918abf240b7c01b05ecc3229658fa14fac45ed3a0e6ca0a5793b8b68ad46286262e1e5d40480988504353511f23feca794f2f154ecb1be473eb17700823c3be"})
+syz_open_dev$usbfs(&(0x7f00000011c0), 0xf, 0x1) (async)
+syz_usbip_server_init(0x5) (async)
+syz_open_dev$usbfs(&(0x7f00000011c0), 0xf, 0x1) (async)
+ioctl$USBDEVFS_DROP_PRIVILEGES(r0, 0x4020940d, &(0x7f0000000000)=0x4) (async)
+ioctl$USBDEVFS_DISCONNECT_CLAIM(r0, 0x8108551b, &(0x7f0000000040)={0x5, 0x2, "86fae00b9ca57ce97bd8009182637390e6d5fe695a9c0542456deb97b7bd639def53ead7e34d840d7ca7a802cae3ad49c761fb629f75f03832f63dce9de18a522d71c5f22f3c8aef2e07c3b0f5a5bd7a8da0a3465c3f73f18f46d373d6504b3e16257b2a76a128aeec6efd6bd87af380d77f967a47bac37bdf39edfc4b442e6b73dea2bd7932f925985affd2b0a23b8772913f57b3d876df733c79c5f154103d2d5416a3014f676a6b4570f8f82dddd84715c22c2d9734e1a101e1eb82ddb2223918abf240b7c01b05ecc3229658fa14fac45ed3a0e6ca0a5793b8b68ad46286262e1e5d40480988504353511f23feca794f2f154ecb1be473eb17700823c3be"}) (async)
+
+79.145562ms ago: executing program 2 (id=8105):
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x9, 0xc8031, 0xffffffffffffffff, 0x2000000000)
+mmap$usbmon(&(0x7f0000400000/0xc00000)=nil, 0xc00000, 0x1000001, 0xc8032, 0xffffffffffffffff, 0x900000000000000)
+
+78.854971ms ago: executing program 0 (id=8106):
+r0 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x840)
+r1 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x2000)
+mmap$usbmon(&(0x7f0000fae000/0x3000)=nil, 0x3000, 0x14, 0x13, r1, 0x0)
+mmap$usbmon(&(0x7f0000dd2000/0x1000)=nil, 0x1000, 0x7, 0x12, r0, 0x0)
+r2 = syz_open_dev$usbmon(&(0x7f0000000140), 0x6f, 0x840)
+mmap$usbmon(&(0x7f0000ffc000/0x2000)=nil, 0x2000, 0xd, 0x28012, r2, 0x80000000000)
+
+984.933µs ago: executing program 0 (id=8107):
+r0 = openat$KGPT_raw_gadget(0xffffffffffffff9c, &(0x7f0000000500), 0x2, 0x0)
+syz_usb_connect$uac1(0x5, 0x9c, &(0x7f00000000c0)=ANY=[@ANYBLOB="12010003000000406b1d010140000102030109028a0003010520040904000000010100000a2401b3000702ba"], &(0x7f0000000500)={0x0, 0x0, 0x0, 0x0})
+ioctl$KGPT_USB_RAW_IOCTL_EP_DISABLE(r0, 0x40045506, 0x8)
+r1 = openat$KGPT_raw_gadget(0xffffffffffffff9c, &(0x7f0000000140), 0x2, 0x0)
+ioctl$KGPT_USB_RAW_IOCTL_EP_ENABLE(r1, 0x40095505, &(0x7f0000000540)={{0x9, 0x5, 0xc, 0xc, 0x1963c168aeb483e5, 0xc, 0x10, 0x5, [@generic={0x18, 0x31, "455966cd577786235b30064ab03602dfae8b60c25934"}, @generic={0xd2, 0x6, "19669c2a0a7af274aec7014596c946c23576103ddae4d18b1a14eeee1f48081df016c2e51bf0a60a29ef68f41554cc254ad6face31540b53d9ffaada1cf3192b07d70e293376754846d86db7d00e1c5d0b2dcff43bdb4d5eb2cdfbbf6cf7c21ee329b3dd474a67ea27666b590e77f9f866ecc2af364485e4e27ad246dc69ddaa3b90d40cf175112008792282cce44c332fadc7e4908ebd086aabae691c74a3ef32d6c80c35c78d5e6cb4da9e70eda61f211195024a2b290cfa3101e9bad8b1f10a5661d4bc906db53766a437e2dcab04"}]}})
+r2 = syz_usb_connect$hid(0x0, 0x36, &(0x7f0000000000)={{0x12, 0x1, 0x0, 0x0, 0x0, 0x0, 0x40, 0x403, 0x97c1, 0x0, 0x0, 0x0, 0x0, 0x1, [{{0x9, 0x2, 0x24, 0x1, 0x0, 0x0, 0x0, 0x0, [{{0x9, 0x4, 0x0, 0x0, 0x9, 0x3, 0x0, 0x0, 0x0, {0x9, 0x21, 0x0, 0x1, 0x1, {0x22, 0x29}}, {{{0x9, 0x5, 0x81, 0x3, 0x0, 0xfc}}}}}]}}]}}, 0x0)
+mmap$usbmon(&(0x7f0000ffc000/0x4000)=nil, 0x4000, 0x1000000, 0x69e697fa30f75bb7, 0xffffffffffffffff, 0x0)
+syz_usb_control_io$hid(r2, &(0x7f0000000200)={0x24, &(0x7f00000000c0)={0x0, 0x23, 0x1f, {0x1f, 0xd, "b3a9a796a87d7e10eaed4513771713c016ee6695dc0c69b8c78801116e"}}, &(0x7f0000000100)={0x0, 0x3, 0x4, @lang_id={0x4, 0x3, 0x42d}}, &(0x7f0000000140)={0x0, 0x22, 0x10, {[@main=@item_012={0x1, 0x0, 0xa, "d7"}, @global=@item_012={0x0, 0x1, 0xa}, @local=@item_012={0x2, 0x2, 0xa, 'HD'}, @main=@item_4={0x3, 0x0, 0xa, "18dbc78f"}, @main=@item_4={0x3, 0x0, 0xc, "94854dba"}]}}, &(0x7f0000000180)={0x0, 0x21, 0x9, {0x9, 0x21, 0xd, 0x0, 0x1, {0x22, 0xb4a}}}}, &(0x7f00000004c0)={0x2c, &(0x7f0000000240)={0x20, 0x1, 0xd7, "1005419994125a8ae89e56056c55c53e9ec37910cd21f4a2270cca185b51a9086dd70e778c9456f7a27a1458cacd95be254638344c4e564e0a34f9a3d8d6e9dbf76951c66b823975145fc81dd687eaf4048ffde7b870453850120088ca9b38bff2a3c838335be387bcee9606c585abe3258b87de273abe9442b712ad6c03c5263e8a59882845aff29a97a09e65781eda5775f9c4de37ed75e1545986fc54ba95f47aa488f10022c632bceadc2e2e388505762cf134340c3f70e75abba5355bac7be1c9552de5d55aa7950701431de1727e4571a0371e2f"}, &(0x7f0000000340)={0x0, 0xa, 0x1}, &(0x7f0000000380)={0x0, 0x8, 0x1, 0x2}, &(0x7f00000003c0)={0x20, 0x1, 0x86, "bbb908b846d728178c719bdd1b9bed1a115b57bd015d9dd7054274671bb7e749eee9287f156e1cce9dc0d386ab90979b0180ba8c2a93dd767dddf46863e09f08581caaa93746cbe4d748a1bd93de1f4d48c848fe3ec35e9dac3a70f1b36e884b483eec11f8656914d509191907937fc3a0e0024fbfa93bcad04ff903f814467ca6f881219f23"}, &(0x7f0000000480)={0x20, 0x3, 0x1, 0x1}})
+syz_usb_control_io$hid(r2, 0x0, 0x0)
+syz_usb_connect$hid(0x5, 0x36, &(0x7f0000000440)=ANY=[@ANYBLOB="12015002000000081c1b231c400001020301090224000101f8d0040904000f010301031c0921080051068b84aa0905810320"], &(0x7f0000000700)={0x0, 0x0, 0x0, 0x0})
+syz_usb_control_io$hid(r2, &(0x7f0000000040)={0x24, 0x0, 0x0, 0x0, &(0x7f00000001c0)={0x0, 0x22, 0x371, {0x9, 0x21, 0x2, 0x0, 0x1, {0x22, 0xd72}}}}, &(0x7f0000000080)={0xffffff8c, 0x0, 0x0, 0x0, 0x0, 0x0})
+
+0s ago: executing program 2 (id=8108):
+syz_usb_connect(0x3, 0x36, &(0x7f0000000380)={{0x12, 0x1, 0x250, 0x4d, 0x5c, 0x94, 0x20, 0xf11, 0x1010, 0xdee6, 0x1, 0x2, 0x3, 0x1, [{{0x9, 0x2, 0x24, 0x1, 0x8, 0xf, 0xe0, 0x9, [{{0x9, 0x4, 0x7c, 0x7f, 0x2, 0x7f, 0x41, 0xaf, 0x6, [], [{{0x9, 0x5, 0x4, 0x0, 0x20, 0x8, 0x0, 0x6}}, {{0x9, 0x5, 0xe, 0x2, 0x200, 0x0, 0x1, 0xe3}}]}}]}}]}}, &(0x7f00000000c0)={0x0, 0x0, 0x0, 0x0})
+r0 = syz_usb_connect$cdc_ecm(0x3, 0x4d, &(0x7f0000000240)={{0x12, 0x1, 0x300, 0x2, 0x0, 0x0, 0x10, 0x525, 0xa4a1, 0x40, 0x1, 0x2, 0x3, 0x1, [{{0x9, 0x2, 0x3b, 0x1, 0x1, 0x3, 0x10, 0x1, [{{0x9, 0x4, 0x0, 0xf1, 0x3, 0x2, 0x6, 0x0, 0x3, {{0x5}, {0x5, 0x24, 0x0, 0x6}, {0xd, 0x24, 0xf, 0x1, 0x6, 0xc37f, 0xa5, 0x80}}, {[], {{0x9, 0x5, 0x82, 0x2, 0x20, 0x9, 0x1, 0x8}}, {{0x9, 0x5, 0x3, 0x2, 0x10, 0x3, 0x3, 0x5}}}}}]}}]}}, &(0x7f0000000440)={0x0, 0x0, 0x0, 0x0, 0x5, [{0x4, &(0x7f00000002c0)=@lang_id={0x4, 0x3, 0x459}}, {0x4, &(0x7f0000000300)=@lang_id={0x4, 0x3, 0x4c0a}}, {0x3, &(0x7f0000000340)=@string={0x3, 0x3, 't'}}, {0x4, &(0x7f0000000380)=@lang_id={0x4, 0x3, 0x81d}}, {0x55, &(0x7f00000003c0)=@string={0x55, 0x3, "9d30a276a894012c5d3038ea13231ae79f9385051a6e09ff2f372ab0be0c0709965ad31eae19ea20b4431bab9884bf5ce4b4c492475a36b43a7ab97f0905f6b734a43581410a8489a532d51b6eb1560bfe654a"}}]})
+syz_usb_control_io$cdc_ecm(r0, &(0x7f0000000100)={0x14, &(0x7f00000004c0)=ANY=[@ANYBLOB="202298000000982384ad6d26e6e9911d58f4a4c3285e63fb9f61926d99294240327677b1a35a9354f658d2de191743284b4c509fc59f914b19b69c56631e7a3c8f3f411238788c4ec8c219cf051b98115168bf5e97c8ea83a9820fff6c88357b2c4d8291ada4bb01e4a43a07a0ae49b09322b034656f09f34a16a2639a9e4a554424daa4d4932dfaca6b322325bb7056450766306eb297e5268bd1ca9b6cddad92c926c7599056f06a44623f4eef85450f916fda7b7fbd4452334f228d22106e1e745d16dfb31e318fa7e271ec55957338c8"], &(0x7f00000000c0)={0x0, 0x3, 0x1a, {0x1a}}}, &(0x7f0000000200)={0x1c, &(0x7f0000000140)={0x0, 0x3, 0x13, "ae908df6dd78f13e0c38396dbde3de580ee674"}, &(0x7f0000000180)={0x0, 0xa, 0x1, 0xa}, &(0x7f00000001c0)={0x0, 0x8, 0x1, 0x80}})
+syz_usb_connect(0x3, 0x36, &(0x7f0000000380)={{0x12, 0x1, 0x250, 0x4d, 0x5c, 0x94, 0x20, 0xf11, 0x1010, 0xdee6, 0x1, 0x2, 0x3, 0x1, [{{0x9, 0x2, 0x24, 0x1, 0x8, 0xf, 0xe0, 0x9, [{{0x9, 0x4, 0x7c, 0x7f, 0x2, 0x7f, 0x41, 0xaf, 0x6, [], [{{0x9, 0x5, 0x4, 0x0, 0x20, 0x8, 0x0, 0x6}}, {{0x9, 0x5, 0xe, 0x2, 0x200, 0x0, 0x1, 0xe3}}]}}]}}]}}, &(0x7f00000000c0)={0x0, 0x0, 0x0, 0x0}) (async)
+syz_usb_connect$cdc_ecm(0x3, 0x4d, &(0x7f0000000240)={{0x12, 0x1, 0x300, 0x2, 0x0, 0x0, 0x10, 0x525, 0xa4a1, 0x40, 0x1, 0x2, 0x3, 0x1, [{{0x9, 0x2, 0x3b, 0x1, 0x1, 0x3, 0x10, 0x1, [{{0x9, 0x4, 0x0, 0xf1, 0x3, 0x2, 0x6, 0x0, 0x3, {{0x5}, {0x5, 0x24, 0x0, 0x6}, {0xd, 0x24, 0xf, 0x1, 0x6, 0xc37f, 0xa5, 0x80}}, {[], {{0x9, 0x5, 0x82, 0x2, 0x20, 0x9, 0x1, 0x8}}, {{0x9, 0x5, 0x3, 0x2, 0x10, 0x3, 0x3, 0x5}}}}}]}}]}}, &(0x7f0000000440)={0x0, 0x0, 0x0, 0x0, 0x5, [{0x4, &(0x7f00000002c0)=@lang_id={0x4, 0x3, 0x459}}, {0x4, &(0x7f0000000300)=@lang_id={0x4, 0x3, 0x4c0a}}, {0x3, &(0x7f0000000340)=@string={0x3, 0x3, 't'}}, {0x4, &(0x7f0000000380)=@lang_id={0x4, 0x3, 0x81d}}, {0x55, &(0x7f00000003c0)=@string={0x55, 0x3, "9d30a276a894012c5d3038ea13231ae79f9385051a6e09ff2f372ab0be0c0709965ad31eae19ea20b4431bab9884bf5ce4b4c492475a36b43a7ab97f0905f6b734a43581410a8489a532d51b6eb1560bfe654a"}}]}) (async)
+syz_usb_control_io$cdc_ecm(r0, &(0x7f0000000100)={0x14, &(0x7f00000004c0)=ANY=[@ANYBLOB="202298000000982384ad6d26e6e9911d58f4a4c3285e63fb9f61926d99294240327677b1a35a9354f658d2de191743284b4c509fc59f914b19b69c56631e7a3c8f3f411238788c4ec8c219cf051b98115168bf5e97c8ea83a9820fff6c88357b2c4d8291ada4bb01e4a43a07a0ae49b09322b034656f09f34a16a2639a9e4a554424daa4d4932dfaca6b322325bb7056450766306eb297e5268bd1ca9b6cddad92c926c7599056f06a44623f4eef85450f916fda7b7fbd4452334f228d22106e1e745d16dfb31e318fa7e271ec55957338c8"], &(0x7f00000000c0)={0x0, 0x3, 0x1a, {0x1a}}}, &(0x7f0000000200)={0x1c, &(0x7f0000000140)={0x0, 0x3, 0x13, "ae908df6dd78f13e0c38396dbde3de580ee674"}, &(0x7f0000000180)={0x0, 0xa, 0x1, 0xa}, &(0x7f00000001c0)={0x0, 0x8, 0x1, 0x80}}) (async)
+
+0s ago: executing program 1 (id=8109):
+r0 = openat$KGPT_raw_gadget(0xffffffffffffff9c, &(0x7f0000000040), 0x2, 0x0)
+ioctl$KGPT_USB_RAW_IOCTL_EP_READ(r0, 0xc0085508, &(0x7f0000000180)={0x7, 0x1, 0x80000001})
+mmap$usbmon(&(0x7f0000000000/0xb000)=nil, 0xb000, 0x1000000, 0xc8032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000400000/0xc00000)=nil, 0xc00000, 0x1000001, 0xc8032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000000000/0xb000)=nil, 0xb000, 0x1000000, 0xc8032, 0xffffffffffffffff, 0x0)
+syz_usb_connect(0x3, 0x36, &(0x7f0000000000)=ANY=[@ANYBLOB="120150024d5c9420110f1010e6de010203010902240001080fe00909047c7f027f41af060905fd3036d62a0400200008000609050e0200020001e3"], &(0x7f00000000c0)={0x0, 0x0, 0x0, 0x0})
+
+kernel console output (not intermixed with test programs):
+
+: stop threads
+[ 3061.429199][T71125] vhci_hcd: release socket
+[ 3061.433813][T71125] vhci_hcd: disconnect device
+[ 3061.462409][T71125] vhci_hcd: stop threads
+[ 3061.465395][T71125] vhci_hcd: release socket
+[ 3061.468967][T71125] vhci_hcd: disconnect device
+[ 3061.485668][T71125] vhci_hcd: stop threads
+[ 3061.488608][T71125] vhci_hcd: release socket
+[ 3061.495367][T71125] vhci_hcd: disconnect device
+[ 3061.649768][T92537] vhci_hcd vhci_hcd.0: pdev(0) rhport(0) sockfd(6)
+[ 3061.653962][T92537] vhci_hcd vhci_hcd.0: devid(0) speed(3) speed_str(high-speed)
+[ 3061.663664][T92537] vhci_hcd vhci_hcd.0: Device attached
+[ 3061.760561][T92557] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3061.772804][T92557] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3061.792733][T53602] vhci_hcd: vhci_device speed not set
+[ 3061.860063][T92537] vhci_hcd vhci_hcd.0: pdev(0) rhport(1) sockfd(9)
+[ 3061.863368][T92537] vhci_hcd vhci_hcd.0: devid(0) speed(3) speed_str(high-speed)
+[ 3061.868106][T92537] vhci_hcd vhci_hcd.0: Device attached
+[ 3061.874207][T92537] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3061.879639][T92537] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3061.912678][    T9] usb 33-1: new high-speed USB device number 46 using vhci_hcd
+[ 3061.976993][T92589] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3061.981324][T92589] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3061.998850][T92582] vhci_hcd: connection closed
+[ 3061.999011][T92578] vhci_hcd: connection reset by peer
+[ 3062.003736][T71125] vhci_hcd: stop threads
+[ 3062.003753][T71125] vhci_hcd: release socket
+[ 3062.003820][T71125] vhci_hcd: disconnect device
+[ 3062.012692][T71125] vhci_hcd: stop threads
+[ 3062.015997][T71125] vhci_hcd: release socket
+[ 3062.019136][T71125] vhci_hcd: disconnect device
+[ 3063.075740][T92526] vhci_hcd: connection closed
+[ 3063.076693][T92524] vhci_hcd: connection reset by peer
+[ 3063.094038][T71125] vhci_hcd: stop threads
+[ 3063.102245][T71125] vhci_hcd: release socket
+[ 3063.106915][T71125] vhci_hcd: disconnect device
+[ 3063.115222][T53001] usb 1-1: USB disconnect, device number 6
+[ 3063.134554][T71125] vhci_hcd: stop threads
+[ 3063.145782][T71125] vhci_hcd: release socket
+[ 3063.153029][T71125] vhci_hcd: disconnect device
+[ 3063.212614][T65467] vhci_hcd: vhci_device speed not set
+[ 3063.328889][T92622] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3063.337417][T92622] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3063.562577][T48961] usb 2-1: new high-speed USB device number 58 using dummy_hcd
+[ 3063.713353][T48961] usb 2-1: Using ep0 maxpacket: 16
+[ 3063.728628][T48961] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3063.744361][T48961] usb 2-1: config 2 has an invalid interface number: 117 but max is 0
+[ 3063.755507][T48961] usb 2-1: config 2 has no interface number 0
+[ 3063.767047][T48961] usb 2-1: config 2 interface 117 has no altsetting 0
+[ 3063.770039][T92631] vhci_hcd vhci_hcd.0: pdev(3) rhport(0) sockfd(4)
+[ 3063.787911][T92631] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3063.801666][T92631] vhci_hcd vhci_hcd.0: Device attached
+[ 3063.806777][T48961] usb 2-1: New USB device found, idVendor=077d, idProduct=04aa, bcdDevice=bb.8a
+[ 3063.822281][T48961] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3063.870446][T48961] usb 2-1: Product: syz
+[ 3063.875812][T48961] usb 2-1: Manufacturer: syz
+[ 3063.891201][T48961] usb 2-1: SerialNumber: syz
+[ 3064.042897][T53602] usb 39-1: new low-speed USB device number 6 using vhci_hcd
+[ 3064.113118][T38928] usb 1-1: new full-speed USB device number 7 using dummy_hcd
+[ 3064.123958][T48961] powermate 2-1:2.117: probe with driver powermate failed with error -22
+[ 3064.143980][T48961] usb 2-1: USB disconnect, device number 58
+[ 3064.283090][T38928] usb 1-1: unable to get BOS descriptor or descriptor too short
+[ 3064.300291][T38928] usb 1-1: not running at top speed; connect to a high speed hub
+[ 3064.313657][T38928] usb 1-1: config 5 has an invalid interface number: 226 but max is 0
+[ 3064.320068][T38928] usb 1-1: config 5 has no interface number 0
+[ 3064.331534][T38928] usb 1-1: config 5 interface 226 has no altsetting 0
+[ 3064.348003][T38928] usb 1-1: New USB device found, idVendor=0471, idProduct=0330, bcdDevice= c.d1
+[ 3064.356032][T38928] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3064.368209][T38928] usb 1-1: Product: syz
+[ 3064.372154][T38928] usb 1-1: Manufacturer: syz
+[ 3064.375108][T38928] usb 1-1: SerialNumber: syz
+[ 3064.793345][T38928] gspca_main: sonixj-2.14.0 probing 0471:0330
+[ 3065.292818][T11577] usb 2-1: new high-speed USB device number 59 using dummy_hcd
+[ 3065.446050][T11577] usb 2-1: config 1 interface 0 altsetting 0 has 0 endpoint descriptors, different from the interface descriptor's value: 1
+[ 3065.457793][T11577] usb 2-1: New USB device found, idVendor=0525, idProduct=a4a1, bcdDevice= 0.40
+[ 3065.464305][T11577] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3065.470736][T11577] usb 2-1: Product: syz
+[ 3065.474615][T11577] usb 2-1: Manufacturer: syz
+[ 3065.479634][T11577] usb 2-1: SerialNumber: syz
+[ 3065.490608][T11577] cdc_ncm 2-1:1.0: skipping garbage
+[ 3065.601224][T38928] gspca_sonixj: reg_r err -71
+[ 3065.603343][T38928] sonixj 1-1:5.226: probe with driver sonixj failed with error -71
+[ 3065.610209][T38928] usb 1-1: USB disconnect, device number 7
+[ 3065.894615][T92659] usb usb4: Requested nonsensical USBDEVFS_URB_ZERO_PACKET.
+[ 3065.906447][T92659] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3065.913214][T92659] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3066.017946][T92659] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3066.023463][T92659] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3066.024280][T92674] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3066.033638][T92674] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3066.041744][T11577] cdc_ncm 2-1:1.0: failed GET_NTB_PARAMETERS
+[ 3066.045408][T11577] cdc_ncm 2-1:1.0: bind() failure
+[ 3066.051132][T11577] cdc_ncm 2-1:1.1: CDC Union missing and no IAD found
+[ 3066.056222][T11577] cdc_ncm 2-1:1.1: bind() failure
+[ 3066.170702][T92686] FAULT_INJECTION: forcing a failure.
+[ 3066.170702][T92686] name fail_page_alloc, interval 1, probability 0, space 0, times 0
+[ 3066.185788][T92686] CPU: 0 UID: 0 PID: 92686 Comm: syz.0.7937 Not tainted 6.18.0 #1 PREEMPT(full) 
+[ 3066.185818][T92686] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[ 3066.185832][T92686] Call Trace:
+[ 3066.185840][T92686]  <TASK>
+[ 3066.185850][T92686]  dump_stack_lvl+0x180/0x1b0
+[ 3066.185888][T92686]  should_fail_ex+0x520/0x650
+[ 3066.185916][T92686]  should_fail_alloc_page+0xe9/0x140
+[ 3066.185950][T92686]  prepare_alloc_pages+0x3b9/0x610
+[ 3066.185980][T92686]  ? rcu_is_watching+0x12/0xc0
+[ 3066.186009][T92686]  __alloc_frozen_pages_noprof+0x186/0x2140
+[ 3066.186058][T92686]  ? mon_bin_ioctl+0x469/0xcc0
+[ 3066.186077][T92686]  ? kasan_save_stack+0x34/0x50
+[ 3066.186102][T92686]  ? kasan_save_stack+0x24/0x50
+[ 3066.186126][T92686]  ? kasan_save_track+0x14/0x30
+[ 3066.186150][T92686]  ? __kasan_kmalloc+0xaa/0xb0
+[ 3066.186173][T92686]  ? __kmalloc_noprof+0x32c/0x8c0
+[ 3066.186193][T92686]  ? mon_bin_ioctl+0x469/0xcc0
+[ 3066.186210][T92686]  ? __x64_sys_ioctl+0x18f/0x210
+[ 3066.186230][T92686]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[ 3066.186256][T92686]  ? get_freelist+0x195/0x1d0
+[ 3066.186370][T92686]  ? find_held_lock+0x2b/0x80
+[ 3066.186437][T92686]  ? lockdep_hardirqs_on+0x7c/0x110
+[ 3066.186469][T92686]  ? smp_text_poke_int3_handler+0x10b/0x440
+[ 3066.186494][T92686]  ? __kmalloc_noprof+0xf2/0x8c0
+[ 3066.186528][T92686]  ? mon_bin_ioctl+0x469/0xcc0
+[ 3066.186543][T92686]  ? __sanitizer_cov_trace_switch+0x54/0x90
+[ 3066.186569][T92686]  ? policy_nodemask+0xeb/0x4d0
+[ 3066.186600][T92686]  alloc_pages_mpol+0x1f1/0x550
+[ 3066.186632][T92686]  ? __pfx_alloc_pages_mpol+0x10/0x10
+[ 3066.186833][T92686]  alloc_pages_noprof+0x12d/0x390
+[ 3066.186861][T92686]  get_zeroed_page_noprof+0x18/0xb0
+[ 3066.186887][T92686]  mon_alloc_buff+0xce/0x1c0
+[ 3066.186921][T92686]  mon_bin_ioctl+0x487/0xcc0
+[ 3066.186939][T92686]  ? hook_file_ioctl_common+0x146/0x3f0
+[ 3066.186964][T92686]  ? __pfx_mon_bin_ioctl+0x10/0x10
+[ 3066.186986][T92686]  ? __fget_files+0x1fb/0x3b0
+[ 3066.187252][T92686]  ? __pfx_mon_bin_ioctl+0x10/0x10
+[ 3066.187279][T92686]  __x64_sys_ioctl+0x18f/0x210
+[ 3066.187304][T92686]  do_syscall_64+0xcb/0xfa0
+[ 3066.187337][T92686]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[ 3066.187358][T92686] RIP: 0033:0x7f5ef5db359d
+[ 3066.187377][T92686] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[ 3066.187396][T92686] RSP: 002b:00007f5ef3ff5f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[ 3066.187415][T92686] RAX: ffffffffffffffda RBX: 00007f5ef6045fa0 RCX: 00007f5ef5db359d
+[ 3066.187428][T92686] RDX: 000000000003be1d RSI: 0000000000009204 RDI: 0000000000000003
+[ 3066.187441][T92686] RBP: 00007f5ef3ff6010 R08: 0000000000000000 R09: 0000000000000000
+[ 3066.187453][T92686] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000002
+[ 3066.187464][T92686] R13: 00007f5ef6046038 R14: 00007f5ef6045fa0 R15: 00007f5ef3fd6000
+[ 3066.187493][T92686]  </TASK>
+[ 3066.191785][T92688] vhci_hcd vhci_hcd.0: pdev(2) rhport(0) sockfd(3)
+[ 3066.399215][T92688] vhci_hcd vhci_hcd.0: devid(0) speed(2) speed_str(full-speed)
+[ 3066.429571][T92688] vhci_hcd vhci_hcd.0: Device attached
+[ 3066.614114][T48961] vhci_hcd: vhci_device speed not set
+[ 3066.672921][T48961] usb 37-1: new full-speed USB device number 13 using vhci_hcd
+[ 3066.768284][T92632] vhci_hcd: connection reset by peer
+[ 3066.773651][T71125] vhci_hcd: stop threads
+[ 3066.776246][T71125] vhci_hcd: release socket
+[ 3066.779050][T71125] vhci_hcd: disconnect device
+[ 3066.792717][T11577] usb 1-1: new high-speed USB device number 8 using dummy_hcd
+[ 3066.986590][T11577] usb 1-1: config 0 interface 0 altsetting 0 endpoint 0x81 has an invalid bInterval 252, changing to 11
+[ 3067.002026][    T9] vhci_hcd: vhci_device speed not set
+[ 3067.006304][T11577] usb 1-1: config 0 interface 0 altsetting 0 endpoint 0x81 has invalid wMaxPacketSize 0
+[ 3067.006326][T11577] usb 1-1: config 0 interface 0 altsetting 0 has 1 endpoint descriptor, different from the interface descriptor's value: 9
+[ 3067.006358][T11577] usb 1-1: New USB device found, idVendor=0403, idProduct=97c1, bcdDevice= 0.00
+[ 3067.006372][T11577] usb 1-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[ 3067.017391][T11577] usb 1-1: config 0 descriptor??
+[ 3067.175432][T91876] usb 2-1: USB disconnect, device number 59
+[ 3067.488719][T11577] hid_parser_main: 2 callbacks suppressed
+[ 3067.488735][T11577] hid-retrode 0003:0403:97C1.015E: unknown main item tag 0x0
+[ 3067.497970][T11577] hid-retrode 0003:0403:97C1.015E: unknown main item tag 0x0
+[ 3067.503510][T11577] hid-retrode 0003:0403:97C1.015E: unknown main item tag 0x7
+[ 3067.508044][T11577] hid-retrode 0003:0403:97C1.015E: unknown main item tag 0x0
+[ 3067.513397][T11577] hid-retrode 0003:0403:97C1.015E: unknown main item tag 0x0
+[ 3067.518960][T11577] hid-retrode 0003:0403:97C1.015E: unknown main item tag 0x0
+[ 3067.523360][T11577] hid-retrode 0003:0403:97C1.015E: unknown main item tag 0x0
+[ 3067.527579][T11577] hid-retrode 0003:0403:97C1.015E: unknown main item tag 0x0
+[ 3067.532025][T11577] hid-retrode 0003:0403:97C1.015E: unknown main item tag 0x0
+[ 3067.538720][T11577] hid-retrode 0003:0403:97C1.015E: unknown main item tag 0x0
+[ 3067.546754][T11577] hid-retrode 0003:0403:97C1.015E: hidraw0: USB HID v0.00 Device [HID 0403:97c1] on usb-dummy_hcd.0-1/input0
+[ 3067.572865][T91876] usb 2-1: new high-speed USB device number 60 using dummy_hcd
+[ 3067.689908][T92696] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3067.696096][T92696] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3067.754913][T91876] usb 2-1: too many configurations: 124, using maximum allowed: 8
+[ 3067.780625][T91876] usb 2-1: New USB device found, idVendor=0bda, idProduct=8150, bcdDevice= 0.00
+[ 3067.786031][T91876] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3067.790262][T91876] usb 2-1: Product: syz
+[ 3067.793223][T91876] usb 2-1: Manufacturer: syz
+[ 3067.796025][T91876] usb 2-1: SerialNumber: syz
+[ 3068.010741][T92714] vhci_hcd vhci_hcd.0: pdev(1) rhport(0) sockfd(4)
+[ 3068.013435][T92714] vhci_hcd vhci_hcd.0: devid(0) speed(5) speed_str(super-speed)
+[ 3068.017152][T92714] vhci_hcd vhci_hcd.0: Device attached
+[ 3068.025382][T92714] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3068.031533][T92714] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3068.039264][T92714] vhci_hcd vhci_hcd.0: pdev(1) rhport(0) sockfd(8)
+[ 3068.044956][T92714] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3068.052912][T92714] vhci_hcd vhci_hcd.0: Device attached
+[ 3068.060468][T92714] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3068.066958][T92714] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3068.075758][T92714] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3068.081946][T92714] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3068.092684][T92714] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3068.099468][T92714] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3068.105477][T92737] vhci_hcd: connection closed
+[ 3068.105738][T92733] vhci_hcd: connection closed
+[ 3068.106019][T71125] vhci_hcd: stop threads
+[ 3068.125974][T71125] vhci_hcd: release socket
+[ 3068.129415][T71125] vhci_hcd: disconnect device
+[ 3068.137461][T71125] vhci_hcd: stop threads
+[ 3068.140593][T71125] vhci_hcd: release socket
+[ 3068.144052][T71125] vhci_hcd: disconnect device
+[ 3068.183049][T91876] rtl8150 2-1:1.0: couldn't reset the device
+[ 3068.187781][T91876] rtl8150 2-1:1.0: probe with driver rtl8150 failed with error -5
+[ 3068.210154][T91876] usb 2-1: USB disconnect, device number 60
+[ 3069.083015][T11577] usb 2-1: new high-speed USB device number 61 using dummy_hcd
+[ 3069.162509][T53602] vhci_hcd: vhci_device speed not set
+[ 3069.211547][T92689] vhci_hcd: connection reset by peer
+[ 3069.227611][T11577] usb 2-1: device descriptor read/64, error -71
+[ 3069.230474][T71125] vhci_hcd: stop threads
+[ 3069.237053][T71125] vhci_hcd: release socket
+[ 3069.240255][T71125] vhci_hcd: disconnect device
+[ 3069.472818][T11577] usb 2-1: new high-speed USB device number 62 using dummy_hcd
+[ 3069.496815][T91876] usb 1-1: USB disconnect, device number 8
+[ 3069.604397][T11577] usb 2-1: device descriptor read/64, error -71
+[ 3069.716770][T11577] usb usb2-port1: attempt power cycle
+[ 3070.072926][T11577] usb 2-1: new high-speed USB device number 63 using dummy_hcd
+[ 3070.094091][T11577] usb 2-1: device descriptor read/8, error -71
+[ 3070.332777][T11577] usb 2-1: new high-speed USB device number 64 using dummy_hcd
+[ 3070.353731][T11577] usb 2-1: device descriptor read/8, error -71
+[ 3070.462917][T11577] usb usb2-port1: unable to enumerate USB device
+[ 3070.762669][T65467] usb 2-1: new high-speed USB device number 65 using dummy_hcd
+[ 3070.892516][T65467] usb 2-1: device descriptor read/64, error -71
+[ 3071.132800][T65467] usb 2-1: new high-speed USB device number 66 using dummy_hcd
+[ 3071.263373][T65467] usb 2-1: device descriptor read/64, error -71
+[ 3071.382662][T65467] usb usb2-port1: attempt power cycle
+[ 3071.722679][T65467] usb 2-1: new high-speed USB device number 67 using dummy_hcd
+[ 3071.802631][T48961] vhci_hcd: vhci_device speed not set
+[ 3071.932418][T65467] usb 2-1: device not accepting address 67, error -71
+[ 3072.202580][ T1018] usb 1-1: new high-speed USB device number 9 using dummy_hcd
+[ 3072.283450][T65467] usb 2-1: new high-speed USB device number 68 using dummy_hcd
+[ 3072.300797][T92811] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3072.306268][T65467] usb 2-1: Using ep0 maxpacket: 8
+[ 3072.308119][T92811] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3072.315210][T65467] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3072.320345][T92811] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3072.326589][T65467] usb 2-1: config 162 has an invalid interface number: 138 but max is 0
+[ 3072.326613][T65467] usb 2-1: config 162 has no interface number 0
+[ 3072.326652][T65467] usb 2-1: config 162 interface 138 has no altsetting 0
+[ 3072.333349][T92811] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3072.353738][T65467] usb 2-1: New USB device found, idVendor=055f, idProduct=c440, bcdDevice=2e.13
+[ 3072.358578][T65467] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3072.361721][T65467] usb 2-1: Product: syz
+[ 3072.367407][T65467] usb 2-1: Manufacturer: syz
+[ 3072.369870][T65467] usb 2-1: SerialNumber: syz
+[ 3072.375480][ T1018] usb 1-1: Using ep0 maxpacket: 8
+[ 3072.389996][ T1018] usb 1-1: config 0 interface 0 altsetting 254 endpoint 0x81 has an invalid bInterval 252, changing to 11
+[ 3072.396308][ T1018] usb 1-1: config 0 interface 0 altsetting 254 endpoint 0x81 has invalid wMaxPacketSize 0
+[ 3072.401771][ T1018] usb 1-1: config 0 interface 0 altsetting 254 has 1 endpoint descriptor, different from the interface descriptor's value: 2
+[ 3072.411309][ T1018] usb 1-1: config 0 interface 0 has no altsetting 0
+[ 3072.418270][ T1018] usb 1-1: New USB device found, idVendor=0458, idProduct=501b, bcdDevice=3f.00
+[ 3072.426063][ T1018] usb 1-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[ 3072.440300][ T1018] usb 1-1: config 0 descriptor??
+[ 3072.474974][T92829] vhci_hcd vhci_hcd.0: pdev(2) rhport(0) sockfd(4)
+[ 3072.485058][T92829] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3072.499327][T92829] vhci_hcd vhci_hcd.0: Device attached
+[ 3072.646862][T92794] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3072.661150][T92794] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3072.876996][T92837] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3072.880907][ T1018] kye 0003:0458:501B.015F: tablet report size too small, or kye_tablet_rdesc unexpectedly large
+[ 3072.899583][T92837] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3072.915968][ T1018] hid_parser_main: 24 callbacks suppressed
+[ 3072.915988][ T1018] kye 0003:0458:501B.015F: unknown main item tag 0x0
+[ 3072.922895][T48961] usb 37-1: new low-speed USB device number 14 using vhci_hcd
+[ 3072.928865][ T1018] kye 0003:0458:501B.015F: unknown main item tag 0x0
+[ 3072.958123][ T1018] kye 0003:0458:501B.015F: unknown main item tag 0x7
+[ 3072.970930][ T1018] kye 0003:0458:501B.015F: unknown main item tag 0x0
+[ 3072.979242][ T1018] kye 0003:0458:501B.015F: unknown main item tag 0x0
+[ 3072.985906][ T1018] kye 0003:0458:501B.015F: unknown main item tag 0x0
+[ 3072.992203][ T1018] kye 0003:0458:501B.015F: unknown main item tag 0x0
+[ 3073.000198][ T1018] kye 0003:0458:501B.015F: unknown main item tag 0x0
+[ 3073.007448][ T1018] kye 0003:0458:501B.015F: unknown main item tag 0x0
+[ 3073.028279][ T1018] kye 0003:0458:501B.015F: unknown main item tag 0x0
+[ 3073.044916][T65467] gspca_main: sunplus-2.14.0 probing 055f:c440
+[ 3073.067998][T65467] gspca_sunplus: reg_r err -71
+[ 3073.076925][ T1018] kye 0003:0458:501B.015F: hidraw0: USB HID v0.00 Device [HID 0458:501b] on usb-dummy_hcd.0-1/input0
+[ 3073.095728][T65467] sunplus 2-1:162.138: probe with driver sunplus failed with error -71
+[ 3073.122038][ T1018] kye 0003:0458:501B.015F: tablet-enabling feature report not found
+[ 3073.137779][ T1018] kye 0003:0458:501B.015F: tablet enabling failed
+[ 3073.157329][T65467] usb 2-1: USB disconnect, device number 68
+[ 3073.202008][ T1018] usb 1-1: USB disconnect, device number 9
+[ 3073.669041][T92866] vhci_hcd vhci_hcd.0: pdev(1) rhport(0) sockfd(3)
+[ 3073.672529][T92866] vhci_hcd vhci_hcd.0: devid(0) speed(5) speed_str(super-speed)
+[ 3073.680354][T92866] vhci_hcd vhci_hcd.0: Device attached
+[ 3073.703179][T92875] FAULT_INJECTION: forcing a failure.
+[ 3073.703179][T92875] name fail_usercopy, interval 1, probability 0, space 0, times 0
+[ 3073.718247][T92875] CPU: 2 UID: 0 PID: 92875 Comm: syz.3.7953 Not tainted 6.18.0 #1 PREEMPT(full) 
+[ 3073.718268][T92875] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[ 3073.718277][T92875] Call Trace:
+[ 3073.718283][T92875]  <TASK>
+[ 3073.718289][T92875]  dump_stack_lvl+0x180/0x1b0
+[ 3073.718344][T92875]  should_fail_ex+0x520/0x650
+[ 3073.718371][T92875]  _copy_to_user+0x32/0xd0
+[ 3073.718399][T92875]  do_proc_control+0xe1e/0x10c0
+[ 3073.718427][T92875]  ? __pfx_do_proc_control+0x10/0x10
+[ 3073.718456][T92875]  usbdev_ioctl+0x22ae/0x3f20
+[ 3073.718483][T92875]  ? __pfx_usbdev_ioctl+0x10/0x10
+[ 3073.718511][T92875]  ? __sanitizer_cov_trace_switch+0x54/0x90
+[ 3073.718537][T92875]  ? do_vfs_ioctl+0x125/0x1470
+[ 3073.718569][T92875]  ? hook_file_ioctl_common+0x146/0x3f0
+[ 3073.718590][T92875]  ? __fget_files+0x1fb/0x3b0
+[ 3073.718607][T92875]  ? __pfx_usbdev_ioctl+0x10/0x10
+[ 3073.718621][T92875]  __x64_sys_ioctl+0x18f/0x210
+[ 3073.718635][T92875]  do_syscall_64+0xcb/0xfa0
+[ 3073.718657][T92875]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[ 3073.718671][T92875] RIP: 0033:0x7f299cfb359d
+[ 3073.718683][T92875] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[ 3073.718696][T92875] RSP: 002b:00007f299df52f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[ 3073.718710][T92875] RAX: ffffffffffffffda RBX: 00007f299d245fa0 RCX: 00007f299cfb359d
+[ 3073.718719][T92875] RDX: 0000200000000200 RSI: 00000000c0185500 RDI: 0000000000000003
+[ 3073.718727][T92875] RBP: 00007f299df53010 R08: 0000000000000000 R09: 0000000000000000
+[ 3073.718735][T92875] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+[ 3073.718743][T92875] R13: 00007f299d246038 R14: 00007f299d245fa0 R15: 00007f299df33000
+[ 3073.718761][T92875]  </TASK>
+[ 3074.000036][   T29] usb 2-1: new high-speed USB device number 69 using dummy_hcd
+[ 3074.003145][ T1018] usb 1-1: new full-speed USB device number 10 using dummy_hcd
+[ 3074.005688][T69445] usb 36-1: SetAddress Request (10) to port 0
+[ 3074.014799][T69445] usb 36-1: new SuperSpeed USB device number 10 using vhci_hcd
+[ 3074.168940][ T1018] usb 1-1: unable to get BOS descriptor or descriptor too short
+[ 3074.172585][   T29] usb 2-1: Using ep0 maxpacket: 16
+[ 3074.178917][ T1018] usb 1-1: not running at top speed; connect to a high speed hub
+[ 3074.186457][   T29] usb 2-1: config 1 has an invalid interface number: 234 but max is 1
+[ 3074.196867][ T1018] usb 1-1: config 6 has an invalid interface number: 33 but max is 1
+[ 3074.198317][   T29] usb 2-1: config 1 has an invalid interface number: 207 but max is 1
+[ 3074.205442][ T1018] usb 1-1: config 6 has an invalid interface number: 145 but max is 1
+[ 3074.205472][ T1018] usb 1-1: config 6 has no interface number 0
+[ 3074.205489][ T1018] usb 1-1: config 6 has no interface number 1
+[ 3074.205552][ T1018] usb 1-1: config 6 interface 33 has no altsetting 0
+[ 3074.205571][ T1018] usb 1-1: config 6 interface 145 has no altsetting 0
+[ 3074.215330][ T1018] usb 1-1: New USB device found, idVendor=04dd, idProduct=8005, bcdDevice=ee.12
+[ 3074.222227][   T29] usb 2-1: config 1 has no interface number 0
+[ 3074.226584][ T1018] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3074.228199][   T29] usb 2-1: config 1 has no interface number 1
+[ 3074.233687][ T1018] usb 1-1: Product: syz
+[ 3074.239553][   T29] usb 2-1: config 1 interface 234 altsetting 3 endpoint 0x1 has invalid maxpacket 1024, setting to 64
+[ 3074.239578][   T29] usb 2-1: config 1 interface 234 has no altsetting 0
+[ 3074.239591][   T29] usb 2-1: config 1 interface 207 has no altsetting 0
+[ 3074.246990][   T29] usb 2-1: New USB device found, idVendor=2304, idProduct=0207, bcdDevice=20.38
+[ 3074.247023][   T29] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3074.247043][   T29] usb 2-1: Product: syz
+[ 3074.247062][   T29] usb 2-1: Manufacturer: syz
+[ 3074.247078][   T29] usb 2-1: SerialNumber: syz
+[ 3074.316159][ T1018] usb 1-1: Manufacturer: syz
+[ 3074.319746][ T1018] usb 1-1: SerialNumber: syz
+[ 3074.473911][T92866] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3074.493926][T92866] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3074.515625][T92867] vhci_hcd: connection reset by peer
+[ 3074.524805][T71125] vhci_hcd: stop threads
+[ 3074.527251][T71125] vhci_hcd: release socket
+[ 3074.532631][T71125] vhci_hcd: disconnect device
+[ 3074.533168][   T29] usb 2-1: USB disconnect, device number 69
+[ 3074.546301][T92873] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3074.552284][T92873] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3074.561350][T92873] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3074.569433][T92873] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3074.588413][ T1018] zaurus 1-1:6.33: skipping garbage
+[ 3074.592410][ T1018] usb 1-1: bad CDC descriptors
+[ 3074.598986][ T1018] hub 1-1:6.145: Invalid hub with more than one config or interface
+[ 3074.607146][ T1018] hub 1-1:6.145: probe with driver hub failed with error -22
+[ 3074.615709][ T1018] usb 1-1: USB disconnect, device number 10
+[ 3075.429167][T92830] vhci_hcd: connection reset by peer
+[ 3075.433375][T71125] vhci_hcd: stop threads
+[ 3075.437003][T71125] vhci_hcd: release socket
+[ 3075.444299][T71125] vhci_hcd: disconnect device
+[ 3075.484116][T92924] vhci_hcd vhci_hcd.0: pdev(0) rhport(0) sockfd(4)
+[ 3075.488862][T92924] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3075.499110][T92924] vhci_hcd vhci_hcd.0: Device attached
+[ 3075.733036][   T29] usb 2-1: new high-speed USB device number 70 using dummy_hcd
+[ 3075.764728][ T1018] usb 33-1: new low-speed USB device number 47 using vhci_hcd
+[ 3075.813577][T47852] usb 1-1: new high-speed USB device number 11 using dummy_hcd
+[ 3075.887520][   T29] usb 2-1: config 1 contains an unexpected descriptor of type 0x1, skipping
+[ 3075.895135][   T29] usb 2-1: config 1 has an invalid descriptor of length 1, skipping remainder of the config
+[ 3075.903146][   T29] usb 2-1: config 1 has 1 interface, different from the descriptor's value: 3
+[ 3075.916639][   T29] usb 2-1: New USB device found, idVendor=1d6b, idProduct=0101, bcdDevice= 0.40
+[ 3075.920812][   T29] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3075.924898][   T29] usb 2-1: Product: syz
+[ 3075.927324][   T29] usb 2-1: Manufacturer: syz
+[ 3075.930630][   T29] usb 2-1: SerialNumber: syz
+[ 3075.985449][T47852] usb 1-1: New USB device found, idVendor=0bda, idProduct=8150, bcdDevice= 0.00
+[ 3075.991516][T47852] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3075.997919][T47852] usb 1-1: Product: syz
+[ 3076.001694][T47852] usb 1-1: Manufacturer: syz
+[ 3076.005640][T47852] usb 1-1: SerialNumber: syz
+[ 3076.225639][T92927] vhci_hcd: cannot find a urb of seqnum 2 max seqnum 185
+[ 3076.231332][T71125] vhci_hcd: stop threads
+[ 3076.233415][T71125] vhci_hcd: release socket
+[ 3076.236101][T71125] vhci_hcd: disconnect device
+[ 3076.350890][T92923] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3076.379825][T92923] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3076.385951][T92923] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3076.432201][T92923] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3076.446300][T92923] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3076.456062][T92923] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3076.483575][T92923] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3076.490821][T92923] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3076.708685][T92923] vhci_hcd vhci_hcd.0: pdev(1) rhport(0) sockfd(9)
+[ 3076.716289][T92923] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3076.726634][T92923] vhci_hcd vhci_hcd.0: Device attached
+[ 3076.735868][T92957] vhci_hcd: connection closed
+[ 3076.736672][T71125] vhci_hcd: stop threads
+[ 3076.738009][   T29] usb 2-1: 0:2 : does not exist
+[ 3076.740892][T71125] vhci_hcd: release socket
+[ 3076.756660][T71125] vhci_hcd: disconnect device
+[ 3076.788622][   T29] usb 2-1: USB disconnect, device number 70
+[ 3077.181381][T47852] rtl8150 1-1:1.0: couldn't reset the device
+[ 3077.186435][T47852] rtl8150 1-1:1.0: probe with driver rtl8150 failed with error -5
+[ 3078.042890][T48961] vhci_hcd: vhci_device speed not set
+[ 3078.232455][T53001] usb 2-1: new full-speed USB device number 71 using dummy_hcd
+[ 3078.387073][T53001] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3078.393320][T53001] usb 2-1: not running at top speed; connect to a high speed hub
+[ 3078.399177][T53001] usb 2-1: config 5 has an invalid interface number: 226 but max is 0
+[ 3078.403245][T53001] usb 2-1: config 5 has no interface number 0
+[ 3078.405558][T53001] usb 2-1: config 5 interface 226 has no altsetting 0
+[ 3078.412552][T53001] usb 2-1: New USB device found, idVendor=0471, idProduct=0330, bcdDevice= c.d1
+[ 3078.415518][T53001] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3078.419729][T53001] usb 2-1: Product: syz
+[ 3078.422065][T53001] usb 2-1: Manufacturer: syz
+[ 3078.424612][T53001] usb 2-1: SerialNumber: syz
+[ 3078.494709][T91876] usb 1-1: USB disconnect, device number 11
+[ 3078.681992][T93003] vhci_hcd vhci_hcd.0: pdev(2) rhport(0) sockfd(3)
+[ 3078.686473][T93003] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3078.691253][T93003] vhci_hcd vhci_hcd.0: Device attached
+[ 3078.699283][T93004] vhci_hcd: connection closed
+[ 3078.699707][T71125] vhci_hcd: stop threads
+[ 3078.706024][T71125] vhci_hcd: release socket
+[ 3078.708657][T71125] vhci_hcd: disconnect device
+[ 3078.836886][T53001] gspca_main: sonixj-2.14.0 probing 0471:0330
+[ 3078.952587][T11643] usb 1-1: new high-speed USB device number 12 using dummy_hcd
+[ 3079.083115][T69445] usb 36-1: device descriptor read/8, error -110
+[ 3079.110772][T11643] usb 1-1: config index 0 descriptor too short (expected 9, got 0)
+[ 3079.115470][T11643] usb 1-1: can't read configurations, error -22
+[ 3079.242860][T11643] usb 1-1: new high-speed USB device number 13 using dummy_hcd
+[ 3079.395432][T11643] usb 1-1: config index 0 descriptor too short (expected 9, got 0)
+[ 3079.398515][T11643] usb 1-1: can't read configurations, error -22
+[ 3079.402080][T11643] usb usb1-port1: attempt power cycle
+[ 3079.458079][T93016] vhci_hcd vhci_hcd.0: pdev(2) rhport(0) sockfd(3)
+[ 3079.461936][T93016] vhci_hcd vhci_hcd.0: devid(0) speed(5) speed_str(super-speed)
+[ 3079.466520][T93016] vhci_hcd vhci_hcd.0: Device attached
+[ 3079.484538][T69445] usb usb36-port1: attempt power cycle
+[ 3079.742616][T11643] usb 1-1: new high-speed USB device number 14 using dummy_hcd
+[ 3079.752572][T47852] usb 38-1: SetAddress Request (2) to port 0
+[ 3079.756100][T47852] usb 38-1: new SuperSpeed USB device number 2 using vhci_hcd
+[ 3079.766532][T11643] usb 1-1: config index 0 descriptor too short (expected 9, got 0)
+[ 3079.771347][T11643] usb 1-1: can't read configurations, error -22
+[ 3079.862441][T53001] gspca_sonixj: reg_r err -71
+[ 3079.864811][T53001] sonixj 2-1:5.226: probe with driver sonixj failed with error -71
+[ 3079.870755][T53001] usb 2-1: USB disconnect, device number 71
+[ 3079.903245][T11643] usb 1-1: new high-speed USB device number 15 using dummy_hcd
+[ 3079.943826][T11643] usb 1-1: config index 0 descriptor too short (expected 9, got 0)
+[ 3079.950370][T11643] usb 1-1: can't read configurations, error -22
+[ 3079.956451][T11643] usb usb1-port1: unable to enumerate USB device
+[ 3080.063974][T69445] usb usb36-port1: unable to enumerate USB device
+[ 3080.652885][T65467] usb 2-1: new high-speed USB device number 72 using dummy_hcd
+[ 3080.802570][T65467] usb 2-1: Using ep0 maxpacket: 8
+[ 3080.807453][T65467] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3080.813876][T65467] usb 2-1: config 1 has an invalid descriptor of length 0, skipping remainder of the config
+[ 3080.822228][T65467] usb 2-1: config 1 interface 0 altsetting 71 has 0 endpoint descriptors, different from the interface descriptor's value: 2
+[ 3080.829001][T65467] usb 2-1: config 1 interface 0 has no altsetting 0
+[ 3080.837337][T65467] usb 2-1: New USB device found, idVendor=0525, idProduct=a4a1, bcdDevice= 0.40
+[ 3080.842564][T65467] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3080.847701][T65467] usb 2-1: Product: syz
+[ 3080.849720][T65467] usb 2-1: Manufacturer: syz
+[ 3080.851964][T65467] usb 2-1: SerialNumber: syz
+[ 3080.922930][ T1018] vhci_hcd: vhci_device speed not set
+[ 3081.067858][T65467] usb 2-1: bad CDC descriptors
+[ 3081.074776][T65467] usb 2-1: USB disconnect, device number 72
+[ 3081.852715][T53001] usb 2-1: new full-speed USB device number 73 using dummy_hcd
+[ 3082.016326][T53001] usb 2-1: unable to read config index 0 descriptor/start: -61
+[ 3082.019180][T53001] usb 2-1: can't read configurations, error -61
+[ 3082.143800][T53001] usb 2-1: new full-speed USB device number 74 using dummy_hcd
+[ 3082.290668][T93064] vhci_hcd vhci_hcd.0: pdev(0) rhport(0) sockfd(3)
+[ 3082.293810][T93064] vhci_hcd vhci_hcd.0: devid(0) speed(2) speed_str(full-speed)
+[ 3082.299133][T93064] vhci_hcd vhci_hcd.0: Device attached
+[ 3082.307069][T93065] vhci_hcd: cannot find the pending unlink 1
+[ 3082.310192][T53001] usb 2-1: unable to read config index 0 descriptor/start: -61
+[ 3082.311566][T93065] vhci_hcd: connection closed
+[ 3082.316949][T53001] usb 2-1: can't read configurations, error -61
+[ 3082.317328][T53001] usb usb2-port1: attempt power cycle
+[ 3082.328210][T71125] vhci_hcd: stop threads
+[ 3082.329759][T71125] vhci_hcd: release socket
+[ 3082.331346][T71125] vhci_hcd: disconnect device
+[ 3082.478515][T93017] vhci_hcd: connection reset by peer
+[ 3082.483608][T71125] vhci_hcd: stop threads
+[ 3082.490727][T71125] vhci_hcd: release socket
+[ 3082.495867][T71125] vhci_hcd: disconnect device
+[ 3082.672999][T53001] usb 2-1: new full-speed USB device number 75 using dummy_hcd
+[ 3082.697859][T53001] usb 2-1: unable to read config index 0 descriptor/start: -61
+[ 3082.705676][T53001] usb 2-1: can't read configurations, error -61
+[ 3082.852850][T53001] usb 2-1: new full-speed USB device number 76 using dummy_hcd
+[ 3082.881560][T53001] usb 2-1: unable to read config index 0 descriptor/start: -61
+[ 3082.886659][T53001] usb 2-1: can't read configurations, error -61
+[ 3082.890520][T53001] usb usb2-port1: unable to enumerate USB device
+[ 3083.082802][    T9] usb 2-1: new full-speed USB device number 77 using dummy_hcd
+[ 3083.250396][    T9] usb 2-1: unable to read config index 0 descriptor/start: -61
+[ 3083.254220][    T9] usb 2-1: can't read configurations, error -61
+[ 3083.337488][T93076] vhci_hcd vhci_hcd.0: pdev(0) rhport(0) sockfd(5)
+[ 3083.339871][T93076] vhci_hcd vhci_hcd.0: devid(0) speed(2) speed_str(full-speed)
+[ 3083.343521][T93076] vhci_hcd vhci_hcd.0: Device attached
+[ 3083.372213][T93079] vhci_hcd: connection closed
+[ 3083.372943][T71125] vhci_hcd: stop threads
+[ 3083.376740][T71125] vhci_hcd: release socket
+[ 3083.378537][T71125] vhci_hcd: disconnect device
+[ 3083.382635][    T9] usb 2-1: new full-speed USB device number 78 using dummy_hcd
+[ 3083.545967][    T9] usb 2-1: unable to read config index 0 descriptor/start: -61
+[ 3083.549694][    T9] usb 2-1: can't read configurations, error -61
+[ 3083.553493][    T9] usb usb2-port1: attempt power cycle
+[ 3083.902818][    T9] usb 2-1: new full-speed USB device number 79 using dummy_hcd
+[ 3083.927622][    T9] usb 2-1: unable to read config index 0 descriptor/start: -61
+[ 3083.931889][    T9] usb 2-1: can't read configurations, error -61
+[ 3084.062832][    T9] usb 2-1: new full-speed USB device number 80 using dummy_hcd
+[ 3084.097533][    T9] usb 2-1: unable to read config index 0 descriptor/start: -61
+[ 3084.101492][    T9] usb 2-1: can't read configurations, error -61
+[ 3084.105205][    T9] usb usb2-port1: unable to enumerate USB device
+[ 3084.852580][T47852] usb 38-1: device descriptor read/8, error -110
+[ 3084.912669][T48961] usb 1-1: new high-speed USB device number 16 using dummy_hcd
+[ 3085.033666][    T9] usb 2-1: new full-speed USB device number 81 using dummy_hcd
+[ 3085.063658][T48961] usb 1-1: Using ep0 maxpacket: 8
+[ 3085.069406][T48961] usb 1-1: unable to get BOS descriptor or descriptor too short
+[ 3085.074666][T48961] usb 1-1: config 1 interface 0 altsetting 64 bulk endpoint 0x1 has invalid maxpacket 32
+[ 3085.078933][T48961] usb 1-1: config 1 interface 0 altsetting 64 has 2 endpoint descriptors, different from the interface descriptor's value: 1
+[ 3085.086233][T48961] usb 1-1: config 1 interface 0 has no altsetting 0
+[ 3085.093518][T48961] usb 1-1: New USB device found, idVendor=0525, idProduct=a4a8, bcdDevice= 0.40
+[ 3085.097863][T48961] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3085.100936][T48961] usb 1-1: Product: 妩暹꙰볇林˾朸▾曹㹮珗媁챺䪭㯫곊ᓇ众됉䈃䦜穛᩼䖒呉쁌俉㞣흒㙹긲◈薈ꨣ蝃꼅聅㋡뀂퇴￱땸᎔쯼풃缺弅ヰ칂ພ麾⃏훽䱢泂㚝놅ᆿ睑寘몹࿥ᶘ湎흡䄲ꍢ罆䆵X鏓ῃⲎ魖涆昨辀ꑸ掅Ú鈧陦㷘䕾澍ါ⣩웣껕煚檼싧닌ﾒ༷⠀쬯捯썱纀틬겱䈺㸰쭋ធ뫛䈃㛏띅鷰
+[ 3085.120570][T48961] usb 1-1: Manufacturer: 죹惈弟㿈ⷸ榛틦㶩酥陁翔ギ땹⿑尰⎉鄹蛖悕ꢑ멗簍⯠쯢Ḉ枃騌᭿ﻙ㳦좸뻰釚걀䰻纹㋩⯢䎤ףͣ୅鸃襖猷㿰␠㛼澻㖖鸘蓴ᩀ쮊숟ꘆ
+[ 3085.134458][T48961] usb 1-1: SerialNumber: syz
+[ 3085.140454][T93095] raw-gadget.3 gadget.0: fail, usb_ep_enable returned -22
+[ 3085.147535][T93095] raw-gadget.3 gadget.0: fail, usb_ep_enable returned -22
+[ 3085.198182][    T9] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3085.203517][    T9] usb 2-1: not running at top speed; connect to a high speed hub
+[ 3085.210007][    T9] usb 2-1: config 6 has an invalid interface number: 33 but max is 1
+[ 3085.214897][    T9] usb 2-1: config 6 has an invalid interface number: 145 but max is 1
+[ 3085.219521][    T9] usb 2-1: config 6 has no interface number 0
+[ 3085.223556][    T9] usb 2-1: config 6 has no interface number 1
+[ 3085.226778][    T9] usb 2-1: config 6 interface 33 has no altsetting 0
+[ 3085.231155][    T9] usb 2-1: config 6 interface 145 has no altsetting 0
+[ 3085.237700][    T9] usb 2-1: New USB device found, idVendor=04dd, idProduct=8005, bcdDevice=ee.12
+[ 3085.241896][    T9] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3085.250904][    T9] usb 2-1: Product: syz
+[ 3085.253229][    T9] usb 2-1: Manufacturer: syz
+[ 3085.254431][T47852] usb usb38-port1: attempt power cycle
+[ 3085.258678][    T9] usb 2-1: SerialNumber: syz
+[ 3085.369607][T48961] usblp 1-1:1.0: usblp0: USB Unidirectional printer dev 16 if 0 alt 64 proto 1 vid 0x0525 pid 0xA4A8
+[ 3085.388459][T48961] usb 1-1: USB disconnect, device number 16
+[ 3085.402202][T48961] usblp0: removed
+[ 3085.512660][T93094] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3085.553869][T93094] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3085.580666][T93094] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3085.595288][T93094] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3085.623728][    T9] zaurus 2-1:6.33: skipping garbage
+[ 3085.627304][    T9] usb 2-1: bad CDC descriptors
+[ 3085.654583][    T9] hub 2-1:6.145: Invalid hub with more than one config or interface
+[ 3085.674183][    T9] hub 2-1:6.145: probe with driver hub failed with error -22
+[ 3085.694238][    T9] usb 2-1: USB disconnect, device number 81
+[ 3085.844277][T47852] usb usb38-port1: unable to enumerate USB device
+[ 3086.252634][T53001] usb 1-1: new high-speed USB device number 17 using dummy_hcd
+[ 3086.406035][T53001] usb 1-1: config 1 contains an unexpected descriptor of type 0x1, skipping
+[ 3086.413702][T53001] usb 1-1: config 1 has an invalid descriptor of length 1, skipping remainder of the config
+[ 3086.422663][T53001] usb 1-1: config 1 has 1 interface, different from the descriptor's value: 3
+[ 3086.436263][T53001] usb 1-1: New USB device found, idVendor=1d6b, idProduct=0101, bcdDevice= 0.40
+[ 3086.443661][T53001] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3086.448813][T53001] usb 1-1: Product: syz
+[ 3086.451421][T53001] usb 1-1: Manufacturer: syz
+[ 3086.455521][T53001] usb 1-1: SerialNumber: syz
+[ 3086.567155][T93153] vhci_hcd vhci_hcd.0: pdev(3) rhport(0) sockfd(3)
+[ 3086.571149][T93153] vhci_hcd vhci_hcd.0: devid(0) speed(5) speed_str(super-speed)
+[ 3086.575331][T93153] vhci_hcd vhci_hcd.0: Device attached
+[ 3086.852641][T48961] usb 40-1: SetAddress Request (6) to port 0
+[ 3086.855448][T48961] usb 40-1: new SuperSpeed USB device number 6 using vhci_hcd
+[ 3086.859883][T69445] usb 2-1: new high-speed USB device number 82 using dummy_hcd
+[ 3086.879461][T93143] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3086.884829][T93143] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3086.894540][T93143] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3086.899863][T93143] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3086.908791][T93143] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3086.913209][T93143] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3086.935506][T93143] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3086.939404][T93143] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3087.012777][T69445] usb 2-1: Using ep0 maxpacket: 8
+[ 3087.018519][T69445] usb 2-1: config 0 interface 0 altsetting 254 endpoint 0x81 has an invalid bInterval 252, changing to 11
+[ 3087.024848][T69445] usb 2-1: config 0 interface 0 altsetting 254 endpoint 0x81 has invalid wMaxPacketSize 0
+[ 3087.028807][T69445] usb 2-1: config 0 interface 0 altsetting 254 has 1 endpoint descriptor, different from the interface descriptor's value: 2
+[ 3087.034457][T69445] usb 2-1: config 0 interface 0 has no altsetting 0
+[ 3087.038129][T69445] usb 2-1: New USB device found, idVendor=0458, idProduct=501b, bcdDevice=3f.00
+[ 3087.042370][T69445] usb 2-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[ 3087.050625][T69445] usb 2-1: config 0 descriptor??
+[ 3087.156177][T93143] vhci_hcd vhci_hcd.0: pdev(0) rhport(0) sockfd(9)
+[ 3087.160305][T93143] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3087.165150][T93143] vhci_hcd vhci_hcd.0: Device attached
+[ 3087.174304][T93175] vhci_hcd: connection closed
+[ 3087.174676][T71125] vhci_hcd: stop threads
+[ 3087.177342][T53001] usb 1-1: 0:2 : does not exist
+[ 3087.178565][T71125] vhci_hcd: release socket
+[ 3087.181815][T71125] vhci_hcd: disconnect device
+[ 3087.192871][T53001] usb 1-1: USB disconnect, device number 17
+[ 3087.465788][T69445] kye 0003:0458:501B.0160: tablet report size too small, or kye_tablet_rdesc unexpectedly large
+[ 3087.470387][T69445] hid_parser_main: 24 callbacks suppressed
+[ 3087.470400][T69445] kye 0003:0458:501B.0160: unknown main item tag 0x0
+[ 3087.476612][T69445] kye 0003:0458:501B.0160: unknown main item tag 0x0
+[ 3087.479791][T69445] kye 0003:0458:501B.0160: unknown main item tag 0x7
+[ 3087.483760][T69445] kye 0003:0458:501B.0160: unknown main item tag 0x0
+[ 3087.486504][T69445] kye 0003:0458:501B.0160: unknown main item tag 0x0
+[ 3087.489526][T69445] kye 0003:0458:501B.0160: unknown main item tag 0x0
+[ 3087.492269][T69445] kye 0003:0458:501B.0160: unknown main item tag 0x0
+[ 3087.495347][T69445] kye 0003:0458:501B.0160: unknown main item tag 0x0
+[ 3087.498354][T69445] kye 0003:0458:501B.0160: unknown main item tag 0x0
+[ 3087.501328][T69445] kye 0003:0458:501B.0160: unknown main item tag 0x0
+[ 3087.509046][T69445] kye 0003:0458:501B.0160: hidraw0: USB HID v0.00 Device [HID 0458:501b] on usb-dummy_hcd.1-1/input0
+[ 3087.514254][T69445] kye 0003:0458:501B.0160: tablet-enabling feature report not found
+[ 3087.517120][T69445] kye 0003:0458:501B.0160: tablet enabling failed
+[ 3087.677762][T47852] usb 2-1: USB disconnect, device number 82
+[ 3088.092597][ T1018] usb 1-1: new high-speed USB device number 18 using dummy_hcd
+[ 3088.219124][T93216] vhci_hcd vhci_hcd.0: pdev(1) rhport(0) sockfd(3)
+[ 3088.223398][T93216] vhci_hcd vhci_hcd.0: devid(0) speed(2) speed_str(full-speed)
+[ 3088.226830][T93216] vhci_hcd vhci_hcd.0: Device attached
+[ 3088.264941][ T1018] usb 1-1: config 0 interface 0 altsetting 0 endpoint 0x81 has an invalid bInterval 0, changing to 7
+[ 3088.268562][ T1018] usb 1-1: config 0 interface 0 altsetting 0 endpoint 0x81 has invalid wMaxPacketSize 0
+[ 3088.272172][ T1018] usb 1-1: config 0 interface 0 altsetting 0 has 1 endpoint descriptor, different from the interface descriptor's value: 9
+[ 3088.278421][ T1018] usb 1-1: New USB device found, idVendor=1e7d, idProduct=2ced, bcdDevice= 0.00
+[ 3088.284091][ T1018] usb 1-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[ 3088.288437][ T1018] usb 1-1: config 0 descriptor??
+[ 3088.402624][    T9] vhci_hcd: vhci_device speed not set
+[ 3088.462461][    T9] usb 35-1: new low-speed USB device number 37 using vhci_hcd
+[ 3088.474483][T53001] usb 2-1: new high-speed USB device number 83 using dummy_hcd
+[ 3088.632088][T53001] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3088.638446][T53001] usb 2-1: config 1 has an invalid descriptor of length 0, skipping remainder of the config
+[ 3088.644741][T53001] usb 2-1: config 1 has 2 interfaces, different from the descriptor's value: 3
+[ 3088.657446][T53001] usb 2-1: config 1 interface 0 altsetting 0 has 1 endpoint descriptor, different from the interface descriptor's value: 0
+[ 3088.676730][T53001] usb 2-1: config 1 interface 1 altsetting 1 endpoint 0x1 has an invalid bInterval 0, changing to 7
+[ 3088.684390][T53001] usb 2-1: config 1 interface 1 altsetting 1 endpoint 0x1 has invalid wMaxPacketSize 0
+[ 3088.689473][T53001] usb 2-1: config 1 interface 1 has no altsetting 0
+[ 3088.697569][T93211] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3088.702767][T53001] usb 2-1: New USB device found, idVendor=1d6b, idProduct=0101, bcdDevice= 0.40
+[ 3088.708755][T53001] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3088.710442][T93211] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3088.716837][T53001] usb 2-1: Product: syz
+[ 3088.724007][T53001] usb 2-1: Manufacturer: syz
+[ 3088.727247][T53001] usb 2-1: SerialNumber: syz
+[ 3088.734891][ T1018] usbhid 1-1:0.0: can't add hid device: -71
+[ 3088.739072][ T1018] usbhid 1-1:0.0: probe with driver usbhid failed with error -71
+[ 3088.755969][ T1018] usb 1-1: USB disconnect, device number 18
+[ 3088.943551][T93217] vhci_hcd: cannot find a urb of seqnum 217 max seqnum 183
+[ 3088.947915][T71125] vhci_hcd: stop threads
+[ 3088.951931][T71125] vhci_hcd: release socket
+[ 3088.955872][T71125] vhci_hcd: disconnect device
+[ 3089.000390][T93243] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3089.006898][T93243] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3089.015336][T93243] vhci_hcd vhci_hcd.0: pdev(1) rhport(0) sockfd(8)
+[ 3089.019237][T93243] vhci_hcd vhci_hcd.0: devid(0) speed(5) speed_str(super-speed)
+[ 3089.023539][T93243] vhci_hcd vhci_hcd.0: Device attached
+[ 3089.027451][T93246] vhci_hcd: cannot find the pending unlink 512
+[ 3089.030830][T93243] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3089.043520][T93243] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3089.061452][T93243] vhci_hcd vhci_hcd.0: pdev(1) rhport(1) sockfd(11)
+[ 3089.067971][T93243] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3089.076391][T93243] vhci_hcd vhci_hcd.0: Device attached
+[ 3089.082311][T93250] vhci_hcd: cannot find the pending unlink 4294967295
+[ 3089.087795][T93250] usbip_core: unknown command
+[ 3089.090665][T93250] vhci_hcd: unknown pdu 50332927
+[ 3089.093977][T93250] usbip_core: unknown command
+[ 3089.097323][T71125] vhci_hcd: stop threads
+[ 3089.098968][T71125] vhci_hcd: release socket
+[ 3089.101490][T71125] vhci_hcd: disconnect device
+[ 3089.106556][T93246] vhci_hcd: connection closed
+[ 3089.107078][T71125] vhci_hcd: stop threads
+[ 3089.113130][T71125] vhci_hcd: release socket
+[ 3089.116221][T71125] vhci_hcd: disconnect device
+[ 3089.119992][T53001] usb 2-1: 0:2 : does not exist
+[ 3089.129375][T53001] usb 2-1: Quirk or no altset; falling back to MIDI 1.0
+[ 3089.134723][T53001] usb 2-1: MIDIStreaming interface descriptor not found
+[ 3089.176773][T53001] usb 2-1: USB disconnect, device number 83
+[ 3089.573001][T93154] vhci_hcd: connection reset by peer
+[ 3089.578401][T71125] vhci_hcd: stop threads
+[ 3089.583467][T71125] vhci_hcd: release socket
+[ 3089.588103][T71125] vhci_hcd: disconnect device
+[ 3089.972629][ T1018] usb 2-1: new high-speed USB device number 84 using dummy_hcd
+[ 3090.138236][ T1018] usb 2-1: Using ep0 maxpacket: 32
+[ 3090.147007][ T1018] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3090.151796][ T1018] usb 2-1: config 1 has an invalid interface number: 62 but max is 1
+[ 3090.155695][ T1018] usb 2-1: config 1 has an invalid interface number: 4 but max is 1
+[ 3090.160212][ T1018] usb 2-1: config 1 has no interface number 0
+[ 3090.164156][ T1018] usb 2-1: config 1 has no interface number 1
+[ 3090.168705][ T1018] usb 2-1: config 1 interface 4 has no altsetting 0
+[ 3090.178734][ T1018] usb 2-1: string descriptor 0 read error: -22
+[ 3090.181294][ T1018] usb 2-1: New USB device found, idVendor=05d8, idProduct=810a, bcdDevice=92.34
+[ 3090.185633][ T1018] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3090.194335][ T1018] dvb-usb: found a 'Artec T1 USB2.0' in warm state.
+[ 3090.196909][ T1018] dvb-usb: bulk message failed: -22 (3/0)
+[ 3090.202884][ T1018] dvb-usb: will pass the complete MPEG2 transport stream to the software demuxer.
+[ 3090.207878][ T1018] dvbdev: DVB: registering new adapter (Artec T1 USB2.0)
+[ 3090.211797][ T1018] usb 2-1: media controller created
+[ 3090.225228][ T1018] dvbdev: dvb_create_media_entity: media entity 'dvb-demux' registered.
+[ 3090.241306][ T1018] dvb-usb: bulk message failed: -22 (6/0)
+[ 3090.244582][ T1018] dvb-usb: no frontend was attached by 'Artec T1 USB2.0'
+[ 3090.251166][ T1018] input: IR-receiver inside an USB DVB receiver as /devices/platform/dummy_hcd.1/usb2/2-1/input/input69
+[ 3090.258834][ T1018] dvb-usb: schedule remote query interval to 150 msecs.
+[ 3090.261660][ T1018] dvb-usb: Artec T1 USB2.0 successfully initialized and connected.
+[ 3090.274421][ T1018] dvb-usb: found a 'Artec T1 USB2.0' in warm state.
+[ 3090.277883][ T1018] dvb-usb: bulk message failed: -22 (3/0)
+[ 3090.283852][ T1018] dvb-usb: will pass the complete MPEG2 transport stream to the software demuxer.
+[ 3090.290613][ T1018] dvbdev: DVB: registering new adapter (Artec T1 USB2.0)
+[ 3090.303023][ T1018] usb 2-1: media controller created
+[ 3090.318464][ T1018] dvbdev: dvb_create_media_entity: media entity 'dvb-demux' registered.
+[ 3090.332789][ T1018] dvb-usb: bulk message failed: -22 (6/0)
+[ 3090.336090][ T1018] dvb-usb: no frontend was attached by 'Artec T1 USB2.0'
+[ 3090.343231][ T1018] input: IR-receiver inside an USB DVB receiver as /devices/platform/dummy_hcd.1/usb2/2-1/input/input70
+[ 3090.351132][ T1018] dvb-usb: schedule remote query interval to 150 msecs.
+[ 3090.355437][ T1018] dvb-usb: Artec T1 USB2.0 successfully initialized and connected.
+[ 3090.422811][ T1018] dvb-usb: bulk message failed: -22 (1/0)
+[ 3090.425709][ T1018] dvb-usb: error while querying for an remote control event.
+[ 3090.464287][T93298] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3090.469528][T93298] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3090.476684][T91876] usb 2-1: USB disconnect, device number 84
+[ 3090.507026][T91876] dvb-usb: Artec T1 USB2.0 successfully deinitialized and disconnected.
+[ 3090.513563][ T1018] dvb-usb: bulk message failed: -22 (1/0)
+[ 3090.513592][ T1018] dvb-usb: error while querying for an remote control event.
+[ 3090.559559][T91876] dvb-usb: Artec T1 USB2.0 successfully deinitialized and disconnected.
+[ 3090.682523][T53001] usb 1-1: new high-speed USB device number 19 using dummy_hcd
+[ 3090.832600][T53001] usb 1-1: Using ep0 maxpacket: 8
+[ 3090.844598][T53001] usb 1-1: config 248 has an invalid interface number: 103 but max is 0
+[ 3090.850042][T53001] usb 1-1: config 248 has an invalid interface descriptor of length 2, skipping
+[ 3090.855963][T53001] usb 1-1: config 248 has no interface number 0
+[ 3090.859783][T53001] usb 1-1: config 248 interface 103 altsetting 1 endpoint 0x5 has invalid maxpacket 1024, setting to 64
+[ 3090.868228][T53001] usb 1-1: config 248 interface 103 altsetting 1 has 1 endpoint descriptor, different from the interface descriptor's value: 2
+[ 3090.875384][T53001] usb 1-1: config 248 interface 103 has no altsetting 0
+[ 3090.887052][T53001] usb 1-1: New USB device found, idVendor=0fe9, idProduct=db54, bcdDevice=75.3a
+[ 3090.890342][T53001] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3090.894595][T53001] usb 1-1: Product: syz
+[ 3090.896705][T53001] usb 1-1: Manufacturer: syz
+[ 3090.899010][T53001] usb 1-1: SerialNumber: syz
+[ 3091.122183][T53001] dvb-usb: found a 'DigitalNow DVB-T Dual USB' in cold state, will try to load a firmware
+[ 3091.130250][T53001] dvb-usb: downloading firmware from file 'dvb-usb-bluebird-01.fw'
+[ 3091.134563][T53001] dvb-usb: could not stop the USB controller CPU.
+[ 3091.137517][T53001] dvb-usb: error while transferring firmware (transferred size: -71, block size: 10)
+[ 3091.141590][T53001] dvb-usb: firmware download failed at 15 with -22
+[ 3091.146552][T53001] dvb_usb_cxusb 1-1:248.103: probe with driver dvb_usb_cxusb failed with error -22
+[ 3091.158085][T53001] usb 1-1: USB disconnect, device number 19
+[ 3091.789969][T93370] FAULT_INJECTION: forcing a failure.
+[ 3091.789969][T93370] name fail_page_alloc, interval 1, probability 0, space 0, times 0
+[ 3091.806713][T93370] CPU: 0 UID: 0 PID: 93370 Comm: syz.1.7994 Not tainted 6.18.0 #1 PREEMPT(full) 
+[ 3091.806740][T93370] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[ 3091.806752][T93370] Call Trace:
+[ 3091.806760][T93370]  <TASK>
+[ 3091.806768][T93370]  dump_stack_lvl+0x180/0x1b0
+[ 3091.806895][T93370]  should_fail_ex+0x520/0x650
+[ 3091.806920][T93370]  should_fail_alloc_page+0xe9/0x140
+[ 3091.806949][T93370]  prepare_alloc_pages+0x3b9/0x610
+[ 3091.806975][T93370]  ? rcu_is_watching+0x12/0xc0
+[ 3091.806993][T93370]  __alloc_frozen_pages_noprof+0x186/0x2140
+[ 3091.807010][T93370]  ? mon_bin_ioctl+0x469/0xcc0
+[ 3091.807021][T93370]  ? kasan_save_stack+0x34/0x50
+[ 3091.807034][T93370]  ? kasan_save_stack+0x24/0x50
+[ 3091.807046][T93370]  ? kasan_save_track+0x14/0x30
+[ 3091.807059][T93370]  ? __kasan_kmalloc+0xaa/0xb0
+[ 3091.807071][T93370]  ? __kmalloc_noprof+0x32c/0x8c0
+[ 3091.807081][T93370]  ? mon_bin_ioctl+0x469/0xcc0
+[ 3091.807090][T93370]  ? __x64_sys_ioctl+0x18f/0x210
+[ 3091.807100][T93370]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[ 3091.807115][T93370]  ? lockdep_hardirqs_on+0x7c/0x110
+[ 3091.807134][T93370]  ? __lock_acquire+0xb62/0x1be0
+[ 3091.807152][T93370]  ? __sanitizer_cov_trace_switch+0x54/0x90
+[ 3091.807166][T93370]  ? policy_nodemask+0xeb/0x4d0
+[ 3091.807184][T93370]  alloc_pages_mpol+0x1f1/0x550
+[ 3091.807200][T93370]  ? __pfx_alloc_pages_mpol+0x10/0x10
+[ 3091.807219][T93370]  alloc_pages_noprof+0x12d/0x390
+[ 3091.807235][T93370]  get_zeroed_page_noprof+0x18/0xb0
+[ 3091.807250][T93370]  mon_alloc_buff+0xce/0x1c0
+[ 3091.807271][T93370]  mon_bin_ioctl+0x487/0xcc0
+[ 3091.807326][T93370]  ? hook_file_ioctl_common+0x146/0x3f0
+[ 3091.807351][T93370]  ? __pfx_mon_bin_ioctl+0x10/0x10
+[ 3091.807370][T93370]  ? __fget_files+0x1fb/0x3b0
+[ 3091.807392][T93370]  ? __pfx_mon_bin_ioctl+0x10/0x10
+[ 3091.807410][T93370]  __x64_sys_ioctl+0x18f/0x210
+[ 3091.807432][T93370]  do_syscall_64+0xcb/0xfa0
+[ 3091.807460][T93370]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[ 3091.807478][T93370] RIP: 0033:0x7f70139b359d
+[ 3091.807495][T93370] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[ 3091.807512][T93370] RSP: 002b:00007f701485ff98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[ 3091.807531][T93370] RAX: ffffffffffffffda RBX: 00007f7013c45fa0 RCX: 00007f70139b359d
+[ 3091.807543][T93370] RDX: 000000000003be1d RSI: 0000000000009204 RDI: 0000000000000003
+[ 3091.807554][T93370] RBP: 00007f7014860010 R08: 0000000000000000 R09: 0000000000000000
+[ 3091.807565][T93370] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000002
+[ 3091.807576][T93370] R13: 00007f7013c46038 R14: 00007f7013c45fa0 R15: 00007f7014840000
+[ 3091.807603][T93370]  </TASK>
+[ 3091.985845][T48961] usb 40-1: device descriptor read/8, error -110
+[ 3092.113592][T91876] usb 1-1: new high-speed USB device number 20 using dummy_hcd
+[ 3092.313227][T91876] usb 1-1: config 0 interface 0 altsetting 0 endpoint 0x81 has an invalid bInterval 253, changing to 11
+[ 3092.329184][T91876] usb 1-1: config 0 interface 0 altsetting 0 endpoint 0x81 has invalid wMaxPacketSize 0
+[ 3092.340434][T91876] usb 1-1: config 0 interface 0 altsetting 0 has 1 endpoint descriptor, different from the interface descriptor's value: 9
+[ 3092.354745][T93380] FAULT_INJECTION: forcing a failure.
+[ 3092.354745][T93380] name failslab, interval 1, probability 0, space 0, times 0
+[ 3092.354782][T93380] CPU: 1 UID: 0 PID: 93380 Comm: syz.1.7996 Not tainted 6.18.0 #1 PREEMPT(full) 
+[ 3092.354805][T93380] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[ 3092.354820][T93380] Call Trace:
+[ 3092.354828][T93380]  <TASK>
+[ 3092.354836][T93380]  dump_stack_lvl+0x180/0x1b0
+[ 3092.354874][T93380]  should_fail_ex+0x520/0x650
+[ 3092.354902][T93380]  ? tomoyo_realpath_from_path+0xc3/0x600
+[ 3092.354931][T93380]  should_failslab+0xc2/0x120
+[ 3092.354963][T93380]  __kmalloc_noprof+0xdc/0x8c0
+[ 3092.354985][T93380]  ? kfree+0x3b1/0x6c0
+[ 3092.355012][T93380]  ? tomoyo_realpath_from_path+0xc3/0x600
+[ 3092.355037][T93380]  tomoyo_realpath_from_path+0xc3/0x600
+[ 3092.355064][T93380]  ? tomoyo_profile+0x46/0x60
+[ 3092.355095][T93380]  tomoyo_path_number_perm+0x221/0x550
+[ 3092.355173][T93380]  ? tomoyo_path_number_perm+0x213/0x550
+[ 3092.355198][T93380]  ? __pfx_tomoyo_path_number_perm+0x10/0x10
+[ 3092.355221][T93380]  ? proc_fail_nth_write+0x97/0x220
+[ 3092.355272][T93380]  ? hook_file_ioctl_common+0x146/0x3f0
+[ 3092.355295][T93380]  ? __fget_files+0x1f1/0x3b0
+[ 3092.355320][T93380]  ? __fget_files+0x1fb/0x3b0
+[ 3092.355337][T93380]  security_file_ioctl+0x9f/0x260
+[ 3092.355359][T93380]  __x64_sys_ioctl+0xb7/0x210
+[ 3092.355373][T93380]  do_syscall_64+0xcb/0xfa0
+[ 3092.355394][T93380]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[ 3092.355407][T93380] RIP: 0033:0x7f70139b359d
+[ 3092.355419][T93380] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[ 3092.355434][T93380] RSP: 002b:00007f701485ff98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[ 3092.355452][T93380] RAX: ffffffffffffffda RBX: 00007f7013c45fa0 RCX: 00007f70139b359d
+[ 3092.355496][T93380] RDX: 0000200000000180 RSI: 0000000080045519 RDI: 0000000000000003
+[ 3092.355505][T93380] RBP: 00007f7014860010 R08: 0000000000000000 R09: 0000000000000000
+[ 3092.355512][T93380] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+[ 3092.355520][T93380] R13: 00007f7013c46038 R14: 00007f7013c45fa0 R15: 00007f7014840000
+[ 3092.355538][T93380]  </TASK>
+[ 3092.355545][T93380] ERROR: Out of memory at tomoyo_realpath_from_path.
+[ 3092.393681][T48961] usb usb40-port1: attempt power cycle
+[ 3092.394334][T91876] usb 1-1: New USB device found, idVendor=045e, idProduct=009d, bcdDevice= 0.00
+[ 3092.520663][T91876] usb 1-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[ 3092.528617][T91876] usb 1-1: config 0 descriptor??
+[ 3092.909013][T93382] vhci_hcd vhci_hcd.0: pdev(1) rhport(0) sockfd(5)
+[ 3092.912207][T93382] vhci_hcd vhci_hcd.0: devid(0) speed(2) speed_str(full-speed)
+[ 3092.916919][T93382] vhci_hcd vhci_hcd.0: Device attached
+[ 3092.947985][T93372] vhci_hcd vhci_hcd.0: pdev(0) rhport(0) sockfd(5)
+[ 3092.951188][T93372] vhci_hcd vhci_hcd.0: devid(0) speed(3) speed_str(high-speed)
+[ 3092.955429][T48961] usb usb40-port1: unable to enumerate USB device
+[ 3092.957023][T93372] vhci_hcd vhci_hcd.0: Device attached
+[ 3092.964972][T93395] vhci_hcd: connection closed
+[ 3092.966955][T71125] vhci_hcd: stop threads
+[ 3092.976575][T91876] hid_parser_main: 24 callbacks suppressed
+[ 3092.976590][T91876] microsoft 0003:045E:009D.0161: unknown main item tag 0x0
+[ 3092.976620][T71125] vhci_hcd: release socket
+[ 3092.982766][T91876] microsoft 0003:045E:009D.0161: unknown main item tag 0x0
+[ 3092.987577][T71125] vhci_hcd: disconnect device
+[ 3092.989625][T91876] microsoft 0003:045E:009D.0161: unknown main item tag 0x0
+[ 3093.005240][T91876] microsoft 0003:045E:009D.0161: unknown main item tag 0x0
+[ 3093.009577][T91876] microsoft 0003:045E:009D.0161: unknown main item tag 0x0
+[ 3093.014669][T91876] microsoft 0003:045E:009D.0161: unknown main item tag 0x0
+[ 3093.018384][T91876] microsoft 0003:045E:009D.0161: unknown main item tag 0x0
+[ 3093.022827][T91876] microsoft 0003:045E:009D.0161: unknown main item tag 0x0
+[ 3093.027658][T91876] microsoft 0003:045E:009D.0161: unknown main item tag 0x0
+[ 3093.031902][T91876] microsoft 0003:045E:009D.0161: unknown main item tag 0x0
+[ 3093.041394][T91876] microsoft 0003:045E:009D.0161: hidraw0: USB HID v0.00 Device [HID 045e:009d] on usb-dummy_hcd.0-1/input0
+[ 3093.048267][T91876] microsoft 0003:045E:009D.0161: no inputs found
+[ 3093.051258][T91876] microsoft 0003:045E:009D.0161: could not initialize ff, continuing anyway
+[ 3093.222481][ T1018] usb 33-1: new high-speed USB device number 48 using vhci_hcd
+[ 3093.320371][T53001] usb 1-1: USB disconnect, device number 20
+[ 3093.320487][T93397] vhci_hcd: connection reset by peer
+[ 3093.320761][T71125] vhci_hcd: stop threads
+[ 3093.320780][T71125] vhci_hcd: release socket
+[ 3093.320852][T71125] vhci_hcd: disconnect device
+[ 3093.563374][    T9] vhci_hcd: vhci_device speed not set
+[ 3093.783003][T91876] usb 2-1: new high-speed USB device number 85 using dummy_hcd
+[ 3093.945223][T91876] usb 2-1: config 1 contains an unexpected descriptor of type 0x1, skipping
+[ 3093.948666][T91876] usb 2-1: config 1 has an invalid descriptor of length 1, skipping remainder of the config
+[ 3093.954052][T91876] usb 2-1: config 1 has 1 interface, different from the descriptor's value: 3
+[ 3093.962090][T91876] usb 2-1: New USB device found, idVendor=1d6b, idProduct=0101, bcdDevice= 0.40
+[ 3093.965837][T91876] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3093.968869][T91876] usb 2-1: Product: syz
+[ 3093.970423][T91876] usb 2-1: Manufacturer: syz
+[ 3093.972104][T91876] usb 2-1: SerialNumber: syz
+[ 3094.584987][T91876] usb 2-1: 0:2 : does not exist
+[ 3094.786705][T93419] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3094.790057][T93419] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3094.805898][T48961] usb 2-1: USB disconnect, device number 85
+[ 3095.062693][T69445] usb 1-1: new high-speed USB device number 21 using dummy_hcd
+[ 3095.222834][T48961] usb 2-1: new high-speed USB device number 86 using dummy_hcd
+[ 3095.232069][T69445] usb 1-1: unable to get BOS descriptor or descriptor too short
+[ 3095.237771][T69445] usb 1-1: config 3 has an invalid interface number: 72 but max is 0
+[ 3095.241585][T69445] usb 1-1: config 3 has no interface number 0
+[ 3095.248855][T69445] usb 1-1: New USB device found, idVendor=9022, idProduct=d650, bcdDevice=62.a9
+[ 3095.254251][T69445] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3095.258874][T69445] usb 1-1: Product: syz
+[ 3095.261308][T69445] usb 1-1: Manufacturer: syz
+[ 3095.263833][T69445] usb 1-1: SerialNumber: syz
+[ 3095.372672][T48961] usb 2-1: Using ep0 maxpacket: 8
+[ 3095.378551][T48961] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3095.385035][T48961] usb 2-1: config 0 has an invalid interface number: 1 but max is 0
+[ 3095.390426][T48961] usb 2-1: config 0 has no interface number 0
+[ 3095.394159][T48961] usb 2-1: config 0 interface 1 has no altsetting 0
+[ 3095.401404][T48961] usb 2-1: New USB device found, idVendor=12d1, idProduct=67e5, bcdDevice=43.22
+[ 3095.408853][T48961] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3095.414771][T48961] usb 2-1: Product: syz
+[ 3095.417565][T48961] usb 2-1: Manufacturer: syz
+[ 3095.419729][T48961] usb 2-1: SerialNumber: syz
+[ 3095.425850][T48961] usb 2-1: config 0 descriptor??
+[ 3095.477989][T93450] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3095.482256][T93473] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3095.483548][T93450] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3095.492306][T93473] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3095.496750][T93450] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3095.499934][T93473] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3095.500477][T93450] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3095.506360][T93473] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3095.678200][T48961] option 2-1:0.1: GSM modem (1-port) converter detected
+[ 3095.705809][T48961] usb 2-1: USB disconnect, device number 86
+[ 3095.722729][T48961] option 2-1:0.1: device disconnected
+[ 3095.931156][T69445] dvb-usb: found a 'TeVii S650 USB2.0' in cold state, will try to load a firmware
+[ 3095.949836][T69445] dvb-usb: downloading firmware from file 'dvb-usb-dw2104.fw'
+[ 3095.965801][T69445] dw2102: start downloading DW210X firmware
+[ 3095.979646][T69445] dw2102: error while transferring firmware
+[ 3095.984365][T69445] dw2102: could not restart the USB controller CPU.
+[ 3095.988024][T69445] dw2102: could not restart the USB controller CPU.
+[ 3096.105844][T69445] usb 1-1: USB disconnect, device number 21
+[ 3097.793634][T93511] usb usb4: usbfs: process 93511 (syz.3.8009) did not claim interface 7 before use
+[ 3097.909725][T93522] vhci_hcd vhci_hcd.0: pdev(3) rhport(0) sockfd(4)
+[ 3097.913341][T93522] vhci_hcd vhci_hcd.0: devid(0) speed(3) speed_str(high-speed)
+[ 3097.918464][T93522] vhci_hcd vhci_hcd.0: Device attached
+[ 3098.162807][    T9] usb 39-1: new high-speed USB device number 7 using vhci_hcd
+[ 3098.352935][ T1018] vhci_hcd: vhci_device speed not set
+[ 3099.324576][ T1402] ieee802154 phy0 wpan0: encryption failed: -22
+[ 3099.326796][ T1402] ieee802154 phy1 wpan1: encryption failed: -22
+[ 3100.826399][T93523] vhci_hcd: connection reset by peer
+[ 3100.831093][T71125] vhci_hcd: stop threads
+[ 3100.836688][T71125] vhci_hcd: release socket
+[ 3100.842227][T71125] vhci_hcd: disconnect device
+[ 3101.132762][T69445] usb 2-1: new high-speed USB device number 87 using dummy_hcd
+[ 3101.136874][T48961] usb 1-1: new full-speed USB device number 22 using dummy_hcd
+[ 3101.289290][T48961] usb 1-1: unable to get BOS descriptor or descriptor too short
+[ 3101.296343][T69445] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3101.302021][T48961] usb 1-1: not running at top speed; connect to a high speed hub
+[ 3101.318690][T69445] usb 2-1: config 1 has an invalid descriptor of length 0, skipping remainder of the config
+[ 3101.324573][T69445] usb 2-1: config 1 interface 0 altsetting 0 has 1 endpoint descriptor, different from the interface descriptor's value: 0
+[ 3101.331662][T69445] usb 2-1: config 1 interface 1 altsetting 1 endpoint 0x1 has an invalid bInterval 128, changing to 7
+[ 3101.338700][T69445] usb 2-1: config 1 interface 2 altsetting 1 endpoint 0x82 has invalid wMaxPacketSize 0
+[ 3101.344691][T69445] usb 2-1: config 1 interface 1 has no altsetting 0
+[ 3101.348755][T48961] usb 1-1: config 1 interface 0 has no altsetting 0
+[ 3101.355129][T48961] usb 1-1: language id specifier not provided by device, defaulting to English
+[ 3101.362055][T69445] usb 2-1: New USB device found, idVendor=1d6b, idProduct=0101, bcdDevice= 0.40
+[ 3101.369923][T69445] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3101.374536][T69445] usb 2-1: Product: syz
+[ 3101.376691][T69445] usb 2-1: Manufacturer: syz
+[ 3101.379598][T69445] usb 2-1: SerialNumber: syz
+[ 3101.384506][T48961] usb 1-1: New USB device found, idVendor=056a, idProduct=00c2, bcdDevice= 0.40
+[ 3101.389632][T48961] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3101.394364][T48961] usb 1-1: Manufacturer: 
+[ 3101.398183][T48961] usb 1-1: SerialNumber: syz
+[ 3101.608194][T93537] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3101.616705][T93546] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3101.619201][T93537] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3101.624869][T93546] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3101.636100][T93537] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3101.651177][T93537] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3101.698034][T48961] usbhid 1-1:1.0: can't add hid device: -71
+[ 3101.702404][T48961] usbhid 1-1:1.0: probe with driver usbhid failed with error -71
+[ 3101.717884][T48961] usb 1-1: USB disconnect, device number 22
+[ 3101.763577][T69445] usb 2-1: USB disconnect, device number 87
+[ 3102.462896][T53602] usb 2-1: new high-speed USB device number 88 using dummy_hcd
+[ 3102.522956][T37290] usb 1-1: new high-speed USB device number 23 using dummy_hcd
+[ 3102.612560][T53602] usb 2-1: Using ep0 maxpacket: 8
+[ 3102.617858][T53602] usb 2-1: config 248 has an invalid interface number: 103 but max is 0
+[ 3102.622754][T53602] usb 2-1: config 248 has an invalid interface descriptor of length 2, skipping
+[ 3102.627531][T53602] usb 2-1: config 248 has no interface number 0
+[ 3102.630105][T53602] usb 2-1: config 248 interface 103 altsetting 1 endpoint 0x5 has invalid maxpacket 1024, setting to 64
+[ 3102.634720][T53602] usb 2-1: config 248 interface 103 altsetting 1 has 1 endpoint descriptor, different from the interface descriptor's value: 2
+[ 3102.638930][T53602] usb 2-1: config 248 interface 103 has no altsetting 0
+[ 3102.646150][T53602] usb 2-1: New USB device found, idVendor=0fe9, idProduct=db54, bcdDevice=75.3a
+[ 3102.649230][T53602] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3102.652231][T53602] usb 2-1: Product: syz
+[ 3102.654088][T53602] usb 2-1: Manufacturer: syz
+[ 3102.656636][T53602] usb 2-1: SerialNumber: syz
+[ 3102.685733][T37290] usb 1-1: config 1 has an invalid descriptor of length 9, skipping remainder of the config
+[ 3102.689584][T37290] usb 1-1: config 1 interface 0 altsetting 0 has 2 endpoint descriptors, different from the interface descriptor's value: 3
+[ 3102.700135][T37290] usb 1-1: New USB device found, idVendor=0424, idProduct=7850, bcdDevice= 0.00
+[ 3102.704200][T37290] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3102.708831][T37290] usb 1-1: Product: syz
+[ 3102.710845][T37290] usb 1-1: Manufacturer: syz
+[ 3102.713143][T37290] usb 1-1: SerialNumber: syz
+[ 3102.872032][T53602] dvb-usb: found a 'DigitalNow DVB-T Dual USB' in cold state, will try to load a firmware
+[ 3102.879717][T53602] dvb-usb: downloading firmware from file 'dvb-usb-bluebird-01.fw'
+[ 3102.885063][T53602] dvb-usb: could not stop the USB controller CPU.
+[ 3102.888615][T53602] dvb-usb: error while transferring firmware (transferred size: -71, block size: 10)
+[ 3102.893761][T53602] dvb-usb: firmware download failed at 15 with -22
+[ 3102.897924][T53602] dvb_usb_cxusb 2-1:248.103: probe with driver dvb_usb_cxusb failed with error -22
+[ 3102.908415][T53602] usb 2-1: USB disconnect, device number 88
+[ 3102.921841][T93608] vhci_hcd: Failed attach request for unsupported USB speed: UNKNOWN
+[ 3102.928506][T93608] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3102.931885][T93608] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3102.937641][T93608] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3102.941199][T93608] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3102.947464][T69445] usb 1-1: USB disconnect, device number 23
+[ 3103.312562][    T9] vhci_hcd: vhci_device speed not set
+[ 3103.672550][T11643] usb 2-1: new high-speed USB device number 89 using dummy_hcd
+[ 3103.763433][T93643] vhci_hcd vhci_hcd.0: pdev(0) rhport(0) sockfd(6)
+[ 3103.766931][T93643] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3103.774114][T93643] vhci_hcd vhci_hcd.0: Device attached
+[ 3103.780410][T93643] vhci_hcd vhci_hcd.0: pdev(0) rhport(1) sockfd(8)
+[ 3103.783708][T93643] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3103.791718][T93643] vhci_hcd vhci_hcd.0: Device attached
+[ 3103.800173][T93643] vhci_hcd vhci_hcd.0: pdev(0) rhport(2) sockfd(10)
+[ 3103.803067][T93643] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3103.807904][T93643] vhci_hcd vhci_hcd.0: Device attached
+[ 3103.814255][T93643] vhci_hcd vhci_hcd.0: pdev(0) rhport(3) sockfd(12)
+[ 3103.818964][T93643] vhci_hcd vhci_hcd.0: devid(0) speed(3) speed_str(high-speed)
+[ 3103.823066][T93643] vhci_hcd vhci_hcd.0: Device attached
+[ 3103.850043][T11643] usb 2-1: config 0 interface 0 altsetting 0 endpoint 0x81 has an invalid bInterval 0, changing to 7
+[ 3103.855754][T11643] usb 2-1: config 0 interface 0 altsetting 0 endpoint 0x81 has invalid wMaxPacketSize 0
+[ 3103.861315][T11643] usb 2-1: config 0 interface 0 altsetting 0 has 1 endpoint descriptor, different from the interface descriptor's value: 9
+[ 3103.871337][T11643] usb 2-1: New USB device found, idVendor=1e7d, idProduct=2ced, bcdDevice= 0.00
+[ 3103.877685][T11643] usb 2-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[ 3103.894385][T11643] usb 2-1: config 0 descriptor??
+[ 3104.012753][T69445] usb 33-1: new low-speed USB device number 49 using vhci_hcd
+[ 3104.057863][T93662] vhci_hcd vhci_hcd.0: pdev(3) rhport(0) sockfd(4)
+[ 3104.062749][T93662] vhci_hcd vhci_hcd.0: devid(0) speed(5) speed_str(super-speed)
+[ 3104.072278][T93662] vhci_hcd vhci_hcd.0: Device attached
+[ 3104.080018][T93663] vhci_hcd: connection closed
+[ 3104.080609][T71125] vhci_hcd: stop threads
+[ 3104.089636][T71125] vhci_hcd: release socket
+[ 3104.103179][T71125] vhci_hcd: disconnect device
+[ 3104.108457][T93636] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3104.118848][T93636] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3104.345729][T93651] vhci_hcd: connection closed
+[ 3104.345828][T93649] vhci_hcd: connection closed
+[ 3104.345958][T93647] vhci_hcd: connection closed
+[ 3104.346057][T93645] vhci_hcd: connection reset by peer
+[ 3104.346381][T71125] vhci_hcd: stop threads
+[ 3104.346397][T71125] vhci_hcd: release socket
+[ 3104.346461][T71125] vhci_hcd: disconnect device
+[ 3104.346623][T71125] vhci_hcd: stop threads
+[ 3104.346631][T71125] vhci_hcd: release socket
+[ 3104.346684][T71125] vhci_hcd: disconnect device
+[ 3104.350780][T71125] vhci_hcd: stop threads
+[ 3104.374668][T71125] vhci_hcd: release socket
+[ 3104.377299][T71125] vhci_hcd: disconnect device
+[ 3104.380208][T71125] vhci_hcd: stop threads
+[ 3104.382745][T71125] vhci_hcd: release socket
+[ 3104.384815][T71125] vhci_hcd: disconnect device
+[ 3104.523556][T11643] hid_parser_main: 8 callbacks suppressed
+[ 3104.523572][T11643] kone 0003:1E7D:2CED.0162: unknown main item tag 0x3
+[ 3104.531254][T11643] kone 0003:1E7D:2CED.0162: unknown main item tag 0x1
+[ 3104.535610][T11643] kone 0003:1E7D:2CED.0162: unknown main item tag 0x2
+[ 3104.539751][T11643] kone 0003:1E7D:2CED.0162: item fetching failed at offset 29/41
+[ 3104.545804][T11643] kone 0003:1E7D:2CED.0162: parse failed
+[ 3104.548278][T11643] kone 0003:1E7D:2CED.0162: probe with driver kone failed with error -22
+[ 3104.726603][   T29] usb 2-1: USB disconnect, device number 89
+[ 3105.544104][    T9] usb 1-1: new high-speed USB device number 24 using dummy_hcd
+[ 3105.662523][T53602] usb 2-1: new high-speed USB device number 90 using dummy_hcd
+[ 3105.714220][    T9] usb 1-1: config 1 has an invalid descriptor of length 9, skipping remainder of the config
+[ 3105.721467][    T9] usb 1-1: config 1 interface 0 altsetting 0 has 2 endpoint descriptors, different from the interface descriptor's value: 3
+[ 3105.777479][    T9] usb 1-1: New USB device found, idVendor=0424, idProduct=7850, bcdDevice= 0.00
+[ 3105.792187][    T9] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3105.799835][    T9] usb 1-1: Product: syz
+[ 3105.804099][    T9] usb 1-1: Manufacturer: syz
+[ 3105.808710][    T9] usb 1-1: SerialNumber: syz
+[ 3105.858676][T53602] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3105.870874][T53602] usb 2-1: config 82 has an invalid interface number: 92 but max is 0
+[ 3105.878427][T53602] usb 2-1: config 82 has no interface number 0
+[ 3105.899839][T53602] usb 2-1: New USB device found, idVendor=a168, idProduct=0613, bcdDevice=2d.f2
+[ 3105.907910][T53602] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3105.926367][T53602] usb 2-1: Product: syz
+[ 3105.928796][T53602] usb 2-1: Manufacturer: syz
+[ 3105.935852][T53602] usb 2-1: SerialNumber: syz
+[ 3106.060370][T93701] vhci_hcd: Failed attach request for unsupported USB speed: UNKNOWN
+[ 3106.074109][T93701] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3106.090862][T93701] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3106.110754][T93701] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3106.128627][T93701] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3106.166617][T53602] gspca_main: gspca_sn9c20x-2.14.0 probing a168:0613
+[ 3106.176654][T53602] gspca_sn9c20x: Write register 1000 failed -71
+[ 3106.182297][T53602] gspca_sn9c20x: Device initialization failed
+[ 3106.227603][T53602] gspca_sn9c20x 2-1:82.92: probe with driver gspca_sn9c20x failed with error -71
+[ 3106.264753][T53602] usb 2-1: USB disconnect, device number 90
+[ 3106.411098][T93701] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3106.417788][T93701] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3106.435399][T37290] usb 1-1: USB disconnect, device number 24
+[ 3107.273437][T53602] usb 1-1: new high-speed USB device number 25 using dummy_hcd
+[ 3107.343499][   T29] usb 2-1: new high-speed USB device number 91 using dummy_hcd
+[ 3107.452700][T53602] usb 1-1: Using ep0 maxpacket: 8
+[ 3107.468400][T53602] usb 1-1: unable to get BOS descriptor or descriptor too short
+[ 3107.489686][T53602] usb 1-1: config 0 has an invalid interface number: 1 but max is 0
+[ 3107.498184][T53602] usb 1-1: config 0 has no interface number 0
+[ 3107.502444][   T29] usb 2-1: Using ep0 maxpacket: 16
+[ 3107.505196][T53602] usb 1-1: config 0 interface 1 has no altsetting 0
+[ 3107.528765][   T29] usb 2-1: config 0 interface 0 altsetting 0 endpoint 0x81 has an invalid bInterval 0, changing to 7
+[ 3107.537143][T53602] usb 1-1: New USB device found, idVendor=12d1, idProduct=67e5, bcdDevice=43.22
+[ 3107.537180][T53602] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3107.537201][T53602] usb 1-1: Product: syz
+[ 3107.537219][T53602] usb 1-1: Manufacturer: syz
+[ 3107.537236][T53602] usb 1-1: SerialNumber: syz
+[ 3107.549460][   T29] usb 2-1: config 0 interface 0 altsetting 0 endpoint 0x81 has invalid wMaxPacketSize 0
+[ 3107.559495][T53602] usb 1-1: config 0 descriptor??
+[ 3107.560583][   T29] usb 2-1: config 0 interface 0 altsetting 0 has 1 endpoint descriptor, different from the interface descriptor's value: 9
+[ 3107.594423][   T29] usb 2-1: New USB device found, idVendor=045e, idProduct=07da, bcdDevice= 0.00
+[ 3107.600831][   T29] usb 2-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[ 3107.608644][   T29] usb 2-1: config 0 descriptor??
+[ 3107.822419][T53602] option 1-1:0.1: GSM modem (1-port) converter detected
+[ 3107.830839][T53602] usb 1-1: USB disconnect, device number 25
+[ 3107.846420][T53602] option 1-1:0.1: device disconnected
+[ 3108.023702][   T29] microsoft 0003:045E:07DA.0163: unknown global tag 0xe
+[ 3108.026598][   T29] microsoft 0003:045E:07DA.0163: item 0 4 1 14 parsing failed
+[ 3108.029815][   T29] microsoft 0003:045E:07DA.0163: parse failed
+[ 3108.032641][   T29] microsoft 0003:045E:07DA.0163: probe with driver microsoft failed with error -22
+[ 3108.227211][T11643] usb 2-1: USB disconnect, device number 91
+[ 3108.622930][ T1018] usb 1-1: new low-speed USB device number 26 using dummy_hcd
+[ 3108.798632][ T1018] usb 1-1: config 167 has an invalid interface number: 92 but max is 0
+[ 3108.811210][ T1018] usb 1-1: config 167 has no interface number 0
+[ 3108.817844][ T1018] usb 1-1: config 167 interface 92 has no altsetting 0
+[ 3108.827938][ T1018] usb 1-1: string descriptor 0 read error: -22
+[ 3108.831083][ T1018] usb 1-1: New USB device found, idVendor=04d8, idProduct=f58b, bcdDevice=dc.5a
+[ 3108.836427][ T1018] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3109.044938][ T1018] usb 1-1: USB disconnect, device number 26
+[ 3109.104549][T53602] usb 2-1: new high-speed USB device number 92 using dummy_hcd
+[ 3109.162894][T69445] vhci_hcd: vhci_device speed not set
+[ 3109.252755][T53602] usb 2-1: Using ep0 maxpacket: 8
+[ 3109.257796][T53602] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3109.261496][T53602] usb 2-1: config 0 has an invalid interface number: 1 but max is 0
+[ 3109.264470][T53602] usb 2-1: config 0 has no interface number 0
+[ 3109.266619][T53602] usb 2-1: config 0 interface 1 has no altsetting 0
+[ 3109.271884][T53602] usb 2-1: New USB device found, idVendor=12d1, idProduct=67e5, bcdDevice=43.22
+[ 3109.275557][T53602] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3109.278140][T53602] usb 2-1: Product: syz
+[ 3109.280240][T53602] usb 2-1: Manufacturer: syz
+[ 3109.281893][T53602] usb 2-1: SerialNumber: syz
+[ 3109.286328][T53602] usb 2-1: config 0 descriptor??
+[ 3109.496325][T93806] vhci_hcd vhci_hcd.0: pdev(1) rhport(0) sockfd(5)
+[ 3109.499269][T93806] vhci_hcd vhci_hcd.0: devid(0) speed(4) speed_str(wireless)
+[ 3109.505207][T93806] vhci_hcd vhci_hcd.0: Device attached
+[ 3109.683036][T53001] vhci_hcd: vhci_device speed not set
+[ 3109.742564][T53001] usb 35-1: new full-speed USB device number 38 using vhci_hcd
+[ 3111.232692][T11643] usb 1-1: new low-speed USB device number 27 using dummy_hcd
+[ 3111.382589][T11643] usb 1-1: Invalid ep0 maxpacket: 16
+[ 3111.512927][T11643] usb 1-1: new low-speed USB device number 28 using dummy_hcd
+[ 3111.662892][T11643] usb 1-1: Invalid ep0 maxpacket: 16
+[ 3111.665422][T11643] usb usb1-port1: attempt power cycle
+[ 3111.816288][T93818] vhci_hcd: connection reset by peer
+[ 3111.818501][T71125] vhci_hcd: stop threads
+[ 3111.820951][T71125] vhci_hcd: release socket
+[ 3111.822186][T53602] option 2-1:0.1: GSM modem (1-port) converter detected
+[ 3111.828298][T71125] vhci_hcd: disconnect device
+[ 3111.833855][T53602] usb 2-1: USB disconnect, device number 92
+[ 3111.837874][T53602] option 2-1:0.1: device disconnected
+[ 3112.002718][T11643] usb 1-1: new low-speed USB device number 29 using dummy_hcd
+[ 3112.033433][T11643] usb 1-1: Invalid ep0 maxpacket: 16
+[ 3112.152729][T53602] usb 2-1: new high-speed USB device number 93 using dummy_hcd
+[ 3112.162975][T11643] usb 1-1: new low-speed USB device number 30 using dummy_hcd
+[ 3112.183456][T11643] usb 1-1: Invalid ep0 maxpacket: 16
+[ 3112.186174][T11643] usb usb1-port1: unable to enumerate USB device
+[ 3112.320740][T53602] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3112.329075][T53602] usb 2-1: config 1 has an invalid descriptor of length 0, skipping remainder of the config
+[ 3112.334830][T53602] usb 2-1: config 1 interface 0 altsetting 0 has 1 endpoint descriptor, different from the interface descriptor's value: 0
+[ 3112.344777][T53602] usb 2-1: config 1 interface 1 altsetting 1 endpoint 0x1 has an invalid bInterval 128, changing to 7
+[ 3112.350248][T53602] usb 2-1: config 1 interface 2 altsetting 1 endpoint 0x82 has an invalid bInterval 0, changing to 7
+[ 3112.356362][T53602] usb 2-1: config 1 interface 1 has no altsetting 0
+[ 3112.364731][T53602] usb 2-1: New USB device found, idVendor=1d6b, idProduct=0101, bcdDevice= 0.40
+[ 3112.369093][T53602] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3112.373694][T53602] usb 2-1: Product: syz
+[ 3112.377147][T53602] usb 2-1: Manufacturer: syz
+[ 3112.379203][T53602] usb 2-1: SerialNumber: syz
+[ 3112.604837][T53602] usb 2-1: 2:1 : no or invalid class specific endpoint descriptor
+[ 3112.610329][T53602] usb 2-1: 2:1 : invalid UAC_FORMAT_TYPE desc
+[ 3112.643395][T53602] usb 2-1: USB disconnect, device number 93
+[ 3113.135365][T93891] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3113.139504][T93891] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3113.465317][T93905] vhci_hcd vhci_hcd.0: pdev(1) rhport(0) sockfd(6)
+[ 3113.476330][T93905] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3113.482216][T93905] vhci_hcd vhci_hcd.0: Device attached
+[ 3113.494799][T93905] vhci_hcd vhci_hcd.0: pdev(1) rhport(1) sockfd(8)
+[ 3113.500190][T93905] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3113.504637][T93905] vhci_hcd vhci_hcd.0: Device attached
+[ 3113.510627][T93905] vhci_hcd vhci_hcd.0: pdev(1) rhport(2) sockfd(10)
+[ 3113.514928][T93905] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3113.520739][T93905] vhci_hcd vhci_hcd.0: Device attached
+[ 3113.527140][T93905] vhci_hcd vhci_hcd.0: pdev(1) rhport(3) sockfd(12)
+[ 3113.532024][T93905] vhci_hcd vhci_hcd.0: devid(0) speed(3) speed_str(high-speed)
+[ 3113.536275][T93905] vhci_hcd vhci_hcd.0: Device attached
+[ 3113.861447][T93913] vhci_hcd: connection closed
+[ 3113.861757][T93909] vhci_hcd: connection closed
+[ 3113.861822][T71125] vhci_hcd: stop threads
+[ 3113.861958][T93915] vhci_hcd: connection closed
+[ 3113.862234][T93911] vhci_hcd: connection closed
+[ 3113.874370][T71125] vhci_hcd: release socket
+[ 3113.878237][T93924] vhci_hcd vhci_hcd.0: pdev(3) rhport(0) sockfd(3)
+[ 3113.880315][T71125] vhci_hcd: disconnect device
+[ 3113.884060][T93924] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3113.885263][T93924] vhci_hcd vhci_hcd.0: Device attached
+[ 3113.887207][T71125] vhci_hcd: stop threads
+[ 3113.906224][T71125] vhci_hcd: release socket
+[ 3113.908471][T71125] vhci_hcd: disconnect device
+[ 3113.922197][T93925] vhci_hcd: connection closed
+[ 3113.925230][T71125] vhci_hcd: stop threads
+[ 3113.932079][T71125] vhci_hcd: release socket
+[ 3113.936790][T71125] vhci_hcd: disconnect device
+[ 3113.941160][T71125] vhci_hcd: stop threads
+[ 3113.945941][T71125] vhci_hcd: release socket
+[ 3113.949624][T71125] vhci_hcd: disconnect device
+[ 3113.955548][T71125] vhci_hcd: stop threads
+[ 3113.959045][T71125] vhci_hcd: release socket
+[ 3113.962034][T71125] vhci_hcd: disconnect device
+[ 3113.973939][T93930] FAULT_INJECTION: forcing a failure.
+[ 3113.973939][T93930] name fail_page_alloc, interval 1, probability 0, space 0, times 0
+[ 3113.984576][T93930] CPU: 1 UID: 0 PID: 93930 Comm: syz.0.8049 Not tainted 6.18.0 #1 PREEMPT(full) 
+[ 3113.984595][T93930] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[ 3113.984603][T93930] Call Trace:
+[ 3113.984607][T93930]  <TASK>
+[ 3113.984613][T93930]  dump_stack_lvl+0x180/0x1b0
+[ 3113.984637][T93930]  should_fail_ex+0x520/0x650
+[ 3113.984655][T93930]  should_fail_alloc_page+0xe9/0x140
+[ 3113.984675][T93930]  prepare_alloc_pages+0x3b9/0x610
+[ 3113.984693][T93930]  ? rcu_is_watching+0x12/0xc0
+[ 3113.984710][T93930]  __alloc_frozen_pages_noprof+0x186/0x2140
+[ 3113.984728][T93930]  ? mon_bin_ioctl+0x469/0xcc0
+[ 3113.984783][T93930]  ? kasan_save_stack+0x34/0x50
+[ 3113.984807][T93930]  ? kasan_save_stack+0x24/0x50
+[ 3113.984829][T93930]  ? kasan_save_track+0x14/0x30
+[ 3113.984850][T93930]  ? __kasan_kmalloc+0xaa/0xb0
+[ 3113.984870][T93930]  ? __kmalloc_noprof+0x32c/0x8c0
+[ 3113.984888][T93930]  ? mon_bin_ioctl+0x469/0xcc0
+[ 3113.984902][T93930]  ? __x64_sys_ioctl+0x18f/0x210
+[ 3113.984919][T93930]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[ 3113.984943][T93930]  ? lockdep_hardirqs_on+0x7c/0x110
+[ 3113.984977][T93930]  ? __lock_acquire+0xb62/0x1be0
+[ 3113.985005][T93930]  ? __sanitizer_cov_trace_switch+0x54/0x90
+[ 3113.985028][T93930]  ? policy_nodemask+0xeb/0x4d0
+[ 3113.985056][T93930]  alloc_pages_mpol+0x1f1/0x550
+[ 3113.985084][T93930]  ? __pfx_alloc_pages_mpol+0x10/0x10
+[ 3113.985119][T93930]  alloc_pages_noprof+0x12d/0x390
+[ 3113.985148][T93930]  get_zeroed_page_noprof+0x18/0xb0
+[ 3113.985175][T93930]  mon_alloc_buff+0xce/0x1c0
+[ 3113.985206][T93930]  mon_bin_ioctl+0x487/0xcc0
+[ 3113.985226][T93930]  ? hook_file_ioctl_common+0x146/0x3f0
+[ 3113.985268][T93930]  ? __pfx_mon_bin_ioctl+0x10/0x10
+[ 3113.985289][T93930]  ? __fget_files+0x1fb/0x3b0
+[ 3113.985313][T93930]  ? __pfx_mon_bin_ioctl+0x10/0x10
+[ 3113.985332][T93930]  __x64_sys_ioctl+0x18f/0x210
+[ 3113.985352][T93930]  do_syscall_64+0xcb/0xfa0
+[ 3113.985381][T93930]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[ 3113.985400][T93930] RIP: 0033:0x7f5ef5db359d
+[ 3113.985416][T93930] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[ 3113.985434][T93930] RSP: 002b:00007f5ef3ff5f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[ 3113.985453][T93930] RAX: ffffffffffffffda RBX: 00007f5ef6045fa0 RCX: 00007f5ef5db359d
+[ 3113.985466][T93930] RDX: 000000000003be1d RSI: 0000000000009204 RDI: 0000000000000003
+[ 3113.985476][T93930] RBP: 00007f5ef3ff6010 R08: 0000000000000000 R09: 0000000000000000
+[ 3113.985487][T93930] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000002
+[ 3113.985498][T93930] R13: 00007f5ef6046038 R14: 00007f5ef6045fa0 R15: 00007f5ef3fd6000
+[ 3113.985525][T93930]  </TASK>
+[ 3114.422580][T91642] usb 1-1: new high-speed USB device number 31 using dummy_hcd
+[ 3114.614006][T91642] usb 1-1: too many configurations: 181, using maximum allowed: 8
+[ 3114.620790][T91642] usb 1-1: unable to read config index 0 descriptor/start: -61
+[ 3114.625509][T91642] usb 1-1: can't read configurations, error -61
+[ 3114.752796][T91642] usb 1-1: new high-speed USB device number 32 using dummy_hcd
+[ 3114.833352][T53001] vhci_hcd: vhci_device speed not set
+[ 3114.904370][T91642] usb 1-1: too many configurations: 181, using maximum allowed: 8
+[ 3114.919576][T91642] usb 1-1: unable to read config index 0 descriptor/start: -61
+[ 3114.930441][T91642] usb 1-1: can't read configurations, error -61
+[ 3114.936466][T91642] usb usb1-port1: attempt power cycle
+[ 3115.282784][T91642] usb 1-1: new high-speed USB device number 33 using dummy_hcd
+[ 3115.304684][T91642] usb 1-1: too many configurations: 181, using maximum allowed: 8
+[ 3115.311111][T91642] usb 1-1: unable to read config index 0 descriptor/start: -61
+[ 3115.315244][T11643] usb 2-1: new high-speed USB device number 94 using dummy_hcd
+[ 3115.319868][T91642] usb 1-1: can't read configurations, error -61
+[ 3115.463098][T91642] usb 1-1: new high-speed USB device number 34 using dummy_hcd
+[ 3115.487554][T91642] usb 1-1: too many configurations: 181, using maximum allowed: 8
+[ 3115.492583][T11643] usb 2-1: config 1 has an invalid descriptor of length 9, skipping remainder of the config
+[ 3115.498269][T11643] usb 2-1: config 1 interface 0 altsetting 0 has 2 endpoint descriptors, different from the interface descriptor's value: 3
+[ 3115.505722][T91642] usb 1-1: unable to read config index 0 descriptor/start: -61
+[ 3115.508965][T91642] usb 1-1: can't read configurations, error -61
+[ 3115.513244][T91642] usb usb1-port1: unable to enumerate USB device
+[ 3115.516906][T11643] usb 2-1: New USB device found, idVendor=0424, idProduct=7850, bcdDevice= 0.00
+[ 3115.522043][T11643] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3115.527341][T11643] usb 2-1: Product: syz
+[ 3115.530160][T11643] usb 2-1: Manufacturer: syz
+[ 3115.533974][T11643] usb 2-1: SerialNumber: syz
+[ 3115.751761][T93955] vhci_hcd: Failed attach request for unsupported USB speed: UNKNOWN
+[ 3115.756906][T93955] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3115.761788][T93955] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3115.768628][T93955] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3115.772286][T93955] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3115.887588][T93955] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3115.892208][T93955] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3115.898309][T69445] usb 2-1: USB disconnect, device number 94
+[ 3116.902741][T69445] usb 2-1: new high-speed USB device number 95 using dummy_hcd
+[ 3117.058119][T69445] usb 2-1: New USB device found, idVendor=0424, idProduct=7850, bcdDevice= 0.00
+[ 3117.063622][T69445] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3117.067901][T69445] usb 2-1: Product: syz
+[ 3117.069575][T69445] usb 2-1: Manufacturer: syz
+[ 3117.071914][T69445] usb 2-1: SerialNumber: syz
+[ 3117.282999][T93978] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3117.288841][T93978] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3117.498688][T93978] vhci_hcd vhci_hcd.0: pdev(1) rhport(0) sockfd(5)
+[ 3117.501746][T93978] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3117.506362][T93978] vhci_hcd vhci_hcd.0: Device attached
+[ 3117.623563][T48961] usb 1-1: new low-speed USB device number 35 using dummy_hcd
+[ 3117.715432][T93978] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3117.719879][T93978] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3117.742849][    T9] usb 35-1: new low-speed USB device number 39 using vhci_hcd
+[ 3117.776514][T48961] usb 1-1: config 1 interface 0 altsetting 0 endpoint 0x81 has invalid maxpacket 512, setting to 8
+[ 3117.782131][T48961] usb 1-1: config 1 interface 1 altsetting 1 endpoint 0x82 is Bulk; changing to Interrupt
+[ 3117.788028][T48961] usb 1-1: config 1 interface 1 altsetting 1 endpoint 0x3 is Bulk; changing to Interrupt
+[ 3117.798908][T48961] usb 1-1: string descriptor 0 read error: -22
+[ 3117.802687][T48961] usb 1-1: New USB device found, idVendor=0525, idProduct=a4a1, bcdDevice= 0.40
+[ 3117.808077][T48961] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3117.818624][T93991] raw-gadget.4 gadget.0: fail, usb_ep_enable returned -22
+[ 3118.032756][T48961] cdc_ncm 1-1:1.0: bind() failure
+[ 3118.048619][T48961] cdc_ncm 1-1:1.1: CDC Union missing and no IAD found
+[ 3118.055923][T93978] usb usb4: check_ctrlrecip: process 93978 (syz.1.8057) requesting ep 01 but needs 81
+[ 3118.063498][T93978] usb usb4: usbfs: process 93978 (syz.1.8057) did not claim interface 0 before use
+[ 3118.072423][T48961] cdc_ncm 1-1:1.1: bind() failure
+[ 3118.081400][T48961] usb 1-1: USB disconnect, device number 35
+[ 3118.081611][T93996] vhci_hcd: connection reset by peer
+[ 3118.088501][T71125] vhci_hcd: stop threads
+[ 3118.088583][T69445] lan78xx 2-1:1.0 (unnamed net_device) (uninitialized): Failed to read register index 0x00000010. ret = -EPROTO
+[ 3118.091226][T71125] vhci_hcd: release socket
+[ 3118.105278][T69445] lan78xx 2-1:1.0 (unnamed net_device) (uninitialized): Registers INIT FAILED....
+[ 3118.106090][T71125] vhci_hcd: disconnect device
+[ 3118.117399][T69445] lan78xx 2-1:1.0 (unnamed net_device) (uninitialized): Bind routine FAILED
+[ 3118.125266][T69445] lan78xx 2-1:1.0: probe with driver lan78xx failed with error -71
+[ 3118.135496][T69445] usb 2-1: USB disconnect, device number 95
+[ 3118.193234][T94016] vhci_hcd vhci_hcd.0: pdev(2) rhport(0) sockfd(6)
+[ 3118.197068][T94016] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3118.202586][T94016] vhci_hcd vhci_hcd.0: Device attached
+[ 3118.209440][T94016] vhci_hcd vhci_hcd.0: pdev(2) rhport(1) sockfd(8)
+[ 3118.212228][T94016] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3118.215677][T94016] vhci_hcd vhci_hcd.0: Device attached
+[ 3118.222063][T94016] vhci_hcd vhci_hcd.0: pdev(2) rhport(2) sockfd(10)
+[ 3118.225604][T94016] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3118.230882][T94016] vhci_hcd vhci_hcd.0: Device attached
+[ 3118.236224][T94016] vhci_hcd vhci_hcd.0: pdev(2) rhport(3) sockfd(12)
+[ 3118.238803][T94016] vhci_hcd vhci_hcd.0: devid(0) speed(3) speed_str(high-speed)
+[ 3118.243476][T94016] vhci_hcd vhci_hcd.0: Device attached
+[ 3118.453754][T11618] usb 37-1: new low-speed USB device number 15 using vhci_hcd
+[ 3118.543307][T94041] vhci_hcd: connection closed
+[ 3118.543545][T94035] vhci_hcd: connection reset by peer
+[ 3118.543967][T94039] vhci_hcd: connection closed
+[ 3118.548812][T71125] vhci_hcd: stop threads
+[ 3118.548834][T71125] vhci_hcd: release socket
+[ 3118.548927][T71125] vhci_hcd: disconnect device
+[ 3118.548997][T71125] vhci_hcd: stop threads
+[ 3118.549005][T71125] vhci_hcd: release socket
+[ 3118.553718][T71125] vhci_hcd: disconnect device
+[ 3118.559479][T94037] vhci_hcd: connection closed
+[ 3118.596891][T71125] vhci_hcd: stop threads
+[ 3118.606014][T71125] vhci_hcd: release socket
+[ 3118.613815][T71125] vhci_hcd: disconnect device
+[ 3118.620216][T71125] vhci_hcd: stop threads
+[ 3118.623990][T71125] vhci_hcd: release socket
+[ 3118.630323][T71125] vhci_hcd: disconnect device
+[ 3118.932690][ T1018] usb 2-1: new high-speed USB device number 96 using dummy_hcd
+[ 3118.932702][T69445] usb 1-1: new high-speed USB device number 36 using dummy_hcd
+[ 3119.082908][ T1018] usb 2-1: Using ep0 maxpacket: 16
+[ 3119.091113][ T1018] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3119.099674][ T1018] usb 2-1: config 0 has an invalid interface number: 211 but max is 0
+[ 3119.106410][T69445] usb 1-1: config 8 has an invalid interface number: 27 but max is 0
+[ 3119.110666][ T1018] usb 2-1: config 0 has no interface number 0
+[ 3119.111513][T69445] usb 1-1: config 8 has no interface number 0
+[ 3119.117531][ T1018] usb 2-1: config 0 interface 211 altsetting 2 has an endpoint descriptor with address 0x1E, changing to 0xE
+[ 3119.118644][T69445] usb 1-1: config 8 interface 27 has no altsetting 0
+[ 3119.126196][ T1018] usb 2-1: config 0 interface 211 has no altsetting 0
+[ 3119.135277][T69445] usb 1-1: language id specifier not provided by device, defaulting to English
+[ 3119.140426][ T1018] usb 2-1: New USB device found, idVendor=0424, idProduct=7850, bcdDevice=46.64
+[ 3119.145531][ T1018] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3119.150859][ T1018] usb 2-1: Product: syz
+[ 3119.153533][ T1018] usb 2-1: Manufacturer: syz
+[ 3119.154674][T69445] usb 1-1: New USB device found, idVendor=2040, idProduct=9300, bcdDevice=4e.93
+[ 3119.156097][ T1018] usb 2-1: SerialNumber: syz
+[ 3119.161152][T69445] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3119.169968][T69445] usb 1-1: Product: syz
+[ 3119.170943][ T1018] usb 2-1: config 0 descriptor??
+[ 3119.174700][T69445] usb 1-1: Manufacturer: ဇ
+[ 3119.179780][T69445] usb 1-1: SerialNumber: syz
+[ 3119.387017][T94047] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3119.392017][T94047] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3119.398617][T94045] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3119.406146][T94045] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3119.414653][ T1018] usb 2-1: USB disconnect, device number 96
+[ 3119.421500][T94045] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3119.428553][T94045] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3119.591077][T69445] dvb-usb: found a 'Hauppauge WinTV-NOVA-T usb2' in cold state, will try to load a firmware
+[ 3119.603783][T69445] dvb-usb: downloading firmware from file 'dvb-usb-nova-t-usb2-02.fw'
+[ 3119.608458][T69445] dvb-usb: could not stop the USB controller CPU.
+[ 3119.611744][T69445] dvb-usb: error while transferring firmware (transferred size: -71, block size: 10)
+[ 3119.617578][T69445] dvb-usb: firmware download failed at 15 with -22
+[ 3119.620650][T69445] dvb_usb_nova_t_usb2 1-1:8.27: probe with driver dvb_usb_nova_t_usb2 failed with error -22
+[ 3119.629431][T69445] usb 1-1: USB disconnect, device number 36
+[ 3120.238200][T94089] vhci_hcd vhci_hcd.0: pdev(1) rhport(0) sockfd(6)
+[ 3120.241484][T94089] vhci_hcd vhci_hcd.0: devid(0) speed(3) speed_str(high-speed)
+[ 3120.246991][T94089] vhci_hcd vhci_hcd.0: Device attached
+[ 3120.452561][T65467] usb 1-1: new high-speed USB device number 37 using dummy_hcd
+[ 3120.603622][T11643] usb 2-1: new high-speed USB device number 97 using dummy_hcd
+[ 3120.615907][T65467] usb 1-1: config 1 interface 0 altsetting 127 bulk endpoint 0x81 has invalid maxpacket 64
+[ 3120.621477][T65467] usb 1-1: config 1 interface 0 altsetting 127 bulk endpoint 0x2 has invalid maxpacket 32
+[ 3120.626644][T65467] usb 1-1: config 1 interface 0 has no altsetting 0
+[ 3120.635077][T65467] usb 1-1: New USB device found, idVendor=0bda, idProduct=8150, bcdDevice= 0.40
+[ 3120.641477][T65467] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3120.647821][T65467] usb 1-1: Product: syz
+[ 3120.649651][T65467] usb 1-1: Manufacturer: syz
+[ 3120.652034][T65467] usb 1-1: SerialNumber: syz
+[ 3120.657473][T94091] raw-gadget.0 gadget.0: fail, usb_ep_enable returned -22
+[ 3120.661550][T94091] raw-gadget.0 gadget.0: fail, usb_ep_enable returned -22
+[ 3120.762817][T11643] usb 2-1: Using ep0 maxpacket: 8
+[ 3120.769804][T11643] usb 2-1: unable to read config index 0 descriptor/start: -61
+[ 3120.777267][T11643] usb 2-1: can't read configurations, error -61
+[ 3120.913736][T11643] usb 2-1: new high-speed USB device number 98 using dummy_hcd
+[ 3121.073926][T11643] usb 2-1: Using ep0 maxpacket: 8
+[ 3121.123429][T11643] usb 2-1: unable to read config index 0 descriptor/start: -61
+[ 3121.128296][T11643] usb 2-1: can't read configurations, error -61
+[ 3121.147396][T11643] usb usb2-port1: attempt power cycle
+[ 3121.284140][T94091] vhci_hcd vhci_hcd.0: pdev(0) rhport(0) sockfd(4)
+[ 3121.287548][T94091] vhci_hcd vhci_hcd.0: devid(0) speed(3) speed_str(high-speed)
+[ 3121.292192][T94091] vhci_hcd vhci_hcd.0: Device attached
+[ 3121.492625][T11643] usb 2-1: new high-speed USB device number 99 using dummy_hcd
+[ 3121.513389][T11643] usb 2-1: Using ep0 maxpacket: 8
+[ 3121.519861][T11643] usb 2-1: unable to read config index 0 descriptor/start: -61
+[ 3121.522442][T11643] usb 2-1: can't read configurations, error -61
+[ 3121.532829][T48961] usb 33-1: new high-speed USB device number 50 using vhci_hcd
+[ 3121.663049][T11643] usb 2-1: new high-speed USB device number 100 using dummy_hcd
+[ 3121.683443][T11643] usb 2-1: Using ep0 maxpacket: 8
+[ 3121.690543][T11643] usb 2-1: unable to read config index 0 descriptor/start: -61
+[ 3121.695204][T11643] usb 2-1: can't read configurations, error -61
+[ 3121.698240][T11643] usb usb2-port1: unable to enumerate USB device
+[ 3121.704782][T94091] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3121.710697][T94091] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3121.716191][T94114] vhci_hcd: connection reset by peer
+[ 3121.719482][T65467] (unnamed net_device) (uninitialized): Assigned a random MAC address: 96:dc:c3:85:50:e3
+[ 3121.721845][T71125] vhci_hcd: stop threads
+[ 3121.733258][T71125] vhci_hcd: release socket
+[ 3121.735507][T71125] vhci_hcd: disconnect device
+[ 3121.746026][T65467] rtl8150 1-1:1.0: eth1: rtl8150 is detected
+[ 3121.766584][T65467] usb 1-1: USB disconnect, device number 37
+[ 3122.264434][T94149] vhci_hcd vhci_hcd.0: pdev(0) rhport(0) sockfd(5)
+[ 3122.267291][T94149] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3122.273038][T94149] vhci_hcd vhci_hcd.0: Device attached
+[ 3122.274041][T94150] vhci_hcd vhci_hcd.0: pdev(0) rhport(1) sockfd(7)
+[ 3122.279296][T94150] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3122.283704][T94150] vhci_hcd vhci_hcd.0: Device attached
+[ 3122.298717][T94152] vhci_hcd: connection closed
+[ 3122.298734][T94153] vhci_hcd: connection closed
+[ 3122.301152][T71125] vhci_hcd: stop threads
+[ 3122.306759][T71125] vhci_hcd: release socket
+[ 3122.309748][T71125] vhci_hcd: disconnect device
+[ 3122.312438][T71125] vhci_hcd: stop threads
+[ 3122.314923][T71125] vhci_hcd: release socket
+[ 3122.316869][T71125] vhci_hcd: disconnect device
+[ 3122.562757][T69445] usb 1-1: new high-speed USB device number 38 using dummy_hcd
+[ 3122.712613][T69445] usb 1-1: Using ep0 maxpacket: 32
+[ 3122.718245][T69445] usb 1-1: unable to get BOS descriptor or descriptor too short
+[ 3122.722209][T69445] usb 1-1: too many configurations: 24, using maximum allowed: 8
+[ 3122.731085][T69445] usb 1-1: unable to read config index 0 descriptor/start: -61
+[ 3122.734410][T69445] usb 1-1: can't read configurations, error -61
+[ 3122.862542][T69445] usb 1-1: new high-speed USB device number 39 using dummy_hcd
+[ 3123.010603][T94096] vhci_hcd: connection reset by peer
+[ 3123.013251][T69445] usb 1-1: Using ep0 maxpacket: 32
+[ 3123.015926][T71125] vhci_hcd: stop threads
+[ 3123.017443][T71125] vhci_hcd: release socket
+[ 3123.019279][T71125] vhci_hcd: disconnect device
+[ 3123.019489][T69445] usb 1-1: unable to get BOS descriptor or descriptor too short
+[ 3123.023885][T69445] usb 1-1: too many configurations: 24, using maximum allowed: 8
+[ 3123.029653][T69445] usb 1-1: unable to read config index 0 descriptor/start: -61
+[ 3123.032797][T69445] usb 1-1: can't read configurations, error -61
+[ 3123.036238][T69445] usb usb1-port1: attempt power cycle
+[ 3123.085393][    T9] vhci_hcd: vhci_device speed not set
+[ 3123.372830][T69445] usb 1-1: new high-speed USB device number 40 using dummy_hcd
+[ 3123.403423][T69445] usb 1-1: Using ep0 maxpacket: 32
+[ 3123.410197][T69445] usb 1-1: unable to get BOS descriptor or descriptor too short
+[ 3123.413846][T69445] usb 1-1: too many configurations: 24, using maximum allowed: 8
+[ 3123.421838][T69445] usb 1-1: unable to read config index 0 descriptor/start: -61
+[ 3123.427230][T69445] usb 1-1: can't read configurations, error -61
+[ 3123.562982][T69445] usb 1-1: new high-speed USB device number 41 using dummy_hcd
+[ 3123.563786][T11618] vhci_hcd: vhci_device speed not set
+[ 3123.583781][T69445] usb 1-1: Using ep0 maxpacket: 32
+[ 3123.589697][T69445] usb 1-1: unable to get BOS descriptor or descriptor too short
+[ 3123.593320][T69445] usb 1-1: too many configurations: 24, using maximum allowed: 8
+[ 3123.599630][T69445] usb 1-1: unable to read config index 0 descriptor/start: -61
+[ 3123.603092][T69445] usb 1-1: can't read configurations, error -61
+[ 3123.605478][T69445] usb usb1-port1: unable to enumerate USB device
+[ 3123.622900][T53602] usb 2-1: new high-speed USB device number 101 using dummy_hcd
+[ 3123.792797][T53602] usb 2-1: Using ep0 maxpacket: 32
+[ 3123.799671][T53602] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3123.804304][T53602] usb 2-1: config 8 has an invalid interface number: 124 but max is 0
+[ 3123.807480][T53602] usb 2-1: config 8 has no interface number 0
+[ 3123.810055][T53602] usb 2-1: config 8 interface 124 has no altsetting 0
+[ 3123.816691][T53602] usb 2-1: New USB device found, idVendor=0f11, idProduct=1010, bcdDevice=de.e6
+[ 3123.821060][T53602] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3123.825172][T53602] usb 2-1: Product: syz
+[ 3123.827169][T53602] usb 2-1: Manufacturer: syz
+[ 3123.829219][T53602] usb 2-1: SerialNumber: syz
+[ 3124.053146][T53602] ldusb 2-1:8.124: Interrupt in endpoint not found
+[ 3124.059604][T53602] usb 2-1: USB disconnect, device number 101
+[ 3124.842915][T53602] usb 2-1: new high-speed USB device number 102 using dummy_hcd
+[ 3125.004753][T53602] usb 2-1: Using ep0 maxpacket: 8
+[ 3125.011088][T53602] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3125.016110][T53602] usb 2-1: config 8 has an invalid interface number: 83 but max is 0
+[ 3125.019715][T53602] usb 2-1: config 8 has no interface number 0
+[ 3125.022779][T53602] usb 2-1: config 8 interface 83 has no altsetting 0
+[ 3125.029371][T53602] usb 2-1: New USB device found, idVendor=09d8, idProduct=0320, bcdDevice=3d.a4
+[ 3125.033484][T53602] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3125.037081][T53602] usb 2-1: Product: syz
+[ 3125.038934][T53602] usb 2-1: Manufacturer: syz
+[ 3125.041129][T53602] usb 2-1: SerialNumber: syz
+[ 3125.248182][T94198] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3125.257125][T94198] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3125.278013][T53602] usb 2-1: USB disconnect, device number 102
+[ 3125.752693][T11618] usb 1-1: new high-speed USB device number 42 using dummy_hcd
+[ 3125.903562][T11618] usb 1-1: Using ep0 maxpacket: 32
+[ 3125.909994][T11618] usb 1-1: unable to get BOS descriptor or descriptor too short
+[ 3125.917189][T11618] usb 1-1: config 12 has an invalid interface number: 99 but max is 0
+[ 3125.923047][T11618] usb 1-1: config 12 has no interface number 0
+[ 3125.926859][T11618] usb 1-1: config 12 interface 99 has no altsetting 0
+[ 3125.934912][T11618] usb 1-1: New USB device found, idVendor=046d, idProduct=0850, bcdDevice=ec.49
+[ 3125.940073][T11618] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3125.945139][T11618] usb 1-1: Product: syz
+[ 3125.947145][T11618] usb 1-1: Manufacturer: syz
+[ 3125.949792][T11618] usb 1-1: SerialNumber: syz
+[ 3126.052725][T53602] usb 2-1: new high-speed USB device number 103 using dummy_hcd
+[ 3126.163397][T94231] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3126.168423][T94231] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3126.203089][T53602] usb 2-1: Using ep0 maxpacket: 8
+[ 3126.208772][T53602] usb 2-1: config 248 has an invalid interface number: 103 but max is 0
+[ 3126.217776][T53602] usb 2-1: config 248 has no interface number 0
+[ 3126.220990][T53602] usb 2-1: config 248 interface 103 altsetting 1 endpoint 0x5 has invalid maxpacket 1024, setting to 64
+[ 3126.227048][T53602] usb 2-1: config 248 interface 103 has no altsetting 0
+[ 3126.234586][T53602] usb 2-1: New USB device found, idVendor=0fe9, idProduct=db54, bcdDevice=75.3a
+[ 3126.240275][T53602] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3126.246941][T53602] usb 2-1: Product: syz
+[ 3126.249418][T53602] usb 2-1: Manufacturer: syz
+[ 3126.255422][T53602] usb 2-1: SerialNumber: syz
+[ 3126.466734][T94247] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3126.473352][T94247] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3126.505239][T53602] dvb-usb: found a 'DigitalNow DVB-T Dual USB' in cold state, will try to load a firmware
+[ 3126.511774][T53602] dvb-usb: downloading firmware from file 'dvb-usb-bluebird-01.fw'
+[ 3126.518016][T53602] dvb-usb: could not stop the USB controller CPU.
+[ 3126.522208][T53602] dvb-usb: error while transferring firmware (transferred size: -71, block size: 10)
+[ 3126.529082][T53602] dvb-usb: firmware download failed at 15 with -22
+[ 3126.534075][T53602] dvb_usb_cxusb 2-1:248.103: probe with driver dvb_usb_cxusb failed with error -22
+[ 3126.561856][T53602] usb 2-1: USB disconnect, device number 103
+[ 3126.672729][T48961] vhci_hcd: vhci_device speed not set
+[ 3126.932808][T53602] usb 2-1: new high-speed USB device number 104 using dummy_hcd
+[ 3127.102633][T53602] usb 2-1: Using ep0 maxpacket: 16
+[ 3127.107043][T53602] usb 2-1: config 1 has an invalid interface number: 212 but max is 0
+[ 3127.110572][T53602] usb 2-1: config 1 has an invalid descriptor of length 0, skipping remainder of the config
+[ 3127.116271][T53602] usb 2-1: config 1 has no interface number 0
+[ 3127.120151][T53602] usb 2-1: config 1 interface 212 altsetting 3 has an invalid descriptor for endpoint zero, skipping
+[ 3127.126947][T53602] usb 2-1: config 1 interface 212 altsetting 3 has 4 endpoint descriptors, different from the interface descriptor's value: 9
+[ 3127.135918][T53602] usb 2-1: config 1 interface 212 has no altsetting 0
+[ 3127.143887][T53602] usb 2-1: New USB device found, idVendor=1235, idProduct=0010, bcdDevice=1b.71
+[ 3127.149105][T53602] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3127.154506][T53602] usb 2-1: Product: syz
+[ 3127.157109][T53602] usb 2-1: Manufacturer: syz
+[ 3127.159934][T53602] usb 2-1: SerialNumber: syz
+[ 3127.611946][T94263] vhci_hcd vhci_hcd.0: pdev(1) rhport(0) sockfd(11)
+[ 3127.616436][T94263] vhci_hcd vhci_hcd.0: devid(0) speed(1) speed_str(low-speed)
+[ 3127.623362][T94263] vhci_hcd vhci_hcd.0: Device attached
+[ 3127.720828][T94278] vhci_hcd: connection closed
+[ 3127.721405][T71125] vhci_hcd: stop threads
+[ 3127.726509][T71125] vhci_hcd: release socket
+[ 3127.728849][T71125] vhci_hcd: disconnect device
+[ 3127.748238][T53602] usb 2-1: USB disconnect, device number 104
+[ 3127.766153][T11618] gspca_main: STV06xx-2.14.0 probing 046d:0850
+[ 3127.808504][T11618] usb 1-1: unknown interface protocol 0xd8, assuming v1
+[ 3127.814292][T11618] usb 1-1: cannot find UAC_HEADER
+[ 3127.865983][T11618] snd-usb-audio 1-1:12.99: probe with driver snd-usb-audio failed with error -22
+[ 3127.874940][T11618] usb 1-1: USB disconnect, device number 42
+[ 3128.340209][T94323] vhci_hcd vhci_hcd.0: pdev(2) rhport(0) sockfd(3)
+[ 3128.344679][T94323] vhci_hcd vhci_hcd.0: devid(0) speed(2) speed_str(full-speed)
+[ 3128.356793][T94323] vhci_hcd vhci_hcd.0: Device attached
+[ 3128.532705][T53602] vhci_hcd: vhci_device speed not set
+[ 3128.552438][T53001] usb 1-1: new full-speed USB device number 43 using dummy_hcd
+[ 3128.582649][T11618] usb 2-1: new low-speed USB device number 105 using dummy_hcd
+[ 3128.593049][T53602] usb 37-1: new full-speed USB device number 16 using vhci_hcd
+[ 3128.705929][T53001] usb 1-1: config 1 interface 0 altsetting 2 endpoint 0x81 has invalid maxpacket 1023, setting to 64
+[ 3128.710083][T53001] usb 1-1: config 1 interface 0 altsetting 2 endpoint 0x3 has invalid maxpacket 512, setting to 64
+[ 3128.717378][T53001] usb 1-1: config 1 interface 0 altsetting 2 has 3 endpoint descriptors, different from the interface descriptor's value: 18
+[ 3128.722849][T11618] usb 2-1: device descriptor read/64, error -71
+[ 3128.725420][T53001] usb 1-1: config 1 interface 0 has no altsetting 0
+[ 3128.731663][T53001] usb 1-1: New USB device found, idVendor=0525, idProduct=a4a1, bcdDevice= 0.40
+[ 3128.737925][T53001] usb 1-1: New USB device strings: Mfr=0, Product=0, SerialNumber=1
+[ 3128.741518][T53001] usb 1-1: SerialNumber: syz
+[ 3128.748534][T94316] raw-gadget.0 gadget.0: fail, usb_ep_enable returned -22
+[ 3128.752247][T94316] raw-gadget.0 gadget.0: fail, usb_ep_enable returned -22
+[ 3128.961317][T94316] raw-gadget.0 gadget.0: fail, usb_ep_enable returned -22
+[ 3128.965274][T94316] raw-gadget.0 gadget.0: fail, usb_ep_enable returned -22
+[ 3128.972740][T11618] usb 2-1: new low-speed USB device number 106 using dummy_hcd
+[ 3129.112697][T11618] usb 2-1: device descriptor read/64, error -71
+[ 3129.175132][T94316] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3129.179563][T94316] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3129.233185][T11618] usb usb2-port1: attempt power cycle
+[ 3129.394537][T94316] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3129.398186][T94316] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3129.406027][T94316] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3129.409663][T94316] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3129.453013][T53001] cdc_ether 1-1:1.0: probe with driver cdc_ether failed with error -71
+[ 3129.459969][T53001] usb 1-1: USB disconnect, device number 43
+[ 3129.602396][T11618] usb 2-1: new low-speed USB device number 107 using dummy_hcd
+[ 3129.624185][T11618] usb 2-1: device descriptor read/8, error -71
+[ 3129.863477][T11618] usb 2-1: new low-speed USB device number 108 using dummy_hcd
+[ 3129.894344][T11618] usb 2-1: device descriptor read/8, error -71
+[ 3130.003153][T11618] usb usb2-port1: unable to enumerate USB device
+[ 3130.262665][T65467] usb 1-1: new high-speed USB device number 44 using dummy_hcd
+[ 3130.416473][T65467] usb 1-1: config 0 interface 0 altsetting 0 endpoint 0x81 has an invalid bInterval 252, changing to 11
+[ 3130.420774][T65467] usb 1-1: config 0 interface 0 altsetting 0 endpoint 0x81 has invalid wMaxPacketSize 0
+[ 3130.424547][T65467] usb 1-1: config 0 interface 0 altsetting 0 has 1 endpoint descriptor, different from the interface descriptor's value: 13
+[ 3130.429825][T65467] usb 1-1: New USB device found, idVendor=050d, idProduct=3201, bcdDevice= 0.00
+[ 3130.433721][T65467] usb 1-1: New USB device strings: Mfr=0, Product=0, SerialNumber=0
+[ 3130.438946][T65467] usb 1-1: config 0 descriptor??
+[ 3130.850412][T65467] belkin 0003:050D:3201.0164: unknown main item tag 0x0
+[ 3130.853563][T65467] belkin 0003:050D:3201.0164: unknown main item tag 0x0
+[ 3130.856029][T65467] belkin 0003:050D:3201.0164: unknown main item tag 0x7
+[ 3130.858444][T65467] belkin 0003:050D:3201.0164: unknown main item tag 0x0
+[ 3130.861577][T65467] belkin 0003:050D:3201.0164: unknown main item tag 0x0
+[ 3130.864484][T65467] belkin 0003:050D:3201.0164: unknown main item tag 0x0
+[ 3130.867567][T65467] belkin 0003:050D:3201.0164: unknown main item tag 0x0
+[ 3130.870661][T65467] belkin 0003:050D:3201.0164: unknown main item tag 0x0
+[ 3130.873526][T65467] belkin 0003:050D:3201.0164: unknown main item tag 0x0
+[ 3130.877884][T65467] belkin 0003:050D:3201.0164: unknown main item tag 0x0
+[ 3130.886823][T65467] belkin 0003:050D:3201.0164: hiddev0,hidraw0: USB HID v0.07 Device [HID 050d:3201] on usb-dummy_hcd.0-1/input0
+[ 3131.053180][T94352] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3131.056749][T94352] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3131.060303][T48961] usb 1-1: USB disconnect, device number 44
+[ 3131.346112][T94324] vhci_hcd: connection reset by peer
+[ 3131.349970][T71125] vhci_hcd: stop threads
+[ 3131.351864][T71125] vhci_hcd: release socket
+[ 3131.354400][T71125] vhci_hcd: disconnect device
+[ 3131.802679][T53001] usb 2-1: new high-speed USB device number 109 using dummy_hcd
+[ 3131.852527][T11643] usb 1-1: new high-speed USB device number 45 using dummy_hcd
+[ 3131.967862][T53001] usb 2-1: unable to get BOS descriptor or descriptor too short
+[ 3131.974692][T53001] usb 2-1: config 1 has an invalid descriptor of length 0, skipping remainder of the config
+[ 3131.979289][T53001] usb 2-1: config 1 has 1 interface, different from the descriptor's value: 3
+[ 3131.987941][T53001] usb 2-1: New USB device found, idVendor=1d6b, idProduct=0101, bcdDevice= 0.40
+[ 3131.991666][T53001] usb 2-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3131.995540][T53001] usb 2-1: Product: syz
+[ 3131.997664][T53001] usb 2-1: Manufacturer: syz
+[ 3131.999609][T53001] usb 2-1: SerialNumber: syz
+[ 3132.019093][T11643] usb 1-1: too many configurations: 246, using maximum allowed: 8
+[ 3132.023738][T11643] usb 1-1: config 1 has an invalid descriptor of length 0, skipping remainder of the config
+[ 3132.028679][T11643] usb 1-1: config 1 has 1 interface, different from the descriptor's value: 2
+[ 3132.033648][T11643] usb 1-1: config 1 interface 0 altsetting 0 has 0 endpoint descriptors, different from the interface descriptor's value: 1
+[ 3132.041494][T11643] usb 1-1: config 1 has an invalid descriptor of length 0, skipping remainder of the config
+[ 3132.047796][T11643] usb 1-1: config 1 has 1 interface, different from the descriptor's value: 2
+[ 3132.053068][T11643] usb 1-1: config 1 interface 0 altsetting 0 has 0 endpoint descriptors, different from the interface descriptor's value: 1
+[ 3132.061177][T11643] usb 1-1: config 1 has an invalid descriptor of length 0, skipping remainder of the config
+[ 3132.066120][T11643] usb 1-1: config 1 has 1 interface, different from the descriptor's value: 2
+[ 3132.070750][T11643] usb 1-1: config 1 interface 0 altsetting 0 has 0 endpoint descriptors, different from the interface descriptor's value: 1
+[ 3132.079240][T11643] usb 1-1: config 1 has an invalid descriptor of length 0, skipping remainder of the config
+[ 3132.085321][T11643] usb 1-1: config 1 has 1 interface, different from the descriptor's value: 2
+[ 3132.089705][T11643] usb 1-1: config 1 interface 0 altsetting 0 has 0 endpoint descriptors, different from the interface descriptor's value: 1
+[ 3132.098099][T11643] usb 1-1: config 1 has an invalid descriptor of length 0, skipping remainder of the config
+[ 3132.104018][T11643] usb 1-1: config 1 has 1 interface, different from the descriptor's value: 2
+[ 3132.108946][T11643] usb 1-1: config 1 interface 0 altsetting 0 has 0 endpoint descriptors, different from the interface descriptor's value: 1
+[ 3132.118240][T11643] usb 1-1: config 1 has an invalid descriptor of length 0, skipping remainder of the config
+[ 3132.124379][T11643] usb 1-1: config 1 has 1 interface, different from the descriptor's value: 2
+[ 3132.128639][T11643] usb 1-1: config 1 interface 0 altsetting 0 has 0 endpoint descriptors, different from the interface descriptor's value: 1
+[ 3132.136994][T11643] usb 1-1: config 1 has an invalid descriptor of length 0, skipping remainder of the config
+[ 3132.142801][T11643] usb 1-1: config 1 has 1 interface, different from the descriptor's value: 2
+[ 3132.147657][T11643] usb 1-1: config 1 interface 0 altsetting 0 has 0 endpoint descriptors, different from the interface descriptor's value: 1
+[ 3132.157463][T11643] usb 1-1: config 1 has an invalid descriptor of length 0, skipping remainder of the config
+[ 3132.163724][T11643] usb 1-1: config 1 has 1 interface, different from the descriptor's value: 2
+[ 3132.169227][T11643] usb 1-1: config 1 interface 0 altsetting 0 has 0 endpoint descriptors, different from the interface descriptor's value: 1
+[ 3132.180276][T11643] usb 1-1: New USB device found, idVendor=0525, idProduct=a4a1, bcdDevice= 0.40
+[ 3132.185645][T11643] usb 1-1: New USB device strings: Mfr=1, Product=2, SerialNumber=3
+[ 3132.190633][T11643] usb 1-1: Product: syz
+[ 3132.193331][T11643] usb 1-1: Manufacturer: syz
+[ 3132.196369][T11643] usb 1-1: SerialNumber: syz
+[ 3132.205865][T11643] cdc_ncm 1-1:1.0: CDC Union missing and no IAD found
+[ 3132.210376][T11643] cdc_ncm 1-1:1.0: bind() failure
+[ 3132.211849][T94398] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3132.219158][T94398] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3132.230015][T94398] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3132.235486][T94398] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3132.249552][T53001] usb 2-1: invalid UAC_HEADER (v1)
+[ 3132.268222][T53001] snd-usb-audio 2-1:1.0: probe with driver snd-usb-audio failed with error -22
+[ 3132.284078][T53001] usb 2-1: USB disconnect, device number 109
+[ 3132.824790][T94434] FAULT_INJECTION: forcing a failure.
+[ 3132.824790][T94434] name fail_page_alloc, interval 1, probability 0, space 0, times 0
+[ 3132.830211][T94434] CPU: 0 UID: 0 PID: 94434 Comm: syz.1.8099 Not tainted 6.18.0 #1 PREEMPT(full) 
+[ 3132.830225][T94434] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[ 3132.830232][T94434] Call Trace:
+[ 3132.830237][T94434]  <TASK>
+[ 3132.830242][T94434]  dump_stack_lvl+0x180/0x1b0
+[ 3132.830277][T94434]  should_fail_ex+0x520/0x650
+[ 3132.830293][T94434]  should_fail_alloc_page+0xe9/0x140
+[ 3132.830311][T94434]  prepare_alloc_pages+0x3b9/0x610
+[ 3132.830327][T94434]  ? rcu_is_watching+0x12/0xc0
+[ 3132.830341][T94434]  __alloc_frozen_pages_noprof+0x186/0x2140
+[ 3132.830357][T94434]  ? mon_bin_ioctl+0x469/0xcc0
+[ 3132.830367][T94434]  ? kasan_save_stack+0x34/0x50
+[ 3132.830379][T94434]  ? kasan_save_stack+0x24/0x50
+[ 3132.830391][T94434]  ? kasan_save_track+0x14/0x30
+[ 3132.830403][T94434]  ? __kasan_kmalloc+0xaa/0xb0
+[ 3132.830414][T94434]  ? __kmalloc_noprof+0x32c/0x8c0
+[ 3132.830424][T94434]  ? mon_bin_ioctl+0x469/0xcc0
+[ 3132.830432][T94434]  ? __x64_sys_ioctl+0x18f/0x210
+[ 3132.830442][T94434]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[ 3132.830455][T94434]  ? lockdep_hardirqs_on+0x7c/0x110
+[ 3132.830474][T94434]  ? __lock_acquire+0xb62/0x1be0
+[ 3132.830491][T94434]  ? __sanitizer_cov_trace_switch+0x54/0x90
+[ 3132.830504][T94434]  ? policy_nodemask+0xeb/0x4d0
+[ 3132.830520][T94434]  alloc_pages_mpol+0x1f1/0x550
+[ 3132.830535][T94434]  ? __pfx_alloc_pages_mpol+0x10/0x10
+[ 3132.830553][T94434]  alloc_pages_noprof+0x12d/0x390
+[ 3132.830568][T94434]  get_zeroed_page_noprof+0x18/0xb0
+[ 3132.830582][T94434]  mon_alloc_buff+0xce/0x1c0
+[ 3132.830600][T94434]  mon_bin_ioctl+0x487/0xcc0
+[ 3132.830610][T94434]  ? hook_file_ioctl_common+0x146/0x3f0
+[ 3132.830624][T94434]  ? __pfx_mon_bin_ioctl+0x10/0x10
+[ 3132.830635][T94434]  ? __fget_files+0x1fb/0x3b0
+[ 3132.830649][T94434]  ? __pfx_mon_bin_ioctl+0x10/0x10
+[ 3132.830659][T94434]  __x64_sys_ioctl+0x18f/0x210
+[ 3132.830670][T94434]  do_syscall_64+0xcb/0xfa0
+[ 3132.830686][T94434]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[ 3132.830697][T94434] RIP: 0033:0x7f70139b359d
+[ 3132.830706][T94434] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[ 3132.830717][T94434] RSP: 002b:00007f701485ff98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[ 3132.830727][T94434] RAX: ffffffffffffffda RBX: 00007f7013c45fa0 RCX: 00007f70139b359d
+[ 3132.830734][T94434] RDX: 000000000003be1d RSI: 0000000000009204 RDI: 0000000000000003
+[ 3132.830740][T94434] RBP: 00007f7014860010 R08: 0000000000000000 R09: 0000000000000000
+[ 3132.830746][T94434] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000002
+[ 3132.830752][T94434] R13: 00007f7013c46038 R14: 00007f7013c45fa0 R15: 00007f7014840000
+[ 3132.830797][T94434]  </TASK>
+[ 3133.125751][T65467] usb 1-1: USB disconnect, device number 45
+[ 3133.262678][T53001] usb 2-1: new full-speed USB device number 110 using dummy_hcd
+[ 3133.415784][T53001] usb 2-1: config 1 interface 0 altsetting 2 endpoint 0x81 has invalid maxpacket 1023, setting to 64
+[ 3133.422117][T53001] usb 2-1: config 1 interface 0 altsetting 2 endpoint 0x3 has invalid maxpacket 512, setting to 64
+[ 3133.428644][T53001] usb 2-1: config 1 interface 0 altsetting 2 has 3 endpoint descriptors, different from the interface descriptor's value: 18
+[ 3133.436052][T53001] usb 2-1: config 1 interface 0 has no altsetting 0
+[ 3133.443385][T53001] usb 2-1: New USB device found, idVendor=0525, idProduct=a4a1, bcdDevice= 0.40
+[ 3133.447796][T53001] usb 2-1: New USB device strings: Mfr=0, Product=0, SerialNumber=1
+[ 3133.454304][T53001] usb 2-1: SerialNumber: syz
+[ 3133.461388][T94436] raw-gadget.2 gadget.1: fail, usb_ep_enable returned -22
+[ 3133.482764][T94436] raw-gadget.2 gadget.1: fail, usb_ep_enable returned -22
+[ 3133.701254][T94436] raw-gadget.2 gadget.1: fail, usb_ep_enable returned -22
+[ 3133.712541][T53602] vhci_hcd: vhci_device speed not set
+[ 3133.720662][T94436] raw-gadget.2 gadget.1: fail, usb_ep_enable returned -22
+[ 3133.935855][T94436] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3133.943501][T94436] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3134.162285][T94436] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3134.167110][T94436] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3134.178544][T94436] UDC core: USB Raw Gadget: couldn't find an available UDC or it's busy
+[ 3134.185182][T94436] misc raw-gadget: fail, usb_gadget_register_driver returned -16
+[ 3134.255990][T53001] cdc_ether 2-1:1.0: probe with driver cdc_ether failed with error -71
+[ 3134.264711][T53001] usb 2-1: USB disconnect, device number 110
+[ 3134.589199][T94485] vhci_hcd vhci_hcd.0: pdev(0) rhport(0) sockfd(4)
+[ 3134.593003][T94485] vhci_hcd vhci_hcd.0: devid(0) speed(5) speed_str(super-speed)
+[ 3134.603151][T94485] vhci_hcd vhci_hcd.0: Device attached
+[ 3134.611555][T94488] vhci_hcd vhci_hcd.0: pdev(0) rhport(1) sockfd(7)
+[ 3134.615908][T94488] vhci_hcd vhci_hcd.0: devid(0) speed(5) speed_str(super-speed)
+[ 3134.620423][T94488] vhci_hcd vhci_hcd.0: Device attached
+[ 3134.646832][T94490] vhci_hcd: connection closed
+[ 3134.647550][T71125] vhci_hcd: stop threads
+[ 3134.647898][T94486] vhci_hcd: connection closed
+[ 3134.650871][T71125] vhci_hcd: release socket
+[ 3134.666215][T71125] vhci_hcd: disconnect device
+[ 3134.669553][T71125] vhci_hcd: stop threads
+[ 3134.673813][T71125] vhci_hcd: release socket
+[ 3134.679666][T71125] vhci_hcd: disconnect device
+[ 3134.844343][T94508] ------------[ cut here ]------------
+[ 3134.849617][T94508] WARNING: CPU: 3 PID: 94508 at mm/page_alloc.c:5154 __alloc_frozen_pages_noprof+0x304/0x2140
+[ 3134.859892][T94508] Modules linked in:
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+[ 3134.863932][T94508] CPU: 3 UID: 0 PID: 94508 Comm: syz.1.8109 Not tainted 6.18.0 #1 PREEMPT(full) 
+[ 3134.870227][T94508] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[ 3134.877157][T94508] RIP: 0010:__alloc_frozen_pages_noprof+0x304/0x2140
+[ 3134.881355][T94508] Code: 5b 5d 41 5c 41 5d 41 5e 41 5f e9 47 e7 30 09 41 83 fd 0a 0f 86 0c fe ff ff 80 3d 71 42 3a 0e 00 75 0b c6 05 68 42 3a 0e 01 90 <0f> 0b 90 48 c7 04 24 00 00 00 00 e9 78 ff ff ff 48 8b 04 24 48 85
+[ 3134.893082][T94508] RSP: 0018:ffffc900037d7a10 EFLAGS: 00010246
+[ 3134.896851][T94508] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+[ 3134.901945][T94508] RDX: 0000000000000001 RSI: 1ffff920006faf56 RDI: 0000000000040cc0
+[ 3134.907087][T94508] RBP: 0000000000000014 R08: 0000000000000001 R09: fffff520006fafcd
+[ 3134.914122][T94508] R10: 0000000000000014 R11: 0000000000000000 R12: 0000000000040cc0
+[ 3134.920325][T94508] R13: 0000000000000014 R14: ffffffff9a9354c4 R15: 0000000000000001
+[ 3134.926956][T94508] FS:  00007f7014860640(0000) GS:ffff8881da501000(0000) knlGS:0000000000000000
+[ 3134.933912][T94508] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[ 3134.938197][T94508] CR2: 00007f701485fff0 CR3: 0000000039362000 CR4: 00000000000006f0
+[ 3134.943802][T94508] Call Trace:
+[ 3134.946255][T94508]  <TASK>
+[ 3134.948189][T94508]  ? _raw_spin_unlock_irqrestore+0x58/0x70
+[ 3134.952903][T94508]  ? lockdep_hardirqs_on+0x7c/0x110
+[ 3134.955583][T94508]  ? _raw_spin_unlock_irqrestore+0x41/0x70
+[ 3134.960270][T94508]  ? debug_check_no_obj_freed+0x2a6/0x520
+[ 3134.964512][T94508]  ? __pfx_tomoyo_supervisor+0x10/0x10
+[ 3134.967976][T94508]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[ 3134.973029][T94508]  ? __pfx_debug_check_no_obj_freed+0x10/0x10
+[ 3134.977066][T94508]  ? kasan_quarantine_put+0x10d/0x230
+[ 3134.980623][T94508]  ? lockdep_hardirqs_on+0x7c/0x110
+[ 3134.984871][T94508]  ? __sanitizer_cov_trace_switch+0x54/0x90
+[ 3134.989138][T94508]  ? policy_nodemask+0xeb/0x4d0
+[ 3134.993044][T94508]  alloc_pages_mpol+0x1f1/0x550
+[ 3134.996512][T94508]  ? __pfx_alloc_pages_mpol+0x10/0x10
+[ 3134.999459][T94508]  ? __pfx_tomoyo_path_number_perm+0x10/0x10
+[ 3135.003473][T94508]  ___kmalloc_large_node+0xff/0x170
+[ 3135.006527][T94508]  ? raw_alloc_io_data+0x138/0x1a0
+[ 3135.010728][T94508]  __kmalloc_large_node_noprof+0x1a/0x70
+[ 3135.015127][T94508]  __kmalloc_noprof+0x5ab/0x8c0
+[ 3135.019361][T94508]  ? __might_fault+0xe0/0x190
+[ 3135.022417][T94508]  ? raw_alloc_io_data+0x138/0x1a0
+[ 3135.026150][T94508]  raw_alloc_io_data+0x138/0x1a0
+[ 3135.029464][T94508]  raw_ioctl+0x625/0x2c00
+[ 3135.033506][T94508]  ? __pfx_raw_ioctl+0x10/0x10
+[ 3135.036819][T94508]  ? __fget_files+0x1fb/0x3b0
+[ 3135.040719][T94508]  ? __pfx_raw_ioctl+0x10/0x10
+[ 3135.044605][T94508]  __x64_sys_ioctl+0x18f/0x210
+[ 3135.048628][T94508]  do_syscall_64+0xcb/0xfa0
+[ 3135.050918][T94508]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[ 3135.052703][T53001] usb 1-1: new high-speed USB device number 46 using dummy_hcd
+[ 3135.054766][T94508] RIP: 0033:0x7f70139b359d
+[ 3135.061475][T94508] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[ 3135.072577][T94508] RSP: 002b:00007f701485ff98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[ 3135.078843][T94508] RAX: ffffffffffffffda RBX: 00007f7013c45fa0 RCX: 00007f70139b359d
+[ 3135.084708][T94508] RDX: 0000200000000180 RSI: 00000000c0085508 RDI: 0000000000000003
+[ 3135.089934][T94508] RBP: 00007f7013a52ab8 R08: 0000000000000000 R09: 0000000000000000
+[ 3135.094216][T94508] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+[ 3135.099628][T94508] R13: 00007f7013c46038 R14: 00007f7013c45fa0 R15: 00007f7014840000
+[ 3135.105251][T94508]  </TASK>
+[ 3135.107680][T94508] Kernel panic - not syncing: kernel: panic_on_warn set ...
+[ 3135.112127][T94508] CPU: 3 UID: 0 PID: 94508 Comm: syz.1.8109 Not tainted 6.18.0 #1 PREEMPT(full) 
+[ 3135.118233][T94508] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[ 3135.126658][T94508] Call Trace:
+[ 3135.128647][T94508]  <TASK>
+[ 3135.130977][T94508]  dump_stack_lvl+0x3d/0x1b0
+[ 3135.134701][T94508]  vpanic+0x679/0x710
+[ 3135.138012][T94508]  ? __alloc_frozen_pages_noprof+0x304/0x2140
+[ 3135.142475][T94508]  panic+0xc2/0xd0
+[ 3135.144564][T94508]  ? __pfx_panic+0x10/0x10
+[ 3135.147722][T94508]  check_panic_on_warn+0xb1/0xc0
+[ 3135.151493][T94508]  __warn+0xf6/0x3d0
+[ 3135.155079][T94508]  ? __alloc_frozen_pages_noprof+0x304/0x2140
+[ 3135.159929][T94508]  report_bug+0x2e1/0x500
+[ 3135.162950][T94508]  ? __alloc_frozen_pages_noprof+0x304/0x2140
+[ 3135.167055][T94508]  handle_bug+0x2dd/0x410
+[ 3135.170461][T94508]  ? stack_depot_save_flags+0x2c/0xac0
+[ 3135.173730][T94508]  exc_invalid_op+0x35/0x80
+[ 3135.176192][T94508]  asm_exc_invalid_op+0x1a/0x20
+[ 3135.179548][T94508] RIP: 0010:__alloc_frozen_pages_noprof+0x304/0x2140
+[ 3135.184945][T94508] Code: 5b 5d 41 5c 41 5d 41 5e 41 5f e9 47 e7 30 09 41 83 fd 0a 0f 86 0c fe ff ff 80 3d 71 42 3a 0e 00 75 0b c6 05 68 42 3a 0e 01 90 <0f> 0b 90 48 c7 04 24 00 00 00 00 e9 78 ff ff ff 48 8b 04 24 48 85
+[ 3135.199566][T94508] RSP: 0018:ffffc900037d7a10 EFLAGS: 00010246
+[ 3135.204592][T94508] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000000
+[ 3135.210827][T94508] RDX: 0000000000000001 RSI: 1ffff920006faf56 RDI: 0000000000040cc0
+[ 3135.216699][T94508] RBP: 0000000000000014 R08: 0000000000000001 R09: fffff520006fafcd
+[ 3135.221397][T94508] R10: 0000000000000014 R11: 0000000000000000 R12: 0000000000040cc0
+[ 3135.227096][T94508] R13: 0000000000000014 R14: ffffffff9a9354c4 R15: 0000000000000001
+[ 3135.232863][T94508]  ? _raw_spin_unlock_irqrestore+0x58/0x70
+[ 3135.237393][T94508]  ? lockdep_hardirqs_on+0x7c/0x110
+[ 3135.241718][T94508]  ? _raw_spin_unlock_irqrestore+0x41/0x70
+[ 3135.245826][T94508]  ? debug_check_no_obj_freed+0x2a6/0x520
+[ 3135.250508][T94508]  ? __pfx_tomoyo_supervisor+0x10/0x10
+[ 3135.254606][T94508]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[ 3135.258835][T94508]  ? __pfx_debug_check_no_obj_freed+0x10/0x10
+[ 3135.263264][T94508]  ? kasan_quarantine_put+0x10d/0x230
+[ 3135.265985][T94508]  ? lockdep_hardirqs_on+0x7c/0x110
+[ 3135.269343][T94508]  ? __sanitizer_cov_trace_switch+0x54/0x90
+[ 3135.273512][T94508]  ? policy_nodemask+0xeb/0x4d0
+[ 3135.276957][T94508]  alloc_pages_mpol+0x1f1/0x550
+[ 3135.280126][T94508]  ? __pfx_alloc_pages_mpol+0x10/0x10
+[ 3135.283792][T94508]  ? __pfx_tomoyo_path_number_perm+0x10/0x10
+[ 3135.288624][T94508]  ___kmalloc_large_node+0xff/0x170
+[ 3135.291999][T94508]  ? raw_alloc_io_data+0x138/0x1a0
+[ 3135.295488][T94508]  __kmalloc_large_node_noprof+0x1a/0x70
+[ 3135.298990][T94508]  __kmalloc_noprof+0x5ab/0x8c0
+[ 3135.301846][T94508]  ? __might_fault+0xe0/0x190
+[ 3135.304861][T94508]  ? raw_alloc_io_data+0x138/0x1a0
+[ 3135.308094][T94508]  raw_alloc_io_data+0x138/0x1a0
+[ 3135.311360][T94508]  raw_ioctl+0x625/0x2c00
+[ 3135.314690][T94508]  ? __pfx_raw_ioctl+0x10/0x10
+[ 3135.317826][T94508]  ? __fget_files+0x1fb/0x3b0
+[ 3135.320635][T94508]  ? __pfx_raw_ioctl+0x10/0x10
+[ 3135.323331][T94508]  __x64_sys_ioctl+0x18f/0x210
+[ 3135.326564][T94508]  do_syscall_64+0xcb/0xfa0
+[ 3135.329327][T94508]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[ 3135.333242][T94508] RIP: 0033:0x7f70139b359d
+[ 3135.336112][T94508] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[ 3135.349380][T94508] RSP: 002b:00007f701485ff98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[ 3135.355666][T94508] RAX: ffffffffffffffda RBX: 00007f7013c45fa0 RCX: 00007f70139b359d
+[ 3135.361722][T94508] RDX: 0000200000000180 RSI: 00000000c0085508 RDI: 0000000000000003
+[ 3135.367122][T94508] RBP: 00007f7013a52ab8 R08: 0000000000000000 R09: 0000000000000000
+[ 3135.371720][T94508] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+[ 3135.377562][T94508] R13: 00007f7013c46038 R14: 00007f7013c45fa0 R15: 00007f7014840000
+[ 3135.382997][T94508]  </TASK>
+[ 3135.386914][T94508] Kernel Offset: disabled
+[ 3135.389459][T94508] Rebooting in 86400 seconds..

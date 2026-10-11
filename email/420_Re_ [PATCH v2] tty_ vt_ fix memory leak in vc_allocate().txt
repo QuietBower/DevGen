@@ -1,0 +1,48 @@
+From: Author A <author-a@example.com>
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: jirislaby@kernel.org, linux-kernel@vger.kernel.org,
+ linux-serial@vger.kernel.org, stable@vger.kernel.org
+Subject: Re: [PATCH v2] tty: vt: fix memory leak in vc_allocate()
+Date: Mon, 03 Aug 2026 22:39:29 +0800
+Message-ID: <514ebe5c-4867-47e8-9500-0b0cab9eb243@anonymous.edu>
+ In-Reply-To:Content-Type; =?utf-8?q?b=3DQB4XBFoe6FaTkAYDEbf150b43Tl4rc+3NfI?=
+ =?utf-8?q?8EkKY1i1GoHpQTjdVrNtyykh0SY8/3PzMUtP1n6J+0mNlE1+b8STGdn5+tS0URWYd?=
+ =?utf-8?q?2u8OeV4X/1eHV9Epk/xVaFOHq/PMX6IolqTJJkOT/xSJQRuvxCF5mxN0skoJ7er4k?=
+ =?utf-8?q?xHVeYY=3D?=
+	In-Reply-To:Content-Type:Content-Transfer-Encoding; bh=zikC+lXga
+	ySyf9v4+Joz+DRFET+DATnOMZ1d30rrZfw=; b=rRIhaz9EiuIjWRrQaUvzKH5U/
+	487IYE359D4as/6APUD+Hy43rB0Dsmuvo/3HJFq4CRDzCeuOwZKGIB1xPQtiDt5e
+	hyuM+0na+jyJZDBb8AnGtX5zgcc8+egfEp8/fnXB9XjwQOHxV8sRRpYeuPM+7DGh
+	qiwrGPxd0whSPJmtGk=
+In-Reply-To: <2026080339-proofing-catsup-bee9@gregkh>
+References: <20260731024550.158801-1-author-a@example.com>
+ <2026080339-proofing-catsup-bee9@gregkh>
+List-Id: <stable.vger.kernel.org>
+
+Hi Greg,
+
+> Shouldn't you be checking vc->uni_pagedict_loc before calling this
+> function?
+>
+> Right now we have callers sometimes checking this, and sometimes not,
+> while the function doesn't seem to care, but we should be consistant,
+> right?  This will only need to be cleaned up if the previous check in
+> this function was correct.
+
+Thank you for the review.
+
+Yes, the previous check in this function is correct. It acts as a
+conditional initialization, allocating the default map only if the VC
+did not already inherit one during visual_init().
+
+While con_free_unimap() safely handles NULL internally, I completely
+agree that keeping the callers consistent is better for readability
+and maintenance.
+
+I will add the explicit check for *vc->uni_pagedict_loc in the
+err_free path and send a v3 shortly.
+
+Best regards,
+Author A
+
+

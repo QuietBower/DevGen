@@ -1,0 +1,81 @@
+From: Author A <author-a@example.com>
+To: gregkh@linuxfoundation.org, arnd@arndb.de
+Cc: kees@kernel.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ Author A <author-a@example.com>
+Subject: [PATCH v8 0/2] misc: ibmasm: Fix out-of-bounds MMIO accesses
+Date: Sat, 18 Jul 2026 15:32:51 +0800
+	Message-Id:MIME-Version:Content-Transfer-Encoding; bh=XfxgWTi4cn
+	HI2POOGPXVSfrQJku008KOXkKRQTdXccE=; b=hwvcY6txKhzhTjJY5x4CSBIP4w
+	xgNGn2XXks8cUouOAiL0p0YfJz7+SJNsZs2nCYX3XV7MNhB+Je1yDyCZvraMEyIy
+	8YBXoQ4yaPiS/kbbLouMsQ4dxLGIwWmw/g62u8Gbc+Yei/i9JVcGzr9waRvd/q23
+	X57rPLJzjwr9tMwGE=
+Message-Id: <20260718073253.96741-1-author-a@example.com>
+List-Id: <stable.vger.kernel.org>
+
+This patch series fixes two distinct out-of-bounds (OOB) MMIO access
+vectors in the ibmasm driver when exposed to malformed or fuzzed hardware
+with an undersized BAR 0.
+
+Patch 1 addresses the static OOB access during the probe phase.
+Patch 2 addresses the dynamic OOB accesses via malicious hardware MFAs
+during runtime interrupts.
+
+Changes in v8:
+ - Patch 2: Addressed static analysis feedback by removing
+   set_mfa_inbound() from the error path. Submitting an out-of-bounds
+   MFA instructs the hardware to execute from an invalid physical
+   address (Wild DMA). Dropping the MFA safely favors a device stall
+   over host memory corruption.
+
+Changes in v7:
+ - Patch 2: Addressed a pre-existing logic bug caught by static analysis 
+   where the driver passed the total message size instead of the payload 
+   size to ibmasm_receive_message(), causing a 12-byte OOB read. Added an 
+   underflow safeguard (data_size < sizeof(i2o_header)) and corrected the 
+   passed payload size.
+
+Changes in v6:
+ - Patch 2: Fixed a mathematical error in the dynamic bounds check where 
+   the header size was double-counted, which would have incorrectly 
+   rejected valid hardware messages.
+
+Changes in v5:
+ - Patch 1: Extended static bounds check threshold to 0xAC1FC to correctly 
+   cover display_depth() accesses identified by static analysis.
+ - Patch 2: Moved get_i2o_message() out of line into lowlevel.c to avoid 
+   text bloat, as requested by Greg KH.
+
+Changes in v4:
+ - Patch 1: Extended static bounds check to cover remote input device 
+   registers (up to 0xAC000) that are unconditionally accessed 
+   during probe.
+ - Patch 2: Added dynamic payload size to bounds calculation to prevent 
+   trailing out-of-bounds memcpy_toio().
+ - Patch 2: Restored set_mfa_inbound() in the error path to prevent 
+   hardware queue deadlocks, and used safe subtraction for dynamic bounds 
+   checking to prevent integer overflow bypasses.
+
+Changes in v3:
+ - Split the monolithic v2 patch into a 2-patch series to separate the 
+   probe-time static checks from the runtime dynamic checks, as requested 
+   by Greg KH.
+
+Changes in v2:
+ - Added dynamic MFA bounds checking in get_i2o_message().
+ - Implemented hardware mailbox deadlock prevention.
+ - Fixed potential unsigned integer underflow in bounds check arithmetic.
+
+Author A (2):
+  misc: ibmasm: Fix static out-of-bounds MMIO access during probe
+  misc: ibmasm: Fix dynamic out-of-bounds MMIO access via malicious MFA
+
+ drivers/misc/ibmasm/ibmasm.h   |  1 +
+ drivers/misc/ibmasm/lowlevel.c | 42 ++++++++++++++++++++++++++++++----
+ drivers/misc/ibmasm/lowlevel.h | 23 +++++++++++++++----
+ drivers/misc/ibmasm/module.c   | 13 +++++++++++
+ 4 files changed, 71 insertions(+), 8 deletions(-)
+
+-- 
+2.34.1
+
+

@@ -1,0 +1,807 @@
+last executing test programs:
+
+2.278426977s ago: executing program 2 (id=260):
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f00000000c0)=0x3)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x4)
+openat$ptmx(0xffffffffffffff9c, 0x0, 0x200, 0x0)
+ioctl$TCSETAW(0xffffffffffffffff, 0x5407, &(0x7f0000000100)={0x9610, 0x2, 0x7, 0x0, 0x8, "2de94ac3cc0d8f48"})
+r1 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f00000002c0)=0x2)
+ioctl$TIOCVHANGUP(r1, 0x5437, 0x0)
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+
+1.975103576s ago: executing program 2 (id=262):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f00000000c0)=0x3)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x4)
+openat$ptmx(0xffffffffffffff9c, 0x0, 0x200, 0x0)
+ioctl$TCSETAW(0xffffffffffffffff, 0x5407, &(0x7f0000000100)={0x9610, 0x2, 0x7, 0x0, 0x8, "2de94ac3cc0d8f48"})
+r2 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+ioctl$TIOCSETD(r2, 0x5423, &(0x7f00000002c0)=0x2)
+ioctl$TIOCVHANGUP(r2, 0x5437, 0x0)
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TIOCSTI(r1, 0x5412, &(0x7f0000000040)=0x84)
+ioctl$TCGETS2(r1, 0x802c542a, &(0x7f0000000000))
+ioctl$TIOCL_BLANKSCREEN(r0, 0x541c, &(0x7f0000000080))
+
+1.964026703s ago: executing program 3 (id=263):
+ioctl$SNDRV_SEQ_IOCTL_SET_QUEUE_INFO(0xffffffffffffffff, 0xc08c5335, 0x0)
+r0 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000001200), 0x80000)
+ioctl$SNDRV_SEQ_IOCTL_QUERY_NEXT_PORT(r0, 0xc0a85352, &(0x7f0000001240)={{}, 'port0\x00', 0x0, 0x10804, 0x401, 0x8, 0x6, 0x100, 0xbd, 0x0, 0x4, 0x4})
+syz_open_dev$dri(&(0x7f0000000000), 0x9e5, 0x1c880)
+openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+
+1.851920668s ago: executing program 2 (id=266):
+arch_prctl$ARCH_SHSTK_DISABLE(0x5002, 0x1)
+arch_prctl$ARCH_SHSTK_ENABLE(0x5001, 0x1)
+arch_prctl$ARCH_SHSTK_UNLOCK(0x5004, 0x1)
+r0 = syz_clone(0x11, 0x0, 0x0, 0x0, 0x0, 0x0)
+arch_prctl$ARCH_SHSTK_ENABLE(0x5001, 0x2)
+arch_prctl$ARCH_SHSTK_DISABLE(0x5002, 0x2)
+arch_prctl$ARCH_SHSTK_ENABLE(0x5001, 0x2)
+ptrace(0x10, r0)
+ptrace$ARCH_SHSTK_DISABLE(0x1e, r0, 0x1, 0x5002)
+ptrace$ARCH_SHSTK_ENABLE(0x1e, r0, 0x1, 0x5001)
+ptrace$ARCH_SHSTK_UNLOCK(0x1e, r0, 0x1, 0x5004)
+ptrace$getregset(0x4204, r0, 0x204, &(0x7f0000000040)={&(0x7f0000000080)=""/28, 0x8})
+ptrace$setregset(0x4205, r0, 0x204, &(0x7f00000000c0)={&(0x7f0000000100)='LLLLLLLLLLLLLLLLLLLLLLLLLLLL', 0x8})
+ptrace(0x11, r0)
+mmap(&(0x7f0000000000/0x200000)=nil, 0x200000, 0x3, 0x32, 0x0, 0x0)
+arch_prctl$ARCH_SHSTK_DISABLE(0x5002, 0x1)
+
+1.780584292s ago: executing program 3 (id=268):
+ioctl$TUNSETIFF(0xffffffffffffffff, 0x40086602, 0x0)
+r0 = openat$tun(0xffffffffffffff9c, 0x0, 0xacc3c3, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNATTACHFILTER(r1, 0x401054d5, &(0x7f0000000080)={0x3, &(0x7f0000000040)=[{0x7, 0x5, 0x9, 0xffff}, {0x1, 0x2, 0x3, 0x10}, {0x6, 0xa, 0x9, 0x1}]})
+r2 = openat$tun(0xffffffffffffff9c, 0x0, 0x880, 0x0)
+ioctl$TUNSETIFF(r2, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNSETOFFLOAD(r1, 0x400454d0, 0x21)
+r3 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETOFFLOAD(r3, 0x400454d0, 0x1)
+ioctl$TUNSETIFF(r3, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNATTACHFILTER(r3, 0x401054d5, &(0x7f0000000080)={0x0, 0x0})
+ioctl$TUNATTACHFILTER(r2, 0x401054d5, &(0x7f0000000080)={0x2, &(0x7f0000000040)=[{0x20, 0x3, 0x7, 0xfffff018}, {0x6, 0xa, 0x9, 0x1}]})
+ioctl$TUNSETIFF(0xffffffffffffffff, 0x400454ca, &(0x7f0000000680)={'dvmrp1\x00', 0xbc3d4dd9b2b4155a})
+ioctl$TUNSETIFF(r0, 0xc0045878, 0x0)
+
+1.5834102s ago: executing program 2 (id=269):
+ioctl$TUNSETIFF(0xffffffffffffffff, 0x40086602, 0x0)
+r0 = openat$tun(0xffffffffffffff9c, 0x0, 0xacc3c3, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNATTACHFILTER(r1, 0x401054d5, &(0x7f0000000080)={0x0, 0x0})
+r2 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r2, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNSETOFFLOAD(r1, 0x400454d0, 0x21)
+r3 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETOFFLOAD(r3, 0x400454d0, 0x1)
+ioctl$TUNSETIFF(r3, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNATTACHFILTER(r3, 0x401054d5, &(0x7f0000000080)={0x2, &(0x7f0000000040)=[{0x20, 0x4, 0x7, 0xfffff02c}, {0x6, 0xa, 0x9, 0x1}]})
+ioctl$TUNATTACHFILTER(r2, 0x401054d5, 0x0)
+r4 = openat$tun(0xffffffffffffff9c, &(0x7f0000000040), 0x2000, 0x0)
+ioctl$TUNSETIFF(r4, 0x400454ca, &(0x7f0000000680)={'dvmrp1\x00', 0xbc3d4dd9b2b4155a})
+ioctl$TUNSETIFF(r0, 0xc0045878, 0x0)
+
+1.41927221s ago: executing program 0 (id=272):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f00000000c0)=0x3)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x4)
+openat$ptmx(0xffffffffffffff9c, 0x0, 0x200, 0x0)
+ioctl$TCSETAW(0xffffffffffffffff, 0x5407, &(0x7f0000000100)={0x9610, 0x2, 0x7, 0x0, 0x8, "2de94ac3cc0d8f48"})
+r1 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f00000002c0)=0x1b)
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+
+1.253675104s ago: executing program 0 (id=273):
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f00000000c0)=0x3)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x4)
+openat$ptmx(0xffffffffffffff9c, 0x0, 0x200, 0x0)
+ioctl$TCSETAW(0xffffffffffffffff, 0x5407, &(0x7f0000000100)={0x9610, 0x2, 0x7, 0x0, 0x8, "2de94ac3cc0d8f48"})
+r1 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f00000002c0)=0x2)
+ioctl$TIOCVHANGUP(r1, 0x5437, 0x0)
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+
+1.25347404s ago: executing program 3 (id=274):
+r0 = syz_open_dev$KGPT_slcan(&(0x7f0000000880), 0x0, 0x0)
+ioctl$KGPT_SIOCGIFNAMES(r0, 0x5437, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, 0x0)
+ioctl$TUNSETDEBUG(r1, 0x400454c9, &(0x7f0000000080)=0xfffffffb)
+r2 = syz_open_dev$KGPT_slcan(&(0x7f0000000040), 0x0, 0x2000)
+r3 = syz_open_dev$KGPT_slcan(&(0x7f0000000880), 0x0, 0x0)
+ioctl$KGPT_SIOCGIFNAMES(r3, 0x8910, 0x0)
+syz_open_dev$KGPT_slcan(0x0, 0x0, 0x400)
+ioctl$KGPT_SIOCGIFNAMES(r3, 0x8910, &(0x7f0000000000)={'caif0\x00', @ifru_mtu})
+r4 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r4, 0x400454ca, &(0x7f0000000040)={'\x00', 0x3113})
+ioctl$SIOCSIFHWADDR(r4, 0x8924, &(0x7f0000000180)={'syz_tun\x00', @dev={'\xaa\xaa\xaa\xaa\xaa', 0x25}})
+ioctl$KGPT_SIOCGIFNAMES(r2, 0x5437, 0x0)
+
+1.191531139s ago: executing program 0 (id=275):
+syz_open_dev$ttys(0xc, 0x2, 0x1)
+ioctl$VT_RESIZEX(0xffffffffffffffff, 0x560a, &(0x7f0000000000)={0x81, 0x0, 0x0, 0x0, 0x9, 0x8})
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000140)=0x12)
+syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x40086602, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r1, 0x5452, &(0x7f0000000000)={0x0, 0x5, 0xc4e, 0x6, 0x2, 0x8})
+ioctl$KDSIGACCEPT(r0, 0x4b4e, 0x4000000039)
+syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$TCSETSF(0xffffffffffffffff, 0x5404, 0x0)
+r2 = openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000040), 0x41, 0x0)
+ioctl$TIOCSTI(r2, 0x5412, &(0x7f0000000140)=0x9)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TIOCL_UNBLANKSCREEN(r3, 0x541c, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000100)=0xe)
+ioctl$TCXONC(0xffffffffffffffff, 0x540a, 0x1)
+ioctl$TIOCMSET(0xffffffffffffffff, 0x5418, 0x0)
+
+1.139872038s ago: executing program 1 (id=276):
+ioctl$SNDRV_SEQ_IOCTL_SET_QUEUE_INFO(0xffffffffffffffff, 0xc08c5335, 0x0)
+r0 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000001200), 0x80000)
+ioctl$SNDRV_SEQ_IOCTL_QUERY_NEXT_PORT(r0, 0xc0a85352, &(0x7f0000001240)={{}, 'port0\x00', 0x0, 0x10804, 0x401, 0x8, 0x6, 0x100, 0xbd, 0x0, 0x4, 0x4})
+syz_open_dev$dri(&(0x7f0000000000), 0x9e5, 0x1c880)
+openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+
+1.123049436s ago: executing program 0 (id=277):
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x2b18809027321a56, 0x4c031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x2, 0x4016031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x12, 0xc8032, 0xffffffffffffffff, 0x0)
+
+1.033255932s ago: executing program 1 (id=279):
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x5, 0x400c031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000ffe000/0x1000)=nil, 0x1000, 0x4, 0x8811, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000ffc000/0x2000)=nil, 0x2000, 0xd, 0x10, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x10000fe, 0xc8032, 0xffffffffffffffff, 0x0)
+syz_open_dev$usbmon(&(0x7f0000000000), 0x8, 0x40002)
+mmap$usbmon(&(0x7f0000f05000/0x3000)=nil, 0x3000, 0x0, 0x11, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x0, 0x11, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000c00000/0x4000)=nil, 0x4000, 0x1000001, 0xc831, 0xffffffffffffffff, 0x10000000)
+syz_open_dev$usbmon(&(0x7f0000000000), 0x400000000, 0x0)
+r0 = syz_open_dev$usbmon(0x0, 0x6f, 0x2000)
+mmap$usbmon(&(0x7f0000fae000/0x3000)=nil, 0x3000, 0x14, 0x13, r0, 0x0)
+mmap$usbmon(&(0x7f0000ffb000/0x4000)=nil, 0x4000, 0x1000000, 0x12, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000ffc000/0x4000)=nil, 0x40f4, 0x200000c, 0x8811, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000ffc000/0x2000)=nil, 0x2000, 0x1000004, 0x12, 0xffffffffffffffff, 0x0)
+r1 = syz_open_dev$usbmon(0x0, 0xfffffffffffffffb, 0x20001)
+ioctl$MON_IOCH_MFLUSH(r1, 0x5421, 0x110c231000)
+r2 = syz_open_dev$usbmon(&(0x7f0000001800), 0x40, 0x40a00)
+mmap$usbmon(&(0x7f0000ffe000/0x2000)=nil, 0x20f5, 0x3000004, 0x8011, r2, 0x8000000000000000)
+
+768.55385ms ago: executing program 1 (id=280):
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x2b18809027321a56, 0x4c031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x2, 0x4016031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x12, 0xc8032, 0xffffffffffffffff, 0x0)
+r0 = syz_open_dev$usbmon(&(0x7f0000000040), 0xfffffffffffffffb, 0x0)
+ioctl$MON_IOCH_MFLUSH(r0, 0x5421, 0x200000ffffff)
+mmap$usbmon(&(0x7f0000773000/0x1000)=nil, 0x1000, 0x2000009, 0x11, r0, 0x2)
+mmap$usbmon(&(0x7f0000a78000/0x1000)=nil, 0x1000, 0x17, 0xc8032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x9, 0xcc032, 0xffffffffffffffff, 0x0)
+syz_open_dev$usbmon(&(0x7f0000000000), 0x72a9dc66, 0x200)
+mmap$usbmon(&(0x7f0000400000/0xc00000)=nil, 0xc00000, 0x1000001, 0xc8032, 0xffffffffffffffff, 0x0)
+mmap$usbmon(&(0x7f0000d56000/0x4000)=nil, 0x4000, 0x0, 0x810, r0, 0x5)
+
+763.97184ms ago: executing program 0 (id=288):
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x2b18809027321a56, 0x4c031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x2, 0x4016031, 0xffffffffffffffff, 0x80000000)
+mmap$usbmon(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x12, 0xc8032, 0xffffffffffffffff, 0x0)
+
+620.108378ms ago: executing program 3 (id=281):
+syz_open_dev$dri(&(0x7f0000000000), 0xfffffffffffffffc, 0x10d000)
+r0 = syz_open_dev$dri(&(0x7f0000000000), 0xfffffffffffffffc, 0x2)
+ioctl$DRM_IOCTL_MODE_MAP_DUMB(r0, 0xc01064b3, &(0x7f0000000200))
+ioctl$DRM_IOCTL_MODE_CREATEPROPBLOB(r0, 0xc01064bd, &(0x7f0000000180)={&(0x7f0000000080)="7c2772857a834be7ae4d44d445cf9005999d5e56438892322b2223a8aaaf9e9f14a4b2fd8f003c5fc63d45c1284d4415120f0f47da6951fb126bf521dc909d6e7ec264529cc196ac9ee1382d36f63eda11484bd7668d5ccf64cf963a2818cfc4fa70eac3ef17b361938f4e7f0057adae5fcf13357a6af880bf70e132cc8655cfc24841ec657da1d381584e00fe0891949c717f9fc004f503131ab7f85d821ba515686ef591c936b831c077a03a13cd7894151eef069b62a937663176b4a373018f", 0x2000000})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0xfffffffffffffffc, 0x0)
+ioctl$DRM_IOCTL_MODE_LIST_LESSEES(0xffffffffffffffff, 0xc01064c7, 0x0)
+ioctl$DRM_IOCTL_MODE_CREATEPROPBLOB(r1, 0xc01064bd, &(0x7f0000000180)={&(0x7f0000000080)="7c2772857a834be7ae4d44d445cf9005999d5e56438892322b2223a8aaaf9e9f14a4b2fd8f003c5fc63d45c1284d4415120f0f47da6951fb126bf521dc909d6e7ec264529cc196ac9ee1382d36f63eda11484bd7668d5ccf64cf963a2818cfc4fa70eac3ef17b361938f4e7f0057adae5fcf13357a6af880bf70e132cc8655cfc24841ec657da1d381584e00fe0891949c717f9fc004f503131ab7f85d821ba515686ef591c936b831c077a03a13cd7894151eef069b62a937663176b4a373018f", 0x2000000})
+r2 = syz_open_dev$dri(0xfffffffffffffffe, 0xf2b, 0x21ab43)
+syz_open_dev$dri(&(0x7f0000000080), 0x0, 0x20000)
+ioctl$DRM_IOCTL_GEM_OPEN(r1, 0xc010640b, 0x0)
+syz_open_dev$dri(&(0x7f0000000d40), 0x3, 0x434480)
+r3 = syz_open_dev$dri(&(0x7f0000000000), 0xfffffffffffffffc, 0x0)
+ioctl$DRM_IOCTL_MODE_CREATEPROPBLOB(r3, 0xc01064bd, &(0x7f0000000180)={&(0x7f0000000080)="7c2772857a834be7ae4d44d445cf9005999d5e56438892322b2223a8aaaf9e9f14a4b2fd8f003c5fc63d45c1284d4415120f0f47da6951fb126bf521dc909d6e7ec264529cc196ac9ee1382d36f63eda11484bd7668d5ccf64cf963a2818cfc4fa70eac3ef17b361938f4e7f0057adae5fcf13357a6af880bf70e132cc8655cfc24841ec657da1d381584e00fe0891949c717f9fc004f503131ab7f85d821ba515686ef591c936b831c077a03a13cd7894151eef069b62a937663176b4a373018f", 0x2000000})
+ioctl$DRM_IOCTL_GEM_CLOSE(r2, 0x40086409, 0x0)
+ioctl$DRM_IOCTL_MODE_CREATE_LEASE(0xffffffffffffffff, 0xc01864c6, 0x0)
+r4 = syz_open_dev$dri(&(0x7f0000000000), 0xfffffffffffffffc, 0x0)
+ioctl$DRM_IOCTL_MODE_CREATEPROPBLOB(r4, 0xc01064bd, &(0x7f0000000180)={&(0x7f0000000080)="7c2772857a834be7ae4d44d445cf9005999d5e56438892322b2223a8aaaf9e9f14a4b2fd8f003c5fc63d45c1284d4415120f0f47da6951fb126bf521dc909d6e7ec264529cc196ac9ee1382d36f63eda11484bd7668d5ccf64cf963a2818cfc4fa70eac3ef17b361938f4e7f0057adae5fcf13357a6af880bf70e132cc8655cfc24841ec657da1d381584e00fe0891949c717f9fc004f503131ab7f85d821ba515686ef591c936b831c077a03a13cd7894151eef069b62a937663176b4a373018f", 0x2000000})
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r4, 0x4010640d, &(0x7f00000002c0))
+
+523.184692ms ago: executing program 3 (id=282):
+r0 = syz_open_dev$ptys(0xc, 0x3, 0x1)
+ioctl$TIOCGPKT(r0, 0x80045438, 0x0)
+ioctl$TIOCSETD(r0, 0x5423, &(0x7f00000000c0)=0x8)
+syz_open_dev$ptys(0xc, 0x3, 0x0)
+ioctl$VT_GETMODE(r0, 0x5601, &(0x7f00000001c0))
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TIOCL_BLANKSCREEN(r1, 0x541c, &(0x7f0000000300))
+
+522.802518ms ago: executing program 2 (id=283):
+ioctl$TUNSETIFF(0xffffffffffffffff, 0x40086602, 0x0)
+r0 = openat$tun(0xffffffffffffff9c, 0x0, 0xacc3c3, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNATTACHFILTER(r1, 0x401054d5, &(0x7f0000000080)={0x3, &(0x7f0000000040)=[{0x7, 0x5, 0x9, 0xffff}, {0x1, 0x2, 0x3, 0x10}, {0x6, 0xa, 0x9, 0x1}]})
+r2 = openat$tun(0xffffffffffffff9c, 0x0, 0x880, 0x0)
+ioctl$TUNSETIFF(r2, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNSETOFFLOAD(r1, 0x400454d0, 0x21)
+r3 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETOFFLOAD(r3, 0x400454d0, 0x1)
+ioctl$TUNSETIFF(r3, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNATTACHFILTER(r3, 0x401054d5, &(0x7f0000000080)={0x0, 0x0})
+ioctl$TUNATTACHFILTER(r2, 0x401054d5, &(0x7f0000000080)={0x2, &(0x7f0000000040)=[{0x20, 0x3, 0x7, 0xfffff018}, {0x6, 0xa, 0x9, 0x1}]})
+ioctl$TUNSETIFF(0xffffffffffffffff, 0x400454ca, &(0x7f0000000680)={'dvmrp1\x00', 0xbc3d4dd9b2b4155a})
+ioctl$TUNSETIFF(r0, 0xc0045878, 0x0)
+
+141.882231ms ago: executing program 1 (id=284):
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f00000000c0)=0x3)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, 0x0)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x4)
+openat$ptmx(0xffffffffffffff9c, 0x0, 0x200, 0x0)
+ioctl$TCSETAW(0xffffffffffffffff, 0x5407, &(0x7f0000000100)={0x9610, 0x2, 0x7, 0x0, 0x8, "2de94ac3cc0d8f48"})
+r1 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+ioctl$TIOCSETD(r1, 0x5423, &(0x7f00000002c0)=0x2)
+ioctl$TIOCVHANGUP(r1, 0x5437, 0x0)
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+
+141.701846ms ago: executing program 3 (id=285):
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x40086602, &(0x7f0000000a00)={0x2, 0x8})
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r1, 0x5452, &(0x7f0000000000)={0x0, 0x5, 0xc4e, 0x6, 0x2, 0x8})
+ioctl$TIOCL_PASTESEL(r1, 0x541c, &(0x7f00000000c0))
+ioctl$KDSKBLED(r0, 0x4b65, 0x9)
+ioctl$KDGKBMODE(0xffffffffffffffff, 0x4b44, 0x0)
+ioctl$KDSIGACCEPT(r0, 0x4b4e, 0x4000000039)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TCSETSF(r3, 0x5404, &(0x7f0000000700)={0x70c2, 0x9, 0xca0, 0xfffffff7, 0x3, "00ff045726084ce359c1c4833599c37369c490"})
+ioctl$KDGKBDIACR(r2, 0x4b4a, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000080)=0x12)
+ioctl$TIOCSBRK(r0, 0x5427)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000400)={0x1, 0x0, 0x14, 0xb, 0x1df})
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000840)={0x1, 0x0, 0x5, 0x13, 0x9, &(0x7f0000000440)})
+
+89.24018ms ago: executing program 2 (id=286):
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_SET(r0, 0x4b72, &(0x7f0000001000)={0x0, 0x0, 0x3, 0x10, 0x200, &(0x7f0000000c00)="af93c6d702a0bc6f86b3178caeb1bbd2b18d0a0e1e49f66e23f9f95b683db0325498a784bac97953b1349849ba942d847e7fc2425446e910526cce03de76af827bb5aaa62c2e199587a24875c6e47748bb2291d43d594c3787c69cd9552a5a87639499a980ee3bfb752ab3dd17f11c7f1b5f90be1823f4720fea68e294d666255e3343822be78c4a1392015e7d60990bf62d2f107df9c265792868d6b094616a3974f719a4202811b218d0254ac73bb6a9f8cd493e50ec8bc04c910534ebccf9b7187741c2256489a8d8a7105cf63531bc0bc7a3d89492fd1cc653053a4a3401a597bbab5961fac180f49f360dd0917dd5778aee64bd7cbc1848765484c712275c2db63490d5392984590964a9e156d7f8464b1b67f175f964b100eadbade0e8197d9ea301f41bdc75a5263a188e888235bc70511cb93d149cfa268a73f8e8fd288f445744617b7267dff68e0ecbfae54ff2f87f7ed4a4d5d4e250110a77f2628dda1c80463cb7e9f2615da2e1106f72afb735cd91d654186ad6f088d83ff85ef5e1f8d1151d041969a695b52b82a14b95f92179f190a9651dbbe510856c51e213e6806f1c560d730cbcd8ead95d5a8cb797e8df43ed3b90e660bf56c44191cd1233bbeb75f9024b9a1f1a30359a2620b97c29f9ed10db5e5c692b63e6ab9ca6a98c223ef721d1fd227ab2568d60a5ecd4a61fcab5ca859eea2f10e3ae45cb83be994d806b01b83b64f3be0c8e5abec8ed8ff715bf0911bf2a455e3934db7243ee604a816a1caac624b9b1396f9f6d520eebc98b749d13b7889643cc95b6be322a62c9c183d183db2b08d190683d29b07eb801c91d089e5d439ac36dd90f52a97916c9fb203a432a88ec6fffc2c54aa3f098e83bca3cabdae2ecbdc6df9242c40b563bf0970b29054d021fab1d05c477ddb8244c17fe2e568537a9742cda051d00409f4da70a2631086630abf4fdb50d05a5babdc8688e943aa8952e1533e4be20514069cd7fe9b0bb9a3ed748e1c1ac2ca3f2d40e696c12350302ae069cc08454fdfe54e17a5aeff15ec7a9c37fb793d3d99d9f37ba874a258a5163ebeecbde61ccbfc3eadedc37b6bb555aaaeafb747b8be28cd1588c7987f6f9f2f75a5475e165d1b93b2492ba98d256ba306a0c2f4fb6042216fd1ac68c77bfeb83a4a113e9c99622ed6f5e94ab27cc509d273493a9b5502e7e008e9b23a25d56577a6585dd34ec919e573122b64cfe6d4e30e74af0c53130ec9534a8dc89d74aada3ae64218f3bea2fe51820800826d554671478817ba857a9d51fc600748d93a30602ed07211069ae927095367cc5b73f26c0540ff9bf1e224bdffa1359773b23e66043e8222500fa805281f6984a763e84a69476561fd24021975387ab221617413fb78e257407f21383d5b8cbb92d31a8e7567d7577efe58ae078aad66e4d151562ca"})
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x2)
+ioctl$KDFONTOP_COPY(r1, 0x4b72, &(0x7f0000001000)={0x3, 0x1, 0x14, 0x8, 0x185, 0x0})
+ioctl$KDGETLED(r1, 0x4b31, &(0x7f0000001040))
+syz_open_dev$ttys(0xc, 0x2, 0x0)
+ioctl$PIO_UNIMAPCLR(r1, 0x4b68, &(0x7f0000000000)={0xe, 0x0, 0x1})
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCEXCL(r0, 0x540c)
+ioctl$KDMKTONE(r3, 0x4b30, 0x7fffffff)
+r4 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+r5 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCGSID(r5, 0x5429, 0x0)
+ioctl$KDSETLED(r4, 0x4b32, 0xfffffffffffff128)
+ioctl$KDMKTONE(r2, 0x4b30, 0x7fffffff)
+
+89.05299ms ago: executing program 0 (id=287):
+ioctl$SNDRV_SEQ_IOCTL_SET_QUEUE_INFO(0xffffffffffffffff, 0xc08c5335, 0x0)
+r0 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000001200), 0x80000)
+ioctl$SNDRV_SEQ_IOCTL_QUERY_NEXT_PORT(r0, 0xc0a85352, &(0x7f0000001240)={{}, 'port0\x00', 0x0, 0x10804, 0x401, 0x8, 0x6, 0x100, 0xbd, 0x0, 0x4, 0x4})
+syz_open_dev$dri(&(0x7f0000000000), 0x9e5, 0x1c880)
+openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+
+74.635371ms ago: executing program 1 (id=289):
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f0000000400)=0x81)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f0000000100)=0x4)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000380), 0x185000, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDDISABIO(r1, 0x4b37)
+ioctl$TCSETAF(0xffffffffffffffff, 0x5408, &(0x7f0000000440)={0xb6b, 0x800, 0x4, 0xffff, 0x8, "1bcffdbc5bdfa9e1"})
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000040)=0x5a)
+r4 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TIOCSTI(r4, 0x5412, &(0x7f0000000000)=0x1c)
+ioctl$KIOCSOUND(r3, 0x4b3d, 0x0)
+ioctl$TIOCSTI(r2, 0x5412, &(0x7f0000000400)=0x7f)
+ioctl$TIOCSWINSZ(0xffffffffffffffff, 0x5414, &(0x7f0000000ec0)={0x0, 0x9, 0x55ab})
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000080)=0x7)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000040)=0xd)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000040)=0x19)
+
+0s ago: executing program 1 (id=290):
+r0 = syz_open_dev$KGPT_slcan(&(0x7f0000000880), 0x0, 0x0)
+ioctl$KGPT_SIOCGIFNAMES(r0, 0x5437, 0x0)
+r1 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r1, 0x400454ca, 0x0)
+ioctl$TUNSETDEBUG(r1, 0x400454c9, &(0x7f0000000080)=0xfffffffb)
+r2 = syz_open_dev$KGPT_slcan(&(0x7f0000000040), 0x0, 0x2000)
+r3 = syz_open_dev$KGPT_slcan(&(0x7f0000000880), 0x0, 0x0)
+ioctl$KGPT_SIOCGIFNAMES(r3, 0x8910, 0x0)
+syz_open_dev$KGPT_slcan(0x0, 0x0, 0x400)
+ioctl$KGPT_SIOCGIFNAMES(r3, 0x8910, &(0x7f0000000000)={'caif0\x00', @ifru_mtu})
+r4 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r4, 0x400454ca, &(0x7f0000000040)={'\x00', 0x3113})
+ioctl$SIOCSIFHWADDR(r4, 0x8924, &(0x7f0000000180)={'syz_tun\x00', @dev={'\xaa\xaa\xaa\xaa\xaa', 0x25}})
+ioctl$KGPT_SIOCGIFNAMES(r2, 0x5437, 0x0)
+
+kernel console output (not intermixed with test programs):
+
+[   60.924396] audit: type=1400 audit(1779455539.066:33): avc:  denied  { siginh } for  pid=296 comm="bash" scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+Warning: Permanently added '[localhost]:42603' (ED25519) to the list of known hosts.
+[   65.986684] cgroup: Unknown subsys name 'net'
+[   66.144447] cgroup: Unknown subsys name 'cpuset'
+[   66.196346] cgroup: Unknown subsys name 'rlimit'
+[   66.199311] cgroup: Unknown subsys name 'memory'
+[   66.295916] kmemleak: Automatic memory scanning thread ended
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=e0f80c68-459f-462d-8bf5-cd2609dc2a4c
+[   83.502180] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   88.783402] audit: type=1400 audit(1779455566.965:34): avc:  denied  { execmem } for  pid=314 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   89.358657] audit: type=1400 audit(1779455567.542:35): avc:  denied  { read } for  pid=320 comm="modprobe" name="modules.softdep" dev="sda" ino=14431673 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   89.389514] audit: type=1400 audit(1779455567.542:36): avc:  denied  { open } for  pid=320 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431673 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   89.421450] audit: type=1400 audit(1779455567.544:37): avc:  denied  { getattr } for  pid=320 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431673 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   89.460845] audit: type=1400 audit(1779455567.544:38): avc:  denied  { map } for  pid=322 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431670 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   90.081884] audit: type=1400 audit(1779455568.263:39): avc:  denied  { getattr } for  pid=163 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431670 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  131.687906] loop0: detected capacity change from 0 to 512
+[  133.084733] audit: type=1400 audit(1779455611.260:40): avc:  denied  { module_load } for  pid=2099 comm="modprobe" path="/usr/lib/modules/7.0.0/kernel/net/qrtr/qrtr.ko" dev="sda" ino=14942325 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=system permissive=1
+[  133.487754] NET: Registered PF_QIPCRTR protocol family
+[  133.511708] audit: type=1400 audit(1779455611.681:41): avc:  denied  { net_admin } for  pid=2099 comm="modprobe" capability=12  scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:system_r:kmod_t:s0 tclass=capability permissive=1
+[  133.541561] watchdog: watchdog0: watchdog did not stop!
+[  133.983383] bochs-drm 0000:00:01.0: [drm] Unknown color mode 65536; guessing buffer size.
+[  134.127035] ata1.00: invalid cdb length 6
+[  134.319416] netlink: 3 bytes leftover after parsing attributes in process `syz.0.36'.
+[  134.863294] loop3: detected capacity change from 0 to 512
+[  134.899092] msdos: Unknown parameter 'ßx'
+[  134.940159] loop1: detected capacity change from 0 to 512
+[  135.181345] loop0: detected capacity change from 0 to 128
+[  135.196030] loop2: detected capacity change from 0 to 736
+[  135.220448] loop1: detected capacity change from 0 to 512
+[  135.363107] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  135.487636] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  135.657150] loop3: detected capacity change from 0 to 32768
+[  135.836383] loop1: detected capacity change from 0 to 512
+[  135.858209] msdos: Unknown parameter 'ßx'
+[  135.909056] loop2: detected capacity change from 0 to 128
+[  136.053166] loop1: detected capacity change from 0 to 736
+[  136.372507] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  136.582172] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  137.116123] set_capacity_and_notify: 1 callbacks suppressed
+[  137.116142] loop1: detected capacity change from 0 to 128
+[  137.892855] loop3: detected capacity change from 0 to 736
+[  137.913219] loop0: detected capacity change from 0 to 512
+[  138.388817] loop1: detected capacity change from 0 to 32768
+[  138.696739] loop0: detected capacity change from 0 to 736
+[  138.708055] loop2: detected capacity change from 0 to 512
+[  139.010650] loop0: detected capacity change from 0 to 512
+[  139.024495] ata1.00: invalid cdb length 6
+[  139.072985] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[  139.163905] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  139.410302] loop2: detected capacity change from 0 to 32768
+[  140.417010] watchdog: watchdog0: watchdog did not stop!
+[  141.463889] loop2: detected capacity change from 0 to 512
+[  141.689319] loop3: detected capacity change from 0 to 512
+
+Debian GNU/Linux 11 syzkaller ttyS0
+
+syzkaller login: [  153.974571] 
+[  153.975742] =====================================================
+[  153.983738] WARNING: SOFTIRQ-safe -> SOFTIRQ-unsafe lock order detected
+[  153.993806] 7.0.0 #6 Tainted: G        W        N 
+[  153.996260] -----------------------------------------------------
+[  154.003639] syz.3.285/2821 [HC0[0]:SC0[0]:HE0:SE1] is trying to acquire:
+[  154.003663] ffffffff8760c098 (tasklist_lock){.+.+}-{3:3}, at: send_sigio+0xc0/0x380
+[  154.003769] 
+[  154.003769] and this task is already holding:
+[  154.003775] ffff888100e802a0 (&f_owner->lock){....}-{3:3}, at: send_sigio+0x36/0x380
+[  154.003849] which would create a new lock dependency:
+[  154.003855]  (&f_owner->lock){....}-{3:3} -> (tasklist_lock){.+.+}-{3:3}
+[  154.003891] 
+[  154.003891] but this new dependency connects a SOFTIRQ-irq-safe lock:
+[  154.003899]  (&dev->event_lock){..-.}-{3:3}
+[  154.003926] 
+[  154.003926] ... which became SOFTIRQ-irq-safe at:
+[  154.003932]   lock_acquire+0x197/0x310
+[  154.004069]   _raw_spin_lock_irqsave+0x4a/0x70
+[  154.004116]   input_inject_event+0xa4/0x3b0
+[  154.004130]   led_set_brightness+0x21c/0x2a0
+[  154.004229]   led_trigger_event+0xdf/0x270
+[  154.004310]   kbd_bh+0x23c/0x310
+[  154.004362]   tasklet_action_common+0x25c/0x3d0
+[  154.004381]   handle_softirqs+0x1ba/0x890
+[  154.004440]   __irq_exit_rcu+0xd0/0x100
+[  154.004484]   irq_exit_rcu+0xe/0x20
+[  154.004501]   sysvec_apic_timer_interrupt+0x70/0x80
+[  154.004520]   asm_sysvec_apic_timer_interrupt+0x1a/0x20
+[  154.004536]   bad_range+0x151/0x230
+[  154.004551]   get_page_from_freelist+0x8f1/0x2ae0
+[  154.004570]   __alloc_frozen_pages_noprof+0x262/0x2560
+[  154.004591]   alloc_pages_mpol+0xf2/0x350
+[  154.004613]   alloc_pages_noprof+0xa6/0x390
+[  154.004644]   __pud_alloc+0x44/0x820
+[  154.004661]   __handle_mm_fault+0xaeb/0x2720
+[  154.004680]   handle_mm_fault+0x2dd/0x750
+[  154.004698]   do_user_addr_fault+0x39a/0xec0
+[  154.004722]   exc_page_fault+0xb5/0x190
+[  154.004776]   asm_exc_page_fault+0x26/0x30
+[  154.004792]   rep_movs_alternative+0x33/0x90
+[  154.004808]   _copy_to_user+0xbe/0xd0
+[  154.004824]   con_get_cmap+0x1b9/0x270
+[  154.004848]   vt_ioctl+0x1e69/0x2ee0
+[  154.004865]   tty_ioctl+0x717/0x1670
+[  154.005449]   __x64_sys_ioctl+0x194/0x210
+[  154.005468]   do_syscall_64+0x116/0x690
+[  154.005652]   entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  154.005669] 
+[  154.005669] to a SOFTIRQ-irq-unsafe lock:
+[  154.005677]  (tasklist_lock){.+.+}-{3:3}
+[  154.005692] 
+[  154.005692] ... which became SOFTIRQ-irq-unsafe at:
+[  154.005698] ...
+[  154.005701]   lock_acquire+0x197/0x310
+[  154.005727]   _raw_read_lock+0x61/0x70
+[  154.005746]   __do_wait+0xfe/0x870
+[  154.005758]   do_wait+0x1d0/0x5a0
+[  154.005769]   kernel_wait+0xa4/0x160
+[  154.005783]   call_usermodehelper_exec_work+0xfe/0x190
+[  154.005800]   process_one_work+0x920/0x1ac0
+[  154.005823]   worker_thread+0x698/0xeb0
+[  154.005847]   kthread+0x38a/0x4a0
+[  154.005868]   ret_from_fork+0x690/0xaa0
+[  154.006358]   ret_from_fork_asm+0x1a/0x30
+[  154.006555] 
+[  154.006555] other info that might help us debug this:
+[  154.006555] 
+[  154.006585] Chain exists of:
+[  154.006585]   &dev->event_lock --> &f_owner->lock --> tasklist_lock
+[  154.006585] 
+[  154.006858]  Possible interrupt unsafe locking scenario:
+[  154.006858] 
+[  154.006863]        CPU0                    CPU1
+[  154.006868]        ----                    ----
+[  154.006872]   lock(tasklist_lock);
+[  154.006883]                                local_irq_disable();
+[  154.006902]                                lock(&dev->event_lock);
+[  154.006913]                                lock(&f_owner->lock);
+[  154.006923]   <Interrupt>
+[  154.006927]     lock(&dev->event_lock);
+[  154.377880] 
+[  154.377880]  *** DEADLOCK ***
+[  154.377880] 
+[  154.377886] 7 locks held by syz.3.285/2821:
+[  154.377897]  #0: ffff88810f52d0a0 (&tty->ldisc_sem){++++}-{0:0}, at: tty_ldisc_ref_wait+0x2b/0x90
+[  154.377982]  #1: ffff888105e1a0b8 (&buf->lock){+.+.}-{4:4}, at: paste_selection+0x185/0x730
+[  154.378023]  #2: ffffffff87ba5c48 (vc_sel.lock){+.+.}-{4:4}, at: paste_selection+0x1b1/0x730
+[  154.378062]  #3: ffff88810f52d2e8 (&tty->termios_rwsem){++++}-{4:4}, at: n_tty_receive_buf_common+0x91/0x1770
+[  154.378110]  #4: ffffffff87806de0 (rcu_read_lock){....}-{1:3}, at: kill_fasync+0x66/0x520
+[  154.378149]  #5: ffff888118cc0558 (&new->fa_lock){....}-{3:3}, at: kill_fasync+0x13c/0x520
+[  154.378187]  #6: ffff888100e802a0 (&f_owner->lock){....}-{3:3}, at: send_sigio+0x36/0x380
+[  154.378225] 
+[  154.378225] the dependencies between SOFTIRQ-irq-safe lock and the holding lock:
+[  154.378234]    -> (&dev->event_lock){..-.}-{3:3} {
+[  154.378259]       IN-SOFTIRQ-W at:
+[  154.378268]                           lock_acquire+0x197/0x310
+[  154.378287]                           _raw_spin_lock_irqsave+0x4a/0x70
+[  154.378310]                           input_inject_event+0xa4/0x3b0
+[  154.378327]                           led_set_brightness+0x21c/0x2a0
+[  154.378350]                           led_trigger_event+0xdf/0x270
+[  154.378367]                           kbd_bh+0x23c/0x310
+[  154.378391]                           tasklet_action_common+0x25c/0x3d0
+[  154.378429]                           handle_softirqs+0x1ba/0x890
+[  154.378448]                           __irq_exit_rcu+0xd0/0x100
+[  154.378468]                           irq_exit_rcu+0xe/0x20
+[  154.378484]                           sysvec_apic_timer_interrupt+0x70/0x80
+[  154.378503]                           asm_sysvec_apic_timer_interrupt+0x1a/0x20
+[  154.378519]                           bad_range+0x151/0x230
+[  154.378534]                           get_page_from_freelist+0x8f1/0x2ae0
+[  154.378556]                           __alloc_frozen_pages_noprof+0x262/0x2560
+[  154.378576]                           alloc_pages_mpol+0xf2/0x350
+[  154.378596]                           alloc_pages_noprof+0xa6/0x390
+[  154.378619]                           __pud_alloc+0x44/0x820
+[  154.378640]                           __handle_mm_fault+0xaeb/0x2720
+[  154.378663]                           handle_mm_fault+0x2dd/0x750
+[  154.378685]                           do_user_addr_fault+0x39a/0xec0
+[  154.378710]                           exc_page_fault+0xb5/0x190
+[  154.378731]                           asm_exc_page_fault+0x26/0x30
+[  154.378748]                           rep_movs_alternative+0x33/0x90
+[  154.378762]                           _copy_to_user+0xbe/0xd0
+[  154.378776]                           con_get_cmap+0x1b9/0x270
+[  154.378797]                           vt_ioctl+0x1e69/0x2ee0
+[  154.378813]                           tty_ioctl+0x717/0x1670
+[  154.378829]                           __x64_sys_ioctl+0x194/0x210
+[  154.378846]                           do_syscall_64+0x116/0x690
+[  154.378867]                           entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  154.378884]       INITIAL USE at:
+[  154.378893]                          lock_acquire+0x197/0x310
+[  154.378950]                          _raw_spin_lock_irqsave+0x4a/0x70
+[  154.378968]                          input_inject_event+0xa4/0x3b0
+[  154.378982]                          led_set_brightness+0x21c/0x2a0
+[  154.379003]                          kbd_led_trigger_activate+0xd2/0x110
+[  154.379025]                          led_trigger_set+0x4ce/0xaa0
+[  154.379039]                          led_trigger_set_default+0x1ec/0x2e0
+[  154.379055]                          led_classdev_register_ext+0x61a/0x950
+[  154.379080]                          input_leds_connect+0x4b7/0x890
+[  154.379102]                          input_attach_handler+0x180/0x260
+[  154.379126]                          input_register_device+0x9fc/0x1030
+[  154.379151]                          atkbd_connect+0x5ef/0xa00
+[  154.379166]                          serio_driver_probe+0x89/0xe0
+[  154.379188]                          really_probe+0x266/0x850
+[  154.379206]                          __driver_probe_device+0x2c9/0x390
+[  154.379223]                          driver_probe_device+0x53/0x2a0
+[  154.379241]                          __driver_attach+0x1c1/0x5a0
+[  154.379258]                          bus_for_each_dev+0x131/0x1c0
+[  154.379282]                          serio_handle_event+0x239/0x980
+[  154.379304]                          process_one_work+0x920/0x1ac0
+[  154.379332]                          worker_thread+0x698/0xeb0
+[  154.379355]                          kthread+0x38a/0x4a0
+[  154.379375]                          ret_from_fork+0x690/0xaa0
+[  154.379413]                          ret_from_fork_asm+0x1a/0x30
+[  154.379437]     }
+[  154.379441]     ... key      at: [<ffffffff8af51380>] __key.4+0x0/0x40
+[  154.379466]   -> (&client->buffer_lock){....}-{3:3} {
+[  154.379491]      INITIAL USE at:
+[  154.379500]                        lock_acquire+0x197/0x310
+[  154.379516]                        _raw_spin_lock+0x30/0x40
+[  154.379536]                        evdev_pass_values.part.0+0xfb/0x8f0
+[  154.379560]                        evdev_events+0x3ba/0x440
+[  154.379583]                        input_pass_values+0x70c/0x860
+[  154.379608]                        input_handle_event+0xdb3/0x1490
+[  154.379635]                        input_inject_event+0x1ea/0x3b0
+[  154.379649]                        evdev_do_ioctl+0x532/0x1980
+[  154.379672]                        evdev_ioctl+0x14f/0x1b0
+[  154.379695]                        __x64_sys_ioctl+0x194/0x210
+[  154.379712]                        do_syscall_64+0x116/0x690
+[  154.379734]                        entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  154.379751]    }
+[  154.379756]    ... key      at: [<ffffffff8af51580>] __key.93+0x0/0x40
+[  154.379779]    ... acquired at:
+[  154.379784]    _raw_spin_lock+0x30/0x40
+[  154.379802]    evdev_pass_values.part.0+0xfb/0x8f0
+[  154.379825]    evdev_events+0x3ba/0x440
+[  154.379847]    input_pass_values+0x70c/0x860
+[  154.379875]    input_handle_event+0xdb3/0x1490
+[  154.379932]    input_inject_event+0x1ea/0x3b0
+[  154.379945]    evdev_do_ioctl+0x532/0x1980
+[  154.379964]    evdev_ioctl+0x14f/0x1b0
+[  154.379983]    __x64_sys_ioctl+0x194/0x210
+[  154.379997]    do_syscall_64+0x116/0x690
+[  154.380019]    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  154.380036] 
+[  154.380039]  -> (&new->fa_lock){....}-{3:3} {
+[  154.380063]     INITIAL USE at:
+[  154.380073]                      lock_acquire+0x197/0x310
+[  154.380089]                      _raw_write_lock_irq+0x44/0x60
+[  154.380111]                      fasync_remove_entry+0xb7/0x1e0
+[  154.380127]                      fasync_helper+0xab/0xc0
+[  154.380142]                      __fput+0x950/0xb50
+[  154.380165]                      task_work_run+0x170/0x260
+[  154.380191]                      exit_to_user_mode_loop+0x123/0x4f0
+[  154.380212]                      do_syscall_64+0x572/0x690
+[  154.380235]                      entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  154.380251]     INITIAL READ USE at:
+[  154.380261]                           lock_acquire+0x197/0x310
+[  154.380277]                           _raw_read_lock_irqsave+0x85/0xa0
+[  154.380299]                           kill_fasync+0x13c/0x520
+[  154.380313]                           evdev_pass_values.part.0+0x62a/0x8f0
+[  154.380338]                           evdev_events+0x3ba/0x440
+[  154.380360]                           input_pass_values+0x70c/0x860
+[  154.380400]                           input_handle_event+0xdb3/0x1490
+[  154.380424]                           input_inject_event+0x1ea/0x3b0
+[  154.380436]                           evdev_do_ioctl+0x532/0x1980
+[  154.380458]                           evdev_ioctl+0x14f/0x1b0
+[  154.380481]                           __x64_sys_ioctl+0x194/0x210
+[  154.380497]                           do_syscall_64+0x116/0x690
+[  154.380516]                           entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  154.380530]   }
+[  154.380535]   ... key      at: [<ffffffff8aee4280>] __key.0+0x0/0x40
+[  154.380561]   ... acquired at:
+[  154.380567]    _raw_read_lock_irqsave+0x85/0xa0
+[  154.380588]    kill_fasync+0x13c/0x520
+[  154.380602]    evdev_pass_values.part.0+0x62a/0x8f0
+[  154.380625]    evdev_events+0x3ba/0x440
+[  154.380647]    input_pass_values+0x70c/0x860
+[  154.380672]    input_handle_event+0xdb3/0x1490
+[  154.380696]    input_inject_event+0x1ea/0x3b0
+[  154.380709]    evdev_do_ioctl+0x532/0x1980
+[  154.380727]    evdev_ioctl+0x14f/0x1b0
+[  154.380748]    __x64_sys_ioctl+0x194/0x210
+[  154.380764]    do_syscall_64+0x116/0x690
+[  154.380783]    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  154.380796] 
+[  154.380799] -> (&f_owner->lock){....}-{3:3} {
+[  154.380818]    INITIAL USE at:
+[  154.380826]                    lock_acquire+0x197/0x310
+[  154.380841]                    _raw_write_lock_irq+0x44/0x60
+[  154.380862]                    __f_setown+0x65/0x3c0
+[  154.380925]                    __tty_fasync+0x1d1/0x320
+[  154.380941]                    tty_fasync+0xa6/0xf0
+[  154.380955]                    do_vfs_ioctl+0x9d7/0x1470
+[  154.380968]                    __x64_sys_ioctl+0x11b/0x210
+[  154.380982]                    do_syscall_64+0x116/0x690
+[  154.381001]                    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  154.381016]    INITIAL READ USE at:
+[  154.381025]                         lock_acquire+0x197/0x310
+[  154.381041]                         _raw_read_lock_irqsave+0x85/0xa0
+[  154.381060]                         send_sigio+0x36/0x380
+[  154.381074]                         kill_fasync+0x21d/0x520
+[  154.381088]                         n_tty_receive_buf_common+0x670/0x1770
+[  154.381112]                         tty_ldisc_receive_buf+0xa8/0x1c0
+[  154.381126]                         paste_selection+0x605/0x730
+[  154.381143]                         tioclinux+0x3d3/0x630
+[  154.381162]                         vt_ioctl+0x23ec/0x2ee0
+[  154.381177]                         tty_ioctl+0x717/0x1670
+[  154.381190]                         __x64_sys_ioctl+0x194/0x210
+[  154.381204]                         do_syscall_64+0x116/0x690
+[  154.381222]                         entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  154.381237]  }
+[  154.381242]  ... key      at: [<ffffffff8aee42c0>] __key.1+0x0/0x40
+[  154.381265]  ... acquired at:
+[  154.381269]    _raw_read_lock_irqsave+0x85/0xa0
+[  154.381287]    send_sigio+0x36/0x380
+[  154.381299]    kill_fasync+0x21d/0x520
+[  154.381312]    n_tty_receive_buf_common+0x670/0x1770
+[  154.381336]    tty_ldisc_receive_buf+0xa8/0x1c0
+[  154.381352]    paste_selection+0x605/0x730
+[  154.381372]    tioclinux+0x3d3/0x630
+[  154.381409]    vt_ioctl+0x23ec/0x2ee0
+[  154.381425]    tty_ioctl+0x717/0x1670
+[  154.381441]    __x64_sys_ioctl+0x194/0x210
+[  154.381456]    do_syscall_64+0x116/0x690
+[  154.381478]    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  154.381494] 
+[  154.381497] 
+[  154.381497] the dependencies between the lock to be acquired
+[  154.381503]  and SOFTIRQ-irq-unsafe lock:
+[  154.381530] -> (tasklist_lock){.+.+}-{3:3} {
+[  154.381553]    HARDIRQ-ON-R at:
+[  154.381562]                     lock_acquire+0x197/0x310
+[  154.381579]                     _raw_read_lock+0x61/0x70
+[  154.381598]                     __do_wait+0xfe/0x870
+[  154.381612]                     do_wait+0x1d0/0x5a0
+[  154.381626]                     kernel_wait+0xa4/0x160
+[  154.381640]                     call_usermodehelper_exec_work+0xfe/0x190
+[  154.381659]                     process_one_work+0x920/0x1ac0
+[  154.381686]                     worker_thread+0x698/0xeb0
+[  154.381710]                     kthread+0x38a/0x4a0
+[  154.381732]                     ret_from_fork+0x690/0xaa0
+[  154.381753]                     ret_from_fork_asm+0x1a/0x30
+[  154.381775]    SOFTIRQ-ON-R at:
+[  154.381784]                     lock_acquire+0x197/0x310
+[  154.381799]                     _raw_read_lock+0x61/0x70
+[  154.381817]                     __do_wait+0xfe/0x870
+[  154.381830]                     do_wait+0x1d0/0x5a0
+[  154.381842]                     kernel_wait+0xa4/0x160
+[  154.381856]                     call_usermodehelper_exec_work+0xfe/0x190
+[  154.381872]                     process_one_work+0x920/0x1ac0
+[  154.381943]                     worker_thread+0x698/0xeb0
+[  154.381963]                     kthread+0x38a/0x4a0
+[  154.381982]                     ret_from_fork+0x690/0xaa0
+[  154.382000]                     ret_from_fork_asm+0x1a/0x30
+[  154.382019]    INITIAL USE at:
+[  154.382027]                    lock_acquire+0x197/0x310
+[  154.382041]                    _raw_write_lock_irq+0x44/0x60
+[  154.382057]                    copy_process+0x4d90/0x71f0
+[  154.382076]                    kernel_clone+0xef/0x840
+[  154.382096]                    user_mode_thread+0xcd/0x110
+[  154.382115]                    rest_init+0x29/0x290
+[  154.382126]                    start_kernel+0x40e/0x530
+[  154.382143]                    x86_64_start_reservations+0x21/0x40
+[  154.382164]                    x86_64_start_kernel+0xd9/0xe0
+[  154.382185]                    common_startup_64+0x12c/0x138
+[  154.382200]    INITIAL READ USE at:
+[  154.382207]                         lock_acquire+0x197/0x310
+[  154.382220]                         _raw_read_lock+0x61/0x70
+[  154.382237]                         __do_wait+0xfe/0x870
+[  154.382249]                         do_wait+0x1d0/0x5a0
+[  154.382261]                         kernel_wait+0xa4/0x160
+[  154.382274]                         call_usermodehelper_exec_work+0xfe/0x190
+[  154.382289]                         process_one_work+0x920/0x1ac0
+[  154.382310]                         worker_thread+0x698/0xeb0
+[  154.382331]                         kthread+0x38a/0x4a0
+[  154.382353]                         ret_from_fork+0x690/0xaa0
+[  154.382388]                         ret_from_fork_asm+0x1a/0x30
+[  154.382407]  }
+[  154.382410]  ... key      at: [<ffffffff8760c098>] tasklist_lock+0x18/0x40
+[  154.382430]  ... acquired at:
+[  154.382434]    lock_acquire+0x197/0x310
+[  154.382448]    _raw_read_lock+0x61/0x70
+[  154.382464]    send_sigio+0xc0/0x380
+[  154.382475]    kill_fasync+0x21d/0x520
+[  154.382487]    n_tty_receive_buf_common+0x670/0x1770
+[  154.382509]    tty_ldisc_receive_buf+0xa8/0x1c0
+[  154.382524]    paste_selection+0x605/0x730
+[  154.382541]    tioclinux+0x3d3/0x630
+[  154.382560]    vt_ioctl+0x23ec/0x2ee0
+[  154.382575]    tty_ioctl+0x717/0x1670
+[  154.382590]    __x64_sys_ioctl+0x194/0x210
+[  154.382604]    do_syscall_64+0x116/0x690
+[  154.382624]    entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  154.382639] 
+[  154.382642] 
+[  154.382642] stack backtrace:
+[  154.382710] CPU: 1 UID: 0 PID: 2821 Comm: syz.3.285 Tainted: G        W        N  7.0.0 #6 PREEMPT(full) 
+[  154.382736] Tainted: [W]=WARN, [N]=TEST
+[  154.382742] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  154.382800] Call Trace:
+[  154.382808]  <TASK>
+[  154.382816]  dump_stack_lvl+0xdb/0x140
+[  154.382902]  check_irq_usage+0x800/0xaa0
+[  154.382920]  ? __bfs+0xf5/0x240
+[  154.382944]  ? check_path.constprop.0+0x24/0x50
+[  154.382967]  ? check_noncircular+0x80/0x150
+[  154.382982]  ? save_trace+0x3f/0x300
+[  154.383007]  ? __lock_acquire+0x147c/0x22e0
+[  154.383022]  __lock_acquire+0x147c/0x22e0
+[  154.383043]  lock_acquire+0x197/0x310
+[  154.383059]  ? send_sigio+0xc0/0x380
+[  154.383075]  ? lock_acquire+0x197/0x310
+[  154.383093]  _raw_read_lock+0x61/0x70
+[  154.383113]  ? send_sigio+0xc0/0x380
+[  154.383126]  send_sigio+0xc0/0x380
+[  154.383143]  kill_fasync+0x21d/0x520
+[  154.383159]  n_tty_receive_buf_common+0x670/0x1770
+[  154.383184]  ? do_raw_spin_lock+0x130/0x270
+[  154.383207]  ? __pfx_n_tty_receive_buf2+0x10/0x10
+[  154.383231]  tty_ldisc_receive_buf+0xa8/0x1c0
+[  154.383249]  paste_selection+0x605/0x730
+[  154.383272]  ? __pfx_paste_selection+0x10/0x10
+[  154.383294]  ? __pfx_default_wake_function+0x10/0x10
+[  154.383317]  ? security_capable+0x34/0x90
+[  154.383344]  tioclinux+0x3d3/0x630
+[  154.383379]  vt_ioctl+0x23ec/0x2ee0
+[  154.383398]  ? __pfx_vt_ioctl+0x10/0x10
+[  154.383413]  ? find_held_lock+0x2b/0x80
+[  154.383432]  ? futex_wake+0x479/0x550
+[  154.383449]  ? wake_up_q+0xb3/0x130
+[  154.383465]  ? futex_hash_put+0x112/0x1c0
+[  154.383486]  ? futex_wake+0x1c5/0x550
+[  154.383500]  ? __pfx_futex_wake+0x10/0x10
+[  154.383514]  ? __sanitizer_cov_trace_switch+0x54/0x90
+[  154.383530]  ? tty_jobctrl_ioctl+0x154/0xe30
+[  154.383549]  ? __pfx_vt_ioctl+0x10/0x10
+[  154.383567]  tty_ioctl+0x717/0x1670
+[  154.383585]  ? __pfx_tty_ioctl+0x10/0x10
+[  154.383601]  ? ioctl_has_perm.constprop.0.isra.0+0x343/0x4f0
+[  154.383628]  ? update_vsyscall_tz+0x114/0x150
+[  154.383648]  ? __pfx_ioctl_has_perm.constprop.0.isra.0+0x10/0x10
+[  154.383676]  ? lock_acquire+0x197/0x310
+[  154.383694]  ? __fget_files+0x1f6/0x3b0
+[  154.383714]  ? lock_release+0xd4/0x2b0
+[  154.383732]  ? selinux_file_ioctl+0x18c/0x280
+[  154.383756]  ? selinux_file_ioctl+0xbe/0x280
+[  154.383781]  ? __pfx_tty_ioctl+0x10/0x10
+[  154.383799]  __x64_sys_ioctl+0x194/0x210
+[  154.383817]  do_syscall_64+0x116/0x690
+[  154.383841]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  154.383858] RIP: 0033:0x7f35000e359d
+[  154.383911] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[  154.383926] RSP: 002b:00007f34feb26f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[  154.383960] RAX: ffffffffffffffda RBX: 00007f3500375fa0 RCX: 00007f35000e359d
+[  154.383970] RDX: 00002000000000c0 RSI: 000000000000541c RDI: 0000000000000005
+[  154.383980] RBP: 00007f3500182b08 R08: 0000000000000000 R09: 0000000000000000
+[  154.383990] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+[  154.384000] R13: 00007f3500376038 R14: 00007f3500375fa0 R15: 00007f34feb07000
+[  154.384017]  </TASK>

@@ -1,0 +1,1385 @@
+last executing test programs:
+
+41m29.426915969s ago: executing program 32 (id=1358):
+r0 = openat(0xffffffffffffff9c, &(0x7f0000020540)='mnt', 0x0, 0x0)
+ioctl$FS_IOC_ADD_ENCRYPTION_KEY(r0, 0xc0506617, &(0x7f0000020580)={@id={0x2, 0x0, @a}, 0x40, 0x0, '\x00', @a})
+mkdirat(0xffffffffffffff9c, &(0x7f0000020640)='mnt/encrypted_dir\x00', 0x1c0)
+r1 = openat(0xffffffffffffff9c, &(0x7f0000020680)='mnt/encrypted_dir\x00', 0x0, 0x0)
+ioctl$FS_IOC_SET_ENCRYPTION_POLICY(r1, 0x800c6613, &(0x7f00000206c0)=@v2={0x2, @aes256, 0x0, '\x00', @a})
+r2 = openat(0xffffffffffffff9c, &(0x7f0000020700)='mnt/encrypted_dir/file\x00', 0x42, 0x180)
+write(r2, &(0x7f0000020740)='foo', 0x3)
+
+40m54.351956425s ago: executing program 33 (id=2306):
+r0 = openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, &(0x7f0000000100)={{0x1, 0x2, 0x8000, 0x3}})
+ioctl$SNDRV_TIMER_IOCTL_PARAMS(r0, 0x40505412, &(0x7f00000001c0)={0x7, 0x10000000, 0x0, 0x0, 0x2})
+r1 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x40)
+ioctl$SNDRV_SEQ_IOCTL_CREATE_QUEUE(r1, 0xc08c5332, &(0x7f0000000100)={0x7, 0x3, 0x1, 'queue0\x00', 0x7})
+
+38m39.483866164s ago: executing program 1 (id=5850):
+unshare(0x20000)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+38m39.415220854s ago: executing program 1 (id=5856):
+openat$ttyS3(0xffffffffffffff9c, 0x0, 0x420040, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_OPENQRY(r0, 0x5600, &(0x7f0000000200))
+
+38m39.358877686s ago: executing program 1 (id=5857):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+mmap$fb(&(0x7f0000ca4000/0x2000)=nil, 0x2000, 0x1000007, 0x8032, 0xffffffffffffffff, 0x35000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+ioctl$FBIOGET_CON2FBMAP(0xffffffffffffffff, 0x460f, &(0x7f0000000040)={0x15, 0x2})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+r1 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$FBIOGET_VSCREENINFO(r1, 0x4600, &(0x7f00000001c0))
+mmap$fb(&(0x7f0000c66000/0x4000)=nil, 0x4000, 0x4, 0x8032, 0xffffffffffffffff, 0xb0000)
+r2 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x100000d, 0x1c011, r2, 0x87000)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r3 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r3, 0x70000)
+ioctl$FBIOPAN_DISPLAY(0xffffffffffffffff, 0x4606, &(0x7f0000000080)={0x2300, 0x10, 0x40, 0x258, 0xf8, 0xee, 0x8, 0x2, {0x1, 0x91}, {0x3, 0xffff, 0x1}, {0x2, 0xd3}, {0x3, 0x1}, 0x1, 0x101, 0x6, 0xd, 0x0, 0x9, 0x552, 0x69, 0x800, 0x6, 0x7fffffff, 0x5, 0x11, 0x1, 0x0, 0x4})
+
+38m39.223398119s ago: executing program 1 (id=5859):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+38m39.219874383s ago: executing program 3 (id=5861):
+unshare(0x20000)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(0x0, &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, 0x0, 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+38m39.213942626s ago: executing program 1 (id=5863):
+unshare(0x20000)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+38m39.209569267s ago: executing program 3 (id=5864):
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x80000, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r0, 0x560a, &(0x7f0000000000)={0x3, 0xb, 0x2, 0x0, 0xfffc})
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000980)={0x1, 0x0, 0x7, 0x17, 0x15a, &(0x7f0000000580)})
+ioctl$TIOCMBIC(r0, 0x5417, &(0x7f00000000c0)=0x80)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TCSETAF(r2, 0x5408, &(0x7f0000000000)={0xde79, 0x85b, 0x2, 0xf02c, 0x93, "a2852e2922db75bf"})
+ioctl$TIOCSTI(r2, 0x5412, &(0x7f0000000400)=0x5)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000080)=0x7)
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000100), 0xa0382, 0x0)
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TIOCGSID(r1, 0x5429, &(0x7f0000000080))
+ioctl$KDGKBDIACR(r1, 0x4bfb, 0x0)
+ioctl$TCFLSH(r0, 0x540b, 0x1)
+
+38m39.079016081s ago: executing program 3 (id=5868):
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x40086602, &(0x7f0000000a00)={0x2, 0x8})
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+syz_open_dev$tty1(0xc, 0x4, 0x3)
+
+38m39.009470777s ago: executing program 1 (id=5871):
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f0000000400)=0x81)
+
+38m39.008805753s ago: executing program 3 (id=5872):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+38m39.008722961s ago: executing program 34 (id=5871):
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f0000000400)=0x81)
+
+38m38.961686863s ago: executing program 3 (id=5875):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+mmap$fb(&(0x7f0000ca4000/0x2000)=nil, 0x2000, 0x1000007, 0x8032, 0xffffffffffffffff, 0x35000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+ioctl$FBIOGET_CON2FBMAP(0xffffffffffffffff, 0x460f, &(0x7f0000000040)={0x15, 0x2})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+r1 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$FBIOGET_VSCREENINFO(r1, 0x4600, &(0x7f00000001c0))
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r2 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x100000d, 0x1c011, r2, 0x87000)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r3 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r3, 0x70000)
+ioctl$FBIOPAN_DISPLAY(0xffffffffffffffff, 0x4606, &(0x7f0000000080)={0x2300, 0x10, 0x40, 0x258, 0xf8, 0xee, 0x8, 0x2, {0x1, 0x91}, {0x3, 0xffff, 0x1}, {0x2, 0xd3}, {0x3, 0x1}, 0x1, 0x101, 0x6, 0xd, 0x0, 0x9, 0x552, 0x69, 0x800, 0x6, 0x7fffffff, 0x5, 0x11, 0x1, 0x0, 0x4})
+
+38m38.813082672s ago: executing program 2 (id=5878):
+unshare(0x20000)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(0x0, &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, 0x0, 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+38m38.812626568s ago: executing program 3 (id=5880):
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x40086602, &(0x7f0000000a00)={0x2, 0x8})
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r1, 0x5452, &(0x7f0000000000)={0x0, 0x5, 0xc4e, 0x6, 0x2, 0x8})
+ioctl$TIOCL_PASTESEL(r1, 0x541c, &(0x7f00000000c0))
+ioctl$KDSKBLED(r0, 0x4b65, 0x9)
+ioctl$KDGKBMODE(0xffffffffffffffff, 0x4b44, 0x0)
+ioctl$KDSIGACCEPT(r0, 0x4b4e, 0x4000000039)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TCSETSF(r3, 0x5404, &(0x7f0000000700)={0x70c2, 0x9, 0xca0, 0xfffffff7, 0x3, "00ff045726084ce359c1c4833599c37369c490"})
+ioctl$KDGKBDIACR(r2, 0x4b4a, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000080)=0x12)
+ioctl$TIOCSBRK(r0, 0x5427)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000400)={0x1, 0x0, 0x14, 0xb, 0x1df})
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000840)={0x1, 0x0, 0x5, 0x13, 0x9, &(0x7f0000000440)})
+
+38m38.79867768s ago: executing program 2 (id=5881):
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_OPENQRY(r0, 0x5600, &(0x7f0000000200))
+
+38m38.745259943s ago: executing program 35 (id=5880):
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x40086602, &(0x7f0000000a00)={0x2, 0x8})
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r1, 0x5452, &(0x7f0000000000)={0x0, 0x5, 0xc4e, 0x6, 0x2, 0x8})
+ioctl$TIOCL_PASTESEL(r1, 0x541c, &(0x7f00000000c0))
+ioctl$KDSKBLED(r0, 0x4b65, 0x9)
+ioctl$KDGKBMODE(0xffffffffffffffff, 0x4b44, 0x0)
+ioctl$KDSIGACCEPT(r0, 0x4b4e, 0x4000000039)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TCSETSF(r3, 0x5404, &(0x7f0000000700)={0x70c2, 0x9, 0xca0, 0xfffffff7, 0x3, "00ff045726084ce359c1c4833599c37369c490"})
+ioctl$KDGKBDIACR(r2, 0x4b4a, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000080)=0x12)
+ioctl$TIOCSBRK(r0, 0x5427)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000400)={0x1, 0x0, 0x14, 0xb, 0x1df})
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000840)={0x1, 0x0, 0x5, 0x13, 0x9, &(0x7f0000000440)})
+
+38m38.701979189s ago: executing program 2 (id=5884):
+unshare(0x20000)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(0x0, &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, 0x0, 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+38m38.642120944s ago: executing program 2 (id=5885):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+38m38.638328499s ago: executing program 2 (id=5887):
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x40086602, &(0x7f0000000a00)={0x2, 0x8})
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r1, 0x5452, &(0x7f0000000000)={0x0, 0x5, 0xc4e, 0x6, 0x2, 0x8})
+ioctl$TIOCL_PASTESEL(r1, 0x541c, &(0x7f00000000c0))
+ioctl$KDSKBLED(r0, 0x4b65, 0x9)
+ioctl$KDGKBMODE(0xffffffffffffffff, 0x4b44, 0x0)
+ioctl$KDSIGACCEPT(r0, 0x4b4e, 0x4000000039)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TCSETSF(r3, 0x5404, &(0x7f0000000700)={0x70c2, 0x9, 0xca0, 0xfffffff7, 0x3, "00ff045726084ce359c1c4833599c37369c490"})
+ioctl$KDGKBDIACR(r2, 0x4b4a, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000080)=0x12)
+ioctl$TIOCSBRK(r0, 0x5427)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000400)={0x1, 0x0, 0x14, 0xb, 0x1df})
+
+38m38.56435212s ago: executing program 5 (id=5889):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r0, 0x5452, &(0x7f0000000000)={0x0, 0x5, 0xc4e, 0x6, 0x2, 0x8})
+ioctl$TIOCL_PASTESEL(r0, 0x541c, 0x0)
+
+38m38.469892519s ago: executing program 5 (id=5890):
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f0000000400)=0x81)
+ioctl$TIOCSTI(r0, 0x5412, &(0x7f0000000100)=0x4)
+r1 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000380), 0x185000, 0x0)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDDISABIO(r1, 0x4b37)
+ioctl$TCSETAF(0xffffffffffffffff, 0x5408, &(0x7f0000000440)={0xb6b, 0x800, 0x4, 0xffff, 0x8, "1bcffdbc5bdfa9e1"})
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000040)=0x5a)
+syz_open_dev$tty20(0xc, 0x4, 0x1)
+
+38m38.390583445s ago: executing program 2 (id=5891):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$PIO_UNIMAP(0xffffffffffffffff, 0x4b67, &(0x7f0000000080)={0x57e2b7a3d7ba51a7, &(0x7f0000000240)})
+ioctl$PIO_UNISCRNMAP(r0, 0x4b6a, &(0x7f0000000000))
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x4b4d, 0x0)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCL_SETSEL(r1, 0x541c, &(0x7f0000000000)={0x2, {0x2, 0x0, 0xff, 0x0, 0x200}})
+ioctl$TCSBRK(r0, 0x5409, 0xffffffffffffffff)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_GET(r1, 0x4b72, &(0x7f0000000140)={0x1, 0x0, 0x1, 0x6, 0x1eb, &(0x7f00000008c0)})
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_DISALLOCATE(r2, 0x5608)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KIOCSOUND(r0, 0x4b2f, 0x2)
+ioctl$TIOCSPTLCK(0xffffffffffffffff, 0x40045431, 0x0)
+
+38m38.390427595s ago: executing program 36 (id=5891):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$PIO_UNIMAP(0xffffffffffffffff, 0x4b67, &(0x7f0000000080)={0x57e2b7a3d7ba51a7, &(0x7f0000000240)})
+ioctl$PIO_UNISCRNMAP(r0, 0x4b6a, &(0x7f0000000000))
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x4b4d, 0x0)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCL_SETSEL(r1, 0x541c, &(0x7f0000000000)={0x2, {0x2, 0x0, 0xff, 0x0, 0x200}})
+ioctl$TCSBRK(r0, 0x5409, 0xffffffffffffffff)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_GET(r1, 0x4b72, &(0x7f0000000140)={0x1, 0x0, 0x1, 0x6, 0x1eb, &(0x7f00000008c0)})
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_DISALLOCATE(r2, 0x5608)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KIOCSOUND(r0, 0x4b2f, 0x2)
+ioctl$TIOCSPTLCK(0xffffffffffffffff, 0x40045431, 0x0)
+
+38m38.381367256s ago: executing program 5 (id=5892):
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_OPENQRY(r0, 0x5600, &(0x7f0000000200))
+
+38m38.319538913s ago: executing program 5 (id=5894):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+38m38.315090073s ago: executing program 5 (id=5895):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+mmap$fb(&(0x7f0000ca4000/0x2000)=nil, 0x2000, 0x1000007, 0x8032, 0xffffffffffffffff, 0x35000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+ioctl$FBIOGET_CON2FBMAP(0xffffffffffffffff, 0x460f, &(0x7f0000000040)={0x15, 0x2})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+r1 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$FBIOGET_VSCREENINFO(r1, 0x4600, &(0x7f00000001c0))
+mmap$fb(&(0x7f0000c66000/0x4000)=nil, 0x4000, 0x4, 0x8032, 0xffffffffffffffff, 0xb0000)
+r2 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x100000d, 0x1c011, r2, 0x87000)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r3 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r3, 0x70000)
+ioctl$FBIOPAN_DISPLAY(0xffffffffffffffff, 0x4606, &(0x7f0000000080)={0x2300, 0x10, 0x40, 0x258, 0xf8, 0xee, 0x8, 0x2, {0x1, 0x91}, {0x3, 0xffff, 0x1}, {0x2, 0xd3}, {0x3, 0x1}, 0x1, 0x101, 0x6, 0xd, 0x0, 0x9, 0x552, 0x69, 0x800, 0x6, 0x7fffffff, 0x5, 0x11, 0x1, 0x0, 0x4})
+
+38m38.130168861s ago: executing program 5 (id=5896):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$PIO_UNIMAP(0xffffffffffffffff, 0x4b67, &(0x7f0000000080)={0x57e2b7a3d7ba51a7, &(0x7f0000000240)})
+ioctl$PIO_UNISCRNMAP(r0, 0x4b6a, &(0x7f0000000000))
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x4b4d, 0x0)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCL_SETSEL(r1, 0x541c, &(0x7f0000000000)={0x2, {0x2, 0x0, 0xff, 0x0, 0x200}})
+ioctl$TCSBRK(r0, 0x5409, 0xffffffffffffffff)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_GET(r1, 0x4b72, &(0x7f0000000140)={0x1, 0x0, 0x1, 0x6, 0x1eb, &(0x7f00000008c0)})
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_DISALLOCATE(r2, 0x5608)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KIOCSOUND(r0, 0x4b2f, 0x2)
+ioctl$TIOCSPTLCK(0xffffffffffffffff, 0x40045431, 0x0)
+
+38m38.129952999s ago: executing program 37 (id=5896):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$PIO_UNIMAP(0xffffffffffffffff, 0x4b67, &(0x7f0000000080)={0x57e2b7a3d7ba51a7, &(0x7f0000000240)})
+ioctl$PIO_UNISCRNMAP(r0, 0x4b6a, &(0x7f0000000000))
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x4b4d, 0x0)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCL_SETSEL(r1, 0x541c, &(0x7f0000000000)={0x2, {0x2, 0x0, 0xff, 0x0, 0x200}})
+ioctl$TCSBRK(r0, 0x5409, 0xffffffffffffffff)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_GET(r1, 0x4b72, &(0x7f0000000140)={0x1, 0x0, 0x1, 0x6, 0x1eb, &(0x7f00000008c0)})
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_DISALLOCATE(r2, 0x5608)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KIOCSOUND(r0, 0x4b2f, 0x2)
+ioctl$TIOCSPTLCK(0xffffffffffffffff, 0x40045431, 0x0)
+
+38m26.463804114s ago: executing program 6 (id=5873):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+38m26.347498547s ago: executing program 6 (id=5898):
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x40086602, &(0x7f0000000a00)={0x2, 0x8})
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r1, 0x5452, &(0x7f0000000000)={0x0, 0x5, 0xc4e, 0x6, 0x2, 0x8})
+ioctl$TIOCL_PASTESEL(r1, 0x541c, &(0x7f00000000c0))
+ioctl$KDSKBLED(r0, 0x4b65, 0x9)
+ioctl$KDGKBMODE(0xffffffffffffffff, 0x4b44, 0x0)
+ioctl$KDSIGACCEPT(r0, 0x4b4e, 0x4000000039)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TCSETSF(r3, 0x5404, &(0x7f0000000700)={0x70c2, 0x9, 0xca0, 0xfffffff7, 0x3, "00ff045726084ce359c1c4833599c37369c490"})
+ioctl$KDGKBDIACR(r2, 0x4b4a, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000080)=0x12)
+ioctl$TIOCSBRK(r0, 0x5427)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000400)={0x1, 0x0, 0x14, 0xb, 0x1df})
+
+38m26.286405759s ago: executing program 6 (id=5899):
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_OPENQRY(r0, 0x5600, &(0x7f0000000200))
+
+38m26.281668929s ago: executing program 38 (id=5899):
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x200, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_OPENQRY(r0, 0x5600, &(0x7f0000000200))
+
+38m25.989777387s ago: executing program 7 (id=5882):
+unshare(0x20000)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(0x0, &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, 0x0, 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+38m25.914843621s ago: executing program 7 (id=5901):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+38m25.914137181s ago: executing program 7 (id=5902):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+mmap$fb(&(0x7f0000ca4000/0x2000)=nil, 0x2000, 0x1000007, 0x8032, 0xffffffffffffffff, 0x35000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+ioctl$FBIOGET_CON2FBMAP(0xffffffffffffffff, 0x460f, &(0x7f0000000040)={0x15, 0x2})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+r1 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$FBIOGET_VSCREENINFO(r1, 0x4600, &(0x7f00000001c0))
+mmap$fb(&(0x7f0000c66000/0x4000)=nil, 0x4000, 0x4, 0x8032, 0xffffffffffffffff, 0xb0000)
+r2 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x100000d, 0x1c011, r2, 0x87000)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r3 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r3, 0x70000)
+ioctl$FBIOPAN_DISPLAY(0xffffffffffffffff, 0x4606, &(0x7f0000000080)={0x2300, 0x10, 0x40, 0x258, 0xf8, 0xee, 0x8, 0x2, {0x1, 0x91}, {0x3, 0xffff, 0x1}, {0x2, 0xd3}, {0x3, 0x1}, 0x1, 0x101, 0x6, 0xd, 0x0, 0x9, 0x552, 0x69, 0x800, 0x6, 0x7fffffff, 0x5, 0x11, 0x1, 0x0, 0x4})
+
+38m25.818605584s ago: executing program 7 (id=5903):
+r0 = syz_open_dev$dri(&(0x7f00000001c0), 0x0, 0x80400)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r0, 0xc04064a0, &(0x7f0000000480)={0x0, 0x0, &(0x7f0000000400)=[<r1=>0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETCONNECTOR(r0, 0xc05064a7, &(0x7f0000000080)={0x0, 0x0, 0x0, &(0x7f0000000080), 0x0, 0x0, 0x0, 0x0, r1})
+syz_open_dev$dri(&(0x7f0000000000), 0xa, 0x1)
+r2 = syz_open_dev$dri(&(0x7f0000000340), 0xfaa, 0x800)
+r3 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r3, 0xc02064b2, 0x0)
+syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48203)
+r4 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_MODE_DESTROY_DUMB(r3, 0xc00464b4, &(0x7f0000000780))
+ioctl$DRM_IOCTL_MODE_GETPLANERESOURCES(r4, 0xc01064b5, &(0x7f0000000140)={&(0x7f0000000100)=[0x0, 0x0, 0x0, 0x0, 0x0, 0x0], 0x6})
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r0, 0xc04064a0, 0x0)
+r5 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r5, 0xc04064a0, 0x0)
+ioctl$DRM_IOCTL_MODE_GETCRTC(0xffffffffffffffff, 0xc06864a1, &(0x7f0000000080)={0x0, 0x25, 0x0, <r6=>0x0})
+ioctl$DRM_IOCTL_MODE_GETFB2(0xffffffffffffffff, 0xc06864ce, &(0x7f0000000100)={r6, 0x6, 0x6, 0x2, 0x0, [], [0x80, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xa, 0xf00], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_MODE_SETPLANE(r2, 0xc03064b7, 0x0)
+ioctl$DRM_IOCTL_MODE_SETPROPERTY(r0, 0xc01064ab, &(0x7f0000000040)={0x2, 0x0, r1})
+
+38m25.81839215s ago: executing program 39 (id=5903):
+r0 = syz_open_dev$dri(&(0x7f00000001c0), 0x0, 0x80400)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r0, 0xc04064a0, &(0x7f0000000480)={0x0, 0x0, &(0x7f0000000400)=[<r1=>0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETCONNECTOR(r0, 0xc05064a7, &(0x7f0000000080)={0x0, 0x0, 0x0, &(0x7f0000000080), 0x0, 0x0, 0x0, 0x0, r1})
+syz_open_dev$dri(&(0x7f0000000000), 0xa, 0x1)
+r2 = syz_open_dev$dri(&(0x7f0000000340), 0xfaa, 0x800)
+r3 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r3, 0xc02064b2, 0x0)
+syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48203)
+r4 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_MODE_DESTROY_DUMB(r3, 0xc00464b4, &(0x7f0000000780))
+ioctl$DRM_IOCTL_MODE_GETPLANERESOURCES(r4, 0xc01064b5, &(0x7f0000000140)={&(0x7f0000000100)=[0x0, 0x0, 0x0, 0x0, 0x0, 0x0], 0x6})
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r0, 0xc04064a0, 0x0)
+r5 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r5, 0xc04064a0, 0x0)
+ioctl$DRM_IOCTL_MODE_GETCRTC(0xffffffffffffffff, 0xc06864a1, &(0x7f0000000080)={0x0, 0x25, 0x0, <r6=>0x0})
+ioctl$DRM_IOCTL_MODE_GETFB2(0xffffffffffffffff, 0xc06864ce, &(0x7f0000000100)={r6, 0x6, 0x6, 0x2, 0x0, [], [0x80, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xa, 0xf00], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_MODE_SETPLANE(r2, 0xc03064b7, 0x0)
+ioctl$DRM_IOCTL_MODE_SETPROPERTY(r0, 0xc01064ab, &(0x7f0000000040)={0x2, 0x0, r1})
+
+23.410070147s ago: executing program 9 (id=19087):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+mmap$fb(&(0x7f0000ca4000/0x2000)=nil, 0x2000, 0x1000007, 0x8032, 0xffffffffffffffff, 0x35000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+ioctl$FBIOGET_CON2FBMAP(0xffffffffffffffff, 0x460f, &(0x7f0000000040)={0x15, 0x2})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+r1 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$FBIOGET_VSCREENINFO(r1, 0x4600, &(0x7f00000001c0))
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r2 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x100000d, 0x1c011, r2, 0x87000)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r3 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r3, 0x70000)
+ioctl$FBIOPAN_DISPLAY(0xffffffffffffffff, 0x4606, &(0x7f0000000080)={0x2300, 0x10, 0x40, 0x258, 0xf8, 0xee, 0x8, 0x2, {0x1, 0x91}, {0x3, 0xffff, 0x1}, {0x2, 0xd3}, {0x3, 0x1}, 0x1, 0x101, 0x6, 0xd, 0x0, 0x9, 0x552, 0x69, 0x800, 0x6, 0x7fffffff, 0x5, 0x11, 0x1, 0x0, 0x4})
+
+23.244256414s ago: executing program 9 (id=19092):
+unshare(0x20000)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+15.594378367s ago: executing program 9 (id=19095):
+unshare(0x20000)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(0x0, &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', 0x0, 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+15.591287298s ago: executing program 8 (id=19097):
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x80000, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r0, 0x560a, &(0x7f0000000000)={0x3, 0xb, 0x2, 0x0, 0xfffc})
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000980)={0x1, 0x0, 0x7, 0x17, 0x15a, &(0x7f0000000580)})
+ioctl$TIOCMBIC(r0, 0x5417, &(0x7f00000000c0)=0x80)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TCSETAF(r2, 0x5408, &(0x7f0000000000)={0xde79, 0x85b, 0x2, 0xf02c, 0x93, "a2852e2922db75bf"})
+ioctl$TIOCSTI(r2, 0x5412, &(0x7f0000000400)=0x5)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000080)=0x7)
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000100), 0xa0382, 0x0)
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TIOCGSID(r1, 0x5429, &(0x7f0000000080))
+ioctl$KDGKBDIACR(r1, 0x4bfb, 0x0)
+ioctl$TCFLSH(r0, 0x540b, 0x1)
+
+15.591236286s ago: executing program 4 (id=19098):
+unshare(0x20000)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+15.559096881s ago: executing program 9 (id=19101):
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x40086602, &(0x7f0000000a00)={0x2, 0x8})
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r1, 0x5452, &(0x7f0000000000)={0x0, 0x5, 0xc4e, 0x6, 0x2, 0x8})
+ioctl$TIOCL_PASTESEL(r1, 0x541c, &(0x7f00000000c0))
+ioctl$KDSKBLED(r0, 0x4b65, 0x9)
+ioctl$KDGKBMODE(0xffffffffffffffff, 0x4b44, 0x0)
+ioctl$KDSIGACCEPT(r0, 0x4b4e, 0x4000000039)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TCSETSF(r3, 0x5404, &(0x7f0000000700)={0x70c2, 0x9, 0xca0, 0xfffffff7, 0x3, "00ff045726084ce359c1c4833599c37369c490"})
+ioctl$KDGKBDIACR(r2, 0x4b4a, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000080)=0x12)
+ioctl$TIOCSBRK(r0, 0x5427)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000840)={0x1, 0x0, 0x5, 0x13, 0x9, &(0x7f0000000440)})
+
+15.557151393s ago: executing program 4 (id=19102):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+mmap$fb(&(0x7f0000ca4000/0x2000)=nil, 0x2000, 0x1000007, 0x8032, 0xffffffffffffffff, 0x35000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+ioctl$FBIOGET_CON2FBMAP(0xffffffffffffffff, 0x460f, &(0x7f0000000040)={0x15, 0x2})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+r1 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$FBIOGET_VSCREENINFO(r1, 0x4600, &(0x7f00000001c0))
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r2 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x100000d, 0x1c011, r2, 0x87000)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r3 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r3, 0x70000)
+ioctl$FBIOPAN_DISPLAY(0xffffffffffffffff, 0x4606, &(0x7f0000000080)={0x2300, 0x10, 0x40, 0x258, 0xf8, 0xee, 0x8, 0x2, {0x1, 0x91}, {0x3, 0xffff, 0x1}, {0x2, 0xd3}, {0x3, 0x1}, 0x1, 0x101, 0x6, 0xd, 0x0, 0x9, 0x552, 0x69, 0x800, 0x6, 0x7fffffff, 0x5, 0x11, 0x1, 0x0, 0x4})
+
+15.410197961s ago: executing program 4 (id=19103):
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x80000, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r0, 0x560a, &(0x7f0000000000)={0x3, 0xb, 0x2, 0x0, 0xfffc})
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000980)={0x1, 0x0, 0x7, 0x17, 0x15a, &(0x7f0000000580)})
+ioctl$TIOCMBIC(r0, 0x5417, &(0x7f00000000c0)=0x80)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TCSETAF(r2, 0x5408, &(0x7f0000000000)={0xde79, 0x85b, 0x2, 0xf02c, 0x93, "a2852e2922db75bf"})
+ioctl$TIOCSTI(r2, 0x5412, &(0x7f0000000400)=0x5)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000080)=0x7)
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000100), 0xa0382, 0x0)
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TIOCGSID(r1, 0x5429, 0x0)
+ioctl$KDGKBDIACR(r1, 0x4bfb, &(0x7f0000000000)=""/120)
+ioctl$TCFLSH(r0, 0x540b, 0x1)
+
+7.933239842s ago: executing program 9 (id=19104):
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x40086602, &(0x7f0000000a00)={0x2, 0x8})
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r1, 0x5452, &(0x7f0000000000)={0x0, 0x5, 0xc4e, 0x6, 0x2, 0x8})
+ioctl$TIOCL_PASTESEL(r1, 0x541c, &(0x7f00000000c0))
+ioctl$KDSKBLED(r0, 0x4b65, 0x9)
+ioctl$KDGKBMODE(0xffffffffffffffff, 0x4b44, 0x0)
+ioctl$KDSIGACCEPT(r0, 0x4b4e, 0x4000000039)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TCSETSF(r3, 0x5404, &(0x7f0000000700)={0x70c2, 0x9, 0xca0, 0xfffffff7, 0x3, "00ff045726084ce359c1c4833599c37369c490"})
+ioctl$KDGKBDIACR(r2, 0x4b4a, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000080)=0x12)
+ioctl$TIOCSBRK(r0, 0x5427)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000840)={0x1, 0x0, 0x5, 0x13, 0x9, &(0x7f0000000440)})
+
+7.929995531s ago: executing program 0 (id=19105):
+unshare(0x20000)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+7.929894197s ago: executing program 8 (id=19106):
+unshare(0x20000)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(0x0, &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, 0x0, 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+7.92981026s ago: executing program 4 (id=19107):
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x40086602, &(0x7f0000000a00)={0x2, 0x8})
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r1, 0x5452, &(0x7f0000000000)={0x0, 0x5, 0xc4e, 0x6, 0x2, 0x8})
+ioctl$TIOCL_PASTESEL(r1, 0x541c, &(0x7f00000000c0))
+ioctl$KDSKBLED(r0, 0x4b65, 0x9)
+ioctl$KDGKBMODE(0xffffffffffffffff, 0x4b44, 0x0)
+ioctl$KDSIGACCEPT(r0, 0x4b4e, 0x4000000039)
+r2 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+r3 = syz_open_dev$tty20(0xc, 0x4, 0x1)
+ioctl$TCSETSF(r3, 0x5404, &(0x7f0000000700)={0x70c2, 0x9, 0xca0, 0xfffffff7, 0x3, "00ff045726084ce359c1c4833599c37369c490"})
+ioctl$KDGKBDIACR(r2, 0x4b4a, 0x0)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, &(0x7f0000000080)=0x12)
+ioctl$TIOCSBRK(r0, 0x5427)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f00000002c0)=0x11)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000840)={0x1, 0x0, 0x5, 0x13, 0x9, &(0x7f0000000440)})
+
+7.910368642s ago: executing program 0 (id=19108):
+unshare(0x20000)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(0x0, &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, 0x0, 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+7.903704372s ago: executing program 8 (id=19109):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+mmap$fb(&(0x7f0000ca4000/0x2000)=nil, 0x2000, 0x1000007, 0x8032, 0xffffffffffffffff, 0x35000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+ioctl$FBIOGET_CON2FBMAP(0xffffffffffffffff, 0x460f, &(0x7f0000000040)={0x15, 0x2})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+r1 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$FBIOGET_VSCREENINFO(r1, 0x4600, &(0x7f00000001c0))
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r2 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x100000d, 0x1c011, r2, 0x87000)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r3 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r3, 0x70000)
+ioctl$FBIOPAN_DISPLAY(0xffffffffffffffff, 0x4606, &(0x7f0000000080)={0x2300, 0x10, 0x40, 0x258, 0xf8, 0xee, 0x8, 0x2, {0x1, 0x91}, {0x3, 0xffff, 0x1}, {0x2, 0xd3}, {0x3, 0x1}, 0x1, 0x101, 0x6, 0xd, 0x0, 0x9, 0x552, 0x69, 0x800, 0x6, 0x7fffffff, 0x5, 0x11, 0x1, 0x0, 0x4})
+
+7.880821956s ago: executing program 0 (id=19110):
+unshare(0x20000)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(0x0, &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', 0x0, 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+7.859113283s ago: executing program 0 (id=19111):
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x80000, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$VT_RESIZEX(r0, 0x560a, &(0x7f0000000000)={0x3, 0xb, 0x2, 0x0, 0xfffc})
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x1)
+ioctl$KDFONTOP_GET(r0, 0x4b72, &(0x7f0000000980)={0x1, 0x0, 0x7, 0x17, 0x15a, &(0x7f0000000580)})
+ioctl$TIOCMBIC(r0, 0x5417, &(0x7f00000000c0)=0x80)
+ioctl$TIOCSTI(0xffffffffffffffff, 0x5412, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$TCSETAF(r2, 0x5408, &(0x7f0000000000)={0xde79, 0x85b, 0x2, 0xf02c, 0x93, "a2852e2922db75bf"})
+ioctl$TIOCSTI(r2, 0x5412, &(0x7f0000000400)=0x5)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000080)=0x7)
+openat$ttyS3(0xffffffffffffff9c, &(0x7f0000000100), 0xa0382, 0x0)
+ioctl$TIOCVHANGUP(0xffffffffffffffff, 0x5437, 0x0)
+ioctl$TIOCGSID(r1, 0x5429, &(0x7f0000000080))
+ioctl$KDGKBDIACR(r1, 0x4bfb, 0x0)
+ioctl$TCFLSH(r0, 0x540b, 0x1)
+
+203.743076ms ago: executing program 9 (id=19112):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$PIO_UNIMAP(0xffffffffffffffff, 0x4b67, &(0x7f0000000080)={0x57e2b7a3d7ba51a7, &(0x7f0000000240)})
+ioctl$PIO_UNISCRNMAP(r0, 0x4b6a, &(0x7f0000000000))
+ioctl$KDSETKEYCODE(0xffffffffffffffff, 0x4b4d, 0x0)
+r1 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$TIOCL_SETSEL(r1, 0x541c, &(0x7f0000000000)={0x2, {0x2, 0x0, 0xff, 0x0, 0x200}})
+ioctl$TCSBRK(r0, 0x5409, 0xffffffffffffffff)
+ioctl$TIOCSETD(0xffffffffffffffff, 0x5423, &(0x7f0000000880)=0xf)
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$KDFONTOP_GET(r1, 0x4b72, &(0x7f0000000140)={0x1, 0x0, 0x1, 0x6, 0x1eb, &(0x7f00000008c0)})
+ioctl$TIOCSIG(0xffffffffffffffff, 0x400455c8, 0x0)
+r2 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$VT_DISALLOCATE(r2, 0x5608)
+ioctl$VT_ACTIVATE(r2, 0x5606, 0x2)
+ioctl$KIOCSOUND(r0, 0x4b2f, 0x2)
+ioctl$TIOCSPTLCK(0xffffffffffffffff, 0x40045431, 0x0)
+
+200.82537ms ago: executing program 0 (id=19113):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+200.626364ms ago: executing program 8 (id=19114):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+mmap$fb(&(0x7f0000ca4000/0x2000)=nil, 0x2000, 0x1000007, 0x8032, 0xffffffffffffffff, 0x35000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+ioctl$FBIOGET_CON2FBMAP(0xffffffffffffffff, 0x460f, &(0x7f0000000040)={0x15, 0x2})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+r1 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$FBIOGET_VSCREENINFO(r1, 0x4600, &(0x7f00000001c0))
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r2 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x100000d, 0x1c011, r2, 0x87000)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r3 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r3, 0x70000)
+ioctl$FBIOPAN_DISPLAY(0xffffffffffffffff, 0x4606, &(0x7f0000000080)={0x2300, 0x10, 0x40, 0x258, 0xf8, 0xee, 0x8, 0x2, {0x1, 0x91}, {0x3, 0xffff, 0x1}, {0x2, 0xd3}, {0x3, 0x1}, 0x1, 0x101, 0x6, 0xd, 0x0, 0x9, 0x552, 0x69, 0x800, 0x6, 0x7fffffff, 0x5, 0x11, 0x1, 0x0, 0x4})
+
+200.50046ms ago: executing program 4 (id=19115):
+mmap$fb(&(0x7f0000ca4000/0x3000)=nil, 0x3000, 0x7396bbc3429520ed, 0x13, 0xffffffffffffffff, 0xb1000)
+mmap$fb(&(0x7f0000ca4000/0x2000)=nil, 0x2000, 0x1000007, 0x8032, 0xffffffffffffffff, 0x35000)
+r0 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000800), 0x20800, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x0)
+ioctl$FBIOBLANK(r0, 0x4611, 0x2)
+ioctl$FBIOGET_CON2FBMAP(0xffffffffffffffff, 0x460f, &(0x7f0000000040)={0x15, 0x2})
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x2000007, 0x50031, 0xffffffffffffffff, 0x1000000)
+r1 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+ioctl$FBIOGET_VSCREENINFO(r1, 0x4600, &(0x7f00000001c0))
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r2 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000ffb000/0x3000)=nil, 0x3000, 0x100000d, 0x1c011, r2, 0x87000)
+mmap$fb(&(0x7f0000c00000/0x400000)=nil, 0x400000, 0x200000d, 0x31, 0xffffffffffffffff, 0x59000)
+r3 = openat$fb0(0xffffffffffffff9c, &(0x7f0000000980), 0x240, 0x0)
+mmap$fb(&(0x7f0000d59000/0x3000)=nil, 0x3000, 0xc, 0x12, r3, 0x70000)
+ioctl$FBIOPAN_DISPLAY(0xffffffffffffffff, 0x4606, &(0x7f0000000080)={0x2300, 0x10, 0x40, 0x258, 0xf8, 0xee, 0x8, 0x2, {0x1, 0x91}, {0x3, 0xffff, 0x1}, {0x2, 0xd3}, {0x3, 0x1}, 0x1, 0x101, 0x6, 0xd, 0x0, 0x9, 0x552, 0x69, 0x800, 0x6, 0x7fffffff, 0x5, 0x11, 0x1, 0x0, 0x4})
+
+149.096423ms ago: executing program 0 (id=19116):
+unshare(0x20000)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(0x0, &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, 0x0, 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+20.08819ms ago: executing program 8 (id=19117):
+unshare(0x20000)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(&(0x7f0000000280)='./file0/file1/file2/file3\x00', &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, &(0x7f0000000380)='./file0/file6/file2\x00', 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+4.425444ms ago: executing program 4 (id=19118):
+unshare(0x20000)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(0x0, &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, 0x0, 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+0s ago: executing program 8 (id=19119):
+unshare(0x20000)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mount$tmpfs(0x0, &(0x7f0000000080)='./file0\x00', &(0x7f00000000c0), 0x0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000100)='./file0/file1\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000140)='./file0/file1/file2\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000180)='./file0/file1/file2/file3\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f00000001c0)='./file0/file1/file2/file3/file4\x00', 0x1c0)
+mknodat(0xffffffffffffff9c, &(0x7f0000000200)='./file0/file1/file2/file3/file5\x00', 0x81c0, 0x0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000240)='./file0/file6\x00', 0x1c0)
+mount$bind(0x0, &(0x7f00000002c0)='./file0/file1/file2/file3\x00', 0x0, 0x1000, 0x0)
+mount$bind(&(0x7f0000000300)='./file0/file1\x00', &(0x7f0000000340)='./file0/file6\x00', 0x0, 0x5000, 0x0)
+r0 = openat$dir(0xffffffffffffff9c, 0x0, 0x0, 0x0)
+renameat2(0xffffffffffffff9c, &(0x7f00000003c0)='./file0/file1/file2\x00', 0xffffffffffffff9c, &(0x7f0000000400)='./file0/file2\x00', 0x0)
+openat$dir(0xffffffffffffff9c, &(0x7f0000000480)='./file0/file2/file3/file4\x00', 0x0, 0x0)
+prctl$PR_SET_NO_NEW_PRIVS(0x26, 0x1)
+openat(r0, &(0x7f0000000500)='file3/file5\x00', 0x0, 0x0)
+renameat2(r0, &(0x7f0000000540)='file3/file5\x00', r0, &(0x7f0000000580)='file3/file4/file5\x00', 0x0)
+
+kernel console output (not intermixed with test programs):
+
+[   23.596796] audit: type=1400 audit(1785042112.763:33): avc:  denied  { rlimitinh } for  pid=280 comm="bash" scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   23.605955] audit: type=1400 audit(1785042112.763:34): avc:  denied  { siginh } for  pid=280 comm="bash" scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+Warning: Permanently added '[localhost]:2562' (ED25519) to the list of known hosts.
+[   24.994621] cgroup: Unknown subsys name 'net'
+[   25.029962] cgroup: Unknown subsys name 'cpuset'
+[   25.039023] cgroup: Unknown subsys name 'rlimit'
+[   25.041545] cgroup: Unknown subsys name 'memory'
+[   25.073596] kmemleak: Automatic memory scanning thread ended
+[   35.160936] kmemleak: 8 new suspected memory leaks (see /sys/kernel/debug/kmemleak)
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=580e17b8-7591-4eaa-85b3-d76a88c1fabf
+[   35.255621] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   37.369568] audit: type=1400 audit(1785042126.550:35): avc:  denied  { execmem } for  pid=300 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   37.576532] audit: type=1400 audit(1785042126.756:37): avc:  denied  { read } for  pid=308 comm="modprobe" name="modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   37.593613] audit: type=1400 audit(1785042126.756:36): avc:  denied  { read } for  pid=311 comm="modprobe" name="modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   37.604806] audit: type=1400 audit(1785042126.756:39): avc:  denied  { open } for  pid=308 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   37.621761] audit: type=1400 audit(1785042126.756:38): avc:  denied  { open } for  pid=311 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   37.657487] audit: type=1400 audit(1785042126.756:40): avc:  denied  { getattr } for  pid=311 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   37.669133] audit: type=1400 audit(1785042126.757:41): avc:  denied  { map } for  pid=311 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   37.685796] audit: type=1400 audit(1785042126.763:42): avc:  denied  { getattr } for  pid=308 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   46.093212] systemd-udevd (188) used greatest stack depth: 24576 bytes left
+[   46.179844] systemd-udevd (168) used greatest stack depth: 24480 bytes left
+[   46.185091] systemd-udevd (169) used greatest stack depth: 23880 bytes left
+[   49.196983] netlink: 8 bytes leftover after parsing attributes in process `syz.3.5'.
+[   49.444705] netlink: 8 bytes leftover after parsing attributes in process `syz.0.17'.
+[   50.010571] pimreg: entered allmulticast mode
+[   50.025172] pimreg: left allmulticast mode
+[   51.191128] netlink: 36 bytes leftover after parsing attributes in process `syz.1.88'.
+[   52.332739] bochs-drm 0000:00:01.0: [drm] Unknown color mode 7; guessing buffer size.
+[   52.386661] netlink: 24 bytes leftover after parsing attributes in process `syz.1.124'.
+[   52.503597] audit: type=1400 audit(1785042141.682:43): avc:  denied  { module_load } for  pid=2332 comm="modprobe" path="/usr/lib/modules/7.1.0+/kernel/net/qrtr/qrtr.ko" dev="sda" ino=14942703 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=system permissive=1
+[   52.558923] NET: Registered PF_QIPCRTR protocol family
+[   52.564348] audit: type=1400 audit(1785042141.745:44): avc:  denied  { net_admin } for  pid=2332 comm="modprobe" capability=12  scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:system_r:kmod_t:s0 tclass=capability permissive=1
+[   52.657880] mmap: syz.3.148 (2367) uses deprecated remap_file_pages() syscall. See Documentation/mm/remap_file_pages.rst.
+[   53.762713] netlink: 24 bytes leftover after parsing attributes in process `syz.3.207'.
+[   53.977594] netlink: 8 bytes leftover after parsing attributes in process `syz.0.225'.
+[   54.451470] loop3: detected capacity change from 0 to 512
+[   54.480047] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[   54.512167] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   54.549948] audit: type=1400 audit(1785042143.731:45): avc:  denied  { block_suspend } for  pid=2582 comm="syz.1.251" capability=36  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[   54.619478] loop0: detected capacity change from 0 to 1764
+[   54.623989] iso9660: Bad value for 'dmode'
+[   55.099240] loop0: detected capacity change from 0 to 512
+[   55.125221] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[   55.155184] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   55.167264] loop2: detected capacity change from 0 to 1764
+[   55.173681] iso9660: Bad value for 'dmode'
+[   55.337224] loop2: detected capacity change from 0 to 512
+[   55.340870] loop3: detected capacity change from 0 to 1764
+[   55.341342] iso9660: Bad value for 'dmode'
+[   55.372893] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[   55.399576] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   56.256948] gpio-513 (ÀÈ
+[   56.256948] Æé&«Ò­©Y't&¾:N[¤¦³ùÛ„oÊCÕ/): gpiod_direction_output_raw_commit: missing set() and direction_output() operations
+[   56.480461] gpio-528 (ÀÈ
+[   56.480461] Æé&«Ò­©Y't&¾:N[¤¦³ùÛ„oÊCÕ/): gpiod_direction_output_raw_commit: missing set() and direction_output() operations
+[   57.360295] gpio-523 (ÀÈ
+[   57.360295] Æé&«Ò­©Y't&¾:N[¤¦³ùÛ„oÊCÕ/): gpiod_direction_output_raw_commit: missing set() and direction_output() operations
+[   58.493996] tmpfs: Invalid gid '0x00000000ffffffff'
+[   64.938201] audit: type=1400 audit(1785042154.117:46): avc:  denied  { watch_reads } for  pid=3502 comm="syz.1.676" path="/162/file0" dev="tmpfs" ino=844 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:object_r:user_tmpfs_t:s0 tclass=dir permissive=1
+[   65.256052] capability: warning: `syz.2.707' uses 32-bit capabilities (legacy support in use)
+[   65.375027] ALSA: seq fatal error: cannot create timer (-19)
+[   65.426451] SELinux: syz.2.725 (3603) wrote to checkreqprot. This is no longer supported.
+[   65.669470] ip6erspan0: entered promiscuous mode
+[   65.672452] ip6erspan0: entered allmulticast mode
+[   67.954123] ip6erspan0: entered promiscuous mode
+[   67.958185] ip6erspan0: entered allmulticast mode
+[   68.406358] ip6erspan0: entered promiscuous mode
+[   68.408897] ip6erspan0: entered allmulticast mode
+[   70.122717] pimreg: entered allmulticast mode
+[   70.292985] pimreg: entered allmulticast mode
+[   70.496980] pimreg: entered allmulticast mode
+[   70.564749] pimreg: entered allmulticast mode
+[   70.854825] pimreg: left allmulticast mode
+[   71.162921] watchdog: watchdog0: watchdog did not stop!
+[   71.356921] netlink: 8 bytes leftover after parsing attributes in process `syz.3.1013'.
+[   71.361194] Vý: renamed from sit0 (while UP)
+[   71.375741] syz.3.1013 (4204) used greatest stack depth: 23840 bytes left
+[   71.419872] pimreg: left allmulticast mode
+[   71.431638] watchdog: watchdog0: watchdog did not stop!
+[   71.584295] netlink: 8 bytes leftover after parsing attributes in process `syz.2.1025'.
+[   71.589589] Vý: renamed from sit0 (while UP)
+[   71.662841] watchdog: watchdog0: watchdog did not stop!
+[   71.706139] netlink: 8 bytes leftover after parsing attributes in process `syz.1.1038'.
+[   71.710259] Vý: renamed from sit0 (while UP)
+[   72.047461] pimreg: left allmulticast mode
+[   72.060104] watchdog: watchdog0: watchdog did not stop!
+[   72.127997] watchdog: watchdog0: watchdog did not stop!
+[   72.298594] netlink: 8 bytes leftover after parsing attributes in process `syz.0.1043'.
+[   72.302327] Vý: renamed from sit0 (while UP)
+[   72.337178] syz.0.1043 (4288) used greatest stack depth: 23824 bytes left
+[   72.454085] pimreg: left allmulticast mode
+[   73.864232] TCP: TCP_TX_DELAY enabled
+[   73.995123] loop1: detected capacity change from 0 to 512
+[   74.029423] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[   74.076962] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   74.250510] loop3: detected capacity change from 0 to 512
+[   74.270887] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[   74.313775] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   74.619242] loop0: detected capacity change from 0 to 512
+[   74.659405] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[   74.687711] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   75.650864] loop2: detected capacity change from 0 to 512
+[   75.667335] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: writeback.
+[   75.700207] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[   75.815605] process 'syz.2.1151' launched './file0' with NULL argv: empty string added
+[   78.001470] capability: warning: `syz.3.1211' uses deprecated v2 capabilities in a way that may be insecure
+[   78.084808] netlink: 4 bytes leftover after parsing attributes in process `syz.3.1214'.
+[   78.088590] netlink: 4 bytes leftover after parsing attributes in process `syz.3.1214'.
+[   78.561349] watchdog: watchdog0: watchdog did not stop!
+[   79.052897] netlink: 132 bytes leftover after parsing attributes in process `syz.0.1319'.
+[   79.090982] ALSA: seq fatal error: cannot create timer (-19)
+[   79.163230] audit: type=1400 audit(1785042168.343:47): avc:  denied  { checkpoint_restore } for  pid=4880 comm="syz.0.1326" capability=40  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[   84.361250] loop2: detected capacity change from 0 to 128
+[   84.374946] EXT4-fs (loop2): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+[   84.390178] ext4 filesystem being mounted at /348/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+[   84.416726] EXT4-fs (loop2): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+[   85.087621] watchdog: watchdog0: watchdog did not stop!
+[   87.029634] ALSA: seq fatal error: cannot create timer (-19)
+[   87.558022] ALSA: seq fatal error: cannot create timer (-19)
+[   87.597617] program syz.1.1538 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[   87.740444] ALSA: seq fatal error: cannot create timer (-19)
+[   87.965927] ALSA: seq fatal error: cannot create timer (-19)
+[   89.280689] loop3: detected capacity change from 0 to 512
+[   89.287499] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 ro without journal. Quota mode: none.
+[   89.963649] audit: type=1400 audit(1785042179.144:48): avc:  denied  { name_bind } for  pid=5977 comm="syz.2.1628" src=20004 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:port_t:s0 tclass=icmp_socket permissive=1
+[   89.967461] netlink: 296 bytes leftover after parsing attributes in process `syz.2.1628'.
+[   89.984238] audit: type=1400 audit(1785042179.147:49): avc:  denied  { node_bind } for  pid=5977 comm="syz.2.1628" saddr=fc00:: src=20004 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:node_t:s0 tclass=icmp_socket permissive=1
+[   95.169056] audit: type=1400 audit(1785042184.350:50): avc:  denied  { checkpoint_restore } for  pid=6500 comm="syz.2.1832" capability=40  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[  103.203369] netlink: 4 bytes leftover after parsing attributes in process `syz.4.2076'.
+[  103.218779] netlink: 4 bytes leftover after parsing attributes in process `syz.4.2076'.
+[  103.808433] watchdog: watchdog0: watchdog did not stop!
+[  104.424219] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  104.522328] loop1: detected capacity change from 0 to 128
+[  104.534748] EXT4-fs (loop1): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+[  104.539784] ext4 filesystem being mounted at /545/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+[  104.588634] EXT4-fs (loop1): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+[  106.397880] blktrace: Concurrent blktraces are not allowed on loop2
+[  106.530566] watchdog: watchdog0: watchdog did not stop!
+[  108.198729] netlink: 4 bytes leftover after parsing attributes in process `syz.1.2227'.
+[  108.208746] netlink: 4 bytes leftover after parsing attributes in process `syz.1.2227'.
+[  108.476929] netlink: 4 bytes leftover after parsing attributes in process `syz.2.2238'.
+[  108.492753] netlink: 4 bytes leftover after parsing attributes in process `syz.2.2238'.
+[  108.686619] netlink: 4 bytes leftover after parsing attributes in process `syz.1.2254'.
+[  108.690793] netlink: 4 bytes leftover after parsing attributes in process `syz.1.2254'.
+[  113.984756] netlink: 132 bytes leftover after parsing attributes in process `syz.2.2293'.
+[  114.174096] netlink: 132 bytes leftover after parsing attributes in process `syz.1.2298'.
+[  114.813363] loop3: detected capacity change from 0 to 128
+[  114.834570] EXT4-fs (loop3): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+[  114.841364] ext4 filesystem being mounted at /19/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+[  114.886949] EXT4-fs (loop3): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+[  123.714883] loop5: detected capacity change from 0 to 128
+[  123.744427] EXT4-fs (loop5): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+[  123.762806] ext4 filesystem being mounted at /4/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+[  123.820945] EXT4-fs (loop5): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+[  124.241209] loop5: detected capacity change from 0 to 128
+[  124.257051] EXT4-fs (loop5): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+[  124.258385] ext4 filesystem being mounted at /8/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+[  124.310896] EXT4-fs (loop5): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+[  124.973960] loop3: detected capacity change from 0 to 128
+[  124.989419] EXT4-fs (loop3): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+[  124.996446] ext4 filesystem being mounted at /28/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+[  125.051385] EXT4-fs (loop3): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+[  125.113046] loop3: detected capacity change from 0 to 128
+[  125.128899] EXT4-fs (loop3): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+[  125.136987] ext4 filesystem being mounted at /29/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+[  125.176238] EXT4-fs (loop3): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+[  125.258362] loop2: detected capacity change from 0 to 128
+[  125.279574] EXT4-fs (loop2): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+[  125.286196] ext4 filesystem being mounted at /572/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+[  125.354719] EXT4-fs (loop2): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+[  125.539700] loop3: detected capacity change from 0 to 128
+[  125.551650] EXT4-fs (loop3): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+[  125.562223] ext4 filesystem being mounted at /31/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+[  125.619559] EXT4-fs (loop3): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+[  125.761801] loop1: detected capacity change from 0 to 128
+[  125.778651] EXT4-fs (loop1): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+[  125.779028] ext4 filesystem being mounted at /608/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+[  125.807021] EXT4-fs (loop1): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+[  126.209654] loop2: detected capacity change from 0 to 128
+[  126.238958] EXT4-fs (loop2): mounted filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09 r/w without journal. Quota mode: none.
+[  126.247267] ext4 filesystem being mounted at /577/mnt supports timestamps until 2038-01-19 (0x7fffffff)
+[  126.298378] EXT4-fs (loop2): unmounting filesystem 76b65be2-f6da-4727-8c75-0525a5b65a09.
+[  142.616416] program syz.2.2824 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  170.604862] loop2: detected capacity change from 0 to 512
+[  170.624563] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 ro without journal. Quota mode: none.
+[  173.084146] loop1: detected capacity change from 0 to 512
+[  173.098791] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 ro without journal. Quota mode: none.
+[  173.681684] loop5: detected capacity change from 0 to 512
+[  173.690155] EXT4-fs (loop5): mounted filesystem 00000000-0000-0000-0000-000000000000 ro without journal. Quota mode: none.
+[  183.203370] netlink: 296 bytes leftover after parsing attributes in process `syz.5.3606'.
+[  188.449788] netlink: 296 bytes leftover after parsing attributes in process `syz.1.3721'.
+[  189.348475] netlink: 296 bytes leftover after parsing attributes in process `syz.3.3736'.
+[  190.462679] netlink: 296 bytes leftover after parsing attributes in process `syz.5.3746'.
+[  249.821312] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  250.453746] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  250.744898] EXT4-fs (loop5): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+
+Debian GNU/Linux 11 syzkaller ttyS0
+
+syzkaller login: 
+Debian GNU/Linux 11 syzkaller ttyS0
+
+syzkaller login: 
+Debian GNU/Linux 11 syzkaller ttyS0
+
+syzkaller login: 
+Debian GNU/Linux 11 syzkaller ttyS0
+
+syzkaller login: [  494.533343] ALSA: seq fatal error: cannot create timer (-19)
+[  498.742357] ALSA: seq fatal error: cannot create timer (-19)
+[  499.696650] ALSA: seq fatal error: cannot create timer (-19)
+[  519.638736] ALSA: seq fatal error: cannot create timer (-19)
+[  529.559798] ALSA: seq fatal error: cannot create timer (-19)
+[  530.331528] ALSA: seq fatal error: cannot create timer (-19)
+[  530.564814] ALSA: seq fatal error: cannot create timer (-19)
+[  530.612022] ALSA: seq fatal error: cannot create timer (-19)
+[  569.009462] audit: type=1400 audit(1785042658.188:51): avc:  denied  { checkpoint_restore } for  pid=44920 comm="agetty" capability=40  scontext=system_u:system_r:getty_t:s0 tcontext=system_u:system_r:getty_t:s0 tclass=capability2 permissive=1
+[  937.845480] audit: type=1400 audit(1785043027.026:52): avc:  denied  { read } for  pid=50354 comm="modprobe" name="modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  937.864898] audit: type=1400 audit(1785043027.027:53): avc:  denied  { open } for  pid=50354 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  937.880744] audit: type=1400 audit(1785043027.027:54): avc:  denied  { getattr } for  pid=50354 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  937.880959] audit: type=1400 audit(1785043027.027:55): avc:  denied  { map } for  pid=50354 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  937.976075] audit: type=1400 audit(1785043027.157:56): avc:  denied  { execmem } for  pid=50355 comm="syz.4.17253" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[ 1469.731810] audit: type=1400 audit(1785043558.911:57): avc:  denied  { getattr } for  pid=161 comm="systemd-udevd" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[ 1494.093373] kworker/u16:2 (44) used greatest stack depth: 23464 bytes left
+[ 1887.310419] kworker/u16:1 (42) used greatest stack depth: 23272 bytes left
+
+VM DIAGNOSIS:
+13:49:23  Registers:
+info registers vcpu 0
+
+CPU#0
+RAX=ffff8881d07ac000 RBX=ffffffff8762a9c0 RCX=ffffffff8612ee24 RDX=ffffed102b50662b
+RSI=0000000000000004 RDI=ffffffff814fcf63 RBP=fffffbfff0ec5538 RSP=ffffffff87607e20
+R8 =0000000000000000 R9 =ffffed102b50662a R10=ffff88815a833153 R11=0000000000000000
+R12=dffffc0000000000 R13=1ffffffff0ec0fc8 R14=0000000000000000 R15=0000000000000000
+RIP=ffffffff8612d49e RFL=00000246 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=1
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 0000000000000000 ffffffff 00c00100
+GS =0000 ffff8881d07ac000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe0000003000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000001000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007f1515063f40 CR3=000000011a476000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=0000000000000000 000000000000ffff XMM01=2525252525252525 2525252525252525
+XMM02=0000000000000000 0000000000000000 XMM03=0000000000000000 0000000000000000
+XMM04=0000000000000000 000000000000ffff XMM05=32652f6e6962732f 20313d45444f4d5f
+XMM06=4543495652455320 7c7c206d65747379 XMM07=732f646d65747379 732f6e75722f2065
+XMM08=0000002000000020 0000002000000020 XMM09=ff0000ffff0000ff ff0000ffff0000ff
+XMM10=0000000000000000 0000000000000000 XMM11=ffff00ff0000ffff ffff00ff00ffffff
+XMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000
+XMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000
+info registers vcpu 1
+
+CPU#1
+RAX=ffff8881d082c000 RBX=ffff888100d10000 RCX=ffffffff8612ee24 RDX=ffffed102b51662b
+RSI=0000000000000004 RDI=ffffffff814fcf63 RBP=ffffed10201a2000 RSP=ffff888100d3fe70
+R8 =0000000000000000 R9 =ffffed102b51662a R10=ffff88815a8b3153 R11=0000000000000000
+R12=dffffc0000000000 R13=1ffff110201a7fd2 R14=0000000000000000 R15=0000000000000000
+RIP=ffffffff8612d49e RFL=00000246 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=1
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 0000000000000000 ffffffff 00c00100
+GS =0000 ffff8881d082c000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe000004a000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe0000048000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007ffc8d90e000 CR3=000000010700a000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=0000000000000000 0000000000000000 XMM01=007465677261742e 79636e656772656d
+XMM02=0000000000000000 0000000000000000 XMM03=00000000000000ff 0000000000000000
+XMM04=0000000000000000 0000000000000000 XMM05=616e696d72657420 3f3d72646461203f
+XMM06=3d656d616e74736f 682022646d657473 XMM07=79732f646d657473 79732f62696c2f72
+XMM08=3434373634343831 2031303533203434 XMM09=0000ff000000ff00 0000ffff00000000
+XMM10=0000000000000000 0000200000000000 XMM11=ffffffffffffffff ffffffff00000000
+XMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000
+XMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000
+info registers vcpu 2
+
+CPU#2
+RAX=00007f917b517c90 RBX=00007ffc6b2214a0 RCX=000055c13d1f1d90 RDX=000055c13d218780
+RSI=00007ffc6b2214a0 RDI=0000000000000007 RBP=0000000000000007 RSP=00007ffc6b221450
+R8 =0000000000000000 R9 =00000000002de100 R10=0000000000000008 R11=0000000000000246
+R12=00007ffc6b2214a0 R13=0000000000000000 R14=0000000000000000 R15=000055c13d205d40
+RIP=00007f917ae4111a RFL=00000206 [-----P-] CPL=3 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0033 0000000000000000 ffffffff 00a0fb00 DPL=3 CS64 [-RA]
+SS =002b 0000000000000000 ffffffff 00c0f300 DPL=3 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 00007f917a98b900 ffffffff 00c00100
+GS =0000 0000000000000000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe0000091000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe000008f000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007f3b2f8c0430 CR3=000000011490f000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=0000000000000000 0000000000000000 XMM01=10001080808e1000 01808010000cd280
+XMM02=ed082080031ac080 10000108000480e4 XMM03=62662f7665642f01 ffffffffffffffff
+XMM04=000a000800000000 0000001000000034 XMM05=0000000806060118 d80010000298a208
+XMM06=0001000000080606 0118d800040010a0 XMM07=80080020800401c7 1000080052cc0030
+XMM08=62662f7665642f01 ffffffffffffffff XMM09=ffffffffff000000 0000000000000000
+XMM10=2020202000000000 0000000000000000 XMM11=ffffffffffffffff ffffffffffffffff
+XMM12=0000000000000000 0000000000000000 XMM13=0000000000000000 0000000000000000
+XMM14=0000000000000000 0000000000000000 XMM15=0000000000000000 0000000000000000
+info registers vcpu 3
+
+CPU#3
+RAX=ffffea00047fd408 RBX=0000000000000001 RCX=ffffea00047f66c0 RDX=dffffc0000000000
+RSI=ffffffff81a82663 RDI=ffffea00047f66c8 RBP=000000000000000c RSP=ffff88811da477e0
+R8 =840000011fd9b025 R9 =0000000000000000 R10=000000000000630d R11=ffff88811da47578
+R12=00007f3fc8bf4000 R13=ffff88811da47cd0 R14=840000011fd9b025 R15=0000000000000000
+RIP=ffffffff81a82690 RFL=00000246 [---Z-P-] CPL=0 II=0 A20=1 SMM=0 HLT=0
+ES =0000 0000000000000000 ffffffff 00c00100
+CS =0010 0000000000000000 ffffffff 00a09b00 DPL=0 CS64 [-RA]
+SS =0018 0000000000000000 ffffffff 00c09300 DPL=0 DS   [-WA]
+DS =0000 0000000000000000 ffffffff 00c00100
+FS =0000 0000000000000000 ffffffff 00c00100
+GS =0000 ffff8881d092c000 ffffffff 00c00100
+LDT=0000 0000000000000000 ffffffff 00c00000
+TR =0040 fffffe00000d8000 00004087 00008b00 DPL=0 TSS64-busy
+GDT=     fffffe00000d6000 0000007f
+IDT=     fffffe0000000000 00000fff
+CR0=80050033 CR2=00007fff4c811b30 CR3=000000000766c000 CR4=000006f0
+DR0=0000000000000000 DR1=0000000000000000 DR2=0000000000000000 DR3=0000000000000000 
+DR6=00000000ffff0ff0 DR7=0000000000000400
+EFER=0000000000000d01
+FCW=037f FSW=0000 [ST=0] FTW=00 MXCSR=00001f80
+FPR0=0000000000000000 0000 FPR1=0000000000000000 0000
+FPR2=0000000000000000 0000 FPR3=0000000000000000 0000
+FPR4=0000000000000000 0000 FPR5=0000000000000000 0000
+FPR6=0000000000000000 0000 FPR7=0000000000000000 0000
+XMM00=00007f3fc8c60463 00007f3fc8c60463 XMM01=2525252525252525 2525252525252525
+XMM02=0000000000ff0000 0000000000000000 XMM03=0000000000000000 0000000000000000
+XMM04=0000000000000000 0000000000ff0000 XMM05=0100100016800401 0000000806158004
+XMM06=0100000008060a01 60ac0035656c6966 XMM07=2f34656c69662f33 656c696601ffffff
+XMM08=ffffffffffdb0816 80030035656c6966 XMM09=6e6f635f6d72645f 7866705f5f207420
+XMM10=70685f7265706c65 685f726f7463656e XMM11=6d72645b09746e65 76655f7172695f64
+XMM12=3932303061666666 66666666660a5d72 XMM13=6d6f74615f6d7264 5f5f205420306330
+XMM14=63656e6e6f635f72 65706c65685f6369 XMM15=74735f6574616369 6c7075645f726f74

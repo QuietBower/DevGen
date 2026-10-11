@@ -1,0 +1,1644 @@
+last executing test programs:
+
+34.878371928s ago: executing program 2 (id=293):
+syz_open_dev$dri(&(0x7f0000000100), 0xfffffffffffffffa, 0x250000)
+r0 = syz_open_dev$dri(&(0x7f00000001c0), 0xa8c, 0x0)
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r0, 0x4010640d, 0x0)
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(r1, 0xc01064c5, &(0x7f0000000180)={0x0})
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+r3 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r3, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[<r4=>0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETCRTC(r2, 0xc06864a1, &(0x7f0000000200)={0x0, 0xffffffffffffff08, r4, <r5=>0x0})
+ioctl$DRM_IOCTL_MODE_GETFB(r2, 0xc01c64ad, &(0x7f0000000180)={r5})
+ioctl$DRM_IOCTL_MODE_GETFB2(r2, 0xc06864ce, &(0x7f0000000100)={r5, 0x2, 0x6, 0x2, 0x2, [<r6=>0x0], [0xfffffe01, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xe5, 0xffffffff], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_PRIME_HANDLE_TO_FD(r2, 0xc00c642d, &(0x7f00000001c0)={r6})
+ioctl$DRM_IOCTL_GEM_CLOSE(r1, 0x40086409, &(0x7f0000000140)={r6})
+r7 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_RM_MAP(r0, 0x4028641b, &(0x7f0000000040)={0x0, 0x0, 0x0, 0x0, &(0x7f0000ffa000/0x4000)=nil})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r7, 0xc02064bd, &(0x7f0000000080)={0x2, 0x800, 0x40600fa8})
+
+24.250986327s ago: executing program 1 (id=300):
+r0 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48003)
+r1 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r1, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[<r2=>0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETCRTC(r0, 0xc06864a1, &(0x7f0000000140)={0x0, 0x0, r2, <r3=>0x0})
+r4 = syz_open_dev$dri(0x0, 0x0, 0x80400)
+ioctl$DRM_IOCTL_MODE_CREATE_LEASE(r4, 0xc01864c6, &(0x7f0000000140)={0x0, 0x0, 0x800, 0x0, <r5=>0xffffffffffffffff})
+ioctl$DRM_IOCTL_MODE_SETCRTC(r0, 0xc06864a2, &(0x7f0000000740)={0x0, 0x0, r2, r3, 0x1, 0x4, 0x8, 0x800, {0x7, 0x40, 0x8000, 0xffff, 0x6, 0x8, 0x2, 0x400, 0x0, 0xdca6, 0xf, 0x6, 0x3, 0x5, "ae9cca8faaa846effa0fc0efa7a5c0459b1249707915b0d08e84d56596a6d65d"}})
+r6 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r6, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETCRTC(r6, 0xc06864a1, &(0x7f0000000280)={0x0, 0x0, r2, <r7=>0x0})
+ioctl$DRM_IOCTL_MODE_GETFB2(r6, 0xc06864ce, &(0x7f0000000100)={r7, 0x2, 0x9, 0x2, 0x0, [], [0xfffffe01, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xe5, 0xffffffff], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r0, 0x5452, &(0x7f0000000080)={0x0, 0x4, 0x3})
+ioctl$DRM_IOCTL_MODE_SETGAMMA(r5, 0xc02064a5, &(0x7f0000000200)={r2, 0xa, &(0x7f00000000c0)=[0x7, 0xff81, 0x6, 0x12, 0xffff, 0x10, 0x2, 0x0, 0x5, 0x10], &(0x7f0000000100)=[0x7, 0x2, 0x6], &(0x7f00000001c0)})
+
+24.24348927s ago: executing program 2 (id=307):
+syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20400)
+r0 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r0, 0xc04064a0, &(0x7f0000000240)={0x0, 0x0, 0x0, &(0x7f00000001c0)=[0x0], 0x0, 0x0, 0x0, 0x1})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r1, 0xc02064b2, &(0x7f0000000080)={0x8, 0x4, 0x1e})
+r2 = syz_open_dev$dri(&(0x7f0000000840), 0x495c, 0x400)
+ioctl$DRM_IOCTL_MODE_GETPROPBLOB(r2, 0xc01064d2, &(0x7f0000000200)={0x0, 0x0, 0x0})
+r3 = syz_open_dev$dri(&(0x7f00000001c0), 0x0, 0x200)
+ioctl$DRM_IOCTL_MODE_CREATE_LEASE(r3, 0xc01864c6, &(0x7f0000000140)={&(0x7f0000000100)=[0x0], 0x1, 0x800})
+r4 = syz_open_dev$dri(&(0x7f0000000240), 0x80000200, 0x400)
+ioctl$DRM_IOCTL_MODE_CREATEPROPBLOB(r4, 0xc01064bd, &(0x7f0000000180)={&(0x7f0000000080)})
+
+24.229285453s ago: executing program 3 (id=308):
+syz_open_dev$dri(&(0x7f0000000100), 0xfffffffffffffffa, 0x250000)
+r0 = syz_open_dev$dri(0x0, 0xa8c, 0x0)
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r0, 0x4010640d, &(0x7f00000000c0)={0x14})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(r1, 0xc01064c5, &(0x7f0000000180)={0x0})
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+r3 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r3, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[<r4=>0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETCRTC(r2, 0xc06864a1, &(0x7f0000000200)={0x0, 0xffffffffffffff08, r4, <r5=>0x0})
+ioctl$DRM_IOCTL_MODE_GETFB(r2, 0xc01c64ad, &(0x7f0000000180)={r5})
+ioctl$DRM_IOCTL_MODE_GETFB2(r2, 0xc06864ce, &(0x7f0000000100)={r5, 0x2, 0x6, 0x2, 0x2, [<r6=>0x0], [0xfffffe01, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xe5, 0xffffffff], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_PRIME_HANDLE_TO_FD(r2, 0xc00c642d, &(0x7f00000001c0)={r6})
+ioctl$DRM_IOCTL_GEM_CLOSE(r1, 0x40086409, &(0x7f0000000140)={r6})
+r7 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_RM_MAP(r0, 0x4028641b, &(0x7f0000000040)={0x0, 0x0, 0x0, 0x0, &(0x7f0000ffa000/0x4000)=nil})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r7, 0xc02064bd, &(0x7f0000000080)={0x2, 0x800, 0x40600fa8})
+
+24.150466659s ago: executing program 1 (id=301):
+syz_open_dev$dri(0x0, 0xfffffffffffffffa, 0x250000)
+r0 = syz_open_dev$dri(&(0x7f00000001c0), 0xa8c, 0x0)
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r0, 0x4010640d, &(0x7f00000000c0)={0x14})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(r1, 0xc01064c5, &(0x7f0000000180)={0x0})
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+r3 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r3, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[<r4=>0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETCRTC(r2, 0xc06864a1, &(0x7f0000000200)={0x0, 0xffffffffffffff08, r4, <r5=>0x0})
+ioctl$DRM_IOCTL_MODE_GETFB(r2, 0xc01c64ad, &(0x7f0000000180)={r5})
+ioctl$DRM_IOCTL_MODE_GETFB2(r2, 0xc06864ce, &(0x7f0000000100)={r5, 0x2, 0x6, 0x2, 0x2, [<r6=>0x0], [0xfffffe01, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xe5, 0xffffffff], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_PRIME_HANDLE_TO_FD(r2, 0xc00c642d, &(0x7f00000001c0)={r6})
+ioctl$DRM_IOCTL_GEM_CLOSE(r1, 0x40086409, &(0x7f0000000140)={r6})
+r7 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_RM_MAP(r0, 0x4028641b, &(0x7f0000000040)={0x0, 0x0, 0x0, 0x0, &(0x7f0000ffa000/0x4000)=nil})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r7, 0xc02064bd, &(0x7f0000000080)={0x2, 0x800, 0x40600fa8})
+
+24.092983286s ago: executing program 2 (id=302):
+syz_open_dev$dri(&(0x7f0000000100), 0xfffffffffffffffa, 0x250000)
+r0 = syz_open_dev$dri(&(0x7f00000001c0), 0xa8c, 0x0)
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r0, 0x4010640d, &(0x7f00000000c0)={0x14})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(r1, 0xc01064c5, &(0x7f0000000180)={0x0})
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+r3 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r3, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETFB(r2, 0xc01c64ad, &(0x7f0000000180))
+ioctl$DRM_IOCTL_MODE_GETFB2(r2, 0xc06864ce, &(0x7f0000000100)={0x0, 0x2, 0x6, 0x2, 0x2, [<r4=>0x0], [0xfffffe01, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xe5, 0xffffffff], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_PRIME_HANDLE_TO_FD(r2, 0xc00c642d, &(0x7f00000001c0)={r4})
+ioctl$DRM_IOCTL_GEM_CLOSE(r1, 0x40086409, &(0x7f0000000140)={r4})
+r5 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r5, 0xc02064bd, &(0x7f0000000080)={0x2, 0x800, 0x40600fa8})
+
+23.152124423s ago: executing program 2 (id=303):
+r0 = syz_open_dev$dri(&(0x7f0000000080), 0x3fffc0, 0x58001)
+r1 = syz_open_dev$dri(&(0x7f00000003c0), 0x3fffc0, 0x200080)
+ioctl$DRM_IOCTL_MODE_CURSOR2(r1, 0xc02464bb, &(0x7f0000000100)={0x7, 0x0, 0xaa7, 0x10, 0x4, 0x107, 0xaef, 0x7, 0x8})
+ioctl$DRM_IOCTL_AGP_INFO(r0, 0x80386433, &(0x7f0000000580)=""/212)
+ioctl$DRM_IOCTL_MODE_GETPLANERESOURCES(r0, 0xc01064b5, &(0x7f00000000c0)={&(0x7f0000000040)=[<r2=>0x0, 0x0], 0x2})
+r3 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+r4 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r4, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000440)=[<r5=>0x0], 0x0, 0x0, 0x0, 0x1})
+r6 = syz_open_dev$dri(&(0x7f0000000540), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_ADDFB(r6, 0xc01c64ae, &(0x7f0000000040)={0x0, 0x2000, 0x1, 0x1000, 0x18, 0x18, 0x5})
+r7 = syz_open_dev$dri(&(0x7f0000000300), 0xfffffffffffffffa, 0xe500)
+r8 = syz_open_dev$dri(&(0x7f0000000400), 0x0, 0x440c01)
+ioctl$DRM_IOCTL_MODE_ADDFB(r8, 0xc01c64ae, &(0x7f0000000480)={0x0, 0x7, 0x1, 0x7fff, 0x2, 0x18, 0x5})
+ioctl$DRM_IOCTL_GET_CAP(r6, 0xc010640c, &(0x7f0000000100)={0x7})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(0xffffffffffffffff, 0xc02064b2, &(0x7f0000000080)={0x6, 0x7f, 0x3})
+ioctl$DRM_IOCTL_SYNCOBJ_TIMELINE_SIGNAL(0xffffffffffffffff, 0xc01864cd, &(0x7f0000000380)={&(0x7f0000000300), &(0x7f0000000340)})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(0xffffffffffffffff, 0xc01864c2, 0x0)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(0xffffffffffffffff, 0xc01064c5, 0x0)
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(0xffffffffffffffff, 0xc01864c2, &(0x7f0000000240)={<r9=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_WAIT(r7, 0xc02864c3, &(0x7f0000000340)={&(0x7f0000000280)=[0x0, 0x0, 0x0, 0x0, 0x0, r9], 0xffffffff, 0x6, 0x4})
+ioctl$DRM_IOCTL_MODE_GETCRTC(r3, 0xc06864a1, &(0x7f0000000080)={0x0, 0x25, r5})
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r0, 0xc04064a0, &(0x7f0000000200)={&(0x7f0000000100)=[0x0, <r10=>0x0], &(0x7f0000000140)=[0x0, 0x0, 0x0, 0x0, 0x0], &(0x7f0000000180)=[0x0, 0x0, 0x0, 0x0], &(0x7f00000001c0)=[0x0, 0x0], 0x2, 0x5, 0x4, 0x2})
+r11 = syz_open_dev$dri(&(0x7f00000001c0), 0xa8c, 0x0)
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r11, 0x4010640d, &(0x7f0000000080)={0x2, 0xfdfd})
+ioctl$DRM_IOCTL_SYNCOBJ_DESTROY(r3, 0xc00864c0, &(0x7f0000000380))
+r12 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48003)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r12, 0x40086602, 0x0)
+ioctl$DRM_IOCTL_MODE_SETPLANE(r0, 0xc03064b7, &(0x7f0000000240)={r2, r5, r10, 0x7, 0x403, 0x8, 0xf3, 0x2, 0x8, 0x9c3, 0x1e5, 0x5})
+r13 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x4200)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r13, 0x5452, 0x0)
+
+23.053295822s ago: executing program 3 (id=305):
+syz_open_dev$dri(&(0x7f0000000100), 0xfffffffffffffffa, 0x250000)
+r0 = syz_open_dev$dri(0x0, 0xa8c, 0x0)
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r0, 0x4010640d, &(0x7f00000000c0)={0x14})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(r1, 0xc01064c5, &(0x7f0000000180)={0x0})
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+r3 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r3, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[<r4=>0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETCRTC(r2, 0xc06864a1, &(0x7f0000000200)={0x0, 0xffffffffffffff08, r4, <r5=>0x0})
+ioctl$DRM_IOCTL_MODE_GETFB(r2, 0xc01c64ad, &(0x7f0000000180)={r5})
+ioctl$DRM_IOCTL_MODE_GETFB2(r2, 0xc06864ce, &(0x7f0000000100)={r5, 0x2, 0x6, 0x2, 0x2, [<r6=>0x0], [0xfffffe01, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xe5, 0xffffffff], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_PRIME_HANDLE_TO_FD(r2, 0xc00c642d, &(0x7f00000001c0)={r6})
+ioctl$DRM_IOCTL_GEM_CLOSE(r1, 0x40086409, &(0x7f0000000140)={r6})
+r7 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_RM_MAP(r0, 0x4028641b, &(0x7f0000000040)={0x0, 0x0, 0x0, 0x0, &(0x7f0000ffa000/0x4000)=nil})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r7, 0xc02064bd, &(0x7f0000000080)={0x2, 0x800, 0x40600fa8})
+
+23.017448999s ago: executing program 1 (id=306):
+r0 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r0, 0xc02064bd, &(0x7f0000000040)={0x10, 0x800, 0x40600fa8})
+ioctl$DRM_IOCTL_RES_CTX(r0, 0xc0106426, &(0x7f00000000c0)={0x1, &(0x7f0000000080)=[{<r1=>0x0}]})
+ioctl$DRM_IOCTL_PRIME_HANDLE_TO_FD(r0, 0xc00c642d, &(0x7f0000000240)={0x0, 0x0, <r2=>0xffffffffffffffff})
+r3 = syz_open_dev$dri(&(0x7f0000000300), 0xfffffffffffffffa, 0xe500)
+r4 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r4, 0xc02064b2, 0x0)
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(r4, 0xc01864c2, &(0x7f0000000240)={<r5=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_WAIT(r3, 0xc02864c3, &(0x7f0000000340)={&(0x7f0000000280)=[0x0, 0x0, 0x0, 0x0, 0x0, r5], 0xffffffff, 0x6, 0x4})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_SYNC_FILE(r0, 0xc01864c2, &(0x7f0000000280)={<r6=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_SYNC_FILE(r0, 0xc01864c2, &(0x7f00000002c0)={<r7=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_RESET(r2, 0xc01064c4, &(0x7f0000000340)={&(0x7f0000000300)=[r5, 0x0, r6, r7], 0x4})
+ioctl$DRM_IOCTL_DMA(r0, 0xc0406429, &(0x7f0000000200)={r1, 0x8, &(0x7f0000000100)=[0x8000, 0x6, 0x6e2, 0x28, 0xae2, 0x2, 0x7, 0x2], &(0x7f0000000140)=[0x61a, 0x9, 0xba8c50b, 0x2, 0x6], 0x4, 0x4, 0x7b80, &(0x7f0000000180)=[0x5, 0x9, 0xffffffff, 0x0], &(0x7f00000001c0)=[0xff, 0xffffffff, 0x0, 0x0]})
+
+13.496188179s ago: executing program 1 (id=309):
+r0 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r0, 0xc02064bd, &(0x7f0000000040)={0x10, 0x800, 0x40600fa8})
+r1 = syz_open_dev$dri(&(0x7f0000000300), 0xfffffffffffffffa, 0xe500)
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r2, 0xc02064b2, 0x0)
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(r2, 0xc01864c2, &(0x7f0000000240)={<r3=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_WAIT(r1, 0xc02864c3, &(0x7f0000000340)={&(0x7f0000000280)=[0x0, 0x0, 0x0, 0x0, 0x0, r3], 0xffffffff, 0x6, 0x4})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_SYNC_FILE(r0, 0xc01864c2, &(0x7f0000000280)={<r4=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_SYNC_FILE(r0, 0xc01864c2, &(0x7f00000002c0)={<r5=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_RESET(0xffffffffffffffff, 0xc01064c4, &(0x7f0000000340)={&(0x7f0000000300)=[r3, 0x0, r4, r5], 0x4})
+ioctl$DRM_IOCTL_DMA(r0, 0xc0406429, &(0x7f0000000200)={0x0, 0x8, &(0x7f0000000100)=[0x8000, 0x6, 0x6e2, 0x28, 0xae2, 0x2, 0x7, 0x2], &(0x7f0000000140)=[0x61a, 0x9, 0xba8c50b, 0x2, 0x6], 0x4, 0x4, 0x7b80, &(0x7f0000000180)=[0x5, 0x9, 0xffffffff, 0x0], &(0x7f00000001c0)=[0xff, 0xffffffff, 0x0, 0x0]})
+
+13.482096459s ago: executing program 3 (id=310):
+syz_open_dev$dri(&(0x7f0000000100), 0xfffffffffffffffa, 0x250000)
+r0 = syz_open_dev$dri(&(0x7f00000001c0), 0xa8c, 0x0)
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r0, 0x4010640d, &(0x7f00000000c0)={0x14})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(r1, 0xc01064c5, &(0x7f0000000180)={0x0})
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+r3 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r3, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETFB(r2, 0xc01c64ad, &(0x7f0000000180))
+ioctl$DRM_IOCTL_MODE_GETFB2(r2, 0xc06864ce, &(0x7f0000000100)={0x0, 0x2, 0x6, 0x2, 0x2, [<r4=>0x0], [0xfffffe01, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xe5, 0xffffffff], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_PRIME_HANDLE_TO_FD(r2, 0xc00c642d, &(0x7f00000001c0)={r4})
+r5 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_RM_MAP(r0, 0x4028641b, &(0x7f0000000040)={0x0, 0x0, 0x0, 0x0, &(0x7f0000ffa000/0x4000)=nil})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r5, 0xc02064bd, &(0x7f0000000080)={0x2, 0x800, 0x40600fa8})
+
+13.459947794s ago: executing program 2 (id=317):
+r0 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r0, 0xc02064bd, &(0x7f0000000040)={0x10, 0x800, 0x40600fa8})
+r1 = syz_open_dev$dri(0x0, 0xfffffffffffffffa, 0xe500)
+r2 = syz_open_dev$dri(0x0, 0x2, 0x1)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r2, 0xc02064b2, 0x0)
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_FD(r2, 0xc01864c2, &(0x7f0000000240)={<r3=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_WAIT(r1, 0xc02864c3, &(0x7f0000000340)={&(0x7f0000000280)=[0x0, 0x0, 0x0, 0x0, 0x0, r3], 0xffffffff, 0x6, 0x4})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_SYNC_FILE(r0, 0xc01864c2, &(0x7f0000000280)={<r4=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_FD_TO_HANDLE_SYNC_FILE(r0, 0xc01864c2, &(0x7f00000002c0)={<r5=>0x0})
+ioctl$DRM_IOCTL_SYNCOBJ_RESET(0xffffffffffffffff, 0xc01064c4, &(0x7f0000000340)={&(0x7f0000000300)=[r3, 0x0, r4, r5], 0x4})
+ioctl$DRM_IOCTL_DMA(r0, 0xc0406429, &(0x7f0000000200)={0x0, 0x8, &(0x7f0000000100)=[0x8000, 0x6, 0x6e2, 0x28, 0xae2, 0x2, 0x7, 0x2], &(0x7f0000000140)=[0x61a, 0x9, 0xba8c50b, 0x2, 0x6], 0x4, 0x4, 0x7b80, &(0x7f0000000180)=[0x5, 0x9, 0xffffffff, 0x0], &(0x7f00000001c0)=[0xff, 0xffffffff, 0x0, 0x0]})
+
+13.38610293s ago: executing program 0 (id=312):
+syz_open_dev$dri(&(0x7f0000000100), 0xfffffffffffffffa, 0x250000)
+r0 = syz_open_dev$dri(&(0x7f00000001c0), 0xa8c, 0x0)
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r0, 0x4010640d, 0x0)
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(r1, 0xc01064c5, &(0x7f0000000180)={0x0})
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+r3 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r3, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[<r4=>0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETCRTC(r2, 0xc06864a1, &(0x7f0000000200)={0x0, 0xffffffffffffff08, r4, <r5=>0x0})
+ioctl$DRM_IOCTL_MODE_GETFB(r2, 0xc01c64ad, &(0x7f0000000180)={r5})
+ioctl$DRM_IOCTL_MODE_GETFB2(r2, 0xc06864ce, &(0x7f0000000100)={r5, 0x2, 0x6, 0x2, 0x2, [<r6=>0x0], [0xfffffe01, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xe5, 0xffffffff], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_PRIME_HANDLE_TO_FD(r2, 0xc00c642d, &(0x7f00000001c0)={r6})
+ioctl$DRM_IOCTL_GEM_CLOSE(r1, 0x40086409, &(0x7f0000000140)={r6})
+r7 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_RM_MAP(r0, 0x4028641b, &(0x7f0000000040)={0x0, 0x0, 0x0, 0x0, &(0x7f0000ffa000/0x4000)=nil})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r7, 0xc02064bd, &(0x7f0000000080)={0x2, 0x800, 0x40600fa8})
+
+9.253149983s ago: executing program 3 (id=313):
+syz_open_dev$dri(&(0x7f0000000100), 0xfffffffffffffffa, 0x250000)
+r0 = syz_open_dev$dri(&(0x7f00000001c0), 0xa8c, 0x0)
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r0, 0x4010640d, &(0x7f00000000c0)={0x14})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(r1, 0xc01064c5, &(0x7f0000000180)={0x0})
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+r3 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r3, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_PRIME_HANDLE_TO_FD(r2, 0xc00c642d, &(0x7f00000001c0))
+ioctl$DRM_IOCTL_GEM_CLOSE(r1, 0x40086409, &(0x7f0000000140))
+r4 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_RM_MAP(r0, 0x4028641b, &(0x7f0000000040)={0x0, 0x0, 0x0, 0x0, &(0x7f0000ffa000/0x4000)=nil})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r4, 0xc02064bd, &(0x7f0000000080)={0x2, 0x800, 0x40600fa8})
+
+9.195242475s ago: executing program 0 (id=314):
+syz_open_dev$dri(&(0x7f0000000100), 0xfffffffffffffffa, 0x250000)
+r0 = syz_open_dev$dri(&(0x7f00000001c0), 0xa8c, 0x0)
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r0, 0x4010640d, &(0x7f00000000c0)={0x14})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(r1, 0xc01064c5, &(0x7f0000000180)={0x0})
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+r3 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r3, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETFB(r2, 0xc01c64ad, &(0x7f0000000180))
+ioctl$DRM_IOCTL_MODE_GETFB2(r2, 0xc06864ce, &(0x7f0000000100)={0x0, 0x2, 0x6, 0x2, 0x2, [<r4=>0x0], [0xfffffe01, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xe5, 0xffffffff], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_PRIME_HANDLE_TO_FD(r2, 0xc00c642d, &(0x7f00000001c0)={r4})
+ioctl$DRM_IOCTL_GEM_CLOSE(r1, 0x40086409, &(0x7f0000000140)={r4})
+r5 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r5, 0xc02064bd, &(0x7f0000000080)={0x2, 0x800, 0x40600fa8})
+
+9.187061988s ago: executing program 1 (id=315):
+syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20400)
+r0 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r0, 0xc04064a0, &(0x7f0000000240)={0x0, 0x0, 0x0, &(0x7f00000001c0)=[0x0], 0x0, 0x0, 0x0, 0x1})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r1, 0xc02064b2, &(0x7f0000000080)={0x8, 0x4, 0x1e})
+r2 = syz_open_dev$dri(&(0x7f0000000840), 0x495c, 0x400)
+ioctl$DRM_IOCTL_MODE_GETPROPBLOB(r2, 0xc01064d2, &(0x7f0000000200)={0x0, 0x0, 0x0})
+r3 = syz_open_dev$dri(&(0x7f00000001c0), 0x0, 0x200)
+ioctl$DRM_IOCTL_MODE_CREATE_LEASE(r3, 0xc01864c6, &(0x7f0000000140)={&(0x7f0000000100)=[0x0], 0x1, 0x800})
+r4 = syz_open_dev$dri(&(0x7f0000000240), 0x80000200, 0x400)
+ioctl$DRM_IOCTL_MODE_CREATEPROPBLOB(r4, 0xc01064bd, &(0x7f0000000180)={&(0x7f0000000080)})
+
+8.434701854s ago: executing program 0 (id=316):
+syz_open_dev$dri(&(0x7f0000000100), 0xfffffffffffffffa, 0x250000)
+r0 = syz_open_dev$dri(0x0, 0xa8c, 0x0)
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r0, 0x4010640d, &(0x7f00000000c0)={0x14})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(r1, 0xc01064c5, &(0x7f0000000180)={0x0})
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+r3 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r3, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[<r4=>0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETCRTC(r2, 0xc06864a1, &(0x7f0000000200)={0x0, 0xffffffffffffff08, r4, <r5=>0x0})
+ioctl$DRM_IOCTL_MODE_GETFB(r2, 0xc01c64ad, &(0x7f0000000180)={r5})
+ioctl$DRM_IOCTL_MODE_GETFB2(r2, 0xc06864ce, &(0x7f0000000100)={r5, 0x2, 0x6, 0x2, 0x2, [<r6=>0x0], [0xfffffe01, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xe5, 0xffffffff], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_PRIME_HANDLE_TO_FD(r2, 0xc00c642d, &(0x7f00000001c0)={r6})
+ioctl$DRM_IOCTL_GEM_CLOSE(r1, 0x40086409, &(0x7f0000000140)={r6})
+r7 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_RM_MAP(r0, 0x4028641b, &(0x7f0000000040)={0x0, 0x0, 0x0, 0x0, &(0x7f0000ffa000/0x4000)=nil})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r7, 0xc02064bd, &(0x7f0000000080)={0x2, 0x800, 0x40600fa8})
+
+376.39566ms ago: executing program 0 (id=318):
+syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20400)
+r0 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r0, 0xc04064a0, &(0x7f0000000240)={0x0, 0x0, 0x0, &(0x7f00000001c0)=[0x0], 0x0, 0x0, 0x0, 0x1})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r1, 0xc02064b2, &(0x7f0000000080)={0x8, 0x4, 0x1e})
+r2 = syz_open_dev$dri(&(0x7f0000000840), 0x495c, 0x400)
+ioctl$DRM_IOCTL_MODE_GETPROPBLOB(r2, 0xc01064d2, &(0x7f0000000200)={0x0, 0x0, 0x0})
+r3 = syz_open_dev$dri(&(0x7f00000001c0), 0x0, 0x200)
+ioctl$DRM_IOCTL_MODE_CREATE_LEASE(r3, 0xc01864c6, &(0x7f0000000140)={&(0x7f0000000100)=[0x0], 0x1, 0x800})
+r4 = syz_open_dev$dri(&(0x7f0000000240), 0x80000200, 0x400)
+ioctl$DRM_IOCTL_MODE_CREATEPROPBLOB(r4, 0xc01064bd, &(0x7f0000000180)={0x0})
+
+361.278979ms ago: executing program 1 (id=319):
+syz_open_dev$dri(&(0x7f0000000100), 0xfffffffffffffffa, 0x250000)
+r0 = syz_open_dev$dri(0x0, 0xa8c, 0x0)
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r0, 0x4010640d, &(0x7f00000000c0)={0x14})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(r1, 0xc01064c5, &(0x7f0000000180)={0x0})
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+r3 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r3, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[<r4=>0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETCRTC(r2, 0xc06864a1, &(0x7f0000000200)={0x0, 0xffffffffffffff08, r4, <r5=>0x0})
+ioctl$DRM_IOCTL_MODE_GETFB(r2, 0xc01c64ad, &(0x7f0000000180)={r5})
+ioctl$DRM_IOCTL_MODE_GETFB2(r2, 0xc06864ce, &(0x7f0000000100)={r5, 0x2, 0x6, 0x2, 0x2, [<r6=>0x0], [0xfffffe01, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xe5, 0xffffffff], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_PRIME_HANDLE_TO_FD(r2, 0xc00c642d, &(0x7f00000001c0)={r6})
+ioctl$DRM_IOCTL_GEM_CLOSE(r1, 0x40086409, &(0x7f0000000140)={r6})
+r7 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_RM_MAP(r0, 0x4028641b, &(0x7f0000000040)={0x0, 0x0, 0x0, 0x0, &(0x7f0000ffa000/0x4000)=nil})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r7, 0xc02064bd, &(0x7f0000000080)={0x2, 0x800, 0x40600fa8})
+
+344.808973ms ago: executing program 2 (id=320):
+syz_open_dev$dri(&(0x7f0000000100), 0xfffffffffffffffa, 0x250000)
+r0 = syz_open_dev$dri(&(0x7f00000001c0), 0xa8c, 0x0)
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r0, 0x4010640d, &(0x7f00000000c0)={0x14})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(r1, 0xc01064c5, &(0x7f0000000180)={0x0})
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+r3 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r3, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETFB(r2, 0xc01c64ad, &(0x7f0000000180))
+ioctl$DRM_IOCTL_MODE_GETFB2(r2, 0xc06864ce, &(0x7f0000000100)={0x0, 0x2, 0x6, 0x2, 0x2, [<r4=>0x0], [0xfffffe01, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xe5, 0xffffffff], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_PRIME_HANDLE_TO_FD(r2, 0xc00c642d, &(0x7f00000001c0)={r4})
+r5 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_RM_MAP(r0, 0x4028641b, &(0x7f0000000040)={0x0, 0x0, 0x0, 0x0, &(0x7f0000ffa000/0x4000)=nil})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r5, 0xc02064bd, &(0x7f0000000080)={0x2, 0x800, 0x40600fa8})
+
+333.762165ms ago: executing program 3 (id=321):
+r0 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48003)
+r1 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r1, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[<r2=>0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETCRTC(r0, 0xc06864a1, &(0x7f0000000140)={0x0, 0x0, r2, <r3=>0x0})
+r4 = syz_open_dev$dri(0x0, 0x0, 0x80400)
+ioctl$DRM_IOCTL_MODE_CREATE_LEASE(r4, 0xc01864c6, &(0x7f0000000140)={0x0, 0x0, 0x800})
+ioctl$DRM_IOCTL_MODE_SETCRTC(r0, 0xc06864a2, &(0x7f0000000740)={0x0, 0x0, r2, r3, 0x1, 0x4, 0x8, 0x800, {0x7, 0x40, 0x8000, 0xffff, 0x6, 0x8, 0x2, 0x400, 0x0, 0xdca6, 0xf, 0x6, 0x3, 0x5, "ae9cca8faaa846effa0fc0efa7a5c0459b1249707915b0d08e84d56596a6d65d"}})
+r5 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r5, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETCRTC(r5, 0xc06864a1, &(0x7f0000000280)={0x0, 0x0, r2})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r0, 0x5452, &(0x7f0000000080)={0x0, 0x4, 0x3})
+
+211.542686ms ago: executing program 3 (id=322):
+syz_open_dev$dri(&(0x7f0000000100), 0xfffffffffffffffa, 0x250000)
+r0 = syz_open_dev$dri(&(0x7f00000001c0), 0xa8c, 0x0)
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r0, 0x4010640d, &(0x7f00000000c0)={0x14})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(r1, 0xc01064c5, &(0x7f0000000180)={0x0})
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+r3 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r3, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETFB(r2, 0xc01c64ad, &(0x7f0000000180))
+ioctl$DRM_IOCTL_MODE_GETFB2(r2, 0xc06864ce, &(0x7f0000000100)={0x0, 0x2, 0x6, 0x2, 0x2, [<r4=>0x0], [0xfffffe01, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xe5, 0xffffffff], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_GEM_CLOSE(r1, 0x40086409, &(0x7f0000000140)={r4})
+r5 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_RM_MAP(r0, 0x4028641b, &(0x7f0000000040)={0x0, 0x0, 0x0, 0x0, &(0x7f0000ffa000/0x4000)=nil})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r5, 0xc02064bd, &(0x7f0000000080)={0x2, 0x800, 0x40600fa8})
+
+204.625448ms ago: executing program 0 (id=330):
+r0 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48003)
+r1 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r1, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[<r2=>0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETCRTC(r0, 0xc06864a1, &(0x7f0000000140)={0x0, 0x0, r2, <r3=>0x0})
+r4 = syz_open_dev$dri(0x0, 0x0, 0x80400)
+ioctl$DRM_IOCTL_MODE_CREATE_LEASE(r4, 0xc01864c6, &(0x7f0000000140)={0x0, 0x0, 0x800})
+ioctl$DRM_IOCTL_MODE_SETCRTC(r0, 0xc06864a2, &(0x7f0000000740)={0x0, 0x0, r2, r3, 0x1, 0x4, 0x8, 0x800, {0x7, 0x40, 0x8000, 0xffff, 0x6, 0x8, 0x2, 0x400, 0x0, 0xdca6, 0xf, 0x6, 0x3, 0x5, "ae9cca8faaa846effa0fc0efa7a5c0459b1249707915b0d08e84d56596a6d65d"}})
+r5 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r5, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r0, 0x5452, &(0x7f0000000080)={0x0, 0x4, 0x3})
+
+0s ago: executing program 0 (id=323):
+syz_open_dev$dri(&(0x7f0000000100), 0xfffffffffffffffa, 0x250000)
+r0 = syz_open_dev$dri(&(0x7f00000001c0), 0xa8c, 0x0)
+ioctl$DRM_IOCTL_SET_CLIENT_CAP(r0, 0x4010640d, &(0x7f00000000c0)={0x14})
+r1 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_SYNCOBJ_SIGNAL(r1, 0xc01064c5, &(0x7f0000000180)={0x0})
+r2 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+r3 = syz_open_dev$dri(&(0x7f0000000040), 0x3fffc0, 0x20100)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r3, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_GETFB(r2, 0xc01c64ad, &(0x7f0000000180))
+ioctl$DRM_IOCTL_MODE_GETFB2(r2, 0xc06864ce, &(0x7f0000000100)={0x0, 0x2, 0x6, 0x2, 0x2, [<r4=>0x0], [0xfffffe01, 0x80000000, 0xa0000, 0x9], [0x8999, 0x6, 0xe5, 0xffffffff], [0x74, 0xf, 0x4, 0x7]})
+ioctl$DRM_IOCTL_PRIME_HANDLE_TO_FD(r2, 0xc00c642d, &(0x7f00000001c0)={r4})
+r5 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x48000)
+ioctl$DRM_IOCTL_RM_MAP(r0, 0x4028641b, &(0x7f0000000040)={0x0, 0x0, 0x0, 0x0, &(0x7f0000ffa000/0x4000)=nil})
+ioctl$DRM_IOCTL_MODE_CREATE_DUMB(r5, 0xc02064bd, &(0x7f0000000080)={0x2, 0x800, 0x40600fa8})
+
+kernel console output (not intermixed with test programs):
+
+[   23.483144] audit: type=1400 audit(1783584387.878:33): avc:  denied  { rlimitinh } for  pid=280 comm="bash" scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   23.492483] audit: type=1400 audit(1783584387.878:34): avc:  denied  { siginh } for  pid=280 comm="bash" scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+Warning: Permanently added '[localhost]:53851' (ED25519) to the list of known hosts.
+[   24.873861] cgroup: Unknown subsys name 'net'
+[   24.907592] cgroup: Unknown subsys name 'cpuset'
+[   24.915832] cgroup: Unknown subsys name 'rlimit'
+[   24.917693] cgroup: Unknown subsys name 'memory'
+[   24.954081] kmemleak: Automatic memory scanning thread ended
+[   33.301822] kmemleak: 7 new suspected memory leaks (see /sys/kernel/debug/kmemleak)
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=fea3d39c-852e-494d-9bd0-1769a77d5d47
+[   33.362542] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   34.612570] audit: type=1400 audit(1783584399.026:35): avc:  denied  { execmem } for  pid=300 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   34.707810] audit: type=1400 audit(1783584399.121:36): avc:  denied  { read } for  pid=309 comm="modprobe" name="modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   34.721377] audit: type=1400 audit(1783584399.121:37): avc:  denied  { open } for  pid=308 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   34.731780] audit: type=1400 audit(1783584399.122:38): avc:  denied  { getattr } for  pid=308 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   34.744450] audit: type=1400 audit(1783584399.122:39): avc:  denied  { map } for  pid=308 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   42.985599] bochs-drm 0000:00:01.0: [drm] Unknown color mode 65536; guessing buffer size.
+[   48.637882] systemd-udevd (171) used greatest stack depth: 24480 bytes left
+[   89.471985] kmemleak: Cannot allocate a scan area, scanning the full object
+[  121.849657] FAULT_INJECTION: forcing a failure.
+[  121.849657] name failslab, interval 1, probability 0, space 0, times 0
+[  121.865643] CPU: 2 UID: 0 PID: 2256 Comm: syz.3.90 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+[  121.865661] Tainted: [W]=WARN, [N]=TEST
+[  121.865664] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  121.865680] Call Trace:
+[  121.865693]  <TASK>
+[  121.865697]  dump_stack_lvl+0x10b/0x140
+[  121.865929]  should_fail_ex+0x4d5/0x5e0
+[  121.865998]  ? lock_release+0x1f2/0x2a0
+[  121.866058]  ? __get_vm_area_node+0x11b/0x2c0
+[  121.866097]  should_failslab+0xc7/0x130
+[  121.866126]  __kmalloc_cache_node_noprof+0x6e/0x730
+[  121.866141]  ? kmemleak_scan_area+0x95/0x1e0
+[  121.866171]  ? ___slab_alloc+0x91/0x6a0
+[  121.866189]  __get_vm_area_node+0x11b/0x2c0
+[  121.866199]  __vmalloc_node_range_noprof+0x25c/0x15a0
+[  121.866208]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  121.866268]  ? lock_release+0x1f2/0x2a0
+[  121.866277]  ? do_raw_spin_unlock+0x58/0x220
+[  121.866288]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  121.866301]  ? __pfx___vmalloc_node_range_noprof+0x10/0x10
+[  121.866311]  ? __pfx_alloc_vmap_area+0x10/0x10
+[  121.866319]  ? __get_vm_area_node+0x11b/0x2c0
+[  121.866326]  ? __kmalloc_cache_node_noprof+0x464/0x730
+[  121.866335]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  121.866345]  __vmalloc_node_noprof+0xb1/0x100
+[  121.866354]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  121.866365]  __vmalloc_node_range_noprof+0x3d3/0x15a0
+[  121.866386]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  121.866399]  ? __pfx___vmalloc_node_range_noprof+0x10/0x10
+[  121.866410]  ? ___kmalloc_large_node+0xe5/0x140
+[  121.866420]  __kvmalloc_node_noprof+0x3cb/0x940
+[  121.866428]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  121.866438]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  121.866448]  ? ___slab_alloc+0x91/0x6a0
+[  121.866459]  drm_property_create_blob.part.0+0x35/0x2b0
+[  121.866470]  drm_mode_createblob_ioctl+0x13e/0x420
+[  121.866481]  drm_ioctl_kernel+0x1f2/0x3e0
+[  121.866519]  ? __pfx_drm_mode_createblob_ioctl+0x10/0x10
+[  121.866530]  ? __pfx_drm_ioctl_kernel+0x10/0x10
+[  121.866543]  drm_ioctl+0x580/0xb70
+[  121.866555]  ? __pfx_drm_mode_createblob_ioctl+0x10/0x10
+[  121.866566]  ? __pfx_drm_ioctl+0x10/0x10
+[  121.866577]  ? __fget_files+0x200/0x3b0
+[  121.866618]  ? lock_release+0x1f2/0x2a0
+[  121.866628]  ? selinux_file_ioctl+0x18e/0x290
+[  121.866661]  ? selinux_file_ioctl+0xc0/0x290
+[  121.866669]  ? __pfx_drm_ioctl+0x10/0x10
+[  121.866680]  __x64_sys_ioctl+0x194/0x210
+[  121.866697]  do_syscall_64+0x11a/0x6a0
+[  121.866717]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  121.866755] RIP: 0033:0x7fe49c6c359d
+[  121.866786] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[  121.866831] RSP: 002b:00007fe49b106f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[  121.866881] RAX: ffffffffffffffda RBX: 00007fe49c955fa0 RCX: 00007fe49c6c359d
+[  121.866887] RDX: 0000200000000180 RSI: 00000000c01064bd RDI: 0000000000000003
+[  121.866892] RBP: 00007fe49b107010 R08: 0000000000000000 R09: 0000000000000000
+[  121.866896] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+[  121.866901] R13: 00007fe49c956038 R14: 00007fe49c955fa0 R15: 00007fe49b0e7000
+[  121.866909]  </TASK>
+[  122.066801] syz.3.90: vmalloc error: size 69632, vm_struct allocation failed, mode:0xdc0(GFP_KERNEL|__GFP_ZERO), nodemask=(null),cpuset=/,mems_allowed=0
+[  122.079072] CPU: 2 UID: 0 PID: 2256 Comm: syz.3.90 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+[  122.079094] Tainted: [W]=WARN, [N]=TEST
+[  122.079098] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  122.079107] Call Trace:
+[  122.079112]  <TASK>
+[  122.079118]  dump_stack_lvl+0x10b/0x140
+[  122.079142]  warn_alloc+0x216/0x370
+[  122.079184]  ? __pfx_warn_alloc+0x10/0x10
+[  122.079201]  ? should_fail_ex+0x30e/0x5e0
+[  122.079223]  ? lock_release+0x1f2/0x2a0
+[  122.079241]  ? __get_vm_area_node+0x11b/0x2c0
+[  122.079254]  ? should_failslab+0xc7/0x130
+[  122.079272]  ? __kasan_kmalloc+0x6f/0x90
+[  122.079332]  ? __get_vm_area_node+0x205/0x2c0
+[  122.079348]  __vmalloc_node_range_noprof+0xfde/0x15a0
+[  122.079365]  ? lock_release+0x1f2/0x2a0
+[  122.079382]  ? do_raw_spin_unlock+0x58/0x220
+[  122.079402]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  122.079424]  ? __pfx___vmalloc_node_range_noprof+0x10/0x10
+[  122.079442]  ? __pfx_alloc_vmap_area+0x10/0x10
+[  122.079470]  ? __get_vm_area_node+0x11b/0x2c0
+[  122.079483]  ? __kmalloc_cache_node_noprof+0x464/0x730
+[  122.079497]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  122.079516]  __vmalloc_node_noprof+0xb1/0x100
+[  122.079532]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  122.079551]  __vmalloc_node_range_noprof+0x3d3/0x15a0
+[  122.079570]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  122.079594]  ? __pfx___vmalloc_node_range_noprof+0x10/0x10
+[  122.079613]  ? ___kmalloc_large_node+0xe5/0x140
+[  122.079631]  __kvmalloc_node_noprof+0x3cb/0x940
+[  122.079645]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  122.079663]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  122.079682]  ? ___slab_alloc+0x91/0x6a0
+[  122.079701]  drm_property_create_blob.part.0+0x35/0x2b0
+[  122.079722]  drm_mode_createblob_ioctl+0x13e/0x420
+[  122.079742]  drm_ioctl_kernel+0x1f2/0x3e0
+[  122.079763]  ? __pfx_drm_mode_createblob_ioctl+0x10/0x10
+[  122.079783]  ? __pfx_drm_ioctl_kernel+0x10/0x10
+[  122.079806]  drm_ioctl+0x580/0xb70
+[  122.079827]  ? __pfx_drm_mode_createblob_ioctl+0x10/0x10
+[  122.079846]  ? __pfx_drm_ioctl+0x10/0x10
+[  122.079866]  ? __fget_files+0x200/0x3b0
+[  122.079883]  ? lock_release+0x1f2/0x2a0
+[  122.079902]  ? selinux_file_ioctl+0x18e/0x290
+[  122.079916]  ? selinux_file_ioctl+0xc0/0x290
+[  122.079930]  ? __pfx_drm_ioctl+0x10/0x10
+[  122.079991]  __x64_sys_ioctl+0x194/0x210
+[  122.080009]  do_syscall_64+0x11a/0x6a0
+[  122.080032]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  122.080046] RIP: 0033:0x7fe49c6c359d
+[  122.080058] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[  122.080071] RSP: 002b:00007fe49b106f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[  122.080084] RAX: ffffffffffffffda RBX: 00007fe49c955fa0 RCX: 00007fe49c6c359d
+[  122.080092] RDX: 0000200000000180 RSI: 00000000c01064bd RDI: 0000000000000003
+[  122.080100] RBP: 00007fe49b107010 R08: 0000000000000000 R09: 0000000000000000
+[  122.080107] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+[  122.080115] R13: 00007fe49c956038 R14: 00007fe49c955fa0 R15: 00007fe49b0e7000
+[  122.080127]  </TASK>
+[  122.266382] Mem-Info:
+[  122.268345] active_anon:33 inactive_anon:10143 isolated_anon:0
+[  122.268345]  active_file:10270 inactive_file:34333 isolated_file:0
+[  122.268345]  unevictable:1000 dirty:206 writeback:0
+[  122.268345]  slab_reclaimable:6520 slab_unreclaimable:59291
+[  122.268345]  mapped:28321 shmem:1070 pagetables:854
+[  122.268345]  sec_pagetables:0 bounce:0
+[  122.268345]  kernel_misc_reclaimable:0
+[  122.268345]  free:333725 free_pcp:4933 free_cma:0
+[  122.297576] Node 0 active_anon:132kB inactive_anon:40572kB active_file:41080kB inactive_file:137332kB unevictable:4000kB isolated(anon):0kB isolated(file):0kB mapped:113284kB dirty:824kB writeback:0kB shmem:4280kB kernel_stack:5216kB pagetables:3168kB sec_pagetables:0kB all_unreclaimable? no Balloon:0kB gpu_active:0kB gpu_reclaim:0kB
+[  122.321246] Node 0 DMA free:15332kB boost:0kB min:32kB low:44kB high:56kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB zspages:0kB present:15992kB managed:15360kB mlocked:0kB bounce:0kB free_pcp:28kB local_pcp:0kB free_cma:0kB
+[  122.337962] lowmem_reserve[]: 0 1823 3251 3251
+[  122.341538] Node 0 DMA32 free:1100424kB boost:0kB min:4056kB low:5904kB high:7752kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB zspages:0kB present:2080636kB managed:1867752kB mlocked:0kB bounce:0kB free_pcp:13552kB local_pcp:2200kB free_cma:0kB
+[  122.361084] lowmem_reserve[]: 0 0 1427 1427
+[  122.364812] Node 0 Normal free:741944kB boost:9184kB min:12388kB low:13848kB high:15308kB reserved_highatomic:0KB free_highatomic:0KB active_anon:132kB inactive_anon:40572kB active_file:41080kB inactive_file:137332kB unevictable:4000kB writepending:824kB zspages:0kB present:2097152kB managed:1462104kB mlocked:0kB bounce:0kB free_pcp:5316kB local_pcp:2932kB free_cma:0kB
+[  122.383821] lowmem_reserve[]: 0 0 0 0
+[  122.386068] Node 0 DMA: 1*4kB (U) 2*8kB (U) 1*16kB (U) 2*32kB (U) 2*64kB (U) 2*128kB (U) 2*256kB (U) 2*512kB (U) 1*1024kB (U) 2*2048kB (UM) 2*4096kB (M) = 15332kB
+[  122.394506] Node 0 DMA32: 8*4kB (UM) 5*8kB (UM) 6*16kB (UM) 11*32kB (UM) 6*64kB (UM) 7*128kB (UM) 7*256kB (UM) 7*512kB (UM) 4*1024kB (UM) 9*2048kB (U) 352*4096kB (U) = 1471496kB
+[  122.404122] Node 0 Normal: 43*4kB (U) 1554*8kB (UM) 662*16kB (UME) 150*32kB (UME) 201*64kB (UME) 120*128kB (UME) 64*256kB (UM) 41*512kB (UME) 29*1024kB (U) 8*2048kB (UE) 147*4096kB (U) = 741788kB
+[  122.414847] Node 0 hugepages_total=4 hugepages_free=4 hugepages_surp=0 hugepages_size=2048kB
+[  122.420423] 45673 total pagecache pages
+[  122.423379] 0 pages in swap cache
+[  122.426091] Free swap  = 124996kB
+[  122.428633] Total swap = 124996kB
+[  122.430957] 1048445 pages RAM
+[  122.432804] 0 pages HighMem/MovableOnly
+[  122.435783] 212141 pages reserved
+[  122.438058] Memory cgroup min protection 0kB -- low protection 0kB
+[  175.165224] syz.0.133 (2371) used greatest stack depth: 24448 bytes left
+[  192.488339] FAULT_INJECTION: forcing a failure.
+[  192.488339] name failslab, interval 1, probability 0, space 0, times 0
+[  192.495047] CPU: 3 UID: 0 PID: 2416 Comm: syz.3.153 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+[  192.495063] Tainted: [W]=WARN, [N]=TEST
+[  192.495066] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  192.495101] Call Trace:
+[  192.495106]  <TASK>
+[  192.495109]  dump_stack_lvl+0x10b/0x140
+[  192.495243]  should_fail_ex+0x4d5/0x5e0
+[  192.495258]  ? lock_release+0x1f2/0x2a0
+[  192.495270]  should_failslab+0xc7/0x130
+[  192.495280]  __kmalloc_node_noprof+0xce/0x840
+[  192.495293]  ? __vmalloc_node_range_noprof+0x443/0x15a0
+[  192.495304]  __vmalloc_node_range_noprof+0x443/0x15a0
+[  192.495346]  ? lock_release+0x1f2/0x2a0
+[  192.495357]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  192.495372]  ? __pfx___vmalloc_node_range_noprof+0x10/0x10
+[  192.495382]  ? __pfx_alloc_vmap_area+0x10/0x10
+[  192.495391]  ? __get_vm_area_node+0x11b/0x2c0
+[  192.495399]  ? __kmalloc_cache_node_noprof+0x464/0x730
+[  192.495409]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  192.495419]  __vmalloc_node_noprof+0xb1/0x100
+[  192.495429]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  192.495440]  __vmalloc_node_range_noprof+0x3d3/0x15a0
+[  192.495452]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  192.495466]  ? __pfx___vmalloc_node_range_noprof+0x10/0x10
+[  192.495477]  ? ___kmalloc_large_node+0xe5/0x140
+[  192.495488]  __kvmalloc_node_noprof+0x3cb/0x940
+[  192.495496]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  192.495507]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  192.495517]  ? ___slab_alloc+0x91/0x6a0
+[  192.495529]  drm_property_create_blob.part.0+0x35/0x2b0
+[  192.495541]  drm_mode_createblob_ioctl+0x13e/0x420
+[  192.495553]  drm_ioctl_kernel+0x1f2/0x3e0
+[  192.495565]  ? __pfx_drm_mode_createblob_ioctl+0x10/0x10
+[  192.495576]  ? __pfx_drm_ioctl_kernel+0x10/0x10
+[  192.495590]  drm_ioctl+0x580/0xb70
+[  192.495603]  ? __pfx_drm_mode_createblob_ioctl+0x10/0x10
+[  192.495614]  ? __pfx_drm_ioctl+0x10/0x10
+[  192.495626]  ? __fget_files+0x200/0x3b0
+[  192.495636]  ? lock_release+0x1f2/0x2a0
+[  192.495647]  ? selinux_file_ioctl+0x18e/0x290
+[  192.495656]  ? selinux_file_ioctl+0xc0/0x290
+[  192.495665]  ? __pfx_drm_ioctl+0x10/0x10
+[  192.495677]  __x64_sys_ioctl+0x194/0x210
+[  192.495686]  do_syscall_64+0x11a/0x6a0
+[  192.495700]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  192.495709] RIP: 0033:0x7fe49c6c359d
+[  192.495785] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[  192.495794] RSP: 002b:00007fe49b106f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[  192.495854] RAX: ffffffffffffffda RBX: 00007fe49c955fa0 RCX: 00007fe49c6c359d
+[  192.495860] RDX: 0000200000000180 RSI: 00000000c01064bd RDI: 0000000000000003
+[  192.495865] RBP: 00007fe49b107010 R08: 0000000000000000 R09: 0000000000000000
+[  192.495870] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+[  192.495875] R13: 00007fe49c956038 R14: 00007fe49c955fa0 R15: 00007fe49b0e7000
+[  192.495884]  </TASK>
+[  192.656125] warn_alloc: 1 callbacks suppressed
+[  192.656139] syz.3.153: vmalloc error: size 69632, failed to allocated page array size 136, mode:0xdc2(GFP_KERNEL|__GFP_HIGHMEM|__GFP_ZERO), nodemask=(null),cpuset=/,mems_allowed=0
+[  192.692418] CPU: 3 UID: 0 PID: 2416 Comm: syz.3.153 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+[  192.692436] Tainted: [W]=WARN, [N]=TEST
+[  192.692439] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  192.692445] Call Trace:
+[  192.692449]  <TASK>
+[  192.692453]  dump_stack_lvl+0x10b/0x140
+[  192.692469]  warn_alloc+0x216/0x370
+[  192.692483]  ? __pfx_warn_alloc+0x10/0x10
+[  192.692509]  ? dump_stack_lvl+0x124/0x140
+[  192.692520]  ? __kasan_kmalloc+0x6f/0x90
+[  192.692532]  ? __kmalloc_node_noprof+0x484/0x840
+[  192.692544]  ? __vmalloc_node_range_noprof+0x443/0x15a0
+[  192.692556]  __vmalloc_node_range_noprof+0x1257/0x15a0
+[  192.692568]  ? lock_release+0x1f2/0x2a0
+[  192.692580]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  192.692595]  ? __pfx___vmalloc_node_range_noprof+0x10/0x10
+[  192.692607]  ? __pfx_alloc_vmap_area+0x10/0x10
+[  192.692616]  ? __get_vm_area_node+0x11b/0x2c0
+[  192.692624]  ? __kmalloc_cache_node_noprof+0x464/0x730
+[  192.692634]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  192.692645]  __vmalloc_node_noprof+0xb1/0x100
+[  192.692656]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  192.692668]  __vmalloc_node_range_noprof+0x3d3/0x15a0
+[  192.692680]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  192.692694]  ? __pfx___vmalloc_node_range_noprof+0x10/0x10
+[  192.692706]  ? ___kmalloc_large_node+0xe5/0x140
+[  192.692718]  __kvmalloc_node_noprof+0x3cb/0x940
+[  192.692727]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  192.692738]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  192.692749]  ? ___slab_alloc+0x91/0x6a0
+[  192.692761]  drm_property_create_blob.part.0+0x35/0x2b0
+[  192.692773]  drm_mode_createblob_ioctl+0x13e/0x420
+[  192.692786]  drm_ioctl_kernel+0x1f2/0x3e0
+[  192.692799]  ? __pfx_drm_mode_createblob_ioctl+0x10/0x10
+[  192.692811]  ? __pfx_drm_ioctl_kernel+0x10/0x10
+[  192.692825]  drm_ioctl+0x580/0xb70
+[  192.692838]  ? __pfx_drm_mode_createblob_ioctl+0x10/0x10
+[  192.692850]  ? __pfx_drm_ioctl+0x10/0x10
+[  192.692862]  ? __fget_files+0x200/0x3b0
+[  192.692873]  ? lock_release+0x1f2/0x2a0
+[  192.692884]  ? selinux_file_ioctl+0x18e/0x290
+[  192.692893]  ? selinux_file_ioctl+0xc0/0x290
+[  192.692902]  ? __pfx_drm_ioctl+0x10/0x10
+[  192.692915]  __x64_sys_ioctl+0x194/0x210
+[  192.692925]  do_syscall_64+0x11a/0x6a0
+[  192.692939]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  192.692948] RIP: 0033:0x7fe49c6c359d
+[  192.692956] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[  192.692964] RSP: 002b:00007fe49b106f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[  192.692974] RAX: ffffffffffffffda RBX: 00007fe49c955fa0 RCX: 00007fe49c6c359d
+[  192.692980] RDX: 0000200000000180 RSI: 00000000c01064bd RDI: 0000000000000003
+[  192.692986] RBP: 00007fe49b107010 R08: 0000000000000000 R09: 0000000000000000
+[  192.693030] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000001
+[  192.693035] R13: 00007fe49c956038 R14: 00007fe49c955fa0 R15: 00007fe49b0e7000
+[  192.693045]  </TASK>
+[  192.850906] Mem-Info:
+[  192.852971] active_anon:58 inactive_anon:10041 isolated_anon:0
+[  192.852971]  active_file:8707 inactive_file:10406 isolated_file:0
+[  192.852971]  unevictable:1000 dirty:180 writeback:0
+[  192.852971]  slab_reclaimable:6892 slab_unreclaimable:58413
+[  192.852971]  mapped:28206 shmem:1069 pagetables:883
+[  192.852971]  sec_pagetables:0 bounce:0
+[  192.852971]  kernel_misc_reclaimable:0
+[  192.852971]  free:164692 free_pcp:13076 free_cma:0
+[  192.883549] Node 0 active_anon:232kB inactive_anon:40164kB active_file:34828kB inactive_file:41624kB unevictable:4000kB isolated(anon):0kB isolated(file):0kB mapped:112824kB dirty:844kB writeback:0kB shmem:4276kB kernel_stack:5376kB pagetables:3532kB sec_pagetables:0kB all_unreclaimable? no Balloon:0kB gpu_active:0kB gpu_reclaim:0kB
+[  192.902724] Node 0 DMA free:15356kB boost:0kB min:32kB low:44kB high:56kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB zspages:0kB present:15992kB managed:15360kB mlocked:0kB bounce:0kB free_pcp:4kB local_pcp:0kB free_cma:0kB
+[  192.921165] lowmem_reserve[]: 0 1823 3251 3251
+[  192.926169] Node 0 DMA32 free:252252kB boost:0kB min:4056kB low:5904kB high:7752kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:0kB active_file:240kB inactive_file:124kB unevictable:0kB writepending:0kB zspages:0kB present:2080636kB managed:1867752kB mlocked:0kB bounce:0kB free_pcp:28588kB local_pcp:13328kB free_cma:0kB
+[  192.949360] lowmem_reserve[]: 0 0 1427 1427
+[  192.952559] Node 0 Normal free:830368kB boost:0kB min:3204kB low:4664kB high:6124kB reserved_highatomic:0KB free_highatomic:0KB active_anon:232kB inactive_anon:40164kB active_file:34588kB inactive_file:41500kB unevictable:4000kB writepending:844kB zspages:0kB present:2097152kB managed:1462104kB mlocked:0kB bounce:0kB free_pcp:20384kB local_pcp:8144kB free_cma:0kB
+[  192.975042] lowmem_reserve[]: 0 0 0 0
+[  192.978275] Node 0 DMA: 1*4kB (U) 1*8kB (U) 1*16kB (U) 1*32kB (U) 1*64kB (U) 1*128kB (U) 1*256kB (U) 1*512kB (U) 0*1024kB 1*2048kB (M) 3*4096kB (UM) = 15356kB
+[  192.988677] Node 0 DMA32: 7*4kB (UM) 5*8kB (UM) 9*16kB (UM) 9*32kB (UM) 9*64kB (UM) 11*128kB (UM) 10*256kB (UM) 12*512kB (UM) 9*1024kB (UM) 12*2048kB (UM) 119*4096kB (UM) = 532404kB
+[  192.999730] Node 0 Normal: 1121*4kB (UME) 2644*8kB (UM) 1083*16kB (UME) 360*32kB (UME) 354*64kB (UME) 224*128kB (UM) 155*256kB (UM) 120*512kB (UM) 85*1024kB (UM) 44*2048kB (UM) 109*4096kB (U) = 830548kB
+[  193.009628] Node 0 hugepages_total=4 hugepages_free=4 hugepages_surp=0 hugepages_size=2048kB
+[  193.016167] 20191 total pagecache pages
+[  193.019241] 7 pages in swap cache
+[  193.022301] Free swap  = 124592kB
+[  193.025136] Total swap = 124996kB
+[  193.028074] 1048445 pages RAM
+[  193.030682] 0 pages HighMem/MovableOnly
+[  193.033438] 212141 pages reserved
+[  193.037136] Memory cgroup min protection 0kB -- low protection 0kB
+[  254.958372] syz.3.203 (2547) used greatest stack depth: 23720 bytes left
+[  272.241655] syz.0.214 (2575) used greatest stack depth: 22768 bytes left
+[  282.448668] syz.0.222 (2596) used greatest stack depth: 22408 bytes left
+[  384.649114] syz.3.310 invoked oom-killer: gfp_mask=0x140cca(GFP_HIGHUSER_MOVABLE|__GFP_COMP), order=0, oom_score_adj=1000
+[  384.669770] CPU: 2 UID: 0 PID: 2805 Comm: syz.3.310 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+[  384.669801] Tainted: [W]=WARN, [N]=TEST
+[  384.669806] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  384.669861] Call Trace:
+[  384.669882]  <TASK>
+[  384.669889]  dump_stack_lvl+0x10b/0x140
+[  384.670253]  dump_header+0x10c/0x970
+[  384.670402]  oom_kill_process+0x17b/0x8e0
+[  384.670416]  ? oom_cpuset_eligible.isra.0+0x1a0/0x2e0
+[  384.670440]  out_of_memory+0x1391/0x1690
+[  384.670472]  ? __pfx_out_of_memory+0x10/0x10
+[  384.670490]  __alloc_frozen_pages_noprof+0x1eb0/0x24f0
+[  384.670569]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[  384.670593]  ? alloc_pages_mpol+0x159/0x350
+[  384.670648]  ? __sanitizer_cov_trace_switch+0x54/0x90
+[  384.670720]  ? policy_nodemask+0xf0/0x4e0
+[  384.670742]  alloc_pages_mpol+0xf2/0x350
+[  384.670763]  ? __pfx_alloc_pages_mpol+0x10/0x10
+[  384.670784]  ? xas_load+0x67/0x4f0
+[  384.670813]  ? lock_release+0x1f2/0x2a0
+[  384.670873]  folio_alloc_noprof+0x27/0x1b0
+[  384.670887]  filemap_alloc_folio_noprof.part.0+0x394/0x430
+[  384.670924]  ? __pfx_filemap_alloc_folio_noprof.part.0+0x10/0x10
+[  384.670947]  ? down_read+0x1b6/0x4c0
+[  384.671062]  __filemap_get_folio_mpol+0x4e2/0xed0
+[  384.671081]  filemap_fault+0x1401/0x2310
+[  384.671101]  ? __pfx_filemap_fault+0x10/0x10
+[  384.671116]  ? __sanitizer_cov_trace_switch+0x54/0x90
+[  384.671140]  ? lock_acquire+0x1b4/0x2f0
+[  384.671159]  __do_fault+0x110/0x380
+[  384.671216]  __handle_mm_fault+0xe55/0x2240
+[  384.671235]  ? vma_start_read+0x31a/0x920
+[  384.671269]  ? __pfx___handle_mm_fault+0x10/0x10
+[  384.671286]  ? __pfx_vma_start_read+0x10/0x10
+[  384.671314]  handle_mm_fault+0x2f7/0x770
+[  384.671331]  ? access_error+0x17d/0x370
+[  384.671405]  do_user_addr_fault+0x505/0xec0
+[  384.671428]  exc_page_fault+0xb5/0x190
+[  384.671479]  asm_exc_page_fault+0x26/0x30
+[  384.671569] RIP: 0033:0x7fe49c57bbac
+[  384.671631] Code: Unable to access opcode bytes at 0x7fe49c57bb82.
+[  384.671651] RSP: 002b:00007ffe7bdd62d0 EFLAGS: 00010202
+[  384.671714] RAX: 0000000000000000 RBX: 00007fe49c957080 RCX: 00007fe49c7038a8
+[  384.671724] RDX: 0000000000000000 RSI: 0000000000000000 RDI: 0000000000000000
+[  384.671732] RBP: 00007fe49c957da0 R08: 0000000000000000 R09: 0000001b2eb202ff
+[  384.671741] R10: 0000000000000000 R11: 0000000000000293 R12: 000000000005dbb3
+[  384.671749] R13: 00007fe49c955fac R14: 00007fe49c957da0 R15: 00007ffe7bdd6390
+[  384.671765]  </TASK>
+[  384.825200] Mem-Info:
+[  384.827191] active_anon:0 inactive_anon:0 isolated_anon:0
+[  384.827191]  active_file:22 inactive_file:0 isolated_file:0
+[  384.827191]  unevictable:1000 dirty:0 writeback:0
+[  384.827191]  slab_reclaimable:5460 slab_unreclaimable:57298
+[  384.827191]  mapped:20482 shmem:1000 pagetables:2889
+[  384.827191]  sec_pagetables:0 bounce:0
+[  384.827191]  kernel_misc_reclaimable:0
+[  384.827191]  free:6358 free_pcp:187 free_cma:0
+[  384.856447] Node 0 active_anon:8kB inactive_anon:0kB active_file:56kB inactive_file:200kB unevictable:4000kB isolated(anon):0kB isolated(file):0kB mapped:81928kB dirty:0kB writeback:0kB shmem:4000kB kernel_stack:5376kB pagetables:11556kB sec_pagetables:0kB all_unreclaimable? yes Balloon:0kB gpu_active:0kB gpu_reclaim:0kB
+[  384.874875] Node 0 DMA free:13032kB boost:0kB min:32kB low:44kB high:56kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB zspages:0kB present:15992kB managed:15360kB mlocked:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+[  384.894315] lowmem_reserve[]: 0 1823 3251 3251
+[  384.903535] Node 0 DMA32 free:9524kB boost:0kB min:4056kB low:5904kB high:7752kB reserved_highatomic:0KB free_highatomic:0KB active_anon:4kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB zspages:0kB present:2080636kB managed:1867752kB mlocked:0kB bounce:0kB free_pcp:248kB local_pcp:0kB free_cma:0kB
+[  384.920814] lowmem_reserve[]: 0 0 1427 1427
+[  384.924027] Node 0 Normal free:2600kB boost:0kB min:3204kB low:4664kB high:6124kB reserved_highatomic:0KB free_highatomic:0KB active_anon:4kB inactive_anon:0kB active_file:116kB inactive_file:36kB unevictable:4000kB writepending:0kB zspages:0kB present:2097152kB managed:1462104kB mlocked:0kB bounce:0kB free_pcp:500kB local_pcp:0kB free_cma:0kB
+[  384.947423] lowmem_reserve[]: 0 0 0 0
+[  384.952911] Node 0 DMA: 2*4kB (UE) 2*8kB (UE) 1*16kB (E) 2*32kB (UE) 2*64kB (UE) 2*128kB (UE) 1*256kB (E) 2*512kB (UE) 1*1024kB (E) 3*2048kB (UME) 1*4096kB (M) = 13032kB
+[  384.980629] Node 0 DMA32: 1*4kB (M) 2*8kB (UM) 2*16kB (UM) 0*32kB 2*64kB (M) 1*128kB (M) 4*256kB (UM) 2*512kB (M) 1*1024kB (M) 1*2048kB (M) 1*4096kB (U) = 9524kB
+[  384.993361] Node 0 Normal: 44*4kB (ME) 89*8kB (UME) 5*16kB (UM) 3*32kB (UME) 0*64kB 2*128kB (M) 1*256kB (M) 0*512kB 1*1024kB (M) 0*2048kB 0*4096kB = 2600kB
+[  385.014582] Node 0 hugepages_total=4 hugepages_free=4 hugepages_surp=0 hugepages_size=2048kB
+[  385.024152] 1041 total pagecache pages
+[  385.028606] 2 pages in swap cache
+[  385.036485] Free swap  = 85204kB
+[  385.047448] Total swap = 124996kB
+[  385.052639] 1048445 pages RAM
+[  385.055939] 0 pages HighMem/MovableOnly
+[  385.061405] 212141 pages reserved
+[  385.064986] Unreclaimable slab info:
+[  385.072616] Name                      Used          Total
+[  385.080519] pid_2                    101KB        110KB
+[  385.088952] net_bridge_fdb_entry         28KB         28KB
+[  385.092439] fib6_node                 30KB         32KB
+[  385.103386] ip6_dst_cache             23KB         47KB
+[  385.111247] RAWv6                     93KB        127KB
+[  385.117914] UDPv6                     65KB         94KB
+[  385.123289] TCPv6                    364KB        455KB
+[  385.132118] t10_alua_lu_gp_cache          8KB         15KB
+[  385.140055] scsi_sense_cache          60KB         60KB
+[  385.146190] bio-128                   30KB         32KB
+[  385.152500] bio-256                   10KB         15KB
+[  385.161178] mqueue_inode_cache         78KB         92KB
+[  385.171501] nfs_commit_data           24KB         31KB
+[  385.176580] nfs_write_data            40KB         63KB
+[  385.190556] jbd2_inode                21KB         23KB
+[  385.197728] ext4_system_zone           8KB        339KB
+[  385.203736] ext4_io_end_vec            6KB         11KB
+[  385.206840] pid_namespace             91KB         92KB
+[  385.219276] rpc_buffers               25KB         31KB
+[  385.223301] rpc_tasks                 10KB         15KB
+[  385.233922] UNIX-STREAM               72KB        318KB
+[  385.245276] UNIX                      78KB        286KB
+[  385.249925] tcp_bind2_bucket          15KB         16KB
+[  385.257777] tcp_bind_bucket            7KB          8KB
+[  385.270859] ip_fib_trie               14KB         16KB
+[  385.279559] ip_fib_alias              20KB         23KB
+[  385.307091] rtable                    23KB         28KB
+[  385.319870] RAW                       22KB         31KB
+[  385.335269] UDP                       57KB         95KB
+[  385.339346] request_sock_TCP          20KB         23KB
+[  385.347972] TCP                      965KB        994KB
+[  385.356884] fs_bio_integrity           7KB          8KB
+[  385.368519] hugetlbfs_inode_cache         14KB         31KB
+[  385.380456] netfs_subrequest          42KB         47KB
+[  385.392839] netfs_request            108KB        112KB
+[  385.401786] bio-280                   21KB         23KB
+[  385.414052] ep_head                    7KB         12KB
+[  385.421638] eventpoll_pwq             18KB         31KB
+[  385.433407] eventpoll_epi             42KB         72KB
+[  385.443196] inotify_inode_mark         47KB         58KB
+[  385.450128] sgpool-128               123KB        178KB
+[  385.459909] sgpool-64                129KB        159KB
+[  385.469386] sgpool-32                164KB        189KB
+[  385.479021] sgpool-16                152KB        171KB
+[  385.490218] sgpool-8                 386KB        401KB
+[  385.501146] bio_integrity_data          7KB          8KB
+[  385.510357] request_queue             55KB         59KB
+[  385.520048] blkdev_ioc                 7KB          8KB
+[  385.529254] bio-192                 3314KB       3316KB
+[  385.539877] biovec-max              2320KB       2320KB
+[  385.549396] biovec-128               191KB        223KB
+[  385.562218] biovec-64                275KB        283KB
+[  385.578841] biovec-16                142KB        149KB
+[  385.595037] swap_table                95KB         95KB
+[  385.610120] uid_cache                 19KB         23KB
+[  385.624804] dmaengine-unmap-256         27KB         31KB
+[  385.638221] dmaengine-unmap-128         15KB         31KB
+[  385.654868] dmaengine-unmap-16          7KB          8KB
+[  385.665460] dmaengine-unmap-2          3KB          4KB
+[  385.686736] audit_buffer              39KB         42KB
+[  385.700798] skbuff_small_head       6568KB       6630KB
+[  385.716866] skbuff_fclone_cache        694KB        718KB
+[  385.729118] skbuff_head_cache       2582KB       2610KB
+[  385.731773] configfs_dir_cache         15KB         16KB
+[  385.740507] file_lock_cache           48KB         71KB
+[  385.755922] file_lock_ctx             38KB         43KB
+[  385.765864] fsnotify_inode_mark_connector         42KB         47KB
+[  385.780900] taskstats                130KB        143KB
+[  385.793173] mem_cgroup_per_node         75KB         94KB
+[  385.803733] mem_cgroup               157KB        189KB
+[  385.819048] proc_dir_entry           261KB        281KB
+[  385.829597] pde_opener                 3KB          3KB
+[  385.844843] seq_file                 112KB        157KB
+[  385.858229] sigqueue                  30KB         43KB
+[  385.874758] shmem_inode_cache       2317KB       2369KB
+[  385.891007] kernfs_iattrs_cache        137KB        145KB
+[  385.900038] kernfs_node_cache       5827KB       5904KB
+[  385.909884] mnt_cache                106KB        176KB
+[  385.925281] filp                    5845KB       6168KB
+[  385.940726] names_cache             4022KB       4176KB
+[  385.963648] net_namespace             96KB         96KB
+[  385.979892] hashtab_node             274KB        274KB
+[  385.995876] ebitmap_node            1382KB       1389KB
+[  386.006102] avtab_node              4975KB       4976KB
+[  386.011387] avc_node                  58KB        154KB
+[  386.020007] lsm_inode_cache         1554KB       2000KB
+[  386.025117] lsm_file_cache           366KB        392KB
+[  386.032562] key_jar                   21KB         47KB
+[  386.048007] uts_namespace             91KB         92KB
+[  386.055193] nsproxy                   22KB         27KB
+[  386.059856] vm_area_struct          2483KB       2575KB
+[  386.073354] fs_cache                  46KB         68KB
+[  386.092912] files_cache              158KB        288KB
+[  386.105629] task_exec_state           12KB         28KB
+[  386.116545] signal_cache             558KB        669KB
+[  386.124457] sighand_cache            707KB        833KB
+[  386.141082] task_struct             2695KB       2750KB
+[  386.152257] cred                      94KB        168KB
+[  386.167214] anon_vma_chain           409KB        417KB
+[  386.177345] anon_vma                 554KB        623KB
+[  386.186022] pid                       79KB        157KB
+[  386.195400] Acpi-Operand             185KB        265KB
+[  386.205900] Acpi-ParseExt             11KB         31KB
+[  386.222281] Acpi-Parse                 7KB         19KB
+[  386.233707] Acpi-State                 6KB         19KB
+[  386.244625] Acpi-Namespace            18KB         24KB
+[  386.261023] numa_policy                3KB          4KB
+[  386.267567] perf_event                19KB         31KB
+[  386.272371] trace_event_file         300KB        300KB
+[  386.282890] ftrace_event_field        660KB        660KB
+[  386.292822] pool_workqueue           378KB        378KB
+[  386.306722] task_group                56KB         56KB
+[  386.317225] maple_node               781KB       1320KB
+[  386.331410] mm_struct                515KB        781KB
+[  386.346955] vmap_area                 74KB         83KB
+[  386.363846] page->ptl                338KB        346KB
+[  386.382225] kmemleak_scan_area         24KB         27KB
+[  386.396438] kmemleak_object       119408KB     124008KB
+[  386.415013] kmalloc-cg-8k            272KB        320KB
+[  386.431487] kmalloc-cg-4k           3480KB       3648KB
+[  386.450762] kmalloc-cg-2k           1524KB       1632KB
+[  386.462582] kmalloc-cg-1k            230KB        384KB
+[  386.481114] kmalloc-cg-512           238KB        320KB
+[  386.493980] kmalloc-cg-256            61KB         72KB
+[  386.511868] kmalloc-cg-128           403KB        416KB
+[  386.518542] kmalloc-cg-64             33KB         44KB
+[  386.533372] kmalloc-cg-32            204KB        244KB
+[  386.549725] kmalloc-cg-16              4KB          8KB
+[  386.553984] kmalloc-cg-8               7KB         12KB
+[  386.557201] kmalloc-cg-192            34KB         36KB
+[  386.560669] kmalloc-cg-96            188KB        200KB
+[  386.564174] kmalloc-8k               992KB       1184KB
+[  386.567649] kmalloc-4k              6544KB       6880KB
+[  386.570806] kmalloc-2k              4524KB       4608KB
+[  386.574617] kmalloc-1k              1806KB       2208KB
+[  386.577808] kmalloc-512             2618KB       3136KB
+[  386.581469] kmalloc-256             1499KB       1656KB
+[  386.585361] kmalloc-128              637KB        692KB
+[  386.588373] kmalloc-64               888KB        996KB
+[  386.592078] kmalloc-32              2394KB       2432KB
+[  386.595114] kmalloc-16               422KB        436KB
+[  386.598922] kmalloc-8                232KB        320KB
+[  386.602568] kmalloc-192              470KB        492KB
+[  386.606177] kmalloc-96               564KB        596KB
+[  386.611331] kmem_cache_node           50KB         51KB
+[  386.615643] kmem_cache                84KB         85KB
+[  386.619468] Memory cgroup min protection 0kB -- low protection 0kB
+[  386.619530] oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/syz3,task=syz.3.310,pid=2805,uid=0
+[  386.641433] Out of memory (oom_kill_allocating_task): Killed process 2805 (syz.3.310) total-vm:96156kB, anon-rss:0kB, file-rss:20488kB, shmem-rss:0kB, UID:0 pgtables:124kB oom_score_adj:1000
+[  386.670591] syz.2.317 invoked oom-killer: gfp_mask=0x402dc2(GFP_KERNEL_ACCOUNT|__GFP_HIGHMEM|__GFP_ZERO|__GFP_NOWARN), order=0, oom_score_adj=1000
+[  386.803309] CPU: 2 UID: 0 PID: 2812 Comm: syz.2.317 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+[  386.803343] Tainted: [W]=WARN, [N]=TEST
+[  386.803349] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  386.803359] Call Trace:
+[  386.803366]  <TASK>
+[  386.803373]  dump_stack_lvl+0x10b/0x140
+[  386.803400]  dump_header+0x10c/0x970
+[  386.803433]  oom_kill_process+0x17b/0x8e0
+[  386.803450]  ? oom_cpuset_eligible.isra.0+0x1a0/0x2e0
+[  386.803480]  out_of_memory+0x1391/0x1690
+[  386.803502]  ? __pfx_out_of_memory+0x10/0x10
+[  386.803524]  __alloc_frozen_pages_noprof+0x1eb0/0x24f0
+[  386.803557]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[  386.803588]  ? __pfx___schedule+0x10/0x10
+[  386.803616]  ? __sanitizer_cov_trace_switch+0x54/0x90
+[  386.803644]  ? policy_nodemask+0xf0/0x4e0
+[  386.803671]  alloc_pages_mpol+0xf2/0x350
+[  386.803696]  ? __pfx_alloc_pages_mpol+0x10/0x10
+[  386.803725]  alloc_pages_noprof+0x21/0x170
+[  386.803742]  __vmalloc_node_range_noprof+0x72b/0x15a0
+[  386.803839]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  386.803941]  ? __pfx___vmalloc_node_range_noprof+0x10/0x10
+[  386.803968]  ? ___kmalloc_large_node+0xe5/0x140
+[  386.803992]  __kvmalloc_node_noprof+0x3cb/0x940
+[  386.804026]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  386.804050]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  386.804077]  drm_property_create_blob.part.0+0x35/0x2b0
+[  386.804103]  drm_mode_createblob_ioctl+0x13e/0x420
+[  386.804130]  drm_ioctl_kernel+0x1f2/0x3e0
+[  386.804229]  ? __pfx_drm_mode_createblob_ioctl+0x10/0x10
+[  386.804254]  ? __pfx_drm_ioctl_kernel+0x10/0x10
+[  386.804296]  drm_ioctl+0x580/0xb70
+[  386.804321]  ? __pfx_drm_mode_createblob_ioctl+0x10/0x10
+[  386.804344]  ? __pfx_drm_ioctl+0x10/0x10
+[  386.804368]  ? lock_release+0x1f2/0x2a0
+[  386.804392]  ? selinux_file_ioctl+0x18e/0x290
+[  386.804473]  ? selinux_file_ioctl+0xc0/0x290
+[  386.804493]  ? __pfx_drm_ioctl+0x10/0x10
+[  386.804519]  __x64_sys_ioctl+0x194/0x210
+[  386.804587]  do_syscall_64+0x11a/0x6a0
+[  386.804618]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  386.804638] RIP: 0033:0x7fc28c2f359d
+[  386.804662] Code: Unable to access opcode bytes at 0x7fc28c2f3573.
+[  386.804670] RSP: 002b:00007fc28ad36f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[  386.804689] RAX: ffffffffffffffda RBX: 00007fc28c585fa0 RCX: 00007fc28c2f359d
+[  386.804701] RDX: 0000200000000040 RSI: 00000000c02064bd RDI: 0000000000000003
+[  386.804712] RBP: 00007fc28c392b08 R08: 0000000000000000 R09: 0000000000000000
+[  386.804722] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+[  386.804733] R13: 00007fc28c586038 R14: 00007fc28c585fa0 R15: 00007fc28ad17000
+[  386.804752]  </TASK>
+[  387.037817] Mem-Info:
+[  387.042498] active_anon:1 inactive_anon:13 isolated_anon:4
+[  387.042498]  active_file:46 inactive_file:6952 isolated_file:12
+[  387.042498]  unevictable:1000 dirty:0 writeback:0
+[  387.042498]  slab_reclaimable:5460 slab_unreclaimable:57308
+[  387.042498]  mapped:20595 shmem:1000 pagetables:2889
+[  387.042498]  sec_pagetables:0 bounce:0
+[  387.042498]  kernel_misc_reclaimable:0
+[  387.042498]  free:18627 free_pcp:3591 free_cma:0
+[  387.092968] Node 0 active_anon:4kB inactive_anon:52kB active_file:184kB inactive_file:30660kB unevictable:4000kB isolated(anon):16kB isolated(file):48kB mapped:82504kB dirty:0kB writeback:0kB shmem:4000kB kernel_stack:5312kB pagetables:11432kB sec_pagetables:0kB all_unreclaimable? no Balloon:0kB gpu_active:0kB gpu_reclaim:0kB
+[  387.138125] Node 0 DMA free:13032kB boost:0kB min:32kB low:44kB high:56kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB zspages:0kB present:15992kB managed:15360kB mlocked:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+[  387.175348] lowmem_reserve[]: 0 1823 3251 3251
+[  387.185260] Node 0 DMA32 free:54720kB boost:0kB min:4056kB low:5904kB high:7752kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:4kB active_file:0kB inactive_file:18972kB unevictable:0kB writepending:0kB zspages:0kB present:2080636kB managed:1867752kB mlocked:0kB bounce:0kB free_pcp:24968kB local_pcp:2288kB free_cma:0kB
+[  387.225960] lowmem_reserve[]: 0 0 1427 1427
+[  387.229154] Node 0 Normal free:50000kB boost:0kB min:3204kB low:4664kB high:6124kB reserved_highatomic:0KB free_highatomic:0KB active_anon:4kB inactive_anon:48kB active_file:184kB inactive_file:20736kB unevictable:4000kB writepending:0kB zspages:0kB present:2097152kB managed:1462104kB mlocked:0kB bounce:0kB free_pcp:14016kB local_pcp:212kB free_cma:0kB
+[  387.283635] lowmem_reserve[]: 0 0 0 0
+[  387.291201] Node 0 DMA: 2*4kB (UE) 2*8kB (UE) 1*16kB (E) 2*32kB (UE) 2*64kB (UE) 2*128kB (UE) 1*256kB (E) 2*512kB (UE) 1*1024kB (E) 3*2048kB (UME) 1*4096kB (M) = 13032kB
+[  387.319277] Node 0 DMA32: 3*4kB (UM) 2*8kB (U) 3*16kB (UM) 110*32kB (UM) 144*64kB (UM) 155*128kB (UM) 61*256kB (UM) 61*512kB (UM) 23*1024kB (UM) 4*2048kB (U) 0*4096kB = 111244kB
+[  387.330159] Node 0 Normal: 68*4kB (UE) 968*8kB (UE) 8*16kB (U) 325*32kB (UE) 6*64kB (U) 209*128kB (U) 95*256kB (U) 0*512kB 0*1024kB 0*2048kB 0*4096kB = 70000kB
+[  387.341749] Node 0 hugepages_total=4 hugepages_free=4 hugepages_surp=0 hugepages_size=2048kB
+[  387.351014] 14806 total pagecache pages
+[  387.358329] 114 pages in swap cache
+[  387.360511] Free swap  = 85696kB
+[  387.362513] Total swap = 124996kB
+[  387.366246] 1048445 pages RAM
+[  387.367736] 0 pages HighMem/MovableOnly
+[  387.369657] 212141 pages reserved
+[  387.371302] Unreclaimable slab info:
+[  387.373128] Name                      Used          Total
+[  387.375671] pid_2                     99KB        110KB
+[  387.384010] net_bridge_fdb_entry         28KB         28KB
+[  387.387204] fib6_node                 30KB         32KB
+[  387.390471] ip6_dst_cache             23KB         47KB
+[  387.395383] RAWv6                     93KB        127KB
+[  387.401227] UDPv6                     65KB         94KB
+[  387.412303] TCPv6                    398KB        455KB
+[  387.417913] t10_alua_lu_gp_cache          8KB         15KB
+[  387.424407] scsi_sense_cache          60KB         60KB
+[  387.431694] bio-128                   30KB         32KB
+[  387.437677] bio-256                   10KB         15KB
+[  387.443424] mqueue_inode_cache         78KB         92KB
+[  387.458146] nfs_commit_data           24KB         31KB
+[  387.461997] nfs_write_data            40KB         63KB
+[  387.465783] jbd2_inode                21KB         23KB
+[  387.470052] ext4_system_zone           8KB        339KB
+[  387.474635] ext4_io_end_vec            6KB         11KB
+[  387.479032] pid_namespace             91KB         92KB
+[  387.483904] rpc_buffers               25KB         31KB
+[  387.488390] rpc_tasks                 10KB         15KB
+[  387.492245] UNIX-STREAM               72KB        318KB
+[  387.497055] UNIX                      78KB        286KB
+[  387.503346] tcp_bind2_bucket          15KB         16KB
+[  387.508087] tcp_bind_bucket            7KB          8KB
+[  387.513427] ip_fib_trie               14KB         16KB
+[  387.518345] ip_fib_alias              20KB         23KB
+[  387.523398] rtable                    23KB         28KB
+[  387.528044] RAW                       22KB         31KB
+[  387.535943] UDP                       57KB         95KB
+[  387.540284] request_sock_TCP          20KB         23KB
+[  387.549208] TCP                      984KB        994KB
+[  387.555637] fs_bio_integrity           7KB          8KB
+[  387.559974] hugetlbfs_inode_cache         14KB         31KB
+[  387.563927] netfs_subrequest          42KB         47KB
+[  387.568898] netfs_request            108KB        112KB
+[  387.574021] bio-280                   21KB         23KB
+[  387.578912] ep_head                    7KB         12KB
+[  387.583066] eventpoll_pwq             18KB         31KB
+[  387.587850] eventpoll_epi             42KB         72KB
+[  387.590992] inotify_inode_mark         47KB         58KB
+[  387.599028] sgpool-128               123KB        178KB
+[  387.606807] sgpool-64                127KB        159KB
+[  387.611750] sgpool-32                177KB        189KB
+[  387.617583] sgpool-16                151KB        171KB
+[  387.621997] sgpool-8                 395KB        401KB
+[  387.625506] bio_integrity_data          7KB          8KB
+[  387.630414] request_queue             55KB         59KB
+[  387.634374] blkdev_ioc                 7KB          8KB
+[  387.638310] bio-192                 3446KB       3448KB
+[  387.641303] biovec-max              2579KB       2588KB
+[  387.645316] biovec-128               214KB        223KB
+[  387.650152] biovec-64                302KB        315KB
+[  387.656339] biovec-16                142KB        149KB
+[  387.675134] swap_table                95KB         95KB
+[  387.688525] uid_cache                 19KB         23KB
+[  387.708851] dmaengine-unmap-256         27KB         31KB
+[  387.720780] dmaengine-unmap-128         15KB         31KB
+[  387.725810] dmaengine-unmap-16          7KB          8KB
+[  387.732209] dmaengine-unmap-2          3KB          4KB
+[  387.737437] audit_buffer              39KB         42KB
+[  387.742258] skbuff_small_head       6414KB       6520KB
+[  387.754066] skbuff_fclone_cache        691KB        718KB
+[  387.763963] skbuff_head_cache       2524KB       2578KB
+[  387.773404] configfs_dir_cache         15KB         16KB
+[  387.783359] file_lock_cache           46KB         71KB
+[  387.792823] file_lock_ctx             38KB         43KB
+[  387.800630] fsnotify_inode_mark_connector         41KB         47KB
+[  387.804938] taskstats                129KB        143KB
+[  387.808984] mem_cgroup_per_node         75KB         94KB
+[  387.812720] mem_cgroup               157KB        189KB
+[  387.817336] proc_dir_entry           261KB        281KB
+[  387.822142] pde_opener                 3KB          3KB
+[  387.826568] seq_file                 108KB        157KB
+[  387.830388] sigqueue                  28KB         43KB
+[  387.834734] shmem_inode_cache       2299KB       2369KB
+[  387.838466] kernfs_iattrs_cache        137KB        145KB
+[  387.842597] kernfs_node_cache       5827KB       5904KB
+[  387.846388] mnt_cache                106KB        176KB
+[  387.850978] filp                    5767KB       6088KB
+[  387.855254] names_cache             3951KB       4052KB
+[  387.859451] net_namespace             96KB         96KB
+[  387.864497] hashtab_node             274KB        274KB
+[  387.869450] ebitmap_node            1376KB       1389KB
+[  387.873019] avtab_node              4975KB       4976KB
+[  387.877302] avc_node                  58KB        154KB
+[  387.881349] lsm_inode_cache         1555KB       1996KB
+[  387.885156] lsm_file_cache           360KB        392KB
+[  387.889132] key_jar                   21KB         47KB
+[  387.892998] uts_namespace             91KB         92KB
+[  387.897461] nsproxy                   22KB         27KB
+[  387.901350] vm_area_struct          2430KB       2567KB
+[  387.905565] fs_cache                  45KB         68KB
+[  387.910077] files_cache              166KB        288KB
+[  387.914141] task_exec_state           12KB         28KB
+[  387.918365] signal_cache             551KB        669KB
+[  387.924624] sighand_cache            693KB        833KB
+[  387.929696] task_struct             2667KB       2750KB
+[  387.934629] cred                      93KB        168KB
+[  387.939423] anon_vma_chain           391KB        417KB
+[  387.956859] anon_vma                 530KB        623KB
+[  387.970898] pid                       78KB        157KB
+[  387.975835] Acpi-Operand             185KB        265KB
+[  387.987692] Acpi-ParseExt             11KB         31KB
+[  387.991186] Acpi-Parse                 7KB         19KB
+[  387.997327] Acpi-State                 6KB         19KB
+[  388.005926] Acpi-Namespace            18KB         24KB
+[  388.010232] numa_policy                3KB          4KB
+[  388.013884] perf_event                19KB         31KB
+[  388.018718] trace_event_file         300KB        300KB
+[  388.023340] ftrace_event_field        660KB        660KB
+[  388.027332] pool_workqueue           378KB        378KB
+[  388.031655] task_group                56KB         56KB
+[  388.036084] maple_node               765KB       1320KB
+[  388.040290] mm_struct                503KB        781KB
+[  388.044817] vmap_area                 74KB         83KB
+[  388.049842] page->ptl                335KB        346KB
+[  388.055821] kmemleak_scan_area         24KB         27KB
+[  388.062141] kmemleak_object       119986KB     123993KB
+[  388.068888] kmalloc-cg-8k            272KB        320KB
+[  388.074155] kmalloc-cg-4k           3472KB       3616KB
+[  388.080841] kmalloc-cg-2k           1516KB       1632KB
+[  388.085566] kmalloc-cg-1k            230KB        384KB
+[  388.092280] kmalloc-cg-512           236KB        320KB
+[  388.097951] kmalloc-cg-256            61KB         72KB
+[  388.104225] kmalloc-cg-128           404KB        416KB
+[  388.109234] kmalloc-cg-64             33KB         44KB
+[  388.115728] kmalloc-cg-32            205KB        244KB
+[  388.125040] kmalloc-cg-16              4KB          8KB
+[  388.132019] kmalloc-cg-8               7KB         12KB
+[  388.143233] kmalloc-cg-192            34KB         36KB
+[  388.151994] kmalloc-cg-96            187KB        200KB
+[  388.163319] kmalloc-8k               992KB       1184KB
+[  388.172823] kmalloc-4k              6440KB       6880KB
+[  388.180447] kmalloc-2k              4776KB       4800KB
+[  388.192628] kmalloc-1k              1798KB       2208KB
+[  388.199832] kmalloc-512             2614KB       3136KB
+[  388.207985] kmalloc-256             1501KB       1656KB
+[  388.215432] kmalloc-128              634KB        692KB
+[  388.224256] kmalloc-64               882KB        996KB
+[  388.231560] kmalloc-32              2402KB       2436KB
+[  388.238756] kmalloc-16               422KB        436KB
+[  388.246192] kmalloc-8                231KB        320KB
+[  388.254164] kmalloc-192              496KB        500KB
+[  388.264083] kmalloc-96               575KB        596KB
+[  388.274538] kmem_cache_node           50KB         51KB
+[  388.282469] kmem_cache                84KB         85KB
+[  388.290405] Memory cgroup min protection 0kB -- low protection 0kB
+[  388.290422] oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/syz2,task=syz.2.317,pid=2812,uid=0
+[  388.303328] Out of memory (oom_kill_allocating_task): Killed process 2812 (syz.2.317) total-vm:94240kB, anon-rss:40kB, file-rss:20644kB, shmem-rss:0kB, UID:0 pgtables:124kB oom_score_adj:1000
+[  398.528598] syz-executor invoked oom-killer: gfp_mask=0x140cca(GFP_HIGHUSER_MOVABLE|__GFP_COMP), order=0, oom_score_adj=0
+[  398.537768] CPU: 3 UID: 0 PID: 294 Comm: syz-executor Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+[  398.537807] Tainted: [W]=WARN, [N]=TEST
+[  398.537813] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  398.537824] Call Trace:
+[  398.537831]  <TASK>
+[  398.537838]  dump_stack_lvl+0x10b/0x140
+[  398.537865]  dump_header+0x10c/0x970
+[  398.537895]  oom_kill_process+0x17b/0x8e0
+[  398.537910]  ? oom_cpuset_eligible.isra.0+0x1a0/0x2e0
+[  398.537936]  out_of_memory+0x1391/0x1690
+[  398.537955]  ? __pfx_out_of_memory+0x10/0x10
+[  398.537973]  __alloc_frozen_pages_noprof+0x1eb0/0x24f0
+[  398.538000]  ? dequeue_entities+0x43f/0x2780
+[  398.538107]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[  398.538131]  ? trace_hrtimer_start+0x182/0x1d0
+[  398.538213]  ? __sanitizer_cov_trace_switch+0x54/0x90
+[  398.538236]  ? policy_nodemask+0xf0/0x4e0
+[  398.538258]  alloc_pages_mpol+0xf2/0x350
+[  398.538279]  ? __pfx_alloc_pages_mpol+0x10/0x10
+[  398.538299]  ? swap_entry_swapped+0x20d/0x2a0
+[  398.538313]  ? __pfx_swap_entry_swapped+0x10/0x10
+[  398.538323]  folio_alloc_mpol_noprof+0x3d/0x1c0
+[  398.538339]  swap_cache_alloc_folio+0x1b1/0x300
+[  398.538354]  ? __pfx_swap_cache_alloc_folio+0x10/0x10
+[  398.538376]  ? __pfx___schedule+0x10/0x10
+[  398.538397]  ? lock_acquire+0x1b4/0x2f0
+[  398.538418]  swap_cluster_readahead+0x5d2/0x7a0
+[  398.538434]  ? __pfx_swap_cluster_readahead+0x10/0x10
+[  398.538456]  ? __pfx___css_rstat_updated+0x10/0x10
+[  398.538503]  ? do_raw_spin_lock+0x130/0x270
+[  398.538525]  ? __pfx_do_raw_spin_lock+0x10/0x10
+[  398.538545]  ? do_raw_spin_lock+0x130/0x270
+[  398.538583]  ? __pfx_do_raw_spin_lock+0x10/0x10
+[  398.538604]  ? lock_release+0x1f2/0x2a0
+[  398.538621]  ? __swap_cluster_put_entry+0x389/0x7e0
+[  398.538639]  swapin_readahead+0x15a/0x1180
+[  398.538661]  ? lock_release+0x1f2/0x2a0
+[  398.538682]  ? do_swap_page+0x5b2/0x3810
+[  398.538701]  ? __pfx_swapin_readahead+0x10/0x10
+[  398.538721]  ? lock_acquire+0x1b4/0x2f0
+[  398.538743]  ? swap_table_get+0x10e/0x2c0
+[  398.538758]  ? swap_cache_get_folio+0x28f/0x360
+[  398.538775]  ? __pfx_swap_cache_get_folio+0x10/0x10
+[  398.538792]  ? __pfx_get_swap_device+0x10/0x10
+[  398.538803]  ? do_swap_page+0x614/0x3810
+[  398.538813]  do_swap_page+0x614/0x3810
+[  398.538825]  ? __pfx___css_rstat_updated+0x10/0x10
+[  398.538841]  ? lock_acquire+0x1b4/0x2f0
+[  398.538870]  ? __pfx_do_swap_page+0x10/0x10
+[  398.538882]  ? __pte_offset_map+0x59/0x330
+[  398.538906]  ? __pte_offset_map+0x1a6/0x330
+[  398.538916]  __handle_mm_fault+0x759/0x2240
+[  398.538932]  ? vma_start_read+0x271/0x920
+[  398.538944]  ? vma_start_read+0x31a/0x920
+[  398.538956]  ? __pfx___handle_mm_fault+0x10/0x10
+[  398.538968]  ? __pfx_vma_start_read+0x10/0x10
+[  398.538986]  handle_mm_fault+0x2f7/0x770
+[  398.538997]  ? access_error+0x17d/0x370
+[  398.539011]  do_user_addr_fault+0x505/0xec0
+[  398.539027]  exc_page_fault+0xb5/0x190
+[  398.539042]  asm_exc_page_fault+0x26/0x30
+[  398.539051] RIP: 0033:0x7fa23164c07e
+[  398.539112] Code: Unable to access opcode bytes at 0x7fa23164c054.
+[  398.539116] RSP: 002b:00007ffe273fcd80 EFLAGS: 00010246
+[  398.539125] RAX: 0000000000000000 RBX: 000000000000001d RCX: 000000000000018e
+[  398.539131] RDX: 431bde82d7b634db RSI: 00007ffe273fcdd0 RDI: 00006401a0800000
+[  398.539137] RBP: 00007ffe273fce60 R08: 000000827b6b4730 R09: 00007ffe273fcd40
+[  398.539143] R10: 00007fa2319e8000 R11: 0000000000000001 R12: 0000000000000001
+[  398.539148] R13: 00007ffe273fd230 R14: 000055555ccf70b0 R15: 00007ffe273fce00
+[  398.539158]  </TASK>
+[  398.728566] Mem-Info:
+[  398.730218] active_anon:0 inactive_anon:0 isolated_anon:0
+[  398.730218]  active_file:21 inactive_file:56 isolated_file:23
+[  398.730218]  unevictable:1000 dirty:0 writeback:0
+[  398.730218]  slab_reclaimable:5404 slab_unreclaimable:57870
+[  398.730218]  mapped:20482 shmem:1000 pagetables:2912
+[  398.730218]  sec_pagetables:0 bounce:0
+[  398.730218]  kernel_misc_reclaimable:0
+[  398.730218]  free:6415 free_pcp:0 free_cma:0
+[  398.755026] Node 0 active_anon:0kB inactive_anon:0kB active_file:84kB inactive_file:224kB unevictable:4000kB isolated(anon):0kB isolated(file):92kB mapped:81928kB dirty:0kB writeback:0kB shmem:4000kB kernel_stack:5408kB pagetables:11648kB sec_pagetables:0kB all_unreclaimable? yes Balloon:0kB gpu_active:0kB gpu_reclaim:0kB
+[  398.772625] Node 0 DMA free:13032kB boost:0kB min:32kB low:44kB high:56kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB zspages:0kB present:15992kB managed:15360kB mlocked:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+[  398.790735] lowmem_reserve[]: 0 1823 3251 3251
+[  398.793825] Node 0 DMA32 free:9576kB boost:0kB min:4056kB low:5904kB high:7752kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:0kB active_file:116kB inactive_file:48kB unevictable:0kB writepending:0kB zspages:0kB present:2080636kB managed:1867752kB mlocked:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+[  398.813825] lowmem_reserve[]: 0 0 1427 1427
+[  398.816869] Node 0 Normal free:3076kB boost:0kB min:3204kB low:4664kB high:6124kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:0kB active_file:204kB inactive_file:8kB unevictable:4000kB writepending:0kB zspages:0kB present:2097152kB managed:1462104kB mlocked:0kB bounce:0kB free_pcp:4kB local_pcp:0kB free_cma:0kB
+[  398.836321] lowmem_reserve[]: 0 0 0 0
+[  398.839022] Node 0 DMA: 1*4kB (E) 1*8kB (E) 2*16kB (UE) 2*32kB (UE) 2*64kB (UE) 2*128kB (UE) 1*256kB (E) 2*512kB (UE) 3*1024kB (UE) 2*2048kB (ME) 1*4096kB (M) = 13036kB
+[  398.847433] Node 0 DMA32: 8*4kB (UM) 4*8kB (UM) 3*16kB (UM) 3*32kB (UM) 8*64kB (UM) 11*128kB (UM) 9*256kB (UM) 5*512kB (UM) 2*1024kB (M) 0*2048kB 0*4096kB = 9040kB
+[  398.857445] Node 0 Normal: 66*4kB (UME) 46*8kB (ME) 33*16kB (UME) 12*32kB (UME) 1*64kB (M) 4*128kB (UM) 2*256kB (U) 1*512kB (M) 0*1024kB 0*2048kB 0*4096kB = 3144kB
+[  398.866834] Node 0 hugepages_total=4 hugepages_free=4 hugepages_surp=0 hugepages_size=2048kB
+[  398.872197] 1066 total pagecache pages
+[  398.874921] 0 pages in swap cache
+[  398.877057] Free swap  = 84688kB
+[  398.879196] Total swap = 124996kB
+[  398.881293] 1048445 pages RAM
+[  398.882813] 0 pages HighMem/MovableOnly
+[  398.885190] 212141 pages reserved
+[  398.887264] Unreclaimable slab info:
+[  398.889221] Name                      Used          Total
+[  398.893070] pid_2                     86KB        110KB
+[  398.896450] net_bridge_fdb_entry         28KB         28KB
+[  398.899241] fib6_node                 30KB         32KB
+[  398.902205] ip6_dst_cache             22KB         47KB
+[  398.904937] RAWv6                     93KB        127KB
+[  398.908523] UDPv6                     65KB         94KB
+[  398.912098] TCPv6                    344KB        455KB
+[  398.915329] t10_alua_lu_gp_cache          8KB         15KB
+[  398.918800] scsi_sense_cache          60KB         60KB
+[  398.922351] bio-128                   30KB         32KB
+[  398.925874] bio-256                   10KB         15KB
+[  398.929128] mqueue_inode_cache         78KB         92KB
+[  398.932549] nfs_commit_data           24KB         31KB
+[  398.935916] nfs_write_data            40KB         63KB
+[  398.939575] jbd2_inode                21KB         23KB
+[  398.943068] ext4_system_zone           8KB        339KB
+[  398.946624] ext4_io_end_vec            6KB         11KB
+[  398.950096] pid_namespace             91KB         92KB
+[  398.953135] rpc_buffers               25KB         31KB
+[  398.956726] rpc_tasks                 10KB         15KB
+[  398.960410] UNIX-STREAM               72KB        318KB
+[  398.963377] UNIX                      76KB        286KB
+[  398.965998] tcp_bind2_bucket          15KB         16KB
+[  398.968770] tcp_bind_bucket            7KB          8KB
+[  398.971930] ip_fib_trie               14KB         16KB
+[  398.975614] ip_fib_alias              20KB         23KB
+[  398.978877] rtable                    23KB         28KB
+[  398.982259] RAW                       22KB         31KB
+[  398.992115] UDP                       57KB         95KB
+[  399.004362] request_sock_TCP          20KB         23KB
+[  399.015977] TCP                      906KB        994KB
+[  399.025597] fs_bio_integrity           7KB          8KB
+[  399.038537] hugetlbfs_inode_cache         14KB         31KB
+[  399.047764] netfs_subrequest          42KB         47KB
+[  399.055500] netfs_request            108KB        112KB
+[  399.068673] bio-280                   21KB         23KB
+[  399.079569] ep_head                    6KB         12KB
+[  399.083577] eventpoll_pwq             17KB         27KB
+[  399.100045] eventpoll_epi             49KB         72KB
+[  399.109489] inotify_inode_mark         44KB         54KB
+[  399.121284] sgpool-128               191KB        208KB
+[  399.129564] sgpool-64                214KB        223KB
+[  399.137910] sgpool-32                196KB        220KB
+[  399.152676] sgpool-16                182KB        187KB
+[  399.157244] sgpool-8                 475KB        480KB
+[  399.164534] bio_integrity_data          7KB          8KB
+[  399.169209] request_queue             55KB         59KB
+[  399.172002] blkdev_ioc                 7KB          8KB
+[  399.175195] bio-192                 4041KB       4044KB
+[  399.178551] biovec-max              4993KB       4998KB
+[  399.182185] biovec-128               303KB        318KB
+[  399.185679] biovec-64                439KB        441KB
+[  399.189557] biovec-16                225KB        236KB
+[  399.193173] swap_table                95KB         95KB
+[  399.196758] uid_cache                 19KB         23KB
+[  399.200033] dmaengine-unmap-256         27KB         31KB
+[  399.202182] dmaengine-unmap-128         15KB         31KB
+[  399.204892] dmaengine-unmap-16          7KB          8KB
+[  399.208214] dmaengine-unmap-2          3KB          4KB
+[  399.211186] audit_buffer              39KB         42KB
+[  399.214051] skbuff_small_head       5729KB       5859KB
+[  399.217335] skbuff_fclone_cache        608KB        703KB
+[  399.220341] skbuff_head_cache       2237KB       2302KB
+[  399.223843] configfs_dir_cache         15KB         16KB
+[  399.226890] file_lock_cache           47KB         71KB
+[  399.229399] file_lock_ctx             38KB         43KB
+[  399.232097] fsnotify_inode_mark_connector         39KB         47KB
+[  399.235454] taskstats                116KB        143KB
+[  399.238962] mem_cgroup_per_node         75KB         94KB
+[  399.242519] mem_cgroup               157KB        189KB
+[  399.244907] proc_dir_entry           261KB        281KB
+[  399.247249] pde_opener                 3KB          3KB
+[  399.250424] seq_file                  89KB        157KB
+[  399.253173] sigqueue                  31KB         43KB
+[  399.255499] shmem_inode_cache       2180KB       2369KB
+[  399.258301] kernfs_iattrs_cache        137KB        145KB
+[  399.261254] kernfs_node_cache       5827KB       5904KB
+[  399.263918] mnt_cache                106KB        176KB
+[  399.267600] filp                    5309KB       5704KB
+[  399.270759] names_cache             3611KB       3772KB
+[  399.272864] net_namespace             96KB         96KB
+[  399.276465] hashtab_node             274KB        274KB
+[  399.279468] ebitmap_node            1353KB       1386KB
+[  399.282775] avtab_node              4975KB       4976KB
+[  399.285614] avc_node                  58KB        154KB
+[  399.288354] lsm_inode_cache         1528KB       1940KB
+[  399.291088] lsm_file_cache           333KB        392KB
+[  399.293706] key_jar                   21KB         47KB
+[  399.296884] uts_namespace             91KB         92KB
+[  399.299441] nsproxy                   22KB         27KB
+[  399.302465] vm_area_struct          2307KB       2559KB
+[  399.304867] fs_cache                  47KB         68KB
+[  399.307586] files_cache              156KB        256KB
+[  399.310442] task_exec_state           11KB         24KB
+[  399.312803] signal_cache             511KB        669KB
+[  399.316188] sighand_cache            646KB        833KB
+[  399.319498] task_struct             2543KB       2750KB
+[  399.322241] cred                      94KB        168KB
+[  399.325636] anon_vma_chain           368KB        409KB
+[  399.328729] anon_vma                 500KB        623KB
+[  399.331452] pid                       87KB        157KB
+[  399.334622] Acpi-Operand             185KB        265KB
+[  399.337442] Acpi-ParseExt             11KB         31KB
+[  399.340277] Acpi-Parse                 7KB         19KB
+[  399.342751] Acpi-State                 6KB         19KB
+[  399.345305] Acpi-Namespace            18KB         24KB
+[  399.347586] numa_policy                3KB          4KB
+[  399.350165] perf_event                19KB         31KB
+[  399.352683] trace_event_file         300KB        300KB
+[  399.356230] ftrace_event_field        660KB        660KB
+[  399.358722] pool_workqueue           378KB        378KB
+[  399.361485] task_group                56KB         56KB
+[  399.364595] maple_node               740KB       1320KB
+[  399.367864] mm_struct                475KB        750KB
+[  399.370771] vmap_area                 68KB         83KB
+[  399.372814] page->ptl                314KB        346KB
+[  399.375848] kmemleak_scan_area         23KB         27KB
+[  399.380180] kmemleak_object       119342KB     123977KB
+[  399.383593] kmalloc-cg-8k            272KB        320KB
+[  399.386216] kmalloc-cg-4k           3112KB       3488KB
+[  399.388922] kmalloc-cg-2k           1496KB       1632KB
+[  399.391823] kmalloc-cg-1k            230KB        384KB
+[  399.395099] kmalloc-cg-512           233KB        320KB
+[  399.398531] kmalloc-cg-256            61KB         72KB
+[  399.401932] kmalloc-cg-128           392KB        412KB
+[  399.405190] kmalloc-cg-64             31KB         44KB
+[  399.408647] kmalloc-cg-32            201KB        244KB
+[  399.412189] kmalloc-cg-16              4KB          8KB
+[  399.415789] kmalloc-cg-8               7KB         12KB
+[  399.419081] kmalloc-cg-192            34KB         36KB
+[  399.421555] kmalloc-cg-96            196KB        200KB
+[  399.424248] kmalloc-8k               992KB       1184KB
+[  399.427549] kmalloc-4k              5784KB       6848KB
+[  399.430632] kmalloc-2k              4688KB       4864KB
+[  399.433150] kmalloc-1k              1786KB       2208KB
+[  399.436451] kmalloc-512             2588KB       3136KB
+[  399.439243] kmalloc-256             1580KB       1656KB
+[  399.442198] kmalloc-128              639KB        692KB
+[  399.445620] kmalloc-64               870KB        996KB
+[  399.448832] kmalloc-32              2452KB       2484KB
+[  399.452070] kmalloc-16               415KB        436KB
+[  399.454798] kmalloc-8                230KB        320KB
+[  399.457261] kmalloc-192              665KB        668KB
+[  399.459990] kmalloc-96               572KB        596KB
+[  399.462888] kmem_cache_node           50KB         51KB
+[  399.466453] kmem_cache                84KB         85KB
+[  399.469951] Memory cgroup min protection 0kB -- low protection 0kB
+[  399.469963] oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/system.slice/ssh.service,task=syz-executor,pid=294,uid=0
+[  399.480718] Out of memory (oom_kill_allocating_task): Killed process 294 (syz-executor) total-vm:123112kB, anon-rss:0kB, file-rss:8kB, shmem-rss:0kB, UID:0 pgtables:136kB oom_score_adj:0
+[  399.503064] syz.2.320 invoked oom-killer: gfp_mask=0x402dc2(GFP_KERNEL_ACCOUNT|__GFP_HIGHMEM|__GFP_ZERO|__GFP_NOWARN), order=0, oom_score_adj=1000
+[  399.510250] CPU: 0 UID: 0 PID: 2833 Comm: syz.2.320 Tainted: G        W        N  7.1.0+ #1 PREEMPT(full) 
+[  399.510286] Tainted: [W]=WARN, [N]=TEST
+[  399.510291] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  399.510301] Call Trace:
+[  399.510307]  <TASK>
+[  399.510313]  dump_stack_lvl+0x10b/0x140
+[  399.510339]  dump_header+0x10c/0x970
+[  399.510405]  oom_kill_process+0x17b/0x8e0
+[  399.510421]  ? oom_cpuset_eligible.isra.0+0x1a0/0x2e0
+[  399.510449]  out_of_memory+0x1391/0x1690
+[  399.510467]  ? __pfx_out_of_memory+0x10/0x10
+[  399.510486]  __alloc_frozen_pages_noprof+0x1eb0/0x24f0
+[  399.510516]  ? __schedule+0x1bf8/0x47a0
+[  399.510552]  ? __pfx___alloc_frozen_pages_noprof+0x10/0x10
+[  399.510577]  ? __pfx___schedule+0x10/0x10
+[  399.510601]  ? trace_irq_disable.constprop.0+0xfc/0x130
+[  399.510714]  ? __sanitizer_cov_trace_switch+0x54/0x90
+[  399.510741]  ? policy_nodemask+0xf0/0x4e0
+[  399.510764]  alloc_pages_mpol+0xf2/0x350
+[  399.510785]  ? __pfx_alloc_pages_mpol+0x10/0x10
+[  399.510808]  alloc_pages_noprof+0x21/0x170
+[  399.510822]  __vmalloc_node_range_noprof+0x72b/0x15a0
+[  399.510846]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  399.510875]  ? __pfx___vmalloc_node_range_noprof+0x10/0x10
+[  399.510898]  ? ___kmalloc_large_node+0xe5/0x140
+[  399.510920]  __kvmalloc_node_noprof+0x3cb/0x940
+[  399.510940]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  399.510962]  ? drm_property_create_blob.part.0+0x35/0x2b0
+[  399.510983]  ? ___slab_alloc+0x91/0x6a0
+[  399.511005]  drm_property_create_blob.part.0+0x35/0x2b0
+[  399.511163]  drm_mode_createblob_ioctl+0x13e/0x420
+[  399.511194]  drm_ioctl_kernel+0x1f2/0x3e0
+[  399.511217]  ? __pfx_drm_mode_createblob_ioctl+0x10/0x10
+[  399.511236]  ? __pfx_drm_ioctl_kernel+0x10/0x10
+[  399.511261]  drm_ioctl+0x580/0xb70
+[  399.511284]  ? __pfx_drm_mode_createblob_ioctl+0x10/0x10
+[  399.511303]  ? __pfx_drm_ioctl+0x10/0x10
+[  399.511326]  ? lock_release+0x1f2/0x2a0
+[  399.511346]  ? selinux_file_ioctl+0x18e/0x290
+[  399.511363]  ? selinux_file_ioctl+0xc0/0x290
+[  399.511378]  ? __pfx_drm_ioctl+0x10/0x10
+[  399.511398]  __x64_sys_ioctl+0x194/0x210
+[  399.511415]  do_syscall_64+0x11a/0x6a0
+[  399.511441]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  399.511457] RIP: 0033:0x7fc28c2f359d
+[  399.511482] Code: Unable to access opcode bytes at 0x7fc28c2f3573.
+[  399.511488] RSP: 002b:00007fc28ad36f98 EFLAGS: 00000246 ORIG_RAX: 0000000000000010
+[  399.511503] RAX: ffffffffffffffda RBX: 00007fc28c585fa0 RCX: 00007fc28c2f359d
+[  399.511514] RDX: 0000200000000080 RSI: 00000000c02064bd RDI: 0000000000000007
+[  399.511522] RBP: 00007fc28c392b08 R08: 0000000000000000 R09: 0000000000000000
+[  399.511544] R10: 0000000000000000 R11: 0000000000000246 R12: 0000000000000000
+[  399.511552] R13: 00007fc28c586038 R14: 00007fc28c585fa0 R15: 00007fc28ad17000
+[  399.511566]  </TASK>
+[  399.643655] Mem-Info:
+[  399.645381] active_anon:0 inactive_anon:0 isolated_anon:0
+[  399.645381]  active_file:16 inactive_file:11 isolated_file:20
+[  399.645381]  unevictable:1000 dirty:0 writeback:0
+[  399.645381]  slab_reclaimable:5404 slab_unreclaimable:57872
+[  399.645381]  mapped:20482 shmem:1000 pagetables:2878
+[  399.645381]  sec_pagetables:0 bounce:0
+[  399.645381]  kernel_misc_reclaimable:0
+[  399.645381]  free:6202 free_pcp:306 free_cma:0
+[  399.668822] Node 0 active_anon:0kB inactive_anon:0kB active_file:64kB inactive_file:44kB unevictable:4000kB isolated(anon):0kB isolated(file):80kB mapped:81928kB dirty:0kB writeback:0kB shmem:4000kB kernel_stack:5376kB pagetables:11512kB sec_pagetables:0kB all_unreclaimable? yes Balloon:0kB gpu_active:0kB gpu_reclaim:0kB
+[  399.684617] Node 0 DMA free:13036kB boost:0kB min:32kB low:44kB high:56kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:0kB active_file:0kB inactive_file:0kB unevictable:0kB writepending:0kB zspages:0kB present:15992kB managed:15360kB mlocked:0kB bounce:0kB free_pcp:0kB local_pcp:0kB free_cma:0kB
+[  399.700901] lowmem_reserve[]: 0 1823 3251 3251
+[  399.704383] Node 0 DMA32 free:9488kB boost:0kB min:4056kB low:5904kB high:7752kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:0kB active_file:0kB inactive_file:72kB unevictable:0kB writepending:0kB zspages:0kB present:2080636kB managed:1867752kB mlocked:0kB bounce:0kB free_pcp:68kB local_pcp:0kB free_cma:0kB
+[  399.720174] lowmem_reserve[]: 0 0 1427 1427
+[  399.723074] Node 0 Normal free:2312kB boost:0kB min:3204kB low:4664kB high:6124kB reserved_highatomic:0KB free_highatomic:0KB active_anon:0kB inactive_anon:0kB active_file:132kB inactive_file:0kB unevictable:4000kB writepending:0kB zspages:0kB present:2097152kB managed:1462104kB mlocked:0kB bounce:0kB free_pcp:1156kB local_pcp:0kB free_cma:0kB
+[  399.739392] lowmem_reserve[]: 0 0 0 0
+[  399.741525] Node 0 DMA: 1*4kB (E) 1*8kB (E) 2*16kB (UE) 2*32kB (UE) 2*64kB (UE) 2*128kB (UE) 1*256kB (E) 2*512kB (UE) 3*1024kB (UE) 2*2048kB (ME) 1*4096kB (M) = 13036kB
+[  399.749066] Node 0 DMA32: 9*4kB (UM) 4*8kB (UM) 3*16kB (UM) 3*32kB (UM) 9*64kB (UM) 12*128kB (UM) 10*256kB (UM) 5*512kB (UM) 2*1024kB (M) 0*2048kB 0*4096kB = 9492kB
+[  399.755765] Node 0 Normal: 16*4kB (ME) 32*8kB (UME) 33*16kB (UME) 12*32kB (UME) 1*64kB (M) 1*128kB (M) 1*256kB (U) 1*512kB (M) 0*1024kB 0*2048kB 0*4096kB = 2192kB
+[  399.765135] Node 0 hugepages_total=4 hugepages_free=4 hugepages_surp=0 hugepages_size=2048kB
+[  399.769400] 1043 total pagecache pages
+[  399.771115] 0 pages in swap cache
+[  399.775416] Free swap  = 86404kB
+[  399.778774] Total swap = 124996kB
+[  399.783085] 1048445 pages RAM
+[  399.785043] 0 pages HighMem/MovableOnly
+[  399.791355] 212141 pages reserved
+[  399.795958] Unreclaimable slab info:
+[  399.798903] Name                      Used          Total
+[  399.803633] pid_2                     86KB        110KB
+[  399.809096] net_bridge_fdb_entry         28KB         28KB
+[  399.813807] fib6_node                 30KB         32KB
+[  399.818842] ip6_dst_cache             22KB         47KB
+[  399.823933] RAWv6                     93KB        127KB
+[  399.829487] UDPv6                     65KB         94KB
+[  399.842547] TCPv6                    344KB        455KB
+[  399.851104] t10_alua_lu_gp_cache          8KB         15KB
+[  399.858974] scsi_sense_cache          60KB         60KB
+[  399.870418] bio-128                   30KB         32KB
+[  399.882824] bio-256                   10KB         15KB
+[  399.901744] mqueue_inode_cache         78KB         92KB
+[  399.912488] nfs_commit_data           24KB         31KB
+[  399.926011] nfs_write_data            40KB         63KB
+[  399.938456] jbd2_inode                21KB         23KB
+[  399.955715] ext4_system_zone           8KB        339KB
+[  399.975155] ext4_io_end_vec            6KB         11KB
+[  399.990003] pid_namespace             91KB         92KB
+[  400.003970] rpc_buffers               25KB         31KB
+[  400.018785] rpc_tasks                 10KB         15KB
+[  400.029217] UNIX-STREAM               72KB        318KB
+[  400.047788] UNIX                      76KB        286KB
+[  400.058503] tcp_bind2_bucket          15KB         16KB
+[  400.081165] tcp_bind_bucket            7KB          8KB
+[  400.099970] ip_fib_trie               14KB         16KB
+[  400.119968] ip_fib_alias              20KB         23KB
+[  400.128721] rtable                    23KB         28KB
+[  400.135095] RAW                       22KB         31KB
+[  400.138446] UDP                       57KB         95KB
+[  400.141779] tw_sock_TCP                9KB         15KB
+[  400.144513] request_sock_TCP          20KB         23KB
+[  400.147915] TCP                      906KB        994KB
+[  400.151182] fs_bio_integrity           7KB          8KB
+[  400.154863] hugetlbfs_inode_cache         14KB         31KB
+[  400.158141] netfs_subrequest          42KB         47KB
+[  400.161103] netfs_request            108KB        112KB
+[  400.165997] bio-280                   21KB         23KB
+[  400.168407] ep_head                    6KB         12KB
+[  400.172178] eventpoll_pwq             17KB         27KB
+[  400.175645] eventpoll_epi             49KB         72KB
+[  400.179442] inotify_inode_mark         44KB         54KB
+[  400.182302] sgpool-128               191KB        208KB
+[  400.185089] sgpool-64                214KB        223KB
+[  400.188069] sgpool-32                196KB        220KB
+[  400.191187] sgpool-16                182KB        187KB
+[  400.194555] sgpool-8                 475KB        480KB
+[  400.197235] bio_integrity_data          7KB          8KB
+[  400.199994] request_queue             55KB         59KB
+[  400.202922] blkdev_ioc                 7KB          8KB
+[  400.206027] bio-192                 4041KB       4044KB
+[  400.209047] biovec-max              4993KB       4998KB
+[  400.211516] biovec-128               303KB        318KB
+[  400.214127] biovec-64                439KB        441KB
+[  400.217770] biovec-16                225KB        236KB
+[  400.220971] swap_table                95KB         95KB
+[  400.224556] uid_cache                 19KB         23KB
+[  400.227531] dmaengine-unmap-256         27KB         31KB
+[  400.230495] dmaengine-unmap-128         15KB         31KB
+[  400.234600] dmaengine-unmap-16          7KB          8KB
+[  400.237815] dmaengine-unmap-2          3KB          4KB
+[  400.241304] audit_buffer              39KB         42KB
+[  400.244024] skbuff_small_head       5729KB       5859KB
+[  400.247056] skbuff_fclone_cache        608KB        703KB
+[  400.250448] skbuff_head_cache       2237KB       2302KB
+[  400.253219] configfs_dir_cache         15KB         16KB
+[  400.256317] file_lock_cache           47KB         71KB
+[  400.259518] file_lock_ctx             38KB         43KB
+[  400.262994] fsnotify_inode_mark_connector         39KB         47KB
+[  400.266555] taskstats                116KB        143KB
+[  400.269992] mem_cgroup_per_node         75KB         94KB
+[  400.272898] mem_cgroup               157KB        189KB
+[  400.276506] proc_dir_entry           261KB        281KB
+[  400.278839] pde_opener                 3KB          3KB
+[  400.281175] seq_file                  89KB        157KB
+[  400.283569] sigqueue                  31KB         43KB
+[  400.287823] shmem_inode_cache       2180KB       2369KB
+[  400.290984] kernfs_iattrs_cache        137KB        145KB
+[  400.294362] kernfs_node_cache       5827KB       5904KB
+[  400.297823] mnt_cache                106KB        176KB
+[  400.301220] filp                    5309KB       5704KB
+[  400.303310] names_cache             3611KB       3772KB
+[  400.306553] net_namespace             96KB         96KB
+[  400.309523] hashtab_node             274KB        274KB
+[  400.312027] ebitmap_node            1353KB       1386KB
+[  400.314989] avtab_node              4975KB       4976KB
+[  400.317147] avc_node                  58KB        154KB
+[  400.319862] lsm_inode_cache         1528KB       1940KB
+[  400.322956] lsm_file_cache           333KB        392KB
+[  400.326026] key_jar                   21KB         47KB
+[  400.328601] uts_namespace             91KB         92KB
+[  400.332236] nsproxy                   22KB         27KB
+[  400.336051] vm_area_struct          2307KB       2559KB
+[  400.339237] fs_cache                  47KB         68KB
+[  400.342648] files_cache              156KB        256KB
+[  400.346943] task_exec_state           11KB         24KB
+[  400.349851] signal_cache             511KB        669KB
+[  400.353377] sighand_cache            646KB        833KB
+[  400.357407] task_struct             2543KB       2750KB
+[  400.361042] cred                      94KB        168KB
+[  400.364170] anon_vma_chain           368KB        409KB
+[  400.367291] anon_vma                 500KB        623KB
+[  400.369932] pid                       87KB        157KB
+[  400.372248] Acpi-Operand             185KB        265KB
+[  400.375357] Acpi-ParseExt             11KB         31KB
+[  400.378672] Acpi-Parse                 7KB         19KB
+[  400.381250] Acpi-State                 6KB         19KB
+[  400.383953] Acpi-Namespace            18KB         24KB
+[  400.386558] numa_policy                3KB          4KB
+[  400.389367] perf_event                19KB         31KB
+[  400.392217] trace_event_file         300KB        300KB
+[  400.395716] ftrace_event_field        660KB        660KB
+[  400.399288] pool_workqueue           378KB        378KB
+[  400.402678] task_group                56KB         56KB
+[  400.406367] maple_node               740KB       1320KB
+[  400.409890] mm_struct                475KB        750KB
+[  400.413442] vmap_area                 68KB         83KB
+[  400.417661] page->ptl                314KB        346KB
+[  400.421133] kmemleak_scan_area         23KB         27KB
+[  400.425325] kmemleak_object       119358KB     123977KB
+[  400.428711] kmalloc-cg-8k            272KB        320KB
+[  400.432046] kmalloc-cg-4k           3112KB       3488KB
+[  400.435291] kmalloc-cg-2k           1496KB       1632KB
+[  400.438437] kmalloc-cg-1k            230KB        384KB
+[  400.442231] kmalloc-cg-512           233KB        320KB
+[  400.445594] kmalloc-cg-256            61KB         72KB
+[  400.448261] kmalloc-cg-128           392KB        412KB
+[  400.451341] kmalloc-cg-64             31KB         44KB
+[  400.453670] kmalloc-cg-32            201KB        244KB
+[  400.456879] kmalloc-cg-16              4KB          8KB
+[  400.459951] kmalloc-cg-8               7KB         12KB
+[  400.463160] kmalloc-cg-192            34KB         36KB
+[  400.466331] kmalloc-cg-96            196KB        200KB
+[  400.469447] kmalloc-8k               992KB       1184KB
+[  400.472968] kmalloc-4k              5784KB       6848KB
+[  400.475550] kmalloc-2k              4688KB       4864KB
+[  400.478170] kmalloc-1k              1786KB       2208KB
+[  400.481728] kmalloc-512             2588KB       3136KB
+[  400.485205] kmalloc-256             1580KB       1656KB
+[  400.488849] kmalloc-128              639KB        692KB
+[  400.492227] kmalloc-64               870KB        996KB
+[  400.495675] kmalloc-32              2456KB       2484KB
+[  400.498603] kmalloc-16               415KB        436KB
+[  400.502363] kmalloc-8                230KB        320KB
+[  400.505775] kmalloc-192              665KB        668KB
+[  400.509282] kmalloc-96               572KB        596KB
+[  400.512499] kmem_cache_node           50KB         51KB
+[  400.515850] kmem_cache                84KB         85KB
+[  400.519479] Memory cgroup min protection 0kB -- low protection 0kB
+[  400.519492] oom-kill:constraint=CONSTRAINT_NONE,nodemask=(null),cpuset=/,mems_allowed=0,global_oom,task_memcg=/syz2,task=syz.2.320,pid=2833,uid=0
+[  400.530155] Out of memory (oom_kill_allocating_task): Killed process 2830 (syz.2.320) total-vm:96156kB, anon-rss:0kB, file-rss:20488kB, shmem-rss:0kB, UID:0 pgtables:124kB oom_score_adj:1000

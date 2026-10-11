@@ -1,0 +1,66 @@
+From: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+To: stable@vger.kernel.org
+Cc: Greg Kroah-Hartman <gregkh@linuxfoundation.org>, patches@lists.linux.dev,
+ Author A <author-a@example.com>, Helge Deller <deller@gmx.de>
+Subject: [PATCH 6.18 024/217] fbdev: core: Fix pointer desynchronization in
+ fb_io_read()
+Date: Thu, 20 Aug 2026 16:53:12 +0200
+Message-ID: <20260820145238.348527623@linuxfoundation.org>
+In-Reply-To: <20260820145237.531699751@linuxfoundation.org>
+References: <20260820145237.531699751@linuxfoundation.org>
+List-Id: <patches.lists.linux.dev>
+
+6.18-stable review patch.  If anyone has any objections, please let me know.
+
+------------------
+
+From: Author A <author-a@example.com>
+
+commit 81cc73be40c6f028f1ee3f438ace46afe666dbae upstream.
+
+In fb_io_read(), if copy_to_user() performs a partial copy (e.g., due to
+a faulty user buffer), the loop adjusts the chunk size 'c' and updates
+the remaining 'count'. However, the hardware 'src' pointer has already
+been eagerly advanced by the original chunk size.
+
+If the loop is allowed to continue, the read will resume from an
+incorrect, over-advanced offset. Since the remaining 'count' was only
+decremented by the successful bytes, this desynchronization causes the
+next iterations to execute more hardware reads than originally bounded,
+eventually leading to out-of-bounds I/O reads.
+
+Fix this by breaking out of the loop immediately upon a partial
+copy_to_user(). A partial copy indicates a faulty user buffer, making
+subsequent read attempts futile. Breaking out ensures we return the
+number of successfully read bytes without risking out-of-bounds hardware
+accesses in subsequent mismatched iterations.
+
+Fixes: 6121cd9ef911 ("fbdev: Move I/O read and write code into helper functions")
+Cc: stable@vger.kernel.org
+Signed-off-by: Author A <author-a@example.com>
+Signed-off-by: Helge Deller <deller@gmx.de>
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/video/fbdev/core/fb_io_fops.c |    8 ++++++++
+ 1 file changed, 8 insertions(+)
+
+--- a/drivers/video/fbdev/core/fb_io_fops.c
++++ b/drivers/video/fbdev/core/fb_io_fops.c
+@@ -61,6 +61,14 @@ ssize_t fb_io_read(struct fb_info *info,
+ 		buf += c;
+ 		cnt += c;
+ 		count -= c;
++
++		/*
++		 * If there was a partial copy, the user buffer is faulty.
++		 * Break out to avoid over-advancing the src pointer and
++		 * reading out of bounds in the next iteration.
++		 */
++		if (trailing)
++			break;
+ 	}
+ 
+ 	kfree(buffer);
+
+
+

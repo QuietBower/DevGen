@@ -1,0 +1,45 @@
+From: Author A <author-a@example.com>
+To: Greg KH <gregkh@linuxfoundation.org>
+Cc: arnd@arndb.de, kees@kernel.org, linux-kernel@vger.kernel.org,
+ stable@vger.kernel.org
+Subject: Re: [PATCH v8 2/2] misc: ibmasm: Fix dynamic out-of-bounds MMIO
+ access via malicious MFA
+Date: Fri, 31 Jul 2026 21:58:13 +0800
+Message-ID: <c6e161e2-3ba5-4384-ab43-ef9a802052fe@anonymous.edu>
+ In-Reply-To:Content-Type; =?utf-8?q?b=3DFUsggRmSC9KrimxA7E4TOwoPRFU/ar798cx?=
+ =?utf-8?q?wXrzPAI6yNjCsvNYwvwVtohyfxjtn7yVBCBtMIw7/b4XThD3x2Og26iNcCHu10o7Z?=
+ =?utf-8?q?bg9VyG4fhO/uv9tH8lyyWQxHTFbjctB2VqqBo8ZVWEUGqW4dnRGtey2kP921exPsY?=
+ =?utf-8?q?vIsekw=3D?=
+	In-Reply-To:Content-Type:Content-Transfer-Encoding; bh=6GQ+vMLqZ
+	Ceol9jN9OnswiXkKCRd8fxCf4sKIaBGSW0=; b=w5CLDXaIUrwBdGkPb8+hhVajB
+	qDzeQTruzbfXX6eRV4+rxuU7/qCnlplAXoHDZ+L7nqYFSeq+aZjucI0SKTdhyz1O
+	l/TVZPLZEUI0NKJTahl4hprIMU/8nD4pkBIDTQ9sTo8Mbpeab6u//qZRFFpC5vAw
+	DOdDh7v5umHUlD6E+Q=
+In-Reply-To: <2026073113-defy-shortage-2005@gregkh>
+References: <20260718073253.96741-1-author-a@example.com>
+ <20260718073253.96741-3-author-a@example.com>
+ <2026073113-defy-shortage-2005@gregkh>
+List-Id: <stable.vger.kernel.org>
+
+Hi Greg,
+
+> Ah, this is I2O hardware.  Wow, I don't think that's even around
+> anymore, is it?  Do you have access to it to test this?
+
+You are spot on—the hardware is ancient, and I do not have access
+to a physical device.
+
+We tested this exclusively in our virtual device fuzzing framework.
+By modeling basic PCI/I2O memory interactions in QEMU, the fuzzer
+injected a malformed MFA (Message Frame Address), triggering the
+OOB access. The patch was verified to block the malicious MFA
+within that emulated environment.
+
+Given how old this driver is, if the community decides it is better
+to remove the driver entirely rather than maintain patches for
+emulated edge cases, I completely understand.
+
+Best regards,
+Author A
+
+

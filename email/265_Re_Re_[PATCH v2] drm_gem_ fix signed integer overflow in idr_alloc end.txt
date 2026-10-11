@@ -1,0 +1,61 @@
+From: anonymous <author-a-alt@example.com>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+ Author A <author-a@example.com>
+Subject: Re:Re:[PATCH v2] drm/gem: fix signed integer overflow in idr_alloc
+ end parameter
+Date: Sun, 21 Jun 2026 10:53:51 +0800
+Message-ID: <5732bce4.6fc.19ee81946f1.Coremail.author-a-alt@example.com>
+In-Reply-To: <201b9524.566.19ee7f7eeb3.Coremail.author-a-alt@example.com>
+References: <20260605142644.1205922-1-author-a-alt@example.com>
+ <201b9524.566.19ee7f7eeb3.Coremail.author-a-alt@example.com>
+List-Id: <linux-kernel.vger.kernel.org>
+
+
+>Gentle ping on this v2 patch. 
+>
+>As a quick note regarding the automated review from Sashiko AI: it correctly flagged two pre-existing issues in this function (a missing idr_preload and a critical UAF race condition during DRM_IOCTL_GEM_CLOSE). 
+>
+>I want to clarify that those are orthogonal to the integer overflow fixed in this v2 patch. I am keeping this patch purely focused on the signed integer overflow issue so it can be evaluated on its own merits. 
+>
+>I am currently investigating the UAF race condition separately and will submit a new patch series to address the pre-existing bugs flagged by the bot.
+>
+>Please let me know if any further revisions are needed for this v2 overflow fix.
+
+Hi all,
+
+Following up on my previous email, I just noticed that
+drm_gem_change_handle_ioctl has recently been disabled in mainline due to
+security and testing concerns, and a TODO list has been added for its
+potential re-enablement.
+
+Given this upstream status, I will drop my v2 patch submission. A standalone
+fix for the integer overflow no longer applies cleanly without addressing
+the full TODO list (including writing the missing IGT tests and handling
+idr_preload).
+
+For the mailing list record, and for whoever takes on the re-enablement
+task in the future, I want to leave my local findings here regarding the
+edge cases:
+
+1. Signed Integer Overflow in idr_alloc:
+The original `args->new_handle > INT_MAX` check is insufficient. If
+`new_handle` is exactly `INT_MAX`, the subsequent call to `idr_alloc()`
+using `handle + 1` as the end limit will result in a signed integer overflow
+(-2147483648). The boundary check must be tightened to `>= INT_MAX`.
+
+2. The "0" Handle Semantics (TODO #3):
+The original code did not reject handle 0. In the DRM subsystem, 0 is
+universally treated as an invalid handle (e.g., `drm_gem_object_lookup`
+returns NULL). Allowing an object to be aliased to handle 0 breaks core
+DRM state assumptions. An explicit `args->new_handle == 0` check is
+mandatory.
+
+Thank you Thomas and the reviewers for your time and the insightful
+discussions. I will move on to other security research targets.
+
+Thanks,
+Author A
+
+

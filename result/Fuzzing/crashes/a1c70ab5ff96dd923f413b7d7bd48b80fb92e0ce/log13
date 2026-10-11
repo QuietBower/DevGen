@@ -1,0 +1,78 @@
+last executing test programs:
+
+kernel console output (not intermixed with test programs):
+
+Warning: Permanently added '[localhost]:25525' (ED25519) to the list of known hosts.
+[   83.115769] cgroup: Unknown subsys name 'net'
+[   83.236094] cgroup: Unknown subsys name 'cpuset'
+[   83.261327] cgroup: Unknown subsys name 'rlimit'
+[   83.266800] cgroup: Unknown subsys name 'memory'
+[   83.346667] kmemleak: Automatic memory scanning thread ended
+[  102.995193] ------------[ cut here ]------------
+[  102.999609] [CRTC:35:crtc-0] vblank wait timed out
+[  103.002990] WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_helper_wait_for_vblanks.part.0+0x627/0x7b0 [drm_kms_helper], CPU#1: kworker/1:1/49
+[  103.015871] Modules linked in: iTCO_wdt intel_pmc_bxt bochs watchdog drm_shmem_helper drm_client_lib i2c_i801 drm_kms_helper lpc_ich i2c_smbus
+[  103.025965] CPU: 1 UID: 0 PID: 49 Comm: kworker/1:1 Tainted: G        W        N  7.0.0 #7 PREEMPT(full) 
+[  103.036369] Tainted: [W]=WARN, [N]=TEST
+[  103.041327] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  103.053781] Workqueue: events drm_fb_helper_damage_work [drm_kms_helper]
+[  103.064407] RIP: 0010:drm_atomic_helper_wait_for_vblanks.part.0+0x62d/0x7b0 [drm_kms_helper]
+[  103.077376] Code: 00 48 8b 55 20 48 89 f8 48 c1 e8 03 42 0f b6 04 20 84 c0 74 08 3c 03 0f 8e 63 01 00 00 48 8d 3d 29 92 22 00 8b b5 d8 00 00 00 <67> 48 0f b9 3a e9 9b fd ff ff 44 8b 7c 24 3c 4c 89 eb e8 9c 6f 77
+[  103.099173] RSP: 0018:ffff888101bc7738 EFLAGS: 00010246
+[  103.108659] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000040
+[  103.114719] RDX: ffff888101573860 RSI: 0000000000000023 RDI: ffffffffa0238190
+[  103.124452] RBP: ffff888112a1d318 R08: 0000000000000001 R09: 0000000000000001
+[  103.135883] R10: ffffffff88486997 R11: 0000000000000000 R12: dffffc0000000000
+[  103.146204] R13: 0000000000000000 R14: ffff888112ae8d00 R15: 0000000000000000
+[  103.157411] FS:  0000000000000000(0000) GS:ffff8881d0879000(0000) knlGS:0000000000000000
+[  103.173946] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  103.181559] CR2: 0000555589a1d6c8 CR3: 0000000110124000 CR4: 00000000000006f0
+[  103.189411] Call Trace:
+[  103.192029]  <TASK>
+[  103.194365]  ? __pfx_drm_atomic_helper_wait_for_vblanks.part.0+0x10/0x10 [drm_kms_helper]
+[  103.202494]  ? __pfx_autoremove_wake_function+0x10/0x10
+[  103.207711]  ? drm_atomic_helper_commit_hw_done+0x347/0x4b0 [drm_kms_helper]
+[  103.215293]  drm_atomic_helper_commit_tail+0x100/0x130 [drm_kms_helper]
+[  103.221424]  commit_tail+0x2c2/0x390 [drm_kms_helper]
+[  103.226542]  drm_atomic_helper_commit+0x308/0x390 [drm_kms_helper]
+[  103.232287]  ? __pfx_drm_atomic_helper_commit+0x10/0x10 [drm_kms_helper]
+[  103.237379]  drm_atomic_commit+0x238/0x300
+[  103.240901]  ? __pfx_drm_atomic_commit+0x10/0x10
+[  103.244352]  ? __pfx___drm_printfn_info+0x10/0x10
+[  103.248090]  ? drm_mode_object_get+0x104/0x170
+[  103.252576]  drm_atomic_helper_dirtyfb+0x60f/0x790 [drm_kms_helper]
+[  103.257667]  ? __pfx_drm_atomic_helper_dirtyfb+0x10/0x10 [drm_kms_helper]
+[  103.263701]  ? do_raw_spin_lock+0x130/0x270
+[  103.268072]  ? __pfx_drm_atomic_helper_dirtyfb+0x10/0x10 [drm_kms_helper]
+[  103.273467]  drm_fbdev_shmem_helper_fb_dirty+0x1d1/0x320 [drm_shmem_helper]
+[  103.279923]  drm_fb_helper_damage_work+0x335/0x630 [drm_kms_helper]
+[  103.285598]  ? __pfx_drm_fb_helper_damage_work+0x10/0x10 [drm_kms_helper]
+[  103.292012]  ? lock_release+0xd4/0x2b0
+[  103.295111]  process_one_work+0x920/0x1ac0
+[  103.298436]  ? __pfx_process_one_work+0x10/0x10
+[  103.302641]  ? __pfx_drm_fb_helper_damage_work+0x10/0x10 [drm_kms_helper]
+[  103.308335]  worker_thread+0x698/0xeb0
+[  103.312421]  ? __pfx_worker_thread+0x10/0x10
+[  103.316481]  kthread+0x38a/0x4a0
+[  103.322242]  ? trace_irq_enable.constprop.0+0x116/0x150
+[  103.327069]  ? __pfx_kthread+0x10/0x10
+[  103.331004]  ret_from_fork+0x690/0xaa0
+[  103.335235]  ? __pfx_ret_from_fork+0x10/0x10
+[  103.338539]  ? native_load_tls+0x10/0x40
+[  103.342696]  ? __switch_to+0x5e6/0xe90
+[  103.346979]  ? __pfx_kthread+0x10/0x10
+[  103.350161]  ret_from_fork_asm+0x1a/0x30
+[  103.354058]  </TASK>
+[  103.356648] irq event stamp: 134205
+[  103.360021] hardirqs last  enabled at (134215): [<ffffffff81572ad9>] __up_console_sem+0x89/0xa0
+[  103.367199] hardirqs last disabled at (134224): [<ffffffff81572abe>] __up_console_sem+0x6e/0xa0
+[  103.374068] softirqs last  enabled at (134182): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100
+[  103.382016] softirqs last disabled at (134173): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100
+[  103.388766] ---[ end trace 0000000000000000 ]---
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=91cc8923-fd63-43be-aa63-090bb1e71d53
+[  103.997717] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+[  110.653751] audit: type=1400 audit(1780128557.076:39): avc:  denied  { execmem } for  pid=338 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[  110.701989] audit: type=1400 audit(1780128557.076:38): avc:  denied  { execmem } for  pid=335 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1

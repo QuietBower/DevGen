@@ -1,0 +1,53 @@
+From: Author A <author-a@example.com>
+To: dri-devel@lists.freedesktop.org
+Cc: Author A <author-a@example.com>
+Subject: [PATCH] agp: amd64: fix null-ptr-deref in amd64_fetch_size
+Date: Wed, 29 Apr 2026 10:33:50 +0800
+Message-ID: <45f753f9.9a8c.19dd715ea5a.Coremail.author-a@example.com>
+List-Id: Direct Rendering Infrastructure - Development
+ <dri-devel.lists.freedesktop.org>
+
+During the initialization of the amd64_agp driver, the `amd64_fetch_size()`
+function attempts to retrieve the PCI device pointer from the AMD
+northbridge descriptor.
+
+The code assumes that a valid AMD northbridge always exists when this
+driver is probed:
+	dev = node_to_amd_nb(0)->misc;
+
+However, in mixed or emulated environments (e.g., an Intel CPU environment
+with an AMD AGP bridge passed through or emulated), `node_to_amd_nb(0)`
+will return NULL. This leads to an immediate null-pointer dereference
+when attempting to access `->misc`, causing a kernel panic.
+
+Fix this by properly checking the return value of `node_to_amd_nb()`
+before dereferencing it.
+
+Signed-off-by: Author A <author-a@example.com>
+---
+ drivers/char/agp/amd64-agp.c | 9 +++++++--
+ 1 file changed, 7 insertions(+), 2 deletions(-)
+
+diff --git a/drivers/char/agp/amd64-agp.c b/drivers/char/agp/amd64-agp.c
+index 2505df1f4e69..1c21787ded69 100644
+--- a/drivers/char/agp/amd64-agp.c
++++ b/drivers/char/agp/amd64-agp.c
+@@ -124,9 +124,14 @@ static int amd64_fetch_size(void)
+ 	int i;
+ 	u32 temp;
+ 	struct aper_size_info_32 *values;
++	struct amd_northbridge *nb;
+ 
+-	dev = node_to_amd_nb(0)->misc;
+-	if (dev==NULL)
++	nb = node_to_amd_nb(0);
++	if (!nb)
++		return 0;
++
++	dev = nb->misc;
++	if (!dev)
+ 		return 0;
+ 
+ 	pci_read_config_dword(dev, AMD64_GARTAPERTURECTL, &temp);
+-- 
+2.34.1

@@ -1,0 +1,32 @@
+From: Greg KH <greg@kroah.com>
+To: author-a-alt@example.com
+Cc: louis.chauvet@bootlin.com, hamohammed.sa@gmail.com, simona@ffwll.ch,
+ melissa.srw@gmail.com, maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+ tzimmermann@suse.de, airlied@gmail.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, stable@vger.kernel.org,
+ Author A <author-a@example.com>
+Subject: Re: [PATCH 6.18.y] drm/vkms: Fix ABBA deadlock in vblank disable and
+ timer callback
+Date: Fri, 15 May 2026 17:09:46 +0200
+Message-ID: <2026051557-thermal-petite-7da0@gregkh>
+In-Reply-To: <20260515131826.388154-1-author-a-alt@example.com>
+References: <20260515131826.388154-1-author-a-alt@example.com>
+List-Id: <stable.vger.kernel.org>
+
+On Fri, May 15, 2026 at 09:18:26PM +0800, author-a-alt@example.com wrote:
+> From: Author A <author-a@example.com>
+> 
+> [Note: This patch addresses a legacy VKMS implementation deadlock specific
+> to older stable trees (e.g., 6.18.y). Mainline has removed this code during
+> the generic DRM_CRTC_VBLANK_TIMER_FUNCS refactoring.]
+
+Why not apply those upstream commits here as well?  No need to diverge
+from Linus's tree, otherwise we will end up having a mess that nothing
+can ever be backported to.
+
+How many commits need to be backported?  Have you tried?
+
+thanks,
+
+greg k-h
+

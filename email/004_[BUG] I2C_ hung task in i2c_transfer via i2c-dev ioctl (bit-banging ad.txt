@@ -1,0 +1,63 @@
+From: Author B <author-b@example.com>
+To: linux-i2c@vger.kernel.org
+Cc: Wolfram Sang <wsa+renesas@sang-engineering.com>,
+ linux-media@vger.kernel.org, Mauro Carvalho Chehab <mchehab@kernel.org>,
+ Hans Verkuil <hverkuil@kernel.org>, syzkaller@googlegroups.com,
+ linux-kernel@vger.kernel.org
+Subject:
+ [BUG] I2C: hung task in i2c_transfer via i2c-dev ioctl (bit-banging adapter)
+Date: Sun, 04 Jan 2026 11:05:13 +0800
+Message-ID: <3e4f9b37.9264.19b86f74f9e.Coremail.author-b@example.com>
+List-Id: <linux-media.vger.kernel.org>
+
+Hello I2C maintainers,
+
+I am reporting a hung task issue found by syzkaller on Linux v6.18.
+
+The issue manifests as tasks blocked for more than 140 seconds in i2c_transfer(), triggered via /dev/i2c-* ioctl from syzkaller. Multiple syz-executor threads become stuck in D state, holding the i2c bus lock.
+
+Kernel:
+Linux 6.18.0 (based on v6.18)
+Not tainted
+CONFIG_PREEMPT=y
+Tested under QEMU (i440FX)
+
+Observed behavior:
+
+* Hung task warnings from khungtaskd
+* Tasks blocked in i2c_transfer() waiting on rt_mutex
+* i2c controller reports "Unsupported transaction"
+* The stall involves the bit-banging I2C algorithm and cx88 i2c driver
+
+Example hung task backtrace:
+
+INFO: task syz.3.357 blocked for more than 143 seconds.
+Call Trace:
+rt_mutex_slowlock_block
+rt_mutex_lock_nested
+i2c_lock_bus
+i2c_transfer
+i2cdev_ioctl_rdwr
+i2cdev_ioctl
+__x64_sys_ioctl
+
+Another CPU is spinning inside the I2C bit-banging algorithm:
+
+```
+cx8800_bit_getscl
+sclhi
+i2c_stop
+bit_xfer
+__i2c_transfer
+```
+
+This suggests a possible deadlock or unbounded wait in the bit-banging I2C transfer path when handling unsupported or malformed transactions from user space.
+
+I have a full kernel log available and can provide them if needed.
+
+Please let me know if you would like me to test a patch or provide additional debugging information.
+
+Thank you for your time.
+
+Best regards, 
+Author B

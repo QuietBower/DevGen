@@ -1,0 +1,63 @@
+From: Petr Pavlu <petr.pavlu@suse.com
+To: Author A <author-a@example.com
+Cc: Luis Chamberlain <mcgrof@kernel.org>, Daniel Gomez <da.gomez@kernel.org>, Sami Tolvanen <samitolvanen@google.com>, Aaron Tomlin <atomlin@atomlin.com>, Johan Hovold <johan@kernel.org>, linux-modules@vger.kernel.org, linux-kernel@vger.kernel.org, stable@vger.kernel.org
+Date: Wed, 5 Aug 2026 16:47:18 +0200
+Message-ID: 1951733c-0d8f-4d1d-9da1-fd71d23781de@suse.com
+List-Id: linux-modules.vger.kernel.org
+Subject: Re: [PATCH] module: fix UAF and GPF in idempotent_init_module via heap allocation
+
+On 8/4/26 12:41 PM, Author A wrote:
+> Hi Petr,
+> 
+>> I'm confused by this description and I'm not sure what problem the patch
+>> is trying to solve. A task is not normally terminated in the middle of
+>> a syscall. This could happen only if it hits an oops. However, that
+>> means there is an earlier bug and the module loader isn't expected to be
+>> resilient to a post-oops state.
+>>
+>> Could you clarify the scenario that you ran into?
+> 
+> Thank you for the review. You are entirely correct; the task did not
+> terminate during a normal syscall, but was indeed killed by a prior
+> oops.
+> 
+> Here is the exact scenario discovered during driver fuzzing by our
+> automated virtual device modeling tool, DevGen:
+> 
+> 1. A `modprobe` task (PID 433) concurrently loaded a faulty driver
+>    (the `atlantic` net driver in our trace).
+> 2. It passed the idempotent() check and added its stack-allocated
+>    `struct idempotent` node to the global `idem_hash` list.
+> 3. During init_module_from_file(), the `atlantic` driver hit a fatal
+>    oops in its hardware init path (aq_hw_write_reg+0x39/0x50).
+> 4. The kernel initiated oops recovery, terminating the `modprobe` task
+>    (exited with preempt_count 1) and freeing its kernel stack.
+> 5. The oops recovery path does not clean up the `idem_hash` list,
+>    leaving a dangling pointer to the freed stack in the global list.
+> 6. A subsequent module loading attempt traversed `idem_hash`,
+>    dereferenced the stale stack pointer, and triggered a secondary
+>    KASAN use-after-free and GPF.
+
+Thanks for explaining the scenario.
+
+> 
+> While the root cause of the initial crash lies within the specific
+> buggy driver, the current stack allocation allows an isolated driver
+> oops to corrupt a global synchronization primitive, preventing any
+> further module loading across the entire system.
+
+An oopsed task can leave behind various kernel structures in an
+inconsistent state, such as unreleased locks, incorrect reference counts
+and leaked objects. It is expected that the kernel may behave strangely
+afterward and this can result in subsequent problems, such as deadlocks
+or crashes.
+
+Loading a module is a heavyweight operation that injects new code and
+data into the kernel. If it ends in an oops, I think it is fair that no
+additional modules can be inserted. I don't see that the module loader
+is doing anything wrong or behaving differently from other kernel
+components in this regard.
+
+-- 
+Cheers,
+Petr

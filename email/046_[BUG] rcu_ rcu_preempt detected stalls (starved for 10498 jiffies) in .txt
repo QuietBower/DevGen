@@ -1,0 +1,55 @@
+From: Author A <author-a@example.com>
+To: maarten.lankhorst@linux.intel.com, mripard@kernel.org, tzimmermann@suse.de,
+ airlied@gmail.com, simona@ffwll.ch
+Cc: dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org
+Subject: [BUG] rcu_ rcu_preempt detected stalls (starved for 10498 jiffies) in
+ drm_vblank_disable_and_save
+Date: Thu, 05 Feb 2026 19:36:42 +0800
+Message-ID: <52b02148.14e7.19c2d9716c2.Coremail.author-a@example.com>
+List-Id: <linux-kernel.vger.kernel.org>
+
+Dear Maintainers,
+
+When using our customized Syzkaller to fuzz the latest Linux kernel, the following crash was triggered.
+
+HEAD commit: 7d0a66e4bb9081d75c82ec4957c50034cb0ea449 
+git tree: upstream 
+Output: https://github.com/anonymous-artifact/crash/blob/main/report2.txt 
+Kernel config: https://github.com/anonymous-artifact/crash/blob/main/config.txt 
+C reproducer: https://github.com/anonymous-artifact/crash/blob/main/repro2.c 
+Syz reproducer: https://github.com/anonymous-artifact/crash/blob/main/repro2.syz
+
+Brief Introduction: The kernel reports an RCU CPU stall (rcu_preempt detected stalls). The rcu_preempt kthread was starved for 10,498 jiffies, which usually leads to an expected OOM.
+
+The NMI backtrace shows CPU 3 is spinning in the lockdep/locking code while attempting to cancel an hrtimer during a timer softirq. The call path originates from drm_vblank_disable_and_save and reaches hrtimer_cancel_wait_running. This suggests a potential deadlock or an excessively long critical section in the DRM vblank/timer handling path that prevents the RCU grace-period kthread from being scheduled on that CPU.
+
+Relevant Log: 
+rcu: INFO: rcu_preempt detected stalls on CPUs/tasks:
+rcu: 	(detected by 0, t=10502 jiffies, g=64625, q=212 ncpus=4)
+rcu: All QSes seen, last rcu_preempt kthread activity 10498 (4295006777-4294996279), jiffies_till_next_fqs=1, root ->qsmask 0x0
+rcu: rcu_preempt kthread timer wakeup didn't happen for 10497 jiffies! g64625 f0x2 RCU_GP_WAIT_FQS(5) ->state=0x200
+rcu: 	Possible timer handling issue on cpu=3 timer-softirq=24641
+rcu: rcu_preempt kthread starved for 10498 jiffies! g64625 f0x2 RCU_GP_WAIT_FQS(5) ->state=0x200 ->cpu=3
+rcu: 	Unless rcu_preempt kthread gets sufficient CPU time, OOM is now expected behavior.
+rcu: RCU grace-period kthread stack dump:
+task:rcu_preempt     state:R stack:28920 pid:16    tgid:16    ppid:2      task_flags:0x208040 flags:0x00080000
+Call Trace:
+ <TASK>
+ sched_info_arrive home/linux-6.18/kernel/sched/stats.h:267 [inline]
+ sched_info_switch home/linux-6.18/kernel/sched/stats.h:330 [inline]
+ prepare_task_switch home/linux-6.18/kernel/sched/core.c:5122 [inline]
+ context_switch home/inux-6.18/kernel/sched/core.c:5272 [inline]
+ __schedule+0x1044/0x5bb0 home/linux-6.18/kernel/sched/core.c:6929
+ __schedule_loop home/linux-6.18/kernel/sched/core.c:7011 [inline]
+ schedule+0xe7/0x3a0 home/linux-6.18/kernel/sched/core.c:7026
+ schedule_timeout+0x113/0x280 home/linux-6.18/kernel/time/sleep_timeout.c:98
+ rcu_gp_fqs_check_wake home/linux-6.18/kernel/rcu/tree.c:2007 [inline]
+ rcu_gp_fqs_loop+0x18c/0xa00 home/linux-6.18/kernel/rcu/tree.c:2083
+ rcu_gp_kthread+0x26f/0x370 home/linux-6.18/kernel/rcu/tree.c:2280
+ kthread+0x3d0/0x780 home/linux-6.18/kernel/kthread.c:463
+ ret_from_fork+0x676/0x7d0 home/linux-6.18/arch/x86/kernel/process.c:195
+ ret_from_fork_asm+0x1a/0x30 home/linux-6.18/arch/x86/entry/entry_64.S:245
+ </TASK>
+
+Thanks, 
+Author A

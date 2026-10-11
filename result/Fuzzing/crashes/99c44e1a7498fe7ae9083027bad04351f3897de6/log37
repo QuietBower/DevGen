@@ -1,0 +1,241 @@
+last executing test programs:
+
+5.390013427s ago: executing program 3 (id=454):
+capset(&(0x7f0000000040)={0x20080522}, &(0x7f0000000080))
+r0 = socket$nl_route(0x10, 0x3, 0x0)
+ioctl$sock_SIOCSIFVLAN_SET_VLAN_NAME_TYPE_CMD(r0, 0x8983, &(0x7f0000000000)={0x6, 'batadv_slave_1\x00', {0x2}, 0x8})
+
+5.326056281s ago: executing program 3 (id=457):
+r0 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+write$sndseq(r0, &(0x7f0000000300), 0x0)
+
+5.325948109s ago: executing program 3 (id=458):
+r0 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r0, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNATTACHFILTER(r0, 0x401054d5, &(0x7f0000000080)={0x1, &(0x7f0000000040)=[{0x64, 0x0, 0x7, 0x3}]})
+
+5.274791931s ago: executing program 3 (id=463):
+r0 = gettid()
+seccomp$SECCOMP_SET_MODE_STRICT(0x0, 0x0, 0x0)
+syz_open_procfs(r0, 0x0)
+
+4.354283077s ago: executing program 3 (id=508):
+r0 = openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, &(0x7f0000000100)={{0x3, 0x0, 0x1}})
+ioctl$SNDRV_TIMER_IOCTL_INFO(r0, 0x80e85411, &(0x7f0000000100))
+
+4.272247028s ago: executing program 3 (id=510):
+r0 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+ioctl$SNDRV_SEQ_IOCTL_CREATE_QUEUE(r0, 0xc08c5332, &(0x7f0000000200)={0x9, 0x9, 0x0, 'queue0\x00', 0x73fa})
+write$sndseq(r0, &(0x7f0000000300), 0xffffff6c)
+
+918.241121ms ago: executing program 1 (id=604):
+r0 = socket$can_raw(0x1d, 0x3, 0x1)
+bind$can_raw(r0, &(0x7f0000000000), 0x10)
+setsockopt$CAN_RAW_FILTER(r0, 0x65, 0x1, &(0x7f0000000100)=[{{0x4, 0x0, 0x0, 0x1}}, {{0x4}, {0x4, 0x0, 0x1, 0x1}}], 0x10)
+
+755.480182ms ago: executing program 1 (id=606):
+r0 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x880, 0x0)
+ioctl$TUNSETIFF(r0, 0x400454ca, &(0x7f0000000240)={'\x00', 0x2})
+ioctl$TUNATTACHFILTER(r0, 0x401054d5, &(0x7f0000000080)={0x2, &(0x7f0000000040)=[{0x5, 0x4, 0x7}, {0x6, 0xa, 0x9, 0x1}]})
+
+560.540964ms ago: executing program 0 (id=610):
+close_range(0xffffffffffffffff, 0xffffffffffffffff, 0x2)
+r0 = epoll_create1(0x80000)
+epoll_pwait2(r0, &(0x7f0000000000)=[{}], 0x1, &(0x7f0000000100)={0x0, 0x3938700}, 0x0, 0x0)
+
+553.248165ms ago: executing program 2 (id=611):
+ioctl$SG_IO(0xffffffffffffffff, 0x2285, &(0x7f0000000540)={0x53, 0xffffffffffffffff, 0x0, 0xb, @scatter={0x0, 0x0, 0x0}, &(0x7f0000000200), 0x0, 0x80000002, 0x10033, 0x5, 0x0})
+r0 = syz_open_dev$sg(&(0x7f0000000500), 0xb, 0x2)
+ioctl$SCSI_IOCTL_SEND_COMMAND(r0, 0x5393, &(0x7f0000000540)=ANY=[])
+
+473.642106ms ago: executing program 2 (id=612):
+r0 = syz_open_dev$dri(&(0x7f00000001c0), 0x0, 0x80400)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r0, 0xc04064a0, &(0x7f0000000480)={0x0, 0x0, &(0x7f0000000400)=[<r1=>0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_CREATE_LEASE(r0, 0xc01864c6, &(0x7f0000000140)={&(0x7f0000000100)=[r1, r1, r1], 0x3, 0x800})
+
+469.682811ms ago: executing program 1 (id=613):
+r0 = openat$ptmx(0xffffffffffffff9c, &(0x7f0000000000), 0x180, 0x0)
+ioctl$TCXONC(r0, 0x540a, 0x2)
+ioctl$TCSETA(r0, 0x5406, &(0x7f00000007c0)={0x7, 0x9, 0x200f, 0x7, 0x15, "700a3c2e91579029"})
+
+393.028052ms ago: executing program 2 (id=614):
+socket$packet(0x11, 0x2, 0x300)
+r0 = socket$packet(0x11, 0x2, 0x300)
+sendmmsg(r0, &(0x7f0000000380)=[{{&(0x7f0000000000)=@hci={0x1f, 0xa888, 0x2}, 0x80, &(0x7f0000000100)=[{&(0x7f0000000200)='\"', 0x1}], 0x1}}], 0x1, 0x4)
+
+383.234492ms ago: executing program 0 (id=616):
+openat$ptmx(0xffffffffffffff9c, &(0x7f0000000340), 0x121840, 0x0)
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x4)
+ioctl$TIOCGSOFTCAR(r0, 0x5419, &(0x7f00000001c0))
+
+364.506311ms ago: executing program 1 (id=617):
+r0 = socket$netlink(0x10, 0x3, 0x4)
+setsockopt$netlink_NETLINK_ADD_MEMBERSHIP(r0, 0x10e, 0x1, &(0x7f0000001540)=0x6, 0x4)
+close(r0)
+
+273.412589ms ago: executing program 0 (id=618):
+r0 = socket$inet6_tcp(0xa, 0x1, 0x0)
+setsockopt$inet6_tcp_TCP_REPAIR(r0, 0x6, 0x13, &(0x7f0000000040)=0x1, 0x4)
+connect$inet6(r0, &(0x7f0000000080)={0xa, 0x4e21, 0x5, @remote, 0x3}, 0x1c)
+
+270.021664ms ago: executing program 2 (id=619):
+mkdirat(0xffffffffffffff9c, &(0x7f0000000040)='./file0\x00', 0x1c0)
+mkdirat(0xffffffffffffff9c, &(0x7f0000000080)='./file1\x00', 0x1c0)
+renameat2(0xffffffffffffff9c, &(0x7f0000000480)='./file1\x00', 0xffffffffffffff9c, &(0x7f00000004c0)='./file0\x00', 0x2)
+
+262.525574ms ago: executing program 1 (id=626):
+r0 = syz_init_net_socket$nl_generic(0x10, 0x3, 0x10)
+r1 = syz_genetlink_get_family_id$nl802154(&(0x7f00000031c0), 0xffffffffffffffff)
+sendmsg$NL802154_CMD_SET_ACKREQ_DEFAULT(r0, &(0x7f0000003340)={0x0, 0x0, &(0x7f0000003300)={&(0x7f0000003280)={0x28, r1, 0x31, 0x70bd28, 0x25dfdbfb, {}, [@NL802154_ATTR_WPAN_DEV={0xc}, @NL802154_ATTR_IFINDEX={0x8}]}, 0x28}}, 0x4804)
+
+193.28315ms ago: executing program 0 (id=620):
+syz_open_dev$tty20(0xc, 0x4, 0x0)
+r0 = syz_open_dev$tty20(0xc, 0x4, 0x0)
+ioctl$PIO_UNIMAP(r0, 0x4b67, &(0x7f0000000080)={0x1, &(0x7f0000000040)=[{0x3, 0x208d}]})
+
+12.174142ms ago: executing program 1 (id=621):
+mlock(&(0x7f0000ffc000/0x4000)=nil, 0x4000)
+syz_open_dev$dri(&(0x7f00000001c0), 0xa8c, 0x0)
+mlock(&(0x7f0000ffa000/0x4000)=nil, 0x4000)
+
+12.077141ms ago: executing program 2 (id=622):
+r0 = timerfd_create(0x8, 0x800)
+prctl$PR_SET_SYSCALL_USER_DISPATCH_ON(0x3b, 0x1, 0x5, 0x5, &(0x7f00000002c0))
+timerfd_gettime(r0, &(0x7f0000000080))
+
+7.350428ms ago: executing program 0 (id=623):
+sendmmsg$inet(0xffffffffffffffff, &(0x7f0000006ec0)=[{{&(0x7f0000000240)={0x2, 0x4e24, @empty}, 0x10, 0x0}}], 0x1, 0x9f498d99d6a5d17b)
+r0 = socket$inet_tcp(0x2, 0x1, 0x0)
+ioctl$sock_SIOCOUTQ(r0, 0x8953, &(0x7f0000000240))
+
+115.098µs ago: executing program 0 (id=624):
+r0 = syz_open_dev$dri(&(0x7f00000001c0), 0x0, 0x80400)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r0, 0xc04064a0, &(0x7f0000000480)={0x0, 0x0, &(0x7f0000000400)=[<r1=>0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_CREATE_LEASE(r0, 0xc01864c6, &(0x7f0000000140)={&(0x7f0000000100)=[r1, r1, r1], 0x3, 0x800})
+
+0s ago: executing program 2 (id=625):
+r0 = add_key$keyring(&(0x7f0000000040), &(0x7f0000000080)={'syz', 0x1}, 0x0, 0x0, 0xfffffffffffffffc)
+request_key(&(0x7f00000001c0)='syzkaller\x00', &(0x7f0000000200)={'syz', 0x3}, 0x0, 0xffffffffffffffff)
+keyctl$get_security(0x11, r0, &(0x7f00000006c0)=""/145, 0x91)
+
+kernel console output (not intermixed with test programs):
+
+Warning: Permanently added '[localhost]:23037' (ED25519) to the list of known hosts.
+[   50.759264] cgroup: Unknown subsys name 'net'
+[   50.897237] cgroup: Unknown subsys name 'cpuset'
+[   50.940707] cgroup: Unknown subsys name 'rlimit'
+[   50.951617] cgroup: Unknown subsys name 'memory'
+[   51.039887] kmemleak: Automatic memory scanning thread ended
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=2bf3f67c-a0e7-4e40-8040-6d8b78edda0a
+[   68.921900] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   74.380745] audit: type=1400 audit(1780129670.182:39): avc:  denied  { execmem } for  pid=305 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   74.962681] audit: type=1400 audit(1780129670.770:40): avc:  denied  { read } for  pid=311 comm="modprobe" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   75.014717] audit: type=1400 audit(1780129670.773:41): avc:  denied  { open } for  pid=313 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   75.050170] audit: type=1400 audit(1780129670.774:42): avc:  denied  { getattr } for  pid=313 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   75.085033] audit: type=1400 audit(1780129670.776:43): avc:  denied  { map } for  pid=312 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  122.884619] modprobe (1710) used greatest stack depth: 24312 bytes left
+[  135.388626] syz-executor (314) used greatest stack depth: 24128 bytes left
+[  137.152049] hrtimer: interrupt took 59827769 ns
+[  151.311665] modprobe (2378) used greatest stack depth: 23896 bytes left
+[  186.774001] audit: type=1400 audit(1780129782.580:44): avc:  denied  { module_load } for  pid=3343 comm="modprobe" path="/usr/lib/modules/7.0.0/kernel/net/qrtr/qrtr.ko" dev="sda" ino=14942343 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=system permissive=1
+[  187.329814] tmpfs: Bad value for 'size'
+[  187.465207] NET: Registered PF_QIPCRTR protocol family
+[  187.497017] audit: type=1400 audit(1780129783.279:45): avc:  denied  { net_admin } for  pid=3343 comm="modprobe" capability=12  scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:system_r:kmod_t:s0 tclass=capability permissive=1
+[  187.977362] audit: type=1400 audit(1780129783.774:46): avc:  denied  { relabelfrom } for  pid=3372 comm="syz.3.19" name="" dev="pipefs" ino=4507 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=fifo_file permissive=1
+[  188.057674] capability: warning: `syz.2.22' uses 32-bit capabilities (legacy support in use)
+[  188.388510] UDPLite: UDP-Lite is deprecated and scheduled to be removed in 2025, please contact the netdev mailing list
+[  188.396471] audit: type=1400 audit(1780129784.156:47): avc:  denied  { name_bind } for  pid=3388 comm="syz.2.29" src=20002 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:port_t:s0 tclass=icmp_socket permissive=1
+[  188.474530] audit: type=1400 audit(1780129784.181:48): avc:  denied  { node_bind } for  pid=3388 comm="syz.2.29" saddr=100.1.1.1 src=20002 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:node_t:s0 tclass=icmp_socket permissive=1
+[  188.714819] =======================================================
+[  188.714819] WARNING: The mand mount option has been deprecated and
+[  188.714819]          and is ignored by this kernel. Remove the mand
+[  188.714819]          option from the mount to silence this warning.
+[  188.714819] =======================================================
+[  188.767485] cgroup: Invalid name
+[  189.163907] watchdog: watchdog0: watchdog did not stop!
+[  189.420658] cgroup: Invalid name
+[  190.655516] UDPLite6: UDP-Lite is deprecated and scheduled to be removed in 2025, please contact the netdev mailing list
+[  191.387756] tmpfs: Unknown parameter 'm'
+[  192.059549] tmpfs: Unknown parameter 'm'
+[  193.295565] watchdog: watchdog0: watchdog did not stop!
+[  193.721606] watchdog: watchdog0: watchdog did not stop!
+[  194.030902] watchdog: watchdog0: watchdog did not stop!
+[  194.498907] syz.2.177 uses obsolete (PF_INET,SOCK_PACKET)
+[  197.860893] audit: type=1326 audit(1780129799.669:49): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=3931 comm="syz.1.288" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7f974f3b359d code=0x0
+[  198.943759] audit: type=1326 audit(1780129800.750:50): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=4018 comm="syz.3.325" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7fa240dd359d code=0x0
+[  199.560812] process 'syz.2.346' launched './file2' with NULL argv: empty string added
+[  200.019771] audit: type=1326 audit(1780129801.827:51): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=4112 comm="syz.2.364" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7f064a92359d code=0x0
+[  201.037198] audit: type=1326 audit(1780129802.844:52): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=4226 comm="syz.0.414" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7f80f389359d code=0x0
+[  201.622254] audit: type=1400 audit(1780129803.428:53): avc:  denied  { node_bind } for  pid=4287 comm="syz.2.441" saddr=172.20.20.20 src=20004 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:node_t:s0 tclass=icmp_socket permissive=1
+[  201.981967] bochs-drm 0000:00:01.0: [drm] Unknown color mode 65536; guessing buffer size.
+[  202.007977] audit: type=1326 audit(1780129803.816:54): auid=0 uid=0 gid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 pid=4331 comm="syz.3.463" exe="/syz-executor" sig=9 arch=c000003e syscall=231 compat=0 ip=0x7fa240dd359d code=0x0
+[  202.591112] watchdog: watchdog0: watchdog did not stop!
+[  203.792421] watchdog: watchdog0: watchdog did not stop!
+[  207.230959] ------------[ cut here ]------------
+[  207.242469] [CRTC:35:crtc-0] vblank wait timed out
+[  207.246390] WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_helper_wait_for_vblanks.part.0+0x627/0x7b0 [drm_kms_helper], CPU#2: syz.1.621/4687
+[  207.256670] Modules linked in: qrtr iTCO_wdt intel_pmc_bxt bochs watchdog drm_shmem_helper i2c_i801 drm_client_lib drm_kms_helper i2c_smbus lpc_ich
+SYZFAIL: failed to recv rpc
+fd=3 want=4 recv=0 n=0 (errno 9: Bad file descriptor)
+[  207.267241] CPU: 2 UID: 0 PID: 4687 Comm: syz.1.621 Tainted: G        W        N  7.0.0 #7 PREEMPT(full) 
+[  207.276227] Tainted: [W]=WARN, [N]=TEST
+[  207.279153] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  207.290183] RIP: 0010:drm_atomic_helper_wait_for_vblanks.part.0+0x62d/0x7b0 [drm_kms_helper]
+[  207.297255] Code: 00 48 8b 55 20 48 89 f8 48 c1 e8 03 42 0f b6 04 20 84 c0 74 08 3c 03 0f 8e 63 01 00 00 48 8d 3d 29 72 22 00 8b b5 d8 00 00 00 <67> 48 0f b9 3a e9 9b fd ff ff 44 8b 7c 24 3c 4c 89 eb e8 9c 4f 77
+[  207.320095] RSP: 0018:ffff8881204577c8 EFLAGS: 00010246
+[  207.325138] RAX: 0000000000000000 RBX: 0000000000000000 RCX: 0000000000000040
+[  207.330776] RDX: ffff888100f5eee0 RSI: 0000000000000023 RDI: ffffffffa0238190
+[  207.339008] RBP: ffff88811e289318 R08: 0000000000000001 R09: 0000000000000001
+[  207.349557] R10: ffffffff88486997 R11: 0000000000000000 R12: dffffc0000000000
+[  207.355410] R13: 0000000000000000 R14: ffff888104c87e00 R15: 0000000000000000
+[  207.361685] FS:  000055558c13d500(0000) GS:ffff8881d08f9000(0000) knlGS:0000000000000000
+[  207.369377] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  207.379636] CR2: 00007f064b6e56c0 CR3: 0000000118c3a000 CR4: 00000000000006f0
+[  207.392643] Call Trace:
+[  207.395654]  <TASK>
+[  207.398594]  ? __pfx_drm_atomic_helper_wait_for_vblanks.part.0+0x10/0x10 [drm_kms_helper]
+[  207.406316]  ? __pfx_autoremove_wake_function+0x10/0x10
+[  207.411505]  ? drm_atomic_helper_commit_hw_done+0x347/0x4b0 [drm_kms_helper]
+[  207.418501]  drm_atomic_helper_commit_tail+0x100/0x130 [drm_kms_helper]
+[  207.424172]  commit_tail+0x2c2/0x390 [drm_kms_helper]
+[  207.429915]  drm_atomic_helper_commit+0x308/0x390 [drm_kms_helper]
+[  207.435674]  ? __pfx_drm_atomic_helper_commit+0x10/0x10 [drm_kms_helper]
+[  207.441963]  drm_atomic_commit+0x238/0x300
+[  207.445710]  ? __pfx_drm_atomic_commit+0x10/0x10
+[  207.450939]  ? __pfx___drm_printfn_info+0x10/0x10
+[  207.455837]  ? drm_client_rotation+0x43c/0x5e0
+[  207.460882]  drm_client_modeset_commit_atomic+0x684/0x7c0
+[  207.466698]  ? __pfx_drm_client_modeset_commit_atomic+0x10/0x10
+[  207.473106]  ? drm_master_internal_acquire+0x26/0x80
+[  207.478535]  drm_client_modeset_commit_locked+0x14e/0x590
+[  207.483566]  drm_client_modeset_commit+0x56/0x90
+[  207.489175]  __drm_fb_helper_restore_fbdev_mode_unlocked.part.0+0x137/0x160 [drm_kms_helper]
+[  207.496434]  drm_fb_helper_restore_fbdev_mode_unlocked+0x97/0xc0 [drm_kms_helper]
+[  207.503431]  drm_fbdev_client_restore+0x20/0x30 [drm_client_lib]
+[  207.509856]  ? __pfx_drm_fbdev_client_restore+0x10/0x10 [drm_client_lib]
+[  207.516029]  drm_client_dev_restore+0x205/0x2a0
+[  207.520050]  drm_release+0x2cb/0x370
+[  207.522675]  ? __pfx_drm_release+0x10/0x10
+[  207.525992]  __fput+0x407/0xb50
+[  207.529262]  task_work_run+0x170/0x260
+[  207.532268]  ? __pfx_task_work_run+0x10/0x10
+[  207.536065]  exit_to_user_mode_loop+0x123/0x4f0
+[  207.540204]  do_syscall_64+0x572/0x690
+[  207.543732]  entry_SYSCALL_64_after_hwframe+0x77/0x7f
+[  207.552699] RIP: 0033:0x7f974f3b359d
+[  207.559464] Code: 02 b8 ff ff ff ff c3 66 0f 1f 44 00 00 f3 0f 1e fa 48 89 f8 48 89 f7 48 89 d6 48 89 ca 4d 89 c2 4d 89 c8 4c 8b 4c 24 08 0f 05 <48> 3d 01 f0 ff ff 73 01 c3 48 c7 c1 a8 ff ff ff f7 d8 64 89 01 48
+[  207.573550] RSP: 002b:00007ffe64976898 EFLAGS: 00000246 ORIG_RAX: 00000000000001b4
+[  207.579835] RAX: 0000000000000000 RBX: 00007f974f647da0 RCX: 00007f974f3b359d
+[  207.586698] RDX: 0000000000000000 RSI: 000000000000001e RDI: 0000000000000003
+[  207.592527] RBP: 00007ffe64976938 R08: 0000001b32420049 R09: 0000000000000000
+[  207.598679] R10: 0000001b32820000 R11: 0000000000000246 R12: ffffffffffffffff
+[  207.604375] R13: 00007f974f645fac R14: 00007f974f647da0 R15: 00007ffe64976960
+[  207.611706]  </TASK>
+[  207.613906] irq event stamp: 4787
+[  207.616482] hardirqs last  enabled at (4797): [<ffffffff81572ad9>] __up_console_sem+0x89/0xa0
+[  207.624090] hardirqs last disabled at (4806): [<ffffffff81572abe>] __up_console_sem+0x6e/0xa0
+[  207.630316] softirqs last  enabled at (4774): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100
+[  207.640541] softirqs last disabled at (4769): [<ffffffff813dbc30>] __irq_exit_rcu+0xd0/0x100
+[  207.652623] ---[ end trace 0000000000000000 ]---

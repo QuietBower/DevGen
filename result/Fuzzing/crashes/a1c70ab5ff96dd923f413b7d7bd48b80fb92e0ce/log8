@@ -1,0 +1,590 @@
+last executing test programs:
+
+6.782504688s ago: executing program 1 (id=2675):
+r0 = socket$qrtr(0x2a, 0x2, 0x0)
+ioctl$sock_SIOCINQ(r0, 0x541b, &(0x7f0000000040))
+ioctl$sock_SIOCINQ(r0, 0x541b, &(0x7f0000000080))
+
+6.673241525s ago: executing program 1 (id=2677):
+r0 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+ioctl$SNDRV_SEQ_IOCTL_CREATE_QUEUE(r0, 0xc08c5332, &(0x7f0000000200)={0x9, 0x9, 0x0, 'queue0\x00', 0x73fa})
+write$sndseq(r0, &(0x7f0000000300), 0xffffff6c)
+
+2.092426123s ago: executing program 3 (id=2746):
+r0 = syz_clone(0x11, 0x0, 0x0, 0x0, 0x0, 0x0)
+ptrace(0x10, r0)
+waitid(0x0, r0, 0x0, 0x8, 0x0)
+
+1.962703376s ago: executing program 3 (id=2747):
+r0 = socket$inet6(0xa, 0x1, 0x6)
+setsockopt$inet6_tcp_TCP_MD5SIG(r0, 0x6, 0xe, &(0x7f0000000080)={@in6={{0xa, 0x4e23, 0x4, @loopback}}, 0x0, 0x0, 0x13, 0x0, "0dab345bf19cb0d650ac0f6520991087e193bb5d5490e279de2967f909f0eab2d87d1eaa41566a5a61c0d59673bf5c77464db4ac8f82151108b24b6b0672b4173d3852f8ecf52cdfe504fa94830f23bb"}, 0xd8)
+connect$inet6(r0, &(0x7f0000000040)={0xa, 0x4e21, 0x4, @loopback, 0x2}, 0x1c)
+
+963.452477ms ago: executing program 3 (id=2763):
+r0 = socket$igmp(0x2, 0x3, 0x2)
+setsockopt$inet_int(r0, 0x0, 0x3, &(0x7f0000000000)=0x8000, 0x4)
+sendto$inet(r0, 0x0, 0xffeb, 0x840, &(0x7f0000000180)={0x2, 0x4f1f, @loopback}, 0x10)
+
+817.168375ms ago: executing program 3 (id=2765):
+r0 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0x1, 0x0)
+ioctl$TUNSETIFF(r0, 0x400454ca, &(0x7f0000000040)={'\x00', 0xf823d74307424655})
+write$tun(r0, 0x0, 0x379)
+
+737.324178ms ago: executing program 0 (id=2766):
+r0 = socket$inet_udplite(0x2, 0x2, 0x88)
+setsockopt$inet_udp_int(r0, 0x11, 0x67, &(0x7f00000000c0)=0x200, 0x4)
+sendto$inet(r0, 0x0, 0x0, 0x300088c4, &(0x7f0000000000)={0x2, 0x4e20, @empty}, 0x10)
+
+737.08549ms ago: executing program 2 (id=2767):
+r0 = socket$inet6(0xa, 0x2, 0x0)
+capset(&(0x7f0000000040)={0x19980330}, &(0x7f0000000000)={0x0, 0x3, 0xd5, 0xffb, 0x1, 0x9})
+setsockopt$sock_int(r0, 0x1, 0x24, &(0x7f0000000040)=0x40000007, 0x2c)
+
+654.94769ms ago: executing program 0 (id=2768):
+mknodat(0xffffffffffffff9c, &(0x7f0000000180)='./file0\x00', 0x11c0, 0x0)
+r0 = openat(0xffffffffffffff9c, &(0x7f0000000240)='./file0\x00', 0x42, 0x0)
+write$P9_RRENAMEAT(r0, &(0x7f00000000c0)={0x7, 0x4b, 0x1}, 0x7)
+
+533.328458ms ago: executing program 0 (id=2769):
+r0 = socket$packet(0x11, 0x2, 0x300)
+setsockopt$packet_fanout(r0, 0x107, 0x12, &(0x7f0000000000)={0x2, 0x1}, 0x4)
+setsockopt$packet_fanout(r0, 0x107, 0x12, &(0x7f0000000040)={0x3, 0x2000}, 0x4)
+
+533.049185ms ago: executing program 2 (id=2770):
+r0 = openat$sndtimer(0xffffffffffffff9c, &(0x7f0000000000), 0x101240)
+ioctl$SNDRV_TIMER_IOCTL_SELECT(r0, 0x40345410, &(0x7f0000000040)={{0x0, 0x2, 0x8000, 0x3}})
+ioctl$SNDRV_TIMER_IOCTL_INFO(r0, 0x80e85411, 0x0)
+
+532.941869ms ago: executing program 3 (id=2771):
+r0 = syz_open_dev$dri(&(0x7f0000000000), 0x3fffc0, 0x20000)
+ioctl$DRM_IOCTL_MODE_GETRESOURCES(r0, 0xc04064a0, &(0x7f00000004c0)={0x0, &(0x7f0000000400)=[<r1=>0x0], 0x0, 0x0, 0x0, 0x1})
+ioctl$DRM_IOCTL_MODE_OBJ_GETPROPERTIES(r0, 0xc02064b9, &(0x7f00000000c0)={&(0x7f0000000040)=[0x0], &(0x7f0000000080), 0x1, r1})
+
+442.018481ms ago: executing program 2 (id=2772):
+r0 = openat$tun(0xffffffffffffff9c, &(0x7f0000000000), 0xc80, 0x0)
+ioctl$TUNSETIFF(r0, 0x400454ca, &(0x7f0000000680)={'\x00', 0x1})
+ioctl$TUNSETTXFILTER(r0, 0x400454d1, 0x0)
+
+422.089079ms ago: executing program 1 (id=2773):
+r0 = openat$rdma_cm(0xffffffffffffff9c, &(0x7f0000000080), 0x2, 0x0)
+r1 = syz_open_procfs(0xffffffffffffffff, &(0x7f0000000180)='net/udp6\x00')
+write$RDMA_USER_CM_CMD_MIGRATE_ID(r0, &(0x7f0000000200)={0x12, 0x10, 0xfa00, {0x0, 0xffffffffffffffff, r1}}, 0x18)
+
+395.556252ms ago: executing program 0 (id=2774):
+r0 = syz_open_dev$usbmon(0x0, 0x6f, 0x840)
+mmap$usbmon(&(0x7f0000ff9000/0x4000)=nil, 0x4000, 0x1000006, 0x12, r0, 0x0)
+mmap$usbmon(&(0x7f0000800000/0x800000)=nil, 0x800000, 0x5, 0x400c031, 0xffffffffffffffff, 0x80000000)
+
+377.094114ms ago: executing program 3 (id=2775):
+r0 = socket$qrtr(0x2a, 0x2, 0x0)
+connect$qrtr(r0, &(0x7f0000000200)={0x2a, 0x2, 0x1}, 0xc)
+recvmsg$qrtr(r0, &(0x7f0000002c40)={0x0, 0x0, 0x0, 0x0, 0x0, 0x0, 0x20}, 0x38, 0x60)
+
+230.324437ms ago: executing program 1 (id=2776):
+r0 = syz_init_net_socket$bt_hci(0x1f, 0x3, 0x1)
+capset(&(0x7f0000000040)={0x19980330}, &(0x7f0000000000)={0x0, 0x0, 0xd5, 0xffb, 0x1, 0x9})
+ioctl$sock_bt_hci(r0, 0x400448e3, 0x0)
+
+168.17449ms ago: executing program 2 (id=2777):
+r0 = socket$inet6_udp(0xa, 0x2, 0x0)
+setsockopt$inet6_group_source_req(r0, 0x29, 0x2e, &(0x7f00000000c0)={0x3, {{0xa, 0x4e23, 0x6, @mcast1, 0x5}}, {{0xa, 0x4e21, 0x7, @remote, 0x3}}}, 0x108)
+setsockopt$inet6_group_source_req(r0, 0x29, 0x2c, &(0x7f00000002c0)={0x1, {{0xa, 0x4e24, 0x2, @mcast1, 0x83}}, {{0xa, 0x4e20, 0x26, @initdev={0xfe, 0x88, '\x00', 0x0, 0x0}, 0xff}}}, 0x108)
+
+88.097555ms ago: executing program 1 (id=2778):
+r0 = syz_open_dev$tty1(0xc, 0x4, 0x3)
+ioctl$KDFONTOP_SET_DEF(r0, 0x4b72, &(0x7f0000000940)={0x2, 0x0, 0x15, 0xc, 0xc7, 0x0})
+ioctl$KDGKBTYPE(r0, 0x4b33, &(0x7f0000000040))
+
+87.726395ms ago: executing program 2 (id=2779):
+r0 = socket$inet_tcp(0x2, 0x1, 0x0)
+setsockopt$inet_mtu(r0, 0x0, 0xa, &(0x7f00000002c0)=0x2, 0x4)
+sendto$inet(r0, 0x0, 0x0, 0x20004000, &(0x7f00000000c0)={0x2, 0x4e24, @local}, 0x10)
+
+34.047196ms ago: executing program 0 (id=2780):
+r0 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+ioctl$SNDRV_SEQ_IOCTL_CREATE_QUEUE(r0, 0xc08c5332, &(0x7f0000000100)={0x9, 0x9, 0x0, 'queue0\x00', 0x73fa})
+ioctl$SNDRV_SEQ_IOCTL_SET_QUEUE_CLIENT(r0, 0x404c534a, &(0x7f0000000200)={0x0, 0x8, 0x3})
+
+20.364056ms ago: executing program 1 (id=2781):
+r0 = socket$packet(0x11, 0x2, 0x300)
+recvmsg(r0, &(0x7f00000015c0)={0x0, 0x0, 0x0}, 0x22)
+syz_emit_ethernet(0x82, &(0x7f0000000180)={@empty, @multicast, @val={@val={0x88a8, 0x3, 0x0, 0x4}, {0x8100, 0x3, 0x1, 0x1}}, {@ipv6={0x86dd, @gre_packet={0x8, 0x6, "645696", 0x44, 0x2f, 0x1, @initdev={0xfe, 0x88, '\x00', 0x1, 0x0}, @private2={0xfc, 0x2, '\x00', 0x1}, {[], {{0x0, 0x0, 0x1, 0x0, 0x0, 0x0, 0x0, 0x1, 0x880b, 0x0, 0x3}, {}, {0x1, 0x0, 0x0, 0x1}, {0x8, 0x88be, 0x3, {{0x4, 0x1, 0x44, 0x1, 0x0, 0x3, 0x6, 0x1}, 0x1, {0x8001}}}, {0x8, 0x22eb, 0x0, {{0x5, 0x2, 0xb3, 0x1, 0x0, 0x2, 0x0, 0x5b}, 0x2, {0x8, 0x0, 0x3, 0x3, 0x1, 0x0, 0x1}}}, {0x8, 0x6558, 0x4}}}}}}}, 0x0)
+
+291.957¬µs ago: executing program 2 (id=2782):
+r0 = openat$sndseq(0xffffffffffffff9c, &(0x7f0000000000), 0x402)
+ioctl$SNDRV_SEQ_IOCTL_CREATE_QUEUE(r0, 0xc08c5332, &(0x7f0000000200)={0x9, 0x9, 0x0, 'queue0\x00', 0x73fa})
+write$sndseq(r0, &(0x7f0000000300), 0xffffff6c)
+
+0s ago: executing program 0 (id=2783):
+sendto$inet6(0xffffffffffffffff, 0x0, 0x30, 0x20001, &(0x7f0000001ec0)={0xa, 0x4e23, 0x6a8, @loopback, 0x2}, 0x1c)
+socketpair$unix(0x1, 0x2, 0x0, &(0x7f0000000140)={0xffffffffffffffff, <r0=>0xffffffffffffffff})
+sendmmsg$inet(r0, &(0x7f0000001900)=[{{0x0, 0x0, 0x0}}], 0x59b, 0x4008000)
+
+kernel console output (not intermixed with test programs):
+
+[   59.364222] audit: type=1400 audit(1780125329.674:37): avc:  denied  { siginh } for  pid=293 comm="bash" scontext=system_u:system_r:sshd_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+
+Debian GNU/Linux 11 syzkaller ttyS0
+
+Warning: Permanently added '[localhost]:4183' (ED25519) to the list of known hosts.
+syzkaller login: [   63.114252] cgroup: Unknown subsys name 'net'
+[   63.168513] cgroup: Unknown subsys name 'cpuset'
+[   63.188015] cgroup: Unknown subsys name 'rlimit'
+[   63.192591] cgroup: Unknown subsys name 'memory'
+[   63.241548] kmemleak: Automatic memory scanning thread ended
+[   78.949379] kmemleak: 1 new suspected memory leaks (see /sys/kernel/debug/kmemleak)
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=5a4ac2b3-7af1-4a1a-a84a-6725d6c3885a
+[   79.116882] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   82.372297] audit: type=1400 audit(1780125352.721:38): avc:  denied  { execmem } for  pid=315 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[   82.691968] audit: type=1400 audit(1780125353.043:39): avc:  denied  { read } for  pid=320 comm="modprobe" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   82.707913] audit: type=1400 audit(1780125353.043:40): avc:  denied  { open } for  pid=320 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   82.727003] audit: type=1400 audit(1780125353.043:41): avc:  denied  { getattr } for  pid=320 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   82.748152] audit: type=1400 audit(1780125353.045:42): avc:  denied  { map } for  pid=320 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   83.060721] audit: type=1400 audit(1780125353.412:43): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  111.451596] binfmt_misc: register: failed to install interpreter file ./file0/file0
+[  112.150982] netlink: 'syz.2.89': attribute type 1 has an invalid length.
+[  112.725211] netlink: 8 bytes leftover after parsing attributes in process `syz.1.107'.
+[  113.485202] watchdog: watchdog0: watchdog did not stop!
+[  113.903123] UDPLite6: UDP-Lite is deprecated and scheduled to be removed in 2025, please contact the netdev mailing list
+[  114.210593] netlink: 'syz.0.158': attribute type 12 has an invalid length.
+[  114.222513] netlink: 8 bytes leftover after parsing attributes in process `syz.0.158'.
+[  114.489250] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(0.0.0), cmd(10)
+[  114.691103] netlink: 8 bytes leftover after parsing attributes in process `syz.3.182'.
+[  115.081580] ata1.00: invalid transfer count 0
+[  115.334534] netlink: 56 bytes leftover after parsing attributes in process `syz.0.208'.
+[  115.449214] watchdog: watchdog0: watchdog did not stop!
+[  115.544610] SELinux: syz.2.217 (2504) wrote to /sys/fs/selinux/user! This will not be supported in the future; please update your userspace.
+[  116.171967] syz.1.243 uses obsolete (PF_INET,SOCK_PACKET)
+[  116.201042] netlink: 188 bytes leftover after parsing attributes in process `syz.3.244'.
+[  116.285510] UDPLite: UDP-Lite is deprecated and scheduled to be removed in 2025, please contact the netdev mailing list
+[  116.770415] loop1: detected capacity change from 0 to 512
+[  116.864775] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[  116.880364] ext4 filesystem being mounted at /72/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[  116.928228] program syz.0.263 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  116.963021] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  117.213377] tmpfs: Bad value for 'mpol'
+[  117.394984] netlink: 12 bytes leftover after parsing attributes in process `syz.3.276'.
+[  118.422726] audit: type=1400 audit(1780125388.774:44): avc:  denied  { read } for  pid=2664 comm="modprobe" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  118.454849] audit: type=1400 audit(1780125388.774:45): avc:  denied  { read open } for  pid=2664 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  118.494362] audit: type=1400 audit(1780125388.775:46): avc:  denied  { getattr } for  pid=2664 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  118.528518] audit: type=1400 audit(1780125388.782:47): avc:  denied  { read } for  pid=2664 comm="modprobe" name="modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  118.557673] audit: type=1400 audit(1780125388.782:48): avc:  denied  { read open } for  pid=2664 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  118.590599] audit: type=1400 audit(1780125388.786:49): avc:  denied  { getattr } for  pid=2664 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  118.615941] audit: type=1400 audit(1780125388.788:50): avc:  denied  { map } for  pid=2664 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  118.649691] audit: type=1400 audit(1780125388.792:51): avc:  denied  { read } for  pid=2664 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  118.678180] audit: type=1400 audit(1780125388.792:52): avc:  denied  { read } for  pid=2664 comm="modprobe" name="modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  118.707181] audit: type=1400 audit(1780125388.792:53): avc:  denied  { read open } for  pid=2664 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  120.265116] netlink: 20 bytes leftover after parsing attributes in process `syz.3.325'.
+[  121.447065] syz.2.350 calls setitimer() with new_value NULL pointer. Misfeature support will be removed
+[  121.859504] capability: warning: `syz.0.359' uses 32-bit capabilities (legacy support in use)
+[  123.210702] program syz.1.384 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  125.582062] kauditd_printk_skb: 84 callbacks suppressed
+[  125.582077] audit: type=1400 audit(1780125395.929:138): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  125.582187] audit: type=1400 audit(1780125395.932:139): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  125.588741] audit: type=1400 audit(1780125395.942:140): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  125.590026] audit: type=1400 audit(1780125395.942:141): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  125.603508] audit: type=1400 audit(1780125395.955:142): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  125.955622] audit: type=1400 audit(1780125396.302:143): avc:  denied  { checkpoint_restore } for  pid=2936 comm="agetty" capability=40  scontext=system_u:system_r:getty_t:s0 tcontext=system_u:system_r:getty_t:s0 tclass=capability2 permissive=1
+[  127.402014] audit: type=1400 audit(1780125397.749:144): avc:  denied  { checkpoint_restore } for  pid=2990 comm="agetty" capability=40  scontext=system_u:system_r:getty_t:s0 tcontext=system_u:system_r:getty_t:s0 tclass=capability2 permissive=1
+[  127.676151] netlink: 20 bytes leftover after parsing attributes in process `syz.2.470'.
+[  128.272899] audit: type=1400 audit(1780125398.613:145): avc:  denied  { read } for  pid=3051 comm="modprobe" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  128.313430] audit: type=1400 audit(1780125398.621:146): avc:  denied  { read open } for  pid=3051 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  128.363530] audit: type=1400 audit(1780125398.622:147): avc:  denied  { getattr } for  pid=3051 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  128.843328] netlink: 12 bytes leftover after parsing attributes in process `syz.1.495'.
+[  129.126049] tmpfs: Bad value for 'mpol'
+[  129.866520] loop2: detected capacity change from 0 to 512
+[  129.947304] EXT4-fs (loop2): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[  129.961867] ext4 filesystem being mounted at /105/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[  130.105199] EXT4-fs (loop2): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  131.406623] netlink: 16 bytes leftover after parsing attributes in process `syz.3.549'.
+[  132.335094] program syz.3.571 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  132.800512] kauditd_printk_skb: 30 callbacks suppressed
+[  132.800528] audit: type=1400 audit(1780125403.143:178): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  132.844762] audit: type=1400 audit(1780125403.150:179): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  132.898293] audit: type=1400 audit(1780125403.154:180): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  132.924983] audit: type=1400 audit(1780125403.154:181): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  132.925101] audit: type=1400 audit(1780125403.154:182): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  133.895853] netlink: 24 bytes leftover after parsing attributes in process `syz.0.595'.
+[  134.053507] ata1.00: invalid cdb length 6
+[  134.184655] netlink: 40 bytes leftover after parsing attributes in process `syz.3.604'.
+[  134.568359] TCP: TCP_TX_DELAY enabled
+[  135.721401] audit: type=1400 audit(1780125406.070:183): avc:  denied  { read } for  pid=3362 comm="modprobe" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  135.772992] audit: type=1400 audit(1780125406.071:184): avc:  denied  { read open } for  pid=3362 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  135.813678] audit: type=1400 audit(1780125406.073:185): avc:  denied  { getattr } for  pid=3362 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  135.847656] audit: type=1400 audit(1780125406.076:186): avc:  denied  { read } for  pid=3362 comm="modprobe" name="modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  135.885122] audit: type=1400 audit(1780125406.076:187): avc:  denied  { read open } for  pid=3362 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  135.936583] netlink: 8 bytes leftover after parsing attributes in process `syz.0.637'.
+[  136.115222] NET: Registered PF_QIPCRTR protocol family
+[  136.689876] syz_tun: entered allmulticast mode
+[  137.908366] kauditd_printk_skb: 35 callbacks suppressed
+[  137.908382] audit: type=1400 audit(1780125408.259:223): avc:  denied  { name_bind } for  pid=3448 comm="syz.2.678" src=20001 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:port_t:s0 tclass=icmp_socket permissive=1
+[  137.939201] audit: type=1400 audit(1780125408.276:224): avc:  denied  { node_bind } for  pid=3448 comm="syz.2.678" src=20001 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:node_t:s0 tclass=icmp_socket permissive=1
+[  138.132232] netlink: 8 bytes leftover after parsing attributes in process `syz.3.682'.
+[  138.277704] audit: type=1107 audit(1780125408.628:225): pid=3463 uid=0 auid=0 ses=3 subj=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 msg='tX8¸È¥n;	‚Éçüo&∫&}Psú≠ìr{t>˝9 ææKi—"ˆ$”éÅ
+[  138.277704] ^§ÕîíÂ÷hÂ∆oΩGJÃ1&,1-êÙ’ˆıFAV|6'
+[  138.412401] audit: type=1400 audit(1780125408.761:226): avc:  denied  { execmem } for  pid=3470 comm="syz.2.688" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[  139.787667] netlink: 24 bytes leftover after parsing attributes in process `syz.3.714'.
+[  140.458018] audit: type=1400 audit(1780125410.810:227): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  140.501248] audit: type=1400 audit(1780125410.811:228): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  140.538795] audit: type=1400 audit(1780125410.811:229): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  140.578475] audit: type=1400 audit(1780125410.811:230): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  140.612906] audit: type=1400 audit(1780125410.815:231): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  141.309894] watchdog: watchdog0: watchdog did not stop!
+[  142.605325] ata1.00: invalid transfer count 0
+[  144.246447] netlink: 16 bytes leftover after parsing attributes in process `syz.1.806'.
+[  144.346058] audit: type=1400 audit(1780125414.698:232): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  144.400412] audit: type=1400 audit(1780125414.737:233): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  144.445920] audit: type=1400 audit(1780125414.738:234): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  144.467198] audit: type=1400 audit(1780125414.744:235): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  144.499978] audit: type=1400 audit(1780125414.744:236): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  144.835575] program syz.1.818 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  146.467151] audit: type=1400 audit(1780125416.819:237): avc:  denied  { name_bind } for  pid=3789 comm="syz.3.854" src=20001 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:port_t:s0 tclass=icmp_socket permissive=1
+[  146.508106] audit: type=1400 audit(1780125416.820:238): avc:  denied  { node_bind } for  pid=3789 comm="syz.3.854" src=20001 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:node_t:s0 tclass=icmp_socket permissive=1
+[  146.568780] netlink: 8 bytes leftover after parsing attributes in process `syz.1.843'.
+[  148.516782] audit: type=1400 audit(1780125418.868:239): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  148.583923] audit: type=1400 audit(1780125418.869:240): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  148.617974] audit: type=1400 audit(1780125418.870:241): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  151.215942] kauditd_printk_skb: 2 callbacks suppressed
+[  151.215958] audit: type=1400 audit(1780125421.567:244): avc:  denied  { name_bind } for  pid=3973 comm="syz.0.937" src=20003 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:port_t:s0 tclass=icmp_socket permissive=1
+[  151.247192] audit: type=1400 audit(1780125421.568:245): avc:  denied  { node_bind } for  pid=3973 comm="syz.0.937" saddr=ff01::1 src=20003 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:node_t:s0 tclass=icmp_socket permissive=1
+[  151.983467] audit: type=1400 audit(1780125422.335:246): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  152.018268] audit: type=1400 audit(1780125422.347:247): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  152.049149] audit: type=1400 audit(1780125422.347:248): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  152.091232] audit: type=1400 audit(1780125422.360:249): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  152.137803] audit: type=1400 audit(1780125422.360:250): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  152.203471] audit: type=1400 audit(1780125422.416:251): avc:  denied  { name_bind } for  pid=4002 comm="syz.1.949" src=20003 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:port_t:s0 tclass=icmp_socket permissive=1
+[  152.248709] audit: type=1400 audit(1780125422.425:252): avc:  denied  { node_bind } for  pid=4002 comm="syz.1.949" saddr=ff01::1 src=20003 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:node_t:s0 tclass=icmp_socket permissive=1
+[  153.547941] audit: type=1400 audit(1780125423.894:253): avc:  denied  { execmem } for  pid=4060 comm="syz.0.975" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[  154.847423] binfmt_misc: register: failed to install interpreter file ./file0/file0
+[  155.698073] netlink: 'syz.3.1009': attribute type 1 has an invalid length.
+[  156.485618] netlink: 'syz.0.1025': attribute type 1 has an invalid length.
+[  156.539285] netlink: 8 bytes leftover after parsing attributes in process `syz.2.1029'.
+[  156.781700] netlink: 8 bytes leftover after parsing attributes in process `syz.0.1040'.
+[  158.786266] watchdog: watchdog0: watchdog did not stop!
+[  159.552145] kauditd_printk_skb: 7 callbacks suppressed
+[  159.552161] audit: type=1400 audit(1780125429.902:261): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  159.595906] audit: type=1400 audit(1780125429.903:262): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  159.630839] audit: type=1400 audit(1780125429.904:263): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  159.665295] audit: type=1400 audit(1780125429.965:264): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  159.703064] audit: type=1400 audit(1780125429.967:265): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  160.163500] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(0.0.0), cmd(10)
+[  160.330282] device-mapper: ioctl: ioctl interface mismatch: kernel(4.50.0), user(0.0.0), cmd(10)
+[  162.336855] ata1.00: invalid transfer count 0
+[  163.198323] audit: type=1400 audit(1780125433.550:266): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  163.256253] audit: type=1400 audit(1780125433.562:267): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  163.308559] audit: type=1400 audit(1780125433.563:268): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  163.335596] audit: type=1400 audit(1780125433.568:269): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  163.368217] audit: type=1400 audit(1780125433.568:270): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  164.053543] netlink: 188 bytes leftover after parsing attributes in process `syz.0.1172'.
+[  164.845275] loop3: detected capacity change from 0 to 512
+[  164.905801] EXT4-fs (loop3): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[  164.918769] ext4 filesystem being mounted at /313/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[  165.010154] EXT4-fs (loop3): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  165.150826] loop0: detected capacity change from 0 to 512
+[  165.193630] EXT4-fs (loop0): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[  165.211176] ext4 filesystem being mounted at /295/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[  165.284233] EXT4-fs (loop0): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  165.667421] tmpfs: Bad value for 'mpol'
+[  165.869413] netlink: 12 bytes leftover after parsing attributes in process `syz.0.1197'.
+[  166.135587] audit: type=1400 audit(1780125436.485:271): avc:  denied  { read } for  pid=4540 comm="modprobe" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  166.182697] audit: type=1400 audit(1780125436.485:272): avc:  denied  { read open } for  pid=4540 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  166.223261] audit: type=1400 audit(1780125436.485:273): avc:  denied  { getattr } for  pid=4540 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  166.257999] audit: type=1400 audit(1780125436.497:274): avc:  denied  { read } for  pid=4540 comm="modprobe" name="modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  166.284546] audit: type=1400 audit(1780125436.497:275): avc:  denied  { read open } for  pid=4540 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  166.324398] audit: type=1400 audit(1780125436.506:276): avc:  denied  { getattr } for  pid=4540 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  166.357583] audit: type=1400 audit(1780125436.506:277): avc:  denied  { map } for  pid=4540 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  166.389142] audit: type=1400 audit(1780125436.506:278): avc:  denied  { read } for  pid=4540 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  166.423617] audit: type=1400 audit(1780125436.511:279): avc:  denied  { read } for  pid=4540 comm="modprobe" name="modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  166.458284] audit: type=1400 audit(1780125436.511:280): avc:  denied  { read open } for  pid=4540 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  169.137632] loop1: detected capacity change from 0 to 512
+[  169.220932] EXT4-fs (loop1): mounted filesystem 00000000-0000-0000-0000-000000000000 r/w without journal. Quota mode: none.
+[  169.231695] ext4 filesystem being mounted at /318/file0 supports timestamps until 2038-01-19 (0x7fffffff)
+[  169.320403] EXT4-fs (loop1): unmounting filesystem 00000000-0000-0000-0000-000000000000.
+[  172.688422] program syz.0.1310 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  172.970838] program syz.2.1323 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  174.592567] process 'syz.0.1345' launched './file2' with NULL argv: empty string added
+[  174.969038] kauditd_printk_skb: 168 callbacks suppressed
+[  174.969055] audit: type=1400 audit(1780125445.321:449): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  175.041046] audit: type=1400 audit(1780125445.321:450): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  175.065733] audit: type=1400 audit(1780125445.326:451): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  175.097877] audit: type=1400 audit(1780125445.346:452): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  175.132652] audit: type=1400 audit(1780125445.347:453): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  178.264202] program syz.1.1424 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  179.562476] audit: type=1400 audit(1780125449.911:454): avc:  denied  { open } for  pid=5038 comm="syz.1.1461" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=perf_event permissive=1
+[  179.596423] audit: type=1400 audit(1780125449.919:455): avc:  denied  { kernel } for  pid=5038 comm="syz.1.1461" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=perf_event permissive=1
+[  179.708720] audit: type=1400 audit(1780125450.059:456): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  179.756228] audit: type=1400 audit(1780125450.061:457): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  179.795906] audit: type=1400 audit(1780125450.065:458): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  179.911608] program syz.0.1459 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  180.410136] kauditd_printk_skb: 2 callbacks suppressed
+[  180.410152] audit: type=1400 audit(1780125450.761:461): avc:  denied  { open } for  pid=5074 comm="syz.2.1470" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=perf_event permissive=1
+[  180.450451] netlink: 8 bytes leftover after parsing attributes in process `syz.0.1472'.
+[  180.486597] audit: type=1400 audit(1780125450.764:462): avc:  denied  { kernel } for  pid=5074 comm="syz.2.1470" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=perf_event permissive=1
+[  180.554898] program syz.3.1473 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  181.516207] audit: type=1400 audit(1780125451.869:463): avc:  denied  { read } for  pid=5117 comm="modprobe" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  181.582456] audit: type=1400 audit(1780125451.894:464): avc:  denied  { read open } for  pid=5117 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  181.614667] audit: type=1400 audit(1780125451.895:465): avc:  denied  { getattr } for  pid=5117 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  181.661816] audit: type=1400 audit(1780125451.909:466): avc:  denied  { read } for  pid=5117 comm="modprobe" name="modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  181.705538] audit: type=1400 audit(1780125451.909:467): avc:  denied  { read open } for  pid=5117 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  181.705647] audit: type=1400 audit(1780125451.909:468): avc:  denied  { getattr } for  pid=5117 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  181.705871] audit: type=1400 audit(1780125451.916:469): avc:  denied  { map } for  pid=5117 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  181.705965] audit: type=1400 audit(1780125451.916:470): avc:  denied  { read } for  pid=5117 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  181.771378] netlink: 8 bytes leftover after parsing attributes in process `syz.3.1497'.
+[  185.899742] kauditd_printk_skb: 25 callbacks suppressed
+[  185.899757] audit: type=1400 audit(1780125456.253:496): avc:  denied  { read } for  pid=5270 comm="modprobe" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  185.962341] audit: type=1400 audit(1780125456.258:497): avc:  denied  { read open } for  pid=5270 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  185.997073] audit: type=1400 audit(1780125456.259:498): avc:  denied  { getattr } for  pid=5270 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  186.026828] audit: type=1400 audit(1780125456.267:499): avc:  denied  { read } for  pid=5270 comm="modprobe" name="modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  186.054941] audit: type=1400 audit(1780125456.269:500): avc:  denied  { read open } for  pid=5270 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  186.074007] audit: type=1400 audit(1780125456.274:501): avc:  denied  { getattr } for  pid=5270 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  186.108447] audit: type=1400 audit(1780125456.275:502): avc:  denied  { map } for  pid=5270 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  186.137518] audit: type=1400 audit(1780125456.275:503): avc:  denied  { read } for  pid=5270 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  186.172332] audit: type=1400 audit(1780125456.282:504): avc:  denied  { read } for  pid=5270 comm="modprobe" name="modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  186.206231] audit: type=1400 audit(1780125456.282:505): avc:  denied  { read open } for  pid=5270 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  186.770985] netlink: 16 bytes leftover after parsing attributes in process `syz.0.1580'.
+[  190.323641] netlink: 4 bytes leftover after parsing attributes in process `syz.1.1635'.
+[  190.352747] netlink: 4 bytes leftover after parsing attributes in process `syz.1.1635'.
+[  190.681382] bochs-drm 0000:00:01.0: [drm] Unknown color mode 7; guessing buffer size.
+[  191.008448] kauditd_printk_skb: 85 callbacks suppressed
+[  191.008466] audit: type=1400 audit(1780125461.358:591): avc:  denied  { execmem } for  pid=5453 comm="syz.2.1660" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[  191.604865] audit: type=1400 audit(1780125461.953:592): avc:  denied  { execmem } for  pid=5474 comm="syz.0.1664" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[  191.807344] audit: type=1400 audit(1780125462.154:593): avc:  denied  { execmem } for  pid=5474 comm="syz.0.1664" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[  192.542520] audit: type=1400 audit(1780125462.883:594): avc:  denied  { name_bind } for  pid=5512 comm="syz.3.1680" src=20004 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:port_t:s0 tclass=icmp_socket permissive=1
+[  192.583658] audit: type=1400 audit(1780125462.884:595): avc:  denied  { node_bind } for  pid=5512 comm="syz.3.1680" saddr=172.20.20.20 src=20004 scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=system_u:object_r:node_t:s0 tclass=icmp_socket permissive=1
+[  193.493306] audit: type=1400 audit(1780125463.846:596): avc:  denied  { execmem } for  pid=5548 comm="syz.2.1696" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[  193.707246] program syz.1.1699 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  193.984379] audit: type=1400 audit(1780125464.324:597): avc:  denied  { execmem } for  pid=5548 comm="syz.2.1696" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[  194.022049] audit: type=1400 audit(1780125464.373:598): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  194.070714] audit: type=1400 audit(1780125464.374:599): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  194.126399] audit: type=1400 audit(1780125464.412:600): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  194.285183] netlink: 4 bytes leftover after parsing attributes in process `syz.3.1707'.
+[  194.296732] netlink: 4 bytes leftover after parsing attributes in process `syz.3.1707'.
+[  194.909978] netlink: 4 bytes leftover after parsing attributes in process `syz.2.1719'.
+[  194.950195] netlink: 4 bytes leftover after parsing attributes in process `syz.2.1719'.
+[  195.083655] program syz.0.1724 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  195.670651] program syz.2.1734 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  197.599125] kauditd_printk_skb: 4 callbacks suppressed
+[  197.599142] audit: type=1400 audit(1780125467.951:605): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  197.654930] audit: type=1400 audit(1780125467.952:606): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  197.686378] audit: type=1400 audit(1780125467.953:607): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  197.711645] audit: type=1400 audit(1780125467.954:608): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  197.731526] audit: type=1400 audit(1780125467.955:609): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  200.189367] serio: Serial port ptm0
+[  200.891326] audit: type=1400 audit(1780125471.243:610): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  200.939292] audit: type=1400 audit(1780125471.249:611): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  200.965715] audit: type=1400 audit(1780125471.256:612): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  201.028084] audit: type=1400 audit(1780125471.259:613): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  201.057823] audit: type=1400 audit(1780125471.259:614): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  202.714802] serio: Serial port ptm0
+[  204.279234] audit: type=1400 audit(1780125474.625:615): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  204.336065] audit: type=1400 audit(1780125474.626:616): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  204.355161] serio: Serial port ptm0
+[  204.374488] audit: type=1400 audit(1780125474.627:617): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  204.420676] audit: type=1400 audit(1780125474.628:618): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  204.463864] audit: type=1400 audit(1780125474.629:619): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  205.241747] audit: type=1400 audit(1780125475.592:620): avc:  denied  { execmem } for  pid=5909 comm="syz.0.1869" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[  205.826010] program syz.3.1877 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  205.903915] sr 2:0:0:0: [sr0] tag#0 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+[  205.916106] sr 2:0:0:0: [sr0] tag#0 CDB: opcode=0x95 95 00 00 00 00 00 00 00 00 00 00 00
+[  205.922710] serio: Serial port ptm0
+[  207.309213] audit: type=1400 audit(1780125477.662:621): avc:  denied  { read } for  pid=5989 comm="modprobe" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  207.337110] audit: type=1400 audit(1780125477.663:622): avc:  denied  { read open } for  pid=5989 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  207.371788] audit: type=1400 audit(1780125477.663:623): avc:  denied  { getattr } for  pid=5989 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  207.415620] audit: type=1400 audit(1780125477.669:624): avc:  denied  { read } for  pid=5989 comm="modprobe" name="modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  209.313224] kauditd_printk_skb: 30 callbacks suppressed
+[  209.313241] audit: type=1400 audit(1780125479.662:655): avc:  denied  { read } for  pid=6065 comm="modprobe" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  209.362405] audit: type=1400 audit(1780125479.672:656): avc:  denied  { read open } for  pid=6065 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  209.388956] audit: type=1400 audit(1780125479.672:657): avc:  denied  { getattr } for  pid=6065 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  209.422788] audit: type=1400 audit(1780125479.686:658): avc:  denied  { read } for  pid=6065 comm="modprobe" name="modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  209.456062] audit: type=1400 audit(1780125479.686:659): avc:  denied  { read open } for  pid=6065 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  209.484874] audit: type=1400 audit(1780125479.690:660): avc:  denied  { getattr } for  pid=6065 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  209.511519] audit: type=1400 audit(1780125479.690:661): avc:  denied  { map } for  pid=6065 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  209.541282] audit: type=1400 audit(1780125479.691:662): avc:  denied  { read } for  pid=6065 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  209.572366] audit: type=1400 audit(1780125479.696:663): avc:  denied  { read } for  pid=6065 comm="modprobe" name="modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  209.613268] audit: type=1400 audit(1780125479.696:664): avc:  denied  { read open } for  pid=6065 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  211.319534] sr 2:0:0:0: [sr0] tag#31 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+[  211.333327] sr 2:0:0:0: [sr0] tag#31 CDB: opcode=0x95 95 00 00 00 00 00 00 00 00 00 00 00
+[  211.756569] program syz.2.1968 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  212.324994] sr 2:0:0:0: [sr0] tag#1 FAILED Result: hostbyte=DID_ERROR driverbyte=DRIVER_OK cmd_age=0s
+[  212.338365] sr 2:0:0:0: [sr0] tag#1 CDB: opcode=0x95 95 00 00 00 00 00 00 00 00 00 00 00
+[  213.188317] program syz.0.1981 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  215.855178] program syz.1.1996 is using a deprecated SCSI ioctl, please convert it to SG_IO
+[  217.756576] kauditd_printk_skb: 29 callbacks suppressed
+[  217.756593] audit: type=1400 audit(1780125488.105:694): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  217.805026] audit: type=1400 audit(1780125488.109:695): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  217.833184] audit: type=1400 audit(1780125488.109:696): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  217.870242] audit: type=1400 audit(1780125488.109:697): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  217.907115] audit: type=1400 audit(1780125488.109:698): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  220.800609] audit: type=1400 audit(1780125491.152:699): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  220.839438] audit: type=1400 audit(1780125491.154:700): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  220.912999] audit: type=1400 audit(1780125491.154:701): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  220.953966] audit: type=1400 audit(1780125491.162:702): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  220.982557] audit: type=1400 audit(1780125491.162:703): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  223.974857] audit: type=1400 audit(1780125494.325:704): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  224.013298] audit: type=1400 audit(1780125494.328:705): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  224.038034] audit: type=1400 audit(1780125494.328:706): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  224.067624] audit: type=1400 audit(1780125494.328:707): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  224.103624] audit: type=1400 audit(1780125494.331:708): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  225.517922] netlink: 8 bytes leftover after parsing attributes in process `syz.1.2095'.
+[  226.367886] netlink: 8 bytes leftover after parsing attributes in process `syz.3.2120'.
+[  227.089685] netlink: 8 bytes leftover after parsing attributes in process `syz.2.2132'.
+[  227.845605] audit: type=1400 audit(1780125498.196:709): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  227.915016] audit: type=1400 audit(1780125498.197:710): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  227.955423] audit: type=1400 audit(1780125498.197:711): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  227.984953] audit: type=1400 audit(1780125498.200:712): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  228.021912] audit: type=1400 audit(1780125498.202:713): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  231.107678] audit: type=1400 audit(1780125501.458:714): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  231.150685] audit: type=1400 audit(1780125501.459:715): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  231.180501] audit: type=1400 audit(1780125501.460:716): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  231.212872] audit: type=1400 audit(1780125501.461:717): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  231.247883] audit: type=1400 audit(1780125501.462:718): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  234.104991] audit: type=1400 audit(1780125504.456:719): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  234.123385] audit: type=1400 audit(1780125504.456:720): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  234.143166] audit: type=1400 audit(1780125504.456:721): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  234.160106] audit: type=1400 audit(1780125504.456:722): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  234.186385] audit: type=1400 audit(1780125504.456:723): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  237.147092] audit: type=1400 audit(1780125507.499:724): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  237.170967] audit: type=1400 audit(1780125507.500:725): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  237.199260] audit: type=1400 audit(1780125507.500:726): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  237.226093] audit: type=1400 audit(1780125507.500:727): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  237.244386] audit: type=1400 audit(1780125507.500:728): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  237.401055] netlink: 24 bytes leftover after parsing attributes in process `syz.2.2323'.
+[  237.837959] audit: type=1400 audit(1780125508.190:729): avc:  denied  { read } for  pid=6897 comm="modprobe" name="modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  237.868566] audit: type=1400 audit(1780125508.205:730): avc:  denied  { read open } for  pid=6897 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  237.938387] audit: type=1400 audit(1780125508.205:731): avc:  denied  { getattr } for  pid=6897 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.softdep" dev="sda" ino=14431415 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  237.968441] audit: type=1400 audit(1780125508.213:732): avc:  denied  { read } for  pid=6897 comm="modprobe" name="modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  237.990497] audit: type=1400 audit(1780125508.215:733): avc:  denied  { read open } for  pid=6897 comm="modprobe" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  238.530758] netlink: 8 bytes leftover after parsing attributes in process `syz.2.2359'.
+[  240.798249] loop0: detected capacity change from 0 to 32768
+[  242.895644] loop3: detected capacity change from 0 to 736
+[  243.500559] kauditd_printk_skb: 32 callbacks suppressed
+[  243.500572] audit: type=1400 audit(1780125513.852:766): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  243.534560] audit: type=1400 audit(1780125513.873:767): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  243.572089] audit: type=1400 audit(1780125513.879:768): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  243.599456] audit: type=1400 audit(1780125513.879:769): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  243.618818] audit: type=1400 audit(1780125513.879:770): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  244.693052] audit: type=1401 audit(1780125515.044:771): op=setxattr invalid_context="u:object_r:app_data_file:s0:c512,c768"
+[  246.513630] audit: type=1400 audit(1780125516.866:772): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  246.556398] audit: type=1400 audit(1780125516.870:773): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  246.596241] audit: type=1400 audit(1780125516.875:774): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  246.623304] audit: type=1400 audit(1780125516.876:775): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  248.576282] 9pnet_fd: Insufficient options for proto=fd
+[  249.115020] loop3: detected capacity change from 0 to 2048
+[  249.160648]  loop3: p2 p3 p7
+[  249.516993] kauditd_printk_skb: 3 callbacks suppressed
+[  249.517011] audit: type=1400 audit(1780125519.865:779): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  249.566037] audit: type=1400 audit(1780125519.866:780): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  249.587389] audit: type=1400 audit(1780125519.867:781): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  249.640476] audit: type=1400 audit(1780125519.868:782): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  249.684295] audit: type=1400 audit(1780125519.868:783): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  251.197769] audit: type=1400 audit(1780125521.550:784): avc:  denied  { block_suspend } for  pid=7475 comm="syz.1.2614" capability=36  scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=capability2 permissive=1
+[  252.862098] audit: type=1400 audit(1780125523.212:785): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  252.917266] audit: type=1400 audit(1780125523.222:786): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  252.962579] audit: type=1400 audit(1780125523.224:787): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  252.991346] audit: type=1400 audit(1780125523.228:788): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  255.966357] kauditd_printk_skb: 1 callbacks suppressed
+[  255.966374] audit: type=1400 audit(1780125526.306:790): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  256.052995] audit: type=1400 audit(1780125526.314:791): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  256.088468] audit: type=1400 audit(1780125526.335:792): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  256.120859] audit: type=1400 audit(1780125526.335:793): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  256.152905] audit: type=1400 audit(1780125526.353:794): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  256.250328] netlink: 40 bytes leftover after parsing attributes in process `syz.2.2687'.
+[  256.799210] pimreg: entered allmulticast mode
+[  256.817542] pimreg: left allmulticast mode
+[  257.175856] watchdog: watchdog0: watchdog did not stop!
+[  258.988280] audit: type=1400 audit(1780125529.339:795): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  259.023217] audit: type=1400 audit(1780125529.341:796): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  259.050015] audit: type=1400 audit(1780125529.341:797): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  259.097830] audit: type=1400 audit(1780125529.347:798): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  259.133982] audit: type=1400 audit(1780125529.347:799): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  260.651804] watchdog: watchdog0: watchdog did not stop!
+[  261.000928] audit: type=1400 audit(1780125531.351:800): avc:  denied  { checkpoint_restore } for  pid=7757 comm="agetty" capability=40  scontext=system_u:system_r:getty_t:s0 tcontext=system_u:system_r:getty_t:s0 tclass=capability2 permissive=1
+[  261.772184] audit: type=1400 audit(1780125532.123:801): avc:  denied  { execmem } for  pid=7813 comm="syz.0.2774" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+[  262.156534] ------------[ cut here ]------------
+[  262.158882] [CRTC:35:crtc-0] vblank wait timed out
+[  262.161292] WARNING: drivers/gpu/drm/drm_atomic_helper.c:1921 at drm_atomic_helper_wait_for_vblanks.part.0+0x627/0x7b0 [drm_kms_helper], CPU#0: kworker/0:1/10
+[  262.171273] audit: type=1400 audit(1780125532.434:802): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  262.171627] Modules linked in: qrtr intel_vpu(+) iTCO_wdt bochs intel_pmc_bxt i2c_i801 drm_client_lib drm_shmem_helper watchdog i2c_smbus drm_kms_helper lpc_ich
+[  262.172013] CPU: 0 UID: 0 PID: 10 Comm: kworker/0:1 Tainted: G      D W        N  7.0.0 #7 PREEMPT(full) 
+[  262.172041] Tainted: [D]=DIE, [W]=WARN, [N]=TEST
+[  262.172047] Hardware name: QEMU Standard PC (Q35 + ICH9, 2009), BIOS rel-1.16.3-0-ga6ed6b701f0a-prebuilt.qemu.org 04/01/2014
+[  262.172059] Workqueue: events drm_fb_helper_damage_work [drm_kms_helper]
+[  262.172258] RIP: 0010:drm_atomic_helper_wait_for_vblanks.part.0+0x62d/0x7b0 [drm_kms_helper]
+[  262.172536] Code: 00 48 8b 55 20 48 89 f8 48 c1 e8 03 42 0f b6 04 20 84 c0 74 08 3c 03 0f 8e 63 01 00 00 48 8d 3d 29 22 21 00 8b b5 d8 00 00 00 <67> 48 0f b9 3a e9 9b fd ff ff 44 8b 7c 24 3c 4c 89 eb e8 9c 7f 77
+[  262.172550] RSP: 0018:ffff888100cb7738 EFLAGS: 00010246
+[  262.172576] RAX: 0000000000000000 RBX: 0000000000000000 RCX: ffffffff81838b98
+[  262.172585] RDX: ffff888101b9a1c0 RSI: 0000000000000023 RDI: ffffffffa0220190
+[  262.172595] RBP: ffff888118d15318 R08: 0000000000000000 R09: 0000000000000000
+[  262.172603] R10: ffffffff88486997 R11: 0000000000000259 R12: dffffc0000000000
+[  262.172612] R13: 0000000000000000 R14: ffff88811857d700 R15: 0000000000000000
+[  262.172621] FS:  0000000000000000(0000) GS:ffff8881d07f9000(0000) knlGS:0000000000000000
+[  262.172632] CS:  0010 DS: 0000 ES: 0000 CR0: 0000000080050033
+[  262.172641] CR2: 00007ffeedfbf478 CR3: 0000000119c2c000 CR4: 00000000000006f0
+[  262.173022] Call Trace:
+[  262.173031]  <TASK>
+[  262.173042]  ? __pfx_drm_atomic_helper_wait_for_vblanks.part.0+0x10/0x10 [drm_kms_helper]
+[  262.173287]  ? trace_irq_enable.constprop.0+0x116/0x150
+[  262.173402]  ? __pfx_autoremove_wake_function+0x10/0x10
+[  262.173446]  ? drm_atomic_helper_commit_hw_done+0x347/0x4b0 [drm_kms_helper]
+[  262.173620]  drm_atomic_helper_commit_tail+0x100/0x130 [drm_kms_helper]
+[  262.173792]  commit_tail+0x2c2/0x390 [drm_kms_helper]
+[  262.174094]  drm_atomic_helper_commit+0x308/0x390 [drm_kms_helper]
+[  262.174266]  ? __pfx_drm_atomic_helper_commit+0x10/0x10 [drm_kms_helper]
+[  262.174474]  drm_atomic_commit+0x238/0x300
+[  262.174569]  ? __pfx_drm_atomic_commit+0x10/0x10
+[  262.174589]  ? __pfx___drm_printfn_info+0x10/0x10
+[  262.174621]  ? drm_mode_object_get+0x104/0x170
+[  262.174670]  drm_atomic_helper_dirtyfb+0x60f/0x790 [drm_kms_helper]
+[  262.174852]  ? __pfx_drm_atomic_helper_dirtyfb+0x10/0x10 [drm_kms_helper]
+[  262.175151]  ? lock_release+0x208/0x2b0
+[  262.175191]  ? do_raw_spin_lock+0x130/0x270
+[  262.175223]  ? __pfx_do_raw_spin_lock+0x10/0x10
+[  262.175240]  ? lock_acquire+0x1ca/0x310
+[  262.175254]  ? _raw_spin_unlock_irqrestore+0x31/0x60
+[  262.175376]  ? __pfx_drm_atomic_helper_dirtyfb+0x10/0x10 [drm_kms_helper]
+[  262.175564]  drm_fbdev_shmem_helper_fb_dirty+0x1d1/0x320 [drm_shmem_helper]
+[  262.175603]  drm_fb_helper_damage_work+0x335/0x630 [drm_kms_helper]
+[  262.175778]  ? do_raw_spin_lock+0x130/0x270
+[  262.175796]  ? __pfx_drm_fb_helper_damage_work+0x10/0x10 [drm_kms_helper]
+[  262.208573] audit: type=1400 audit(1780125532.434:803): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  262.222821]  ? lock_acquire+0x1ca/0x310
+[  262.249931] audit: type=1400 audit(1780125532.434:804): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  262.257023]  ? lock_release+0x208/0x2b0
+[  262.266363] audit: type=1400 audit(1780125532.434:805): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  262.284982]  process_one_work+0x920/0x1ac0
+[  262.295191] audit: type=1400 audit(1780125532.434:806): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  262.295953]  ? __pfx_process_one_work+0x10/0x10
+[  262.514154]  ? __pfx_drm_fb_helper_damage_work+0x10/0x10 [drm_kms_helper]
+[  262.518740]  worker_thread+0x698/0xeb0
+[  262.520858]  ? __pfx_worker_thread+0x10/0x10
+[  262.523636]  kthread+0x38a/0x4a0
+[  262.525558]  ? trace_irq_enable.constprop.0+0x116/0x150
+[  262.528351]  ? __pfx_kthread+0x10/0x10
+[  262.530993]  ret_from_fork+0x690/0xaa0
+[  262.534029]  ? __pfx_ret_from_fork+0x10/0x10
+[  262.537085]  ? native_load_tls+0x10/0x40
+[  262.540011]  ? __switch_to+0x5e6/0xe90
+[  262.542860]  ? __pfx_kthread+0x10/0x10
+[  262.545033]  ret_from_fork_asm+0x1a/0x30
+[  262.547869]  </TASK>
+[  262.549600] irq event stamp: 5778
+[  262.552050] hardirqs last  enabled at (5777): [<ffffffff860c70b8>] _raw_spin_unlock_irq+0x28/0x50
+[  262.557905] hardirqs last disabled at (5778): [<ffffffff860a8bf1>] __schedule+0x1ac1/0x40b0
+[  262.563685] softirqs last  enabled at (5774): [<ffffffff81708ed2>] css_free_rwork_fn+0x152/0x10a0
+[  262.569170] softirqs last disabled at (5772): [<ffffffff81708eb6>] css_free_rwork_fn+0x136/0x10a0
+[  262.575078] ---[ end trace 0000000000000000 ]---
+[  265.135549] audit: type=1400 audit(1780125535.439:807): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  265.156180] audit: type=1400 audit(1780125535.439:808): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  265.179909] audit: type=1400 audit(1780125535.439:809): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  268.092559] kauditd_printk_skb: 2 callbacks suppressed
+[  268.092572] audit: type=1400 audit(1780125538.445:812): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  268.110133] audit: type=1400 audit(1780125538.445:813): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  268.127939] audit: type=1400 audit(1780125538.447:814): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  268.142377] audit: type=1400 audit(1780125538.447:815): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  268.156617] audit: type=1400 audit(1780125538.448:816): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  271.092391] audit: type=1400 audit(1780125541.445:817): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.dep.bin" dev="sda" ino=14431412 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  271.106593] audit: type=1400 audit(1780125541.446:818): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.alias.bin" dev="sda" ino=14431414 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  271.122069] audit: type=1400 audit(1780125541.446:819): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.symbols.bin" dev="sda" ino=14431417 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  271.136872] audit: type=1400 audit(1780125541.446:820): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.alias.bin" dev="sda" ino=14431419 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[  271.151172] audit: type=1400 audit(1780125541.446:821): avc:  denied  { getattr } for  pid=164 comm="systemd-udevd" path="/usr/lib/modules/7.0.0/modules.builtin.bin" dev="sda" ino=14431418 scontext=system_u:system_r:udev_t:s0-s0:c0.c1023 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1

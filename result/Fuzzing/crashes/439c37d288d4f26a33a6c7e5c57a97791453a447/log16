@@ -1,0 +1,48 @@
+last executing test programs:
+
+754.189895ms ago: executing program 2 (id=3):
+mmap(&(0x7efffffff000/0x1000)=nil, 0x1000, 0x0, 0x32, 0xffffffffffffffff, 0x0)
+mmap(&(0x7f0000000000/0x1000000)=nil, 0x1000000, 0x7, 0x32, 0xffffffffffffffff, 0x0)
+mmap(&(0x7f0001000000/0x1000)=nil, 0x1000, 0x0, 0x32, 0xffffffffffffffff, 0x0)
+
+642.168482ms ago: executing program 3 (id=4):
+mmap(&(0x7efffffff000/0x1000)=nil, 0x1000, 0x0, 0x32, 0xffffffffffffffff, 0x0)
+mmap(&(0x7f0000000000/0x1000000)=nil, 0x1000000, 0x7, 0x32, 0xffffffffffffffff, 0x0)
+mmap(&(0x7f0001000000/0x1000)=nil, 0x1000, 0x0, 0x32, 0xffffffffffffffff, 0x0)
+
+435.169759ms ago: executing program 0 (id=1):
+mmap(&(0x7efffffff000/0x1000)=nil, 0x1000, 0x0, 0x32, 0xffffffffffffffff, 0x0)
+mmap(&(0x7f0000000000/0x1000000)=nil, 0x1000000, 0x7, 0x32, 0xffffffffffffffff, 0x0)
+mmap(&(0x7f0001000000/0x1000)=nil, 0x1000, 0x0, 0x32, 0xffffffffffffffff, 0x0)
+
+258.147857ms ago: executing program 4 (id=5):
+mmap(&(0x7efffffff000/0x1000)=nil, 0x1000, 0x0, 0x32, 0xffffffffffffffff, 0x0)
+mmap(&(0x7f0000000000/0x1000000)=nil, 0x1000000, 0x7, 0x32, 0xffffffffffffffff, 0x0)
+mmap(&(0x7f0001000000/0x1000)=nil, 0x1000, 0x0, 0x32, 0xffffffffffffffff, 0x0)
+
+181.47135ms ago: executing program 3 (id=6):
+mmap(&(0x7efffffff000/0x1000)=nil, 0x1000, 0x0, 0x32, 0xffffffffffffffff, 0x0)
+mmap(&(0x7f0000000000/0x1000000)=nil, 0x1000000, 0x7, 0x32, 0xffffffffffffffff, 0x0)
+mmap(&(0x7f0001000000/0x1000)=nil, 0x1000, 0x0, 0x32, 0xffffffffffffffff, 0x0)
+
+0s ago: executing program 0 (id=7):
+expanding glob: /sys/**/*
+
+kernel console output (not intermixed with test programs):
+
+Warning: Permanently added '[localhost]:36903' (ED25519) to the list of known hosts.
+[   38.866116] cgroup: Unknown subsys name 'net'
+[   38.904386] cgroup: Unknown subsys name 'cpuset'
+[   38.916042] cgroup: Unknown subsys name 'rlimit'
+[   38.918317] cgroup: Unknown subsys name 'memory'
+[   38.969486] kmemleak: Automatic memory scanning thread ended
+[   49.496938] kmemleak: 7 new suspected memory leaks (see /sys/kernel/debug/kmemleak)
+[   49.556590] audit: type=1400 audit(1786534955.929:35): avc:  denied  { read } for  pid=302 comm="modprobe" name="modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   49.572395] audit: type=1400 audit(1786534955.929:36): avc:  denied  { open } for  pid=302 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   49.586935] audit: type=1400 audit(1786534955.929:37): avc:  denied  { getattr } for  pid=302 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.softdep" dev="sda" ino=14431411 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+[   49.598131] audit: type=1400 audit(1786534955.933:38): avc:  denied  { map } for  pid=302 comm="modprobe" path="/usr/lib/modules/7.1.0+/modules.dep.bin" dev="sda" ino=14431408 scontext=system_u:system_r:kmod_t:s0 tcontext=system_u:object_r:unlabeled_t:s0 tclass=file permissive=1
+Setting up swapspace version 1, size = 122.1 MiB (127995904 bytes)
+no label, UUID=743fdf80-0ab3-4e27-b18b-1069439fb934
+[   49.659654] Adding 124996k swap on ./swap-file.  Priority:0 extents:1 across:124996k 
+[   52.342312] audit: type=1400 audit(1786534958.715:39): avc:  denied  { execmem } for  pid=306 comm="syz-executor" scontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tcontext=unconfined_u:unconfined_r:unconfined_t:s0-s0:c0.c1023 tclass=process permissive=1
+Connection to localhost closed by remote host.

@@ -1,0 +1,152 @@
+From: Author A <author-a@example.com>
+To: jdelvare@suse.com, andi.shyti@kernel.org
+Cc: wsa@kernel.org, hkallweit1@gmail.com, djkurtz@chromium.org,
+ linux-i2c@vger.kernel.org, linux-kernel@vger.kernel.org,
+ Author A <author-a@example.com>, stable@vger.kernel.org
+Subject: [PATCH v3] i2c: i801: Fix hardware state machine corruption and
+ stack-out-of-bounds
+Date: Sat, 27 Jun 2026 19:17:49 +0800
+	Message-Id:MIME-Version:Content-Transfer-Encoding; bh=7L/0ht5SSW
+	jab3/h55lZ1197QJFY7w7tW0N5P6EhLb4=; b=4AufVSPTPjhdwOhwM/N/mn/wSC
+	IE06qnnV9D5ItTeIIHo9bwtrYgYyyNk94PKVnonyi82OQmCEnI0qC7m897Q2zHl/
+	FCXvBfiHPU5Iry3VSseeaJZRTU/kzRvrs7q9nab0CvONqnN2tLl07aUDQnSVZbDX
+	zV0GJDSM8CatlkhTw=
+Message-Id: <20260627111749.482415-1-author-a@example.com>
+List-Id: <linux-i2c.vger.kernel.org>
+
+Under extreme conditions (e.g., fault injection or transaction timeouts),
+the i801 SMBus controller driver exhibits two error handling issues:
+
+1. When i801_check_pre() fails, the driver jumps to the 'out' label
+   and clears the INUSE_STS and status flags without holding hardware
+   ownership, corrupting the hardware state machine.
+
+2. When a transaction aborts and returns from i801_access(), the
+   stack-allocated union i2c_smbus_data is destroyed. However,
+   priv->data is not cleared. A spurious interrupt can then trigger a
+   stack-out-of-bounds read in i801_isr_byte_done(), caught by KASAN:
+
+  BUG: KASAN: stack-out-of-bounds in i801_isr_byte_done drivers/i2c/busses/i2c-i801.c:592 [inline]
+  BUG: KASAN: stack-out-of-bounds in i801_isr drivers/i2c/busses/i2c-i801.c:648 [inline]
+  Read of size 1 at addr ffff8881026dfd91 by task in:imklog/218
+
+  CPU: 2 UID: 0 PID: 218 Comm: in:imklog Tainted: G        W        N  7.1.0+ #1
+  Call Trace:
+   <IRQ>
+   ...
+   kasan_report+0xca/0x100 mm/kasan/report.c:595
+   i801_isr_byte_done drivers/i2c/busses/i2c-i801.c:592 [inline]
+   i801_isr drivers/i2c/busses/i2c-i801.c:648 [inline]
+   __handle_irq_event_percpu+0x222/0x830 kernel/irq/handle.c:209
+   ...
+   </IRQ>
+
+Fix these issues by:
+- Bypassing hardware register cleanup if i801_check_pre() fails.
+- Fetching priv->data via READ_ONCE() into a local variable in the ISR
+  to prevent compiler reloading across I/O barriers, paired with
+  WRITE_ONCE() in the exit path.
+- Calling synchronize_irq() conditionally on the error path (only if
+  a transaction was actually initiated) before returning to ensure any
+  in-flight ISR finishes before stack memory is reclaimed.
+
+Fixes: 1f760b87e54c ("i2c: i801: Call i801_check_pre() from i801_access()")
+Fixes: d3ff6ce40031 ("i2c-i801: Enable IRQ for byte_by_byte transactions")
+Cc: stable@vger.kernel.org
+Signed-off-by: Author A <author-a@example.com>
+---
+Changes in v3:
+ - Fetched priv->data into a local variable using READ_ONCE() in the ISR
+   to prevent compiler reloading across I/O barriers, addressing a
+   potential NULL pointer dereference on the success path.
+ - Wrapped the error path cleanup in `if (priv->data)` to safely bypass
+   synchronize_irq() when i801_check_pre() fails.
+
+Changes in v2:
+ - Split error paths to bypass hardware register cleanup on pre-check
+   failure.
+ - Added READ_ONCE() check in ISR to prevent OOB access.
+ - Conditionally use WRITE_ONCE() and synchronize_irq() on the error
+   path to prevent race condition without performance regression.
+
+ drivers/i2c/busses/i2c-i801.c | 31 +++++++++++++++++++++++++++----
+ 1 file changed, 27 insertions(+), 4 deletions(-)
+
+diff --git a/drivers/i2c/busses/i2c-i801.c b/drivers/i2c/busses/i2c-i801.c
+index 32a3cef02c7b..0275e828646d 100644
+--- a/drivers/i2c/busses/i2c-i801.c
++++ b/drivers/i2c/busses/i2c-i801.c
+@@ -562,6 +562,16 @@ static int i801_block_transaction_by_block(struct i801_priv *priv,
+ 
+ static void i801_isr_byte_done(struct i801_priv *priv)
+ {
++	u8 *data;
++
++	/*
++	 * Fetch the pointer once into a local variable to prevent compiler
++	 * reloading across I/O barriers, which could cause a NULL dereference.
++	 */
++	data = READ_ONCE(priv->data);
++	if (unlikely(!data))
++		return;
++
+ 	if (priv->is_read) {
+ 		/*
+ 		 * At transfer start i801_smbus_block_transaction() marks
+@@ -574,12 +584,12 @@ static void i801_isr_byte_done(struct i801_priv *priv)
+ 				/* FIXME: Recover */
+ 				priv->len = I2C_SMBUS_BLOCK_MAX;
+ 
+-			priv->data[-1] = priv->len;
++			data[-1] = priv->len;
+ 		}
+ 
+ 		/* Read next byte */
+ 		if (priv->count < priv->len)
+-			priv->data[priv->count++] = ioread8(SMBBLKDAT(priv));
++			data[priv->count++] = ioread8(SMBBLKDAT(priv));
+ 		else
+ 			pci_dbg(priv->pci_dev, "Discarding extra byte on block read\n");
+ 
+@@ -589,7 +599,7 @@ static void i801_isr_byte_done(struct i801_priv *priv)
+ 			       SMBHSTCNT(priv));
+ 	} else if (priv->count < priv->len - 1) {
+ 		/* Write next byte, except for IRQ after last byte */
+-		iowrite8(priv->data[++priv->count], SMBBLKDAT(priv));
++		iowrite8(data[++priv->count], SMBBLKDAT(priv));
+ 	}
+ }
+ 
+@@ -905,7 +915,7 @@ static s32 i801_access(struct i2c_adapter *adap, u16 addr,
+ 
+ 	ret = i801_check_pre(priv);
+ 	if (ret)
+-		goto out;
++		goto out_err;
+ 
+ 	hwpec = (priv->features & FEATURE_SMBUS_PEC) && (flags & I2C_CLIENT_PEC)
+ 		&& size != I2C_SMBUS_QUICK
+@@ -938,6 +948,19 @@ static s32 i801_access(struct i2c_adapter *adap, u16 addr,
+ 	 */
+ 	iowrite8(SMBHSTSTS_INUSE_STS | STATUS_FLAGS, SMBHSTSTS(priv));
+ 
++out_err:
++	/*
++	 * Prevent UAF/OOB in the ISR.
++	 * If priv->data is non-NULL, a transaction was initiated.
++	 * For timed-out or aborted transactions (ret != 0), flush any
++	 * in-flight interrupts before destroying the stack-allocated data.
++	 */
++	if (priv->data) {
++		WRITE_ONCE(priv->data, NULL);
++		if (unlikely(ret != 0 && (priv->features & FEATURE_IRQ)))
++			synchronize_irq(priv->pci_dev->irq);
++	}
++
+ 	pm_runtime_put_autosuspend(&priv->pci_dev->dev);
+ 	mutex_unlock(&priv->acpi_lock);
+ 	return ret;
+-- 
+2.34.1
+
+

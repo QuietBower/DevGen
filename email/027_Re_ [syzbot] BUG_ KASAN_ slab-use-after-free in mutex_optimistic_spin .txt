@@ -1,0 +1,50 @@
+From: Peter Zijlstra <peterz@infradead.org>
+To: Author B <author-b@example.com>
+Cc: linux-crypto@vger.kernel.org, qat-linux@intel.com,
+ syzkaller-bugs@googlegroups.com, security@kernel.org,
+ linux-kernel@vger.kernel.org
+Subject: Re: [syzbot] BUG: KASAN: slab-use-after-free in mutex_optimistic_spin
+ via adf_ctl_ioctl
+Date: Thu, 08 Jan 2026 12:24:11 +0100
+Message-ID: <20260108112411.GI272712@noisy.programming.kicks-ass.net>
+In-Reply-To: <7b50a9a8.abb1.19b9b902fae.Coremail.author-b@example.com>
+References: <7b50a9a8.abb1.19b9b902fae.Coremail.author-b@example.com>
+List-Id: <linux-crypto.vger.kernel.org>
+
+On Thu, Jan 08, 2026 at 11:04:36AM +0800, Author B wrote:
+> syzbot has found the following issue on:
+> 
+> HEAD commit:    6.18.0 (custom build)
+> git tree:       linux-stable
+> console output: (see below)
+> kernel config:  (attached)
+> 
+> ---
+> 
+> QAT: failed to copy from user cfg_data.
+> c6xxvf 0000:00:05.0: Starting acceleration device qat_dev0.
+> ==================================================================
+> BUG: KASAN: slab-use-after-free in owner_on_cpu home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/sched.h:2282 [inline]
+> BUG: KASAN: slab-use-after-free in mutex_can_spin_on_owner home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:397 [inline]
+> BUG: KASAN: slab-use-after-free in mutex_optimistic_spin home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:440 [inline]
+> BUG: KASAN: slab-use-after-free in __mutex_lock_common home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:602 [inline]
+> BUG: KASAN: slab-use-after-free in __mutex_lock+0xd0a/0x1160 home/wmy/Fuzzer/third_tool/linux-6.18/kernel/locking/mutex.c:760
+
+> Allocated by task 150:
+
+>  getname_flags.part.0+0x50/0x560 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:146
+>  getname_flags+0x9a/0xe0 home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/audit.h:345
+>  getname home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/fs.h:2924 [inline]
+
+> 
+> Freed by task 150:
+
+>  putname.part.0+0x120/0x160 home/wmy/Fuzzer/third_tool/linux-6.18/fs/namei.c:297
+>  putname+0x41/0x50 home/wmy/Fuzzer/third_tool/linux-6.18/include/linux/err.h:84
+
+> The buggy address belongs to the object at ffff888104e04400
+>  which belongs to the cache names_cache of size 4096
+
+So how again is mutex->owner a names_cache object? This seems to suggest
+something has gone terribly wrong somewhere.
+
