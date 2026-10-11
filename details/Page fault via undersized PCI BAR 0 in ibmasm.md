@@ -18,7 +18,7 @@ This section tracks the complete email correspondence and patch history for this
 | [PATCH v3 0/2] misc: ibmasm: Fix out-of-bounds MMIO accesses | <u>[mail](../email/273_%5BPATCH%20v3%200_2%5D%20misc_%20ibmasm_%20Fix%20out-of-bounds%20MMIO%20accesses.txt)</u> |
 | [PATCH v3 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe | <u>[mail](../email/274_%5BPATCH%20v3%201_2%5D%20misc_%20ibmasm_%20Fix%20static%20out-of-bounds%20MMIO%20access%20duri.txt)</u> |
 | [PATCH v3 2/2] misc: ibmasm: Fix dynamic out-of-bounds MMIO access | <u>[mail](../email/275_%5BPATCH%20v3%202_2%5D%20misc_%20ibmasm_%20Fix%20dynamic%20out-of-bounds%20MMIO%20access.txt)</u> |
-| sashiko: [PATCH v3 0/2] misc: ibmasm: Fix out-of-bounds MMIO accesses | <u>lore.kernel.org</u> |
+| sashiko: [PATCH v3 0/2] misc: ibmasm: Fix out-of-bounds MMIO accesses | <u>[mail](../email/484_%5BPATCH%20v3%200_2%5D%20misc_%20ibmasm_%20Fix%20out-of-bounds%20MMIO%20accesses.txt)</u> |
 | [PATCH v4 0/2] misc: ibmasm: Fix out-of-bounds MMIO accesses | <u>[mail](../email/277_%5BPATCH%20v4%200_2%5D%20misc_%20ibmasm_%20Fix%20out-of-bounds%20MMIO%20accesses.txt)</u> |
 | [PATCH v4 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe | <u>[mail](../email/278_%5BPATCH%20v4%201_2%5D%20misc_%20ibmasm_%20Fix%20static%20out-of-bounds%20MMIO%20access%20duri.txt)</u> |
 | [PATCH v4 2/2] misc: ibmasm: Fix dynamic out-of-bounds MMIO access via malicious MFA | <u>[mail](../email/279_%5BPATCH%20v4%202_2%5D%20misc_%20ibmasm_%20Fix%20dynamic%20out-of-bounds%20MMIO%20access%20via.txt)</u> |
@@ -37,14 +37,14 @@ This section tracks the complete email correspondence and patch history for this
 | [PATCH v8 0/2] misc: ibmasm: Fix out-of-bounds MMIO accesses | <u>[mail](../email/367_%5BPATCH%20v8%200_2%5D%20misc_%20ibmasm_%20Fix%20out-of-bounds%20MMIO%20accesses.txt)</u> |
 | [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe | <u>[mail](../email/368_%5BPATCH%20v8%201_2%5D%20misc_%20ibmasm_%20Fix%20static%20out-of-bounds%20MMIO%20access%20duri.txt)</u> |
 | [PATCH v8 2/2] misc: ibmasm: Fix dynamic out-of-bounds MMIO access via malicious MFA | <u>[mail](../email/369_%5BPATCH%20v8%202_2%5D%20misc_%20ibmasm_%20Fix%20dynamic%20out-of-bounds%20MMIO%20access%20via.txt)</u> |
-| Result-AI Reviews                                            | <u>lore.kernel.org</u> |
+| Result-AI Reviews                                            | <u>[mail](../email/483_%5BPATCH%20v8%200_2%5D%20misc_%20ibmasm_%20Fix%20out-of-bounds%20MMIO%20accesses.txt)</u> |
 | Greg KH:Re: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe | <u>[mail](../email_lore/413_Re_%20%5BPATCH%20v8%201_2%5D%20misc_%20ibmasm_%20Fix%20static%20out-of-bounds%20MMIO%20access%20.md)</u> |
 | Greg KH:Re: [PATCH v8 2/2] misc: ibmasm: Fix dynamic out-of-bounds MMIO access via malicious MFA | <u>[mail](../email_lore/451_Re_%20%5BPATCH%20v8%202_2%5D%20misc_%20ibmasm_%20Fix%20dynamic%20out-of-bounds%20MMIO%20access.md)</u> |
 | Re: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe | <u>[mail](../email/414_Re_%20%5BPATCH%20v8%201_2%5D%20misc_%20ibmasm_%20Fix%20static%20out-of-bounds%20MMIO%20access%20.txt)</u> |
 | Re: [PATCH v8 2/2] misc: ibmasm: Fix dynamic out-of-bounds MMIO access via malicious MFA | <u>[mail](../email/415_Re_%20%5BPATCH%20v8%202_2%5D%20misc_%20ibmasm_%20Fix%20dynamic%20out-of-bounds%20MMIO%20access.txt)</u> |
 | Greg KH:Re: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe | <u>[mail](../email_lore/452_Re_%20%5BPATCH%20v8%201_2%5D%20misc_%20ibmasm_%20Fix%20static%20out-of-bounds%20MMIO%20access%20.md)</u> |
 | Re: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe | <u>[mail](../email/416_Re_%20%5BPATCH%20v8%201_2%5D%20misc_%20ibmasm_%20Fix%20static%20out-of-bounds%20MMIO%20access%20.txt)</u> |
-| Greg KH:Re: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe | <u>[mail](../email_lore/413_Re_%20%5BPATCH%20v8%201_2%5D%20misc_%20ibmasm_%20Fix%20static%20out-of-bounds%20MMIO%20access%20.md)</u> |
+| Greg KH:Re: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe | <u>[mail](../email_lore/455_Re_%20%5BPATCH%20v8%201_2%5D%20misc_%20ibmasm_%20Fix%20static%20out-of-bounds%20MMIO%20access%20.md)</u> |
 | [PATCH] misc: ibmasm: Remove obsolete IBM Remote Supervisor Adapter driver | <u>[mail](../email/418_%5BPATCH%5D%20misc_%20ibmasm_%20Remove%20obsolete%20IBM%20Remote%20Supervisor%20Adapter%20dr.txt)</u> |
 | Arnd:Re: [PATCH] misc: ibmasm: Remove obsolete IBM Remote Supervisor Adapter driver | <u>[mail](../email/417_Re_%20%5BPATCH%5D%20misc_%20ibmasm_%20Remove%20obsolete%20IBM%20Remote%20Supervisor%20Adapte.txt)</u> |
 | patch "misc: ibmasm: Remove obsolete IBM Remote Supervisor Adapter driver" added to char-misc-next | <u>[mail](../email/468_patch%20_misc_%20ibmasm_%20Remove%20obsolete%20IBM%20Remote%20Supervisor%20Adapter%20dri.txt)</u> |

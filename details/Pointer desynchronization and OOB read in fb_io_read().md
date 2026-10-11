@@ -12,7 +12,7 @@ This section tracks the complete email correspondence and patch history for this
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | [PATCH] fbdev: core: Fix pointer desynchronization in fb_io_read() | <u>[mail](../email/378_%5BPATCH%5D%20fbdev_%20core_%20Fix%20pointer%20desynchronization%20in%20fb_io_read%28%29.txt)</u> |
-| AI-Result                                                    | <u>lore.kernel.org</u> |
+| AI-Result                                                    | <u>[mail](../email/485_%5BPATCH%5D%20fbdev_%20core_%20Fix%20pointer%20desynchronization%20in%20fb_io_read%28%29.txt)</u> |
 | Helge Deller:Re: [PATCH] fbdev: core: Fix pointer desynchronization in fb_io_read() | <u>[mail](../email/400_Re_%20%5BPATCH%5D%20fbdev_%20core_%20Fix%20pointer%20desynchronization%20in%20fb_io_read%28%29.txt)</u> |
 | Author A: Re: [PATCH] fbdev: core: Fix pointer desynchronization in fb_io_read() | <u>[mail](../email/402_Re_%20%5BPATCH%5D%20fbdev_%20core_%20Fix%20pointer%20desynchronization%20in%20fb_io_read%28%29.txt)</u> |
 | fbdev: core: Fix pointer desynchronization in fb_io_read() | <u>[mail](../email/378_%5BPATCH%5D%20fbdev_%20core_%20Fix%20pointer%20desynchronization%20in%20fb_io_read%28%29.txt)</u> |

@@ -15,7 +15,7 @@ This section tracks the complete email correspondence and patch history for this
 | Re: [PATCH] net: qrtr: fix refcount saturation and potential UAF in qrtr_port_remove | <u>[mail](../email/199_%5BPATCH%5D%20net_%20qrtr_%20fix%20refcount%20saturation%20and%20potential%20UAF%20in%20qrtr_p.txt)</u> |
 | [PATCH] net: qrtr: fix refcount saturation and potential UAF in qrtr_port_remove | <u>[mail](../email/199_%5BPATCH%5D%20net_%20qrtr_%20fix%20refcount%20saturation%20and%20potential%20UAF%20in%20qrtr_p.txt)</u> |
 | [PATCH v2] net: qrtr: fix refcount saturation and potential UAF in qrtr_port_remove | <u>[mail](../email/208_%5BPATCH%20v2%5D%20net_%20qrtr_%20fix%20refcount%20saturation%20and%20potential%20UAF%20in%20qrt.txt)</u> |
-| AI Reviews:sashiko                                           | <u>lore.kernel.org</u> |
+| AI Reviews:sashiko                                           | <u>[mail](../email/480_%5BPATCH%20v2%5D%20net_%20qrtr_%20fix%20refcount%20saturation%20and%20potential%20UAF%20in%20qrtr_port_remove.txt)</u> |
 | Re: [PATCH v2] net: qrtr: fix refcount saturation and potential UAF in qrtr_port_remove | <u>[mail](../email/225_Re_%20%5BPATCH%20v2%5D%20net_%20qrtr_%20fix%20refcount%20saturation%20and%20potential%20UAF%20in.txt)</u> |
 | applied to netdev/net.git | <u>[mail](../email/227_Re_%20%5BPATCH%20v2%5D%20net_%20qrtr_%20fix%20refcount%20saturation%20and%20potential%20UAF%20in.txt)</u> |
 

@@ -1,0 +1,85 @@
+From: Author A <author-a@example.com>
+Subject: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port()
+Date: 2026/7/20 13:37:33
+Mailing-Lists: LKML, stable, linux-serial
+Patches: 1 / 1
+Sashiko-Version: 0.4.5
+Model: gemini/gemini-3.1-pro-preview
+
+Thread:
+  [2026-07-20] Author A <author-a@example.com>: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port()
+  [2026-07-20] Jiri Slaby <jirislaby@kernel.org>: Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port()
+  [2026-07-20] Author A <author-a@example.com>: Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port()
+  [2026-07-20] Greg KH <gregkh@linuxfoundation.org>: Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port()
+  [2026-07-20] Author A <author-a@example.com>: Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port()
+
+AI Review -- Patch 1: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port()
+  Status: Muted
+  Review body:
+    --- Patch [1]: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() ---
+    commit 012adaff4f7eab426e6be485b3a3ea4f5591016d
+    Author: Author A <author-a@example.com>
+    
+    serial: 8250: validate iomem_base in serial8250_verify_port()
+    
+    This commit addresses a slab-use-after-free caused by an unhandled page
+    fault in mem_serial_in(). It prevents userspace from changing io_type
+    to/from memory-mapped types or altering the iomem_base of an existing
+    memory-mapped port via the TIOCSSERIAL ioctl.
+    
+    > diff --git a/drivers/tty/serial/8250/8250_port.c b/drivers/tty/serial/8250/8250_port.c
+    > index e94a0802cbddc..79563afe9db97 100644
+    > --- a/drivers/tty/serial/8250/8250_port.c
+    > +++ b/drivers/tty/serial/8250/8250_port.c
+    > @@ -3146,6 +3146,16 @@ serial8250_verify_port(struct uart_port *port, struct serial_struct *ser)
+    >  	    ser->type >= ARRAY_SIZE(uart_config) || ser->type == PORT_CIRRUS ||
+    >  	    ser->type == PORT_STARTECH)
+    >  		return -EINVAL;
+    +> +
+    +> +	if (port->iotype == UPIO_MEM || port->iotype == UPIO_MEM32 ||
+    +> +	    port->iotype == UPIO_MEM32BE || port->iotype == UPIO_MEM16 ||
+    +> +	    ser->io_type == UPIO_MEM || ser->io_type == UPIO_MEM32 ||
+    +> +	    ser->io_type == UPIO_MEM32BE || ser->io_type == UPIO_MEM16) {
+    
+    This is a pre-existing issue, but does this check miss the UPIO_AU and
+    UPIO_TSI types?
+    
+    Looking at serial8250_request_std_resource(), UPIO_AU and UPIO_TSI are
+    treated identically to UPIO_MEM for ioremap operations:
+    
+    drivers/tty/serial/8250/8250_port.c:serial8250_request_std_resource() {
+    	...
+    	case UPIO_AU:
+    	case UPIO_TSI:
+    	...
+    }
+    
+    Could a user with CAP_SYS_ADMIN still trigger the page fault by setting
+    io_type to UPIO_AU or UPIO_TSI, since they appear to bypass this new
+    validation?
+    
+    +> +		if (ser->io_type != port->iotype ||
+    +> +		    (unsigned long)ser->iomem_base != port->mapbase)
+    +> +			return -EINVAL;
+    
+    This isn't a bug introduced by this patch, but should this validation also
+    ensure that iomem_reg_shift and type remain unmodified?
+    
+    If a user leaves iomem_base and io_type unchanged to bypass the new
+    validation block, they might still maliciously increase iomem_reg_shift.
+    When mem_serial_in() calculates the offset:
+    
+    drivers/tty/serial/8250/8250_port.c:mem_serial_in() {
+    	...
+    	offset = offset << p->regshift;
+    	return readb(p->membase + offset);
+    }
+    
+    Could the unchecked regshift value push the offset far beyond the bounds
+    of the ioremapped membase region, potentially resulting in an out-of-bounds
+    MMIO access?
+    
+    +> +	}
+    +> +
+    >  	return 0;
+    >  }

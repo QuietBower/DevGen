@@ -1,0 +1,309 @@
+From: Author A <author-a@example.com>
+Subject: [PATCH v8 0/2] misc: ibmasm: Fix out-of-bounds MMIO accesses
+Date: 2026/7/18 15:32:51
+Mailing-Lists: LKML, stable
+Patches: 2 / 2
+Sashiko-Version: 0.4.5
+Model: gemini/gemini-3.1-pro-preview
+
+Thread:
+  [2026-07-18] Author A <author-a@example.com>: [PATCH v8 0/2] misc: ibmasm: Fix out-of-bounds MMIO accesses
+  [2026-07-18] Author A <author-a@example.com>: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe
+  [2026-07-31] Greg KH <gregkh@linuxfoundation.org>: Re: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe
+  [2026-07-31] Author A <author-a@example.com>: Re: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe
+  [2026-07-31] Greg KH <gregkh@linuxfoundation.org>: Re: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe
+  [2026-08-01] Author A <author-a@example.com>: Re: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe
+  [2026-08-01] Greg KH <gregkh@linuxfoundation.org>: Re: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe
+  [2026-08-01] Author A <author-a@example.com>: [PATCH] misc: ibmasm: Remove obsolete IBM Remote Supervisor Adapter driver
+  [2026-08-01] Arnd Bergmann <arnd@arndb.de>: Re: [PATCH] misc: ibmasm: Remove obsolete IBM Remote Supervisor Adapter driver
+  [2026-07-18] Author A <author-a@example.com>: [PATCH v8 2/2] misc: ibmasm: Fix dynamic out-of-bounds MMIO access via malicious MFA
+  [2026-07-31] Greg KH <gregkh@linuxfoundation.org>: Re: [PATCH v8 2/2] misc: ibmasm: Fix dynamic out-of-bounds MMIO access via malicious MFA
+  [2026-07-31] Author A <author-a@example.com>: Re: [PATCH v8 2/2] misc: ibmasm: Fix dynamic out-of-bounds MMIO access via malicious MFA
+
+AI Review -- Patch 1: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe
+  Status: Muted
+  Review body:
+    --- Patch [1]: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe ---
+    commit b0fb160d9c9fcc2a18be9fda41c22b8101417efc
+    Author: Author A <author-a@example.com>
+    
+    misc: ibmasm: Fix static out-of-bounds MMIO access during probe
+    
+    The ibmasm driver maps PCI BAR 0 without verifying if the hardware-provided
+    resource length is sufficient to cover statically accessed registers.
+    When evaluating the driver against emulated hardware, a malformed device may
+    expose an undersized BAR 0. This patch adds a size check against the highest
+    statically accessed offset before mapping.
+    
+    > diff --git a/drivers/misc/ibmasm/ibmasm.h b/drivers/misc/ibmasm/ibmasm.h
+    > index a5ced88ca9236..8d69198bf10f3 100644
+    > --- a/drivers/misc/ibmasm/ibmasm.h
+    > +++ b/drivers/misc/ibmasm/ibmasm.h
+    
+    [ ... ]
+    
+    > diff --git a/drivers/misc/ibmasm/module.c b/drivers/misc/ibmasm/module.c
+    > index 4509c15a76a81..87d4d698a5ff4 100644
+    > --- a/drivers/misc/ibmasm/module.c
+    > +++ b/drivers/misc/ibmasm/module.c
+    > @@ -93,6 +93,19 @@ static int ibmasm_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
+    >  	}
+    >  
+    >  	sp->irq = pdev->irq;
+    +> +	sp->mapped_size = pci_resource_len(pdev, 0);
+    +> +
+    +> +	/*
+    +> +	 * Ensure BAR 0 is large enough to cover the highest statically
+    +> +	 * accessed hardware register (IBMASM_MAX_REG_OFFSET).
+    +> +	 */
+    +> +	if (sp->mapped_size < IBMASM_MAX_REG_OFFSET + 4) {
+    
+    This isn't a bug introduced by this patch, but does this fully resolve the
+    threat model described in the commit message?
+    
+    The commit mentions that an emulated device can expose anomalous behavior, 
+    but the driver also reads Message Frame Address (MFA) offsets dynamically 
+    from the hardware via get_mfa_inbound(). These offsets are used directly 
+    without validation against mapped_size:
+    
+    drivers/misc/ibmasm/lowlevel.h:get_i2o_message() {
+        return (struct i2o_message *)(GET_MFA_ADDR(mfa) + base_address);
+    }
+    
+    Could a malicious or fuzzed device supply an arbitrarily large MFA value and
+    bypass this static BAR size check completely, resulting in the same out of
+    bounds accesses?
+    
+    +> +		dev_err(sp->dev, "PCI BAR0 too small, need at least %zu bytes\n",
+    +> +			(size_t)(IBMASM_MAX_REG_OFFSET + 4));
+    +> +		result = -ENODEV;
+    +> +		goto error_ioremap;
+    
+    This is a pre-existing issue, but could this error path cause a 45-second 
+    stall during module loading?
+    
+    If this newly added BAR size check fails, the goto error_ioremap path 
+    is taken:
+    
+    drivers/misc/ibmasm/module.c:ibmasm_init_one() {
+        ...
+    error_ioremap:
+        ibmasm_heartbeat_exit(sp);
+    }
+    
+    Since the heartbeat command hasn't been sent to hardware yet, its status 
+    remains IBMASM_CMD_PENDING, causing a 45-second sleep:
+    
+    drivers/misc/ibmasm/heartbeat.c:ibmasm_heartbeat_exit() {
+        ibmasm_wait_for_response(sp->heartbeat, IBMASM_CMD_TIMEOUT_NORMAL);
+    }
+    
+    Would this block all other device initialization due to locks held during
+    probe?
+    
+    This is also a pre-existing issue, but could a single failing device cause 
+    the OS to stop responding to heartbeats globally?
+    
+    In the same error path, ibmasm_heartbeat_exit() unconditionally sets a 
+    global static flag:
+    
+    drivers/misc/ibmasm/heartbeat.c:ibmasm_heartbeat_exit() {
+        suspend_heartbeats = 1;
+    }
+    
+    This drops incoming heartbeats for all devices globally:
+    
+    drivers/misc/ibmasm/heartbeat.c:ibmasm_receive_heartbeat() {
+        if (suspend_heartbeats)
+            return;
+    }
+    
+    If there are multiple ibmasm devices and one fails this BAR size check, 
+    would this lead to the service processor initiating a hard system reboot 
+    for the otherwise healthy system?
+    
+    +> +	}
+    +> +
+    >  	sp->base_address = pci_ioremap_bar(pdev, 0);
+    >  	if (!sp->base_address) {
+    >  		dev_err(sp->dev, "Failed to ioremap pci memory\n");
+    
+    This isn't a bug introduced by this patch, but is there a risk of a NULL
+    pointer dereference on an early interrupt later in this initialization?
+    
+    In ibmasm_init_one(), request_irq() is called with IRQF_SHARED before the
+    remote input devices are initialized:
+    
+    drivers/misc/ibmasm/module.c:ibmasm_init_one() {
+        result = request_irq(sp->irq, ibmasm_interrupt_handler, IRQF_SHARED, ...);
+        ...
+        result = ibmasm_init_remote_input_dev(sp);
+    }
+    
+    If a shared interrupt fires immediately, the handler executes and might call 
+    ibmasm_handle_mouse_interrupt(). This unconditionally dereferences 
+    sp->remote.mouse_dev:
+    
+    drivers/misc/ibmasm/remote.c:ibmasm_handle_mouse_interrupt() {
+        send_mouse_event(sp->remote.mouse_dev, &input);
+    }
+    
+    Would this crash the kernel if sp->remote.mouse_dev is still uninitialized?
+    
+    This is another pre-existing issue, but does the driver leave a dangling 
+    pointer in the global service_processors list on device removal?
+    
+    During initialization, the service processor is added to the list:
+    
+    drivers/misc/ibmasm/module.c:ibmasm_init_one() {
+        ...
+        ibmasmfs_add_sp(sp);
+    }
+    
+    However, on device removal, ibmasm_remove_one() frees the struct without
+    unlinking it:
+    
+    drivers/misc/ibmasm/module.c:ibmasm_remove_one() {
+        ...
+        kfree(sp);
+    }
+    
+    If a device is unbound, and ibmasmfs_create_files() subsequently iterates
+    the list, will it dereference the freed sp pointer?
+    
+    drivers/misc/ibmasm/ibmasmfs.c:ibmasmfs_create_files() {
+        list_for_each(entry, &service_processors) {
+            sp = list_entry(entry, struct service_processor, node);
+            ...
+        }
+
+AI Review -- Patch 2: [PATCH v8 2/2] misc: ibmasm: Fix dynamic out-of-bounds MMIO access via malicious MFA
+  Status: Muted
+  Review body:
+    --- Patch [2]: [PATCH v8 2/2] misc: ibmasm: Fix dynamic out-of-bounds MMIO access via malicious MFA ---
+    commit 2fc2716929e14b8b34e1acc7b9f498c3cda2a772
+    Author: Author A <author-a@example.com>
+    
+    misc: ibmasm: Fix dynamic out-of-bounds MMIO access via malicious MFA
+    
+    This patch adds validation to the Message Frame Address (MFA) before using
+    it as an offset to prevent out-of-bounds MMIO access. It also adjusts the
+    size passed to ibmasm_receive_message() to fix a 12-byte out-of-bounds read
+    and drops invalid MFAs on the send path to prevent wild DMA.
+    
+    > diff --git a/drivers/misc/ibmasm/lowlevel.c b/drivers/misc/ibmasm/lowlevel.c
+    > index 5313230f36ad4..83935596517b6 100644
+    > --- a/drivers/misc/ibmasm/lowlevel.c
+    > +++ b/drivers/misc/ibmasm/lowlevel.c
+    > @@ -34,7 +45,10 @@ int ibmasm_send_i2o_message(struct service_processor *sp)
+    >  		return 1;
+    >  
+    >  	header.message_size = outgoing_message_size((unsigned int)command_size);
+    
+    This is a pre-existing issue, but does this code have a data race on the
+    global static header structure?
+    
+    The driver declares a single global static struct i2o_header header. In
+    ibmasm_send_i2o_message(), header.message_size is modified and then the
+    structure is copied into hardware IO memory.
+    
+    Since do_exec_command() drops the per-device lock before sending the message,
+    if multiple IBM ASM PCI devices are present, threads writing commands to
+    different devices could execute ibmasm_send_i2o_message() concurrently. This
+    could lead to a corrupted message size being transmitted to the hardware.
+    
+    [ ... ]
+    
+    > @@ -63,8 +77,28 @@ irqreturn_t ibmasm_interrupt_handler(int irq, void * dev_id)
+    >  
+    >  	mfa = get_mfa_outbound(base_address);
+    >  	if (valid_mfa(mfa)) {
+    -> -		struct i2o_message *msg = get_i2o_message(base_address, mfa);
+    -> -		ibmasm_receive_message(sp, &msg->data, incoming_data_size(msg));
+    +> +		struct i2o_message *msg = get_i2o_message(base_address,
+    +> +							  sp->mapped_size, mfa,
+    +> +							  sizeof(struct i2o_header));
+    +> +		if (msg) {
+    [ ... ]
+    +> +		} else {
+    +> +			dbg("received mfa header out of bounds\n");
+    +> +		}
+    >  	} else
+    >  		dbg("didn't get a valid MFA\n");
+    >  
+    
+    This is a pre-existing issue, but does this code unconditionally write an
+    out-of-bounds MFA back to the hardware?
+    
+    The patch correctly prevents the driver from dereferencing an out-of-bounds
+    Message Frame Address (MFA). However, immediately following this block in
+    ibmasm_interrupt_handler(), the driver still unconditionally executes:
+    
+    	set_mfa_outbound(base_address, mfa);
+    
+    Writing the out-of-bounds MFA back to the hardware's outbound queue free pool
+    allows the hardware to use that invalid address for subsequent messages, which
+    could lead to wild DMA and host memory corruption. Should the same
+    drop-on-invalid logic used in the inbound path be applied here?
+    
+    
+    While reviewing this patch, I noticed a couple of other pre-existing issues
+    in drivers/misc/ibmasm/command.c related to the error handling path.
+    
+    This is a pre-existing issue, but is there an unbounded mutual recursion
+    between do_exec_command() and exec_next_command()?
+    
+    drivers/misc/ibmasm/command.c:do_exec_command() {
+    	...
+    	if (ibmasm_send_i2o_message(sp)) {
+    		sp->current_command->status = IBMASM_CMD_FAILED;
+    		wake_up(&sp->current_command->wait);
+    		command_put(sp->current_command);
+    		exec_next_command(sp);
+    	}
+    }
+    
+    drivers/misc/ibmasm/command.c:exec_next_command() {
+    	...
+    	spin_lock_irqsave(&sp->lock, flags);
+    	sp->current_command = dequeue_command(sp);
+    	if (sp->current_command) {
+    		command_get(sp->current_command);
+    		spin_unlock_irqrestore(&sp->lock, flags);
+    		do_exec_command(sp);
+    	...
+    }
+    
+    If ibmasm_send_i2o_message() fails continuously (e.g., due to a full queue or
+    invalid MFA) and userspace has queued many commands, do_exec_command() will
+    synchronously call exec_next_command(), which dequeues the next command and
+    calls do_exec_command() again. With a deep enough command queue, this mutual
+    recursion could exhaust the limited kernel stack.
+    
+    
+    This is a pre-existing issue, but does the error path in do_exec_command()
+    have a race condition leading to a NULL pointer dereference?
+    
+    In do_exec_command(), sp->current_command is accessed without holding
+    sp->lock:
+    
+    drivers/misc/ibmasm/command.c:do_exec_command() {
+    	...
+    	if (ibmasm_send_i2o_message(sp)) {
+    		sp->current_command->status = IBMASM_CMD_FAILED;
+    	...
+    }
+    
+    Concurrently, a spurious sp_command_response interrupt could be generated by a
+    malicious device. The interrupt handler ibmasm_receive_command_response()
+    completes the command and calls exec_next_command(), which takes the lock and
+    sets sp->current_command to NULL if the queue is empty:
+    
+    drivers/misc/ibmasm/command.c:exec_next_command() {
+    	...
+    	spin_lock_irqsave(&sp->lock, flags);
+    	sp->current_command = dequeue_command(sp);
+    	...
+    }
+    
+    When the preempted do_exec_command() resumes, it dereferences
