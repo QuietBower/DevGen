@@ -302,15 +302,3 @@ report, the patch history and the mailing-list threads.
 
 Crash reports, minimized reproducers and reproduction materials are collected in a separate
 repository: [DevGen Crash Reports](https://anonymous.4open.science/r/Crashes).
-
-## Contributing
-
-Issues and pull requests are welcome. If you report a crash, please include the triggering seed, the
-device model in use and, where possible, a minimized reproducer, so that it can be reproduced
-locally.
-
-## License
-
-> **TODO —** pick a license for this project and add the corresponding `LICENSE` file to the
-> repository root. Code and data may need different licenses (for example MIT / Apache-2.0 for the
-> code, CC BY 4.0 for the datasets and crash artifacts).
