@@ -1,6 +1,6 @@
 /*
  * QEMU PCI device model for Toshiba SD Host Controller (toshsd)
- * Generated from Linux driver /home/eely/linux-7.1/drivers/mmc/host/toshsd.c
+ * Generated from Linux driver /home/user/linux-7.1/drivers/mmc/host/toshsd.c
  * Phase 2: Functional Implementation
  */
 

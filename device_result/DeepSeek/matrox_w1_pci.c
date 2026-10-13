@@ -1,6 +1,6 @@
 /*
  * QEMU Matrox G400 GPIO 1-wire device emulation.
- * Based on driver: /home/eely/linux-7.1/drivers/w1/masters/matrox_w1.c
+ * Based on driver: /home/user/linux-7.1/drivers/w1/masters/matrox_w1.c
  */
 
 #include "qemu/osdep.h"

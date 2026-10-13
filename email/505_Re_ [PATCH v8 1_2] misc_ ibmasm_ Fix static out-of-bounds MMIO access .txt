@@ -1,0 +1,32 @@
+From: Greg KH <gregkh@linuxfoundation.org>
+To: Author A <author-a@example.com>
+Cc: arnd@arndb.de, kees@kernel.org, linux-kernel@vger.kernel.org,
+	stable@vger.kernel.org
+Subject: Re: [PATCH v8 1/2] misc: ibmasm: Fix static out-of-bounds MMIO access during probe
+Date: Sat, 1 Aug 2026 08:52:40 +0200
+Message-ID: <2026080153-unthread-quake-ce1f@gregkh>
+In-Reply-To: <4b8fc5e2-8965-47a0-8be8-b12337398fe6@anonymous.edu>
+
+On Sat, Aug 01, 2026 at 10:58:56AM +0800, Author A wrote:
+> Hi Greg,
+> 
+> 
+> > I do not know.  Do some research into when the hardware was made, what
+> > it runs on, and try to determine if it really is even used anymore by
+> > anyone.  If not, then yes, let's drop it!
+> 
+> Thanks for the guidance! I did the research on the IBM RSA hardware,
+> and it indeed seems to belong in a museum.
+> 
+> Here is what I found regarding its lifecycle:
+> 1. The IBM Remote Supervisor Adapter (RSA) and RSA II were early 2000s
+>    management PCI/ISA cards for ancient IBM eServer xSeries machines.
+> 2. IBM deprecated the RSA family and replaced it with IMM around 2008.
+
+So if it was last shipped in 2008, I think we can properly remove it.
+Care to submit a patch to do so?  If someone shows up with the hardware,
+we can easily revert the removal.
+
+thanks,
+
+greg k-h

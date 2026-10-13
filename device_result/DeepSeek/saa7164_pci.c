@@ -1,6 +1,6 @@
 /*
  * QEMU SAA7164 PCI device model
- * Generated for driver: /home/eely/linux-7.1/drivers/media/pci/saa7164/saa7164-core.c
+ * Generated for driver: /home/user/linux-7.1/drivers/media/pci/saa7164/saa7164-core.c
  * Emulates basic hardware interface required for driver probe and binding.
  */
 

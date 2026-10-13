@@ -105,18 +105,18 @@ def path_similarity(path1, path2):
 if __name__ == "__main__":
     definition = find_type(
         "tpg_data",
-        "/home/chenyuan/projects/kernel-spec/linux/include/media/tpg/v4l2-tpg.c",  # noqa: E501
+        "/home/user/projects/kernel-spec/linux/include/media/tpg/v4l2-tpg.c",  # noqa: E501
     )
     pprint(definition)
 
     definition = find_function(
         "nbd_set_size",
-        "/home/chenyuan/projects/kernel-spec/linux/drivers/block/nbd.c",  # noqa: E501
+        "/home/user/projects/kernel-spec/linux/drivers/block/nbd.c",  # noqa: E501
     )
     pprint(definition)
 
     definition = find_usage(
         "_ctl_fops",
-        "/home/chenyuan/projects/kernel-spec/linux/drivers/md/dm-ioctl.c:2162:1",  # noqa: E501
+        "/home/user/projects/kernel-spec/linux/drivers/md/dm-ioctl.c:2162:1",  # noqa: E501
     )
     pprint(definition)

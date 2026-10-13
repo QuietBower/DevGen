@@ -1,6 +1,6 @@
 /*
  * QEMU 8.2.10 virtual PCI device model for dwc3-pci
- * Generated from driver source at /home/eely/linux-7.1/drivers/usb/dwc3/dwc3-pci.c
+ * Generated from driver source at /home/user/linux-7.1/drivers/usb/dwc3/dwc3-pci.c
  */
 
 #include "qemu/osdep.h"

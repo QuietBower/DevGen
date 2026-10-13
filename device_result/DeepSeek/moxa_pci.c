@@ -1,6 +1,6 @@
 /*
  * QEMU model for Moxa serial PCI devices (e.g., C218 Turbo PCI)
- * Based on driver: /home/eely/linux-7.1/drivers/tty/moxa.c
+ * Based on driver: /home/user/linux-7.1/drivers/tty/moxa.c
  */
 
 #include "qemu/osdep.h"

@@ -13,19 +13,19 @@ from copy import deepcopy
 # =========================
 # 路径配置
 # =========================
-FUZZ_PATH = "config/gpt-5.1-reproduce.json"
-ENABLE_SYSCALL_PATH = "config/enable_syscalls.json"
+FUZZ_PATH = "/home/user/Fuzzer/code/config/2_gpt-5.1-fuzz.json"
+ENABLE_SYSCALL_PATH = "/home/user/Fuzzer/code/config/enable_syscalls.json"
 
-DIR_A = "syzkaller_syzbot_nodev"
-DIR_B = "syzkaller_syzbot_dev"
-DIR_C = "syzkaller_defconfig_nodev"
-DIR_D = "syzkaller_defconfig_dev"
+DIR_A = "/home/user/Fuzzer/third_tool/syzkaller_syzbot_nodev"
+DIR_B = "/home/user/Fuzzer/third_tool/syzkaller_syzbot_dev"
+DIR_C = "/home/user/Fuzzer/third_tool/syzkaller_defconfig_nodev"
+DIR_D = "/home/user/Fuzzer/third_tool/syzkaller_defconfig_dev"
 
-SYZBOT_OUT_DIR = "fuzz_result/gpt5-1_reproduce_syz"
-NON_SYZBOT_OUT_DIR = "fuzz_result/gpt5-1_reproduce_def"
+SYZBOT_OUT_DIR = "/home/user/Fuzzer/out/fuzz_result/3_Gemini_3pro"
+NON_SYZBOT_OUT_DIR = "/home/user/Fuzzer/out/fuzz_result/3_Gemini_3pro"
 
 TIMEOUT = 60 * 60          # 单个 syz-manager 最长 60 分钟
-DEVICE_SLEEP = 10          # 每个 device 完成后休眠 10s
+DEVICE_SLEEP = 20          # 每个 device 完成后休眠 20s
 
 
 # =========================
@@ -75,6 +75,43 @@ def run_syz_task(cfg_name, workdir, bench_path):
         print(f"[!] syz-manager failed ({cfg_name}): {e}")
 
 
+def release_ports(ports):
+    """
+    释放指定端口，尝试使用 fuser -k 或 lsof + kill
+    """
+    for port in ports:
+        # 方法1：fuser -k
+        try:
+            subprocess.run(
+                ["fuser", "-k", f"{port}/tcp"],
+                stdout=subprocess.DEVNULL,
+                stderr=subprocess.DEVNULL,
+                timeout=5
+            )
+            continue
+        except FileNotFoundError:
+            pass
+        except Exception:
+            pass
+
+        # 方法2：lsof + kill
+        try:
+            result = subprocess.run(
+                ["lsof", "-ti", f":{port}"],
+                capture_output=True, text=True, timeout=5
+            )
+            pids = result.stdout.strip().split()
+            for pid in pids:
+                try:
+                    os.kill(int(pid), signal.SIGKILL)
+                except Exception:
+                    pass
+        except FileNotFoundError:
+            print(f"[!] Neither fuser nor lsof found, cannot release port {port}")
+        except Exception:
+            pass
+
+
 def collect_enable_syscalls_sequential(device_path, enable_syscall_db):
     """
     严格顺序查找：
@@ -113,12 +150,19 @@ with open(ENABLE_SYSCALL_PATH, "r") as f:
 os.makedirs(SYZBOT_OUT_DIR, exist_ok=True)
 os.makedirs(NON_SYZBOT_OUT_DIR, exist_ok=True)
 
+# 当天日期后缀，格式 MMDD
+DATE_SUFFIX = time.strftime("%m%d")
+
 for device, info in fuzz_cfg.items():
     print("\n========================================")
     print(f"[DEVICE] {device}")
     print("========================================")
 
-    # === 新增：已处理直接跳过 ===
+    # === 每次启动前先释放目标端口（避免 address already in use） ===
+    print("[INFO] Releasing ports 10001-10004 before starting device ...")
+    release_ports([10001, 10002, 10003, 10004])
+
+    # 已处理直接跳过
     if info.get("enable_syscalls"):
         print(f"[SKIP] {device}: enable_syscalls already populated")
         continue
@@ -126,16 +170,16 @@ for device, info in fuzz_cfg.items():
     flag = info.get("in_syzbot_config", "").lower()
     device_path = info.get("path", "")
 
-    # === 1. 顺序计算 enable_syscalls ===
+    # 1. 顺序计算 enable_syscalls
     enable_syscalls = collect_enable_syscalls_sequential(
         device_path,
         enable_syscall_db
     )
 
-    # === 2. 写回 fuzz.json 内存结构 ===
+    # 2. 写回 fuzz.json 内存结构
     info["enable_syscalls"] = enable_syscalls
 
-    # === 3. 选择 AB / CD（组内并行）===
+    # 3. 选择 AB / CD（组内并行）
     if flag == "y":
         targets = [
             (DIR_A, False, SYZBOT_OUT_DIR),
@@ -152,7 +196,7 @@ for device, info in fuzz_cfg.items():
 
     threads = []
 
-    # === 4. 并行执行 A/B 或 C/D ===
+    # 4. 并行执行 A/B 或 C/D
     for workdir, add_device, bench_root in targets:
         base_cfg_path = os.path.join(workdir, "cfg.json")
         if not os.path.exists(base_cfg_path):
@@ -165,15 +209,17 @@ for device, info in fuzz_cfg.items():
         cfg["enable_syscalls"] = enable_syscalls
 
         if add_device:
-            cfg["vm"]["qemu_args"] += f" -device {device}_pci"
+            cfg["vm"]["qemu_args"] += f" -device pcie-root-port,id=rp1 -device {device}_pci,bus=rp1"
 
-        cfg_name = f"cfg_{device}.json"
+        suffix = f"_{DATE_SUFFIX}"
+        bench_name = f"{device}{suffix}.bench" if add_device else f"{device}_no{suffix}.bench"
+        cfg_name = f"cfg_{device}{suffix}.json"
+
         cfg_path = os.path.join(workdir, cfg_name)
 
         with open(cfg_path, "w") as f:
             json.dump(cfg, f, indent=4)
 
-        bench_name = f"{device}.bench" if add_device else f"{device}_no.bench"
         bench_path = os.path.join(bench_root, bench_name)
 
         t = Thread(
@@ -184,13 +230,13 @@ for device, info in fuzz_cfg.items():
         t.start()
         threads.append((t, cfg_path, bench_root))
 
-    # === 5. 等待 AB / CD 全部完成 ===
+    # 5. 等待 AB / CD 全部完成
     for t, cfg_path, bench_root in threads:
         t.join()
         shutil.move(cfg_path, os.path.join(bench_root, os.path.basename(cfg_path)))
         print(f"[+] cfg archived: {bench_root}/{os.path.basename(cfg_path)}")
 
-    # === 6. device 完成后休眠 ===
+    # 6. device 完成后休眠
     print(f"[INFO] device {device} done, sleeping {DEVICE_SLEEP}s")
     time.sleep(DEVICE_SLEEP)
 
@@ -201,4 +247,3 @@ with open(FUZZ_PATH, "w") as f:
     json.dump(fuzz_cfg, f, indent=4)
 
 print("[+] fuzz.json updated")
-

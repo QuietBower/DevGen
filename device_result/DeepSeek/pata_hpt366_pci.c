@@ -1,6 +1,6 @@
 /*
  * QEMU PCI device model for pata_hpt366.
- * Based on Linux driver: /home/eely/linux-7.1/drivers/ata/pata_hpt366.c
+ * Based on Linux driver: /home/user/linux-7.1/drivers/ata/pata_hpt366.c
  */
 #include "qemu/osdep.h"
 #include "qemu/units.h"

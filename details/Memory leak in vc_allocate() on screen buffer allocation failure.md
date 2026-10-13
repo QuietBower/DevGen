@@ -12,9 +12,9 @@ This section tracks the complete email correspondence and patch history for this
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
 | [PATCH] tty: vt: fix memory leak in vc_allocate() | <u>[mail](../email/396_%5BPATCH%5D%20tty_%20vt_%20fix%20memory%20leak%20in%20vc_allocate%28%29.txt)</u> |
-| Greg KH:Re: [PATCH] tty: vt: fix memory leak in vc_allocate() | <u>[mail](../email_lore/393_Re_%20%5BPATCH%5D%20tty_%20vt_%20fix%20memory%20leak%20in%20vc_allocate%28%29.md)</u> |
+| Greg KH:Re: [PATCH] tty: vt: fix memory leak in vc_allocate() | <u>[mail](../email/393_Re_%20%5BPATCH%5D%20tty_%20vt_%20fix%20memory%20leak%20in%20vc_allocate%28%29.txt)</u> |
 | Author A:Re: [PATCH] tty: vt: fix memory leak in vc_allocate() | <u>[mail](../email/397_Re_%20%5BPATCH%5D%20tty_%20vt_%20fix%20memory%20leak%20in%20vc_allocate%28%29.txt)</u> |
-| Greg KH:Re: [PATCH] tty: vt: fix memory leak in vc_allocate() | <u>[mail](../email_lore/450_Re_%20%5BPATCH%5D%20tty_%20vt_%20fix%20memory%20leak%20in%20vc_allocate%28%29.md)</u> |
+| Greg KH:Re: [PATCH] tty: vt: fix memory leak in vc_allocate() | <u>[mail](../email/500_Re_%20%5BPATCH%5D%20tty_%20vt_%20fix%20memory%20leak%20in%20vc_allocate%28%29.txt)</u> |
 | [PATCH v2] tty: vt: fix memory leak in vc_allocate() | <u>[mail](../email/412_%5BPATCH%20v2%5D%20tty_%20vt_%20fix%20memory%20leak%20in%20vc_allocate%28%29.txt)</u> |
 | Greg KH:[PATCH v2] tty: vt: fix memory leak in vc_allocate() | <u>[mail](../email/419_Re_%20%5BPATCH%20v2%5D%20tty_%20vt_%20fix%20memory%20leak%20in%20vc_allocate%28%29.txt)</u> |
 | Re: [PATCH v2] tty: vt: fix memory leak in vc_allocate() | <u>[mail](../email/420_Re_%20%5BPATCH%20v2%5D%20tty_%20vt_%20fix%20memory%20leak%20in%20vc_allocate%28%29.txt)</u> |

@@ -1,6 +1,6 @@
 /*
  * QEMU TPCI200 PCI carrier device model (Phase 2 - Implementation)
- * Extracted from Linux driver: /home/eely/linux-7.1/drivers/ipack/carriers/tpci200.c
+ * Extracted from Linux driver: /home/user/linux-7.1/drivers/ipack/carriers/tpci200.c
  */
 
 #include "qemu/osdep.h"

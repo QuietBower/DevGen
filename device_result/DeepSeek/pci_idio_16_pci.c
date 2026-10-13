@@ -1,6 +1,6 @@
 /*
  * QEMU PCI device emulation for gpio-pci-idio-16
- * Derived from driver at /home/eely/linux-7.1/drivers/gpio/gpio-pci-idio-16.c
+ * Derived from driver at /home/user/linux-7.1/drivers/gpio/gpio-pci-idio-16.c
  * Phase 2: Functional implementation.
  */
 

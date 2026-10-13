@@ -27,7 +27,7 @@
 typedef struct PCIBaseState PCIBaseState;
 OBJECT_DECLARE_SIMPLE_TYPE(PCIBaseState, PCIBASE_DEVICE)
 
-/* Extracted from driver: /home/eely/linux-7.1/drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c */
+/* Extracted from driver: /home/user/linux-7.1/drivers/net/ethernet/stmicro/stmmac/dwmac-intel.c */
 #define PCI_VENDOR_ID_INTEL       0x8086
 #define PCI_DEVICE_ID_INTEL_QUARK 0x0937
 #define PCI_CLASS_NETWORK_ETHERNET 0x0200
