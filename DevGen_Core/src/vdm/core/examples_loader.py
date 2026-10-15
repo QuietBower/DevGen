@@ -13,14 +13,14 @@ class ExampleLoader:
         self.examples_path = _examples_path
         self.examples_type_of_error_map = None
 
-        # 加载配置
+        # Load the configuration
         config_loader = ConfigLoader()
         self.config = config_loader.load()
 
         if _examples_path is None:
             self.examples_path = self.config["paths"]["step4_examples_path"]
 
-        # 加载错误类型字典
+        # Load the error-type dictionary
         with open(f"{self.examples_path}/step.json", "r", encoding="utf-8") as f:
             self.examples_type_of_error_map = json.load(f)
             logger.info("Loaded step4.json")

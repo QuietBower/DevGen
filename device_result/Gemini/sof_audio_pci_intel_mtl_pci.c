@@ -3,8 +3,8 @@
  *
  * Phase 1: fill register macros, BAR list, BAR sizes, structs, enums.
  * Phase 2: implement MMIO/PIO read/write, DMA init, IRQ init, reset, config hooks
- * Phase 3 (Repair Phase)：correct syntax, types, includes, missing symbols, remove dead code
- * Phase 4 (Debug & Update Phase)：Based on actual kernel logs from QEMU boot, repair the virtual hardware behavior
+ * Phase 3 (Repair Phase): correct syntax, types, includes, missing symbols, remove dead code
+ * Phase 4 (Debug & Update Phase): Based on actual kernel logs from QEMU boot, repair the virtual hardware behavior
  *
  * Replace #PLACEHOLDER# blocks with device-specific code/data.
  * NOTE:

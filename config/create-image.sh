@@ -132,13 +132,13 @@ sudo rm -rf $DIR
 sudo mkdir -p $DIR
 sudo chmod 0755 $DIR
 
-# --- 修改后的代码 ---
+# --- Modified code ---
 # 1. debootstrap stage
 
-# 定义国内镜像源，避免下载失败导致触发错误的回退逻辑
+# Define a domestic mirror source to avoid download failures that trigger the wrong fallback logic
 MIRROR="https://mirrors.tuna.tsinghua.edu.cn/debian/"
 
-# 统一使用标准的 debian-archive-keyring.gpg
+# Uniformly use the standard debian-archive-keyring.gpg
 KEYRING="--keyring /usr/share/keyrings/debian-archive-keyring.gpg"
 
 DEBOOTSTRAP_PARAMS="$KEYRING --arch=$DEBARCH --include=$PREINSTALL_PKGS --components=main,contrib,non-free,non-free-firmware $RELEASE $DIR"
@@ -147,13 +147,13 @@ if [ $FOREIGN = "true" ]; then
     DEBOOTSTRAP_PARAMS="--foreign $DEBOOTSTRAP_PARAMS"
 fi
 
-# riscv64 的特殊处理
+# Special handling for riscv64
 if [ $DEBARCH == "riscv64" ]; then
     DEBOOTSTRAP_PARAMS="--keyring /usr/share/keyrings/debian-ports-archive-keyring.gpg --exclude firmware-atheros $DEBOOTSTRAP_PARAMS http://deb.debian.org/debian-ports"
-    MIRROR="" # riscv64 使用参数中指定的 ports 源
+    MIRROR="" # riscv64 uses the ports source specified in the argument
 fi
 
-# 执行 debootstrap，显式指定 MIRROR
+# Run debootstrap, explicitly specifying MIRROR
 sudo --preserve-env=http_proxy,https_proxy,ftp_proxy,no_proxy debootstrap $DEBOOTSTRAP_PARAMS $MIRROR
 
 # 2. debootstrap stage: only necessary if target != host architecture

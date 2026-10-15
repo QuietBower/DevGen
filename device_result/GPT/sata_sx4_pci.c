@@ -151,7 +151,7 @@ static void pcibase_mmio_write(void *opaque, hwaddr addr, uint64_t val, unsigned
         return;
     }
 
-    /* 1. 先将数据原样写入影子内存数组 */
+    /* 1. First write the data as-is into the shadow memory array */
     switch (size) {
     case 1: s->mmio_data[addr] = val & 0xff; break;
     case 2: 
@@ -176,24 +176,24 @@ static void pcibase_mmio_write(void *opaque, hwaddr addr, uint64_t val, unsigned
         break;
     }
 
-    /* 2. 处理需要硬件响应的特殊控制寄存器 */
+    /* 2. Handle the special control registers that require a hardware response */
     hwaddr offset = addr;
     hwaddr base_addr = addr;
     if (offset >= 0xC0000) {
         offset -= 0xC0000;
-        base_addr -= offset; /* 锁定芯片寄存器基址 */
+        base_addr -= offset; /* Lock the chip register base address */
     } else {
         base_addr = 0;
     }
 
-    /* [拦截点 A] 真正的 I2C 控制寄存器 (0x48) */
+    /* [Intercept point A] the real I2C control register (0x48) */
     if (offset == 0x48 /* PDC_I2C_CONTROL */) {
-        if (val & (1 << 7)) { /* 硬件检测到 PDC_I2C_START */
+        if (val & (1 << 7)) { /* Hardware detected PDC_I2C_START */
             
-            /* 1. 瞬间完成 I2C，置位 PDC_I2C_COMPLETE (Bit 16 对应 0x48 的第 2 字节 bit 0) */
+            /* 1. Complete I2C instantly and set PDC_I2C_COMPLETE (Bit 16 corresponds to bit 0 of the 2nd byte at 0x48) */
             s->mmio_data[base_addr + 0x48 + 2] |= 1; 
 
-            /* 2. 从 0x4C (PDC_I2C_ADDR_DATA) 读出请求的 I2C 设备和子地址 */
+            /* 2. Read the requested I2C device and sub-address from 0x4C (PDC_I2C_ADDR_DATA) */
             uint32_t i2c_data = s->mmio_data[base_addr + 0x4C] | 
                                 (s->mmio_data[base_addr + 0x4D] << 8) | 
                                 (s->mmio_data[base_addr + 0x4E] << 16) | 
@@ -202,39 +202,39 @@ static void pcibase_mmio_write(void *opaque, hwaddr addr, uint64_t val, unsigned
             uint8_t device = (i2c_data >> 24) & 0xff;
             uint8_t subaddr = (i2c_data >> 16) & 0xff;
             
-            /* 3. 如果正在读取 DIMM0 的 SPD 数据 (0x50) */
+            /* 3. If SPD data of DIMM0 (0x50) is being read */
             if (device == 0x50 /* PDC_DIMM0_SPD_DEV_ADDRESS */) {
                 uint8_t spd_val = 0;
                 switch (subaddr) {
-                    case 126: spd_val = 100; break; /* FREQ: 过 detect_dimm 校验 */
-                    case 9:   spd_val = 0x70; break; /* 备用 FREQ 校验 */
-                    case 4:   spd_val = 8; break;    /* COLUMN: 防止减 8 时下溢 */
-                    case 3:   spd_val = 11; break;   /* ROW: 防止减 11 时下溢 */
-                    case 17:  spd_val = 4; break;    /* BANK: 防止除以 4 为零 */
-                    case 5:   spd_val = 2; break;    /* MODULE_ROW: 防止除以 2 为零 */
+                    case 126: spd_val = 100; break; /* FREQ: pass the detect_dimm check */
+                    case 9:   spd_val = 0x70; break; /* Backup FREQ check */
+                    case 4:   spd_val = 8; break;    /* COLUMN: prevent underflow when subtracting 8 */
+                    case 3:   spd_val = 11; break;   /* ROW: prevent underflow when subtracting 11 */
+                    case 17:  spd_val = 4; break;    /* BANK: prevent a divide-by-zero when dividing by 4 */
+                    case 5:   spd_val = 2; break;    /* MODULE_ROW: prevent a divide-by-zero when dividing by 2 */
                     case 27:  spd_val = 20; break;   /* ROW_PRE_CHARGE */
                     case 28:  spd_val = 20; break;   /* ROW_ACTIVE_DELAY */
                     case 29:  spd_val = 20; break;   /* RAS_CAS_DELAY */
                     case 30:  spd_val = 40; break;   /* ACTIVE_PRECHARGE */
                     case 18:  spd_val = 4; break;    /* CAS_LATENCY */
-                    case 11:  spd_val = 4; break;    /* TYPE: SDRAM (避开 0x02，绕过内核缓慢的 ECC 初始化) */
+                    case 11:  spd_val = 4; break;    /* TYPE: SDRAM (avoid 0x02 to bypass the kernel's slow ECC initialization) */
                     default:  spd_val = 0; break;
                 }
                 
-                /* 将伪造的 SPD 数据写回 0x4C 的 Bits 8:15 中供内核读取 */
+                /* Write the fake SPD data back into Bits 8:15 of 0x4C for the kernel to read */
                 s->mmio_data[base_addr + 0x4C + 1] = spd_val;
             }
         }
     } 
-    /* [拦截点 B] SDRAM 内存控制器初始化 (0x88) */
+    /* [Intercept point B] SDRAM memory controller initialization (0x88) */
     else if (offset == 0x88 /* PDC_SDRAM_CONTROL */) {
-        /* 内核会写入 Bit 19，并死循环等待硬件将该位清零。
-         * 这里主动在影子内存中清掉 Bit 19 (对应 0x8A 的 bit 3)，让内核瞬间结束 polling。
+        /* The kernel writes Bit 19 and spins waiting for the hardware to clear it.
+         * Here we proactively clear Bit 19 in the shadow memory (corresponding to bit 3 of 0x8A) so that the kernel finishes polling instantly.
          */
         s->mmio_data[base_addr + 0x88 + 2] &= ~0x08; 
     }
 
-    /* 模拟中断唤醒 (保留原有逻辑) */
+    /* Simulate interrupt wakeup (keeping the original logic) */
     if (size == 4) {
         pcibase_pulse_irq(s);
     }
@@ -334,20 +334,20 @@ static void pcibase_realize(PCIDevice *pdev, Error **errp)
         pci_set_word(pci_conf + pm_pos + PCI_PM_PMC, 0x0003);
     }
 
-    /* BAR 3: MMIO 寄存器空间 (匹配驱动 PDC_MMIO_BAR = 3) */
+    /* BAR 3: MMIO register space (matches the driver's PDC_MMIO_BAR = 3) */
     s->num_bars = 2;
     s->bar_info[0].index = 3;
     s->bar_info[0].type  = BAR_TYPE_MMIO;
-    s->bar_info[0].size  = 0x100000; /* 1MB，足以覆盖 0xC0000 的 PDC_CHIP0_OFS */
+    s->bar_info[0].size  = 0x100000; /* 1MB, enough to cover PDC_CHIP0_OFS at 0xC0000 */
     s->bar_info[0].name  = "sata_sx4-mmio";
 
-    /* BAR 4: DIMM 内存空间 (匹配驱动 PDC_DIMM_BAR = 4) */
+    /* BAR 4: DIMM memory space (matches the driver's PDC_DIMM_BAR = 4) */
     s->bar_info[1].index = 4;
-    s->bar_info[1].type  = BAR_TYPE_RAM; /* 直接使用 QEMU RAM 处理大段内存更稳定 */
-    s->bar_info[1].size  = 0x200000; /* 2MB DIMM，满足初始探测即可 */
+    s->bar_info[1].type  = BAR_TYPE_RAM; /* Using QEMU RAM directly is more stable for handling large memory regions */
+    s->bar_info[1].size  = 0x200000; /* 2MB DIMM, enough to satisfy the initial probing */
     s->bar_info[1].name  = "sata_sx4-dimm";
 
-    /* 填充剩余未使用的 BAR 槽位，避开索引 3 和 4，防止冲突 */
+    /* Fill the remaining unused BAR slots, skipping indices 3 and 4 to avoid conflicts */
     int unused_indices[] = {0, 1, 2, 5};
     for (int i = 2; i < 6; i++) {
         s->bar_info[i].index = unused_indices[i - 2];

@@ -15,13 +15,13 @@ def step2_run(device_code: str) -> str:
     logger.info('============================= STEP 2 RUN =============================')
     device_code, needed_sources = step2(device_code)   
 
-    # 如若返回的needed_sources不为空，则进行step2的迭代补全
+    # If the returned needed_sources is not empty, run the step2 iterative completion
     if needed_sources != []:
         device_code = step2_iterations(device_code, needed_sources)
     
     logger.info('============================= STEP 2 RUN END =============================')
 
-    # 保存device_code
+    # Save device_code
     save_device_code_path = f"{get_app_start_time()}_{get_driver_name()}/step2/device_code.txt"
     default_logger.save_content(device_code, save_device_code_path)
 
@@ -33,14 +33,14 @@ def step2(device_code: str) -> tuple[str, list]:
     """
     logger.info('============================= STEP 2 main =============================')
 
-    # 获取step2的prompt
+    # Get the step2 prompt
     step2_prompt = prompt_manager.get_prompt("step2", 
                                              DRIVER_PATH=driver_info.get_driver_path_by_driver_name(), 
                                              Relevant_Source=get_driver_code_detail(), 
                                              QEMU_CODE=device_code
                                             )
 
-    # 构造历史记录
+    # Build the history
     step2_history_messages = [
         {"role": "system", "content": prompt_manager.get_prompt("system")},
         {"role": "user", "content": prompt_manager.get_prompt("step0")},
@@ -49,52 +49,52 @@ def step2(device_code: str) -> tuple[str, list]:
         {"role": "assistant", "content": "OK"},
     ]
 
-    # 构造step2的message
+    # Build the step2 message
     step2_messages = step2_history_messages + [
         {"role": "user", "content": step2_prompt}
     ]
 
-    # 保存step2的message
+    # Save the step2 message
     save_step2_messages_path = f"{get_app_start_time()}_{get_driver_name()}/step2/messages"
     default_logger.save_messages(step2_messages, save_step2_messages_path)
 
-    # 调用LLM
+    # Call the LLM
     response, finish_reason = client.chat_completion_json(step2_messages)
 
-    # 处理输出超限的情况，多次回复
+    # Handle the output-limit case with multiple replies
     continue_cnt = 1
     while finish_reason == "length":
         if continue_cnt >= 5:
             break
-        # 构造继续获取完整输出的message
+        # Build the message to continue fetching the full output
         step2_continue_messages = step2_messages + [
             {"role": "assistant", "content": response}, 
             {"role": "user", "content": prompt_manager.get_prompt("full_output")},
         ]
 
-        # 保存step2_continue的message
+        # Save the step2_continue message
         save_step2_continue_messages_path = f"{get_app_start_time()}_{get_driver_name()}/step2/continue/{continue_cnt}/messages"
         default_logger.save_messages(step2_continue_messages, save_step2_continue_messages_path)
 
-        # 调用LLM
+        # Call the LLM
         response_continue, finish_reason = client.chat_completion_json(step2_continue_messages)
 
-        # 保存回复内容
+        # Save the reply content
         save_step2_continue_response_path = f"{get_app_start_time()}_{get_driver_name()}/step2/continue/{continue_cnt}/response.txt"
         default_logger.save_content(response_continue, save_step2_continue_response_path)
 
-        # 处理输出超限的情况，多次回复，拼接多次回复
+        # Handle the output-limit case with multiple replies, concatenating them
         response += response_continue
 
         continue_cnt += 1
 
-    # 保存step2的回复内容
+    # Save the step2 reply content
     save_step2_response_path = f"{get_app_start_time()}_{get_driver_name()}/step2/response.txt"
     default_logger.save_content(response, save_step2_response_path)
     save_step2_response_path = f"{get_app_start_time()}_{get_driver_name()}/step2/response_visual.txt"
     default_logger.save_response(json.loads(response), save_step2_response_path)
 
-    # 处理LLM返回的json
+    # Handle the JSON returned by the LLM
     response_json = json.loads(response)
     device_code = response_json["code"]
     needed_sources = response_json["needed_sources"]
@@ -115,7 +115,7 @@ def step2_iterations(device_code: str, needed_sources: list) -> str:
 
         is_searched, device_code, needed_sources = step2_iteration(iteration, device_code, needed_sources)
 
-        # 如若无法继续搜索则退出迭代，无法找到needed_sources对应的资源
+        # If the search can no longer continue, exit the iteration; the resource for needed_sources cannot be found
         if not is_searched:
             break
 
@@ -130,19 +130,19 @@ def step2_iteration(cnt: int, device_code: str, needed_sources: list) -> tuple[b
     """
     进行step2的一次迭代补全，返回补全后的设备代码和所需资源列表，如果无法补全则返回原始设备代码和所需资源列表，同时返回标志位（True表示可以完成搜索,False为反）
     """
-    # 处理needed_sources
+    # Handle needed_sources
     relevant_source = handle_needed_resources(needed_sources)
     if relevant_source == "None":
         return False, device_code, needed_sources
     
-    # 获取step2-iteration的prompt
+    # Get the step2-iteration prompt
     step2_iteration_prompt = prompt_manager.get_prompt("step2_iteration", 
                                                        DRIVER_PATH=driver_info.get_driver_path_by_driver_name(), 
                                                        Relevant_Source=relevant_source, 
                                                        QEMU_CODE=device_code
                                                       )
 
-    # 构造step2-iteration的历史记录
+    # Build the step2-iteration history
     step2_iteration_history_messages = [
         {"role": "system", "content": prompt_manager.get_prompt("system")},
         {"role": "user", "content": prompt_manager.get_prompt("step0")},
@@ -151,50 +151,50 @@ def step2_iteration(cnt: int, device_code: str, needed_sources: list) -> tuple[b
         {"role": "assistant", "content": "OK"},
     ]
      
-    # 构造step2-iteration的message
+    # Build the step2-iteration message
     step2_iteration_messages = step2_iteration_history_messages + [
         {"role": "user", "content": step2_iteration_prompt}
     ]
 
-    # 保存step2-iteration的message
+    # Save the step2-iteration message
     save_step2_iteration_messages_path = f"{get_app_start_time()}_{get_driver_name()}/step2/iteration/{cnt}/messages"
     default_logger.save_messages(step2_iteration_messages, save_step2_iteration_messages_path)
 
-    # 调用LLM
+    # Call the LLM
     response, finish_reason = client.chat_completion_json(step2_iteration_messages)
 
-    # 处理输出超限的情况，多次回复
+    # Handle the output-limit case with multiple replies
     continue_cnt = 1
     while finish_reason == "length" or finish_reason == "None":
         if continue_cnt >= 3:
             break
-        # 构造继续获取完整输出的message
+        # Build the message to continue fetching the full output
         step2_iteration_continue_messages = step2_iteration_messages + [
             {"role": "assistant", "content": response}, 
             {"role": "user", "content": prompt_manager.get_prompt("full_output")},
         ]
 
-        # 保存step2-iteration_continue的message
+        # Save the step2-iteration_continue message
         save_step2_iteration_continue_messages_path = f"{get_app_start_time()}_{get_driver_name()}/step2/iteration/{cnt}/continue/{continue_cnt}/messages"
         default_logger.save_messages(step2_iteration_continue_messages, save_step2_iteration_continue_messages_path)
 
-        # 调用LLM
+        # Call the LLM
         response_continue, finish_reason = client.chat_completion_json(step2_iteration_continue_messages)
 
-        # 保存回复内容
+        # Save the reply content
         save_step2_iteration_continue_response_path = f"{get_app_start_time()}_{get_driver_name()}/step2/iteration/{cnt}/continue/{continue_cnt}/response.txt"
         default_logger.save_content(response_continue, save_step2_iteration_continue_response_path)
             
-        # 处理输出超限的情况，多次回复，拼接多次回复
+        # Handle the output-limit case with multiple replies, concatenating them
         response += response_continue
 
         continue_cnt += 1
     
-    # 保存step2-iteration的回复内容
+    # Save the step2-iteration reply content
     save_step2_iteration_response_path = f"{get_app_start_time()}_{get_driver_name()}/step2/iteration/{cnt}/response.txt"
     default_logger.save_response(json.loads(response), save_step2_iteration_response_path)
     
-    # 处理LLM返回的json
+    # Handle the JSON returned by the LLM
     response_json = json.loads(response)
     device_code = response_json["code"]
     needed_sources = response_json["needed_sources"]
@@ -205,7 +205,7 @@ def handle_needed_resources(needed_sources: list) -> str:
     """
     处理所需资源
     """
-    # 通过调用driver_info模块中的get_symbol_by_name方法获取所需资源,返回所需资源的详细内容,如果没有所需资源，则返回空字符串
+    # Obtain the required resource by calling get_symbol_by_name in the driver_info module, return the detailed content of the required resource, or an empty string if there is none
     res = "None"
     cnt = 0
     suc_cnt = 0

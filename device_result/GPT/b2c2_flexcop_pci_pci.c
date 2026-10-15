@@ -289,17 +289,17 @@ static void pcibase_mmio_write(void *opaque, hwaddr addr, uint64_t val, unsigned
      */
 
      /* * ==========================================
-     * 关键修复：I2C State Machine Auto-Complete
+     * Key fix: I2C State Machine Auto-Complete
      * ==========================================
-     * Guest 驱动会写入 tw_sm_c_100 (0x100) 来发起 I2C 操作并轮询。
-     * 根据 Linux 驱动定义:
-     * - Bit 31: st_done (操作完成)
-     * - Bit 30: no_base_addr_ack_error (无响应错误)
-     * 我们在此拦截，强制标记完成且无错误，以防止 guest 陷入死循环。
+     * The guest driver writes tw_sm_c_100 (0x100) to start an I2C operation and then polls it.
+     * Per the Linux driver definition:
+     * - Bit 31: st_done (operation complete)
+     * - Bit 30: no_base_addr_ack_error (no-response error)
+     * We intercept here and force the completed-without-error state to keep the guest from spinning forever.
      */
     if ((addr & ~3) == REG_TW_SM_C_100) {
-        s->mmio_regs[REG_TW_SM_C_100 >> 2] |= (1U << 31);   /* 强制设置 st_done = 1 */
-        s->mmio_regs[REG_TW_SM_C_100 >> 2] &= ~(1U << 30);  /* 强制清除 error = 0 */
+        s->mmio_regs[REG_TW_SM_C_100 >> 2] |= (1U << 31);   /* Force st_done = 1 */
+        s->mmio_regs[REG_TW_SM_C_100 >> 2] &= ~(1U << 30);  /* Force clear error = 0 */
     }
 }
 
@@ -345,10 +345,10 @@ static void pcibase_reset(DeviceState *dev)
     memset(s->mmio_regs, 0, sizeof(s->mmio_regs));
 
     /* * ==========================================
-     * 关键修复：初始化硬件 MAC 地址
+     * Key fix: initialize the hardware MAC address
      * ==========================================
-     * 提供一个合法的虚拟 MAC (例如: 12:34:56:78:9A:BC)，
-     * 防止 guest 内核因 MAC 全零或读取错误而拒绝挂载网卡。
+     * Provide a valid virtual MAC (e.g. 12:34:56:78:9A:BC)
+     * to prevent the guest kernel from refusing to bring up the NIC because of an all-zero MAC or a read error.
      */
     s->mmio_regs[REG_MAC_ADDRESS_418 >> 2] = 0x78563412; 
     s->mmio_regs[REG_MAC_ADDRESS_41C >> 2] = 0x0000BC9A;

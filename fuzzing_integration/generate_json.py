@@ -1,22 +1,22 @@
 import json
 import os
 
-# 配置参数 - 请根据需要修改这些参数
-INPUT_DIRECTORY = ""  # 输入JSON文件所在的目录路径
-OUTPUT_PATH = ""  # 输出文件的完整路径
+# Configuration parameters - modify these as needed
+INPUT_DIRECTORY = ""  # Directory path containing the input JSON files
+OUTPUT_PATH = ""  # Full path of the output file
 
 
 def process_json_files():
     """主处理函数"""
     result = {}
 
-    # 检查输入目录是否存在
+    # Check whether the input directory exists
     if not os.path.isdir(INPUT_DIRECTORY):
         print(f"错误: 输入目录 '{INPUT_DIRECTORY}' 不存在")
         print("请修改脚本中的 INPUT_DIRECTORY 变量为正确的路径")
         return None
 
-    # 创建输出目录（如果不存在）
+    # Create the output directory (if it does not exist)
     output_dir = os.path.dirname(OUTPUT_PATH)
     if output_dir and not os.path.exists(output_dir):
         try:
@@ -26,7 +26,7 @@ def process_json_files():
             print(f"创建输出目录失败: {str(e)}")
             return None
 
-    # 遍历目录
+    # Walk the directory
     processed_count = 0
     skipped_count = 0
     for root, dirs, files in os.walk(INPUT_DIRECTORY):
@@ -43,24 +43,24 @@ def process_json_files():
                         print(f"警告: {file_path} 中没有找到'驱动名称'键")
                         continue
 
-                    # 处理驱动核心路径
+                    # Handle the driver core path
                     core_path = data.get("驱动核心路径", "")
                     if not core_path:
                         print(f"警告: {driver_name} 没有驱动核心路径，跳过此文件")
                         skipped_count += 1
                         continue
 
-                    # 处理核心路径
+                    # Handle the core path
                     processed_core_path = process_core_path(core_path)
                     if not processed_core_path:
                         print(f"警告: {driver_name} 的核心路径处理失败: {core_path}")
                         skipped_count += 1
                         continue
 
-                    # 处理头文件（如果为空则忽略）
+                    # Handle header files (ignore if empty)
                     processed_header_paths = []
                     header_files = data.get("头文件", [])
-                    if header_files:  # 只有当头文件列表不为空时才处理
+                    if header_files:  # Only process when the header file list is not empty
                         for header in header_files:
                             processed_header = process_header_path(header)
                             if processed_header:
@@ -68,11 +68,11 @@ def process_json_files():
                             else:
                                 print(f"警告: {driver_name} 的头文件路径处理失败: {header}")
 
-                    # 构建最终路径列表
+                    # Build the final path list
                     all_paths = [processed_core_path]
                     all_paths.extend(processed_header_paths)
 
-                    # 添加到结果中
+                    # Add to the result
                     result[driver_name] = all_paths
                     processed_count += 1
 
@@ -81,7 +81,7 @@ def process_json_files():
                 except Exception as e:
                     print(f"处理文件 {file_path} 时出错: {str(e)}")
 
-    # 写入输出文件
+    # Write the output file
     try:
         with open(OUTPUT_PATH, 'w', encoding='utf-8') as f:
             json.dump(result, f, ensure_ascii=False, indent=2)
@@ -91,12 +91,12 @@ def process_json_files():
         print(f"- 成功处理: {processed_count} 个驱动")
         print(f"- 跳过处理: {skipped_count} 个驱动")
 
-        # 显示详细的统计信息
+        # Show detailed statistics
         if result:
             total_files = sum(len(paths) for paths in result.values())
             print(f"- 总文件数: {total_files} 个路径")
 
-            # 显示每个驱动包含的文件数量
+            # Show the number of files contained in each driver
             print("\n各驱动文件数量统计:")
             for driver, paths in result.items():
                 c_files = sum(1 for p in paths if p.endswith('.c'))
@@ -128,17 +128,17 @@ def process_core_path(path):
     if not isinstance(path, str):
         return None
 
-    # 1. 删除"/linux/"之前的所有内容
+    # 1. Remove everything before "/linux/"
     if "/linux/" in path:
         linux_index = path.find("/linux/") + 7
         path = path[linux_index:]
 
-    # 2. 删除最后的":"及其后面的所有内容
+    # 2. Remove the last ":" and everything after it
     colon_index = path.find(':')
     if colon_index != -1:
         path = path[:colon_index]
 
-    # 3. 只保留以.c或.h结尾的路径
+    # 3. Keep only paths ending in .c or .h
     if path.endswith(('.c', '.h')):
         return path
 
@@ -161,17 +161,17 @@ def process_header_path(path):
     if not isinstance(path, str):
         return None
 
-    # 1. 删除"/linux/"之前的所有内容
+    # 1. Remove everything before "/linux/"
     if "/linux/" in path:
         linux_index = path.find("/linux/") + 7
         path = path[linux_index:]
 
-    # 2. 删除最后的":"及其后面的所有内容
+    # 2. Remove the last ":" and everything after it
     colon_index = path.find(':')
     if colon_index != -1:
         path = path[:colon_index]
 
-    # 3. 只保留以.c或.h结尾的路径
+    # 3. Keep only paths ending in .c or .h
     if path.endswith(('.c', '.h')):
         return path
 
@@ -179,11 +179,11 @@ def process_header_path(path):
 
 
 if __name__ == "__main__":
-    # 显示配置信息
+    # Show the configuration information
     print("配置信息:")
     print(f"  输入目录: {INPUT_DIRECTORY}")
     print(f"  输出文件: {OUTPUT_PATH}")
     print("-" * 50)
 
-    # 执行处理
+    # Run the processing
     result = process_json_files()

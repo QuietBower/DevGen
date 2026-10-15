@@ -501,12 +501,12 @@ class ClangdClient:
             start = range_data.get('start', {})
             end = range_data.get('end', {})
 
-            # 取前后 2 行
+            # Take 2 lines before and after
             start_line = max(0, start.get('line', 0) - 6)
             end_line = min(len(lines), end.get('line', 0) + 7)
             snippet_lines = lines[start_line:end_line]
 
-            # 对出错行加列指针
+            # Add a column pointer to the error line
             err_line_rel = start.get('line', 0) - start_line
             if 0 <= err_line_rel < len(snippet_lines):
                 col = start.get('character', 0)
@@ -711,7 +711,7 @@ def format_diagnostics(
         code_str = f" [{diag.code}]" if diag.code else ""
         lines.append(f"  {diag.range.start}: {severity}{code_str}: {diag.message}")
         if diag.snippet:                       ### NEW
-            lines.append("")                   # 空一行
+            lines.append("")                   # Blank line
             lines.append("      ---- code ----")
             for L in diag.snippet.splitlines():
                 lines.append(f"      {L}")

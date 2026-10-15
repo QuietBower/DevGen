@@ -39,7 +39,7 @@ OBJECT_DECLARE_SIMPLE_TYPE(PCIBaseState, PCIBASE_DEVICE)
 #define RFDListPtr0     0x0110
 #define RFDListPtr1     0x0114
 
-/* 修正后的真实 dl2k 硬件寄存器偏移量 */
+/* Corrected real dl2k hardware register offsets */
 #define ASICCtrl        0x0030
 #define EepromData      0x0048
 #define EepromCtrl      0x004a
@@ -49,7 +49,7 @@ OBJECT_DECLARE_SIMPLE_TYPE(PCIBaseState, PCIBASE_DEVICE)
 #define TxStatus        0x0060
 #define MACCtrl         0x006c
 #define PhyCtrl         0x0076
-#define ResetBusy       0x0400  /* 这是一个比特标志位，非偏移量 */
+#define ResetBusy       0x0400  /* This is a bit flag, not an offset */
 
 /* Descriptor structure used by the driver */
 struct netdev_desc {
@@ -152,17 +152,17 @@ static uint64_t pcibase_mmio_read(void *opaque, hwaddr addr, unsigned size)
         return 0;
     }
 
-    /* 【核心修复】：拦截 PHY 寄存器读取，欺骗 MII 检测 */
+    /* [Core fix]: intercept PHY register reads to spoof MII detection */
     if (size == 1 && addr == PhyCtrl) {
         uint8_t ctrl = ((uint8_t *)s->regs.regs)[addr];
-        if ((ctrl & 0x04) == 0) { // 0x04 是 MII_WRITE。当 MII_WRITE 为 0 时是读取周期
-            /* 使用 LFSR 生成伪随机比特，避免全是 0 或 1，从而返回一个合法的伪造 PHY ID */
+        if ((ctrl & 0x04) == 0) { // 0x04 is MII_WRITE. When MII_WRITE is 0 it is a read cycle
+            /* Use an LFSR to generate pseudo-random bits, avoiding all-0s or all-1s, so that a plausible fake PHY ID is returned */
             static uint16_t lfsr = 0xACE1;
             unsigned bit = ((lfsr >> 0) ^ (lfsr >> 2) ^ (lfsr >> 3) ^ (lfsr >> 5)) & 1;
             lfsr = (lfsr >> 1) | (bit << 15);
             
-            ctrl &= ~0x02;      // 清除 MII_DATA1
-            ctrl |= (bit << 1); // 插入伪装数据的 Bit
+            ctrl &= ~0x02;      // Clear MII_DATA1
+            ctrl |= (bit << 1); // Insert the bits of the spoofed data
         }
         return ctrl;
     }
@@ -266,16 +266,16 @@ static void pcibase_mmio_write(void *opaque, hwaddr addr, uint64_t val, unsigned
         return;
     }
 
-    /* 【核心修复】：处理驱动向 EEPROM 发出的读命令 */
+    /* [Core fix]: handle the read commands the driver issues to the EEPROM */
     if (size == 2 && addr == EepromCtrl) {
         uint16_t eep_addr = val & 0xff;
         
-        // 1. 立即清除 BUSY 状态
+        // 1. Clear the BUSY state immediately
         uint16_t cur = le16_to_cpu(*(uint16_t *)(((uint8_t *)s->regs.regs) + addr));
         cur &= ~DL2K_EEP_BUSY;
         *(uint16_t *)(((uint8_t *)s->regs.regs) + addr) = cpu_to_le16(cur);
 
-        // 2. 填充伪造的 EEPROM MAC 地址 (52:54:00:12:34:56)
+        // 2. Fill in a fake EEPROM MAC address (52:54:00:12:34:56)
         uint16_t mock_data = 0x0000;
         if (eep_addr == 0) mock_data = 0x5452;
         else if (eep_addr == 1) mock_data = 0x1200;
@@ -426,16 +426,16 @@ static void pcibase_realize(PCIDevice *pdev, Error **errp)
         pci_set_word(pci_conf + pm_pos + PCI_PM_PMC, 0x0003); 
     }
 
-    // 【修改点】将 BAR 数量改为 2，并初始化 BAR 1
+    // [Change] Set the number of BARs to 2 and initialize BAR 1
     s->num_bars = 2; 
 
-    // 原始 BAR 0
+    // Original BAR 0
     s->bar_info[0].index = 0;
     s->bar_info[0].type = BAR_TYPE_MMIO;
     s->bar_info[0].size = 0x20000; /* 128 KiB */
     s->bar_info[0].name = "dl2k-mmio0";
 
-    // 新增 BAR 1
+    // Newly added BAR 1
     s->bar_info[1].index = 1;
     s->bar_info[1].type = BAR_TYPE_MMIO;
     s->bar_info[1].size = 0x20000; /* 128 KiB */

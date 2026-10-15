@@ -1,6 +1,6 @@
 import re
 
-# 预编译正则表达式
+# Precompiled regular expressions
 COMMENT_PATTERN = re.compile(r'/\*.*?\*/|//.*$', re.DOTALL | re.MULTILINE)
 INCLUDE_PATTERN = re.compile(r'#include\s+"([^"]+)"')
 NAME_FIELD_PATTERN = re.compile(r'\.name\s*=\s*"([^"]*)"')
@@ -16,7 +16,7 @@ ARRAY_SIZE_PATTERN = re.compile(r'ARRAY_SIZE\s*\(\s*([a-zA-Z_][a-zA-Z0-9_]*)\s*\
 FUNC_PTR_PATTERN = re.compile(r'(?:->|\.)\s*[a-zA-Z_][a-zA-Z0-9_]*\s*=\s*&?\s*([a-zA-Z_][a-zA-Z0-9_]*)')
 PCI_DRIVER_PATTERN = re.compile(r'pci_(register|unregister)_driver\s*\(\s*&?\s*\b([a-zA-Z_][a-zA-Z0-9_]*)\b')
 
-# C语言关键字集合
+# Set of C keywords
 C_KEYWORDS = {
     'auto', 'break', 'case', 'char', 'const', 'continue', 'default',
     'do', 'double', 'else', 'enum', 'extern', 'float', 'for', 'goto',
@@ -25,7 +25,7 @@ C_KEYWORDS = {
     'unsigned', 'void', 'volatile', 'while', 'NULL', 'true', 'false'
 }
 
-# 符号类型映射
+# Symbol type mapping
 SYMBOL_TYPE_MAPPING = {
     'define': '宏定义',
     'enum': 'enum定义',
@@ -37,7 +37,7 @@ SYMBOL_TYPE_MAPPING = {
     'var': 'var声明'
 }
 
-# 文件映射配置
+# File mapping configuration
 FILE_MAPPINGS = {
     'define': '../linux/define.jsonl',
     'enum': '../linux/enum.jsonl',
@@ -49,8 +49,8 @@ FILE_MAPPINGS = {
     'var': '../linux/var.jsonl'
 }
 
-# 输出目录
+# Output directory
 OUTPUT_DIR = "my_pci_driver"
 
-# 最大迭代次数（防止无限循环）
+# Maximum number of iterations (to prevent infinite loops)
 MAX_ITERATIONS = 100000

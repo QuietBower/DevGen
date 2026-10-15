@@ -27,16 +27,16 @@ def query_by_name(db_path: str, table_name: str, name: str) -> list[dict]:
     """
 
     conn = sqlite3.connect(db_path)
-    conn.row_factory = sqlite3.Row  # 关键：使 fetch 结果支持列名访问
+    conn.row_factory = sqlite3.Row  # Key point: make the fetch result support access by column name
     cursor = conn.cursor()
 
     try:
-        # 使用参数化查询防注入，表名通过校验后拼接
+        # Use parameterized queries to prevent injection; the table name is concatenated after validation
         sql = f'SELECT * FROM "{table_name}" WHERE name = ?'
         cursor.execute(sql, (name,))
         rows = cursor.fetchall()
         
-        # 转换为字典列表
+        # Convert to a list of dicts
         result = [dict(row) for row in rows]
         return result
 
@@ -49,7 +49,7 @@ class DriverInfo:
     驱动信息类，提供结构体/宏定义和函数实现信息的访问接口
     """
     
-    # 类变量，用于单例模式（可选）
+    # Class variable used for the singleton pattern (optional)
     _instance = None
     
     def __new__(cls):
@@ -62,15 +62,15 @@ class DriverInfo:
         初始化驱动信息类
         后续可以在这里添加JSON文件加载逻辑
         """
-        # 初始化时可以留空，后续用于JSON文件路径配置等
+        # May be left empty at initialization; later used for JSON file path configuration etc.
         self._json_file_path = None
         self._json_file_path_detail = None
         self._jsonl_file_path = None
         self.symbols_jsonl = None
-        self.symbols_json = None # 当前建模驱动的详细json文件内容
+        self.symbols_json = None # Detailed JSON file content of the driver currently being modeled
         self.pci_drivers = None
 
-        # 加载配置
+        # Load the configuration
         config_loader = ConfigLoader()
         self.config = config_loader.load()
     
@@ -149,12 +149,12 @@ class DriverInfo:
             str or None: symbol信息，如果不存在则返回None
         """
         
-        # 从json文件中获取symbol信息，每个json保存一个驱动全部的symbol信息
+        # Get symbol information from the json file; each json holds all symbol information of one driver
         if self.symbols_json == None:
             self.load_symbols_from_json()
         
-        # 从jsonl文件中获取symbol信息，每个类型的symbol存在一个单独的jsonl中。如define.jsonl、function.jsonl、struct.jsonl等
-        # 本次只加载struct_init
+        # Get symbol information from jsonl files; each symbol type has its own jsonl, e.g. define.jsonl, function.jsonl, struct.jsonl
+        # Only struct_init is loaded this time
         if self.symbols_jsonl == None:
             self.load_symbols_from_jsonl_only_struct_init()
 
@@ -168,7 +168,7 @@ class DriverInfo:
                 if "pci_driver" in data["source"]:
                     self.pci_drivers.append(data)
 
-        # 获得驱动的路径
+        # Get the path of the driver
         driver_path = ""
         for driver_data in self.pci_drivers:
             driv_path = driver_data["filename"]
@@ -177,10 +177,10 @@ class DriverInfo:
             if driv_name == get_driver_name():
                 driver_path = driv_path
 
-        # 根据驱动地址，获得基地址，用于计算路径相似度
+        # From the driver address, get the base address, used to compute path similarity
         base_dir = self.get_base_directory(driver_path)
         
-        # 首先尝试从详细的json文件中搜索symbol信息
+        # First try to search for the symbol information in the detailed json file
         logger.debug(f"Try to get symbol from json file: {name}, {type}")
         symbol_data = self.search_symbols_from_json(type, name)
         logger.debug(f"The result of search_symbols_from_json: {symbol_data}")
@@ -283,9 +283,9 @@ class DriverInfo:
 
         res = None
 
-        # 遍历symbol类型
+        # Iterate over symbol types
         for symbol_type in symbol_types:
-            # 遍历symbol类型中的所有symbol，判断和否匹配
+            # Iterate over all symbols of a symbol type and test whether they match
             for name, data in self.symbols_json[symbol_type].items():
                 if name == symbol_name:
                     if res == None:
@@ -313,16 +313,16 @@ class DriverInfo:
                     for line in f:
                         data = json.loads(line.strip())
                         
-                        # 处理不同的符号格式
+                        # Handle the different symbol formats
                         if symbol_type in ['enum_typedef', 'struct_typedef']:
-                            # typedef格式：使用alias作为键，如果alias不存在则使用name
+                            # typedef format: use alias as the key, or name if alias is absent
                             key = data.get('alias', data.get('name', ''))
                         else:
-                            # 非typedef格式：使用name作为键
+                            # Non-typedef format: use name as the key
                             key = data.get('name', '')
                         
                         if key:
-                            # 处理多个定义的情况
+                            # Handle the multiple-definition case
                             if key in self.symbols_jsonl[symbol_type]:
                                 if not isinstance(self.symbols_jsonl[symbol_type][key], list):
                                     self.symbols_jsonl[symbol_type][key] = [self.symbols_jsonl[symbol_type][key]]
@@ -353,7 +353,7 @@ class DriverInfo:
         dirs1 = path1.split('/')
         dirs2 = path2.split('/')
         
-        # 计算共同前缀的长度
+        # Compute the length of the common prefix
         common_prefix = 0
         for i in range(min(len(dirs1), len(dirs2))):
             if dirs1[i] == dirs2[i]:
@@ -361,7 +361,7 @@ class DriverInfo:
             else:
                 break
         
-        # 相似度 = 共同前缀长度 / 最大路径长度
+        # Similarity = common prefix length / max path length
         max_length = max(len(dirs1), len(dirs2))
         similarity = common_prefix / max_length if max_length > 0 else 0
         
@@ -422,7 +422,7 @@ class DriverInfo:
         if len(all_definitions) == 1:
             return all_definitions[0]
         
-        # 多个定义：先筛选在基础目录下的定义
+        # Multiple definitions: first filter definitions under the base directory
         base_dir_definitions = []
         if base_dir:
             for definition in all_definitions:
@@ -430,41 +430,41 @@ class DriverInfo:
                 if definition_path.startswith(base_dir):
                     base_dir_definitions.append(definition)
         
-        # 如果有在基础目录下的定义，从中选择最佳
+        # If there are definitions under the base directory, choose the best among them
         if base_dir_definitions:
             return self.select_best_definition(base_dir_definitions, base_dir)
         
-        # 如果没有在基础目录下的定义，从所有定义中选择最佳
+        # If there are no definitions under the base directory, choose the best among all definitions
         return self.select_best_definition(all_definitions, base_dir)
 
     def get_base_directory(self, file_path):
         """根据文件路径确定基础目录（定位到drivers/后的第一个子目录）"""
         file_path_no_line = self.get_file_path_without_line_number(file_path)
         
-        # 查找drivers/在路径中的位置
+        # Find the position of drivers/ in the path
         drivers_index = file_path_no_line.find('drivers/')
         if drivers_index == -1:
-            # 如果没有找到drivers/，则返回文件所在目录
+            # If drivers/ is not found, return the directory containing the file
             return os.path.dirname(file_path_no_line)
         
-        # 获取drivers/后的部分
+        # Get the part after drivers/
         after_drivers = file_path_no_line[drivers_index + len('drivers/'):]
         
-        # 找到第一个目录分隔符
+        # Find the first directory separator
         first_slash = after_drivers.find('/')
         if first_slash == -1:
-            # 如果没有找到分隔符，说明路径就是drivers/后的第一个目录
+            # If no separator is found, the path is the first directory after drivers/
             return file_path_no_line
         
-        # 返回drivers/后的第一个子目录的完整路径
+        # Return the full path of the first subdirectory after drivers/
         base_dir = file_path_no_line[:drivers_index + len('drivers/') + first_slash]
         return base_dir
     
-# 创建全局实例，便于其他模块导入使用
+# Create a global instance for other modules to import
 driver_info = DriverInfo()
 
 if __name__ == "__main__":
-    # 测试代码
+    # Test code
     set_driver_name("adm8211")
     driver_info = DriverInfo()
 

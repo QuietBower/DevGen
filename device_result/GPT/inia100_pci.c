@@ -219,17 +219,17 @@ static uint64_t pcibase_pio_read(void *opaque, hwaddr addr, unsigned size)
             val8 = s->io_regs[ORC_HDATA];
             break;
             
-        /* ---- 这里是我们修改的 RQUEUE 队列出队逻辑 ---- */
+        /* ---- This is our modified RQUEUE dequeue logic ---- */
         case ORC_RQUEUE:
             if (s->rqueue_cnt > 0) {
                 val8 = s->rqueue_entries[s->rqueue_head];
                 s->rqueue_head = (s->rqueue_head + 1) % ORC_MAXQUEUE;
                 s->rqueue_cnt--;
                 s->io_regs[ORC_RQUEUECNT] = s->rqueue_cnt;
-                /* 队列状态改变，更新中断引脚状态 */
+                /* The queue state changed; update the interrupt pin state */
                 pcibase_update_irq(s); 
             } else {
-                val8 = 0; /* 队列为空时的安全返回值 */
+                val8 = 0; /* Safe return value when the queue is empty */
             }
             break;
         /* ------------------------------------------- */
@@ -341,36 +341,36 @@ static void pcibase_pio_write(void *opaque, hwaddr addr, uint64_t val, unsigned 
             s->io_regs[ORC_HDATA] = v8;
             switch (s->last_cmd) {
             case ORC_CMD_VERSION:
-                /* Version 命令不需要后续写入参数数据，安全起见重置状态 */
+                /* The Version command needs no subsequent parameter write, so reset the state to be safe */
                 s->last_cmd = 0;
                 break;
             case ORC_CMD_SET_NVM:
                 /* First HDATA after command is address. */
                 s->last_nv_addr = v8;
-                s->last_cmd = 0;  /* 参数接收完毕，清除命令状态 */
+                s->last_cmd = 0;  /* Parameters fully received; clear the command state */
                 break;
             case ORC_CMD_GET_NVM:
                 /* First HDATA after command is NVRAM address; we
                  * remember it and prepare data/HDI. */
                 s->last_nv_addr = v8;
-                /* 修复：返回 0x01 以满足驱动中 nvramp->revision == 1 的断言要求。
-                 * 0x01 对 EEPROM 里的其他设置（如 SCSI ID、flags）也是良性安全的值。 */
+                /* Fix: return 0x01 to satisfy the driver's nvramp->revision == 1 assertion.
+                 * 0x01 is also a benign, safe value for the other EEPROM settings (such as SCSI ID and flags). */
                 s->io_regs[ORC_HDATA] = 0x01; 
                 s->io_regs[ORC_HSTUS] |= HDI;
-                s->last_cmd = 0;  /* 参数接收完毕，清除命令状态 */
+                s->last_cmd = 0;  /* Parameters fully received; clear the command state */
                 break;
             case ORC_CMD_ABORT_SCB:
                 /* v8 is scbidx. Driver then waits for HDI and reads
                  * HDATA to get status (0 success, 1 fail). */
                 s->io_regs[ORC_HDATA] = 0x00; /* status 0 = success */
                 s->io_regs[ORC_HSTUS] |= HDI;
-                s->last_cmd = 0;  /* 参数接收完毕，清除命令状态 */
+                s->last_cmd = 0;  /* Parameters fully received; clear the command state */
                 break;
             default:
-                /* 修复：当无活动命令时，写入 HDATA 的字节即为新的命令 */
+                /* Fix: when there is no active command, a byte written to HDATA is the new command */
                 s->last_cmd = v8;
                 
-                /* 如果是不需要后续写入参数的命令，立即将状态重置 */
+                /* If it is a command that needs no subsequent parameter write, reset the state immediately */
                 if (v8 == ORC_CMD_VERSION) {
                     s->last_cmd = 0;
                 }

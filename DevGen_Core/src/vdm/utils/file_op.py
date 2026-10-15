@@ -29,10 +29,10 @@ def move_all_files(src_dir: str, dst_dir: str):
     src = Path(src_dir)
     dst = Path(dst_dir)
 
-    # 确保目标目录存在
+    # Ensure the target directory exists
     dst.mkdir(parents=True, exist_ok=True)
 
-    # 遍历源目录中的所有项目（文件和子目录）
+    # Iterate over all entries (files and subdirectories) in the source directory
     for item in src.iterdir():
         shutil.move(str(item), str(dst / item.name))
 

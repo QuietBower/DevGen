@@ -26,7 +26,7 @@ class ConfigLoader:
         """
         加载指定环境的配置。
         """
-        # 1. 加载默认配置
+        # 1. Load the default configuration
         default_path = self.config_dir / "default.yaml"
         if not default_path.exists():
             raise FileNotFoundError(f"Default configuration file not found: {default_path}")

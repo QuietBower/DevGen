@@ -252,11 +252,11 @@ static void pcibase_realize(PCIDevice *pdev, Error **errp)
     pci_set_word(pci_conf + PCI_DEVICE_ID,  PCIBASE_DEVICE_ID );
     pci_set_word(pci_conf + PCI_CLASS_DEVICE, PCIBASE_CLASS_ID );
 
-    // 【新增这一行修复代码】 
-    // 设置 Prog-If 寄存器。0x8F (二进制 10001111) 的含义：
-    // Bit 7 (1): 支持 Bus Master (DMA)
-    // Bit 3 & 2 (11): Secondary 通道支持 Native 模式
-    // Bit 1 & 0 (11): Primary 通道支持 Native 模式
+    // [New fix line added] 
+    // Set the Prog-If register. The meaning of 0x8F (binary 10001111):
+    // Bit 7 (1): Bus Master (DMA) support
+    // Bit 3 & 2 (11): the Secondary channel supports Native mode
+    // Bit 1 & 0 (11): the Primary channel supports Native mode
     pci_set_byte(pci_conf + PCI_CLASS_PROG, 0x8F);
 
     pci_set_byte(pci_conf + PCI_REVISION_ID, 0x01);

@@ -1,7 +1,7 @@
-# 全局上下文变量，用于存储程序运行时的一些全局信息，包括程序启动时间、建模驱动名称等
+# Global context variables holding runtime-wide information, such as the program start time and the driver being modeled
 import time
 
-# 程序启动时间（在程序入口处设置）
+# Program start time (set at the program entry point)
 CURRENT_MODEL_START_TIME = None
 DRIVER_NAME = None
 

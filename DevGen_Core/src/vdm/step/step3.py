@@ -42,14 +42,14 @@ def get_syntax_error_messages():
         for error in result.errors:
             res += f"\n===========================================================\nLine {error.range.start.line + 1}: {error.message}\n snippet:{error.snippet}\n"
     
-    # 检查并收集语法警告信息
+    # Check and collect syntax warning information
     if result.has_warnings():
         flag += 1
         res += "**Syntax warnings found:**\n"
         for warning in result.warnings:
             res += f"\n===========================================================\nLine {warning.range.start.line + 1}: {warning.message}\nsnippet:\n{warning.snippet}\n"
 
-    # 如果没有发现任何错误或警告，返回成功信息
+    # If no errors or warnings are found, return success
     if flag == 0:
         res += "No syntax errors or warnings found."
 
@@ -62,12 +62,12 @@ def step3_run(device_code: str, logs_path: str = None) -> str:
     logger.info('============================= STEP 3 RUN =============================')
     device_code, needed_sources = step3(device_code, logs_path)   
 
-    # 如若返回的needed_sources不为空，则进行step3的迭代补全
+    # If the returned needed_sources is not empty, run the step3 iterative completion
     device_code = step3_iterations(device_code, needed_sources, logs_path)
     
     logger.info('============================= STEP 3 RUN END =============================')
 
-    # 保存device_code
+    # Save device_code
     if logs_path == None:
         save_device_code_path = f"{get_app_start_time()}_{get_driver_name()}/step3/device_code.txt"
         default_logger.save_content(device_code, save_device_code_path)
@@ -84,7 +84,7 @@ def step3(device_code: str, logs_path: str = None) -> tuple[str, list]:
     logger.info('============================= STEP 3 main =============================')
 
     
-    # 将生成的QEMU设备代码结果拷贝（或者覆盖）到hw/fake_pci下
+    # Copy (or overwrite) the generated QEMU device code into hw/fake_pci
     write_to_file(f"{config['paths']['qemu_hw_fack_pci_path']}/{get_driver_name()}_pci.c", device_code)
     logger.info(f"代码，成功保存至{config['paths']['qemu_hw_fack_pci_path']}/{get_driver_name()}_pci.c")
 
@@ -96,7 +96,7 @@ def step3(device_code: str, logs_path: str = None) -> tuple[str, list]:
         logger.info("无语法错误，不进行step3")
         return device_code, []
 
-    # 获取step3的prompt
+    # Get the step3 prompt
     step3_prompt = prompt_manager.get_prompt("step3", 
                                              DRIVER_PATH=driver_info.get_driver_path_by_driver_name(), 
                                              QEMU_CODE=device_code,
@@ -104,7 +104,7 @@ def step3(device_code: str, logs_path: str = None) -> tuple[str, list]:
                                              Relevant_Source=""
                                             )
 
-    # 构造历史记录
+    # Build the history
     step3_history_messages = [
         {"role": "system", "content": prompt_manager.get_prompt("system")},
         {"role": "user", "content": prompt_manager.get_prompt("step0")},
@@ -113,12 +113,12 @@ def step3(device_code: str, logs_path: str = None) -> tuple[str, list]:
         {"role": "assistant", "content": "OK"},
     ]
 
-    # 构造step3的message
+    # Build the step3 message
     step3_messages = step3_history_messages + [
         {"role": "user", "content": step3_prompt}
     ]
 
-    # 保存step3的message
+    # Save the step3 message
     if logs_path == None:
         save_step3_messages_path = f"{get_app_start_time()}_{get_driver_name()}/step3/messages"
         default_logger.save_messages(step3_messages, save_step3_messages_path)
@@ -126,21 +126,21 @@ def step3(device_code: str, logs_path: str = None) -> tuple[str, list]:
         save_step3_messages_path = f"{logs_path}/syntax_check/messages"
         default_logger.save_messages(step3_messages, save_step3_messages_path)
 
-    # 调用LLM
+    # Call the LLM
     response, finish_reason = client.chat_completion_json(step3_messages)
 
-    # 处理输出超限的情况，多次回复
+    # Handle the output-limit case with multiple replies
     continue_cnt = 1
     while finish_reason == "length" or finish_reason == "None":
         if continue_cnt >= 5:
             break
-        # 构造继续获取完整输出的message
+        # Build the message to continue fetching the full output
         step3_continue_messages = step3_messages + [
             {"role": "assistant", "content": response}, 
             {"role": "user", "content": prompt_manager.get_prompt("full_output")},
         ]
 
-        # 保存step3_continue的message
+        # Save the step3_continue message
         if logs_path == None:
             save_step3_continue_messages_path = f"{get_app_start_time()}_{get_driver_name()}/step3/continue/{continue_cnt}/messages"
             default_logger.save_messages(step3_continue_messages, save_step3_continue_messages_path)
@@ -148,10 +148,10 @@ def step3(device_code: str, logs_path: str = None) -> tuple[str, list]:
             save_step3_continue_messages_path = f"{logs_path}/syntax_check/continue/{continue_cnt}/messages"
             default_logger.save_messages(step3_continue_messages, save_step3_continue_messages_path)
 
-        # 调用LLM
+        # Call the LLM
         response_continue, finish_reason = client.chat_completion_json(step3_continue_messages)
 
-        # 保存回复内容
+        # Save the reply content
         if logs_path == None:
             save_step3_continue_response_path = f"{get_app_start_time()}_{get_driver_name()}/step3/continue/{continue_cnt}/response.txt"
             default_logger.save_content(response_continue, save_step3_continue_response_path)
@@ -159,12 +159,12 @@ def step3(device_code: str, logs_path: str = None) -> tuple[str, list]:
             save_step3_continue_response_path = f"{logs_path}/syntax_check/continue/{continue_cnt}/response.txt"
             default_logger.save_content(response_continue, save_step3_continue_response_path)
 
-        # 处理输出超限的情况，多次回复，拼接多次回复
+        # Handle the output-limit case with multiple replies, concatenating them
         response += response_continue
 
         continue_cnt += 1
 
-    # 保存step3的回复内容
+    # Save the step3 reply content
     if logs_path == None:
         save_step3_response_path = f"{get_app_start_time()}_{get_driver_name()}/step3/response.txt"
         default_logger.save_content(response, save_step3_response_path)
@@ -176,7 +176,7 @@ def step3(device_code: str, logs_path: str = None) -> tuple[str, list]:
         save_step3_response_path = f"{logs_path}/syntax_check/response_visual.txt"
         default_logger.save_response(json.loads(response), save_step3_response_path)
 
-    # 处理LLM返回的json
+    # Handle the JSON returned by the LLM
     response_json = json.loads(response)
     device_code = response_json["code"]
     needed_sources = response_json["needed_sources"]
@@ -190,7 +190,7 @@ def step3_iterations(device_code: str, needed_sources: list, logs_path: str = No
     进行step3的多次迭代补全，直到needed_sources为空或者达到最大迭代次数
     """
     iteration = 0
-    # 最大迭代次数
+    # Maximum number of iterations
     max_iterations = 3
 
     while iteration < max_iterations: 
@@ -198,7 +198,7 @@ def step3_iterations(device_code: str, needed_sources: list, logs_path: str = No
 
         is_searched, device_code, needed_sources = step3_iteration(iteration, device_code, needed_sources, logs_path)
 
-        # 如若无法继续搜索则退出迭代，无法找到needed_sources对应的资源
+        # If the search can no longer continue, exit the iteration; the resource for needed_sources cannot be found
         if not is_searched:
             break
 
@@ -213,10 +213,10 @@ def step3_iteration(cnt: int, device_code: str, needed_sources: list, logs_path:
     """
     进行step3的一次迭代补全，返回补全后的设备代码和所需资源列表，如果无法补全则返回原始设备代码和所需资源列表，同时返回标志位（True表示可以完成搜索,False为反）
     """
-    # 处理needed_sources
+    # Handle needed_sources
     relevant_source = handle_needed_resources(needed_sources)
     
-    # 将生成的QEMU设备代码结果拷贝（或者覆盖）到hw/fake_pci下
+    # Copy (or overwrite) the generated QEMU device code into hw/fake_pci
     write_to_file(f"{config['paths']['qemu_hw_fack_pci_path']}/{get_driver_name()}_pci.c", device_code)
     logger.info(f"代码，成功保存至{config['paths']['qemu_hw_fack_pci_path']}/{get_driver_name()}_pci.c")
 
@@ -233,7 +233,7 @@ def step3_iteration(cnt: int, device_code: str, needed_sources: list, logs_path:
 
         return False, device_code, []
 
-    # 获取step3-iteration的prompt
+    # Get the step3-iteration prompt
     step3_iteration_prompt = prompt_manager.get_prompt("step3_iteration", 
                                                        DRIVER_PATH=driver_info.get_driver_path_by_driver_name(), 
                                                        Relevant_Source=relevant_source, 
@@ -241,7 +241,7 @@ def step3_iteration(cnt: int, device_code: str, needed_sources: list, logs_path:
                                                        SYNTAX_ERROR_MESSAGE=syntax_error_message
                                                       )
 
-    # 构造step3-iteration的历史记录
+    # Build the step3-iteration history
     step3_iteration_history_messages = [
         {"role": "system", "content": prompt_manager.get_prompt("system")},
         {"role": "user", "content": prompt_manager.get_prompt("step0")},
@@ -250,12 +250,12 @@ def step3_iteration(cnt: int, device_code: str, needed_sources: list, logs_path:
         {"role": "assistant", "content": "OK"},
     ]
 
-    # 构造step3-iteration的message
+    # Build the step3-iteration message
     step3_iteration_messages = step3_iteration_history_messages + [
         {"role": "user", "content": step3_iteration_prompt}
     ]
 
-    # 保存step3-iteration的message
+    # Save the step3-iteration message
     if logs_path == None:
         save_step3_iteration_messages_path = f"{get_app_start_time()}_{get_driver_name()}/step3/iteration/{cnt}/messages"
         default_logger.save_messages(step3_iteration_messages, save_step3_iteration_messages_path)
@@ -263,21 +263,21 @@ def step3_iteration(cnt: int, device_code: str, needed_sources: list, logs_path:
         save_step3_iteration_messages_path = f"{logs_path}/syntax_check/iteration/{cnt}/messages"
         default_logger.save_messages(step3_iteration_messages, save_step3_iteration_messages_path)
 
-    # 调用LLM
+    # Call the LLM
     response, finish_reason = client.chat_completion_json(step3_iteration_messages)
 
-    # 处理输出超限的情况，多次回复
+    # Handle the output-limit case with multiple replies
     continue_cnt = 1
     while finish_reason == "length" or finish_reason == "None":
         if continue_cnt >= 5:
             break
-        # 构造继续获取完整输出的message
+        # Build the message to continue fetching the full output
         step3_iteration_continue_messages = step3_iteration_messages + [
             {"role": "assistant", "content": response}, 
             {"role": "user", "content": prompt_manager.get_prompt("full_output")},
         ]
 
-        # 保存step3-iteration_continue的message
+        # Save the step3-iteration_continue message
         if logs_path == None:
             save_step3_iteration_continue_messages_path = f"{get_app_start_time()}_{get_driver_name()}/step3/iteration/{cnt}/continue/{continue_cnt}/messages"
             default_logger.save_messages(step3_iteration_continue_messages, save_step3_iteration_continue_messages_path)
@@ -285,10 +285,10 @@ def step3_iteration(cnt: int, device_code: str, needed_sources: list, logs_path:
             save_step3_iteration_continue_messages_path = f"{logs_path}/syntax_check/iteration/{cnt}/continue/{continue_cnt}/messages"
             default_logger.save_messages(step3_iteration_continue_messages, save_step3_iteration_continue_messages_path)
 
-        # 调用LLM
+        # Call the LLM
         response_continue, finish_reason = client.chat_completion_json(step3_iteration_continue_messages)
 
-        # 保存回复内容
+        # Save the reply content
         if logs_path == None:
             save_step3_iteration_continue_response_path = f"{get_app_start_time()}_{get_driver_name()}/step3/iteration/{cnt}/continue/{continue_cnt}/response.txt"
             default_logger.save_content(response_continue, save_step3_iteration_continue_response_path)
@@ -296,12 +296,12 @@ def step3_iteration(cnt: int, device_code: str, needed_sources: list, logs_path:
             save_step3_iteration_continue_response_path = f"{logs_path}/syntax_check/iteration/{cnt}/continue/{continue_cnt}/response.txt"
             default_logger.save_content(response_continue, save_step3_iteration_continue_response_path)
 
-        # 处理输出超限的情况，多次回复，拼接多次回复
+        # Handle the output-limit case with multiple replies, concatenating them
         response += response_continue
 
         continue_cnt += 1
     
-    # 保存step3-iteration的回复内容
+    # Save the step3-iteration reply content
     if logs_path == None:
         save_step3_iteration_response_path = f"{get_app_start_time()}_{get_driver_name()}/step3/iteration/{cnt}/response.txt"
         default_logger.save_response(json.loads(response), save_step3_iteration_response_path)
@@ -309,7 +309,7 @@ def step3_iteration(cnt: int, device_code: str, needed_sources: list, logs_path:
         save_step3_iteration_response_path = f"{logs_path}/syntax_check/iteration/{cnt}/response.txt"
         default_logger.save_response(json.loads(response), save_step3_iteration_response_path)
 
-    # 处理LLM返回的json
+    # Handle the JSON returned by the LLM
     response_json = json.loads(response)
     device_code = response_json["code"]
     needed_sources = response_json["needed_sources"]
@@ -320,7 +320,7 @@ def handle_needed_resources(needed_sources: list) -> str:
     """
     处理所需资源
     """
-    # 通过调用driver_info模块中的get_symbol_by_name方法获取所需资源,返回所需资源的详细内容,如果没有所需资源，则返回空字符串
+    # Obtain the required resource by calling get_symbol_by_name in the driver_info module, return the detailed content of the required resource, or an empty string if there is none
     res = "None"
     cnt = 0
     suc_cnt = 0

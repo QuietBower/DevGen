@@ -509,7 +509,7 @@ static void pcibase_realize(PCIDevice *pdev, Error **errp)
         }
     }
 
-    /* 1. 首先，安全起见，将所有 6 个 BAR 初始化为 NONE 状态 */
+    /* 1. First, to be safe, initialize all 6 BARs to the NONE state */
     for (int i = 0; i < 6; i++) {
         s->bar_info[i].index = i;
         s->bar_info[i].type  = BAR_TYPE_NONE;
@@ -517,22 +517,22 @@ static void pcibase_realize(PCIDevice *pdev, Error **errp)
         s->bar_info[i].name  = NULL;
     }
 
-    /* 2. 同时配置驱动需要的 BAR0 和 BAR2 */
+    /* 2. Also configure BAR0 and BAR2, which the driver needs */
     s->num_bars = 2;
 
-    // 配置 BAR0
+    // Configure BAR0
     s->bar_info[0].index = 0;
     s->bar_info[0].type  = BAR_TYPE_MMIO;
     s->bar_info[0].size  = 1 * MiB;
     s->bar_info[0].name  = "mwifiex-pcie-bar0";
 
-    // 配置 BAR2
+    // Configure BAR2
     s->bar_info[2].index = 2;
     s->bar_info[2].type  = BAR_TYPE_MMIO;
     s->bar_info[2].size  = 1 * MiB;
     s->bar_info[2].name  = "mwifiex-pcie-bar2";
 
-    /* 3. 依次注册这两个 BAR */
+    /* 3. Register these two BARs in turn */
     pcibase_register_bar(pdev, s, &s->bar_info[0], errp);
     pcibase_register_bar(pdev, s, &s->bar_info[2], errp);
 

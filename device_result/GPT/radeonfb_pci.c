@@ -316,9 +316,9 @@ static void pcibase_reset(DeviceState *dev)
     s->cnfg_memsize = (64 * MiB) & CNFG_MEMSIZE_MASK;
     s->cnfg_cntl = 0;
 
-    /* * 修复：RS480 驱动通过 NB_TOM 计算 VRAM 大小。
-     * 公式: ((tom >> 16) - (tom & 0xFFFF) + 1) << 16
-     * 为了让驱动识别出 64MB (0x04000000) 显存，我们将 tom 设为 0x03FF0000
+    /* * Fix: the RS480 driver computes the VRAM size from NB_TOM.
+     * Formula: ((tom >> 16) - (tom & 0xFFFF) + 1) << 16
+     * So that the driver detects 64MB (0x04000000) of VRAM, we set tom to 0x03FF0000
      */
     s->nb_tom = 0x03FF0000;
 
@@ -355,8 +355,8 @@ static void pcibase_register_bar(PCIDevice *pdev, PCIBaseState *s, BARInfo *bi, 
         pci_register_bar(pdev, bi->index, PCI_BASE_ADDRESS_SPACE_IO, mr);
     } else if (bi->type == BAR_TYPE_RAM) {
         memory_region_init_ram(mr, OBJECT(s), bi->name, aligned_size, errp);
-        /* * 修复：Framebuffer 必须加上 PCI_BASE_ADDRESS_MEM_PREFETCH，
-         * 否则 Linux 内核的 ioremap_wc 会映射失败。
+        /* * Fix: the Framebuffer must include PCI_BASE_ADDRESS_MEM_PREFETCH,
+         * otherwise the Linux kernel's ioremap_wc mapping fails.
          */
         pci_register_bar(pdev, bi->index, 
                          PCI_BASE_ADDRESS_SPACE_MEMORY | PCI_BASE_ADDRESS_MEM_PREFETCH, 

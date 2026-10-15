@@ -7,8 +7,8 @@ from pathlib import Path
 def create_table_and_import(conn, table_name, jsonl_path):
     cur = conn.cursor()
 
-    # 1. 创建表（安全地使用标识符）
-    # 注意：SQLite 表名不能参数化，需手动转义（仅允许字母数字下划线）
+    # 1. Create the table (use the identifier safely)
+    # Note: SQLite table names cannot be parameterized, so escape them manually (only letters, digits and underscores allowed)
     if not table_name.replace("_", "").replace("-", "").isalnum():
         raise ValueError(f"Invalid table name: {table_name}")
     
@@ -21,10 +21,10 @@ def create_table_and_import(conn, table_name, jsonl_path):
         )
     ''')
 
-    # 2. 创建索引（加速按 name 查询）
+    # 2. Create an index (to speed up lookups by name)
     cur.execute(f'CREATE INDEX IF NOT EXISTS "idx_{table_name}_name" ON "{table_name}"(name);')
 
-    # 3. 流式读取并批量插入
+    # 3. Stream-read and batch-insert
     batch = []
     BATCH_SIZE = 10000
 
@@ -53,7 +53,7 @@ def create_table_and_import(conn, table_name, jsonl_path):
                 conn.commit()
                 batch.clear()
 
-        # 插入剩余数据
+        # Insert the remaining data
         if batch:
             cnt += len(batch)
             cur.executemany(
@@ -70,13 +70,13 @@ def main(data_dir, db_path):
         raise FileNotFoundError(f"目录不存在: {data_dir}")
 
     conn = sqlite3.connect(db_path)
-    # 性能优化
+    # Performance tuning
     conn.execute("PRAGMA journal_mode=WAL;")
     conn.execute("PRAGMA synchronous=NORMAL;")
     conn.execute("PRAGMA cache_size=100000;")  # ~100MB
 
     for jsonl_file in data_dir.glob("*.jsonl"):
-        table_name = jsonl_file.stem  # 去掉 .jsonl 后缀
+        table_name = jsonl_file.stem  # Strip the .jsonl suffix
         create_table_and_import(conn, table_name, jsonl_file)
 
     conn.close()

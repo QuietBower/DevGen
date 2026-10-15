@@ -74,34 +74,34 @@ class FileLogger:
         Returns:
             保存的文件绝对路径
         """
-        # 处理文件路径
+        # Handle the file path
         file_path = Path(file_path)
         if not file_path.is_absolute():
             file_path = self.base_dir / file_path
         
-        # 确保目录存在
+        # Ensure the directory exists
         if ensure_dir:
             file_path.parent.mkdir(parents=True, exist_ok=True)
         
-        # 转换内容为字符串
+        # Convert the content to a string
         if isinstance(content, (dict, list)):
             content_str = json.dumps(content, ensure_ascii=False, indent=2)
         else:
             content_str = str(content)
         
-        # 写入文件
+        # Write the file
         with open(file_path, mode, encoding=encoding) as f:
             f.write(content_str)
         
         logger.info(f"内容已保存到: {file_path.absolute()}")
 
-# 创建全局实例
+# Create a global instance
 default_logger = FileLogger()
 
 
 
 if __name__ == '__main__':
-    # 测试save_messages方法
+    # Test the save_messages method
     # file_path = "/home/user/Devmod/logs/2025-11-15-16-55-46_aectc/step1/messages.txt"
 
     # with open(file_path, 'r', encoding='utf-8') as f:
@@ -110,7 +110,7 @@ if __name__ == '__main__':
     # content = json.loads(content)
 
     # default_logger.save_messages(content, "test")
-    # 测试save_response方法
+    # Test the save_response method
     file_path = "/home/user/Devmod/logs/2025-11-15-16-32-52_adm8211/step1/answer.txt"
 
     with open(file_path, 'r', encoding='utf-8') as f:

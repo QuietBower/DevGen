@@ -372,13 +372,13 @@ static void pcibase_realize(PCIDevice *pdev, Error **errp)
         pci_set_word(pci_conf + pm_pos + PCI_PM_PMC, 0x0003);
     }
 
-    /* === 新增：注入 AGP Capability (Capability ID: 0x02，大小一般给16字节) === */
+    /* === New: inject the AGP Capability (Capability ID: 0x02, size is typically 16 bytes) === */
     int agp_pos = pci_add_capability(pdev, PCI_CAP_ID_AGP, 0, 16, errp);
     if (agp_pos > 0) {
-        /* * 驱动的 probe 函数后续有一句：
+        /* * The driver's probe function later contains the statement:
          * pci_read_config_dword(pdev, bridge->capndx+PCI_AGP_STATUS, &bridge->mode);
-         * AGP Status 寄存器在 Capability 结构体内的偏移量是 0x4。
-         * 我们需要伪造一个看起来合法的状态值，让驱动认为它支持 AGP 3.0 和 8X 模式等。
+         * The AGP Status register is at offset 0x4 within the Capability structure.
+         * We need to fabricate a plausible status value so that the driver believes it supports AGP 3.0 and 8X mode, etc.
          */
         uint32_t fake_agp_status = AGPSTAT_AGP_ENABLE | AGPSTAT_MODE_3_0 | AGPSTAT3_8X;
         pci_set_long(pci_conf + agp_pos + 4, fake_agp_status);

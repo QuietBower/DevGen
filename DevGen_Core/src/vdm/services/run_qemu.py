@@ -12,7 +12,7 @@ def _pipe_reader(pipe, file_obj):
     """仅把管道内容写文件，不写终端/logger"""
     try:
         for line in iter(pipe.readline, ''):
-            file_obj.write(line)      # 保留原始换行
+            file_obj.write(line)      # Preserve the original newlines
             file_obj.flush()
     finally:
         pipe.close()
@@ -24,7 +24,7 @@ def run_qemu():
 
     vm_log_path = f"{config['paths']['qemu_out_share_path']}/vm.log"
     os.makedirs(os.path.dirname(vm_log_path), exist_ok=True)
-    vm_log_fp = open(vm_log_path, 'a', buffering=1)   # 行缓冲
+    vm_log_fp = open(vm_log_path, 'a', buffering=1)   # Line buffering
 
     proc = subprocess.Popen(
         ["bash", script_path],
@@ -36,11 +36,11 @@ def run_qemu():
         cwd=os.path.dirname(script_path),
     )
 
-    # 守护线程只负责写文件
+    # The daemon thread is only responsible for writing to the file
     threading.Thread(target=_pipe_reader, args=(proc.stdout, vm_log_fp), daemon=True).start()
     threading.Thread(target=_pipe_reader, args=(proc.stderr, vm_log_fp), daemon=True).start()
 
-    # 把文件句柄绑到对象，防止被 GC 提前关闭
+    # Bind the file handle to the object to prevent it from being closed early by GC
     proc._vm_log_fp = vm_log_fp
     return proc
 

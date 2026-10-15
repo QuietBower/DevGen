@@ -7,28 +7,28 @@ def filter_json_by_path(data, path_keywords):
     递归过滤JSON数据，删除所有包含"path"字段但不包含指定关键词的对象
     """
     if isinstance(data, dict):
-        # 检查当前字典是否有"path"字段
+        # Check whether the current dict has a "path" field
         if "path" in data:
             path_value = data["path"]
-            # 检查path是否包含任何关键词
+            # Check whether path contains any of the keywords
             if not any(keyword in path_value for keyword in path_keywords):
-                return None  # 不包含关键词，删除该对象
+                return None  # Does not contain the keyword, delete this object
 
-        # 递归处理字典的所有值
+        # Recursively process all values of the dict
         result = {}
         for key, value in data.items():
             filtered_value = filter_json_by_path(value, path_keywords)
-            # 对于顶级键，始终保留键，即使值为空
+            # For top-level keys, always keep the key even if the value is empty
             if filtered_value is not None:
                 result[key] = filtered_value
             else:
-                # 如果过滤后的值为None，但这是顶级键，我们保留键并设置空值
-                # 检查是否是顶级字典（通过检查键名来判断）
+                # If the filtered value is None but this is a top-level key, keep the key and set an empty value
+                # Check whether it is a top-level dict (judged by checking the key names)
                 top_level_keys = ["驱动名称", "驱动核心路径", "宏定义", "enum定义", "enum-typedef定义",
                                   "struct定义", "struct-typedef定义", "var声明", "struct-init声明",
                                   "func声明", "struct-init定义", "func定义"]
                 if key in top_level_keys:
-                    # 对于列表类型的顶级键，设置为空列表
+                    # For top-level keys of list type, set an empty list
                     if isinstance(value, list):
                         result[key] = []
                     else:
@@ -37,17 +37,17 @@ def filter_json_by_path(data, path_keywords):
         return result if result else None
 
     elif isinstance(data, list):
-        # 递归处理列表的所有元素
+        # Recursively process all elements of the list
         result = []
         for item in data:
             filtered_item = filter_json_by_path(item, path_keywords)
             if filtered_item is not None:
                 result.append(filtered_item)
-        # 始终返回列表，即使为空
+        # Always return a list, even if empty
         return result
 
     else:
-        # 基本数据类型，直接返回
+        # Primitive data type, return directly
         return data
 
 
@@ -73,7 +73,7 @@ def ensure_top_level_keys(original_data, filtered_data):
 
     for key in original_data.keys():
         if key not in filtered_data:
-            # 如果键在过滤后的数据中不存在，添加它
+            # If the key does not exist in the filtered data, add it
             original_value = original_data[key]
             if isinstance(original_value, list):
                 filtered_data[key] = []
@@ -88,29 +88,29 @@ def process_single_json_file(input_file, output_file, path_keywords):
     处理单个JSON文件的函数
     """
     try:
-        # 检查输入文件是否存在
+        # Check whether the input file exists
         if not os.path.exists(input_file):
             print(f"警告: 输入文件 '{input_file}' 不存在，跳过处理")
             return False
 
-        # 读取JSON文件
+        # Read the JSON file
         with open(input_file, 'r', encoding='utf-8') as f:
             data = json.load(f)
 
         print(f"开始过滤JSON数据: {input_file}")
         print(f"过滤关键词: {path_keywords}")
 
-        # 过滤数据
+        # Filter the data
         filtered_data = filter_json_by_path(data, path_keywords)
 
-        # 如果过滤后数据为空，创建一个包含所有顶级键的空结构
+        # If the filtered data is empty, create an empty structure containing all top-level keys
         if filtered_data is None:
             filtered_data = create_empty_structure(data)
 
-        # 确保所有顶级键都被保留
+        # Ensure all top-level keys are preserved
         filtered_data = ensure_top_level_keys(data, filtered_data)
 
-        # 写入过滤后的数据到新文件
+        # Write the filtered data to a new file
         with open(output_file, 'w', encoding='utf-8') as f:
             json.dump(filtered_data, f, ensure_ascii=False, indent=2)
 
@@ -127,7 +127,7 @@ def batch_process_json_files(config_file):
     批量处理JSON文件的主函数
     """
     try:
-        # 读取配置文件
+        # Read the configuration file
         with open(config_file, 'r', encoding='utf-8') as f:
             config = json.load(f)
 
@@ -137,17 +137,17 @@ def batch_process_json_files(config_file):
         success_count = 0
         fail_count = 0
 
-        # 逐个处理每个配置项
+        # Process each configuration item one by one
         for key, path_keywords in config.items():
             print(f"\n正在处理: {key}")
 
-            # 构建输入输出文件名
+            # Build the input and output filenames
             input_dir= "data/100_example_6.18/"
             output_dir= "data/100_example_new_6.18/"
             input_file = input_dir + f"{key}.json"
             output_file = output_dir + f"{key}.json"
 
-            # 处理单个文件
+            # Process a single file
             if process_single_json_file(input_file, output_file, path_keywords):
                 success_count += 1
             else:
@@ -164,8 +164,8 @@ def batch_process_json_files(config_file):
 
 
 if __name__ == "__main__":
-    # 配置文件路径
-    config_file = "data/100_example.json"  # 您提供的JSON文件
+    # Configuration file path
+    config_file = "data/100_example.json"  # The JSON file you provided
 
-    # 执行批量处理
+    # Run the batch processing
     batch_process_json_files(config_file)

@@ -40,20 +40,20 @@ def remove_duplicates(driver_data):
         if category in driver_data:
             unique_symbols = {}
             for symbol in driver_data[category]:
-                # 使用名称作为唯一标识
+                # Use the name as the unique identifier
                 unique_symbols[symbol["name"]] = symbol
-            # 转换回列表
+            # Convert back to a list
             driver_data[category] = list(unique_symbols.values())
     
     return driver_data
 
 def generate_declarations(driver_data):
     """9. 为每一个struct-init定义和func定义都创建struct-init声明和func声明"""
-    # 为函数定义生成声明
+    # Generate a declaration for the function definition
     for func_def in driver_data["func定义"]:
         func_declaration = extract_function_declaration(func_def["source"])
         if func_declaration:
-            # 检查是否已存在同名声明
+            # Check whether a declaration with the same name already exists
             exists = False
             for decl in driver_data["func声明"]:
                 if decl["name"] == func_def["name"]:
@@ -67,11 +67,11 @@ def generate_declarations(driver_data):
                     "source": func_declaration
                 })
     
-    # 为结构体初始化定义生成声明
+    # Generate a declaration for the struct initialization definition
     for struct_init_def in driver_data["struct-init定义"]:
         struct_init_declaration = extract_struct_init_declaration(struct_init_def["source"])
         if struct_init_declaration:
-            # 检查是否已存在同名声明
+            # Check whether a declaration with the same name already exists
             exists = False
             for decl in driver_data["struct-init声明"]:
                 if decl["name"] == struct_init_def["name"]:

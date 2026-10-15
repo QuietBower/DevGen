@@ -19,13 +19,13 @@ def check_is_running() -> bool:
 def execute_ssh_commands_and_get_files() -> tuple[bool, int]:
     """返回一个bool，一个int，分别为是否出现kernel in use，执行结果代码（0为成功，1为ssh连接失败（启动qemu失败），2为执行ssh命令失败）
     """
-    # 1. 定义SSH基础命令（指定密钥、主机、端口）
+    # 1. Define the base SSH command (specify the key, host and port)
     ssh_base = (
         f"ssh -i {config['paths']['id_rsa_path']} "
         "root@127.0.0.1 -p 10021"
     )
     
-    # 2. 定义要在远程执行的命令
+    # 2. Define the commands to run on the remote host
     remote_commands = [
         "mount -t 9p -o trans=virtio,version=9p2000.L hostshare /mnt",
         "lspci -k -s 00:04.0> /mnt/load.txt",
@@ -36,9 +36,9 @@ def execute_ssh_commands_and_get_files() -> tuple[bool, int]:
     full_ssh_cmd = f"{ssh_base} {shlex.quote(remote_cmd_str)}"
 
     try:
-        # 等待20秒，不知道为什么，立刻执行导致无法通过ssh连接
+        # Wait 20 seconds; for unknown reasons, running immediately makes the SSH connection fail
         time.sleep(30)
-        # 检查vm.log是否存在"syzkaller login:"
+        # Check whether vm.log contains "syzkaller login:"
         try_cnt = 10
         logger.info("开始执行远程命令...")
         
@@ -46,7 +46,7 @@ def execute_ssh_commands_and_get_files() -> tuple[bool, int]:
             logger.info(f"尝试次数：{try_cnt}")
             if check_is_running():
                 logger.info("Qemu启动成功，开始ssh连接")
-                # 执行远程命令（创建虚拟终端，避免输出乱码）
+                # Run the remote command (create a virtual terminal to avoid garbled output)
                 result = subprocess.run(
                     full_ssh_cmd,
                     shell=True,
@@ -64,7 +64,7 @@ def execute_ssh_commands_and_get_files() -> tuple[bool, int]:
                     logger.error(f"远程命令执行失败！错误信息：{result.stderr}")
                     logger.error("远程命令执行失败！")
 
-                    # 保存ssh连接失败信息
+                    # Save the SSH connection failure information
                     with open(f"{config['paths']['qemu_out_share_path']}/ssh_failed.txt", "w", encoding="utf-8") as f:
                         f.write(result.stderr)
                     
@@ -79,7 +79,7 @@ def execute_ssh_commands_and_get_files() -> tuple[bool, int]:
             logger.error("尝试次数已用完，无法连接虚拟机")
             return False, 1
 
-        # 3. 读取远程的load.txt和dev.txt内容
+        # 3. Read the remote load.txt and dev.txt contents
         def read_remote_file(file_path):
             cmd = f"{ssh_base} {shlex.quote(f'cat {file_path}')}"
             file_result = subprocess.run(
@@ -98,17 +98,17 @@ def execute_ssh_commands_and_get_files() -> tuple[bool, int]:
 
         if not is_have_kernel_in_use:
             match = re.search(r'Kernel modules:\s*(\S+)', load_content)
-            # 如果没有Kernel modules的，执行modprobe 驱动名（不加_pci）
+            # If there is no 'Kernel modules' entry, run modprobe on the driver name (without the _pci suffix)
             if match is not None:
                 kernel_modules = match.group(1)
-                # 如果kernel_modules存在，则执行
+                # If kernel_modules exists, run it
                 if "," in kernel_modules:
                     kernel_modules = kernel_modules.split(",")[0]
                 logger.info(f"找到kernel modules，执行modprobe {kernel_modules}...")
             else:
                 return is_have_kernel_in_use, 0
 
-            # 获取诊断信息，并关机
+            # Get diagnostic information and shut down
             diag_commands = [
                 "dmesg -C",
                 f"modprobe {shlex.quote(kernel_modules)}",
@@ -122,7 +122,7 @@ def execute_ssh_commands_and_get_files() -> tuple[bool, int]:
             diag_cmd_str = " && ".join(diag_commands)
             full_diag_ssh_cmd = f"{ssh_base} {shlex.quote(diag_cmd_str)}"
 
-            # 执行诊断命令（init 0 会导致连接断开，必然返回非零，所以不 check=True）
+            # Run the diagnostic command (init 0 drops the connection and necessarily returns non-zero, so check=True is not used)
             try:
                 logger.info("未找到kernel driver in use，执行诊断命令...，获得err_msg.txt...")
                 subprocess.run(
@@ -139,7 +139,7 @@ def execute_ssh_commands_and_get_files() -> tuple[bool, int]:
                 logger.info("诊断命令执行超时（可能已关机）")
                 return is_have_kernel_in_use, 2
             except Exception as e:
-                # SSH 断开、连接关闭等属于预期行为，不视为错误
+                # SSH disconnects and closed connections are expected behavior, not errors
                 logger.info(f"执行诊断命令时发生异常（可能因关机）: {str(e)}")
                 return is_have_kernel_in_use, 2
         else:
@@ -147,7 +147,7 @@ def execute_ssh_commands_and_get_files() -> tuple[bool, int]:
             diag_cmd_str = " && ".join(diag_commands)
             full_diag_ssh_cmd = f"{ssh_base} {shlex.quote(diag_cmd_str)}"
 
-            # 执行关机命令
+            # Run the shutdown command
             try:
                 logger.info("已找到kernel driver in use，执行关机命令...")
                 subprocess.run(
@@ -164,11 +164,11 @@ def execute_ssh_commands_and_get_files() -> tuple[bool, int]:
                 logger.info("关机命令执行超时（可能已关机）")
                 return is_have_kernel_in_use, 2
             except Exception as e:
-                # SSH 断开、连接关闭等属于预期行为，不视为错误
+                # SSH disconnects and closed connections are expected behavior, not errors
                 logger.info(f"执行关机命令时发生异常（可能因关机）: {str(e)}")
                 return is_have_kernel_in_use, 2
 
-        # 获得错误诊断信息
+        # Obtain the error diagnostic information
         return is_have_kernel_in_use, 0
 
     except subprocess.CalledProcessError as e:

@@ -12,16 +12,16 @@ def recreate_directory(dir_path):
     """
     重建目录：如果存在则删除后重建，不存在则直接创建
     """
-    # 确保父目录存在
+    # Ensure the parent directory exists
     parent_dir = os.path.dirname(dir_path)
     if parent_dir and not os.path.exists(parent_dir):
         os.makedirs(parent_dir, exist_ok=True)
     
-    # 如果目录存在，删除它
+    # If the directory exists, delete it
     if os.path.exists(dir_path):
         shutil.rmtree(dir_path)
     
-    # 创建新目录
+    # Create the new directory
     os.makedirs(dir_path, exist_ok=True)
 
     logger.info(f"已重建目录：{dir_path}")
@@ -29,10 +29,10 @@ def recreate_directory(dir_path):
 def build_qemu() -> bool:
     # build_path = "/home/user/qemu_8.2_linux_6.7/src/qemu-stable-8.2/build"
     build_path = config["paths"]["qemu_build_path"]
-    # 重建build_path
+    # Rebuild build_path
     recreate_directory(build_path)
 
-    # 运行构建命令
+    # Run the build command
     try:
         process = subprocess.run(
             ["bash", config["paths"]["qemu_build_sh_path"]],
@@ -53,7 +53,7 @@ def build_qemu() -> bool:
         return True
         
     except subprocess.CalledProcessError as e:
-        # 从异常对象 e 中获取 stdout 和 stderr
+        # Get stdout and stderr from the exception object e
         logger.info("命令执行失败！")
         logger.info(f"返回码: {e.returncode}")
         logger.info("=== 标准输出 ===")

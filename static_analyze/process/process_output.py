@@ -1,52 +1,52 @@
-# 读取 .jsonl（每行一个 JSON 对象）格式的中间结果文件，
-# 进行进一步的归类、去重、合并和过滤。
+# Read intermediate result files in .jsonl format (one JSON object per line),
+# and perform further classification, deduplication, merging and filtering.
 import json
 from pathlib import Path
 import re
 import os
-# 日志输出
+# Logging output
 from loguru import logger
-# 命令行参数解析
+# Command-line argument parsing
 from argparse import ArgumentParser
 
-# Linux 源码的根目录路径，由命令行参数传入
+# Root path of the Linux source tree, passed in via command-line arguments
 linux_path = None
-# 需要跳过的子系统路径列表
+# List of subsystem paths to skip
 SKIP_SUBSYSTEMS = [
     "linux/net/",
     "linux/fs/",
     "linux/virt/",
 ]
 
-#递归地将字符串中的 \n 和 \t 转义
+# Recursively escape \n and \t in strings
 def debug_output(data_dict, output_path: Path):
     # Recursively replace the value: \n -> \\n, \t -> \\t
     def replace_value(data):
         if isinstance(data, dict):
-            # 如果数据是字典类型
+            # If the data is a dict
             for key, value in data.items():
-                # 对字典中的每个键值对进行递归替换
+                # Recursively replace each key-value pair in the dict
                 data[key] = replace_value(value)
         elif isinstance(data, list):
-            # 如果数据是列表类型
+            # If the data is a list
             for i in range(len(data)):
-                # 对列表中的每个元素进行递归替换
+                # Recursively replace each element in the list
                 data[i] = replace_value(data[i])
         elif isinstance(data, str):
-            # 如果数据是字符串类型
-            # 将字符串中的换行符替换为双反斜杠加 n
+            # If the data is a string
+            # Replace newline characters with a double backslash followed by n
             data = data.replace("\n", "\\n")
-            # 将字符串中的制表符替换为双反斜杠加 t
+            # Replace tab characters with a double backslash followed by t
             data = data.replace("\t", "\\t")
         return data
 
-    # 对输入的数据字典进行递归替换
+    # Recursively replace the input data dict
     data_dict = replace_value(data_dict)
-    # 将替换后的数据字典以 JSON 格式写入指定的输出路径
+    # Write the replaced data dict to the specified output path in JSON format
     output_path.write_text(json.dumps(data_dict, indent=2))
 
 
-# 用正则表达式从代码片段中提取 ioctl 函数名
+# Extract the ioctl function name from a code snippet using a regular expression
 def extract_ioctl_function_name(code: str) -> str:
     """Extract the ioctl function name from the code."""
     pattern = r"\.(unlocked_)?ioctl\s*=\s*(\w+)[,\n]"
@@ -56,7 +56,7 @@ def extract_ioctl_function_name(code: str) -> str:
     return ""
 
 
-# 计算两个路径的相似度（用于后续合并最相近的 typedef 源码）
+# Compute the similarity of two paths (used later to merge the most similar typedef source)
 def path_similarity(path1, path2):
     """Calculate the similarity of two paths based on their components."""
     components1 = path1.split(os.sep)
@@ -70,10 +70,10 @@ def path_similarity(path1, path2):
     return common_components / total_components
 
 
-# 处理 ioctl.jsonl 文件，提取 ioctl 相关的 handler 信息，
-# 归类、过滤并输出为 JSON 文件和文本列表。
+# Process the ioctl.jsonl file, extract ioctl-related handler information,
+# classify, filter and output as a JSON file and text lists.
 def process_ioctl_handler():
-    # 定义一个函数，用于输出数据到文件
+    # Define a function that outputs data to a file
     def output_data(data_dict, name_suffix=""):
         ioctl_names = list(data_dict.keys())
         ioctl_names.sort()
@@ -82,31 +82,31 @@ def process_ioctl_handler():
             handler_names.extend(list(handler_data.keys()))
         handler_names = list(set(handler_names))
         handler_names.sort()
-        # 将ioctl名称写入文件
+        # Write the ioctl names to a file
         Path(f"ioctl_names{name_suffix}.txt").write_text("\n".join(ioctl_names))
-        # 将handler名称写入文件
+        # Write the handler names to a file
         Path(f"handler_names{name_suffix}.txt").write_text(
             "\n".join(handler_names)
         )
 
-    # 指定jsonl文件的路径
+    # Specify the path of the jsonl file
     jsonl_path = linux_path / "ioctl.jsonl"
 
-    # 用于存储ioctl数据的字典
+    # Dict used to store ioctl data
     ioctl_data = {}
-    # 用于存储handler数据的字典
+    # Dict used to store handler data
     ops_data = {}
     for line in jsonl_path.read_text().splitlines():
         data = json.loads(line)
-        filename = data["filename"] # 文件名
-        source = data["source"]     # 源代码
-        handler_name = data["name"] # 结构名
+        filename = data["filename"] # Filename
+        source = data["source"]     # Source code
+        handler_name = data["name"] # Struct name
 
         if handler_name not in ops_data:
             ops_data[handler_name] = {}
         ops_data[handler_name][filename] = source
 
-        # 正则方法匹配ioctl函数名
+        # Regex method to match the ioctl function name
         ioctl_name = extract_ioctl_function_name(source)
         if not ioctl_name:
             logger.warning(f"Cannot find ioctl function name in {filename}")
@@ -122,20 +122,20 @@ def process_ioctl_handler():
 
         ioctl_data[ioctl_name][handler_name][abs_filename] = source
 
-    # 将handler数据存储到文件
+    # Store the handler data to a file
     ops_data_path = Path("processed_handlers.json")
     ops_data_path.write_text(json.dumps(ops_data, indent=2))
-    # 输出handler数据的调试信息
+    # Output debug information for the handler data
     debug_output(ops_data, ops_data_path.with_suffix(".debug.json"))
 
-    # 将ioctl数据存储到json文件
+    # Store the ioctl data to a json file
     json_path = Path("processed_ioctl.json")
     json_path.write_text(json.dumps(ioctl_data, indent=2))
 
-    # 打印ioctl总数
+    # Print the total number of ioctls
     print(f"Total number of ioctl: {len(ioctl_data)}")
 
-    # 过滤后的ioctl数据
+    # Filtered ioctl data
     filtered_ioctl_data = {}
     for ioctl_name, handler_data in ioctl_data.items():
         cur_ioctl_data = {}
@@ -154,27 +154,27 @@ def process_ioctl_handler():
         if cur_ioctl_data:
             filtered_ioctl_data[ioctl_name] = cur_ioctl_data
 
-    # 将过滤后的ioctl数据存储到json文件
+    # Store the filtered ioctl data to a json file
     json_path = Path("processed_ioctl_filtered.json")
     json_path.write_text(json.dumps(filtered_ioctl_data, indent=2))
 
-    # 打印过滤后的ioctl总数
+    # Print the total number of filtered ioctls
     print(f"Total number of ioctl after filtering: {len(filtered_ioctl_data)}")
 
-    # 输出ioctl名称和handler名称
+    # Output the ioctl names and handler names
     output_data(ioctl_data)
-    # 输出过滤后的ioctl名称和handler名称
+    # Output the filtered ioctl names and handler names
     output_data(filtered_ioctl_data, "_filtered")
 
 
-#处理结构体、枚举、函数等类型定义的 jsonl 文件，归类并输出为 JSON 文件。
-#读取如 struct.jsonl、enum.jsonl、func.jsonl 文件。
+# Process jsonl files of type definitions such as structs, enums and functions, and classify and output them as JSON files.
+# Read files such as struct.jsonl, enum.jsonl and func.jsonl.
 def process_func(file_name: str, nums):
-    # 初始化一个空字典用于存储类型数据
+    # Initialize an empty dict to store type data
     # The following dict {type_name: {filename: source}}}
     type_data = {}
     for num in range(1,nums):
-        # 拼接文件路径
+        # Join the file path
         file_path = linux_path / f'func_part_{num}.jsonl'
         print(f"正在读取{file_path}")
         file_data = file_path.read_text()
@@ -185,15 +185,15 @@ def process_func(file_name: str, nums):
             type_name = data["name"]
             source_file_name = data["filename"]
             source_file_path = linux_path / source_file_name
-            # 获取源文件的绝对路径
+            # Get the absolute path of the source file
             source_file_name = source_file_path.absolute().resolve().as_posix()
             source = data["source"]
             if type_name not in type_data:
                 type_data[type_name] = {}
-            # 将源文件路径和对应的源代码存储到类型数据中
+            # Store the source file path and its source code into the type data
             type_data[type_name][source_file_name] = source
 
-    # 将处理后的数据写入到一个JSON文件中
+    # Write the processed data to a JSON file
     json_path = Path(f"processed_func.json")
     json_path.write_text(json.dumps(type_data, indent=2))
 
@@ -225,7 +225,7 @@ def process_type(file_name: str):
 
 
 
-#处理 typedef 信息（如结构体别名、枚举别名），并尝试合并别名和原类型的源码内容。
+# Process typedef information (such as struct aliases and enum aliases), and try to merge the source of the alias and the original type.
 def process_typedef(file_name: str, type_data: dict):
     file_path = linux_path / file_name
 
@@ -238,37 +238,37 @@ def process_typedef(file_name: str, type_data: dict):
         alias_name = data["alias"]
         source_file_name = data["filename"]
         source_file_path = linux_path / source_file_name
-        # 将源文件路径转换为绝对路径并解析符号链接
+        # Convert the source file path to an absolute path and resolve symlinks
         source_file_name = source_file_path.absolute().resolve().as_posix()
         source = data["source"]
         if type_name not in typedef_data:
-            # 如果类型名称不在typedef_data字典中，则添加该类型名称的键
+            # If the type name is not in the typedef_data dict, add a key for that type name
             typedef_data[type_name] = {}
 
         if alias_name and alias_name in type_data:
-            # 如果存在别名，并且在type_data字典中存在该别名
+            # If an alias exists and that alias is present in the type_data dict
             alias_data = type_data[alias_name]
-            # 找到与源文件路径最相似的路径
+            # Find the path most similar to the source file path
             most_similar = max(
                 alias_data, key=lambda x: path_similarity(source_file_name, x)
             )
             source_most_similar = alias_data[most_similar]
-            # 将最相似的源代码与当前源代码合并
+            # Merge the most similar source code with the current source code
             source = source + "\n" + source_most_similar
 
-        # 将处理后的源代码添加到typedef_data字典中
+        # Add the processed source code to the typedef_data dict
         typedef_data[type_name][source_file_name] = source
 
-    # 将处理后的数据写入json文件
+    # Write the processed data to a json file
     # Write the data to a json file
     json_path = Path(f"processed_{file_path.stem}.json")
     json_path.write_text(json.dumps(typedef_data, indent=2))
 
-# 处理 usage.jsonl 文件，归类 fops（file operations）相关的使用信息。
+# Process the usage.jsonl file and classify fops (file operations) usage information.
 def process_usage():
     file_path = linux_path / "usage.jsonl"
 
-    # 初始化 usage_data 字典，结构为 {fops_name: {filename: [source]}}
+    # Initialize the usage_data dict, structured as {fops_name: {filename: [source]}}
     usage_data = {}
     for line in file_path.read_text().splitlines():
         line = line.strip()
@@ -276,16 +276,16 @@ def process_usage():
         fops_name = data["alias"]
         source_file_name = data["filename"]
         source_file_path = linux_path / source_file_name
-        # 获取文件的绝对路径并转换为POSIX格式
+        # Get the absolute path of the file and convert it to POSIX format
         source_file_name = source_file_path.absolute().resolve().as_posix()
         source = data["source"]
         if fops_name not in usage_data:
-            # 如果 fops_name 不在 usage_data 中，则初始化一个空字典
+            # If fops_name is not in usage_data, initialize an empty dict
             usage_data[fops_name] = {}
-        # 将 source 添加到对应的 filename 中
+        # Add the source to the corresponding filename
         usage_data[fops_name][source_file_name] = source
 
-    # 将数据写入 JSON 文件
+    # Write the data to a JSON file
     # Write the data to a json file
     json_path = Path("processed_usage.json")
     json_path.write_text(json.dumps(usage_data, indent=2))
@@ -300,7 +300,7 @@ if __name__ == "__main__":
 
     linux_path = Path(args.linux_path)
 
-    # 如果加了 --usage 参数，则只处理 usage 信息。否则，处理所有信息。
+    # If the --usage argument is given, only process usage information; otherwise process everything.
     if args.usage:
         print("usage")
         process_usage()

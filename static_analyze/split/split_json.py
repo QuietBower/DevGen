@@ -3,7 +3,7 @@
 import os
 import json
 
-# 导入自定义模块
+# Import custom modules
 from config import (
     FILE_MAPPINGS, OUTPUT_DIR, MAX_ITERATIONS
 )
@@ -32,7 +32,7 @@ from output_utils import (
 
 def create_pci_driver_analysis():
     """主函数：创建PCI驱动分析"""
-    # 1. 创建文件夹new_my_pci_driver（如果存在则不创建）
+    # 1. Create the folder new_my_pci_driver (skip if it already exists)
     output_dir = OUTPUT_DIR
     if not os.path.exists(output_dir):
         os.makedirs(output_dir)
@@ -40,7 +40,7 @@ def create_pci_driver_analysis():
     else:
         print(f"输出目录已存在: {output_dir}")
     
-    # 2. 读取所有的jsonl文件
+    # 2. Read all jsonl files
     symbols = {
         'define': {},
         'enum': {},
@@ -58,16 +58,16 @@ def create_pci_driver_analysis():
                 for line in f:
                     data = json.loads(line.strip())
                     
-                    # 处理不同的符号格式
+                    # Handle the different symbol formats
                     if symbol_type in ['enum_typedef', 'struct_typedef']:
-                        # typedef格式：使用alias作为键，如果alias不存在则使用name
+                        # typedef format: use alias as the key, or name if alias is absent
                         key = data.get('alias', data.get('name', ''))
                     else:
-                        # 非typedef格式：使用name作为键
+                        # Non-typedef format: use name as the key
                         key = data.get('name', '')
                     
                     if key:
-                        # 处理多个定义的情况
+                        # Handle the multiple-definition case
                         if key in symbols[symbol_type]:
                             if not isinstance(symbols[symbol_type][key], list):
                                 symbols[symbol_type][key] = [symbols[symbol_type][key]]
@@ -81,7 +81,7 @@ def create_pci_driver_analysis():
         except Exception as e:
             print(f"读取文件 {file_path} 时出错: {e}")
     
-    # 3. 获取struct-init.jsonl中所有的pci_driver结构体初始化变量定义
+    # 3. Get all pci_driver struct initialization variable definitions from struct-init.jsonl
     pci_drivers = []
     for name, data in symbols['struct_init'].items():
         if isinstance(data, list):
@@ -94,75 +94,75 @@ def create_pci_driver_analysis():
     
     print(f"找到 {len(pci_drivers)} 个PCI驱动初始化变量")
     
-    # 添加跳过前x个驱动的功能
-    skip_count = 0  # 设置要跳过的驱动数量，例如设置为5则跳过前5个驱动
+    # Add the ability to skip the first x drivers
+    skip_count = 0  # Set the number of drivers to skip, e.g. 5 skips the first 5 drivers
     if skip_count > 0:
         print(f"跳过前 {skip_count} 个PCI驱动")
         pci_drivers = pci_drivers[skip_count:]
         print(f"剩余 {len(pci_drivers)} 个PCI驱动待分析")
     
-    # 用于跟踪已使用的文件名
+    # Used to track filenames already used
     used_filenames = set()
     
-    # 处理每个PCI驱动
+    # Process each PCI driver
     for driver_index, driver_data in enumerate(pci_drivers):
         driver_path = driver_data["filename"]
         driver_name = driver_data["name"]
         
-        # 显示当前处理的驱动索引（跳过后的实际索引）
+        # Show the index of the driver currently being processed (actual index after skipping)
         print(f"\n处理第 {skip_count + driver_index + 1} 个驱动 (总共 {len(pci_drivers) + skip_count} 个)")
         
-        # 7. 提取驱动名称：从.name字段的最终引用
+        # 7. Extract the driver name: the final reference of the .name field
         final_driver_name = extract_final_driver_name(driver_data["source"], symbols, driver_path)
         if not final_driver_name:
             final_driver_name = driver_name
             print(f"警告: 无法提取驱动名称，使用变量名: {driver_name}")
         
-        # 处理驱动名称中的"/"字符，替换为"+++"
+        # Replace "/" characters in the driver name with "+++"
         final_driver_name = sanitize_driver_name(final_driver_name)
         print(f"处理驱动: {final_driver_name} (变量名: {driver_name})")
         
-        # 确定基础目录和头文件 - 使用新的基于#include的方法
+        # Determine the base directory and headers - using the new #include-based method
         base_dir, header_files = get_base_directory_by_includes(driver_path)
         print(f"基础目录: {base_dir}")
         print(f"找到 {len(header_files)} 个头文件")
         
-        # 创建JSON数据结构
+        # Create the JSON data structure
         driver_json = create_driver_json_structure(final_driver_name, driver_path, base_dir, header_files)
         
-        # 用于记录已添加的符号
+        # Used to record symbols already added
         added_symbols = set()
         unknown_symbols = set()
         outside_base_dir_symbols = set()
         
-        # 4. 获得该变量所在文件下的所有符号
+        # 4. Get all symbols in the file where this variable is located
         same_file_symbols = collect_same_file_symbols(driver_path, symbols)
         print(f"找到 {len(same_file_symbols)} 个同文件符号")
         
-        # 5. 找到该pci_driver的向上调用终点
+        # 5. Find the upward call endpoint of this pci_driver
         call_chain_ends = find_call_chain_ends(driver_name, symbols, base_dir)
         print(f"找到 {len(call_chain_ends)} 个调用链终点")
         
-        # 构建依赖分析队列
+        # Build the dependency-analysis queue
         queue = []
         
-        # 将同文件符号加入队列
+        # Enqueue symbols from the same file
         for symbol_name in same_file_symbols:
             if symbol_name not in added_symbols and symbol_name not in queue:
                 queue.append(symbol_name)
         
-        # 将PCI驱动本身加入队列
+        # Enqueue the PCI driver itself
         if driver_name not in added_symbols and driver_name not in queue:
             queue.append(driver_name)
         
-        # 将向上调用链终点加入队列
+        # Enqueue the endpoint of the upward call chain
         for end_function in call_chain_ends:
             if end_function not in added_symbols and end_function not in queue:
                 queue.append(end_function)
         
         print(f"开始依赖分析，队列大小: {len(queue)}")
         
-        # 6. 递归依赖分析
+        # 6. Recursive dependency analysis
         processed_count = 0
         
         while queue and processed_count < MAX_ITERATIONS:
@@ -172,20 +172,20 @@ def create_pci_driver_analysis():
             if symbol_name in added_symbols:
                 continue
                 
-            # 查找符号定义
+            # Look up the symbol definition
             symbol_data = find_symbol(symbol_name, symbols, base_dir, driver_path)
             
             if symbol_data:
-                # 检查符号是否在基础目录中
+                # Check whether the symbol is in the base directory
                 symbol_path_no_line = get_file_path_without_line_number(symbol_data["filename"])
                 if symbol_path_no_line.startswith(base_dir):
-                    # 在添加符号之前进行类型验证和重新定位
+                    # Validate the type and relocate before adding the symbol
                     verified_symbol_data = verify_and_correct_symbol_type(symbol_name, symbol_data, symbols)
                     if verified_symbol_data:
                         added_symbols.add(symbol_name)
                         add_symbol_to_driver_data(symbol_name, verified_symbol_data, driver_json, symbols)
                         
-                        # 提取依赖符号
+                        # Extract dependency symbols
                         new_deps = extract_dependencies(verified_symbol_data["source"])
                         for new_dep in new_deps:
                             if (new_dep not in added_symbols and 
@@ -199,43 +199,43 @@ def create_pci_driver_analysis():
                     if processed_count % 100 == 0:
                         print(f"已处理 {processed_count} 个符号，队列剩余: {len(queue)}，已添加: {len(added_symbols)}")
                 else:
-                    # 符号有定义但不在基础目录中
+                    # The symbol has a definition but is not in the base directory
                     outside_base_dir_symbols.add(symbol_name)
             else:
-                # 未找到符号定义
+                # Symbol definition not found
                 unknown_symbols.add(symbol_name)
         
         if processed_count >= MAX_ITERATIONS:
             print(f"警告: 达到最大迭代次数 {MAX_ITERATIONS}")
         
-        # 8. 去重处理
+        # 8. Deduplication
         driver_json = remove_duplicates(driver_json)
         
-        # 添加未知符号
+        # Add unknown symbols
         driver_json["UNKNOWN"] = list(unknown_symbols)
         
-        # 添加不属于基础路径的符号
+        # Add symbols that do not belong to the base path
         driver_json["不属于基础路径的字符"] = list(outside_base_dir_symbols)
         
-        # 9. 为struct-init定义和func定义创建声明
+        # 9. Create declarations for struct-init and func definitions
         generate_declarations(driver_json)
         
-        # 10. 创建JSON文件 - 处理同名驱动
+        # 10. Create the JSON file - handle drivers with the same name
         base_filename = f"{final_driver_name}.json"
         filename = base_filename
         counter = 1
         
-        # 检查文件名是否已存在，如果存在则添加数字后缀
+        # Check whether the filename already exists; if so, append a numeric suffix
         while filename in used_filenames:
             filename = f"{final_driver_name}{counter}.json"
             counter += 1
         
-        # 添加到已使用文件名集合
+        # Add to the set of used filenames
         used_filenames.add(filename)
         
         filepath = os.path.join(output_dir, filename)
         
-        # 如果文件已存在，删除它
+        # If the file already exists, delete it
         if os.path.exists(filepath):
             os.remove(filepath)
         

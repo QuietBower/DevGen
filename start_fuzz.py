@@ -11,7 +11,7 @@ from threading import Timer, Thread
 from copy import deepcopy
 
 # =========================
-# 路径配置
+# Path configuration
 # =========================
 FUZZ_PATH = "/home/user/Fuzzer/code/config/2_gpt-5.1-fuzz.json"
 ENABLE_SYSCALL_PATH = "/home/user/Fuzzer/code/config/enable_syscalls.json"
@@ -24,12 +24,12 @@ DIR_D = "/home/user/Fuzzer/third_tool/syzkaller_defconfig_dev"
 SYZBOT_OUT_DIR = "/home/user/Fuzzer/out/fuzz_result/3_Gemini_3pro"
 NON_SYZBOT_OUT_DIR = "/home/user/Fuzzer/out/fuzz_result/3_Gemini_3pro"
 
-TIMEOUT = 60 * 60          # 单个 syz-manager 最长 60 分钟
-DEVICE_SLEEP = 20          # 每个 device 完成后休眠 20s
+TIMEOUT = 60 * 60          # A single syz-manager runs for at most 60 minutes
+DEVICE_SLEEP = 20          # Sleep 20s after each device completes
 
 
 # =========================
-# 工具函数
+# Utility functions
 # =========================
 def kill_process_group(proc):
     try:
@@ -80,7 +80,7 @@ def release_ports(ports):
     释放指定端口，尝试使用 fuser -k 或 lsof + kill
     """
     for port in ports:
-        # 方法1：fuser -k
+        # Method 1: fuser -k
         try:
             subprocess.run(
                 ["fuser", "-k", f"{port}/tcp"],
@@ -94,7 +94,7 @@ def release_ports(ports):
         except Exception:
             pass
 
-        # 方法2：lsof + kill
+        # Method 2: lsof + kill
         try:
             result = subprocess.run(
                 ["lsof", "-ti", f":{port}"],
@@ -139,7 +139,7 @@ def collect_enable_syscalls_sequential(device_path, enable_syscall_db):
 
 
 # =========================
-# 主流程
+# Main flow
 # =========================
 with open(FUZZ_PATH, "r") as f:
     fuzz_cfg = json.load(f)
@@ -150,7 +150,7 @@ with open(ENABLE_SYSCALL_PATH, "r") as f:
 os.makedirs(SYZBOT_OUT_DIR, exist_ok=True)
 os.makedirs(NON_SYZBOT_OUT_DIR, exist_ok=True)
 
-# 当天日期后缀，格式 MMDD
+# Date suffix for today, in MMDD format
 DATE_SUFFIX = time.strftime("%m%d")
 
 for device, info in fuzz_cfg.items():
@@ -158,11 +158,11 @@ for device, info in fuzz_cfg.items():
     print(f"[DEVICE] {device}")
     print("========================================")
 
-    # === 每次启动前先释放目标端口（避免 address already in use） ===
+    # === Release the target port before each start (to avoid 'address already in use') ===
     print("[INFO] Releasing ports 10001-10004 before starting device ...")
     release_ports([10001, 10002, 10003, 10004])
 
-    # 已处理直接跳过
+    # Already handled, skip directly
     if info.get("enable_syscalls"):
         print(f"[SKIP] {device}: enable_syscalls already populated")
         continue
@@ -170,16 +170,16 @@ for device, info in fuzz_cfg.items():
     flag = info.get("in_syzbot_config", "").lower()
     device_path = info.get("path", "")
 
-    # 1. 顺序计算 enable_syscalls
+    # 1. Compute enable_syscalls in order
     enable_syscalls = collect_enable_syscalls_sequential(
         device_path,
         enable_syscall_db
     )
 
-    # 2. 写回 fuzz.json 内存结构
+    # 2. Write back to the in-memory fuzz.json structure
     info["enable_syscalls"] = enable_syscalls
 
-    # 3. 选择 AB / CD（组内并行）
+    # 3. Choose AB / CD (parallel within a group)
     if flag == "y":
         targets = [
             (DIR_A, False, SYZBOT_OUT_DIR),
@@ -196,7 +196,7 @@ for device, info in fuzz_cfg.items():
 
     threads = []
 
-    # 4. 并行执行 A/B 或 C/D
+    # 4. Run A/B or C/D in parallel
     for workdir, add_device, bench_root in targets:
         base_cfg_path = os.path.join(workdir, "cfg.json")
         if not os.path.exists(base_cfg_path):
@@ -230,18 +230,18 @@ for device, info in fuzz_cfg.items():
         t.start()
         threads.append((t, cfg_path, bench_root))
 
-    # 5. 等待 AB / CD 全部完成
+    # 5. Wait for AB / CD to all finish
     for t, cfg_path, bench_root in threads:
         t.join()
         shutil.move(cfg_path, os.path.join(bench_root, os.path.basename(cfg_path)))
         print(f"[+] cfg archived: {bench_root}/{os.path.basename(cfg_path)}")
 
-    # 6. device 完成后休眠
+    # 6. Sleep after each device completes
     print(f"[INFO] device {device} done, sleeping {DEVICE_SLEEP}s")
     time.sleep(DEVICE_SLEEP)
 
 # =========================
-# 最终写回 fuzz.json
+# Finally write back to fuzz.json
 # =========================
 with open(FUZZ_PATH, "w") as f:
     json.dump(fuzz_cfg, f, indent=4)

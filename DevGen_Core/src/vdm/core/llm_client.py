@@ -24,7 +24,7 @@ class LLMClient:
             config_loader = ConfigLoader()
             self.config = config_loader.load()
 
-            # 设置默认provider
+            # Set the default provider
             self.provider = provider or self.config['project']['default_provider']
             self.client = None
             
@@ -48,10 +48,10 @@ class LLMClient:
     
     @retry_api_call(
         max_retries=10,
-        initial_delay=60.0,  # 1分钟
-        backoff_factor=2.0,  # 每次乘2
+        initial_delay=60.0,  # 1 minute
+        backoff_factor=2.0,  # Double each time
         exceptions=(Exception, RequestException),
-        on_retry=log_retry_details  # 可选的回调
+        on_retry=log_retry_details  # Optional callback
     )
     def chat_completion_json(self, 
                        messages: List[Dict[str, str]], 
@@ -72,11 +72,11 @@ class LLMClient:
             logger.error("Client not initialized")
             return None
         
-        # 获取模型配置
+        # Get the model configuration
         if model is None:
             model = self.config['models'][self.provider]['default_model']
         
-        # 合并参数
+        # Merge the parameters
         params = {
             "model": model,
             "messages": messages,
@@ -97,7 +97,7 @@ class LLMClient:
         content = response.choices[0].message.content
         logger.info(f"Received response with {len(content)} characters")
 
-        # 记录token使用情况
+        # Record token usage
         usage = response.usage
         if usage:
             logger.info(f"Token usage - Prompt: {usage.prompt_tokens}, Completion: {usage.completion_tokens}, Total: {usage.total_tokens}")
@@ -109,11 +109,11 @@ class LLMClient:
         return content, finish_reason
         
                 
-# 创建全局实例
+# Create a global instance
 client = LLMClient()
 
 if __name__ == "__main__":
-    # 测试代码
+    # Test code
     messages = [
         {"role": "system", "content": "You are a helpful assistant."},
         {"role": "user", "content": "What is the capital of France? replace me with a JSON object"}

@@ -10,11 +10,11 @@ from symbol_utils import remove_comments, check_symbol_reference
 
 def extract_dependencies(source_code):
     """从源代码中提取所有依赖的符号（忽略注释）- 使用简单可靠的模式"""
-    # 移除注释
+    # Remove comments
     clean_source = remove_comments(source_code)
     dependencies = set()
     
-    # 各种匹配模式 - 使用预编译的正则表达式
+    # Various match patterns - using precompiled regular expressions
     patterns = [
         (FUNCTION_PATTERN, True),
         (STRUCT_PATTERN, False),
@@ -36,7 +36,7 @@ def extract_dependencies(source_code):
                 not re.match(r'^[0-9]', symbol)):
                 dependencies.add(symbol)
     
-    # 专门提取函数指针赋值
+    # Specifically extract function pointer assignments
     func_ptr_deps = extract_function_pointer_dependencies(source_code)
     dependencies.update(func_ptr_deps)
     
@@ -47,7 +47,7 @@ def extract_function_pointer_dependencies(source_code):
     clean_source = remove_comments(source_code)
     dependencies = set()
     
-    # 使用预编译的正则表达式
+    # Use precompiled regular expressions
     matches = FUNC_PTR_PATTERN.findall(clean_source)
     for symbol in matches:
         if (symbol not in C_KEYWORDS and 
@@ -61,24 +61,24 @@ def find_call_chain_ends(driver_name, symbols, base_dir):
     """找到向上调用链的终点"""
     call_chain_ends = set()
     
-    # 在所有符号表中查找使用该PCI驱动的符号
+    # Search all symbol tables for symbols that use this PCI driver
     for symbol_type in ['func', 'var', 'struct_init']:
         for symbol_name, symbol_data in symbols[symbol_type].items():
-            # 处理单个定义和多个定义的情况
+            # Handle the single-definition and multiple-definition cases
             if isinstance(symbol_data, list):
                 for data in symbol_data:
                     if is_symbol_in_base_dir(data["filename"], base_dir):
-                        # 检查是否包含该PCI驱动的引用
+                        # Check whether it contains a reference to this PCI driver
                         if check_symbol_reference(data["source"], driver_name):
                             call_chain_ends.add(symbol_name)
                             break
             else:
                 if is_symbol_in_base_dir(symbol_data["filename"], base_dir):
-                    # 检查是否包含该PCI驱动的引用
+                    # Check whether it contains a reference to this PCI driver
                     if check_symbol_reference(symbol_data["source"], driver_name):
                         call_chain_ends.add(symbol_name)
     
-    # 递归查找更上层的调用
+    # Recursively find higher-level callers
     visited = set()
     queue = list(call_chain_ends)
     
@@ -88,13 +88,13 @@ def find_call_chain_ends(driver_name, symbols, base_dir):
             continue
         visited.add(current_symbol)
         
-        # 查找引用当前符号的符号
+        # Find symbols that reference the current symbol
         for symbol_type in ['func', 'var', 'struct_init']:
             for symbol_name, symbol_data in symbols[symbol_type].items():
                 if symbol_name in visited:
                     continue
                     
-                # 处理单个定义和多个定义的情况
+                # Handle the single-definition and multiple-definition cases
                 definitions = []
                 if isinstance(symbol_data, list):
                     definitions = symbol_data
@@ -103,7 +103,7 @@ def find_call_chain_ends(driver_name, symbols, base_dir):
                 
                 for data in definitions:
                     if is_symbol_in_base_dir(data["filename"], base_dir):
-                        # 检查是否包含当前符号的引用
+                        # Check whether it contains a reference to the current symbol
                         if check_symbol_reference(data["source"], current_symbol):
                             call_chain_ends.add(symbol_name)
                             queue.append(symbol_name)

@@ -26,7 +26,7 @@ def model_device(driver_name):
 
     device_code = ""
 
-    # 设置运行开始时间，设置驱动路径和名称
+    # Set the run start time, the driver path and the driver name
     initialize_app_start_time()
     set_driver_name(driver_name)
 
@@ -43,30 +43,30 @@ def model_device(driver_name):
     # with open("/home/user/vdm/adm8211_pci.c", "r") as f:
     #     device_code = f.read()
 
-    # 在hw/fake_pci目录下的meson.build中换行并追加内容
+    # In meson.build under the hw/fake_pci directory, add a newline and append the content
     meson_contentd = f"system_ss.add(when: 'CONFIG_{get_capital_driver_name(get_driver_name_replace())}', if_true: files('{get_driver_name_replace()}_pci.c'))\n"
     append_to_file(f"{config['paths']['qemu_hw_fack_pci_path']}/meson.build", meson_contentd)
     logger.info(f"成功修改hw/fake_pci目录下的meson.build文件")
 
-    # 复制start_qemu_template.sh，将start_qemu_template.sh内容中的`DRIVER_NAME`进行替换，替换为现在正在处理的程序名，并保存至run.sh中
+    # Copy start_qemu_template.sh, replace `DRIVER_NAME` in its content with the name of the program currently being processed, and save the result to run.sh
     fill_qemu_run_template(get_driver_name_replace())
     logger.info(f"成功生成run.sh文件")
 
-    # 用于测试，获得某个驱动的代码，在不运行step1-3的情况下，测试step4的效果
+    # For testing: obtain the code of a driver and test the effect of step4 without running steps 1-3
     # with open("/home/user/vdm/adm8211_pci.c", "r") as f:
     #     device_code = f.read()
 
-    # 执行编译、错误修改、step4
+    # Run the build, the error-repair, and step4
     is_have_kernel_in_use_after_fix = False
     modify_compile_run_retry_cnt = 1
 
     while modify_compile_run_retry_cnt <= 2:
         logger.info(f"开始执行modify_compile_run, 第{modify_compile_run_retry_cnt}次")
-        # 将新生成的代码，保存至hw/fake_pci下，执行build编译和run启动qemu，通过ssh连接到qemu，获得load.txt、dev.txt、err_msg.txt等信息
+        # Save the newly generated code under hw/fake_pci, run the build and start QEMU, connect to QEMU over SSH, and obtain information such as load.txt, dev.txt and err_msg.txt
         is_success_run, is_have_kernel_in_use = modify_compile_run(get_driver_name_replace(), device_code)
 
         if is_success_run == 1 and modify_compile_run_retry_cnt == 1:
-            # 启动失败，也调用step4进行修复，进行step3进行语法检验，然后编译启动，该流程只执行1次
+            # If startup fails, still call step4 for repair and run step3 for syntax checking, then build and start again; this flow runs only once
             try:
                 err_msg = read_file(f"{config['paths']['qemu_out_share_path']}/vm.log")
                 logger.info("qemu编译成功，启动失败，开始执行step4进行修复")
@@ -85,7 +85,7 @@ def model_device(driver_name):
                 logger.info("qemu启动失败，进行step4修复时出错")
                 break
         if is_success_run == 2 and modify_compile_run_retry_cnt == 1:
-            # 修改编译失败，把编译失败信息提供给大模型进行修改，使用step3的prompt进行修复
+            # If the build fails, feed the build-failure information to the LLM for modification, using the step3 prompt for the repair
             # try:
             fail_logs_path = f"{config['paths']['qemu_out_share_path']}/build_fail.txt"
             exists = os.path.isfile(fail_logs_path)
@@ -127,7 +127,7 @@ def model_device(driver_name):
 
         if is_success_run == 0:
             if is_have_kernel_in_use:
-                # 运行成功，保存当前信息，即保存share文件夹的内容到shares中以驱动名命名的文件夹的success文件夹中
+                # If it runs successfully, save the current information, i.e. save the contents of the share folder into the success folder of the folder named after the driver under shares
                 is_have_kernel_in_use_after_fix = True
                 
                 directory = Path(f"{config['paths']['qemu_out_shares_path']}/success/{driver_name}")
@@ -138,8 +138,8 @@ def model_device(driver_name):
 
                 break
             else:
-                # 1. 没有出现kernal driver in use，执行step4进行修复
-                # 读取out/share下的err_msg.txt
+                # 1. If 'kernel driver in use' does not appear, run step4 for repair
+                # Read err_msg.txt under out/share
                 try:
                     err_msg = read_file(f"{config['paths']['qemu_out_share_path']}/err_msg.txt")
                     logger.info("qemu编译、启动成功，没有出现Kernel driver in use，开始执行step4进行修复")
@@ -155,7 +155,7 @@ def model_device(driver_name):
 
                     break
         else:
-            # 停止运行，保存当前的信息，即保存share文件夹的内容到shares中以驱动名命名的文件夹的err文件夹中，同时删除追加的meson.build内容
+            # Stop the run and save the current information, i.e. save the contents of the share folder into the err folder of the folder named after the driver under shares, and also remove the appended meson.build content
             directory = Path(f"{config['paths']['qemu_out_shares_path']}/err/{driver_name}")
             directory.mkdir(parents=True, exist_ok=True)
             move_all_files(f"{config['paths']['qemu_out_share_path']}/", directory)
@@ -169,7 +169,7 @@ def model_device(driver_name):
         modify_compile_run_retry_cnt += 1
  
     if is_have_kernel_in_use_after_fix == False:
-        # 修复失败，即保存share文件夹的内容到shares中以驱动名命名的文件夹的fail文件夹中，同时删除追加的meson.build内容
+        # Repair failed: save the contents of the share folder into the fail folder of the folder named after the driver under shares, and also remove the appended meson.build content
         remove_content_from_file(f"{config['paths']['qemu_hw_fack_pci_path']}/meson.build", meson_contentd)
         directory = Path(f"{config['paths']['qemu_out_shares_path']}/fail/{driver_name}")
         directory.mkdir(parents=True, exist_ok=True)
@@ -216,7 +216,7 @@ def main():
             model_device(driver_name=driver_name)
             logger.info("设备建模完成: %s", driver_name)
         except Exception as e:
-            # 保存，记录错误信息，并继续进行下一个设备的建模，保存到shares/crash/中
+            # Save, record the error information, and proceed to model the next device into shares/crash/
 
             directory = Path(f"{config['paths']['qemu_out_shares_path']}/crash/{driver_name}")
             directory.mkdir(parents=True, exist_ok=True)
@@ -228,12 +228,12 @@ def main():
     
     logger.info("设备建模结束")
     # for driver_name in driver_name_list:
-    #     logger.info("开始建模设备: %s", driver_name)
+    #     logger.info("Start modeling device: %s", driver_name)
 
     #     model_device(driver_name=driver_name)
-    #     logger.info("设备建模完成: %s", driver_name)
+    #     logger.info("Device modeling completed: %s", driver_name)
     
-    # logger.info("设备建模结束")
+    # logger.info("Device modeling finished")
 
 if __name__ == '__main__':
     main()

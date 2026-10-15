@@ -25,59 +25,59 @@ def sanitize_driver_name(driver_name):
 
 def extract_final_driver_name(driver_source, symbols, driver_path):
     """提取驱动名称：从pci_driver结构体初始化变量下的.name字段的最终引用"""
-    # 去除注释以避免干扰
+    # Strip comments to avoid interference
     clean_source = remove_comments(driver_source)
     
-    # 查找.name字段的值
-    # 情况1: .name = "直接字符串"
+    # Find the value of the .name field
+    # Case 1: .name = "direct string"
     name_match = NAME_FIELD_PATTERN.search(clean_source)
     if name_match:
         return name_match.group(1)
     
-    # 情况2: .name = 宏定义或变量
+    # Case 2: .name = a macro or variable
     name_match = NAME_VAR_PATTERN.search(clean_source)
     if name_match:
         var_name = name_match.group(1)
         
         print(f"调试: 提取驱动名称，找到变量引用: {var_name}")
         
-        # 1. 首先尝试在同文件中查找该变量/宏
+        # 1. First try to find the variable/macro in the same file
         same_file_symbols = collect_same_file_symbols(driver_path, symbols)
         if var_name in same_file_symbols:
             var_data = same_file_symbols[var_name]
             print(f"调试: 从同文件中找到变量定义: {var_name}")
         else:
-            # 2. 如果在同文件中没有找到，尝试在基础路径下查找
+            # 2. If not found in the same file, try searching under the base path
             base_dir = get_base_directory_by_includes_simple(driver_path)
             var_data = find_symbol_in_base_dir(var_name, symbols, base_dir, driver_path)
             if var_data:
                 print(f"调试: 从基础路径 {base_dir} 中找到变量定义: {var_name}")
             else:
-                # 3. 如果基础路径中也没有找到，尝试全局查找
+                # 3. If still not found under the base path, try a global search
                 var_data = find_symbol(var_name, symbols, None, driver_path)
                 if var_data:
                     print(f"调试: 从全局符号中找到变量定义: {var_name}")
         
         if var_data:
-            # 尝试从定义中提取字符串值
+            # Try to extract the string value from the definition
             
-            # 情况2.1: 宏定义 #define DRIVER_NAME "virtio_gpu"
+            # Case 2.1: macro definition #define DRIVER_NAME "virtio_gpu"
             if var_data['source'].startswith('#define'):
                 str_match = DEFINE_STRING_PATTERN.search(var_data['source'])
                 if str_match:
                     print(f"调试: 从宏定义中提取驱动名称: {str_match.group(1)}")
                     return str_match.group(1)
             
-            # 情况2.2: 变量定义 char e1000e_driver_name[] = "e1000e"
+            # Case 2.2: variable definition char e1000e_driver_name[] = "e1000e"
             str_match = VARIABLE_STRING_PATTERN.search(var_data['source'])
             if str_match:
                 print(f"调试: 从变量定义中提取驱动名称: {str_match.group(1)}")
                 return str_match.group(1)
             
-            # 情况2.3: 变量声明 extern char e1000e_driver_name[]
-            # 这种情况下我们需要继续查找实际定义
+            # Case 2.3: variable declaration extern char e1000e_driver_name[]
+            # In this case we need to keep looking for the actual definition
             if 'extern' in var_data['source']:
-                # 查找非extern的定义
+                # Find the non-extern definition
                 for symbol_type in ['var', 'define']:
                     if var_name in symbols[symbol_type]:
                         symbol_data = symbols[symbol_type][var_name]
@@ -102,19 +102,19 @@ def collect_same_file_symbols(driver_path, symbols):
     same_file_symbols = {}
     driver_path_no_line = get_file_path_without_line_number(driver_path)
     
-    # 遍历所有符号类型
+    # Iterate over all symbol types
     for symbol_type in symbols:
         for symbol_name, symbol_data in symbols[symbol_type].items():
-            # 处理单个定义和多个定义的情况
+            # Handle the single-definition and multiple-definition cases
             if isinstance(symbol_data, list):
                 for data in symbol_data:
-                    # 获取不带行号的符号文件路径
+                    # Get the symbol file path without the line number
                     symbol_path_no_line = get_file_path_without_line_number(data["filename"])
                     if symbol_path_no_line == driver_path_no_line:
                         same_file_symbols[symbol_name] = data
-                        break  # 只取第一个同文件定义
+                        break  # Take only the first same-file definition
             else:
-                # 获取不带行号的符号文件路径
+                # Get the symbol file path without the line number
                 symbol_path_no_line = get_file_path_without_line_number(symbol_data["filename"])
                 if symbol_path_no_line == driver_path_no_line:
                     same_file_symbols[symbol_name] = symbol_data
@@ -135,12 +135,12 @@ def find_symbol_in_base_dir(symbol_name, symbols, base_dir, driver_path):
             symbol_data = symbols[symbol_type][symbol_name]
             if isinstance(symbol_data, list):
                 for data in symbol_data:
-                    # 检查符号是否在基础目录中
+                    # Check whether the symbol is in the base directory
                     symbol_path_no_line = get_file_path_without_line_number(data["filename"])
                     if symbol_path_no_line.startswith(base_dir):
                         all_definitions.append(data)
             else:
-                # 检查符号是否在基础目录中
+                # Check whether the symbol is in the base directory
                 symbol_path_no_line = get_file_path_without_line_number(symbol_data["filename"])
                 if symbol_path_no_line.startswith(base_dir):
                     all_definitions.append(symbol_data)
@@ -151,7 +151,7 @@ def find_symbol_in_base_dir(symbol_name, symbols, base_dir, driver_path):
     if len(all_definitions) == 1:
         return all_definitions[0]
     
-    # 多个定义：按照优先级选择最佳定义
+    # Multiple definitions: choose the best one by priority
     return select_best_definition(all_definitions, base_dir, driver_path, symbol_name)
 
 def find_symbol(symbol_name, symbols, base_dir=None, driver_path=None):
@@ -177,7 +177,7 @@ def find_symbol(symbol_name, symbols, base_dir=None, driver_path=None):
     if len(all_definitions) == 1:
         return all_definitions[0]
     
-    # 多个定义：按照优先级选择最佳定义
+    # Multiple definitions: choose the best one by priority
     return select_best_definition(all_definitions, base_dir, driver_path, symbol_name)
 
 def select_best_definition(definitions, base_dir, driver_path, symbol_name):
@@ -185,13 +185,13 @@ def select_best_definition(definitions, base_dir, driver_path, symbol_name):
     if not definitions:
         return None
     
-    # 获取不带行号的驱动文件路径
+    # Get the driver file path without the line number
     driver_path_no_line = get_file_path_without_line_number(driver_path) if driver_path else None
     
-    # 按照优先级选择
+    # Choose by priority
     best_definition = None
     
-    # 优先级1: 同文件定义
+    # Priority 1: same-file definition
     if driver_path_no_line:
         for definition in definitions:
             def_path_no_line = get_file_path_without_line_number(definition["filename"])
@@ -199,26 +199,26 @@ def select_best_definition(definitions, base_dir, driver_path, symbol_name):
                 best_definition = definition
                 break
     
-    # 优先级2: 同名头文件定义
+    # Priority 2: definition in the same-named header file
     if not best_definition and driver_path_no_line:
-        # 获取驱动文件的目录和基本名称
+        # Get the directory and base name of the driver file
         driver_dir = os.path.dirname(driver_path_no_line)
         driver_basename = os.path.basename(driver_path_no_line)
         driver_name_without_ext = os.path.splitext(driver_basename)[0]
         
-        # 构建对应的头文件名
+        # Build the corresponding header filename
         header_filename = f"{driver_name_without_ext}.h"
         
         for definition in definitions:
             def_path_no_line = get_file_path_without_line_number(definition["filename"])
             def_basename = os.path.basename(def_path_no_line)
             
-            # 检查是否是同名头文件
+            # Check whether it is the same-named header file
             if def_basename == header_filename and os.path.dirname(def_path_no_line) == driver_dir:
                 best_definition = definition
                 break
     
-    # 优先级3: 路径相似度最高的定义
+    # Priority 3: the definition with the highest path similarity
     if not best_definition:
         best_definition = select_by_path_similarity(definitions, base_dir)
     
@@ -260,17 +260,17 @@ def get_symbol_type(symbol_name, symbols):
 
 def verify_and_correct_symbol_type(symbol_name, symbol_data, symbols):
     """验证和修正符号类型 - 通过检查源码与jsonl文件中的原始定义"""
-    # 获取当前符号类型
+    # Get the current symbol type
     current_type = get_symbol_type(symbol_name, symbols)
     
-    # 检查符号类型是否与源码匹配
+    # Check whether the symbol type matches the source code
     if is_type_matched(symbol_data["source"], current_type):
         return symbol_data
     
-    # 如果不匹配，尝试重新定位符号定义
+    # If it does not match, try to relocate the symbol definition
     print(f"警告: 符号类型不匹配，尝试重新定位: {symbol_name} (当前类型: {current_type})")
     
-    # 在所有jsonl文件中查找匹配的定义
+    # Search all jsonl files for a matching definition
     for symbol_type, symbol_dict in symbols.items():
         if symbol_name in symbol_dict:
             symbol_list = symbol_dict[symbol_name]
@@ -278,15 +278,15 @@ def verify_and_correct_symbol_type(symbol_name, symbol_data, symbols):
                 symbol_list = [symbol_list]
             
             for candidate in symbol_list:
-                # 比较文件路径和源码
+                # Compare the file path and the source code
                 if (candidate["filename"] == symbol_data["filename"] and 
                     candidate["source"] == symbol_data["source"]):
-                    # 找到匹配的定义，返回修正后的数据
+                    # Found a matching definition, return the corrected data
                     corrected_data = candidate.copy()
                     print(f"修正符号类型: {symbol_name} -> {symbol_type}")
                     return corrected_data
     
-    # 如果找不到匹配的定义，返回原始数据
+    # If no matching definition is found, return the original data
     print(f"警告: 无法重新定位符号定义: {symbol_name}")
     return symbol_data
 
@@ -307,34 +307,34 @@ def is_type_matched(source_code, symbol_type):
     elif symbol_type == "struct_init":
         return is_likely_struct_init_simple(clean_source)
     
-    return True  # 对于未知类型，默认匹配
+    return True  # For unknown types, match by default
 
 def is_likely_function_simple(source_code):
     """简单但可靠的函数定义检查"""
     clean_source = source_code.strip()
     
-    # 空字符串不是函数
+    # An empty string is not a function
     if not clean_source:
         return False
     
-    # 检查是否是宏定义
+    # Check whether it is a macro definition
     if clean_source.startswith('#define'):
         return False
     
-    # 检查是否有花括号但没有小括号 - 这种情况一定不是函数定义
+    # Check for braces without parentheses - this is definitely not a function definition
     has_braces = '{' in clean_source and '}' in clean_source
     has_parentheses = '(' in clean_source and ')' in clean_source
     
-    # 如果有花括号但没有小括号，一定不是函数
+    # If there are braces but no parentheses, it is definitely not a function
     if has_braces and not has_parentheses:
         return False
     
-    # 如果有小括号但没有花括号，可能是函数声明
-    # 函数声明通常以分号结尾
+    # If there are parentheses but no braces, it may be a function declaration
+    # A function declaration usually ends with a semicolon
     if has_parentheses and not has_braces:
         return clean_source.strip().endswith(';')
     
-    # 如果既有括号又有花括号，可能是函数定义
+    # If there are both parentheses and braces, it may be a function definition
     if has_parentheses and has_braces:
         return True
     
@@ -354,11 +354,11 @@ def is_likely_variable_simple(source_code):
     """简单但可靠的变量定义检查"""
     clean_source = source_code.strip()
     
-    # 检查是否是变量定义（包含等号）
+    # Check whether it is a variable definition (contains an equals sign)
     if '=' in clean_source and not clean_source.startswith('#define'):
         return True
     
-    # 检查是否是数组声明
+    # Check whether it is an array declaration
     if re.search(r'\w+\s*\[.*\]', clean_source):
         return True
     

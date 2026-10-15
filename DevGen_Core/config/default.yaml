@@ -1,13 +1,13 @@
-# 模型配置
+# Model configuration
 models:
   deepseek:
-    api_base: "https://api.deepseek.com" # 模型服务地址
+    api_base: "https://api.deepseek.com" # Model service endpoint
     available_models:
       - "deepseek-chat"
       - "deepseek-reasoner"
-    default_model: "deepseek-chat" # 默认模型
-    max_tokens: 8192 # 最大上下文长度
-    api_key: "" # API密钥
+    default_model: "deepseek-chat" # Default model
+    max_tokens: 8192 # Maximum context length
+    api_key: "" # API key
   qwen:
     api_base: "https://dashscope.aliyuncs.com/compatible-mode/v1"
     available_models: 
@@ -42,30 +42,30 @@ models:
     api_key: ""
 
 
-# 项目配置
+# Project configuration
 project:
-  default_provider: "qwen" # 项目默认模型提供商
-  temerature: 0.1          # 模型温度
+  default_provider: "qwen" # Default model provider for the project
+  temerature: 0.1          # Model temperature
 
-# 路径配置
+# Path configuration
 paths:
-  data_path: "/home/user/data/driver_info" # 保存静态分析内容的路径
-  logs_path: "/home/user/data/logs"        # 保存日志的路径
-  device_code_path: "/home/user/data/device_code"  # 保存最终的设备代码的目录
-  qemu_hw_fack_pci_path: "/home/user/qemu_8.2_linux_6.18/src/qemu-stable-8.2/hw/fake_pci" # qemu项目中保存设备代码的位置
-  qemu_run_dir: "/home/user/qemu_8.2_linux_6.18/image" # 运行qemu的目录
-  driver_name_case_mapping_path: "/home/user/data/qemu_config/qemu_config.json" # 驱动名称大小写映射文件
-  qemu_kernel_bzImage_path: "/home/user/qemu_8.2_linux_6.18/src/linux-6.18-defconfig/arch/x86_64/boot/bzImage" # qemu使用的内核路径
-  qemu_image_path: "/home/user/qemu_8.2_linux_6.18/image/bullseye.img" # qemu使用的镜像路径
-  qemu_log_path: "/home/user/qemu_8.2_linux_6.18/qemu.log" # qemu的日志路径
-  qemu_out_share_path: "/home/user/qemu_8.2_linux_6.18/src/out/share" # qemu的共享目录路径
-  qemu_out_shares_path: "/home/user/qemu_8.2_linux_6.18/src/out/shares" # qemu的共享目录路径
-  qemu-system-x86_64_path: "/home/user/qemu_8.2_linux_6.18/src/qemu-stable-8.2/build/qemu-system-x86_64" # qemu-system-x86_64可执行文件路径
-  qemu_rum_template_path: "/home/user/data/qemu_config/start_qemu_template.sh" # 启动qemu的脚本模板路径
-  qemu_build_static_path: "/home/user/qemu_8.2_linux_6.18/src/qemu-stable-8.2/build_static" # qemu静态编译路径，用于clangd错误检查
-  qemu_build_path: "/home/user/qemu_8.2_linux_6.18/src/qemu-stable-8.2/build" # qemu编译路径
-  linux_path_prefix: "/home/user/桌面/linux_allyesconfig" # 静态分析内容中linux源码路径前缀
-  step4_examples_path: "/home/user/data/step4_examples"   # 步骤4的修复例子保存路径 
-  db_path: "/home/user/vdm/driver_info.db"             # 数据库路径  
-  qemu_build_sh_path: "/home/user/data/qemu_config/build_qemu.sh" # 编译qemu的脚本路径
-  id_rsa_path: "/home/user/qemu_8.2_linux_6.18/image/bullseye.id_rsa" # 远程登录qemu使用的私钥路径
+  data_path: "/home/user/data/driver_info" # Path to save static-analysis content
+  logs_path: "/home/user/data/logs"        # Path to save logs
+  device_code_path: "/home/user/data/device_code"  # Directory to save the final device code
+  qemu_hw_fack_pci_path: "/home/user/qemu_8.2_linux_6.18/src/qemu-stable-8.2/hw/fake_pci" # Location where device code is saved in the QEMU project
+  qemu_run_dir: "/home/user/qemu_8.2_linux_6.18/image" # Directory for running QEMU
+  driver_name_case_mapping_path: "/home/user/data/qemu_config/qemu_config.json" # Driver-name case-mapping file
+  qemu_kernel_bzImage_path: "/home/user/qemu_8.2_linux_6.18/src/linux-6.18-defconfig/arch/x86_64/boot/bzImage" # Kernel path used by QEMU
+  qemu_image_path: "/home/user/qemu_8.2_linux_6.18/image/bullseye.img" # Image path used by QEMU
+  qemu_log_path: "/home/user/qemu_8.2_linux_6.18/qemu.log" # QEMU log path
+  qemu_out_share_path: "/home/user/qemu_8.2_linux_6.18/src/out/share" # QEMU shared directory path
+  qemu_out_shares_path: "/home/user/qemu_8.2_linux_6.18/src/out/shares" # QEMU shared directory path
+  qemu-system-x86_64_path: "/home/user/qemu_8.2_linux_6.18/src/qemu-stable-8.2/build/qemu-system-x86_64" # Path to the qemu-system-x86_64 executable
+  qemu_rum_template_path: "/home/user/data/qemu_config/start_qemu_template.sh" # Path to the QEMU startup script template
+  qemu_build_static_path: "/home/user/qemu_8.2_linux_6.18/src/qemu-stable-8.2/build_static" # QEMU static build path, used for clangd error checking
+  qemu_build_path: "/home/user/qemu_8.2_linux_6.18/src/qemu-stable-8.2/build" # QEMU build path
+  linux_path_prefix: "/home/user/桌面/linux_allyesconfig" # Linux source path prefix inside the static-analysis content
+  step4_examples_path: "/home/user/data/step4_examples"   # Path to save repair examples for step 4
+  db_path: "/home/user/vdm/driver_info.db"             # Database path
+  qemu_build_sh_path: "/home/user/data/qemu_config/build_qemu.sh" # Path to the QEMU build script
+  id_rsa_path: "/home/user/qemu_8.2_linux_6.18/image/bullseye.id_rsa" # Path to the private key used for remote login to QEMU

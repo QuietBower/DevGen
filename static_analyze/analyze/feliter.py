@@ -24,9 +24,9 @@ def filter_clang_incompatible_options(input_file, output_file):
     ]
     
     for entry in data:
-        # 处理'command'字段（字符串）
+        # Handle the 'command' field (string)
         if 'command' in entry:
-            # 分割命令为参数列表
+            # Split the command into an argument list
             args = shlex.split(entry['command'])
             filtered_args = []
             
@@ -35,15 +35,15 @@ def filter_clang_incompatible_options(input_file, output_file):
                 arg = args[i]
                 skip = False
                 
-                # 检查是否为不兼容选项
+                # Check whether the option is incompatible
                 for incompatible in clang_incompatible:
                     if arg.startswith(incompatible):
                         skip = True
                         break
                 
-                # 特别处理某些选项
+                # Special handling for certain options
                 if arg == '-mpreferred-stack-boundary=4':
-                    # clang使用不同的选项
+                    # clang uses different options
                     filtered_args.append('-mstack-alignment=16')
                     skip = True
                 elif arg.startswith('-mindirect-branch='):
@@ -55,10 +55,10 @@ def filter_clang_incompatible_options(input_file, output_file):
                     filtered_args.append(arg)
                 i += 1
             
-            # 重新构建命令字符串
+            # Rebuild the command string
             entry['command'] = ' '.join(shlex.quote(arg) for arg in filtered_args)
         
-        # 处理'arguments'字段（列表）
+        # Handle the 'arguments' field (list)
         if 'arguments' in entry:
             filtered_args = []
             for arg in entry['arguments']:
@@ -72,7 +72,7 @@ def filter_clang_incompatible_options(input_file, output_file):
                 if not skip:
                     filtered_args.append(arg)
             
-            # 添加clang兼容性选项
+            # Add clang compatibility options
             filtered_args.extend([
                 '-Wno-unknown-warning-option',
                 '-Wno-everything',

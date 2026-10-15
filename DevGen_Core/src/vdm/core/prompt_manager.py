@@ -3,7 +3,7 @@ import glob
 from typing import Dict, Optional
 from vdm.utils.logger import setup_logger
 
-#设置logger
+#Set up the logger
 logger = setup_logger("prompt_manager")
 
 class PromptManager:
@@ -15,7 +15,7 @@ class PromptManager:
         self.prompts_base_dir = prompts_base_dir
         self.prompts: Dict[str, str] = {}
         
-        # 初始化时加载所有prompt
+        # Load all prompts at initialization
         self._load_all_prompts()
     
     def _load_all_prompts(self):
@@ -24,10 +24,10 @@ class PromptManager:
             logger.warning(f"Prompt目录不存在: {self.prompts_base_dir}")
             return
         
-        # 递归加载所有txt文件
+        # Recursively load all txt files
         for file_path in glob.glob(os.path.join(self.prompts_base_dir, "**", "*.txt"), recursive=True):
             try:
-                # 获取相对路径作为prompt名称
+                # Use the relative path as the prompt name
                 relative_path = os.path.relpath(file_path, self.prompts_base_dir)
                 prompt_name = os.path.splitext(relative_path)[0].replace(os.path.sep, ".")
                 
@@ -61,7 +61,7 @@ class PromptManager:
         template_content = self.prompts[prompt_name]
         
         try:
-             # 替换文本
+             # Replace the text
             for key, value in kwargs.items():
                 template_content = template_content.replace(f"`{key}`", str(value))   
             
@@ -80,7 +80,7 @@ class PromptManager:
         self._load_all_prompts()
         logger.info("Prompt文件重新加载完成")
 
-# 创建全局实例
+# Create a global instance
 prompt_manager = PromptManager()
 
 
