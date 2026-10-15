@@ -2,7 +2,7 @@
 
 This directory implements the **Driver Fuzzing Integration** module of DevGen. It assumes that the  
 target driver already completes its `probe` routine and binds to a validated QEMU device model  
-produced by `../DevGen_Core`, and it takes the driver from *"bound to a virtual device"* to  
+produced by [../DevGen_Core](../DevGen_Core), and it takes the driver from *"bound to a virtual device"* to  
 *"fuzzed by Syzkaller through the interfaces it exposes"*.
 
 Once binding succeeds, driver testing requires inputs that reach the driver's handlers through the  
@@ -20,9 +20,9 @@ cannot be exercised properly. This module therefore:
 
 ## Prerequisites
 
-- A validated QEMU device model for the target driver (produced by `../DevGen_Core`).
+- A validated QEMU device model for the target driver (produced by [../DevGen_Core](../DevGen_Core)).
 - A Linux kernel source tree built with the target config, plus a guest image and its SSH key  
-  (see `image/`).
+  (see [image/](image/)).
 - A QEMU binary and a Syzkaller source tree.
 - Python 3 with the packages listed in `requirements.txt` (`transformers`, `rich`, `loguru`,  
   `pyyaml`, `openai`) for the specification-generation scripts.
@@ -32,7 +32,7 @@ cannot be exercised properly. This module therefore:
 | # | Step                                                      | Entry point                                     |
 | - | --------------------------------------------------------- | ----------------------------------------------- |
 | 1 | Interface identification                                  | `test_def_qemu_7.1.py`                          |
-| 2 | Syzlang description generation and validation             | `spec-gen/`, `spec-eval/`, `process_syscall.py` |
+| 2 | Syzlang description generation and validation             | [spec-gen/](spec-gen/), [spec-eval/](spec-eval/), `process_syscall.py` |
 | 3 | Static-analysis simplification and driver code processing | `generate_json.py`, `simple_code.py`            |
 | 4 | Targeted fuzzing                                          | `../start_fuzz.py` (repository root)            |
 
@@ -41,7 +41,7 @@ interfaces newly exposed by the model and the interface differences, then genera
 the missing Syzlang system-call variants, then simplify the static analysis / process the target  
 driver code, and finally launch the fuzzing campaign.
 
-> Steps 2 and 3 both consume the output of the LLVM static analysis (`spec-gen/analyzer`,  
+> Steps 2 and 3 both consume the output of the LLVM static analysis ([spec-gen/analyzer](spec-gen/analyzer),  
 > described in step 2), so the analyzer has to have run at least once before `generate_json.py`  
 > and `simple_code.py` are used.
 
@@ -93,7 +93,7 @@ CHANGE_DEV_JSON = ".../changedev.json"   # accumulated ΔN(D), one entry per dev
 python3 test_def_qemu_7.1.py
 ```
 
-`test_QEMU/*.sh` holds standalone QEMU launch scripts for individual devices; they are useful to  
+[test_QEMU/](test_QEMU/)/*.sh holds standalone QEMU launch scripts for individual devices; they are useful to  
 reproduce a single boot manually (the script also documents the configurable parameters).
 
 The resulting `changedev.json` — the newly exposed interfaces — together with the collected source  
@@ -106,9 +106,9 @@ The operations reachable through the interfaces identified in step 1 are matched
 existing Syzlang corpus. Variants that already have a description are reused; variants that lack a  
 description, or whose description omits essential constraints, are completed here.
 
-### `spec-gen/` — generate the missing Syzlang system-call variants
+### [spec-gen/](spec-gen/) — generate the missing Syzlang system-call variants
 
-For each operation, `spec-gen/` recovers the semantics from the driver context along three axes  
+For each operation, [spec-gen/](spec-gen/) recovers the semantics from the driver context along three axes  
 that mirror the paper's description-completion step:
 
 - **Identifier deduction** — the device path, the opening method and the operation identifier  
@@ -127,9 +127,9 @@ that mirror the paper's description-completion step:
 | `find_utils.py`                  | looks up struct/enum/function/usage definitions from the analyzer output                                                                                      |
 | `llm_utils.py`                   | LLM backend                                                                                                                                                   |
 | `repair_spec.py`                 | repairs a candidate spec using the validator's stdout                                                                                                         |
-| `prompt_template/`               | the step prompts (`step0` … `step4`, plus `step-repair-struct`)                                                                                               |
-| `existings/`                     | the existing corpus used to skip already-covered names (`cmds.txt`, `dev_files.txt`, `fds.txt`, `filenames.txt`, `resources.txt`, `sockopt.txt`, `types.txt`) |
-| `analyzer/`                      | LLVM/Clang analyzer producing the definition/usage JSON consumed by `find_utils.py`                                                                           |
+| [prompt_template/](spec-gen/prompt_template/)               | the step prompts (`step0` … `step4`, plus `step-repair-struct`)                                                                                               |
+| [existings/](spec-gen/existings/)                     | the existing corpus used to skip already-covered names (`cmds.txt`, `dev_files.txt`, `fds.txt`, `filenames.txt`, `resources.txt`, `sockopt.txt`, `types.txt`) |
+| [analyzer/](spec-gen/analyzer/)                      | LLVM/Clang analyzer producing the definition/usage JSON consumed by `find_utils.py`                                                                           |
 
 Typical invocation (paths relative to this directory):
 
@@ -156,9 +156,9 @@ python process_output.py --linux-path /path/to/linux --usage
 # -> analyzer/processed_{struct,enum,func,usage,handlers}.json
 ```
 
-### `spec-eval/` — validate the generated syscalls
+### [spec-eval/](spec-eval/) — validate the generated syscalls
 
-`spec-eval/` validates the generated descriptions. A candidate description is accepted only after  
+[spec-eval/](spec-eval/) validates the generated descriptions. A candidate description is accepted only after  
 it passes **Syzlang compilation followed by a Syzkaller build**; if either step fails, the candidate  
 is repaired from the diagnostics (`spec-gen/repair_spec.py`, orchestrated by  
 `spec-gen/eval_spec.py`) and both steps are repeated.
@@ -295,18 +295,18 @@ triggering seed, the corresponding device model and any minimized reproducer.
 
 | Path                                                                           | Role                                                                           |
 | ------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| `image/` (`create-image.sh`)                                                   | build the Debian bullseye guest image (`bullseye.img` + `bullseye.id_rsa`)     |
-| `kernel-configs/`                                                              | guest kernel configs (`syzbot.config`, `syzbot-kmsan.config`, `allyesconfig*`) |
+| [image/](image/) (`create-image.sh`)                                                   | build the Debian bullseye guest image (`bullseye.img` + `bullseye.id_rsa`)     |
+| [kernel-configs/](kernel-configs/)                                                              | guest kernel configs (`syzbot.config`, `syzbot-kmsan.config`, `allyesconfig*`) |
 | `filter_compile_commands.py`, `split_jsonl.py`, `process_output.py`            | static-analysis preprocessing (see step 2)                                     |
 | `syzkaller.sh`, `template.cfg`, `test.cfg`, `get-port.py`, `ssh.sh`, `qemu.sh` | run a single `syz-manager` or QEMU instance manually                           |
 | `crash_watcher.sh`                                                             | poll `crashes/description` files and mail newly found crashes                  |
-| `test_QEMU/`                                                                   | standalone per-device QEMU launch scripts                                      |
-| `dev_txt/`, `log/`                                                             | `tree /dev` snapshots and QEMU logs captured by step 1                         |
-| `spec-gen/`, `spec-eval/`                                                      | description generation and validation (see step 2)                             |
+| [test_QEMU/](test_QEMU/)                                                                   | standalone per-device QEMU launch scripts                                      |
+| [dev_txt/](dev_txt/), [log/](log/)                                                             | `tree /dev` snapshots and QEMU logs captured by step 1                         |
+| [spec-gen/](spec-gen/), [spec-eval/](spec-eval/)                                                      | description generation and validation (see step 2)                             |
 
 ## Notes
 
-- The generated Syzlang descriptions are collected under `../new_sys_linux/` in the repository  
+- The generated Syzlang descriptions are collected under [../new_sys_linux/](../new_sys_linux/) in the repository  
   root; the paper reports 438 call descriptions generated or completed.
 - `enable_syscalls` defaults to all available variants when the relevant calls cannot be clearly  
   determined, matching the behaviour described in the paper.
