@@ -11,10 +11,10 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                          | Link                                                         |
 | :--------------------------------------------------- | :----------------------------------------------------------- |
-| [PATCH] tty: limit TCSBRKP break duration | <u>[mail](../email/497_%5BPATCH%5D%20tty_%20limit%20TCSBRKP%20break%20duration.txt)</u> |
-| gregkh:Re: [PATCH] tty: limit TCSBRKP break duration | <u>[mail](../email/496_Re_%20%5BPATCH%5D%20tty_%20limit%20TCSBRKP%20break%20duration.txt)</u> |
-| Re: [PATCH] tty: limit TCSBRKP break duration | <u>[mail](../email/498_Re_%20%5BPATCH%5D%20tty_%20limit%20TCSBRKP%20break%20duration.txt)</u> |
-| gregkh:Re: [PATCH] tty: limit TCSBRKP break duration | <u>[mail](../email/499_Re_%20%5BPATCH%5D%20tty_%20limit%20TCSBRKP%20break%20duration.txt)</u> |
-| Re: [PATCH] tty: limit TCSBRKP break duration | <u>[mail](../email/503_Re_%20%5BPATCH%5D%20tty_%20limit%20TCSBRKP%20break%20duration.txt)</u> |
-| gregkh:Re: [PATCH] tty: limit TCSBRKP break duration | <u>[mail](../email/504_Re_%20%5BPATCH%5D%20tty_%20limit%20TCSBRKP%20break%20duration.txt)</u> |
+| [PATCH] tty: limit TCSBRKP break duration            | <u>[lore.kernel.org](https://lore.kernel.org/all/20260727055525.6170-1-22009200607@stu.xidian.edu.cn/)</u> |
+| gregkh:Re: [PATCH] tty: limit TCSBRKP break duration | <u>[lore.kernel.org](https://lore.kernel.org/all/2026072700-causal-remarry-6edf@gregkh/)</u> |
+| Re: [PATCH] tty: limit TCSBRKP break duration        | <u>[lore.kernel.org](https://lore.kernel.org/all/20260729111927.41154-1-22009200607@stu.xidian.edu.cn/)</u> |
+| gregkh:Re: [PATCH] tty: limit TCSBRKP break duration | <u>[lore.kernel.org](https://lore.kernel.org/all/2026072921-curled-moonlike-1207@gregkh/)</u> |
+| Re: [PATCH] tty: limit TCSBRKP break duration        | <u>[lore.kernel.org](https://lore.kernel.org/all/20260731143041.6400-1-22009200607@stu.xidian.edu.cn/)</u> |
+| gregkh:Re: [PATCH] tty: limit TCSBRKP break duration | <u>[lore.kernel.org](https://lore.kernel.org/all/2026073157-expend-unzip-cad7@gregkh/)</u> |
 

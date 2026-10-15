@@ -14,9 +14,9 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>[mail](../email/370_%5BPATCH%5D%20serial_%208250_%20validate%20iomem_base%20in%20serial8250_verify_port%28%29.txt)</u> |
-| AI-Result                                                    | <u>[mail](../email/482_%5BPATCH%5D%20serial_%208250_%20validate%20iomem_base%20in%20serial8250_verify_port%28%29.txt)</u> |
-| Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>[mail](../email/490_Re_%20%5BPATCH%5D%20serial_%208250_%20validate%20iomem_base%20in%20serial8250_verify_por.txt)</u> |
-| Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>[mail](../email/372_Re_%20%5BPATCH%5D%20serial_%208250_%20validate%20iomem_base%20in%20serial8250_verify_por.txt)</u> |
-| Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>[mail](../email/491_Re_%20%5BPATCH%5D%20serial_%208250_%20validate%20iomem_base%20in%20serial8250_verify_por.txt)</u> |
+| [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>[lore.kernel.org](https://lore.kernel.org/all/20260720053733.102186-1-25181214217@stu.xidian.edu.cn/)</u> |
+| AI-Result                                                    | <u>[lore.kernel.org](https://sashiko.dev/#/patchset/20260720053733.102186-1-25181214217%40stu.xidian.edu.cn)</u> |
+| Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>[lore.kernel.org](https://lore.kernel.org/all/0d58c9fe-7aed-43dd-8d00-6edfee9e2876@kernel.org/)</u> |
+| Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>[lore.kernel.org](https://lore.kernel.org/all/706101a4-abf9-403d-a2cb-778a12338d99@stu.xidian.edu.cn/)</u> |
+| Re: [PATCH] serial: 8250: validate iomem_base in serial8250_verify_port() | <u>[lore.kernel.org](https://lore.kernel.org/all/2026072015-ammonium-dismount-7af5@gregkh/)</u> |
 

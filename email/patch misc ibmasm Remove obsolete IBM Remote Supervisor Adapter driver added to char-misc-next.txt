@@ -1,0 +1,2896 @@
+X-Mozilla-Status: 0001
+X-Mozilla-Status2: 00000000
+Received: from sea.source.kernel.org (unknown [172.234.252.31])
+	by hzbj-edu-front-2.icoremail.net (Coremail) with SMTP id BLQMCkDmKjDOUHRqmx3tAQ--.49027S2;
+	Thu, 06 Aug 2026 17:15:59 +0800 (CST)
+Received: from sea.source.kernel.org (unknown [172.234.252.31])
+	by oracle-mxproxy-4 (Coremail) with SMTP id AQAAfwDXPLjCUHRqWCwbAA--.203S3;
+	Thu, 06 Aug 2026 17:15:49 +0800 (CST)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 19A2843BDA;
+	Thu,  6 Aug 2026 09:15:45 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 173951F000E9;
+	Thu,  6 Aug 2026 09:15:43 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
+	s=korg; t=1786007745;
+	bh=yqGuSYTmykvdKKWaYuwnXepTKUz5uwX2uJJgalmv6Yg=;
+	h=Subject:To:From:Date;
+	b=dyb/gqng6GcvmnoGsBIDJqtCW3JHL5f4ZjPGCqhBCfL3UG6wuo7+e2Rfdy+wzYGNd
+	 DE2FVCRos8smZ8uWc0JGDvovWju9nXJ4ocG4ISV2Z7cMW6MqwuD0V3V/lEjl8OwdU8
+	 DR1n/BnVUDZtKQM1iY4/yl8WLn0PsjN0/ffgiP6I=
+Subject: patch "misc: ibmasm: Remove obsolete IBM Remote Supervisor Adapter driver" added to char-misc-next
+To: 25181214217@stu.xidian.edu.cn,arnd@arndb.de,gregkh@linuxfoundation.org
+From: <gregkh@linuxfoundation.org>
+Date: Thu, 06 Aug 2026 11:15:27 +0200
+Message-ID: <2026080627-wildcard-condense-2537@gregkh>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAfwDXPLjCUHRqWCwbAA--.203S3
+Authentication-Results: hzbj-edu-front-2.icoremail.net; spf=pass smtp.
+	mail=gregkh@linuxfoundation.org; dkim=pass header.i=@linuxfoundation.o
+	rg
+X-Coremail-Antispam: 1UD129KBjvAXoWkWF1rWw1fZw47Gw43Zr1UWrg_yoW3tFykuo
+	W3Xrn3X3yrGw1fGrWkCw1UtF9xXrWDK3W3tr45JwsIvr1aqw43WFW7Kan5X34fXryY9rZ8
+	XF95t34UXa93Krn7n29KB7ZKAUJUUUU5529EdanIXcx71UUUUU7v73VFW2AGmfu7bjvjm3
+	AaLaJ3UjIYCTnIWjp_UUUYB7k0a2IF6w4kM7kC6x804xWl14x267AKxVWUJVW8JwAFIxvE
+	14AKwVWUJVWUGwA2ocxC6xCI17AI4xWl84x0c7CEw4AK67xGY2AK021l84ACjcxK6xIIjx
+	v20xvE14v26r1j6r1xM28EF7xvwVC0I7IYx2IY6xkF7I0E14v26r1j6r4UM28EF7xvwVC2
+	z280aVAFwI0_Jr0_Gr1l84ACjcxK6I8E87Iv6xkF7I0E14v26r1j6r4UM2AIxVAIcxkEcV
+	Aq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20xvE14v26r1j
+	6r18McIj6I8E87Iv67AKxVWUJVW8JwAm72CE4IkC6x0Yz7v_Jr0_Gr1lF7xvr2IY64vIr4
+	1lF7I21c0EjII2zVCS5cI20VAGYxC7M4kE6xkIj40Ew7xC0wCjxxvEa2IrMxkIecxEwVCI
+	4VW8uwCY0x0Ix7I2Y4AK64vIr41lcIIF0xvE2Ix0cI8IcVAFwI0_Jr0_JF4lcIIF0xvE2I
+	x0cI8IcVCY1x0267AKxVWUJVW8JwCYIxAIcVC2z280aVAFwI0_Jr0_Gr1lcIIF0xvEx4A2
+	jsIEc7CjxVAFwI0_Jr0_Gr1l42xK82IYc2Ij64vIr41l4x8a6x804xWl4I8I3I0E4IkC6x
+	0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s026x8GjcxK67AKxVWUGVWUWwC2
+	zVAF1VAY17CE14v26r1Y6r17MIIYrxkI7VAKI48JMIIF0xvE42xK8VAvwI8IcIk0rVWUJV
+	WUCbIYCTnIWIevJa73UjIFyTuYvjxUcLZcUUUUU
+
+
+This is a note to let you know that I've just added the patch titled
+
+    misc: ibmasm: Remove obsolete IBM Remote Supervisor Adapter driver
+
+to my char-misc git tree which can be found at
+    git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/char-misc.git
+in the char-misc-next branch.
+
+The patch will show up in the next release of the linux-next tree
+(usually sometime within the next 24 hours during the week.)
+
+The patch will also be merged in the next major kernel release
+during the merge window.
+
+If you have any questions about this process, please let me know.
+
+
+From c20800490fd7de317aad2773040961202f5555d2 Mon Sep 17 00:00:00 2001
+From: Mingyu Wang <25181214217@stu.xidian.edu.cn>
+Date: Sat, 1 Aug 2026 15:07:56 +0800
+Subject: misc: ibmasm: Remove obsolete IBM Remote Supervisor Adapter driver
+
+The IBM Remote Supervisor Adapter (RSA) and RSA II were out-of-band
+management PCI/ISA cards introduced in the early 2000s for ancient
+IBM eServer xSeries machines. IBM deprecated the RSA family and
+replaced it with the Integrated Management Module (IMM) around 2008.
+IBM subsequently sold its x86 server business to Lenovo in 2014, and
+modern systems use entirely different BMC architectures.
+
+This hardware has been completely obsolete and out of production for
+over 15 years. Surviving physical servers using this specific hardware
+would be running ancient 32-bit processors vastly unsuited for modern
+kernels.
+
+A review of the recent git history shows that aside from mechanical
+treewide VFS API updates, the only recent activities are out-of-bounds
+fixes in command_file_write and MFA handling. These fixes address
+userspace-triggered security vulnerabilities and fuzzer-discovered
+MMIO bugs rather than functional issues reported by active hardware users.
+
+Keeping this obsolete driver in the tree leaves an unnecessary attack
+surface and acts as a "fuzzing honeypot", forcing core maintainers to
+endlessly review CVEs and OOB fixes for dead hardware, while also paying
+a maintenance tax to drag it through modern API refactorings.
+
+Remove the driver entirely.
+
+Signed-off-by: Mingyu Wang <25181214217@stu.xidian.edu.cn>
+Acked-by: Arnd Bergmann <arnd@arndb.de>
+Link: https://patch.msgid.link/20260801070756.161698-1-25181214217@stu.xidian.edu.cn
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/misc/Kconfig              |  22 --
+ drivers/misc/Makefile             |   1 -
+ drivers/misc/ibmasm/Makefile      |  16 -
+ drivers/misc/ibmasm/command.c     | 173 ---------
+ drivers/misc/ibmasm/dot_command.c | 138 -------
+ drivers/misc/ibmasm/dot_command.h |  64 ----
+ drivers/misc/ibmasm/event.c       | 163 --------
+ drivers/misc/ibmasm/heartbeat.c   |  88 -----
+ drivers/misc/ibmasm/i2o.h         |  63 ----
+ drivers/misc/ibmasm/ibmasm.h      | 209 -----------
+ drivers/misc/ibmasm/ibmasmfs.c    | 604 ------------------------------
+ drivers/misc/ibmasm/lowlevel.c    |  75 ----
+ drivers/misc/ibmasm/lowlevel.h    | 123 ------
+ drivers/misc/ibmasm/module.c      | 224 -----------
+ drivers/misc/ibmasm/r_heartbeat.c |  86 -----
+ drivers/misc/ibmasm/remote.c      | 273 --------------
+ drivers/misc/ibmasm/remote.h      | 257 -------------
+ drivers/misc/ibmasm/uart.c        |  58 ---
+ 18 files changed, 2637 deletions(-)
+ delete mode 100644 drivers/misc/ibmasm/Makefile
+ delete mode 100644 drivers/misc/ibmasm/command.c
+ delete mode 100644 drivers/misc/ibmasm/dot_command.c
+ delete mode 100644 drivers/misc/ibmasm/dot_command.h
+ delete mode 100644 drivers/misc/ibmasm/event.c
+ delete mode 100644 drivers/misc/ibmasm/heartbeat.c
+ delete mode 100644 drivers/misc/ibmasm/i2o.h
+ delete mode 100644 drivers/misc/ibmasm/ibmasm.h
+ delete mode 100644 drivers/misc/ibmasm/ibmasmfs.c
+ delete mode 100644 drivers/misc/ibmasm/lowlevel.c
+ delete mode 100644 drivers/misc/ibmasm/lowlevel.h
+ delete mode 100644 drivers/misc/ibmasm/module.c
+ delete mode 100644 drivers/misc/ibmasm/r_heartbeat.c
+ delete mode 100644 drivers/misc/ibmasm/remote.c
+ delete mode 100644 drivers/misc/ibmasm/remote.h
+ delete mode 100644 drivers/misc/ibmasm/uart.c
+
+diff --git a/drivers/misc/Kconfig b/drivers/misc/Kconfig
+index 7f4900efe726..10803a6f1227 100644
+--- a/drivers/misc/Kconfig
++++ b/drivers/misc/Kconfig
+@@ -57,28 +57,6 @@ config DUMMY_IRQ
+ 	  The sole purpose of this module is to help with debugging of systems on
+ 	  which spurious IRQs would happen on disabled IRQ vector.
+ 
+-config IBM_ASM
+-	tristate "Device driver for IBM RSA service processor"
+-	depends on X86 && PCI && INPUT
+-	depends on SERIAL_8250 || SERIAL_8250=n
+-	help
+-	  This option enables device driver support for in-band access to the
+-	  IBM RSA (Condor) service processor in eServer xSeries systems.
+-	  The ibmasm device driver allows user space application to access
+-	  ASM (Advanced Systems Management) functions on the service
+-	  processor. The driver is meant to be used in conjunction with
+-	  a user space API.
+-	  The ibmasm driver also enables the OS to use the UART on the
+-	  service processor board as a regular serial port. To make use of
+-	  this feature serial driver support (CONFIG_SERIAL_8250) must be
+-	  enabled.
+-
+-	  WARNING: This software may not be supported or function
+-	  correctly on your IBM server. Please consult the IBM ServerProven
+-	  website <https://www-03.ibm.com/systems/info/x86servers/serverproven/compat/us/>
+-	  for information on the specific driver level and support statement
+-	  for your IBM server.
+-
+ config IBMVMC
+ 	tristate "IBM Virtual Management Channel support"
+ 	depends on PPC_PSERIES
+diff --git a/drivers/misc/Makefile b/drivers/misc/Makefile
+index 812b68d21185..f317fd6c9f55 100644
+--- a/drivers/misc/Makefile
++++ b/drivers/misc/Makefile
+@@ -3,7 +3,6 @@
+ # Makefile for misc devices that really don't fit anywhere else.
+ #
+ 
+-obj-$(CONFIG_IBM_ASM)		+= ibmasm/
+ obj-$(CONFIG_IBMVMC)		+= ibmvmc.o
+ obj-$(CONFIG_AD525X_DPOT)	+= ad525x_dpot.o
+ obj-$(CONFIG_AD525X_DPOT_I2C)	+= ad525x_dpot-i2c.o
+diff --git a/drivers/misc/ibmasm/Makefile b/drivers/misc/ibmasm/Makefile
+deleted file mode 100644
+index 1b9dd0f44411..000000000000
+--- a/drivers/misc/ibmasm/Makefile
++++ /dev/null
+@@ -1,16 +0,0 @@
+-# SPDX-License-Identifier: GPL-2.0
+-
+-obj-$(CONFIG_IBM_ASM) := ibmasm.o
+-
+-ibmasm-y :=	module.o      \
+-		ibmasmfs.o    \
+-		event.o       \
+-		command.o     \
+-		remote.o      \
+-		heartbeat.o   \
+-		r_heartbeat.o \
+-		dot_command.o \
+-		lowlevel.o
+-
+-ibmasm-$(CONFIG_SERIAL_8250) += uart.o
+-
+diff --git a/drivers/misc/ibmasm/command.c b/drivers/misc/ibmasm/command.c
+deleted file mode 100644
+index 6b037675ff45..000000000000
+--- a/drivers/misc/ibmasm/command.c
++++ /dev/null
+@@ -1,173 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-or-later
+-
+-/*
+- * IBM ASM Service Processor Device Driver
+- *
+- * Copyright (C) IBM Corporation, 2004
+- *
+- * Author: Max Asb枚ck <amax@us.ibm.com>
+- */
+-
+-#include <linux/sched.h>
+-#include <linux/slab.h>
+-#include "ibmasm.h"
+-#include "lowlevel.h"
+-
+-static void exec_next_command(struct service_processor *sp);
+-
+-static atomic_t command_count = ATOMIC_INIT(0);
+-
+-struct command *ibmasm_new_command(struct service_processor *sp, size_t buffer_size)
+-{
+-	struct command *cmd;
+-
+-	if (buffer_size > IBMASM_CMD_MAX_BUFFER_SIZE)
+-		return NULL;
+-
+-	cmd = kzalloc_obj(struct command);
+-	if (cmd == NULL)
+-		return NULL;
+-
+-
+-	cmd->buffer = kzalloc(buffer_size, GFP_KERNEL);
+-	if (cmd->buffer == NULL) {
+-		kfree(cmd);
+-		return NULL;
+-	}
+-	cmd->buffer_size = buffer_size;
+-
+-	kref_init(&cmd->kref);
+-	cmd->lock = &sp->lock;
+-
+-	cmd->status = IBMASM_CMD_PENDING;
+-	init_waitqueue_head(&cmd->wait);
+-	INIT_LIST_HEAD(&cmd->queue_node);
+-
+-	atomic_inc(&command_count);
+-	dbg("command count: %d\n", atomic_read(&command_count));
+-
+-	return cmd;
+-}
+-
+-void ibmasm_free_command(struct kref *kref)
+-{
+-	struct command *cmd = to_command(kref);
+-
+-	list_del(&cmd->queue_node);
+-	atomic_dec(&command_count);
+-	dbg("command count: %d\n", atomic_read(&command_count));
+-	kfree(cmd->buffer);
+-	kfree(cmd);
+-}
+-
+-static void enqueue_command(struct service_processor *sp, struct command *cmd)
+-{
+-	list_add_tail(&cmd->queue_node, &sp->command_queue);
+-}
+-
+-static struct command *dequeue_command(struct service_processor *sp)
+-{
+-	struct command *cmd;
+-	struct list_head *next;
+-
+-	if (list_empty(&sp->command_queue))
+-		return NULL;
+-
+-	next = sp->command_queue.next;
+-	list_del_init(next);
+-	cmd = list_entry(next, struct command, queue_node);
+-
+-	return cmd;
+-}
+-
+-static inline void do_exec_command(struct service_processor *sp)
+-{
+-	char tsbuf[32];
+-
+-	dbg("%s:%d at %s\n", __func__, __LINE__, get_timestamp(tsbuf));
+-
+-	if (ibmasm_send_i2o_message(sp)) {
+-		sp->current_command->status = IBMASM_CMD_FAILED;
+-		wake_up(&sp->current_command->wait);
+-		command_put(sp->current_command);
+-		exec_next_command(sp);
+-	}
+-}
+-
+-/*
+- * exec_command
+- * send a command to a service processor
+- * Commands are executed sequentially. One command (sp->current_command)
+- * is sent to the service processor. Once the interrupt handler gets a
+- * message of type command_response, the message is copied into
+- * the current commands buffer,
+- */
+-void ibmasm_exec_command(struct service_processor *sp, struct command *cmd)
+-{
+-	unsigned long flags;
+-	char tsbuf[32];
+-
+-	dbg("%s:%d at %s\n", __func__, __LINE__, get_timestamp(tsbuf));
+-
+-	spin_lock_irqsave(&sp->lock, flags);
+-
+-	if (!sp->current_command) {
+-		sp->current_command = cmd;
+-		command_get(sp->current_command);
+-		spin_unlock_irqrestore(&sp->lock, flags);
+-		do_exec_command(sp);
+-	} else {
+-		enqueue_command(sp, cmd);
+-		spin_unlock_irqrestore(&sp->lock, flags);
+-	}
+-}
+-
+-static void exec_next_command(struct service_processor *sp)
+-{
+-	unsigned long flags;
+-	char tsbuf[32];
+-
+-	dbg("%s:%d at %s\n", __func__, __LINE__, get_timestamp(tsbuf));
+-
+-	spin_lock_irqsave(&sp->lock, flags);
+-	sp->current_command = dequeue_command(sp);
+-	if (sp->current_command) {
+-		command_get(sp->current_command);
+-		spin_unlock_irqrestore(&sp->lock, flags);
+-		do_exec_command(sp);
+-	} else {
+-		spin_unlock_irqrestore(&sp->lock, flags);
+-	}
+-}
+-
+-/*
+- * Sleep until a command has failed or a response has been received
+- * and the command status been updated by the interrupt handler.
+- * (see receive_response).
+- */
+-void ibmasm_wait_for_response(struct command *cmd, int timeout)
+-{
+-	wait_event_interruptible_timeout(cmd->wait,
+-				cmd->status == IBMASM_CMD_COMPLETE ||
+-				cmd->status == IBMASM_CMD_FAILED,
+-				timeout * HZ);
+-}
+-
+-/*
+- * receive_command_response
+- * called by the interrupt handler when a dot command of type command_response
+- * was received.
+- */
+-void ibmasm_receive_command_response(struct service_processor *sp, void *response, size_t size)
+-{
+-	struct command *cmd = sp->current_command;
+-
+-	if (!sp->current_command)
+-		return;
+-
+-	memcpy_fromio(cmd->buffer, response, min(size, cmd->buffer_size));
+-	cmd->status = IBMASM_CMD_COMPLETE;
+-	wake_up(&sp->current_command->wait);
+-	command_put(sp->current_command);
+-	exec_next_command(sp);
+-}
+diff --git a/drivers/misc/ibmasm/dot_command.c b/drivers/misc/ibmasm/dot_command.c
+deleted file mode 100644
+index df389bd4c9df..000000000000
+--- a/drivers/misc/ibmasm/dot_command.c
++++ /dev/null
+@@ -1,138 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-or-later
+-/*
+- * IBM ASM Service Processor Device Driver
+- *
+- * Copyright (C) IBM Corporation, 2004
+- *
+- * Author: Max Asb枚ck <amax@us.ibm.com>
+- */
+-
+-#include "ibmasm.h"
+-#include "dot_command.h"
+-
+-/*
+- * Dispatch an incoming message to the specific handler for the message.
+- * Called from interrupt context.
+- */
+-void ibmasm_receive_message(struct service_processor *sp, void *message, int message_size)
+-{
+-	u32 size;
+-	struct dot_command_header *header = (struct dot_command_header *)message;
+-
+-	if (message_size == 0)
+-		return;
+-
+-	size = get_dot_command_size(message);
+-	if (size == 0)
+-		return;
+-
+-	if (size > message_size)
+-		size = message_size;
+-
+-	switch (header->type) {
+-	case sp_event:
+-		ibmasm_receive_event(sp, message, size);
+-		break;
+-	case sp_command_response:
+-		ibmasm_receive_command_response(sp, message, size);
+-		break;
+-	case sp_heartbeat:
+-		ibmasm_receive_heartbeat(sp, message, size);
+-		break;
+-	default:
+-		dev_err(sp->dev, "Received unknown message from service processor\n");
+-	}
+-}
+-
+-
+-#define INIT_BUFFER_SIZE 32
+-
+-
+-/*
+- * send the 4.3.5.10 dot command (driver VPD) to the service processor
+- */
+-int ibmasm_send_driver_vpd(struct service_processor *sp)
+-{
+-	struct command *command;
+-	struct dot_command_header *header;
+-	u8 *vpd_command;
+-	u8 *vpd_data;
+-	int result = 0;
+-
+-	command = ibmasm_new_command(sp, INIT_BUFFER_SIZE);
+-	if (command == NULL)
+-		return -ENOMEM;
+-
+-	header = (struct dot_command_header *)command->buffer;
+-	header->type                = sp_write;
+-	header->command_size        = 4;
+-	header->data_size           = 16;
+-	header->status              = 0;
+-	header->reserved            = 0;
+-
+-	vpd_command = command->buffer + sizeof(struct dot_command_header);
+-	vpd_command[0] = 0x4;
+-	vpd_command[1] = 0x3;
+-	vpd_command[2] = 0x5;
+-	vpd_command[3] = 0xa;
+-
+-	vpd_data = vpd_command + header->command_size;
+-	vpd_data[0] = 0;
+-	strcat(vpd_data, IBMASM_DRIVER_VPD);
+-	vpd_data[10] = 0;
+-	vpd_data[15] = 0;
+-
+-	ibmasm_exec_command(sp, command);
+-	ibmasm_wait_for_response(command, IBMASM_CMD_TIMEOUT_NORMAL);
+-
+-	if (command->status != IBMASM_CMD_COMPLETE)
+-		result = -ENODEV;
+-
+-	command_put(command);
+-
+-	return result;
+-}
+-
+-struct os_state_command {
+-	struct dot_command_header	header;
+-	unsigned char			command[3];
+-	unsigned char			data;
+-};
+-
+-/*
+- * send the 4.3.6 dot command (os state) to the service processor
+- * During driver init this function is called with os state "up".
+- * This causes the service processor to start sending heartbeats the
+- * driver.
+- * During driver exit the function is called with os state "down",
+- * causing the service processor to stop the heartbeats.
+- */
+-int ibmasm_send_os_state(struct service_processor *sp, int os_state)
+-{
+-	struct command *cmd;
+-	struct os_state_command *os_state_cmd;
+-	int result = 0;
+-
+-	cmd = ibmasm_new_command(sp, sizeof(struct os_state_command));
+-	if (cmd == NULL)
+-		return -ENOMEM;
+-
+-	os_state_cmd = (struct os_state_command *)cmd->buffer;
+-	os_state_cmd->header.type		= sp_write;
+-	os_state_cmd->header.command_size	= 3;
+-	os_state_cmd->header.data_size		= 1;
+-	os_state_cmd->header.status		= 0;
+-	os_state_cmd->command[0]		= 4;
+-	os_state_cmd->command[1]		= 3;
+-	os_state_cmd->command[2]		= 6;
+-	os_state_cmd->data			= os_state;
+-
+-	ibmasm_exec_command(sp, cmd);
+-	ibmasm_wait_for_response(cmd, IBMASM_CMD_TIMEOUT_NORMAL);
+-
+-	if (cmd->status != IBMASM_CMD_COMPLETE)
+-		result = -ENODEV;
+-
+-	command_put(cmd);
+-	return result;
+-}
+diff --git a/drivers/misc/ibmasm/dot_command.h b/drivers/misc/ibmasm/dot_command.h
+deleted file mode 100644
+index e03399ebe239..000000000000
+--- a/drivers/misc/ibmasm/dot_command.h
++++ /dev/null
+@@ -1,64 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0-or-later */
+-/*
+- * IBM ASM Service Processor Device Driver
+- *
+- * Copyright (C) IBM Corporation, 2004
+- *
+- * Author: Max Asb枚ck <amax@us.ibm.com>
+- */
+-
+-#ifndef __DOT_COMMAND_H__
+-#define __DOT_COMMAND_H__
+-
+-/*
+- * dot commands are the protocol used to communicate with the service
+- * processor.
+- * They consist of header, a command of variable length and data of
+- * variable length.
+- */
+-
+-/* dot command types */
+-#define sp_write		0
+-#define sp_write_next		1
+-#define sp_read			2
+-#define sp_read_next		3
+-#define sp_command_response	4
+-#define sp_event		5
+-#define sp_heartbeat		6
+-
+-#pragma pack(1)
+-struct dot_command_header {
+-	u8	type;
+-	u8	command_size;
+-	u16	data_size;
+-	u8	status;
+-	u8	reserved;
+-};
+-#pragma pack()
+-
+-static inline size_t get_dot_command_size(void *buffer)
+-{
+-	struct dot_command_header *cmd = (struct dot_command_header *)buffer;
+-	return sizeof(struct dot_command_header) + cmd->command_size + cmd->data_size;
+-}
+-
+-static inline unsigned int get_dot_command_timeout(void *buffer)
+-{
+-	struct dot_command_header *header = (struct dot_command_header *)buffer;
+-	unsigned char *cmd = buffer + sizeof(struct dot_command_header);
+-
+-	/* dot commands 6.3.1, 7.1 and 8.x need a longer timeout */
+-
+-	if (header->command_size == 3) {
+-		if ((cmd[0] == 6) && (cmd[1] == 3) && (cmd[2] == 1))
+-			return IBMASM_CMD_TIMEOUT_EXTRA;
+-	} else if (header->command_size == 2) {
+-		if ((cmd[0] == 7) && (cmd[1] == 1))
+-			return IBMASM_CMD_TIMEOUT_EXTRA;
+-		if (cmd[0] == 8)
+-			return IBMASM_CMD_TIMEOUT_EXTRA;
+-	}
+-	return IBMASM_CMD_TIMEOUT_NORMAL;
+-}
+-
+-#endif /* __DOT_COMMAND_H__ */
+diff --git a/drivers/misc/ibmasm/event.c b/drivers/misc/ibmasm/event.c
+deleted file mode 100644
+index 3990bf2b1728..000000000000
+--- a/drivers/misc/ibmasm/event.c
++++ /dev/null
+@@ -1,163 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-or-later
+-
+-/*
+- * IBM ASM Service Processor Device Driver
+- *
+- * Copyright (C) IBM Corporation, 2004
+- *
+- * Author: Max Asb枚ck <amax@us.ibm.com>
+- */
+-
+-#include <linux/sched.h>
+-#include <linux/slab.h>
+-#include "ibmasm.h"
+-#include "lowlevel.h"
+-
+-/*
+- * ASM service processor event handling routines.
+- *
+- * Events are signalled to the device drivers through interrupts.
+- * They have the format of dot commands, with the type field set to
+- * sp_event.
+- * The driver does not interpret the events, it simply stores them in a
+- * circular buffer.
+- */
+-
+-static void wake_up_event_readers(struct service_processor *sp)
+-{
+-	struct event_reader *reader;
+-
+-	list_for_each_entry(reader, &sp->event_buffer->readers, node)
+-                wake_up_interruptible(&reader->wait);
+-}
+-
+-/*
+- * receive_event
+- * Called by the interrupt handler when a dot command of type sp_event is
+- * received.
+- * Store the event in the circular event buffer, wake up any sleeping
+- * event readers.
+- * There is no reader marker in the buffer, therefore readers are
+- * responsible for keeping up with the writer, or they will lose events.
+- */
+-void ibmasm_receive_event(struct service_processor *sp, void *data, unsigned int data_size)
+-{
+-	struct event_buffer *buffer = sp->event_buffer;
+-	struct ibmasm_event *event;
+-	unsigned long flags;
+-
+-	data_size = min(data_size, IBMASM_EVENT_MAX_SIZE);
+-
+-	spin_lock_irqsave(&sp->lock, flags);
+-	/* copy the event into the next slot in the circular buffer */
+-	event = &buffer->events[buffer->next_index];
+-	memcpy_fromio(event->data, data, data_size);
+-	event->data_size = data_size;
+-	event->serial_number = buffer->next_serial_number;
+-
+-	/* advance indices in the buffer */
+-	buffer->next_index = (buffer->next_index + 1) % IBMASM_NUM_EVENTS;
+-	buffer->next_serial_number++;
+-	spin_unlock_irqrestore(&sp->lock, flags);
+-
+-	wake_up_event_readers(sp);
+-}
+-
+-static inline int event_available(struct event_buffer *b, struct event_reader *r)
+-{
+-	return (r->next_serial_number < b->next_serial_number);
+-}
+-
+-/*
+- * get_next_event
+- * Called by event readers (initiated from user space through the file
+- * system).
+- * Sleeps until a new event is available.
+- */
+-int ibmasm_get_next_event(struct service_processor *sp, struct event_reader *reader)
+-{
+-	struct event_buffer *buffer = sp->event_buffer;
+-	struct ibmasm_event *event;
+-	unsigned int index;
+-	unsigned long flags;
+-
+-	reader->cancelled = 0;
+-
+-	if (wait_event_interruptible(reader->wait,
+-			event_available(buffer, reader) || reader->cancelled))
+-		return -ERESTARTSYS;
+-
+-	if (!event_available(buffer, reader))
+-		return 0;
+-
+-	spin_lock_irqsave(&sp->lock, flags);
+-
+-	index = buffer->next_index;
+-	event = &buffer->events[index];
+-	while (event->serial_number < reader->next_serial_number) {
+-		index = (index + 1) % IBMASM_NUM_EVENTS;
+-		event = &buffer->events[index];
+-	}
+-	memcpy(reader->data, event->data, event->data_size);
+-	reader->data_size = event->data_size;
+-	reader->next_serial_number = event->serial_number + 1;
+-
+-	spin_unlock_irqrestore(&sp->lock, flags);
+-
+-	return event->data_size;
+-}
+-
+-void ibmasm_cancel_next_event(struct event_reader *reader)
+-{
+-        reader->cancelled = 1;
+-        wake_up_interruptible(&reader->wait);
+-}
+-
+-void ibmasm_event_reader_register(struct service_processor *sp, struct event_reader *reader)
+-{
+-	unsigned long flags;
+-
+-	reader->next_serial_number = sp->event_buffer->next_serial_number;
+-	init_waitqueue_head(&reader->wait);
+-	spin_lock_irqsave(&sp->lock, flags);
+-	list_add(&reader->node, &sp->event_buffer->readers);
+-	spin_unlock_irqrestore(&sp->lock, flags);
+-}
+-
+-void ibmasm_event_reader_unregister(struct service_processor *sp, struct event_reader *reader)
+-{
+-	unsigned long flags;
+-
+-	spin_lock_irqsave(&sp->lock, flags);
+-	list_del(&reader->node);
+-	spin_unlock_irqrestore(&sp->lock, flags);
+-}
+-
+-int ibmasm_event_buffer_init(struct service_processor *sp)
+-{
+-	struct event_buffer *buffer;
+-	struct ibmasm_event *event;
+-	int i;
+-
+-	buffer = kmalloc_obj(struct event_buffer);
+-	if (!buffer)
+-		return -ENOMEM;
+-
+-	buffer->next_index = 0;
+-	buffer->next_serial_number = 1;
+-
+-	event = buffer->events;
+-	for (i=0; i<IBMASM_NUM_EVENTS; i++, event++)
+-		event->serial_number = 0;
+-
+-	INIT_LIST_HEAD(&buffer->readers);
+-
+-	sp->event_buffer = buffer;
+-
+-	return 0;
+-}
+-
+-void ibmasm_event_buffer_exit(struct service_processor *sp)
+-{
+-	kfree(sp->event_buffer);
+-}
+diff --git a/drivers/misc/ibmasm/heartbeat.c b/drivers/misc/ibmasm/heartbeat.c
+deleted file mode 100644
+index 59c9a0d95659..000000000000
+--- a/drivers/misc/ibmasm/heartbeat.c
++++ /dev/null
+@@ -1,88 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-or-later
+-
+-/*
+- * IBM ASM Service Processor Device Driver
+- *
+- * Copyright (C) IBM Corporation, 2004
+- *
+- * Author: Max Asb枚ck <amax@us.ibm.com>
+- */
+-
+-#include <linux/notifier.h>
+-#include <linux/panic_notifier.h>
+-#include "ibmasm.h"
+-#include "dot_command.h"
+-#include "lowlevel.h"
+-
+-static int suspend_heartbeats = 0;
+-
+-/*
+- * Once the driver indicates to the service processor that it is running
+- * - see send_os_state() - the service processor sends periodic heartbeats
+- * to the driver. The driver must respond to the heartbeats or else the OS
+- * will be rebooted.
+- * In the case of a panic the interrupt handler continues to work and thus
+- * continues to respond to heartbeats, making the service processor believe
+- * the OS is still running and thus preventing a reboot.
+- * To prevent this from happening a callback is added the panic_notifier_list.
+- * Before responding to a heartbeat the driver checks if a panic has happened,
+- * if yes it suspends heartbeat, causing the service processor to reboot as
+- * expected.
+- */
+-static int panic_happened(struct notifier_block *n, unsigned long val, void *v)
+-{
+-	suspend_heartbeats = 1;
+-	return 0;
+-}
+-
+-static struct notifier_block panic_notifier = { panic_happened, NULL, 1 };
+-
+-void ibmasm_register_panic_notifier(void)
+-{
+-	atomic_notifier_chain_register(&panic_notifier_list, &panic_notifier);
+-}
+-
+-void ibmasm_unregister_panic_notifier(void)
+-{
+-	atomic_notifier_chain_unregister(&panic_notifier_list,
+-			&panic_notifier);
+-}
+-
+-
+-int ibmasm_heartbeat_init(struct service_processor *sp)
+-{
+-	sp->heartbeat = ibmasm_new_command(sp, HEARTBEAT_BUFFER_SIZE);
+-	if (sp->heartbeat == NULL)
+-		return -ENOMEM;
+-
+-	return 0;
+-}
+-
+-void ibmasm_heartbeat_exit(struct service_processor *sp)
+-{
+-	char tsbuf[32];
+-
+-	dbg("%s:%d at %s\n", __func__, __LINE__, get_timestamp(tsbuf));
+-	ibmasm_wait_for_response(sp->heartbeat, IBMASM_CMD_TIMEOUT_NORMAL);
+-	dbg("%s:%d at %s\n", __func__, __LINE__, get_timestamp(tsbuf));
+-	suspend_heartbeats = 1;
+-	command_put(sp->heartbeat);
+-}
+-
+-void ibmasm_receive_heartbeat(struct service_processor *sp,  void *message, size_t size)
+-{
+-	struct command *cmd = sp->heartbeat;
+-	struct dot_command_header *header = (struct dot_command_header *)cmd->buffer;
+-	char tsbuf[32];
+-
+-	dbg("%s:%d at %s\n", __func__, __LINE__, get_timestamp(tsbuf));
+-	if (suspend_heartbeats)
+-		return;
+-
+-	/* return the received dot command to sender */
+-	cmd->status = IBMASM_CMD_PENDING;
+-	size = min(size, cmd->buffer_size);
+-	memcpy_fromio(cmd->buffer, message, size);
+-	header->type = sp_write;
+-	ibmasm_exec_command(sp, cmd);
+-}
+diff --git a/drivers/misc/ibmasm/i2o.h b/drivers/misc/ibmasm/i2o.h
+deleted file mode 100644
+index 468fa84a3257..000000000000
+--- a/drivers/misc/ibmasm/i2o.h
++++ /dev/null
+@@ -1,63 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0-or-later */
+-/*
+- * IBM ASM Service Processor Device Driver
+- *
+- * Copyright (C) IBM Corporation, 2004
+- *
+- * Author: Max Asb枚ck <amax@us.ibm.com>
+- */
+-
+-#pragma pack(1)
+-struct i2o_header {
+-	u8	version;
+-	u8	message_flags;
+-	u16	message_size;
+-	u8	target;
+-	u8	initiator_and_target;
+-	u8	initiator;
+-	u8	function;
+-	u32	initiator_context;
+-};
+-#pragma pack()
+-
+-#define I2O_HEADER_TEMPLATE \
+-      { .version              = 0x01, \
+-	.message_flags        = 0x00, \
+-	.function             = 0xFF, \
+-	.initiator            = 0x00, \
+-	.initiator_and_target = 0x40, \
+-	.target               = 0x00, \
+-	.initiator_context    = 0x0 }
+-
+-#define I2O_MESSAGE_SIZE	0x1000
+-#define I2O_COMMAND_SIZE	(I2O_MESSAGE_SIZE - sizeof(struct i2o_header))
+-
+-#pragma pack(1)
+-struct i2o_message {
+-	struct i2o_header	header;
+-	void			*data;
+-};
+-#pragma pack()
+-
+-static inline unsigned short outgoing_message_size(unsigned int data_size)
+-{
+-	unsigned int size;
+-	unsigned short i2o_size;
+-
+-	if (data_size > I2O_COMMAND_SIZE)
+-		data_size = I2O_COMMAND_SIZE;
+-
+-	size = sizeof(struct i2o_header) + data_size;
+-
+-	i2o_size = size / sizeof(u32);
+-
+-	if (size % sizeof(u32))
+-	       i2o_size++;
+-
+-	return i2o_size;
+-}
+-
+-static inline u32 incoming_data_size(struct i2o_message *i2o_message)
+-{
+-	return (sizeof(u32) * i2o_message->header.message_size);
+-}
+diff --git a/drivers/misc/ibmasm/ibmasm.h b/drivers/misc/ibmasm/ibmasm.h
+deleted file mode 100644
+index a5ced88ca923..000000000000
+--- a/drivers/misc/ibmasm/ibmasm.h
++++ /dev/null
+@@ -1,209 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0-or-later */
+-
+-/*
+- * IBM ASM Service Processor Device Driver
+- *
+- * Copyright (C) IBM Corporation, 2004
+- *
+- * Author: Max Asb枚ck <amax@us.ibm.com>
+- */
+-
+-#include <linux/kernel.h>
+-#include <linux/types.h>
+-#include <linux/errno.h>
+-#include <linux/list.h>
+-#include <linux/wait.h>
+-#include <linux/spinlock.h>
+-#include <linux/slab.h>
+-#include <linux/module.h>
+-#include <linux/interrupt.h>
+-#include <linux/kref.h>
+-#include <linux/device.h>
+-#include <linux/input.h>
+-#include <linux/time64.h>
+-
+-/* Driver identification */
+-#define DRIVER_NAME	"ibmasm"
+-#define DRIVER_VERSION  "1.0"
+-#define DRIVER_AUTHOR   "Max Asbock <masbock@us.ibm.com>, Vernon Mauery <vernux@us.ibm.com>"
+-#define DRIVER_DESC     "IBM ASM Service Processor Driver"
+-
+-#define err(msg) printk(KERN_ERR "%s: " msg "\n", DRIVER_NAME)
+-#define info(msg) printk(KERN_INFO "%s: " msg "\n", DRIVER_NAME)
+-
+-extern int ibmasm_debug;
+-#define dbg(STR, ARGS...)					\
+-	do {							\
+-		if (ibmasm_debug)				\
+-			printk(KERN_DEBUG STR , ##ARGS);	\
+-	} while (0)
+-
+-static inline char *get_timestamp(char *buf)
+-{
+-	struct timespec64 now;
+-
+-	ktime_get_real_ts64(&now);
+-	sprintf(buf, "%llu.%.08lu", (long long)now.tv_sec,
+-				now.tv_nsec / NSEC_PER_USEC);
+-	return buf;
+-}
+-
+-#define IBMASM_CMD_PENDING	0
+-#define IBMASM_CMD_COMPLETE	1
+-#define IBMASM_CMD_FAILED	2
+-
+-#define IBMASM_CMD_TIMEOUT_NORMAL	45
+-#define IBMASM_CMD_TIMEOUT_EXTRA	240
+-
+-#define IBMASM_CMD_MAX_BUFFER_SIZE	0x8000
+-
+-#define REVERSE_HEARTBEAT_TIMEOUT	120
+-
+-#define HEARTBEAT_BUFFER_SIZE		0x400
+-
+-#ifdef IA64
+-#define IBMASM_DRIVER_VPD "Lin64 6.08      "
+-#else
+-#define IBMASM_DRIVER_VPD "Lin32 6.08      "
+-#endif
+-
+-#define SYSTEM_STATE_OS_UP      5
+-#define SYSTEM_STATE_OS_DOWN    4
+-
+-#define IBMASM_NAME_SIZE	16
+-
+-#define IBMASM_NUM_EVENTS	10
+-#define IBMASM_EVENT_MAX_SIZE	2048u
+-
+-
+-struct command {
+-	struct list_head	queue_node;
+-	wait_queue_head_t	wait;
+-	unsigned char		*buffer;
+-	size_t			buffer_size;
+-	int			status;
+-	struct kref		kref;
+-	spinlock_t		*lock;
+-};
+-#define to_command(c) container_of(c, struct command, kref)
+-
+-void ibmasm_free_command(struct kref *kref);
+-static inline void command_put(struct command *cmd)
+-{
+-	unsigned long flags;
+-	spinlock_t *lock = cmd->lock;
+-
+-	spin_lock_irqsave(lock, flags);
+-	kref_put(&cmd->kref, ibmasm_free_command);
+-	spin_unlock_irqrestore(lock, flags);
+-}
+-
+-static inline void command_get(struct command *cmd)
+-{
+-	kref_get(&cmd->kref);
+-}
+-
+-
+-struct ibmasm_event {
+-	unsigned int	serial_number;
+-	unsigned int	data_size;
+-	unsigned char	data[IBMASM_EVENT_MAX_SIZE];
+-};
+-
+-struct event_buffer {
+-	struct ibmasm_event	events[IBMASM_NUM_EVENTS];
+-	unsigned int		next_serial_number;
+-	unsigned int		next_index;
+-	struct list_head	readers;
+-};
+-
+-struct event_reader {
+-	int			cancelled;
+-	unsigned int		next_serial_number;
+-	wait_queue_head_t	wait;
+-	struct list_head	node;
+-	unsigned int		data_size;
+-	unsigned char		data[IBMASM_EVENT_MAX_SIZE];
+-};
+-
+-struct reverse_heartbeat {
+-	wait_queue_head_t	wait;
+-	unsigned int		stopped;
+-};
+-
+-struct ibmasm_remote {
+-	struct input_dev *keybd_dev;
+-	struct input_dev *mouse_dev;
+-};
+-
+-struct service_processor {
+-	struct list_head	node;
+-	spinlock_t		lock;
+-	void __iomem		*base_address;
+-	unsigned int		irq;
+-	struct command		*current_command;
+-	struct command		*heartbeat;
+-	struct list_head	command_queue;
+-	struct event_buffer	*event_buffer;
+-	char			dirname[IBMASM_NAME_SIZE];
+-	char			devname[IBMASM_NAME_SIZE];
+-	unsigned int		number;
+-	struct ibmasm_remote	remote;
+-	int			serial_line;
+-	struct device		*dev;
+-};
+-
+-/* command processing */
+-struct command *ibmasm_new_command(struct service_processor *sp, size_t buffer_size);
+-void ibmasm_exec_command(struct service_processor *sp, struct command *cmd);
+-void ibmasm_wait_for_response(struct command *cmd, int timeout);
+-void ibmasm_receive_command_response(struct service_processor *sp, void *response,  size_t size);
+-
+-/* event processing */
+-int ibmasm_event_buffer_init(struct service_processor *sp);
+-void ibmasm_event_buffer_exit(struct service_processor *sp);
+-void ibmasm_receive_event(struct service_processor *sp, void *data,  unsigned int data_size);
+-void ibmasm_event_reader_register(struct service_processor *sp, struct event_reader *reader);
+-void ibmasm_event_reader_unregister(struct service_processor *sp, struct event_reader *reader);
+-int ibmasm_get_next_event(struct service_processor *sp, struct event_reader *reader);
+-void ibmasm_cancel_next_event(struct event_reader *reader);
+-
+-/* heartbeat - from SP to OS */
+-void ibmasm_register_panic_notifier(void);
+-void ibmasm_unregister_panic_notifier(void);
+-int ibmasm_heartbeat_init(struct service_processor *sp);
+-void ibmasm_heartbeat_exit(struct service_processor *sp);
+-void ibmasm_receive_heartbeat(struct service_processor *sp,  void *message, size_t size);
+-
+-/* reverse heartbeat - from OS to SP */
+-void ibmasm_init_reverse_heartbeat(struct service_processor *sp, struct reverse_heartbeat *rhb);
+-int ibmasm_start_reverse_heartbeat(struct service_processor *sp, struct reverse_heartbeat *rhb);
+-void ibmasm_stop_reverse_heartbeat(struct reverse_heartbeat *rhb);
+-
+-/* dot commands */
+-void ibmasm_receive_message(struct service_processor *sp, void *data, int data_size);
+-int ibmasm_send_driver_vpd(struct service_processor *sp);
+-int ibmasm_send_os_state(struct service_processor *sp, int os_state);
+-
+-/* low level message processing */
+-int ibmasm_send_i2o_message(struct service_processor *sp);
+-irqreturn_t ibmasm_interrupt_handler(int irq, void * dev_id);
+-
+-/* remote console */
+-void ibmasm_handle_mouse_interrupt(struct service_processor *sp);
+-int ibmasm_init_remote_input_dev(struct service_processor *sp);
+-void ibmasm_free_remote_input_dev(struct service_processor *sp);
+-
+-/* file system */
+-int ibmasmfs_register(void);
+-void ibmasmfs_unregister(void);
+-void ibmasmfs_add_sp(struct service_processor *sp);
+-
+-/* uart */
+-#if IS_ENABLED(CONFIG_SERIAL_8250)
+-void ibmasm_register_uart(struct service_processor *sp);
+-void ibmasm_unregister_uart(struct service_processor *sp);
+-#else
+-#define ibmasm_register_uart(sp)	do { } while(0)
+-#define ibmasm_unregister_uart(sp)	do { } while(0)
+-#endif
+diff --git a/drivers/misc/ibmasm/ibmasmfs.c b/drivers/misc/ibmasm/ibmasmfs.c
+deleted file mode 100644
+index dfdfa9ba4747..000000000000
+--- a/drivers/misc/ibmasm/ibmasmfs.c
++++ /dev/null
+@@ -1,604 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-or-later
+-/*
+- * IBM ASM Service Processor Device Driver
+- *
+- * Copyright (C) IBM Corporation, 2004
+- *
+- * Author: Max Asb枚ck <amax@us.ibm.com>
+- */
+-
+-/*
+- * Parts of this code are based on an article by Jonathan Corbet
+- * that appeared in Linux Weekly News.
+- */
+-
+-
+-/*
+- * The IBMASM file virtual filesystem. It creates the following hierarchy
+- * dynamically when mounted from user space:
+- *
+- *    /ibmasm
+- *    |-- 0
+- *    |   |-- command
+- *    |   |-- event
+- *    |   |-- reverse_heartbeat
+- *    |   `-- remote_video
+- *    |       |-- depth
+- *    |       |-- height
+- *    |       `-- width
+- *    .
+- *    .
+- *    .
+- *    `-- n
+- *        |-- command
+- *        |-- event
+- *        |-- reverse_heartbeat
+- *        `-- remote_video
+- *            |-- depth
+- *            |-- height
+- *            `-- width
+- *
+- * For each service processor the following files are created:
+- *
+- * command: execute dot commands
+- *	write: execute a dot command on the service processor
+- *	read: return the result of a previously executed dot command
+- *
+- * events: listen for service processor events
+- *	read: sleep (interruptible) until an event occurs
+- *      write: wakeup sleeping event listener
+- *
+- * reverse_heartbeat: send a heartbeat to the service processor
+- *	read: sleep (interruptible) until the reverse heartbeat fails
+- *      write: wakeup sleeping heartbeat listener
+- *
+- * remote_video/width
+- * remote_video/height
+- * remote_video/width: control remote display settings
+- *	write: set value
+- *	read: read value
+- */
+-
+-#include <linux/fs.h>
+-#include <linux/fs_context.h>
+-#include <linux/pagemap.h>
+-#include <linux/slab.h>
+-#include <linux/uaccess.h>
+-#include <asm/io.h>
+-#include "ibmasm.h"
+-#include "remote.h"
+-#include "dot_command.h"
+-
+-#define IBMASMFS_MAGIC 0x66726f67
+-
+-static LIST_HEAD(service_processors);
+-
+-static struct inode *ibmasmfs_make_inode(struct super_block *sb, int mode);
+-static void ibmasmfs_create_files (struct super_block *sb);
+-static int ibmasmfs_fill_super(struct super_block *sb, struct fs_context *fc);
+-
+-static int ibmasmfs_get_tree(struct fs_context *fc)
+-{
+-	return get_tree_single(fc, ibmasmfs_fill_super);
+-}
+-
+-static const struct fs_context_operations ibmasmfs_context_ops = {
+-	.get_tree	= ibmasmfs_get_tree,
+-};
+-
+-static int ibmasmfs_init_fs_context(struct fs_context *fc)
+-{
+-	fc->ops = &ibmasmfs_context_ops;
+-	return 0;
+-}
+-
+-static const struct super_operations ibmasmfs_s_ops = {
+-	.statfs		= simple_statfs,
+-	.drop_inode	= inode_just_drop,
+-};
+-
+-static struct file_system_type ibmasmfs_type = {
+-	.owner          = THIS_MODULE,
+-	.name           = "ibmasmfs",
+-	.init_fs_context = ibmasmfs_init_fs_context,
+-	.kill_sb        = kill_anon_super,
+-};
+-MODULE_ALIAS_FS("ibmasmfs");
+-
+-static int ibmasmfs_fill_super(struct super_block *sb, struct fs_context *fc)
+-{
+-	struct inode *root;
+-
+-	sb->s_blocksize = PAGE_SIZE;
+-	sb->s_blocksize_bits = PAGE_SHIFT;
+-	sb->s_magic = IBMASMFS_MAGIC;
+-	sb->s_op = &ibmasmfs_s_ops;
+-	sb->s_time_gran = 1;
+-
+-	root = ibmasmfs_make_inode (sb, S_IFDIR | 0500);
+-	if (!root)
+-		return -ENOMEM;
+-
+-	root->i_op = &simple_dir_inode_operations;
+-	root->i_fop = &simple_dir_operations;
+-
+-	sb->s_root = d_make_root(root);
+-	if (!sb->s_root)
+-		return -ENOMEM;
+-
+-	ibmasmfs_create_files(sb);
+-	return 0;
+-}
+-
+-static struct inode *ibmasmfs_make_inode(struct super_block *sb, int mode)
+-{
+-	struct inode *ret = new_inode(sb);
+-
+-	if (ret) {
+-		ret->i_ino = get_next_ino();
+-		ret->i_mode = mode;
+-		simple_inode_init_ts(ret);
+-	}
+-	return ret;
+-}
+-
+-static int ibmasmfs_create_file(struct dentry *parent,
+-			const char *name,
+-			const struct file_operations *fops,
+-			void *data,
+-			int mode)
+-{
+-	struct dentry *dentry;
+-	struct inode *inode;
+-
+-	dentry = d_alloc_name(parent, name);
+-	if (!dentry)
+-		return -ENOMEM;
+-
+-	inode = ibmasmfs_make_inode(parent->d_sb, S_IFREG | mode);
+-	if (!inode) {
+-		dput(dentry);
+-		return -ENOMEM;
+-	}
+-
+-	inode->i_fop = fops;
+-	inode->i_private = data;
+-
+-	d_make_persistent(dentry, inode);
+-	dput(dentry);
+-	return 0;
+-}
+-
+-static struct dentry *ibmasmfs_create_dir(struct dentry *parent,
+-				const char *name)
+-{
+-	struct dentry *dentry;
+-	struct inode *inode;
+-
+-	dentry = d_alloc_name(parent, name);
+-	if (!dentry)
+-		return NULL;
+-
+-	inode = ibmasmfs_make_inode(parent->d_sb, S_IFDIR | 0500);
+-	if (!inode) {
+-		dput(dentry);
+-		return NULL;
+-	}
+-
+-	inode->i_op = &simple_dir_inode_operations;
+-	inode->i_fop = &simple_dir_operations;
+-
+-	d_make_persistent(dentry, inode);
+-	dput(dentry);
+-	return dentry; // borrowed
+-}
+-
+-int ibmasmfs_register(void)
+-{
+-	return register_filesystem(&ibmasmfs_type);
+-}
+-
+-void ibmasmfs_unregister(void)
+-{
+-	unregister_filesystem(&ibmasmfs_type);
+-}
+-
+-void ibmasmfs_add_sp(struct service_processor *sp)
+-{
+-	list_add(&sp->node, &service_processors);
+-}
+-
+-/* struct to save state between command file operations */
+-struct ibmasmfs_command_data {
+-	struct service_processor	*sp;
+-	struct command			*command;
+-};
+-
+-/* struct to save state between event file operations */
+-struct ibmasmfs_event_data {
+-	struct service_processor	*sp;
+-	struct event_reader		reader;
+-	int				active;
+-};
+-
+-/* struct to save state between reverse heartbeat file operations */
+-struct ibmasmfs_heartbeat_data {
+-	struct service_processor	*sp;
+-	struct reverse_heartbeat	heartbeat;
+-	int				active;
+-};
+-
+-static int command_file_open(struct inode *inode, struct file *file)
+-{
+-	struct ibmasmfs_command_data *command_data;
+-
+-	if (!inode->i_private)
+-		return -ENODEV;
+-
+-	command_data = kmalloc_obj(struct ibmasmfs_command_data);
+-	if (!command_data)
+-		return -ENOMEM;
+-
+-	command_data->command = NULL;
+-	command_data->sp = inode->i_private;
+-	file->private_data = command_data;
+-	return 0;
+-}
+-
+-static int command_file_close(struct inode *inode, struct file *file)
+-{
+-	struct ibmasmfs_command_data *command_data = file->private_data;
+-
+-	if (command_data->command)
+-		command_put(command_data->command);
+-
+-	kfree(command_data);
+-	return 0;
+-}
+-
+-static ssize_t command_file_read(struct file *file, char __user *buf, size_t count, loff_t *offset)
+-{
+-	struct ibmasmfs_command_data *command_data = file->private_data;
+-	struct command *cmd;
+-	int len;
+-	unsigned long flags;
+-
+-	if (*offset < 0)
+-		return -EINVAL;
+-	if (count == 0 || count > IBMASM_CMD_MAX_BUFFER_SIZE)
+-		return 0;
+-	if (*offset != 0)
+-		return 0;
+-
+-	spin_lock_irqsave(&command_data->sp->lock, flags);
+-	cmd = command_data->command;
+-	if (cmd == NULL) {
+-		spin_unlock_irqrestore(&command_data->sp->lock, flags);
+-		return 0;
+-	}
+-	command_data->command = NULL;
+-	spin_unlock_irqrestore(&command_data->sp->lock, flags);
+-
+-	if (cmd->status != IBMASM_CMD_COMPLETE) {
+-		command_put(cmd);
+-		return -EIO;
+-	}
+-	len = min(count, cmd->buffer_size);
+-	if (copy_to_user(buf, cmd->buffer, len)) {
+-		command_put(cmd);
+-		return -EFAULT;
+-	}
+-	command_put(cmd);
+-
+-	return len;
+-}
+-
+-static ssize_t command_file_write(struct file *file, const char __user *ubuff, size_t count, loff_t *offset)
+-{
+-	struct ibmasmfs_command_data *command_data = file->private_data;
+-	struct command *cmd;
+-	unsigned long flags;
+-
+-	if (*offset < 0)
+-		return -EINVAL;
+-	if (count == 0 || count > IBMASM_CMD_MAX_BUFFER_SIZE)
+-		return 0;
+-	if (count < sizeof(struct dot_command_header))
+-		return -EINVAL;
+-	if (*offset != 0)
+-		return 0;
+-
+-	/* commands are executed sequentially, only one command at a time */
+-	if (command_data->command)
+-		return -EAGAIN;
+-
+-	cmd = ibmasm_new_command(command_data->sp, count);
+-	if (!cmd)
+-		return -ENOMEM;
+-
+-	if (copy_from_user(cmd->buffer, ubuff, count)) {
+-		command_put(cmd);
+-		return -EFAULT;
+-	}
+-
+-	if (count < get_dot_command_size(cmd->buffer)) {
+-		command_put(cmd);
+-		return -EINVAL;
+-	}
+-
+-	spin_lock_irqsave(&command_data->sp->lock, flags);
+-	if (command_data->command) {
+-		spin_unlock_irqrestore(&command_data->sp->lock, flags);
+-		command_put(cmd);
+-		return -EAGAIN;
+-	}
+-	command_data->command = cmd;
+-	spin_unlock_irqrestore(&command_data->sp->lock, flags);
+-
+-	ibmasm_exec_command(command_data->sp, cmd);
+-	ibmasm_wait_for_response(cmd, get_dot_command_timeout(cmd->buffer));
+-
+-	return count;
+-}
+-
+-static int event_file_open(struct inode *inode, struct file *file)
+-{
+-	struct ibmasmfs_event_data *event_data;
+-	struct service_processor *sp;
+-
+-	if (!inode->i_private)
+-		return -ENODEV;
+-
+-	sp = inode->i_private;
+-
+-	event_data = kmalloc_obj(struct ibmasmfs_event_data);
+-	if (!event_data)
+-		return -ENOMEM;
+-
+-	ibmasm_event_reader_register(sp, &event_data->reader);
+-
+-	event_data->sp = sp;
+-	event_data->active = 0;
+-	file->private_data = event_data;
+-	return 0;
+-}
+-
+-static int event_file_close(struct inode *inode, struct file *file)
+-{
+-	struct ibmasmfs_event_data *event_data = file->private_data;
+-
+-	ibmasm_event_reader_unregister(event_data->sp, &event_data->reader);
+-	kfree(event_data);
+-	return 0;
+-}
+-
+-static ssize_t event_file_read(struct file *file, char __user *buf, size_t count, loff_t *offset)
+-{
+-	struct ibmasmfs_event_data *event_data = file->private_data;
+-	struct event_reader *reader = &event_data->reader;
+-	struct service_processor *sp = event_data->sp;
+-	int ret;
+-	unsigned long flags;
+-
+-	if (*offset < 0)
+-		return -EINVAL;
+-	if (count == 0 || count > IBMASM_EVENT_MAX_SIZE)
+-		return 0;
+-	if (*offset != 0)
+-		return 0;
+-
+-	spin_lock_irqsave(&sp->lock, flags);
+-	if (event_data->active) {
+-		spin_unlock_irqrestore(&sp->lock, flags);
+-		return -EBUSY;
+-	}
+-	event_data->active = 1;
+-	spin_unlock_irqrestore(&sp->lock, flags);
+-
+-	ret = ibmasm_get_next_event(sp, reader);
+-	if (ret <= 0)
+-		goto out;
+-
+-	if (count < reader->data_size) {
+-		ret = -EINVAL;
+-		goto out;
+-	}
+-
+-        if (copy_to_user(buf, reader->data, reader->data_size)) {
+-		ret = -EFAULT;
+-		goto out;
+-	}
+-	ret = reader->data_size;
+-
+-out:
+-	event_data->active = 0;
+-	return ret;
+-}
+-
+-static ssize_t event_file_write(struct file *file, const char __user *buf, size_t count, loff_t *offset)
+-{
+-	struct ibmasmfs_event_data *event_data = file->private_data;
+-
+-	if (*offset < 0)
+-		return -EINVAL;
+-	if (count != 1)
+-		return 0;
+-	if (*offset != 0)
+-		return 0;
+-
+-	ibmasm_cancel_next_event(&event_data->reader);
+-	return 0;
+-}
+-
+-static int r_heartbeat_file_open(struct inode *inode, struct file *file)
+-{
+-	struct ibmasmfs_heartbeat_data *rhbeat;
+-
+-	if (!inode->i_private)
+-		return -ENODEV;
+-
+-	rhbeat = kmalloc_obj(struct ibmasmfs_heartbeat_data);
+-	if (!rhbeat)
+-		return -ENOMEM;
+-
+-	rhbeat->sp = inode->i_private;
+-	rhbeat->active = 0;
+-	ibmasm_init_reverse_heartbeat(rhbeat->sp, &rhbeat->heartbeat);
+-	file->private_data = rhbeat;
+-	return 0;
+-}
+-
+-static int r_heartbeat_file_close(struct inode *inode, struct file *file)
+-{
+-	struct ibmasmfs_heartbeat_data *rhbeat = file->private_data;
+-
+-	kfree(rhbeat);
+-	return 0;
+-}
+-
+-static ssize_t r_heartbeat_file_read(struct file *file, char __user *buf, size_t count, loff_t *offset)
+-{
+-	struct ibmasmfs_heartbeat_data *rhbeat = file->private_data;
+-	unsigned long flags;
+-	int result;
+-
+-	if (*offset < 0)
+-		return -EINVAL;
+-	if (count == 0 || count > 1024)
+-		return 0;
+-	if (*offset != 0)
+-		return 0;
+-
+-	/* allow only one reverse heartbeat per process */
+-	spin_lock_irqsave(&rhbeat->sp->lock, flags);
+-	if (rhbeat->active) {
+-		spin_unlock_irqrestore(&rhbeat->sp->lock, flags);
+-		return -EBUSY;
+-	}
+-	rhbeat->active = 1;
+-	spin_unlock_irqrestore(&rhbeat->sp->lock, flags);
+-
+-	result = ibmasm_start_reverse_heartbeat(rhbeat->sp, &rhbeat->heartbeat);
+-	rhbeat->active = 0;
+-
+-	return result;
+-}
+-
+-static ssize_t r_heartbeat_file_write(struct file *file, const char __user *buf, size_t count, loff_t *offset)
+-{
+-	struct ibmasmfs_heartbeat_data *rhbeat = file->private_data;
+-
+-	if (*offset < 0)
+-		return -EINVAL;
+-	if (count != 1)
+-		return 0;
+-	if (*offset != 0)
+-		return 0;
+-
+-	if (rhbeat->active)
+-		ibmasm_stop_reverse_heartbeat(&rhbeat->heartbeat);
+-
+-	return 1;
+-}
+-
+-static int remote_settings_file_close(struct inode *inode, struct file *file)
+-{
+-	return 0;
+-}
+-
+-static ssize_t remote_settings_file_read(struct file *file, char __user *buf, size_t count, loff_t *offset)
+-{
+-	void __iomem *address = (void __iomem *)file->private_data;
+-	int len = 0;
+-	unsigned int value;
+-	char lbuf[20];
+-
+-	value = readl(address);
+-	len = snprintf(lbuf, sizeof(lbuf), "%d\n", value);
+-
+-	return simple_read_from_buffer(buf, count, offset, lbuf, len);
+-}
+-
+-static ssize_t remote_settings_file_write(struct file *file, const char __user *ubuff, size_t count, loff_t *offset)
+-{
+-	void __iomem *address = (void __iomem *)file->private_data;
+-	char *buff;
+-	unsigned int value;
+-
+-	if (*offset < 0)
+-		return -EINVAL;
+-	if (count == 0 || count > 1024)
+-		return 0;
+-	if (*offset != 0)
+-		return 0;
+-
+-	buff = memdup_user_nul(ubuff, count);
+-	if (IS_ERR(buff))
+-		return PTR_ERR(buff);
+-
+-	value = simple_strtoul(buff, NULL, 10);
+-	writel(value, address);
+-	kfree(buff);
+-
+-	return count;
+-}
+-
+-static const struct file_operations command_fops = {
+-	.open =		command_file_open,
+-	.release =	command_file_close,
+-	.read =		command_file_read,
+-	.write =	command_file_write,
+-	.llseek =	generic_file_llseek,
+-};
+-
+-static const struct file_operations event_fops = {
+-	.open =		event_file_open,
+-	.release =	event_file_close,
+-	.read =		event_file_read,
+-	.write =	event_file_write,
+-	.llseek =	generic_file_llseek,
+-};
+-
+-static const struct file_operations r_heartbeat_fops = {
+-	.open =		r_heartbeat_file_open,
+-	.release =	r_heartbeat_file_close,
+-	.read =		r_heartbeat_file_read,
+-	.write =	r_heartbeat_file_write,
+-	.llseek =	generic_file_llseek,
+-};
+-
+-static const struct file_operations remote_settings_fops = {
+-	.open =		simple_open,
+-	.release =	remote_settings_file_close,
+-	.read =		remote_settings_file_read,
+-	.write =	remote_settings_file_write,
+-	.llseek =	generic_file_llseek,
+-};
+-
+-
+-static void ibmasmfs_create_files (struct super_block *sb)
+-{
+-	struct list_head *entry;
+-	struct service_processor *sp;
+-
+-	list_for_each(entry, &service_processors) {
+-		struct dentry *dir;
+-		struct dentry *remote_dir;
+-		sp = list_entry(entry, struct service_processor, node);
+-		dir = ibmasmfs_create_dir(sb->s_root, sp->dirname);
+-		if (!dir)
+-			continue;
+-
+-		ibmasmfs_create_file(dir, "command", &command_fops, sp, S_IRUSR|S_IWUSR);
+-		ibmasmfs_create_file(dir, "event", &event_fops, sp, S_IRUSR|S_IWUSR);
+-		ibmasmfs_create_file(dir, "reverse_heartbeat", &r_heartbeat_fops, sp, S_IRUSR|S_IWUSR);
+-
+-		remote_dir = ibmasmfs_create_dir(dir, "remote_video");
+-		if (!remote_dir)
+-			continue;
+-
+-		ibmasmfs_create_file(remote_dir, "width", &remote_settings_fops, (void *)display_width(sp), S_IRUSR|S_IWUSR);
+-		ibmasmfs_create_file(remote_dir, "height", &remote_settings_fops, (void *)display_height(sp), S_IRUSR|S_IWUSR);
+-		ibmasmfs_create_file(remote_dir, "depth", &remote_settings_fops, (void *)display_depth(sp), S_IRUSR|S_IWUSR);
+-	}
+-}
+diff --git a/drivers/misc/ibmasm/lowlevel.c b/drivers/misc/ibmasm/lowlevel.c
+deleted file mode 100644
+index 5313230f36ad..000000000000
+--- a/drivers/misc/ibmasm/lowlevel.c
++++ /dev/null
+@@ -1,75 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-or-later
+-/*
+- * IBM ASM Service Processor Device Driver
+- *
+- * Copyright (C) IBM Corporation, 2004
+- *
+- * Author: Max Asb枚ck <amax@us.ibm.com>
+- */
+-
+-#include "ibmasm.h"
+-#include "lowlevel.h"
+-#include "i2o.h"
+-#include "dot_command.h"
+-#include "remote.h"
+-
+-static struct i2o_header header = I2O_HEADER_TEMPLATE;
+-
+-
+-int ibmasm_send_i2o_message(struct service_processor *sp)
+-{
+-	u32 mfa;
+-	size_t command_size;
+-	struct i2o_message *message;
+-	struct command *command = sp->current_command;
+-
+-	command_size = get_dot_command_size(command->buffer);
+-	if (command_size > command->buffer_size)
+-		return 1;
+-	if (command_size > I2O_COMMAND_SIZE)
+-		command_size = I2O_COMMAND_SIZE;
+-
+-	mfa = get_mfa_inbound(sp->base_address);
+-	if (!mfa)
+-		return 1;
+-
+-	header.message_size = outgoing_message_size((unsigned int)command_size);
+-	message = get_i2o_message(sp->base_address, mfa);
+-
+-	memcpy_toio(&message->header, &header, sizeof(struct i2o_header));
+-	memcpy_toio(&message->data, command->buffer, command_size);
+-
+-	set_mfa_inbound(sp->base_address, mfa);
+-
+-	return 0;
+-}
+-
+-irqreturn_t ibmasm_interrupt_handler(int irq, void * dev_id)
+-{
+-	u32	mfa;
+-	struct service_processor *sp = (struct service_processor *)dev_id;
+-	void __iomem *base_address = sp->base_address;
+-	char tsbuf[32];
+-
+-	if (!sp_interrupt_pending(base_address))
+-		return IRQ_NONE;
+-
+-	dbg("respond to interrupt at %s\n", get_timestamp(tsbuf));
+-
+-	if (mouse_interrupt_pending(sp)) {
+-		ibmasm_handle_mouse_interrupt(sp);
+-		clear_mouse_interrupt(sp);
+-	}
+-
+-	mfa = get_mfa_outbound(base_address);
+-	if (valid_mfa(mfa)) {
+-		struct i2o_message *msg = get_i2o_message(base_address, mfa);
+-		ibmasm_receive_message(sp, &msg->data, incoming_data_size(msg));
+-	} else
+-		dbg("didn't get a valid MFA\n");
+-
+-	set_mfa_outbound(base_address, mfa);
+-	dbg("finished interrupt at   %s\n", get_timestamp(tsbuf));
+-
+-	return IRQ_HANDLED;
+-}
+diff --git a/drivers/misc/ibmasm/lowlevel.h b/drivers/misc/ibmasm/lowlevel.h
+deleted file mode 100644
+index 25f1ed07c3c5..000000000000
+--- a/drivers/misc/ibmasm/lowlevel.h
++++ /dev/null
+@@ -1,123 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0-or-later */
+-/*
+- * IBM ASM Service Processor Device Driver
+- *
+- * Copyright (C) IBM Corporation, 2004
+- *
+- * Author: Max Asb枚ck <amax@us.ibm.com>
+- */
+-
+-/* Condor service processor specific hardware definitions */
+-
+-#ifndef __IBMASM_CONDOR_H__
+-#define __IBMASM_CONDOR_H__
+-
+-#include <asm/io.h>
+-
+-#define VENDORID_IBM	0x1014
+-#define DEVICEID_RSA	0x010F
+-
+-#define GET_MFA_ADDR(x)  (x & 0xFFFFFF00)
+-
+-#define MAILBOX_FULL(x)  (x & 0x00000001)
+-
+-#define NO_MFAS_AVAILABLE     0xFFFFFFFF
+-
+-
+-#define INBOUND_QUEUE_PORT   0x40  /* contains address of next free MFA */
+-#define OUTBOUND_QUEUE_PORT  0x44  /* contains address of posted MFA    */
+-
+-#define SP_INTR_MASK	0x00000008
+-#define UART_INTR_MASK	0x00000010
+-
+-#define INTR_STATUS_REGISTER   0x13A0
+-#define INTR_CONTROL_REGISTER  0x13A4
+-
+-#define SCOUT_COM_A_BASE         0x0000
+-#define SCOUT_COM_B_BASE         0x0100
+-#define SCOUT_COM_C_BASE         0x0200
+-#define SCOUT_COM_D_BASE         0x0300
+-
+-static inline int sp_interrupt_pending(void __iomem *base_address)
+-{
+-	return SP_INTR_MASK & readl(base_address + INTR_STATUS_REGISTER);
+-}
+-
+-static inline int uart_interrupt_pending(void __iomem *base_address)
+-{
+-	return UART_INTR_MASK & readl(base_address + INTR_STATUS_REGISTER);
+-}
+-
+-static inline void ibmasm_enable_interrupts(void __iomem *base_address, int mask)
+-{
+-	void __iomem *ctrl_reg = base_address + INTR_CONTROL_REGISTER;
+-	writel( readl(ctrl_reg) & ~mask, ctrl_reg);
+-}
+-
+-static inline void ibmasm_disable_interrupts(void __iomem *base_address, int mask)
+-{
+-	void __iomem *ctrl_reg = base_address + INTR_CONTROL_REGISTER;
+-	writel( readl(ctrl_reg) | mask, ctrl_reg);
+-}
+-
+-static inline void enable_sp_interrupts(void __iomem *base_address)
+-{
+-	ibmasm_enable_interrupts(base_address, SP_INTR_MASK);
+-}
+-
+-static inline void disable_sp_interrupts(void __iomem *base_address)
+-{
+-	ibmasm_disable_interrupts(base_address, SP_INTR_MASK);
+-}
+-
+-static inline void enable_uart_interrupts(void __iomem *base_address)
+-{
+-	ibmasm_enable_interrupts(base_address, UART_INTR_MASK);
+-}
+-
+-static inline void disable_uart_interrupts(void __iomem *base_address)
+-{
+-	ibmasm_disable_interrupts(base_address, UART_INTR_MASK);
+-}
+-
+-#define valid_mfa(mfa)	( (mfa) != NO_MFAS_AVAILABLE )
+-
+-static inline u32 get_mfa_outbound(void __iomem *base_address)
+-{
+-	int retry;
+-	u32 mfa;
+-
+-	for (retry=0; retry<=10; retry++) {
+-		mfa = readl(base_address + OUTBOUND_QUEUE_PORT);
+-		if (valid_mfa(mfa))
+-			break;
+-	}
+-	return mfa;
+-}
+-
+-static inline void set_mfa_outbound(void __iomem *base_address, u32 mfa)
+-{
+-	writel(mfa, base_address + OUTBOUND_QUEUE_PORT);
+-}
+-
+-static inline u32 get_mfa_inbound(void __iomem *base_address)
+-{
+-	u32 mfa = readl(base_address + INBOUND_QUEUE_PORT);
+-
+-	if (MAILBOX_FULL(mfa))
+-		return 0;
+-
+-	return mfa;
+-}
+-
+-static inline void set_mfa_inbound(void __iomem *base_address, u32 mfa)
+-{
+-	writel(mfa, base_address + INBOUND_QUEUE_PORT);
+-}
+-
+-static inline struct i2o_message *get_i2o_message(void __iomem *base_address, u32 mfa)
+-{
+-	return (struct i2o_message *)(GET_MFA_ADDR(mfa) + base_address);
+-}
+-
+-#endif /* __IBMASM_CONDOR_H__ */
+diff --git a/drivers/misc/ibmasm/module.c b/drivers/misc/ibmasm/module.c
+deleted file mode 100644
+index 97f661f54b31..000000000000
+--- a/drivers/misc/ibmasm/module.c
++++ /dev/null
+@@ -1,224 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-or-later
+-
+-/*
+- * IBM ASM Service Processor Device Driver
+- *
+- * Copyright (C) IBM Corporation, 2004
+- *
+- * Author: Max Asb枚ck <amax@us.ibm.com>
+- *
+- * This driver is based on code originally written by Pete Reynolds
+- * and others.
+- */
+-
+-/*
+- * The ASM device driver does the following things:
+- *
+- * 1) When loaded it sends a message to the service processor,
+- * indicating that an OS is * running. This causes the service processor
+- * to send periodic heartbeats to the OS.
+- *
+- * 2) Answers the periodic heartbeats sent by the service processor.
+- * Failure to do so would result in system reboot.
+- *
+- * 3) Acts as a pass through for dot commands sent from user applications.
+- * The interface for this is the ibmasmfs file system.
+- *
+- * 4) Allows user applications to register for event notification. Events
+- * are sent to the driver through interrupts. They can be read from user
+- * space through the ibmasmfs file system.
+- *
+- * 5) Allows user space applications to send heartbeats to the service
+- * processor (aka reverse heartbeats). Again this happens through ibmasmfs.
+- *
+- * 6) Handles remote mouse and keyboard event interrupts and makes them
+- * available to user applications through ibmasmfs.
+- *
+- */
+-
+-#include <linux/pci.h>
+-#include <linux/init.h>
+-#include <linux/slab.h>
+-#include "ibmasm.h"
+-#include "lowlevel.h"
+-#include "remote.h"
+-
+-int ibmasm_debug = 0;
+-module_param(ibmasm_debug, int , S_IRUGO | S_IWUSR);
+-MODULE_PARM_DESC(ibmasm_debug, " Set debug mode on or off");
+-
+-
+-static int ibmasm_init_one(struct pci_dev *pdev, const struct pci_device_id *id)
+-{
+-	int result;
+-	struct service_processor *sp;
+-
+-	if ((result = pci_enable_device(pdev))) {
+-		dev_err(&pdev->dev, "Failed to enable PCI device\n");
+-		return result;
+-	}
+-	if ((result = pci_request_regions(pdev, DRIVER_NAME))) {
+-		dev_err(&pdev->dev, "Failed to allocate PCI resources\n");
+-		goto error_resources;
+-	}
+-	/* vnc client won't work without bus-mastering */
+-	pci_set_master(pdev);
+-
+-	sp = kzalloc_obj(struct service_processor);
+-	if (sp == NULL) {
+-		dev_err(&pdev->dev, "Failed to allocate memory\n");
+-		result = -ENOMEM;
+-		goto error_kmalloc;
+-	}
+-
+-	spin_lock_init(&sp->lock);
+-	INIT_LIST_HEAD(&sp->command_queue);
+-
+-	pci_set_drvdata(pdev, (void *)sp);
+-	sp->dev = &pdev->dev;
+-	sp->number = pdev->bus->number;
+-	snprintf(sp->dirname, IBMASM_NAME_SIZE, "%d", sp->number);
+-	snprintf(sp->devname, IBMASM_NAME_SIZE, "%s%d", DRIVER_NAME, sp->number);
+-
+-	result = ibmasm_event_buffer_init(sp);
+-	if (result) {
+-		dev_err(sp->dev, "Failed to allocate event buffer\n");
+-		goto error_eventbuffer;
+-	}
+-
+-	result = ibmasm_heartbeat_init(sp);
+-	if (result) {
+-		dev_err(sp->dev, "Failed to allocate heartbeat command\n");
+-		goto error_heartbeat;
+-	}
+-
+-	sp->irq = pdev->irq;
+-	sp->base_address = pci_ioremap_bar(pdev, 0);
+-	if (!sp->base_address) {
+-		dev_err(sp->dev, "Failed to ioremap pci memory\n");
+-		result =  -ENODEV;
+-		goto error_ioremap;
+-	}
+-
+-	result = request_irq(sp->irq, ibmasm_interrupt_handler, IRQF_SHARED, sp->devname, (void*)sp);
+-	if (result) {
+-		dev_err(sp->dev, "Failed to register interrupt handler\n");
+-		goto error_request_irq;
+-	}
+-
+-	enable_sp_interrupts(sp->base_address);
+-
+-	result = ibmasm_init_remote_input_dev(sp);
+-	if (result) {
+-		dev_err(sp->dev, "Failed to initialize remote queue\n");
+-		goto error_init_remote;
+-	}
+-
+-	result = ibmasm_send_driver_vpd(sp);
+-	if (result) {
+-		dev_err(sp->dev, "Failed to send driver VPD to service processor\n");
+-		goto error_send_message;
+-	}
+-	result = ibmasm_send_os_state(sp, SYSTEM_STATE_OS_UP);
+-	if (result) {
+-		dev_err(sp->dev, "Failed to send OS state to service processor\n");
+-		goto error_send_message;
+-	}
+-	ibmasmfs_add_sp(sp);
+-
+-	ibmasm_register_uart(sp);
+-
+-	return 0;
+-
+-error_send_message:
+-	ibmasm_free_remote_input_dev(sp);
+-error_init_remote:
+-	disable_sp_interrupts(sp->base_address);
+-	free_irq(sp->irq, (void *)sp);
+-error_request_irq:
+-	iounmap(sp->base_address);
+-error_ioremap:
+-	ibmasm_heartbeat_exit(sp);
+-error_heartbeat:
+-	ibmasm_event_buffer_exit(sp);
+-error_eventbuffer:
+-	kfree(sp);
+-error_kmalloc:
+-        pci_release_regions(pdev);
+-error_resources:
+-        pci_disable_device(pdev);
+-
+-	return result;
+-}
+-
+-static void ibmasm_remove_one(struct pci_dev *pdev)
+-{
+-	struct service_processor *sp = pci_get_drvdata(pdev);
+-
+-	dbg("Unregistering UART\n");
+-	ibmasm_unregister_uart(sp);
+-	dbg("Sending OS down message\n");
+-	if (ibmasm_send_os_state(sp, SYSTEM_STATE_OS_DOWN))
+-		err("failed to get response to 'Send OS State' command\n");
+-	dbg("Disabling heartbeats\n");
+-	ibmasm_heartbeat_exit(sp);
+-	dbg("Disabling interrupts\n");
+-	disable_sp_interrupts(sp->base_address);
+-	dbg("Freeing SP irq\n");
+-	free_irq(sp->irq, (void *)sp);
+-	dbg("Cleaning up\n");
+-	ibmasm_free_remote_input_dev(sp);
+-	iounmap(sp->base_address);
+-	ibmasm_event_buffer_exit(sp);
+-	kfree(sp);
+-	pci_release_regions(pdev);
+-	pci_disable_device(pdev);
+-}
+-
+-static struct pci_device_id ibmasm_pci_table[] =
+-{
+-	{ PCI_DEVICE(VENDORID_IBM, DEVICEID_RSA) },
+-	{ }
+-};
+-
+-static struct pci_driver ibmasm_driver = {
+-	.name		= DRIVER_NAME,
+-	.id_table	= ibmasm_pci_table,
+-	.probe		= ibmasm_init_one,
+-	.remove		= ibmasm_remove_one,
+-};
+-
+-static void __exit ibmasm_exit (void)
+-{
+-	ibmasm_unregister_panic_notifier();
+-	ibmasmfs_unregister();
+-	pci_unregister_driver(&ibmasm_driver);
+-	info(DRIVER_DESC " version " DRIVER_VERSION " unloaded");
+-}
+-
+-static int __init ibmasm_init(void)
+-{
+-	int result = pci_register_driver(&ibmasm_driver);
+-	if (result)
+-		return result;
+-
+-	result = ibmasmfs_register();
+-	if (result) {
+-		pci_unregister_driver(&ibmasm_driver);
+-		err("Failed to register ibmasmfs file system");
+-		return result;
+-	}
+-
+-	ibmasm_register_panic_notifier();
+-	info(DRIVER_DESC " version " DRIVER_VERSION " loaded");
+-	return 0;
+-}
+-
+-module_init(ibmasm_init);
+-module_exit(ibmasm_exit);
+-
+-MODULE_AUTHOR(DRIVER_AUTHOR);
+-MODULE_DESCRIPTION(DRIVER_DESC);
+-MODULE_LICENSE("GPL");
+-MODULE_DEVICE_TABLE(pci, ibmasm_pci_table);
+-
+diff --git a/drivers/misc/ibmasm/r_heartbeat.c b/drivers/misc/ibmasm/r_heartbeat.c
+deleted file mode 100644
+index 8d3fa0ce4b6c..000000000000
+--- a/drivers/misc/ibmasm/r_heartbeat.c
++++ /dev/null
+@@ -1,86 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-or-later
+-
+-/*
+- *
+- * Copyright (C) IBM Corporation, 2004
+- *
+- * Author: Max Asb枚ck <amax@us.ibm.com>
+- */
+-
+-#include <linux/sched/signal.h>
+-#include "ibmasm.h"
+-#include "dot_command.h"
+-
+-/*
+- * Reverse Heartbeat, i.e. heartbeats sent from the driver to the
+- * service processor.
+- * These heartbeats are initiated by user level programs.
+- */
+-
+-/* the reverse heartbeat dot command */
+-#pragma pack(1)
+-static struct {
+-	struct dot_command_header	header;
+-	unsigned char			command[3];
+-} rhb_dot_cmd = {
+-	.header = {
+-		.type =		sp_read,
+-		.command_size = 3,
+-		.data_size =	0,
+-		.status =	0
+-	},
+-	.command = { 4, 3, 6 }
+-};
+-#pragma pack()
+-
+-void ibmasm_init_reverse_heartbeat(struct service_processor *sp, struct reverse_heartbeat *rhb)
+-{
+-	init_waitqueue_head(&rhb->wait);
+-	rhb->stopped = 0;
+-}
+-
+-/*
+- * start_reverse_heartbeat
+- * Loop forever, sending a reverse heartbeat dot command to the service
+- * processor, then sleeping. The loop comes to an end if the service
+- * processor fails to respond 3 times or we were interrupted.
+- */
+-int ibmasm_start_reverse_heartbeat(struct service_processor *sp, struct reverse_heartbeat *rhb)
+-{
+-	struct command *cmd;
+-	int times_failed = 0;
+-	int result = 1;
+-
+-	cmd = ibmasm_new_command(sp, sizeof(rhb_dot_cmd));
+-	if (!cmd)
+-		return -ENOMEM;
+-
+-	while (times_failed < 3) {
+-		memcpy(cmd->buffer, (void *)&rhb_dot_cmd, sizeof(rhb_dot_cmd));
+-		cmd->status = IBMASM_CMD_PENDING;
+-		ibmasm_exec_command(sp, cmd);
+-		ibmasm_wait_for_response(cmd, IBMASM_CMD_TIMEOUT_NORMAL);
+-
+-		if (cmd->status != IBMASM_CMD_COMPLETE)
+-			times_failed++;
+-
+-		wait_event_interruptible_timeout(rhb->wait,
+-			rhb->stopped,
+-			REVERSE_HEARTBEAT_TIMEOUT * HZ);
+-
+-		if (signal_pending(current) || rhb->stopped) {
+-			result = -EINTR;
+-			break;
+-		}
+-	}
+-	command_put(cmd);
+-	rhb->stopped = 0;
+-
+-	return result;
+-}
+-
+-void ibmasm_stop_reverse_heartbeat(struct reverse_heartbeat *rhb)
+-{
+-	rhb->stopped = 1;
+-	wake_up_interruptible(&rhb->wait);
+-}
+diff --git a/drivers/misc/ibmasm/remote.c b/drivers/misc/ibmasm/remote.c
+deleted file mode 100644
+index 521531738c9a..000000000000
+--- a/drivers/misc/ibmasm/remote.c
++++ /dev/null
+@@ -1,273 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-or-later
+-/*
+- * IBM ASM Service Processor Device Driver
+- *
+- * Copyright (C) IBM Corporation, 2004
+- *
+- * Authors: Max Asb枚ck <amax@us.ibm.com>
+- *          Vernon Mauery <vernux@us.ibm.com>
+- */
+-
+-/* Remote mouse and keyboard event handling functions */
+-
+-#include <linux/pci.h>
+-#include "ibmasm.h"
+-#include "remote.h"
+-
+-#define MOUSE_X_MAX	1600
+-#define MOUSE_Y_MAX	1200
+-
+-static const unsigned short xlate_high[XLATE_SIZE] = {
+-	[KEY_SYM_ENTER & 0xff] = KEY_ENTER,
+-	[KEY_SYM_KPSLASH & 0xff] = KEY_KPSLASH,
+-	[KEY_SYM_KPSTAR & 0xff] = KEY_KPASTERISK,
+-	[KEY_SYM_KPMINUS & 0xff] = KEY_KPMINUS,
+-	[KEY_SYM_KPDOT & 0xff] = KEY_KPDOT,
+-	[KEY_SYM_KPPLUS & 0xff] = KEY_KPPLUS,
+-	[KEY_SYM_KP0 & 0xff] = KEY_KP0,
+-	[KEY_SYM_KP1 & 0xff] = KEY_KP1,
+-	[KEY_SYM_KP2 & 0xff] = KEY_KP2, [KEY_SYM_KPDOWN & 0xff] = KEY_KP2,
+-	[KEY_SYM_KP3 & 0xff] = KEY_KP3,
+-	[KEY_SYM_KP4 & 0xff] = KEY_KP4, [KEY_SYM_KPLEFT & 0xff] = KEY_KP4,
+-	[KEY_SYM_KP5 & 0xff] = KEY_KP5,
+-	[KEY_SYM_KP6 & 0xff] = KEY_KP6, [KEY_SYM_KPRIGHT & 0xff] = KEY_KP6,
+-	[KEY_SYM_KP7 & 0xff] = KEY_KP7,
+-	[KEY_SYM_KP8 & 0xff] = KEY_KP8, [KEY_SYM_KPUP & 0xff] = KEY_KP8,
+-	[KEY_SYM_KP9 & 0xff] = KEY_KP9,
+-	[KEY_SYM_BK_SPC & 0xff] = KEY_BACKSPACE,
+-	[KEY_SYM_TAB & 0xff] = KEY_TAB,
+-	[KEY_SYM_CTRL & 0xff] = KEY_LEFTCTRL,
+-	[KEY_SYM_ALT & 0xff] = KEY_LEFTALT,
+-	[KEY_SYM_INSERT & 0xff] = KEY_INSERT,
+-	[KEY_SYM_DELETE & 0xff] = KEY_DELETE,
+-	[KEY_SYM_SHIFT & 0xff] = KEY_LEFTSHIFT,
+-	[KEY_SYM_UARROW & 0xff] = KEY_UP,
+-	[KEY_SYM_DARROW & 0xff] = KEY_DOWN,
+-	[KEY_SYM_LARROW & 0xff] = KEY_LEFT,
+-	[KEY_SYM_RARROW & 0xff] = KEY_RIGHT,
+-	[KEY_SYM_ESCAPE & 0xff] = KEY_ESC,
+-        [KEY_SYM_PAGEUP & 0xff] = KEY_PAGEUP,
+-        [KEY_SYM_PAGEDOWN & 0xff] = KEY_PAGEDOWN,
+-        [KEY_SYM_HOME & 0xff] = KEY_HOME,
+-        [KEY_SYM_END & 0xff] = KEY_END,
+-	[KEY_SYM_F1 & 0xff] = KEY_F1,
+-	[KEY_SYM_F2 & 0xff] = KEY_F2,
+-	[KEY_SYM_F3 & 0xff] = KEY_F3,
+-	[KEY_SYM_F4 & 0xff] = KEY_F4,
+-	[KEY_SYM_F5 & 0xff] = KEY_F5,
+-	[KEY_SYM_F6 & 0xff] = KEY_F6,
+-	[KEY_SYM_F7 & 0xff] = KEY_F7,
+-	[KEY_SYM_F8 & 0xff] = KEY_F8,
+-	[KEY_SYM_F9 & 0xff] = KEY_F9,
+-	[KEY_SYM_F10 & 0xff] = KEY_F10,
+-	[KEY_SYM_F11 & 0xff] = KEY_F11,
+-	[KEY_SYM_F12 & 0xff] = KEY_F12,
+-	[KEY_SYM_CAP_LOCK & 0xff] = KEY_CAPSLOCK,
+-	[KEY_SYM_NUM_LOCK & 0xff] = KEY_NUMLOCK,
+-	[KEY_SYM_SCR_LOCK & 0xff] = KEY_SCROLLLOCK,
+-};
+-
+-static const unsigned short xlate[XLATE_SIZE] = {
+-	[NO_KEYCODE] = KEY_RESERVED,
+-	[KEY_SYM_SPACE] = KEY_SPACE,
+-	[KEY_SYM_TILDE] = KEY_GRAVE,        [KEY_SYM_BKTIC] = KEY_GRAVE,
+-	[KEY_SYM_ONE] = KEY_1,              [KEY_SYM_BANG] = KEY_1,
+-	[KEY_SYM_TWO] = KEY_2,              [KEY_SYM_AT] = KEY_2,
+-	[KEY_SYM_THREE] = KEY_3,            [KEY_SYM_POUND] = KEY_3,
+-	[KEY_SYM_FOUR] = KEY_4,             [KEY_SYM_DOLLAR] = KEY_4,
+-	[KEY_SYM_FIVE] = KEY_5,             [KEY_SYM_PERCENT] = KEY_5,
+-	[KEY_SYM_SIX] = KEY_6,              [KEY_SYM_CARAT] = KEY_6,
+-	[KEY_SYM_SEVEN] = KEY_7,            [KEY_SYM_AMPER] = KEY_7,
+-	[KEY_SYM_EIGHT] = KEY_8,            [KEY_SYM_STAR] = KEY_8,
+-	[KEY_SYM_NINE] = KEY_9,             [KEY_SYM_LPAREN] = KEY_9,
+-	[KEY_SYM_ZERO] = KEY_0,             [KEY_SYM_RPAREN] = KEY_0,
+-	[KEY_SYM_MINUS] = KEY_MINUS,        [KEY_SYM_USCORE] = KEY_MINUS,
+-	[KEY_SYM_EQUAL] = KEY_EQUAL,        [KEY_SYM_PLUS] = KEY_EQUAL,
+-	[KEY_SYM_LBRKT] = KEY_LEFTBRACE,    [KEY_SYM_LCURLY] = KEY_LEFTBRACE,
+-	[KEY_SYM_RBRKT] = KEY_RIGHTBRACE,   [KEY_SYM_RCURLY] = KEY_RIGHTBRACE,
+-	[KEY_SYM_SLASH] = KEY_BACKSLASH,    [KEY_SYM_PIPE] = KEY_BACKSLASH,
+-	[KEY_SYM_TIC] = KEY_APOSTROPHE,     [KEY_SYM_QUOTE] = KEY_APOSTROPHE,
+-	[KEY_SYM_SEMIC] = KEY_SEMICOLON,    [KEY_SYM_COLON] = KEY_SEMICOLON,
+-	[KEY_SYM_COMMA] = KEY_COMMA,        [KEY_SYM_LT] = KEY_COMMA,
+-	[KEY_SYM_PERIOD] = KEY_DOT,         [KEY_SYM_GT] = KEY_DOT,
+-	[KEY_SYM_BSLASH] = KEY_SLASH,       [KEY_SYM_QMARK] = KEY_SLASH,
+-	[KEY_SYM_A] = KEY_A,                [KEY_SYM_a] = KEY_A,
+-	[KEY_SYM_B] = KEY_B,                [KEY_SYM_b] = KEY_B,
+-	[KEY_SYM_C] = KEY_C,                [KEY_SYM_c] = KEY_C,
+-	[KEY_SYM_D] = KEY_D,                [KEY_SYM_d] = KEY_D,
+-	[KEY_SYM_E] = KEY_E,                [KEY_SYM_e] = KEY_E,
+-	[KEY_SYM_F] = KEY_F,                [KEY_SYM_f] = KEY_F,
+-	[KEY_SYM_G] = KEY_G,                [KEY_SYM_g] = KEY_G,
+-	[KEY_SYM_H] = KEY_H,                [KEY_SYM_h] = KEY_H,
+-	[KEY_SYM_I] = KEY_I,                [KEY_SYM_i] = KEY_I,
+-	[KEY_SYM_J] = KEY_J,                [KEY_SYM_j] = KEY_J,
+-	[KEY_SYM_K] = KEY_K,                [KEY_SYM_k] = KEY_K,
+-	[KEY_SYM_L] = KEY_L,                [KEY_SYM_l] = KEY_L,
+-	[KEY_SYM_M] = KEY_M,                [KEY_SYM_m] = KEY_M,
+-	[KEY_SYM_N] = KEY_N,                [KEY_SYM_n] = KEY_N,
+-	[KEY_SYM_O] = KEY_O,                [KEY_SYM_o] = KEY_O,
+-	[KEY_SYM_P] = KEY_P,                [KEY_SYM_p] = KEY_P,
+-	[KEY_SYM_Q] = KEY_Q,                [KEY_SYM_q] = KEY_Q,
+-	[KEY_SYM_R] = KEY_R,                [KEY_SYM_r] = KEY_R,
+-	[KEY_SYM_S] = KEY_S,                [KEY_SYM_s] = KEY_S,
+-	[KEY_SYM_T] = KEY_T,                [KEY_SYM_t] = KEY_T,
+-	[KEY_SYM_U] = KEY_U,                [KEY_SYM_u] = KEY_U,
+-	[KEY_SYM_V] = KEY_V,                [KEY_SYM_v] = KEY_V,
+-	[KEY_SYM_W] = KEY_W,                [KEY_SYM_w] = KEY_W,
+-	[KEY_SYM_X] = KEY_X,                [KEY_SYM_x] = KEY_X,
+-	[KEY_SYM_Y] = KEY_Y,                [KEY_SYM_y] = KEY_Y,
+-	[KEY_SYM_Z] = KEY_Z,                [KEY_SYM_z] = KEY_Z,
+-};
+-
+-static void print_input(struct remote_input *input)
+-{
+-	if (input->type == INPUT_TYPE_MOUSE) {
+-		unsigned char buttons = input->mouse_buttons;
+-		dbg("remote mouse movement: (x,y)=(%d,%d)%s%s%s%s\n",
+-			input->data.mouse.x, input->data.mouse.y,
+-			(buttons) ? " -- buttons:" : "",
+-			(buttons & REMOTE_BUTTON_LEFT) ? "left " : "",
+-			(buttons & REMOTE_BUTTON_MIDDLE) ? "middle " : "",
+-			(buttons & REMOTE_BUTTON_RIGHT) ? "right" : ""
+-		      );
+-	} else {
+-		dbg("remote keypress (code, flag, down):"
+-			   "%d (0x%x) [0x%x] [0x%x]\n",
+-				input->data.keyboard.key_code,
+-				input->data.keyboard.key_code,
+-				input->data.keyboard.key_flag,
+-				input->data.keyboard.key_down
+-		      );
+-	}
+-}
+-
+-static void send_mouse_event(struct input_dev *dev, struct remote_input *input)
+-{
+-	unsigned char buttons = input->mouse_buttons;
+-
+-	input_report_abs(dev, ABS_X, input->data.mouse.x);
+-	input_report_abs(dev, ABS_Y, input->data.mouse.y);
+-	input_report_key(dev, BTN_LEFT, buttons & REMOTE_BUTTON_LEFT);
+-	input_report_key(dev, BTN_MIDDLE, buttons & REMOTE_BUTTON_MIDDLE);
+-	input_report_key(dev, BTN_RIGHT, buttons & REMOTE_BUTTON_RIGHT);
+-	input_sync(dev);
+-}
+-
+-static void send_keyboard_event(struct input_dev *dev,
+-		struct remote_input *input)
+-{
+-	unsigned int key;
+-	unsigned short code = input->data.keyboard.key_code;
+-
+-	if (code & 0xff00)
+-		key = xlate_high[code & 0xff];
+-	else
+-		key = xlate[code];
+-	input_report_key(dev, key, input->data.keyboard.key_down);
+-	input_sync(dev);
+-}
+-
+-void ibmasm_handle_mouse_interrupt(struct service_processor *sp)
+-{
+-	unsigned long reader;
+-	unsigned long writer;
+-	struct remote_input input;
+-
+-	reader = get_queue_reader(sp);
+-	writer = get_queue_writer(sp);
+-
+-	while (reader != writer) {
+-		if (reader >= REMOTE_QUEUE_SIZE || writer >= REMOTE_QUEUE_SIZE) {
+-			set_queue_reader(sp, 0);
+-			break;
+-		}
+-
+-		memcpy_fromio(&input, get_queue_entry(sp, reader),
+-				sizeof(struct remote_input));
+-
+-		print_input(&input);
+-		if (input.type == INPUT_TYPE_MOUSE) {
+-			send_mouse_event(sp->remote.mouse_dev, &input);
+-		} else if (input.type == INPUT_TYPE_KEYBOARD) {
+-			send_keyboard_event(sp->remote.keybd_dev, &input);
+-		} else
+-			break;
+-
+-		reader = advance_queue_reader(sp, reader);
+-		writer = get_queue_writer(sp);
+-	}
+-}
+-
+-int ibmasm_init_remote_input_dev(struct service_processor *sp)
+-{
+-	/* set up the mouse input device */
+-	struct input_dev *mouse_dev, *keybd_dev;
+-	struct pci_dev *pdev = to_pci_dev(sp->dev);
+-	int error = -ENOMEM;
+-	int i;
+-
+-	sp->remote.mouse_dev = mouse_dev = input_allocate_device();
+-	sp->remote.keybd_dev = keybd_dev = input_allocate_device();
+-
+-	if (!mouse_dev || !keybd_dev)
+-		goto err_free_devices;
+-
+-	mouse_dev->id.bustype = BUS_PCI;
+-	mouse_dev->id.vendor = pdev->vendor;
+-	mouse_dev->id.product = pdev->device;
+-	mouse_dev->id.version = 1;
+-	mouse_dev->dev.parent = sp->dev;
+-	mouse_dev->evbit[0]  = BIT_MASK(EV_KEY) | BIT_MASK(EV_ABS);
+-	mouse_dev->keybit[BIT_WORD(BTN_MOUSE)] = BIT_MASK(BTN_LEFT) |
+-		BIT_MASK(BTN_RIGHT) | BIT_MASK(BTN_MIDDLE);
+-	set_bit(BTN_TOUCH, mouse_dev->keybit);
+-	mouse_dev->name = "ibmasm RSA I remote mouse";
+-	input_set_abs_params(mouse_dev, ABS_X, 0, MOUSE_X_MAX, 0, 0);
+-	input_set_abs_params(mouse_dev, ABS_Y, 0, MOUSE_Y_MAX, 0, 0);
+-
+-	keybd_dev->id.bustype = BUS_PCI;
+-	keybd_dev->id.vendor = pdev->vendor;
+-	keybd_dev->id.product = pdev->device;
+-	keybd_dev->id.version = 2;
+-	keybd_dev->dev.parent = sp->dev;
+-	keybd_dev->evbit[0]  = BIT_MASK(EV_KEY);
+-	keybd_dev->name = "ibmasm RSA I remote keyboard";
+-
+-	for (i = 0; i < XLATE_SIZE; i++) {
+-		if (xlate_high[i])
+-			set_bit(xlate_high[i], keybd_dev->keybit);
+-		if (xlate[i])
+-			set_bit(xlate[i], keybd_dev->keybit);
+-	}
+-
+-	error = input_register_device(mouse_dev);
+-	if (error)
+-		goto err_free_devices;
+-
+-	error = input_register_device(keybd_dev);
+-	if (error)
+-		goto err_unregister_mouse_dev;
+-
+-	enable_mouse_interrupts(sp);
+-
+-	printk(KERN_INFO "ibmasm remote responding to events on RSA card %d\n", sp->number);
+-
+-	return 0;
+-
+- err_unregister_mouse_dev:
+-	input_unregister_device(mouse_dev);
+-	mouse_dev = NULL; /* so we don't try to free it again below */
+- err_free_devices:
+-	input_free_device(mouse_dev);
+-	input_free_device(keybd_dev);
+-
+-	return error;
+-}
+-
+-void ibmasm_free_remote_input_dev(struct service_processor *sp)
+-{
+-	disable_mouse_interrupts(sp);
+-	input_unregister_device(sp->remote.mouse_dev);
+-	input_unregister_device(sp->remote.keybd_dev);
+-}
+-
+diff --git a/drivers/misc/ibmasm/remote.h b/drivers/misc/ibmasm/remote.h
+deleted file mode 100644
+index ec4e78ec5a67..000000000000
+--- a/drivers/misc/ibmasm/remote.h
++++ /dev/null
+@@ -1,257 +0,0 @@
+-/* SPDX-License-Identifier: GPL-2.0-or-later */
+-
+-/*
+- * IBM ASM Service Processor Device Driver
+- *
+- * Copyright (C) IBM Corporation, 2004
+- *
+- * Author: Max Asb枚ck <amax@us.ibm.com>
+- *
+- * Originally written by Pete Reynolds
+- */
+-
+-#ifndef _IBMASM_REMOTE_H_
+-#define _IBMASM_REMOTE_H_
+-
+-#include <asm/io.h>
+-
+-/* pci offsets */
+-#define CONDOR_MOUSE_DATA		0x000AC000
+-#define CONDOR_MOUSE_ISR_CONTROL	0x00
+-#define CONDOR_MOUSE_ISR_STATUS		0x04
+-#define CONDOR_MOUSE_Q_READER		0x08
+-#define CONDOR_MOUSE_Q_WRITER		0x0C
+-#define CONDOR_MOUSE_Q_BEGIN		0x10
+-#define CONDOR_MOUSE_MAX_X		0x14
+-#define CONDOR_MOUSE_MAX_Y		0x18
+-
+-#define CONDOR_INPUT_DESKTOP_INFO	0x1F0
+-#define CONDOR_INPUT_DISPLAY_RESX	0x1F4
+-#define CONDOR_INPUT_DISPLAY_RESY	0x1F8
+-#define CONDOR_INPUT_DISPLAY_BITS	0x1FC
+-#define CONDOR_OUTPUT_VNC_STATUS	0x200
+-
+-#define CONDOR_MOUSE_INTR_STATUS_MASK	0x00000001
+-
+-#define INPUT_TYPE_MOUSE	0x1
+-#define INPUT_TYPE_KEYBOARD	0x2
+-
+-
+-/* mouse button states received from SP */
+-#define REMOTE_DOUBLE_CLICK	0xF0
+-#define REMOTE_BUTTON_LEFT	0x01
+-#define REMOTE_BUTTON_MIDDLE	0x02
+-#define REMOTE_BUTTON_RIGHT	0x04
+-
+-/* size of keysym/keycode translation matrices */
+-#define XLATE_SIZE 256
+-
+-struct mouse_input {
+-	unsigned short	y;
+-	unsigned short	x;
+-};
+-
+-
+-struct keyboard_input {
+-	unsigned short	key_code;
+-	unsigned char	key_flag;
+-	unsigned char	key_down;
+-};
+-
+-
+-
+-struct remote_input {
+-	union {
+-		struct mouse_input	mouse;
+-		struct keyboard_input	keyboard;
+-	} data;
+-
+-	unsigned char	type;
+-	unsigned char	pad1;
+-	unsigned char	mouse_buttons;
+-	unsigned char	pad3;
+-};
+-
+-#define mouse_addr(sp)		(sp->base_address + CONDOR_MOUSE_DATA)
+-#define display_width(sp)	(mouse_addr(sp) + CONDOR_INPUT_DISPLAY_RESX)
+-#define display_height(sp)	(mouse_addr(sp) + CONDOR_INPUT_DISPLAY_RESY)
+-#define display_depth(sp)	(mouse_addr(sp) + CONDOR_INPUT_DISPLAY_BITS)
+-#define desktop_info(sp)	(mouse_addr(sp) + CONDOR_INPUT_DESKTOP_INFO)
+-#define vnc_status(sp)		(mouse_addr(sp) + CONDOR_OUTPUT_VNC_STATUS)
+-#define isr_control(sp)		(mouse_addr(sp) + CONDOR_MOUSE_ISR_CONTROL)
+-
+-#define mouse_interrupt_pending(sp)	readl(mouse_addr(sp) + CONDOR_MOUSE_ISR_STATUS)
+-#define clear_mouse_interrupt(sp)	writel(0, mouse_addr(sp) + CONDOR_MOUSE_ISR_STATUS)
+-#define enable_mouse_interrupts(sp)	writel(1, mouse_addr(sp) + CONDOR_MOUSE_ISR_CONTROL)
+-#define disable_mouse_interrupts(sp)	writel(0, mouse_addr(sp) + CONDOR_MOUSE_ISR_CONTROL)
+-
+-/* remote input queue operations */
+-#define REMOTE_QUEUE_SIZE	60
+-
+-#define get_queue_writer(sp)	readl(mouse_addr(sp) + CONDOR_MOUSE_Q_WRITER)
+-#define get_queue_reader(sp)	readl(mouse_addr(sp) + CONDOR_MOUSE_Q_READER)
+-#define set_queue_reader(sp, reader)	writel(reader, mouse_addr(sp) + CONDOR_MOUSE_Q_READER)
+-
+-#define queue_begin	(mouse_addr(sp) + CONDOR_MOUSE_Q_BEGIN)
+-
+-#define get_queue_entry(sp, read_index) \
+-	((void*)(queue_begin + read_index * sizeof(struct remote_input)))
+-
+-static inline int advance_queue_reader(struct service_processor *sp, unsigned long reader)
+-{
+-	reader++;
+-	if (reader == REMOTE_QUEUE_SIZE)
+-		reader = 0;
+-
+-	set_queue_reader(sp, reader);
+-	return reader;
+-}
+-
+-#define NO_KEYCODE 0
+-#define KEY_SYM_BK_SPC   0xFF08
+-#define KEY_SYM_TAB      0xFF09
+-#define KEY_SYM_ENTER    0xFF0D
+-#define KEY_SYM_SCR_LOCK 0xFF14
+-#define KEY_SYM_ESCAPE   0xFF1B
+-#define KEY_SYM_HOME     0xFF50
+-#define KEY_SYM_LARROW   0xFF51
+-#define KEY_SYM_UARROW   0xFF52
+-#define KEY_SYM_RARROW   0xFF53
+-#define KEY_SYM_DARROW   0xFF54
+-#define KEY_SYM_PAGEUP   0xFF55
+-#define KEY_SYM_PAGEDOWN 0xFF56
+-#define KEY_SYM_END      0xFF57
+-#define KEY_SYM_INSERT   0xFF63
+-#define KEY_SYM_NUM_LOCK 0xFF7F
+-#define KEY_SYM_KPSTAR   0xFFAA
+-#define KEY_SYM_KPPLUS   0xFFAB
+-#define KEY_SYM_KPMINUS  0xFFAD
+-#define KEY_SYM_KPDOT    0xFFAE
+-#define KEY_SYM_KPSLASH  0xFFAF
+-#define KEY_SYM_KPRIGHT  0xFF96
+-#define KEY_SYM_KPUP     0xFF97
+-#define KEY_SYM_KPLEFT   0xFF98
+-#define KEY_SYM_KPDOWN   0xFF99
+-#define KEY_SYM_KP0      0xFFB0
+-#define KEY_SYM_KP1      0xFFB1
+-#define KEY_SYM_KP2      0xFFB2
+-#define KEY_SYM_KP3      0xFFB3
+-#define KEY_SYM_KP4      0xFFB4
+-#define KEY_SYM_KP5      0xFFB5
+-#define KEY_SYM_KP6      0xFFB6
+-#define KEY_SYM_KP7      0xFFB7
+-#define KEY_SYM_KP8      0xFFB8
+-#define KEY_SYM_KP9      0xFFB9
+-#define KEY_SYM_F1       0xFFBE      // 1B 5B 5B 41
+-#define KEY_SYM_F2       0xFFBF      // 1B 5B 5B 42
+-#define KEY_SYM_F3       0xFFC0      // 1B 5B 5B 43
+-#define KEY_SYM_F4       0xFFC1      // 1B 5B 5B 44
+-#define KEY_SYM_F5       0xFFC2      // 1B 5B 5B 45
+-#define KEY_SYM_F6       0xFFC3      // 1B 5B 31 37 7E
+-#define KEY_SYM_F7       0xFFC4      // 1B 5B 31 38 7E
+-#define KEY_SYM_F8       0xFFC5      // 1B 5B 31 39 7E
+-#define KEY_SYM_F9       0xFFC6      // 1B 5B 32 30 7E
+-#define KEY_SYM_F10      0xFFC7      // 1B 5B 32 31 7E
+-#define KEY_SYM_F11      0xFFC8      // 1B 5B 32 33 7E
+-#define KEY_SYM_F12      0xFFC9      // 1B 5B 32 34 7E
+-#define KEY_SYM_SHIFT    0xFFE1
+-#define KEY_SYM_CTRL     0xFFE3
+-#define KEY_SYM_ALT      0xFFE9
+-#define KEY_SYM_CAP_LOCK 0xFFE5
+-#define KEY_SYM_DELETE   0xFFFF
+-#define KEY_SYM_TILDE    0x60
+-#define KEY_SYM_BKTIC    0x7E
+-#define KEY_SYM_ONE      0x31
+-#define KEY_SYM_BANG     0x21
+-#define KEY_SYM_TWO      0x32
+-#define KEY_SYM_AT       0x40
+-#define KEY_SYM_THREE    0x33
+-#define KEY_SYM_POUND    0x23
+-#define KEY_SYM_FOUR     0x34
+-#define KEY_SYM_DOLLAR   0x24
+-#define KEY_SYM_FIVE     0x35
+-#define KEY_SYM_PERCENT  0x25
+-#define KEY_SYM_SIX      0x36
+-#define KEY_SYM_CARAT    0x5E
+-#define KEY_SYM_SEVEN    0x37
+-#define KEY_SYM_AMPER    0x26
+-#define KEY_SYM_EIGHT    0x38
+-#define KEY_SYM_STAR     0x2A
+-#define KEY_SYM_NINE     0x39
+-#define KEY_SYM_LPAREN   0x28
+-#define KEY_SYM_ZERO     0x30
+-#define KEY_SYM_RPAREN   0x29
+-#define KEY_SYM_MINUS    0x2D
+-#define KEY_SYM_USCORE   0x5F
+-#define KEY_SYM_EQUAL    0x2B
+-#define KEY_SYM_PLUS     0x3D
+-#define KEY_SYM_LBRKT    0x5B
+-#define KEY_SYM_LCURLY   0x7B
+-#define KEY_SYM_RBRKT    0x5D
+-#define KEY_SYM_RCURLY   0x7D
+-#define KEY_SYM_SLASH    0x5C
+-#define KEY_SYM_PIPE     0x7C
+-#define KEY_SYM_TIC      0x27
+-#define KEY_SYM_QUOTE    0x22
+-#define KEY_SYM_SEMIC    0x3B
+-#define KEY_SYM_COLON    0x3A
+-#define KEY_SYM_COMMA    0x2C
+-#define KEY_SYM_LT       0x3C
+-#define KEY_SYM_PERIOD   0x2E
+-#define KEY_SYM_GT       0x3E
+-#define KEY_SYM_BSLASH   0x2F
+-#define KEY_SYM_QMARK    0x3F
+-#define KEY_SYM_A        0x41
+-#define KEY_SYM_B        0x42
+-#define KEY_SYM_C        0x43
+-#define KEY_SYM_D        0x44
+-#define KEY_SYM_E        0x45
+-#define KEY_SYM_F        0x46
+-#define KEY_SYM_G        0x47
+-#define KEY_SYM_H        0x48
+-#define KEY_SYM_I        0x49
+-#define KEY_SYM_J        0x4A
+-#define KEY_SYM_K        0x4B
+-#define KEY_SYM_L        0x4C
+-#define KEY_SYM_M        0x4D
+-#define KEY_SYM_N        0x4E
+-#define KEY_SYM_O        0x4F
+-#define KEY_SYM_P        0x50
+-#define KEY_SYM_Q        0x51
+-#define KEY_SYM_R        0x52
+-#define KEY_SYM_S        0x53
+-#define KEY_SYM_T        0x54
+-#define KEY_SYM_U        0x55
+-#define KEY_SYM_V        0x56
+-#define KEY_SYM_W        0x57
+-#define KEY_SYM_X        0x58
+-#define KEY_SYM_Y        0x59
+-#define KEY_SYM_Z        0x5A
+-#define KEY_SYM_a        0x61
+-#define KEY_SYM_b        0x62
+-#define KEY_SYM_c        0x63
+-#define KEY_SYM_d        0x64
+-#define KEY_SYM_e        0x65
+-#define KEY_SYM_f        0x66
+-#define KEY_SYM_g        0x67
+-#define KEY_SYM_h        0x68
+-#define KEY_SYM_i        0x69
+-#define KEY_SYM_j        0x6A
+-#define KEY_SYM_k        0x6B
+-#define KEY_SYM_l        0x6C
+-#define KEY_SYM_m        0x6D
+-#define KEY_SYM_n        0x6E
+-#define KEY_SYM_o        0x6F
+-#define KEY_SYM_p        0x70
+-#define KEY_SYM_q        0x71
+-#define KEY_SYM_r        0x72
+-#define KEY_SYM_s        0x73
+-#define KEY_SYM_t        0x74
+-#define KEY_SYM_u        0x75
+-#define KEY_SYM_v        0x76
+-#define KEY_SYM_w        0x77
+-#define KEY_SYM_x        0x78
+-#define KEY_SYM_y        0x79
+-#define KEY_SYM_z        0x7A
+-#define KEY_SYM_SPACE    0x20
+-#endif /* _IBMASM_REMOTE_H_ */
+diff --git a/drivers/misc/ibmasm/uart.c b/drivers/misc/ibmasm/uart.c
+deleted file mode 100644
+index a5d4c8e010ee..000000000000
+--- a/drivers/misc/ibmasm/uart.c
++++ /dev/null
+@@ -1,58 +0,0 @@
+-// SPDX-License-Identifier: GPL-2.0-or-later
+-
+-/*
+- * IBM ASM Service Processor Device Driver
+- *
+- * Copyright (C) IBM Corporation, 2004
+- *
+- * Author: Max Asb枚ck <amax@us.ibm.com>
+- */
+-
+-#include <linux/termios.h>
+-#include <linux/tty.h>
+-#include <linux/serial_core.h>
+-#include <linux/serial_reg.h>
+-#include <linux/serial_8250.h>
+-#include "ibmasm.h"
+-#include "lowlevel.h"
+-
+-
+-void ibmasm_register_uart(struct service_processor *sp)
+-{
+-	struct uart_8250_port uart;
+-	void __iomem *iomem_base;
+-
+-	iomem_base = sp->base_address + SCOUT_COM_B_BASE;
+-
+-	/* read the uart scratch register to determine if the UART
+-	 * is dedicated to the service processor or if the OS can use it
+-	 */
+-	if (0 == readl(iomem_base + UART_SCR)) {
+-		dev_info(sp->dev, "IBM SP UART not registered, owned by service processor\n");
+-		sp->serial_line = -1;
+-		return;
+-	}
+-
+-	memset(&uart, 0, sizeof(uart));
+-	uart.port.irq		= sp->irq;
+-	uart.port.uartclk	= 3686400;
+-	uart.port.flags		= UPF_SHARE_IRQ;
+-	uart.port.iotype	= UPIO_MEM;
+-	uart.port.membase	= iomem_base;
+-
+-	sp->serial_line = serial8250_register_8250_port(&uart);
+-	if (sp->serial_line < 0) {
+-		dev_err(sp->dev, "Failed to register serial port\n");
+-		return;
+-	}
+-	enable_uart_interrupts(sp->base_address);
+-}
+-
+-void ibmasm_unregister_uart(struct service_processor *sp)
+-{
+-	if (sp->serial_line < 0)
+-		return;
+-
+-	disable_uart_interrupts(sp->base_address);
+-	serial8250_unregister_port(sp->serial_line);
+-}
+-- 
+2.55.0
+

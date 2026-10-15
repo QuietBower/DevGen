@@ -11,11 +11,11 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [PATCH] fbdev: core: Clamp total_size to smem_len in fb_io_read/write | <u>[mail](../email/374_%5BPATCH%5D%20fbdev_%20core_%20Clamp%20total_size%20to%20smem_len%20in%20fb_io_read_write.txt)</u> |
-| AI-Result                                                    | <u>[mail](../email/486_%5BPATCH%5D%20fbdev_%20core_%20Clamp%20total_size%20to%20smem_len%20in%20fb_io_read_write.txt)</u> |
-| sashiko-bot:Re: [PATCH] fbdev: core: Clamp total_size to smem_len in fb_io_read/write | <u>[mail](../email/371_Re_%20%5BPATCH%5D%20fbdev_%20core_%20Clamp%20total_size%20to%20smem_len%20in%20fb_io_read_wr.txt)</u> |
-| [PATCH v2] fbdev: core: Clamp total_size to smem_len in read/write functions | <u>[mail](../email/376_%5BPATCH%20v2%5D%20fbdev_%20core_%20Clamp%20total_size%20to%20smem_len%20in%20read_write%20fun.txt)</u> |
-| sashiko-bot:Re: [PATCH v2] fbdev: core: Clamp total_size to smem_len in read/write functions | <u>[mail](../email/375_Re_%20%5BPATCH%20v2%5D%20fbdev_%20core_%20Clamp%20total_size%20to%20smem_len%20in%20read_write.txt)</u> |
-| Helge Deller:Re: [PATCH v2] fbdev: core: Clamp total_size to smem_len in read/write functions | <u>[mail](../email/401_Re_%20%5BPATCH%20v2%5D%20fbdev_%20core_%20Clamp%20total_size%20to%20smem_len%20in%20read_write.txt)</u> |
-| fbdev: core: Clamp total_size to smem_len in read/write functions | <u>[mail](../email/376_%5BPATCH%20v2%5D%20fbdev_%20core_%20Clamp%20total_size%20to%20smem_len%20in%20read_write%20fun.txt)</u> |
+| [PATCH] fbdev: core: Clamp total_size to smem_len in fb_io_read/write | <u>[lore.kernel.org](https://lore.kernel.org/all/20260720135534.103599-1-25181214217@stu.xidian.edu.cn/)</u> |
+| AI-Result                                                    | <u>[lore.kernel.org](https://sashiko.dev/#/patchset/20260720135534.103599-1-25181214217%40stu.xidian.edu.cn)</u> |
+| sashiko-bot:Re: [PATCH] fbdev: core: Clamp total_size to smem_len in fb_io_read/write | <u>[lore.kernel.org](https://lore.kernel.org/all/20260720141559.0912D1F00A3A@smtp.kernel.org/)</u> |
+| [PATCH v2] fbdev: core: Clamp total_size to smem_len in read/write functions | <u>[lore.kernel.org](https://lore.kernel.org/all/20260721071522.106306-1-25181214217@stu.xidian.edu.cn/)</u> |
+| sashiko-bot:Re: [PATCH v2] fbdev: core: Clamp total_size to smem_len in read/write functions | <u>[lore.kernel.org](https://lore.kernel.org/all/20260721073109.81A121F000E9@smtp.kernel.org/)</u> |
+| Helge Deller:Re: [PATCH v2] fbdev: core: Clamp total_size to smem_len in read/write functions | <u>[lore.kernel.org](https://lore.kernel.org/all/bb8a8d13-07fb-4ee9-aed2-172c86cf3ac0@gmx.de/)</u> |
+| fbdev: core: Clamp total_size to smem_len in read/write functions | <u>[lore.kernel.org](https://git.kernel.org/pub/scm/linux/kernel/git/torvalds/linux.git/commit/?id=27b8e3c27d858156c6a6b94919d5964fabd40f7a)</u> |
 

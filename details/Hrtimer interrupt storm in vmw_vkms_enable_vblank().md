@@ -11,9 +11,9 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [PATCH] drm/vmwgfx: Fix hrtimer interrupt storm due to 0-period vblank | <u>[mail](../email/152_%5BPATCH%5D%20drm_vmwgfx_%20Fix%20hrtimer%20interrupt%20storm%20due%20to%200-period%20vblank.txt)</u> |
-| Re: [PATCH] drm/vmwgfx: Fix hrtimer interrupt storm due to 0-period vblank | <u>[mail](../email/156_Re_%20%5BPATCH%5D%20drm_vmwgfx_%20Fix%20hrtimer%20interrupt%20storm%20due%20to%200-period%20vb.txt)</u> |
-| [PATCH v2] drm/vblank: Reject 0-period timers to prevent hrtimer storm | <u>[mail](../email/159_%5BPATCH%20v2%5D%20drm_vblank_%20Reject%200-period%20timers%20to%20prevent%20hrtimer%20storm.txt)</u> |
-| Ping:[PATCH v2] drm/vblank: Reject 0-period timers to prevent hrtimer storm | <u>[mail](../email/218_Re_%5BPATCH%20v2%5D%20drm_vblank_%20Reject%200-period%20timers%20to%20prevent%20hrtimer%20st.txt)</u> |
-| Re:Re:[PATCH v2] drm/vblank: Reject 0-period timers to prevent hrtimer storm | <u>[mail](../email/405_Re_Re_%5BPATCH%20v2%5D%20drm_vblank_%20Reject%200-period%20timers%20to%20prevent%20hrtimer.txt)</u> |
+| [PATCH] drm/vmwgfx: Fix hrtimer interrupt storm due to 0-period vblank | <u>[lore.kernel.org](https://lore.kernel.org/all/20260518071741.441794-1-w15303746062@163.com/)</u> |
+| Re: [PATCH] drm/vmwgfx: Fix hrtimer interrupt storm due to 0-period vblank | <u>[lore.kernel.org](https://lore.kernel.org/all/fa91ccc0-7660-44fc-92a8-ab569ebe3a7c@suse.de/)</u> |
+| [PATCH v2] drm/vblank: Reject 0-period timers to prevent hrtimer storm | <u>[lore.kernel.org](https://lore.kernel.org/all/20260523025447.581709-1-w15303746062@163.com/)</u> |
+| Ping:[PATCH v2] drm/vblank: Reject 0-period timers to prevent hrtimer storm | <u>[lore.kernel.org](https://lore.kernel.org/all/33239270.5344.19e9683e439.Coremail.w15303746062@163.com/)</u> |
+| Re:Re:[PATCH v2] drm/vblank: Reject 0-period timers to prevent hrtimer storm | <u>[lore.kernel.org](https://lore.kernel.org/all/238fcbf9.514c.19fa257da64.Coremail.w15303746062@163.com/)</u> |
 

@@ -1,0 +1,139 @@
+Received: from mgamail.intel.com (unknown [198.175.65.13])
+	by hzbj-edu-front-2.icoremail.net (Coremail) with SMTP id BLQMCkA2E7MmmRVqUfJSAg--.29429S2;
+	Tue, 26 May 2026 20:59:19 +0800 (CST)
+Received: from mgamail.intel.com (unknown [198.175.65.13])
+	by ucloud-mxproxy-9 (Coremail) with SMTP id AQAAfwCXnyMgmRVqExnxAA--.179S3;
+	Tue, 26 May 2026 20:59:16 +0800 (CST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1779800357; x=1811336357;
+  h=message-id:date:mime-version:subject:to:cc:references:
+   from:in-reply-to:content-transfer-encoding;
+  bh=dx1QHl+ZguvyLwxXmsMyaqqMGmA9+UMAzdhIOUGhOPc=;
+  b=VjQkS6nsNCTl25zofigwSg5br6XiHjkOURGCPUS7R0nF1USMV4osV2ZK
+   +Sa95Z5iJzsNyOaj3BeIRtXWjIw15fbFkrYG4kJqyTeeImM4EAN3EO6Pe
+   +rEFeYp4b6FrV+S4YJcERmGyjV7VAslfIcJ3IQnQGrnFVKUU9pW6v+x/e
+   HO6ydfWK2mOK0alAjBBE8JoUovK/A7GiZW9u/K2tqPyd4+w6HrvKf/nY2
+   nZEA4gBRbVjCyOOOe4sLEgIWdvMRldotdDqPouBS6unFUP2HgDtoPEJPo
+   +ORAIScVK691Jdn33VRv/anocwaY5p6ETqsnDVJYbkK6CcuiyFkFKbzsA
+   Q==;
+X-CSE-ConnectionGUID: WKRxaiH0RgmRK8SCayz4mA==
+X-CSE-MsgGUID: HBLKeU2MR9KrXdFQtwb8mw==
+X-IronPort-AV: E=McAfee;i="6800,10657,11797"; a="91718385"
+X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; 
+   d="scan'208";a="91718385"
+Received: from orviesa009.jf.intel.com ([10.64.159.149])
+  by orvoesa105.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2026 05:59:12 -0700
+X-CSE-ConnectionGUID: a7ruXhaqQZq5EUNAguQlYg==
+X-CSE-MsgGUID: ftIw7pVfSfSH9tlggCYiJw==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.24,169,1774335600"; 
+   d="scan'208";a="241993485"
+Received: from conormcd-mobl2.ger.corp.intel.com (HELO [10.245.244.113]) ([10.245.244.113])
+  by orviesa009-auth.jf.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 26 May 2026 05:59:09 -0700
+Message-ID: <34bfe775-32bc-4ff9-bb41-1707956dbaeb@linux.intel.com>
+Date: Tue, 26 May 2026 14:59:06 +0200
+MIME-Version: 1.0
+User-Agent: Mozilla Thunderbird
+Subject: Re: [PATCH 6.18.y 0/5] drm/vkms: Backport generic vblank timer to fix
+ ABBA deadlock
+To: Sasha Levin <sashal@kernel.org>
+Cc: w15303746062 <w15303746062@163.com>, stable@vger.kernel.org,
+ gregkh@linuxfoundation.org, tzimmermann@suse.de, mripard@kernel.org,
+ louis.chauvet@bootlin.com, dri-devel@lists.freedesktop.org,
+ linux-kernel@vger.kernel.org, Mingyu Wang <25181214217@stu.xidian.edu.cn>
+References: <9c4a68c4-43a3-4a9b-a131-9570174c8df3@linux.intel.com>
+ <20260525131610.608273-1-w15303746062@163.com>
+ <20260525231000.agent5-0001@kernel.org>
+ <51ff85d2.9c25.19e642e591c.Coremail.w15303746062@163.com>
+ <99f74d53-0060-4fed-b83e-955071883651@linux.intel.com>
+ <ahWXMzJ3OWea3eyX@laps>
+Content-Language: en-US
+From: Maarten Lankhorst <maarten.lankhorst@linux.intel.com>
+In-Reply-To: <ahWXMzJ3OWea3eyX@laps>
+Content-Type: text/plain; charset=UTF-8
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAfwCXnyMgmRVqExnxAA--.179S3
+Authentication-Results: hzbj-edu-front-2.icoremail.net; spf=pass smtp.
+	mail=maarten.lankhorst@linux.intel.com; dkim=pass header.i=@intel.com
+X-Coremail-Antispam: 1UD129KBjvJXoWxur1fWrWrCw4UWrWDKw17KFg_yoW5tr48pr
+	ZxK3WYkrs5Gr18C3yIywn2va15t3s5Jw4DWFn8J348uan8tFyrJr4S9a15uFyDWF4rJw12
+	qrs8twn3JFWUJaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUyab7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r1j6r4UM7CIcVAF
+	z4kK6r1j6r18M28lY4IE4IxF12IF4wA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI
+	8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1l84ACjcxK6I8E
+	87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Jr0_Gr1le2I262IYc4CY6c
+	8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_
+	Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrw
+	CjxxvEw4Wlc2IjII80xcxEwVAKI48JMxvI42IY6xIIjxv20xvE14v26r1j6r1xMxvI42IY
+	6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lcIIF0xvEx4A2jsIE14v26r1j6r4UMxvI42IY6I
+	8E87Iv6xkF7I0E14v26r1j6r4UMxAIw28IcxkI7VAKI48JMxCjnVCjjxCrMxC20s026xCa
+	FVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_Jr
+	Wlx4CE17CEb7AF67AKxVWUtVW8ZwCIc40Y0x0EwIxGrwCI42IY6xAIw20EY4v20xvaj40_
+	Jr0_JF7vcSsGvfC2KfnxnUUI43ZEXa7IUYAsqtUUUUU==
+
+
+
+Den 2026-05-26 kl. 14:50, skrev Sasha Levin:
+> On Tue, May 26, 2026 at 02:48:55PM +0200, Maarten Lankhorst wrote:
+>> Hello,
+>>
+>> Den 2026-05-26 kl. 14:06, skrev w15303746062:
+>>>
+>>> Hi Sasha,
+>>>
+>>>> Looking at the five commits:
+>>>>
+>>>>  - 1/5 (74afeb812850) is the one that actually fixes the ABBA
+>>>>    deadlock you observed under Syzkaller; it adds the generic vblank
+>>>>    timer that replaces the open-coded vkms hrtimer path.
+>>>>
+>>>>  - 2/5 (d54dbb5963bd) adds new CRTC helpers for "simple use cases".
+>>>>    No Fixes:/Cc:stable, no described bug.
+>>>>
+>>>>  - 3/5 (02e2681ffe1a) is a refactor that converts vkms to the new
+>>>>    helpers. No Fixes:/Cc:stable, no described bug.
+>>>>
+>>>>  - 4/5 (79ae8510b5b8) is a v7.1-rc1 timeout bump that depends on 1/5.
+>>>>    It is not yet in any released stable, so applying it to 6.18.y
+>>>>    would put it on an LTS before any LTS contains it.
+>>>>
+>>>>  - 5/5 (3946d3ba9934) is a doc fix for 1/5.
+>>>>
+>>>> Per stable-kernel-rules, what I need to queue is the minimum set that
+>>>> fixes the bug. Could you explain, per patch, why 2/5..5/5 are required
+>>>> to make 1/5 work / are required to actually fix the deadlock? If only
+>>>> 1/5 is needed, please resend just that one with your Signed-off-by
+>>>> added (the carried patches today only have Thomas's S-o-b, which
+>>>> breaks the chain of custody on a stable submission).
+>>>
+>>> Thanks for the quick review and for pointing out the missing Signed-off-by. I apologize for that omission; it was my mistake during the cherry-pick process.
+>>>
+>>> Regarding the dependency chain, I would like to clarify why commit 1/5 alone cannot fix the issue:
+>>>
+>>> Commits 1/5 and 2/5 introduce the new generic vblank timer infrastructure to the DRM core but do *not* touch the vkms driver at all.
+>>> Commit 3/5 (02e2681ffe1a) is the actual fix that modifies `drivers/gpu/drm/vkms/vkms_crtc.c`. It removes the buggy open-coded hrtimer that causes the ABBA deadlock and switches vkms to use the new infrastructure introduced in 1/5 and 2/5.
+>>>
+>>> Therefore, 1/5, 2/5, and 3/5 form an indivisible set. Applying only 1/5 would leave the deadlock in vkms completely unpatched.
+>>>
+>>> As for 4/5 and 5/5 (the timeout bump and doc fix), Maarten Lankhorst (DRM maintainer) explicitly recommended pulling in this exact 5-commit list as the proper upstream fix for this specific vkms issue (see the mailing list link in this thread).
+>>>
+>>> However, if you feel 4/5 and 5/5 introduce unnecessary risk for the 6.18.y stable tree, I can absolutely drop them and only submit 1/5, 2/5, and 3/5.
+>>>
+>>> I am preparing a v2 patch series now with my Signed-off-by added to the chain of custody. Could you let me know if you prefer the full 5-patch series as recommended by DRM maintainers, or just the minimal 3-patch series?
+>>>
+>>> Best regards,
+>>> Mingyu
+>>
+>> 5/5 might strictly speaking not be needed as it's a documentation fix and I have no idea of the policy about those.
+>>
+>> The reporter made a bug report of an ABBA deadlock that was fixed in upstream by the first 4 patches, perhaps it's good to those attach here to this discussion.
+> 
+> I have no objection to taking all 5 if you're okay with it.
+> 
+
+Mingyu made an effort to reproduce, check if commits fixed it and then checked if other
+drivers needed the same bug fixed. I'm ok with the series.
+
+Kind regards,
+~Maarten Lankhorst

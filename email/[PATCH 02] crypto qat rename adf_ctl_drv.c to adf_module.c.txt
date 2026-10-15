@@ -1,0 +1,128 @@
+Received: from mgamail.intel.com (unknown [192.198.163.14])
+	by gzga-mx-mtada-g7-0 (Coremail) with SMTP id _____wDXbzeZqv1pRTU2AA--.14431S3;
+	Fri, 08 May 2026 17:19:23 +0800 (CST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/simple;
+  d=intel.com; i=@intel.com; q=dns/txt; s=Intel;
+  t=1778231963; x=1809767963;
+  h=from:to:cc:subject:date:message-id:in-reply-to:
+   references:mime-version:content-transfer-encoding;
+  bh=tLrUAWPHfkd1S0MOGuZUJUZqeQlW5Sqf8EsmggKNTwA=;
+  b=jL0+b8b3wVMYTqRSCfOpSDF8ek5QRqJ5Rvu2VqOC6BkU2MmnbwMaaaXo
+   WbeLnbIPkvRIUMyOvMvyXoLAZYCKpVh1K4f/JufbTlfXJYVaUwkz9kKcs
+   NTgCZvLLJ6S/oiQEyEbAEmwa2H7e5aX3A5MzlsrSN5cu7lVW+QgFs4Jiv
+   g74d5YnsVhzVyCR4ObeVC/BJY0HUpv0VVuyYeXaLrF+zFxlByNgwYkyIL
+   MlHJKiKCcRJqNK9quwDz+9B/uewbxMt5i7DoieKcpEVlmz23ZD/ainVHF
+   OAM0hyuvUKxFVv5Rml8uaYgP7nwD/YKCYANtgte1qQWypqWwvGjGXtB6t
+   A==;
+X-CSE-ConnectionGUID: kzkMGwweSPGD7NSOzBog0A==
+X-CSE-MsgGUID: rvgkkWdrQ5SCBCy0Q3/X0Q==
+X-IronPort-AV: E=McAfee;i="6800,10657,11779"; a="79238688"
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; 
+   d="scan'208";a="79238688"
+Received: from orviesa003.jf.intel.com ([10.64.159.143])
+  by fmvoesa108.fm.intel.com with ESMTP/TLS/ECDHE-RSA-AES256-GCM-SHA384; 08 May 2026 02:19:21 -0700
+X-CSE-ConnectionGUID: olFhwNEHSMGJts2hQb+1DA==
+X-CSE-MsgGUID: mKog6Q18QFyRZw31h08fGg==
+X-ExtLoop1: 1
+X-IronPort-AV: E=Sophos;i="6.23,223,1770624000"; 
+   d="scan'208";a="240712894"
+Received: from silpixa00401971.ir.intel.com ([10.20.226.106])
+  by orviesa003.jf.intel.com with ESMTP; 08 May 2026 02:19:19 -0700
+From: Giovanni Cabiddu <giovanni.cabiddu@intel.com>
+To: herbert@gondor.apana.org.au
+Cc: linux-crypto@vger.kernel.org,
+	qat-linux@intel.com,
+	wangzhi@stu.xidian.edu.cn,
+	byu@xidian.edu.cn,
+	w15303746062@163.com,
+	vdronov@redhat.com,
+	Giovanni Cabiddu <giovanni.cabiddu@intel.com>,
+	Ahsan Atta <ahsan.atta@intel.com>
+Subject: [PATCH 2/2] crypto: qat - rename adf_ctl_drv.c to adf_module.c
+Date: Fri,  8 May 2026 10:18:24 +0100
+Message-ID: <20260508091912.206913-3-giovanni.cabiddu@intel.com>
+X-Mailer: git-send-email 2.54.0
+In-Reply-To: <20260508091912.206913-1-giovanni.cabiddu@intel.com>
+References: <20260508091912.206913-1-giovanni.cabiddu@intel.com>
+MIME-Version: 1.0
+Organization: Intel Research and Development Ireland Ltd - Co. Reg. #308263 - Collinstown Industrial Park, Leixlip, County Kildare - Ireland
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:_____wDXbzeZqv1pRTU2AA--.14431S3
+Authentication-Results: gzga-mx-mtada-g7-0; spf=pass smtp.mail=giovann
+	i.cabiddu@intel.com; dkim=pass header.i=@intel.com
+X-Coremail-Antispam: 1Uf129KBjvJXoWxCFy5AFWkWFykJw1ftFW5Jrb_yoW5Gw1kpF
+	4Fga4S9rWqqrsF93y8J395Za40gasIg34Y9F1rGw1Ig3Wqyry8Aw4rta45AFWUCrW8GFyq
+	yayrAr17Way8AwUanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDUYxBIdaVFxhVjvjDU0xZFpf9x07UsqXQUUUUU=
+
+Now that the character device and IOCTL interface have been removed,
+adf_ctl_drv.c only contains module_init/module_exit hooks. Rename it
+to adf_module.c to better reflect its purpose and rename the init/exit
+functions accordingly.
+
+Signed-off-by: Giovanni Cabiddu <giovanni.cabiddu@intel.com>
+Reviewed-by: Ahsan Atta <ahsan.atta@intel.com>
+---
+ drivers/crypto/intel/qat/qat_common/Makefile              | 2 +-
+ .../intel/qat/qat_common/{adf_ctl_drv.c => adf_module.c}  | 8 ++++----
+ 2 files changed, 5 insertions(+), 5 deletions(-)
+ rename drivers/crypto/intel/qat/qat_common/{adf_ctl_drv.c => adf_module.c} (84%)
+
+diff --git a/drivers/crypto/intel/qat/qat_common/Makefile b/drivers/crypto/intel/qat/qat_common/Makefile
+index 9478111c8437..2b1649001518 100644
+--- a/drivers/crypto/intel/qat/qat_common/Makefile
++++ b/drivers/crypto/intel/qat/qat_common/Makefile
+@@ -9,7 +9,6 @@ intel_qat-y := adf_accel_engine.o \
+ 	adf_cfg.o \
+ 	adf_cfg_services.o \
+ 	adf_clock.o \
+-	adf_ctl_drv.o \
+ 	adf_dc.o \
+ 	adf_dev_mgr.o \
+ 	adf_gen2_config.o \
+@@ -26,6 +25,7 @@ intel_qat-y := adf_accel_engine.o \
+ 	adf_hw_arbiter.o \
+ 	adf_init.o \
+ 	adf_isr.o \
++	adf_module.o \
+ 	adf_mstate_mgr.o \
+ 	adf_rl_admin.o \
+ 	adf_rl.o \
+diff --git a/drivers/crypto/intel/qat/qat_common/adf_ctl_drv.c b/drivers/crypto/intel/qat/qat_common/adf_module.c
+similarity index 84%
+rename from drivers/crypto/intel/qat/qat_common/adf_ctl_drv.c
+rename to drivers/crypto/intel/qat/qat_common/adf_module.c
+index f01f2946de6e..fccaa71eeedc 100644
+--- a/drivers/crypto/intel/qat/qat_common/adf_ctl_drv.c
++++ b/drivers/crypto/intel/qat/qat_common/adf_module.c
+@@ -7,7 +7,7 @@
+ 
+ #include "adf_common_drv.h"
+ 
+-static int __init adf_register_ctl_device_driver(void)
++static int __init adf_register_module(void)
+ {
+ 	if (adf_init_misc_wq())
+ 		goto err_misc_wq;
+@@ -43,7 +43,7 @@ static int __init adf_register_ctl_device_driver(void)
+ 	return -EFAULT;
+ }
+ 
+-static void __exit adf_unregister_ctl_device_driver(void)
++static void __exit adf_unregister_module(void)
+ {
+ 	adf_exit_misc_wq();
+ 	adf_exit_aer();
+@@ -54,8 +54,8 @@ static void __exit adf_unregister_ctl_device_driver(void)
+ 	adf_clean_vf_map(false);
+ }
+ 
+-module_init(adf_register_ctl_device_driver);
+-module_exit(adf_unregister_ctl_device_driver);
++module_init(adf_register_module);
++module_exit(adf_unregister_module);
+ MODULE_LICENSE("Dual BSD/GPL");
+ MODULE_AUTHOR("Intel");
+ MODULE_DESCRIPTION("Intel(R) QuickAssist Technology");
+-- 
+2.54.0

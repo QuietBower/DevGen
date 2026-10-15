@@ -1,0 +1,77 @@
+Received: from proxy2120.mail.163.com (unknown [1.95.21.20])
+	by hzbj-edu-front-3.icoremail.net (Coremail) with SMTP id BbQMCkAGLznTfBlqkoxiAg--.64982S2;
+	Fri, 29 May 2026 19:47:31 +0800 (CST)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=163.com;
+	s=s110527; h=Date:From:To:Subject:Content-Type:MIME-Version:
+	Message-ID; bh=94GyrtKUPcw6dUudljrdpDPI38g/F1ms8pwc++tMTSI=; b=c
+	Rgk3b1hQkT6UQA8SK784y7gFHKJ5xWSNVvi3iaxZq7e78qRe5p/D1EdYCJVFzXCg
+	tizlsk8uODVdo2OD1HS6AxAV1EqfJW2BFHba5PnZC8oCoep1XK8gVSZRL79/YFHf
+	2o0nRT8OMu/dR2uIP0zoQ2oYqnKvD9CRlNJq9kxBVo=
+Received: from w15303746062$163.com ( [113.200.174.80] ) by
+ ajax-webmail-wmsvr-40-124 (Coremail) ; Fri, 29 May 2026 19:45:42 +0800
+ (CST)
+X-Originating-IP: [113.200.174.80]
+Date: Fri, 29 May 2026 19:45:42 +0800 (CST)
+From: w15303746062  <w15303746062@163.com>
+To: =?UTF-8?Q?Christian_K=C3=B6nig?= <christian.koenig@amd.com>
+Cc: maarten.lankhorst@linux.intel.com, mripard@kernel.org,
+	tzimmermann@suse.de, airlied@gmail.com, simona@ffwll.ch,
+	sumit.semwal@linaro.org, jeffy.chen@rock-chips.com,
+	dri-devel@lists.freedesktop.org, linux-kernel@vger.kernel.org,
+	linux-media@vger.kernel.org, linaro-mm-sig@lists.linaro.org,
+	"Mingyu Wang" <25181214217@stu.xidian.edu.cn>
+Subject: Re:Re: [PATCH v2] drm/prime: fix dangling dmabuf entries after
+ handle release
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
+ 20260403(27802f6d) Copyright (c) 2002-2026 www.mailtech.cn 163com
+In-Reply-To: <bb4d3330-822e-45ae-94f4-65ba0e351f57@amd.com>
+References: <0e12ce28-f5b7-4ffa-849c-df9ad1796e22@amd.com>
+ <20260528132932.1078483-1-w15303746062@163.com>
+ <62c256eb-1df4-4633-8040-222895b54f97@amd.com>
+ <7bbb8946.9d19.19e6ed958df.Coremail.w15303746062@163.com>
+ <bb4d3330-822e-45ae-94f4-65ba0e351f57@amd.com>
+X-NTES-SC: AL_Qu2TAvyeukkv5CiRYOkfmU0Qguw9Xcq5uPkj34FWN5t8jAvp6BgifHBkMWLY9tKqBSCQtgC+cAJg08FoUqNhfqckIc+3Gw44gLYit/sDw/2vEA==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=UTF-8
+MIME-Version: 1.0
+Message-ID: <5ffc2647.95cf.19e738df1f7.Coremail.w15303746062@163.com>
+X-Coremail-Locale: zh_CN
+X-CM-TRANSID:fCgvCgDXPyxnfBlqz22qAA--.908W
+X-CM-SenderInfo: jzrvjiatxuliiws6il2tof0z/xtbC4wcZ-GoZfGfigQAA3K
+Authentication-Results: hzbj-edu-front-3.icoremail.net; spf=pass smtp.
+	mail=w15303746062@163.com; dkim=pass header.i=@163.com
+X-Coremail-Antispam: 1UD129KBjDUn29KB7ZKAUJUUUUU529EdanIXcx71UUUUU7v73
+	VFW2AGmfu7jjvjm3AaLaJ3UjIYCTnIWjp_UUUob7AC8VAFwI0_Jr0_Gr1l1IIY67AEw4v_
+	Jr0_Jr4l8cAvFVCFI7AF0xCrM28CjxkF64kEwVA0rcxSw2x7M28EF7xvwVC0I7IYx2IY67
+	AKxVWUJVWUCwA2z4x0Y4vE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIE
+	14v26F4UJVW0owA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Cr1j6rxdM2vj6VCEFcxC0VAYjx
+	AxZF0EFcxC0VAYjxAxZF0Ew4CEw7xC0VCjxxvEa2IrM2vYz4IE04k24VAvwVAKI4IrM2AI
+	xVAIcxkEcVAq07x20xvEncxIr21l5I8CrVACY4xI64kE6c02F40Ex7xfMcIj6xIIjxv20x
+	vE14v26r106r15McIj6I8E87Iv67AKxVW8Jr0_Cr1UMcvjeVCFs4IE7xkEbVWUJVW8JwAC
+	jcxG0xvY0x0EwIxGrwACjI8F5VA0II8E6IAqYI8I648v4I1lFcxC0VAYjxAxZF0Ew4CEw7
+	xC0wACY4xI67k04243AVC20s07Mx02cVCv0xWlc2xSY4AK67AK6r4kMxkI7II2jI8vz4vE
+	wIxGrwCYIxAIcVC0I7IYx2IY67AKxVWUJVWUCwCYIxAIcVC0I7IYx2IY6xkF7I0E14v26r
+	1j6r4UMxvI42IY6I8E87Iv67AKxVWUJVW8JwCYIxAIcVC2z280aVCY1x0267AKxVWUJVW8
+	JwCF04k20xvY0x0EwIxGrwCF72vE77IF4wCFx2IqxVCFs4IE7xkEbVWUJVW8JwC20s026c
+	02F40E14v26r1j6r18MI8I3I0E7480Y4vE14v26r106r1rMI8E67AF67kF1VAFwI0_Jw0_
+	GFylIxkGc2Ij64vIr41lIxAIcVCF04k26cxKx2IYs7xG6r1j6r1xMVCEFcxC0VAYjxAxZF
+	UvcSsGvfC2KfnxnUUI43ZEXa7VUbHq2PUUUUU==
+
+Hi Christian,
+
+Thank you for your guidance and patience throughout this discussion.
+
+After further investigation, I realize that identifying the precise
+root cause requires a deeper understanding of the DRM subsystem and
+access to the specific syzkaller reproducer, which I currently lack.
+
+To avoid wasting your time with incomplete patches, I'll step back
+from this issue for now and continue learning the codebase. If I
+manage to reproduce the problem locally or find more concrete
+evidence, I'll follow up with a proper analysis.
+
+Thank you again for the review and the valuable lessons.
+
+Regards,
+Mingyu

@@ -1,0 +1,117 @@
+Received: from tor.source.kernel.org (unknown [172.105.4.254])
+	by hzbj-edu-front-2.icoremail.net (Coremail) with SMTP id BLQMCkAWndubo7NqEQAZAA--.40768S2;
+	Wed, 23 Sep 2026 18:02:04 +0800 (CST)
+Received: from tor.source.kernel.org (unknown [172.105.4.254])
+	by oracle-mxproxy-4 (Coremail) with SMTP id AQAAfwDHXHSTo7NqjtBiAA--.5S3;
+	Wed, 23 Sep 2026 18:01:57 +0800 (CST)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by tor.source.kernel.org (Postfix) with ESMTP id 87761600AA;
+	Wed, 23 Sep 2026 10:01:54 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 830891F000FF;
+	Wed, 23 Sep 2026 10:01:53 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=linuxfoundation.org;
+	s=korg; t=1790157714;
+	bh=eoouCCAR+lexVvTgBhGQxaErgonrsbG4y/sMxpIGL/U=;
+	h=Subject:To:From:Date;
+	b=FlT4UK/JHuhqwjQY6t89UVt0ly9l7WLqu4NHMSfjYwDoxC4/GibnugHY2YIlIh74K
+	 b5zzXfOQ/sMehBAW/xVrUBBw6q3KnbU6rzTI+6jRGEN8aiTJV0yS0/LgOevYpBeg2p
+	 CfcH91GXURghIgCQvIM78A8qRusn1RowI24Bnprc=
+Subject: patch "tty: vt: fix memory leak in vc_allocate()" added to tty-linus
+To: 25181214217@stu.xidian.edu.cn,gregkh@linuxfoundation.org,stable@kernel.org
+From: <gregkh@linuxfoundation.org>
+Date: Wed, 23 Sep 2026 12:01:50 +0200
+Message-ID: <2026092350-chevron-resistant-542c@gregkh>
+MIME-Version: 1.0
+Content-Type: text/plain; charset=ANSI_X3.4-1968
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAfwDHXHSTo7NqjtBiAA--.5S3
+Authentication-Results: hzbj-edu-front-2.icoremail.net; spf=none smtp.
+	mail=gregkh@linuxfoundation.org; dkim=pass header.i=@linuxfoundation.o
+	rg
+X-Coremail-Antispam: 1UD129KBjvJXoWxGF17Kr45Ww48AF4DCrykXwb_yoW5Ww17pr
+	s8Krs2yFn0gw1vk3Z7Aw18uFyru3y8Kr13GFyjg34YvwnxXr1Ikr1Sq34UWryUXrs3Kay2
+	qrWUZw1S9F1DZaDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUv0b7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r1j6r4UM7CIcVAF
+	z4kK6r1j6r18M28lY4IE4IxF12IF4wA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI
+	8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1l84ACjcxK6I8E
+	87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Jr0_Gr1le2I262IYc4CY6c
+	8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_
+	Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvEwIxGrw
+	AKzVCY07xG64k0F24l7I0Y6sxI4wCY02Avz4vEIxC_Gw1lc2IjII80xcxEwVAKI48JMxvI
+	42IY6xIIjxv20xvE14v26r1j6r1xMxvI42IY6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1lcI
+	IF0xvEx4A2jsIE14v26r1j6r4UMxvI42IY6I8E87Iv6xkF7I0E14v26r1j6r4UMxAIw28I
+	cxkI7VAKI48JMxCjnVAKz4kxMxC20s026xCaFVCjc4AY6r1j6r4UMI8I3I0E5I8CrVAFwI
+	0_Jr0_Jr4lx2IqxVCjr7xvwVAFwI0_JrI_JrWlx4CE17CEb7AF67AKxVWUXVWUAwCIc40Y
+	0x0EwIxGrwCI42IY6xAIw20EY4v20xvaj40_Jr0_JF7vcSsGvfC2KfnxnUUI43ZEXa7IUO
+	7l1JUUUUU==
+
+
+This is a note to let you know that I've just added the patch titled
+
+    tty: vt: fix memory leak in vc_allocate()
+
+to my tty git tree which can be found at
+    git://git.kernel.org/pub/scm/linux/kernel/git/gregkh/tty.git
+in the tty-linus branch.
+
+The patch will show up in the next release of the linux-next tree
+(usually sometime within the next 24 hours during the week.)
+
+The patch will hopefully also be merged in Linus's tree for the
+next -rc kernel release.
+
+If you have any questions about this process, please let me know.
+
+
+From 5b114bfc1dfd88f9d50822d532f7f1fce0f7388a Mon Sep 17 00:00:00 2001
+From: Mingyu Wang <25181214217@stu.xidian.edu.cn>
+Date: Mon, 3 Aug 2026 22:45:56 +0800
+Subject: tty: vt: fix memory leak in vc_allocate()
+
+If the screen buffer allocation fails in vc_allocate(), the error handling
+path jumps to `err_free`. However, this path fails to release the unicode
+screen map attached to `vc->uni_pagedict_loc`.
+
+During the early stages of vc_allocate(), the unicode screen map is either
+newly allocated via con_set_default_unimap() or shares the default unicode
+map from a previously initialized console (which increments its refcount).
+If the subsequent kzalloc() for the screen buffer fails, the err_free path
+frees the vc structure but leaves the attached uni_pagedict with an
+elevated refcount. This results in an unreferenced object memory leak, as
+the reference to the dictionary is lost and its refcount can never reach
+zero.
+
+This issue was discovered by DevGen (an automated virtual device modeling
+fuzzer based on Syzkaller). During fuzzing with kernel fault injection
+(failslab) enabled, the fuzzer forcefully failed the kzalloc() for the
+screen buffer, exposing this error-handling path leak.
+
+Fix this by checking *vc->uni_pagedict_loc and calling con_free_unimap(vc)
+in the err_free path before kfree(vc). This safely decrements the refcount
+and releases the dictionary memory if this was the last reference. The
+explicit check is added to maintain consistency with other callers.
+
+Fixes: 34902b7f2754 ("tty: vt, get rid of weird source code flow")
+Cc: stable <stable@kernel.org>
+Signed-off-by: Mingyu Wang <25181214217@stu.xidian.edu.cn>
+Link: https://patch.msgid.link/20260803144556.163856-1-25181214217@stu.xidian.edu.cn
+Signed-off-by: Greg Kroah-Hartman <gregkh@linuxfoundation.org>
+---
+ drivers/tty/vt/vt.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/drivers/tty/vt/vt.c b/drivers/tty/vt/vt.c
+index 57edf37495a8..51f8fd103dcf 100644
+--- a/drivers/tty/vt/vt.c
++++ b/drivers/tty/vt/vt.c
+@@ -1134,6 +1134,8 @@ int vc_allocate(unsigned int currcons)	/* return 0 on success */
+ 	return 0;
+ err_free:
+ 	visual_deinit(vc);
++	if (*vc->uni_pagedict_loc)
++		con_free_unimap(vc);
+ 	kfree(vc);
+ 	vc_cons[currcons].d = NULL;
+ 	return err;
+-- 
+2.55.0

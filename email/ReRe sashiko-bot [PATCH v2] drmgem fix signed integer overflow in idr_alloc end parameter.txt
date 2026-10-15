@@ -1,0 +1,202 @@
+Received: from w15303746062$163.com ( [113.200.174.80] ) by
+ ajax-webmail-wmsvr-40-113 (Coremail) ; Fri, 5 Jun 2026 22:56:37 +0800 (CST)
+X-Originating-IP: [113.200.174.80]
+Date: Fri, 5 Jun 2026 22:56:37 +0800 (CST)
+From: w15303746062  <w15303746062@163.com>
+To: sashiko-reviews@lists.linux.dev
+Cc: dri-devel@lists.freedesktop.org
+Subject: Re:Re: [PATCH v2] drm/gem: fix signed integer overflow in idr_alloc
+ end parameter
+X-Priority: 3
+X-Mailer: Coremail Webmail Server Version 2023.4-cmXT build
+ 20260403(27802f6d) Copyright (c) 2002-2026 www.mailtech.cn 163com
+In-Reply-To: <20260605143900.57CE51F00893@smtp.kernel.org>
+References: <20260605142644.1205922-1-w15303746062@163.com>
+ <20260605143900.57CE51F00893@smtp.kernel.org>
+X-NTES-SC: AL_Qu2TAvqcvksi4SmebOkfmU0Qguw9Xcq5uPkj34FWN5t8jDrp5QodX0JFHVfbys6/Dy2ItRqsex1+1f9nQoZgZZ0JDXrCODcE//wk2PG4ADJ/ow==
+Content-Transfer-Encoding: base64
+Content-Type: text/plain; charset=GBK
+MIME-Version: 1.0
+Message-ID: <75585436.9c70.19e98494057.Coremail.w15303746062@163.com>
+X-Coremail-Locale: zh_CN
+
+CgpIaSBhbGwsCgpUaGFua3MgdG8gU2FzaGlrbyBBSSBmb3IgdGhlIHJldmlldy4KClRvIGNsYXJp
+ZnksIHRoZSB0d28gaXNzdWVzIHJlcG9ydGVkICh0aGUgbWlzc2luZyBpZHJfcHJlbG9hZCBhbmQg
+dGhlIGNyaXRpY2FsIFVBRiByYWNlIGNvbmRpdGlvbikgYXJlIHByZS1leGlzdGluZyBidWdzIGlu
+IGRybV9nZW1fY2hhbmdlX2hhbmRsZV9pb2N0bCgpIGFuZCBhcmUgb3J0aG9nb25hbCB0byB0aGUg
+aW50ZWdlciBvdmVyZmxvdyBmaXggYWRkcmVzc2VkIGluIG15IGN1cnJlbnQgdjIgcGF0Y2guCgpU
+aGUgVUFGIHJhY2UgY29uZGl0aW9uIGlzIHBhcnRpY3VsYXJseSBhbGFybWluZy4gSSB3aWxsIGtl
+ZXAgbXkgY3VycmVudCB2MiBwYXRjaCBmb2N1c2VkIHB1cmVseSBvbiBmaXhpbmcgdGhlIGludGVn
+ZXIgb3ZlcmZsb3cgYXMgaXQgY3VycmVudGx5IHN0YW5kcy4KCkkgd2lsbCBpbnZlc3RpZ2F0ZSB0
+aGVzZSB0d28gcHJlLWV4aXN0aW5nIGlzc3VlcyBzZXBhcmF0ZWx5IGFuZCBzdWJtaXQgYSBzZXBh
+cmF0ZSBwYXRjaCBzZXJpZXMgdG8gYWRkcmVzcyB0aGVtLgoKVGhhbmtzLApNaW5neXUKCkF0IDIw
+MjYtMDYtMDUgMjI6Mzg6NTksIHNhc2hpa28tYm90QGtlcm5lbC5vcmcgd3JvdGU6Cj5UaGFuayB5
+b3UgZm9yIHlvdXIgY29udHJpYnV0aW9uISBTYXNoaWtvIEFJIHJldmlldyBmb3VuZCAyIHBvdGVu
+dGlhbCBpc3N1ZShzKSB0byBjb25zaWRlcjoKPgo+UHJlLWV4aXN0aW5nIGlzc3VlczoKPi0gW0Ny
+aXRpY2FsXSBBIHJhY2UgY29uZGl0aW9uIGV4aXN0cyBiZXR3ZWVuIGBkcm1fZ2VtX2NoYW5nZV9o
+YW5kbGVfaW9jdGxgIGFuZCBgRFJNX0lPQ1RMX0dFTV9DTE9TRWAgZHVlIHRvIGEgbG9ja2xlc3Mg
+d2luZG93LCBhbGxvd2luZyBhIFVzZS1BZnRlci1GcmVlLCB1bmJhbGFuY2VkIGhhbmRsZSBjb3Vu
+dHMsIGFuZCBJRFIgY29ycnVwdGlvbi4KPi0gW01lZGl1bV0gQ2FsbGluZyBgaWRyX2FsbG9jYCB3
+aXRoIGBHRlBfTk9XQUlUYCBpbnNpZGUgYSBzcGlubG9jayB3aXRob3V0IGEgcHJlY2VkaW5nIGBp
+ZHJfcHJlbG9hZGAgY2FuIGNhdXNlIHNwdXJpb3VzIG1lbW9yeSBhbGxvY2F0aW9uIGZhaWx1cmVz
+Lgo+LS0KPgo+Y29tbWl0IGI3NjViNDJjYTg2MmI1ZTE1Nzc0NjVlMDdhMTFhM2YyOWUyNGM4NDgK
+PkF1dGhvcjogTWluZ3l1IFdhbmcgPDI1MTgxMjE0MjE3QHN0dS54aWRpYW4uZWR1LmNuPgo+Cj5k
+cm0vZ2VtOiBmaXggc2lnbmVkIGludGVnZXIgb3ZlcmZsb3cgaW4gaWRyX2FsbG9jIGVuZCBwYXJh
+bWV0ZXIKPgo+VGhpcyBjb21taXQgZml4ZXMgYSBzaWduZWQgaW50ZWdlciBvdmVyZmxvdyB2dWxu
+ZXJhYmlsaXR5IGluCj5kcm1fZ2VtX2NoYW5nZV9oYW5kbGVfaW9jdGwoKS4gSXQgdGlnaHRlbnMg
+dGhlIGxpbWl0IGNoZWNrIHRvID49IElOVF9NQVggdG8KPnByZXZlbnQgb3ZlcmZsb3cgYW5kIGV4
+cGxpY2l0bHkgcmVqZWN0cyAwIGFzIGEgaGFuZGxlLCBhcyAwIGlzIHVuaXZlcnNhbGx5Cj50cmVh
+dGVkIGFzIGFuIGludmFsaWQgaGFuZGxlIGluIHRoZSBEUk0gc3Vic3lzdGVtLgo+Cj4+IGRpZmYg
+LS1naXQgYS9kcml2ZXJzL2dwdS9kcm0vZHJtX2dlbS5jIGIvZHJpdmVycy9ncHUvZHJtL2RybV9n
+ZW0uYwo+PiBpbmRleCBhYzc1MWE0MmRiMjgxLi5iNDIyNDFkNjgwMmY5IDEwMDY0NAo+PiAtLS0g
+YS9kcml2ZXJzL2dwdS9kcm0vZHJtX2dlbS5jCj4+ICsrKyBiL2RyaXZlcnMvZ3B1L2RybS9kcm1f
+Z2VtLmMKPj4gQEAgLTEwMjUsOCArMTAyNSwxMiBAQCBpbnQgZHJtX2dlbV9jaGFuZ2VfaGFuZGxl
+X2lvY3RsKHN0cnVjdCBkcm1fZGV2aWNlICpkZXYsIHZvaWQgKmRhdGEsCj4+ICAJaWYgKCFkcm1f
+Y29yZV9jaGVja19mZWF0dXJlKGRldiwgRFJJVkVSX0dFTSkpCj4+ICAJCXJldHVybiAtRU9QTk9U
+U1VQUDsKPj4gIAo+PiAtCS8qIGlkcl9hbGxvYygpIGxpbWl0YXRpb24uICovCj4+IC0JaWYgKGFy
+Z3MtPm5ld19oYW5kbGUgPiBJTlRfTUFYKQo+PiArCS8qCj4+ICsJICogaWRyX2FsbG9jKCkgbGlt
+aXRhdGlvbi4KPj4gKwkgKiBSZWplY3QgaGFuZGxlIDAgKGludmFsaWQgaW4gRFJNKSBhbmQgc3Ry
+aWN0bHkgYm91bmQKPj4gKwkgKiB0byA8IElOVF9NQVggdG8gYXZvaWQgc2lnbmVkIGludGVnZXIg
+b3ZlcmZsb3cgaW4gaGFuZGxlICsgMS4KPj4gKwkgKi8KPj4gKwlpZiAoYXJncy0+bmV3X2hhbmRs
+ZSA9PSAwIHx8IGFyZ3MtPm5ld19oYW5kbGUgPj0gSU5UX01BWCkKPj4gIAkJcmV0dXJuIC1FSU5W
+QUw7Cj4+ICAJaGFuZGxlID0gYXJncy0+bmV3X2hhbmRsZTsKPj4gIAo+Cj5bU2V2ZXJpdHk6IE1l
+ZGl1bV0KPlRoaXMgaXMgYSBwcmUtZXhpc3RpbmcgaXNzdWUsIGJ1dCBjYW4gY2FsbGluZyBpZHJf
+YWxsb2MoKSB3aXRoIEdGUF9OT1dBSVQKPmluc2lkZSBhIHNwaW5sb2NrIHdpdGhvdXQgYSBwcmVj
+ZWRpbmcgaWRyX3ByZWxvYWQoKSBjYXVzZSBzcHVyaW91cyBtZW1vcnkKPmFsbG9jYXRpb24gZmFp
+bHVyZXM/Cj4KPmRyaXZlcnMvZ3B1L2RybS9kcm1fZ2VtLmM6ZHJtX2dlbV9jaGFuZ2VfaGFuZGxl
+X2lvY3RsKCkgewo+CS4uLgo+CXNwaW5fbG9jaygmZmlsZV9wcml2LT50YWJsZV9sb2NrKTsKPgku
+Li4KPglyZXQgPSBpZHJfYWxsb2MoJmZpbGVfcHJpdi0+b2JqZWN0X2lkciwgb2JqLCBoYW5kbGUs
+IGhhbmRsZSArIDEsCj4JCQlHRlBfTk9XQUlUKTsKPgkuLi4KPn0KPgo+QmVjYXVzZSBoYW5kbGUg
+aXMgdXNlci1jb250cm9sbGVkIGFuZCBjYW4gYmUgdXAgdG8gSU5UX01BWCAtIDEsIHRoZSBJRFIg
+cmFkaXgKPnRyZWUgbWF5IG5lZWQgdG8gYWxsb2NhdGUgbXVsdGlwbGUgZGVlcCB0cmVlIG5vZGVz
+LiBXaXRob3V0IHByZWxvYWRpbmcsIGlzIGl0Cj5wb3NzaWJsZSBmb3IgdGhpcyBHRlBfTk9XQUlU
+IGFsbG9jYXRpb24gdG8gZmFpbCB1bmRlciBtZW1vcnkgcHJlc3N1cmUsIGNhdXNpbmcKPnRoZSBp
+b2N0bCB0byBzcHVyaW91c2x5IHJldHVybiAtRU5PTUVNPwo+Cj5bU2V2ZXJpdHk6IENyaXRpY2Fs
+XQo+VGhpcyBpcyBhIHByZS1leGlzdGluZyBpc3N1ZSwgYnV0IGRvZXMgYSByYWNlIGNvbmRpdGlv
+biBleGlzdCBiZXR3ZWVuCj5kcm1fZ2VtX2NoYW5nZV9oYW5kbGVfaW9jdGwoKSBhbmQgRFJNX0lP
+Q1RMX0dFTV9DTE9TRSBkdWUgdG8gYSBsb2NrbGVzcwo+d2luZG93Pwo+Cj5kcml2ZXJzL2dwdS9k
+cm0vZHJtX2dlbS5jOmRybV9nZW1fY2hhbmdlX2hhbmRsZV9pb2N0bCgpIHsKPgkuLi4KPglpZHJf
+cmVwbGFjZSgmZmlsZV9wcml2LT5vYmplY3RfaWRyLCBOVUxMLCBhcmdzLT5oYW5kbGUpOwo+CXNw
+aW5fdW5sb2NrKCZmaWxlX3ByaXYtPnRhYmxlX2xvY2spOwo+CS4uLgo+fQo+Cj5kcm1fZ2VtX2No
+YW5nZV9oYW5kbGVfaW9jdGwoKSBsb29rcyB1cCBhcmdzLT5oYW5kbGUgbG9ja2xlc3NseSwgZ2Fp
+bmluZyBhCj50ZW1wb3Jhcnkga3JlZi4gQmV0d2VlbiB0aGlzIGxvb2t1cCBhbmQgYWNxdWlyaW5n
+IHRhYmxlX2xvY2ssIGNvdWxkIGFub3RoZXIKPnRocmVhZCBjYWxsIERSTV9JT0NUTF9HRU1fQ0xP
+U0Ugb24gYXJncy0+aGFuZGxlLCByZW1vdmluZyBpdCBmcm9tIHRoZSBJRFIgYW5kCj5yZWxlYXNp
+bmcgaXRzIGhhbmRsZSByZWZlcmVuY2U/Cj4KPldoZW4gZHJtX2dlbV9jaGFuZ2VfaGFuZGxlX2lv
+Y3RsKCkgcmVzdW1lcywgaXQgaWdub3JlcyB0aGUgcmV0dXJuIHZhbHVlIG9mCj5pZHJfcmVwbGFj
+ZSguLi4sIE5VTEwsIGFyZ3MtPmhhbmRsZSkgYW5kIHVuY29uZGl0aW9uYWxseSBhc3NvY2lhdGVz
+Cj5hcmdzLT5uZXdfaGFuZGxlIHdpdGggb2JqLgo+Cj5TaW5jZSB0aGUgaGFuZGxlIHJlZmVyZW5j
+ZSB3YXMgZHJvcHBlZCBieSB0aGUgY29uY3VycmVudCBjbG9zZSwgYW5kIHRoaXMKPmZ1bmN0aW9u
+IGRvZXNuJ3QgYWNxdWlyZSBhIG5ldyBvbmUgZm9yIHRoZSBuZXcgaGFuZGxlLCBjb3VsZCBvYmog
+YmUgbGVmdCBpbgo+dGhlIElEUiB3aXRob3V0IGEgY29ycmVzcG9uZGluZyBoYW5kbGUgcmVmZXJl
+bmNlPwo+Cj5XaGVuIHRoZSB0ZW1wb3JhcnkgbG9va3VwIGtyZWYgaXMgZHJvcHBlZCB2aWEgZHJt
+X2dlbV9vYmplY3RfcHV0KG9iaikgYXQgdGhlCj5lbmQgb2YgdGhlIGZ1bmN0aW9uLCB0aGUgb2Jq
+ZWN0IGlzIGZyZWVkLCBidXQgYXJncy0+bmV3X2hhbmRsZSBzdGlsbCBwb2ludHMgdG8KPml0IGlu
+IHRoZSBJRFIuIENvdWxkIHN1YnNlcXVlbnQgYWNjZXNzIHRvIHRoaXMgaGFuZGxlIHRyaWdnZXIg
+YW4gZXhwbG9pdGFibGUKPnVzZS1hZnRlci1mcmVlPwo+Cj4tLSAKPlNhc2hpa28gQUkgcmV2aWV3
+IKGkIGh0dHBzOi8vc2FzaGlrby5kZXYvIy9wYXRjaHNldC8yMDI2MDYwNTE0MjY0NC4xMjA1OTIy
+LTEtdzE1MzAzNzQ2MDYyQDE2My5jb20/cGFydD0xCg==
+
+
+Hi all,
+
+Thanks to Sashiko AI for the review.
+
+To clarify, the two issues reported (the missing idr_preload and the critical UAF race condition) are pre-existing bugs in drm_gem_change_handle_ioctl() and are orthogonal to the integer overflow fix addressed in my current v2 patch.
+
+The UAF race condition is particularly alarming. I will keep my current v2 patch focused purely on fixing the integer overflow as it currently stands.
+
+I will investigate these two pre-existing issues separately and submit a separate patch series to address them.
+
+Thanks,
+Mingyu
+
+At 2026-06-05 22:38:59, sashiko-bot@kernel.org wrote:
+>Thank you for your contribution! Sashiko AI review found 2 potential issue(s) to consider:
+>
+>Pre-existing issues:
+>- [Critical] A race condition exists between `drm_gem_change_handle_ioctl` and `DRM_IOCTL_GEM_CLOSE` due to a lockless window, allowing a Use-After-Free, unbalanced handle counts, and IDR corruption.
+>- [Medium] Calling `idr_alloc` with `GFP_NOWAIT` inside a spinlock without a preceding `idr_preload` can cause spurious memory allocation failures.
+>--
+>
+>commit b765b42ca862b5e1577465e07a11a3f29e24c848
+>Author: Mingyu Wang <25181214217@stu.xidian.edu.cn>
+>
+>drm/gem: fix signed integer overflow in idr_alloc end parameter
+>
+>This commit fixes a signed integer overflow vulnerability in
+>drm_gem_change_handle_ioctl(). It tightens the limit check to >= INT_MAX to
+>prevent overflow and explicitly rejects 0 as a handle, as 0 is universally
+>treated as an invalid handle in the DRM subsystem.
+>
+>> diff --git a/drivers/gpu/drm/drm_gem.c b/drivers/gpu/drm/drm_gem.c
+>> index ac751a42db281..b42241d6802f9 100644
+>> --- a/drivers/gpu/drm/drm_gem.c
+>> +++ b/drivers/gpu/drm/drm_gem.c
+>> @@ -1025,8 +1025,12 @@ int drm_gem_change_handle_ioctl(struct drm_device *dev, void *data,
+>>  	if (!drm_core_check_feature(dev, DRIVER_GEM))
+>>  		return -EOPNOTSUPP;
+>>  
+>> -	/* idr_alloc() limitation. */
+>> -	if (args->new_handle > INT_MAX)
+>> +	/*
+>> +	 * idr_alloc() limitation.
+>> +	 * Reject handle 0 (invalid in DRM) and strictly bound
+>> +	 * to < INT_MAX to avoid signed integer overflow in handle + 1.
+>> +	 */
+>> +	if (args->new_handle == 0 || args->new_handle >= INT_MAX)
+>>  		return -EINVAL;
+>>  	handle = args->new_handle;
+>>  
+>
+>[Severity: Medium]
+>This is a pre-existing issue, but can calling idr_alloc() with GFP_NOWAIT
+>inside a spinlock without a preceding idr_preload() cause spurious memory
+>allocation failures?
+>
+>drivers/gpu/drm/drm_gem.c:drm_gem_change_handle_ioctl() {
+>	...
+>	spin_lock(&file_priv->table_lock);
+>	...
+>	ret = idr_alloc(&file_priv->object_idr, obj, handle, handle + 1,
+>			GFP_NOWAIT);
+>	...
+>}
+>
+>Because handle is user-controlled and can be up to INT_MAX - 1, the IDR radix
+>tree may need to allocate multiple deep tree nodes. Without preloading, is it
+>possible for this GFP_NOWAIT allocation to fail under memory pressure, causing
+>the ioctl to spuriously return -ENOMEM?
+>
+>[Severity: Critical]
+>This is a pre-existing issue, but does a race condition exist between
+>drm_gem_change_handle_ioctl() and DRM_IOCTL_GEM_CLOSE due to a lockless
+>window?
+>
+>drivers/gpu/drm/drm_gem.c:drm_gem_change_handle_ioctl() {
+>	...
+>	idr_replace(&file_priv->object_idr, NULL, args->handle);
+>	spin_unlock(&file_priv->table_lock);
+>	...
+>}
+>
+>drm_gem_change_handle_ioctl() looks up args->handle locklessly, gaining a
+>temporary kref. Between this lookup and acquiring table_lock, could another
+>thread call DRM_IOCTL_GEM_CLOSE on args->handle, removing it from the IDR and
+>releasing its handle reference?
+>
+>When drm_gem_change_handle_ioctl() resumes, it ignores the return value of
+>idr_replace(..., NULL, args->handle) and unconditionally associates
+>args->new_handle with obj.
+>
+>Since the handle reference was dropped by the concurrent close, and this
+>function doesn't acquire a new one for the new handle, could obj be left in
+>the IDR without a corresponding handle reference?
+>
+>When the temporary lookup kref is dropped via drm_gem_object_put(obj) at the
+>end of the function, the object is freed, but args->new_handle still points to
+>it in the IDR. Could subsequent access to this handle trigger an exploitable
+>use-after-free?
+>
+>-- 
+>Sashiko AI review · https://sashiko.dev/#/patchset/20260605142644.1205922-1-w15303746062@163.com?part=1

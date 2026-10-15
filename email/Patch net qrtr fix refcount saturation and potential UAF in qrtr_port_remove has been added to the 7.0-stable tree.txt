@@ -1,0 +1,146 @@
+Received: from sea.source.kernel.org (unknown [172.234.252.31])
+	by hzbj-edu-front-3.icoremail.net (Coremail) with SMTP id BbQMCkBWfzkkTC1qrAuuAg--.12387S2;
+	Sat, 13 Jun 2026 20:25:08 +0800 (CST)
+Received: from sea.source.kernel.org (unknown [172.234.252.31])
+	by ucloud-mxproxy-9 (Coremail) with SMTP id AQAAfwBXXu4aTC1q+WoOAA--.21S3;
+	Sat, 13 Jun 2026 20:25:01 +0800 (CST)
+Received: from smtp.kernel.org (quasi.space.kernel.org [100.103.45.18])
+	by sea.source.kernel.org (Postfix) with ESMTP id 682D64356A;
+	Sat, 13 Jun 2026 12:24:56 +0000 (UTC)
+Received: by smtp.kernel.org (Postfix) with ESMTPSA id 7C2831F000E9;
+	Sat, 13 Jun 2026 12:24:55 +0000 (UTC)
+DKIM-Signature: v=1; a=rsa-sha256; c=relaxed/relaxed; d=kernel.org;
+	s=k20260515; t=1781353496;
+	bh=ajgjknS0GGHUnvEO4vPgH0/I5yW9+nN9QIJ+6lTkCXM=;
+	h=From:To:Cc:Subject:Date:Reply-To;
+	b=AYm9K0PMpPsFrU4ug6lu3r+31G2fnb868GV4ZdjTceF0i6/qiXF4ibYqnFAuRQL14
+	 RsClibqGV4X4/NBq5LhZfZvROP/eyppICFFj2phNHLBmgO6sRcc06fNsaGmLmYeu0c
+	 jdIxInQSqL2X0k4sViA4GOuOAQc+HYx8ODOme/MFoajRgO3dLWXSVr9tzEHHbDJPEr
+	 /fV82EE3oP4j6TdcymAT3P9n2tgcXIKcorHNhpmNT1n2ulw/IMleOFmMgc29gFWT2G
+	 VknXVmR+dUTt/xDf8v6D9gXvVuQYKgmuN1Tv906DsMspi7GcvPeKAnbLX5VysjPJck
+	 dabv1NtjJokjg==
+From: Sasha Levin <sashal@kernel.org>
+To: stable-commits@vger.kernel.org,
+	25181214217@stu.xidian.edu.cn
+Cc: Manivannan Sadhasivam <mani@kernel.org>,
+	"David S. Miller" <davem@davemloft.net>,
+	Eric Dumazet <edumazet@google.com>,
+	Jakub Kicinski <kuba@kernel.org>,
+	Paolo Abeni <pabeni@redhat.com>,
+	Simon Horman <horms@kernel.org>
+Subject: Patch "net: qrtr: fix refcount saturation and potential UAF in qrtr_port_remove" has been added to the 7.0-stable tree
+Date: Sat, 13 Jun 2026 08:24:54 -0400
+Message-ID: <20260613122454.4057943-1-sashal@kernel.org>
+X-Mailer: git-send-email 2.53.0
+Reply-To: stable@vger.kernel.org
+MIME-Version: 1.0
+X-Patchwork-Hint: ignore
+X-stable: review
+Content-Transfer-Encoding: 8bit
+X-CM-TRANSID:AQAAfwBXXu4aTC1q+WoOAA--.21S3
+Authentication-Results: hzbj-edu-front-3.icoremail.net; spf=pass smtp.
+	mail=sashal@kernel.org; dkim=pass header.i=@kernel.org
+X-Coremail-Antispam: 1UD129KBjvJXoWxZF17Kw1fZr4UKF4rXr4Utwb_yoW5tw13pr
+	W8tFs0y34kJ3W0krs7Ga10ka40q3WUCr9xGFs7Ga1rZFn5Aw13Zw1Iv34Iva4UGFZ5Jr9r
+	Xr1q9rZYkFyDAFDanT9S1TB71UUUUU7qnTZGkaVYY2UrUUUUjbIjqfuFe4nvWSU5nxnvy2
+	9KBjDU0xBIdaVrnRJUUUkSb7Iv0xC_Kw4lb4IE77IF4wAFF20E14v26r1j6r4UM7CIcVAF
+	z4kK6r1j6r18M28lY4IE4IxF12IF4wA2F7IY1VAKz4vEj48ve4kI8wA2z4x0Y4vE2Ix0cI
+	8IcVAFwI0_Jr0_JF4l84ACjcxK6xIIjxv20xvEc7CjxVAFwI0_Jr0_Gr1l84ACjcxK6I8E
+	87Iv67AKxVWUJVW8JwA2z4x0Y4vEx4A2jsIEc7CjxVAFwI0_Jr0_Gr1le2I262IYc4CY6c
+	8Ij28IcVAaY2xG8wAqx4xG64xvF2IEw4CE5I8CrVC2j2WlYx0E2Ix0cI8IcVAFwI0_Jr0_
+	Jr4lYx0Ex4A2jsIE14v26r1j6r4UMcvjeVCFs4IE7xkEbVWUJVW8JwACjcxG0xvY0x0EwI
+	xGrwCjxxvEa2IrMxkIecxEwVCI4VW5JwCY0x0Ix7I2Y4AK64vIr41lcIIF0xvE2Ix0cI8I
+	cVAFwI0_Jr0_JF4lcIIF0xvE2Ix0cI8IcVCY1x0267AKxVWUJVW8JwCYIxAIcVC2z280aV
+	AFwI0_Jr0_Gr1lcIIF0xvEx4A2jsIEc7CjxVAFwI0_Jr0_Gr1l42xK82IYc2Ij64vIr41l
+	4x8a6x804xWl4I8I3I0E4IkC6x0Yz7v_Jr0_Gr1lx2IqxVAqx4xG67AKxVWUJVWUGwC20s
+	026x8GjcxK67AKxVWUGVWUWwC2zVAF1VAY17CE14v26r1q6r43MIIYrxkI7VAKI48JMIIF
+	0xvE42xK8VAvwI8IcIk0rVWUJVWUCbIYCTnIWIevJa73UjIFyTuYvjxU9WSrUUUUU
+
+This is a note to let you know that I've just added the patch titled
+
+    net: qrtr: fix refcount saturation and potential UAF in qrtr_port_remove
+
+to the 7.0-stable tree which can be found at:
+    http://www.kernel.org/git/?p=linux/kernel/git/stable/stable-queue.git;a=summary
+
+The filename of the patch is:
+     net-qrtr-fix-refcount-saturation-and-potential-uaf-i.patch
+and it can be found in the queue-7.0 subdirectory.
+
+If you, or anyone else, feels it should not be added to the stable tree,
+please let <stable@vger.kernel.org> know about it.
+
+
+
+commit 452284d6b3a327c53b50eb86dfed367ee776d6b6
+Author: Mingyu Wang <25181214217@stu.xidian.edu.cn>
+Date:   Thu Jun 4 14:48:01 2026 +0800
+
+    net: qrtr: fix refcount saturation and potential UAF in qrtr_port_remove
+    
+    [ Upstream commit a2171131ecda1ed61a594a1eb715e75fdad0fef5 ]
+    
+    In qrtr_port_remove(), the socket reference count is decremented via
+    __sock_put() before the port is removed from the qrtr_ports XArray and
+    before the RCU grace period elapses.
+    
+    This breaks the fundamental RCU update paradigm. It exposes a race
+    window where a concurrent RCU reader (such as qrtr_reset_ports() or
+    qrtr_port_lookup()) can obtain a pointer to the socket from the XArray,
+    and attempt to call sock_hold() on a socket whose reference count has
+    already dropped to zero.
+    
+    This exact race condition was hit during syzkaller fuzzing, leading to
+    the following refcount saturation warning and a potential Use-After-Free:
+    
+      refcount_t: saturated; leaking memory.
+      WARNING: CPU: 3 PID: 1273 at lib/refcount.c:22 refcount_warn_saturate+0xae/0x1d0
+      Modules linked in: qrtr(+) bochs drm_shmem_helper ...
+      Call Trace:
+       <TASK>
+       qrtr_reset_ports net/qrtr/af_qrtr.c:768 [inline] [qrtr]
+       __qrtr_bind.isra.0+0x48b/0x570 net/qrtr/af_qrtr.c:805 [qrtr]
+       qrtr_bind+0x17d/0x210 net/qrtr/af_qrtr.c:901 [qrtr]
+       kernel_bind+0xe4/0x120 net/socket.c:3592
+       qrtr_ns_init+0x1a6/0x380 net/qrtr/ns.c:715 [qrtr]
+       qrtr_proto_init+0x3b/0xff0 net/qrtr/af_qrtr.c:169 [qrtr]
+       do_one_initcall+0xf5/0x5e0 init/main.c:1283
+       ...
+       </TASK>
+    
+    Fix this by deferring the reference count decrement until after the
+    xa_erase() and the synchronize_rcu() complete.
+    
+    (Note: The v1 of this patch incorrectly replaced __sock_put() with
+    sock_put(). As Simon Horman pointed out, the callers of qrtr_port_remove()
+    still hold a reference to the socket, so freeing the socket memory here
+    would lead to a subsequent UAF in the caller. Thus, the __sock_put() is
+    kept, but only repositioned to close the RCU race.)
+    
+    Fixes: bdabad3e363d ("net: Add Qualcomm IPC router")
+    Signed-off-by: Mingyu Wang <25181214217@stu.xidian.edu.cn>
+    Reviewed-by: Simon Horman <horms@kernel.org>
+    Link: https://patch.msgid.link/20260604064801.1180388-1-w15303746062@163.com
+    Signed-off-by: Jakub Kicinski <kuba@kernel.org>
+    Signed-off-by: Sasha Levin <sashal@kernel.org>
+
+diff --git a/net/qrtr/af_qrtr.c b/net/qrtr/af_qrtr.c
+index d77e9c8212da51..7087bb57aeac18 100644
+--- a/net/qrtr/af_qrtr.c
++++ b/net/qrtr/af_qrtr.c
+@@ -707,13 +707,13 @@ static void qrtr_port_remove(struct qrtr_sock *ipc)
+ 	if (port == QRTR_PORT_CTRL)
+ 		port = 0;
+ 
+-	__sock_put(&ipc->sk);
+-
+ 	xa_erase(&qrtr_ports, port);
+ 
+ 	/* Ensure that if qrtr_port_lookup() did enter the RCU read section we
+ 	 * wait for it to up increment the refcount */
+ 	synchronize_rcu();
++
++	__sock_put(&ipc->sk);
+ }
+ 
+ /* Assign port number to socket.

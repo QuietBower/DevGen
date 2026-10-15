@@ -11,7 +11,7 @@ This section tracks the complete email correspondence and patch history for this
 
 | Description                                                  | Link                                                         |
 | :----------------------------------------------------------- | :----------------------------------------------------------- |
-| [BUG] RCU stall in mac80211_hwsim during clone() syscall on 6.18.0 | <u>[mail](../email/006_%5BBUG%5D%20RCU%20stall%20in%20mac80211_hwsim%20during%20clone%28%29%20syscall%20on%206.18.0.txt)</u> |
-| Re: [BUG] RCU stall in mac80211_hwsim during clone() syscall on 6.18.0 | <u>[mail](../email/001_Re_%20%5BBUG%5D%20RCU%20stall%20in%20mac80211_hwsim%20during%20clone%28%29%20syscall%20on%206.18.0.txt)</u> |
-| Re: [BUG] RCU stall in mac80211_hwsim during clone() syscall on 6.18.0 | <u>[mail](../email/002_Re_%20%5BBUG%5D%20RCU%20stall%20in%20mac80211_hwsim%20during%20clone%28%29%20syscall%20on%206.18.0.txt)</u> |
+| [BUG] RCU stall in mac80211_hwsim during clone() syscall on 6.18.0 | <u>[lore.kernel.org](https://lore.kernel.org/all/37b368f9.92b3.19b87161d5b.Coremail.wangzhi_xd@stu.xidian.edu.cn/)</u> |
+| Re: [BUG] RCU stall in mac80211_hwsim during clone() syscall on 6.18.0 | <u>[lore.kernel.org](https://lore.kernel.org/all/c92ccb99-3766-46d3-8a8a-1e8a6cb79d07@nvidia.com/)</u> |
+| Re: [BUG] RCU stall in mac80211_hwsim during clone() syscall on 6.18.0 | <u>[lore.kernel.org](https://lore.kernel.org/all/f265b442-30b0-45db-8149-786f30bcc613@nvidia.com/)</u> |
 
