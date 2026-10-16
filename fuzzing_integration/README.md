@@ -1,15 +1,23 @@
 # Driver Fuzzing Integration
 
+<div align="justify">
+
 This directory implements the **Driver Fuzzing Integration** module of DevGen. It assumes that the  
 target driver already completes its `probe` routine and binds to a validated QEMU device model  
 produced by [../DevGen_Core](../DevGen_Core), and it takes the driver from *"bound to a virtual device"* to  
 *"fuzzed by Syzkaller through the interfaces it exposes"*.
+
+</div>
+
+<div align="justify">
 
 Once binding succeeds, driver testing requires inputs that reach the driver's handlers through the  
 software interfaces exposed to user space. Syzkaller generates and mutates test programs from  
 **Syzlang** descriptions of syscall variants, argument constraints and resource relationships, so  
 an interface whose description is missing, or whose description omits essential constraints,  
 cannot be exercised properly. This module therefore:
+
+</div>
 
 1. **identifies the userspace interfaces** that become available after the virtual device is added,  
    and separates the syscall variants already covered by the existing Syzlang corpus from those  
@@ -36,21 +44,33 @@ cannot be exercised properly. This module therefore:
 | 3 | Static-analysis simplification and driver code processing | `generate_json.py`, `simple_code.py`            |
 | 4 | Targeted fuzzing                                          | `../start_fuzz.py` (repository root)            |
 
+<div align="justify">
+
 The recommended order is **1 → 2 → 3 → 4**: first run `test_def_qemu_7.1.py` to determine the  
 interfaces newly exposed by the model and the interface differences, then generate and validate  
 the missing Syzlang system-call variants, then simplify the static analysis / process the target  
 driver code, and finally launch the fuzzing campaign.
 
+</div>
+
+> <div align="justify">
+>
 > Steps 2 and 3 both consume the output of the LLVM static analysis ([spec-gen/analyzer](spec-gen/analyzer),  
 > described in step 2), so the analyzer has to have run at least once before `generate_json.py`  
 > and `simple_code.py` are used.
+>
+> </div>
 
 ## 1. Interface Identification — `test_def_qemu_7.1.py`
+
+<div align="justify">
 
 This is the interface identification entry point. To locate the candidate device nodes exposed by  
 the generated device, two QEMU runs are compared under otherwise identical conditions, with and  
 without the validated model `M`. Let `N+(D)` and `N-(D)` denote the `/dev` node sets with and  
 without `M`; the candidate node set is
+
+</div>
 
 ```
 ΔN(D) = N+(D) \ N-(D)
@@ -71,6 +91,8 @@ For every device listed in `test_qemu.json`, the script
 4. accumulates the diff into `changedev.json` (refreshed after every device) and writes the  
    binding result back into `test_qemu.json`.
 
+<div align="justify">
+
 The device names coming from `test_qemu.json` are exactly the identification nodes: the name is  
 used both as the QEMU `-device` identifier and as the key under which the interface difference is  
 recorded, so an entry such as `atl1e` selects the corresponding model, checks which driver binds to  
@@ -78,6 +100,8 @@ it, and records the `/dev` nodes it newly exposes. Interfaces that do not create
 (debugfs nodes, or shared nodes such as `/dev/ptmx`) cannot be seen by this diff; they are  
 identified through source registration analysis and predefined driver-to-Syzlang mappings, as  
 described in step 2.
+
+</div>
 
 Configuration at the top of the script:
 
@@ -93,23 +117,39 @@ CHANGE_DEV_JSON = ".../changedev.json"   # accumulated ΔN(D), one entry per dev
 python3 test_def_qemu_7.1.py
 ```
 
+<div align="justify">
+
 [test_QEMU/](test_QEMU/)/*.sh holds standalone QEMU launch scripts for individual devices; they are useful to  
 reproduce a single boot manually (the script also documents the configurable parameters).
+
+</div>
+
+<div align="justify">
 
 The resulting `changedev.json` — the newly exposed interfaces — together with the collected source  
 context is what the next step consumes: the operations behind these interfaces are matched against  
 the existing Syzlang corpus, and the uncovered ones become the missing syscall variants.
 
+</div>
+
 ## 2. Syzlang Description Generation and Validation
+
+<div align="justify">
 
 The operations reachable through the interfaces identified in step 1 are matched against the  
 existing Syzlang corpus. Variants that already have a description are reused; variants that lack a  
 description, or whose description omits essential constraints, are completed here.
 
+</div>
+
 ### [spec-gen/](spec-gen/) — generate the missing Syzlang system-call variants
+
+<div align="justify">
 
 For each operation, [spec-gen/](spec-gen/) recovers the semantics from the driver context along three axes  
 that mirror the paper's description-completion step:
+
+</div>
 
 - **Identifier deduction** — the device path, the opening method and the operation identifier  
   (`step0_template_open.txt` → `step1_template_cmd.txt`);
@@ -158,16 +198,22 @@ python process_output.py --linux-path /path/to/linux --usage
 
 ### [spec-eval/](spec-eval/) — validate the generated syscalls
 
+<div align="justify">
+
 [spec-eval/](spec-eval/) validates the generated descriptions. A candidate description is accepted only after  
 it passes **Syzlang compilation followed by a Syzkaller build**; if either step fails, the candidate  
 is repaired from the diagnostics (`spec-gen/repair_spec.py`, orchestrated by  
 `spec-gen/eval_spec.py`) and both steps are repeated.
+
+</div>
 
 The validation harness prepares its own environment and runs Syzkaller with a given spec set:
 
 ```bash
 python run-specs.py -d DIRECTORY |& tee run-specs.log
 ```
+
+<div align="justify">
 
 It shallow-clones `linux` with the provided kernel config, shallow-clones a separate `syzkaller`  
 per run declared in `config.yaml`, copies the candidate specs into each `syzkaller/sys/linux` tree  
@@ -177,13 +223,23 @@ validity run, `template-all.cfg` for the full set, `template-repro.cfg` for repr
 tree, replacing an existing file name), `shallow-clone.sh`, `apply-patch.sh`,  
 `syzkaller-enabling.patch`, `linux-d2f51b35.patch`.
 
+</div>
+
+<div align="justify">
+
 Descriptions that pass both validation steps are the generated descriptions used by the fuzzing  
 step.
 
+</div>
+
 ### `process_syscall.py` — compile the newly generated system calls
+
+<div align="justify">
 
 Once the generated specs are validated, `process_syscall.py` integrates them into the Syzkaller  
 build used for fuzzing. For every `*.txt` spec in the generated-spec directory it
+
+</div>
 
 1. copies the spec into `syzkaller/sys/linux`,
 2. runs `bin/syz-extract -os linux -sourcedir <kernel> -arch amd64 <spec>`, which extracts the  
@@ -193,27 +249,43 @@ build used for fuzzing. For every `*.txt` spec in the generated-spec directory i
    binaries.
 
 
+<div align="justify">
+
 Specs that fail `syz-extract` are moved aside to an error directory instead of being kept. The  
 paths at the top of the file (`source_dir`, `target_dir`, `syzkaller_dir`, `kernel_source`,  
 `error_dir`) must be adjusted for the local setup:
+
+</div>
 
 ```bash
 python3 process_syscall.py
 ```
 
+<div align="justify">
+
 At this point the generated system calls are part of the Syzkaller build and can be enabled per  
 driver in step 4.
 
+</div>
+
 ## 3. Static-Analysis Simplification and Driver Code Processing
+
+<div align="justify">
 
 The raw static-analysis output covers the whole kernel and is too large to hand to the LLM  
 directly. These two scripts reduce it to the driver-level JSON and driver-scoped code that is used  
 downstream as the source context for interface association and description completion.
 
+</div>
+
 ### `python3 generate_json.py` — simplify the static analysis into one JSON file
+
+<div align="justify">
 
 Walks a directory of per-driver JSON files and flattens them into a single mapping  
 `{ driver_name: [paths...] }`:
+
+</div>
 
 - reads `驱动名称` (driver name), `驱动核心路径` (core path) and `头文件` (headers) from each file;
 - normalises every path (drops everything before `/linux/`, drops the trailing `:line` suffix, and  
@@ -233,12 +305,16 @@ python3 generate_json.py
 
 ### `python3 simple_code.py` — process the target driver code
 
+<div align="justify">
+
 Consumes the generated JSON and keeps only the declarations and definitions that belong to the  
 target driver itself. For each driver it walks the corresponding static-analysis JSON and drops  
 every object whose `path` field does not contain any of the configured path keywords, while  
 preserving all top-level keys (`驱动名称`, `驱动核心路径`, `宏定义`, `enum定义`,  
 `enum-typedef定义`, `struct定义`, `struct-typedef定义`, `var声明`, `struct-init声明`,  
 `func声明`, `struct-init定义`, `func定义`). The result is a compact, driver-scoped context.
+
+</div>
 
 ```python
 config_file = "data/100_example.json"          # { driver: [path keywords] }
@@ -252,7 +328,11 @@ python3 simple_code.py
 
 ## 4. Targeted Syzkaller Fuzzing — `../start_fuzz.py`
 
+> <div align="justify">
+>
 > The fuzzing driver lives at the **repository root** (`../start_fuzz.py`), not in this directory. It resolves every input and output through the absolute paths configured at the top of the file, so it can be launched from anywhere. Adjust those paths before running:
+>
+> </div>
 
 ```python
 FUZZ_PATH           = "/home/user/Fuzzer/code/config/2_gpt-5.1-fuzz.json"   # per-device fuzzing config
@@ -285,11 +365,15 @@ For each device in `FUZZ_PATH` the script:
 python3 start_fuzz.py
 ```
 
+<div align="justify">
+
 The with/without-model pairing isolates the contribution of the generated device to coverage and  
 crashes. During each run QEMU instantiates the validated model and the driver binds to it;  
 Syzkaller executes structured seeds built from `Calls(D)`, KCOV records coverage, KASAN reports  
 faults, and the kernel log captures additional runtime failures. Crashes are archived with their  
 triggering seed, the corresponding device model and any minimized reproducer.
+
+</div>
 
 ## Supporting Files
 
